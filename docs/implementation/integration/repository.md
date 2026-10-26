@@ -2,7 +2,7 @@
 
 Product root: `~/Projects/paper-theater`.
 
-GitHub remote: `https://github.com/jeffcato/paper-theater.git`. Initial visibility is private; the default branch is `main`.
+GitHub remote: `https://github.com/jeffcato/paper-theater.git`. The operator confirmed public visibility on 2026-10-26; preserve it. The default branch is `main`.
 
 The initial commit contains project instructions, agent handoffs, identity enforcement and repository hygiene. It does not implement the product or certify production acceptance.
 

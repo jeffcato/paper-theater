@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS runs(id TEXT PRIMARY KEY,idempotency TEXT UNIQUE NOT NULL,request TEXT NOT NULL,state TEXT NOT NULL,epoch INTEGER NOT NULL,created INTEGER NOT NULL,error TEXT,retry_at INTEGER);
 CREATE UNIQUE INDEX IF NOT EXISTS one_active_run ON runs((1)) WHERE state IN ('running','waiting_provider');
 CREATE TABLE IF NOT EXISTS stages(run TEXT REFERENCES runs(id),name TEXT,state TEXT NOT NULL,PRIMARY KEY(run,name));
-CREATE TABLE IF NOT EXISTS units(run TEXT REFERENCES runs(id),stage TEXT,unit_key TEXT,input_hash TEXT,output TEXT NOT NULL,PRIMARY KEY(run,stage,unit_key));
+CREATE TABLE IF NOT EXISTS units(run TEXT REFERENCES runs(id),stage TEXT,unit_key TEXT,input_hash TEXT,output TEXT NOT NULL,outcome TEXT NOT NULL,PRIMARY KEY(run,stage,unit_key));
 CREATE TABLE IF NOT EXISTS events(run TEXT REFERENCES runs(id),seq INTEGER,epoch INTEGER NOT NULL,created INTEGER NOT NULL,kind TEXT NOT NULL,data TEXT NOT NULL,PRIMARY KEY(run,seq));
 CREATE TABLE IF NOT EXISTS artifacts(id TEXT PRIMARY KEY,run TEXT REFERENCES runs(id),name TEXT NOT NULL,sha256 TEXT NOT NULL,bytes INTEGER NOT NULL,media_type TEXT NOT NULL,provenance TEXT NOT NULL,reference TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS attempts(id TEXT PRIMARY KEY,run TEXT REFERENCES runs(id),epoch INTEGER NOT NULL,operation TEXT NOT NULL,request_hash TEXT NOT NULL,descriptor_hash TEXT NOT NULL,scope TEXT NOT NULL,state TEXT NOT NULL,money INTEGER NOT NULL,requests INTEGER NOT NULL,tokens INTEGER NOT NULL,repair INTEGER NOT NULL,created INTEGER NOT NULL,response TEXT,job_id TEXT,UNIQUE(run,operation));
@@ -12,3 +12,5 @@ CREATE TABLE IF NOT EXISTS library(book TEXT,entity TEXT,revision INTEGER NOT NU
 CREATE TABLE IF NOT EXISTS publications(id TEXT PRIMARY KEY,run TEXT REFERENCES runs(id),epoch INTEGER NOT NULL,book TEXT NOT NULL,record TEXT NOT NULL,state TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS catalog(book TEXT PRIMARY KEY,publication TEXT REFERENCES publications(id));
 CREATE TABLE IF NOT EXISTS recipes(name TEXT PRIMARY KEY);
+CREATE TABLE IF NOT EXISTS run_inputs(run TEXT REFERENCES runs(id),artifact TEXT REFERENCES artifacts(id),reference TEXT NOT NULL,PRIMARY KEY(run,artifact));
+CREATE TABLE IF NOT EXISTS diagnostic_packages(run TEXT PRIMARY KEY REFERENCES runs(id),epoch INTEGER NOT NULL,manifest_hash TEXT NOT NULL,mapping TEXT NOT NULL,candidate TEXT NOT NULL);

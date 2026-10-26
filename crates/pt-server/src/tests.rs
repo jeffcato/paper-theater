@@ -26,3 +26,8 @@ async fn loopback_origin_and_artifact_allowlist_are_enforced(){
  for (host,origin) in [("evil.example:8787","http://evil.example:8787"),("127.0.0.1:8787","http://evil.example")]{let response=app.clone().oneshot(Request::builder().method("POST").uri("/api/v1/runs").header("host",host).header("origin",origin).header("content-type","application/json").header("idempotency-key","forbidden").body(Body::from(body().to_string())).unwrap()).await.unwrap();assert_eq!(response.status(),StatusCode::FORBIDDEN);}
  let response=app.oneshot(Request::builder().uri("/api/v1/artifacts/secret.txt").header("host","127.0.0.1:8787").body(Body::empty()).unwrap()).await.unwrap();assert_eq!(response.status(),StatusCode::NOT_FOUND);
 }
+#[tokio::test]
+async fn diagnostic_endpoint_distinguishes_missing_candidate_from_unknown_run(){
+ let temp=tempfile::tempdir().unwrap();let store=pt_production::runtime::Store::open(temp.path()).unwrap();let created=store.create("candidate-status",&body()).unwrap();let id=created["id"].as_str().unwrap();let app=router(App::new(store,8787,None,None));
+ let response=app.oneshot(Request::builder().uri(format!("/api/v1/runs/{id}/diagnostic")).header("host","127.0.0.1:8787").body(Body::empty()).unwrap()).await.unwrap();assert_eq!(response.status(),StatusCode::OK);assert_eq!(&to_bytes(response.into_body(),1024).await.unwrap()[..],b"null");
+}

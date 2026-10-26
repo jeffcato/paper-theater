@@ -448,5 +448,63 @@
     "destination_sha256": "2aa1a7bd9e7d88fa7939e825e0472c4eb383ec51dcdf22afe384814484cd7a82",
     "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
     "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "crates/gutenberg-catalog/src/cleaner.rs",
+    "source_sha256": "f508582f2bc53e244b9e386a00803a6614a6b61143beafab1b5b4c7d6575823f",
+    "destination": "tools/generation/source.py",
+    "destination_sha256": "cf1abec23a4c0a3819012d7be664a2e5a94fb5f48e665d97691109ca9c57d268",
+    "transformation": "Reimplemented scoped boilerplate/markup cleanup and line unwrapping with retained Unicode scalar coordinates; no runtime source dependency.",
+    "license_notice": "Source crate declares MIT OR Apache-2.0; source file has no additional copyright notice."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/oz_scene/stage.rs",
+    "source_sha256": "1ff6590c7b5a8035e11f0ffa0312b2e4a633b4e871d1d4a44baf2901614ae99d",
+    "destination": "tools/generation/geometry.py",
+    "destination_sha256": "6d72b94f28fb140cc7e62b91774cc6a0b151e11f1a30036bffe2292d46ff54a9",
+    "transformation": "Adapted crop/contact arithmetic into a pure measured registration function with separate semantic-body scale; no renderer or media mutation.",
+    "license_notice": "No license/copyright notice in selected source file."
+  },
+  {
+    "component_id": "product-source-freeze-v1",
+    "source_relative_path": "fixtures/generation/source/pg55-raw.txt",
+    "source_sha256": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75",
+    "destination": "fixtures/generation/source/pg55-clean.txt",
+    "destination_sha256": "c9c44a8852872740f9bb8078479510687050e6d69446b0c5e765bdc2382df259",
+    "recipe_sha256": "cf1abec23a4c0a3819012d7be664a2e5a94fb5f48e665d97691109ca9c57d268",
+    "transformation": "Derived canonical whitespace/formatting cleanup and exact body selection; full raw edition preserved, with chapter scalar-to-raw mapping.",
+    "license_notice": "Original Gutenberg edition notices retained in raw input."
+  },
+  {
+    "component_id": "product-source-freeze-v1",
+    "source_relative_path": "fixtures/generation/source/pg55-raw.txt",
+    "source_sha256": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75",
+    "destination": "fixtures/generation/source/pg55-frozen.json",
+    "destination_sha256": "f85e6dcbd2d0d663647dc4aada2d5e9cb725da50d5d74556f64e74b38cef5a5a",
+    "recipe_sha256": "cf1abec23a4c0a3819012d7be664a2e5a94fb5f48e665d97691109ca9c57d268",
+    "transformation": "Derived canonical whitespace/formatting cleanup and exact body selection; full raw edition preserved, with chapter scalar-to-raw mapping.",
+    "license_notice": "Original Gutenberg edition notices retained in raw input."
+  },
+  {
+    "component_id": "product-source-freeze-v1",
+    "source_relative_path": "fixtures/generation/source/pg36-raw.txt",
+    "source_sha256": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+    "destination": "fixtures/generation/source/pg36-clean.txt",
+    "destination_sha256": "33e728402e6728e39d5374eff41d2739c032f85bfb12b2954d124682e99e021f",
+    "recipe_sha256": "cf1abec23a4c0a3819012d7be664a2e5a94fb5f48e665d97691109ca9c57d268",
+    "transformation": "Derived canonical whitespace/formatting cleanup and exact body selection; full raw edition preserved, with chapter scalar-to-raw mapping.",
+    "license_notice": "Original Gutenberg edition notices retained in raw input."
+  },
+  {
+    "component_id": "product-source-freeze-v1",
+    "source_relative_path": "fixtures/generation/source/pg36-raw.txt",
+    "source_sha256": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+    "destination": "fixtures/generation/source/pg36-frozen.json",
+    "destination_sha256": "7fd9ef36e25f709c76f465b8ef5a91d980dd4e8275a1cdb5ba5b2001e6d1d7ad",
+    "recipe_sha256": "cf1abec23a4c0a3819012d7be664a2e5a94fb5f48e665d97691109ca9c57d268",
+    "transformation": "Derived canonical whitespace/formatting cleanup and exact body selection; full raw edition preserved, with chapter scalar-to-raw mapping.",
+    "license_notice": "Original Gutenberg edition notices retained in raw input."
   }
 ]

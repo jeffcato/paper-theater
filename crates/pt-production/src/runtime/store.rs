@@ -123,12 +123,17 @@ impl Store {
         for stage in &stages {
             let name=stage["name"].as_str().unwrap();
             let saved:Option<(String,String)>=tx.query_row("SELECT unit_key,output FROM units WHERE run=?1 AND stage=?2 ORDER BY rowid DESC LIMIT 1",params![run,name],|r|Ok((r.get(0)?,r.get(1)?))).optional()?;
-            let (key,artifacts)=match saved {Some((key,output))=>(key,serde_json::from_str::<Value>(&output)?),None=>(format!("pending-{name}"),json!([]))};
-            let outcome=match stage["state"].as_str(){Some("succeeded")=>Some("complete"),Some("failed")=>Some("failed"),Some("cancelled")=>Some("cancelled"),_=>None};
+            let (key,mut artifacts)=match saved {Some((key,output))=>(key,serde_json::from_str::<Value>(&output)?),None=>(format!("pending-{name}"),json!([]))};
+            if name=="source" {let refs=tx.prepare("SELECT reference FROM run_inputs WHERE run=?1 ORDER BY rowid")?.query_map([run],|r|r.get::<_,String>(0))?.collect::<std::result::Result<Vec<_>,_>>()?;for a in refs{artifacts.as_array_mut().unwrap().push(serde_json::from_str(&a)?);}}
+            let outcome=match stage["state"].as_str(){Some("succeeded")=>Some("complete"),Some("failed")=>Some("failed"),Some("cancelled")=>Some("cancelled"),Some("repairing")=>Some("needs_repair"),_=>None};
             public_stages.push(json!({"stage":name,"unit_id":key,"outcome":outcome,"artifacts":artifacts}));
         }
+        let mut findings=std::collections::BTreeMap::new();
+        let records=tx.prepare("SELECT data FROM events WHERE run=?1 AND kind='check_completed' ORDER BY seq")?.query_map([run],|r|r.get::<_,String>(0))?.collect::<std::result::Result<Vec<_>,_>>()?;
+        for record in records {if let Ok(finding)=serde_json::from_str::<pt_contracts::Finding>(&record){findings.insert(finding.id.clone(),finding);}}
+        let findings=findings.into_values().collect::<Vec<_>>();
         let seq: i64 = tx.query_row("SELECT COALESCE(MAX(seq),0) FROM events WHERE run=?1",[run],|r|r.get(0))?;
-        Ok(json!({"schema_version":1,"id":run,"request":serde_json::from_str::<Value>(&row.0)?,"state":row.1,"epoch":row.2,"created":row.3,"error":row.4,"stages":stages,"artifacts":artifacts,"last_event_seq":seq,"provenance":"synthetic","stage_snapshots":public_stages}))
+        Ok(json!({"schema_version":1,"id":run,"request":serde_json::from_str::<Value>(&row.0)?,"state":row.1,"epoch":row.2,"created":row.3,"error":row.4,"stages":stages,"artifacts":artifacts,"last_event_seq":seq,"provenance":"synthetic","stage_snapshots":public_stages,"findings":findings}))
     }
     pub fn history(&self, before: i64, limit: usize) -> Result<Vec<Value>> {
         let db = self.db()?;
@@ -177,7 +182,7 @@ impl Store {
 impl Store {
     pub fn api_snapshot(&self,run:&str)->Result<pt_contracts::RunSnapshot> {
         let v=self.snapshot(run)?;
-        Ok(pt_contracts::RunSnapshot{schema_version:1,run_id:run.to_owned(),request_sha256:digest(&serde_json::to_vec(&v["request"])?),epoch:v["epoch"].as_u64().unwrap(),revision:0,state:serde_json::from_value(v["state"].clone())?,last_event_seq:v["last_event_seq"].as_u64().unwrap(),stages:serde_json::from_value(v["stage_snapshots"].clone())?,findings:vec![]})
+        Ok(pt_contracts::RunSnapshot{schema_version:1,run_id:run.to_owned(),request_sha256:digest(&serde_json::to_vec(&v["request"])?),epoch:v["epoch"].as_u64().unwrap(),revision:0,state:serde_json::from_value(v["state"].clone())?,last_event_seq:v["last_event_seq"].as_u64().unwrap(),stages:serde_json::from_value(v["stage_snapshots"].clone())?,findings:serde_json::from_value(v["findings"].clone())?})
     }
     pub fn api_journal(&self,run:&str,after:i64,limit:usize)->Result<Vec<pt_contracts::RunEvent>> {
         use pt_contracts::{RunEvent,JournalProposal,EventKind};

@@ -17,7 +17,7 @@ Local project root: `~/Projects/paper-theater`. Supply any external read-only so
 
 ## Repository
 
-GitHub: [jeffcato/paper-theater](https://github.com/jeffcato/paper-theater). The repository starts private, with `main` as its default branch. Follow [repository collaboration rules](docs/implementation/integration/repository.md) and the root [agent instructions](AGENTS.md).
+GitHub: [jeffcato/paper-theater](https://github.com/jeffcato/paper-theater). The repository is public by operator choice, with `main` as its default branch. Follow [repository collaboration rules](docs/implementation/integration/repository.md) and the root [agent instructions](AGENTS.md).
 
 ## Identity check
 

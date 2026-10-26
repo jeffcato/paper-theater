@@ -50,9 +50,13 @@ def replay(root):
         identities.append({'case':case,'model':receipt['model'],'audio_sha256':receipt['audio_sha256'],'request_sha256':rid,'response_sha256':receipt['response_sha256']})
     track,shared=candidate_track(cases,results,m['sample_rate']);groups,unresolved=highlight_groups(track)
     if track!=saved['candidate_word_track'] or groups!=saved['candidate_highlight_groups'] or shared or unresolved:raise ValueError('measured point/group identity changed')
+    names=['manifest.json','source.txt','excerpt.wav','segmented-acoustic-report.json']
+    names += [u['audio'] for u in m['units']]
+    names += [f"transcribe/{u['request_sha256']}{suffix}" for u in saved['units'] for suffix in ['.json','.receipt.json']]
     independent=[]
     for path in sorted((root/'meta').glob('*.receipt.json')):
         receipt=load(root,str(path.relative_to(root)))
+        names += [str(path.relative_to(root)),f"meta/{receipt['request_sha256']}.json"]
         if receipt['audio_sha256']!=m['audio_sha256'] or receipt['model']==saved['model']:raise ValueError('independent audio/model mismatch')
         raw=verified(root,f"meta/{receipt['request_sha256']}.json",receipt['response_sha256'])
         independent.append({'model':receipt['model'],'request_sha256':receipt['request_sha256'],
@@ -60,6 +64,7 @@ def replay(root):
     return {'schema_version':1,'provenance':'imported','provider_calls':0,'production_approved':False,
             'source_sha256':m['source_sha256'],'audio_sha256':m['audio_sha256'],'sample_rate':m['sample_rate'],
             'recipe_sha256':digest(Path(__file__).read_bytes()+Path(__file__).with_name('adapters.py').read_bytes()),
+            'input_hashes':{name:digest(read(root,name)) for name in names},
             'word_track':track,'highlight_groups':groups,'primary_inputs':identities,'independent':independent,
             'reveal_permissions':[],'missing_evidence':['complete-fact-interval-verification','voice-continuity','rendered-review']}
 

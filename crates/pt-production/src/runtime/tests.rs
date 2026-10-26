@@ -110,3 +110,27 @@ async fn helper_has_bounded_output_deadline_and_cancellation(){
     recipe.arguments=vec!["-c".into(),"import time; time.sleep(2)".into()];recipe.timeout_ms=30;assert_eq!(execute(&recipe,&digest(b"test-attempt"),b"{}",0,||false).await.err().unwrap().code,"helper_timeout");
     assert_eq!(execute(&recipe,&digest(b"test-attempt"),b"{}",0,||true).await.err().unwrap().code,"stale_epoch");
 }
+#[tokio::test]
+async fn real_generation_candidate_keeps_saved_media_and_missing_acceptance_private(){
+    let root=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");let fixture=root.join("fixtures/shared/two-scene-v1");
+    let temp=tempfile::tempdir().unwrap();let store=Store::open(temp.path()).unwrap();let profile=std::fs::read(fixture.join("profile.json")).unwrap();let mut req=request();req["pins"]["profile_sha256"]=json!(digest(&profile));req["pins"]["profile_id"]=json!("paper-player-r186-v1");
+    let run=store.create("diagnostic-package",&req).unwrap()["id"].as_str().unwrap().to_owned();let(_,epoch)=store.claim().unwrap().unwrap();
+    store.seed_fixture(&run,epoch,&fixture,Some(&root.join("fixtures/generation/source"))).unwrap();
+    let runtime=Runtime::new(store.clone(),Arc::new(crate::generation::GenerationExecutor));runtime.execute_stage(&run,epoch,c::Stage::Source).await.unwrap();
+    assert_eq!(runtime.execute_stage(&run,epoch,c::Stage::Package).await.unwrap_err().code,"stage_needs_repair");
+    assert!(!store.api_snapshot(&run).unwrap().findings.is_empty());
+    let reference=store.diagnostic_ref(&run).unwrap().unwrap();let (bytes,_,hash)=store.package_artifact(&run,"manifest.json").unwrap();assert_eq!(hash,reference.manifest_sha256);let manifest:c::Manifest=serde_json::from_slice(&bytes).unwrap();assert_eq!(manifest.provenance,c::Provenance::Diagnostic);
+    let (audio,_,_)=store.package_artifact(&run,&manifest.entries.audio.path).unwrap();assert_eq!(digest(&audio),manifest.entries.audio.sha256);assert!(store.catalog("pg-55").unwrap().is_none());assert!(store.api_journal(&run,0,500).unwrap().iter().any(|e|e.entry.kind==c::EventKind::DirectorDecision));
+}
+#[test]
+fn restart_at_each_publication_boundary_preserves_previous_catalog(){
+    for boundary in ["prepared","files_staged","renamed"]{
+        let temp=tempfile::tempdir().unwrap();let store=Store::open(temp.path()).unwrap();let run=store.create(boundary,&request()).unwrap()["id"].as_str().unwrap().to_owned();let(_,epoch)=store.claim().unwrap().unwrap();
+        let old=digest(b"previous-accepted-pointer-fixture");let pending=digest(boundary.as_bytes());
+        // Fault injection seeds a committed historical pointer and an interrupted activation.
+        // It grants no acceptance to this synthetic test data.
+        let db=rusqlite::Connection::open(temp.path().join("runtime.sqlite3")).unwrap();db.execute("INSERT INTO publications VALUES(?1,?2,?3,'pg-55','{}','active')",rusqlite::params![old,run,epoch]).unwrap();db.execute("INSERT INTO catalog VALUES('pg-55',?1)",[&old]).unwrap();db.execute("INSERT INTO publications VALUES(?1,?2,?3,'pg-55','{}','pending')",rusqlite::params![pending,run,epoch]).unwrap();
+        if boundary!="prepared"{let dir=temp.path().join("releases").join(if boundary=="renamed"{pending.as_str()}else{"pending-crash"});std::fs::create_dir_all(&dir).unwrap();std::fs::write(dir.join("incomplete.json"),b"{}").unwrap();}drop(db);drop(store);
+        let reopened=Store::open(temp.path()).unwrap();reopened.recover().unwrap();assert_eq!(reopened.catalog("pg-55").unwrap(),Some(old));assert!(reopened.journal(&run,0,500).unwrap().iter().any(|e|e["type"]=="publication_aborted"));
+    }
+}

@@ -15,7 +15,7 @@ async fn db<T:Send+'static>(f:impl FnOnce()->pt_production::runtime::Result<T>+S
 pub fn router(app:App)->Router{Router::new()
  .route("/api/v1/books",get(books)).route("/api/v1/runs",get(history).post(create))
  .route("/api/v1/runs/{id}",get(snapshot)).route("/api/v1/runs/{id}/cancel",post(cancel))
- .route("/api/v1/runs/{id}/journal",get(journal)).route("/api/v1/runs/{id}/events",get(events))
+ .route("/api/v1/runs/{id}/diagnostic",get(diagnostic_ref)).route("/api/v1/runs/{id}/package/{*path}",get(package_file)).route("/api/v1/runs/{id}/journal",get(journal)).route("/api/v1/runs/{id}/events",get(events))
  .route("/api/v1/artifacts/{id}",get(artifact)).route("/diagnostic/{*path}",get(diagnostic))
  .route("/",get(index)).route("/{*path}",get(static_file))
  .layer(DefaultBodyLimit::max(64*1024)).layer(middleware::from_fn_with_state(app.clone(),origin)).with_state(app)}
@@ -26,8 +26,9 @@ async fn origin(State(app):State<App>,request:Request,next:Next)->Response{
  let mut response=next.run(request).await;let h=response.headers_mut();h.insert("x-content-type-options","nosniff".parse().unwrap());h.insert("content-security-policy","default-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'".parse().unwrap());h.insert("cache-control","no-store".parse().unwrap());response
 }
 async fn books(State(app):State<App>)->Json<Value>{
+ let diagnostic_pins=app.fixture.as_ref().and_then(|root|std::fs::read(root.join("profile.json")).ok()).and_then(|bytes|serde_json::from_slice::<Value>(&bytes).ok().map(|profile|json!({"recipe_sha256":pt_contracts::digest(b"saved-diagnostic-v1"),"profile_sha256":pt_contracts::digest(&bytes),"profile_id":profile["id"]})));
  let diagnostic=app.fixture.and_then(|root|std::fs::read(root.join("manifest.json")).ok()).map(|bytes|json!({"manifest_path":"/diagnostic/manifest.json","manifest_sha256":pt_contracts::digest(&bytes)}));
- Json(json!({"books":[{"id":"pg-55","title":"The Wonderful Wizard of Oz","source_id":"pg-55-chapter-1","chapter":1},{"id":"pg-36","title":"The War of the Worlds","source_id":"pg-36-book-1-chapter-1","part":1,"chapter":1}],"execution_modes":["fixture"],"provenance":"synthetic","diagnostic":diagnostic}))
+ Json(json!({"books":[{"id":"pg-55","title":"The Wonderful Wizard of Oz","source_id":"pg-55-chapter-1","chapter":1},{"id":"pg-36","title":"The War of the Worlds","source_id":"pg-36-book-1-chapter-1","part":1,"chapter":1}],"execution_modes":["fixture"],"provenance":"synthetic","diagnostic":diagnostic,"diagnostic_pins":diagnostic_pins}))
 }
 async fn create(State(app):State<App>,headers:HeaderMap,Json(body):Json<Value>)->Result<(StatusCode,Json<pt_contracts::RunSnapshot>),ApiError>{
  let key=headers.get("idempotency-key").and_then(|v|v.to_str().ok()).ok_or_else(||error("invalid_idempotency_key"))?.to_owned();
@@ -58,6 +59,8 @@ async fn events(State(app):State<App>,Path(id):Path<String>,Query(page):Query<Pa
  };
  Ok(Sse::new(stream).keep_alive(KeepAlive::new().interval(Duration::from_secs(10))))
 }
+async fn diagnostic_ref(State(app):State<App>,Path(id):Path<String>)->Result<Json<Option<pt_contracts::ReleaseRef>>,ApiError>{Ok(Json(db(move||{app.store.api_snapshot(&id)?;app.store.diagnostic_ref(&id)}).await?))}
+async fn package_file(State(app):State<App>,Path((id,path)):Path<(String,String)>)->Result<Response,ApiError>{let(bytes,mime,hash)=db(move||app.store.package_artifact(&id,&path)).await?;Ok(([(header::CONTENT_TYPE,mime),(header::ETAG,format!("\"{hash}\""))],Body::from(bytes)).into_response())}
 async fn artifact(State(app):State<App>,Path(id):Path<String>)->Result<Response,ApiError>{let(bytes,mime,hash)=db(move||app.store.artifact(&id)).await?;Ok(([(header::CONTENT_TYPE,mime),(header::ETAG,format!("\"{hash}\""))],Body::from(bytes)).into_response())}
 async fn index(State(app):State<App>)->Result<Response,ApiError>{serve_static(app.studio,"index.html".into()).await}
 async fn static_file(State(app):State<App>,Path(path):Path<String>)->Result<Response,ApiError>{if path.starts_with("api/"){return Err(error("not_found"));}serve_static(app.studio,path).await}

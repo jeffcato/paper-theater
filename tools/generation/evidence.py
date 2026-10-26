@@ -21,6 +21,7 @@ def match_facts(source,turn_span,facts,primary,independent,*,sample_rate,sample_
     expected=tokens(source[a:b])
     words=parse_words(json.loads(primary['raw']))
     turns=parse_turns(json.loads(independent['raw']),sample_count/sample_rate)
+    if any(b['start']<a['end'] for a,b in zip(turns,turns[1:])):raise ValueError('independent intervals are not monotonic')
     matched=[t for t in turns if tokens(t['text'])==expected]
     if not expected or not words or len(matched)!=1:raise ValueError('incomplete or ambiguous independent interval')
     word_check(words,(sample_count-primary['offset_sample'])/sample_rate)

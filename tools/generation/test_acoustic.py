@@ -18,3 +18,10 @@ class AcousticTests(unittest.TestCase):
         self.assertEqual(result['provider_calls'],0)
         self.assertFalse(result['production_approved'])
         self.assertEqual(result['reveal_permissions'],[])
+
+    def test_replay_binds_every_consumed_response_receipt_and_media_digest(self):
+        from helper import run,digest
+        result=run({'operation':'replay_acoustic','root':str(ROOT)})
+        for name in ['manifest.json','source.txt','excerpt.wav','segmented-acoustic-report.json']:
+            self.assertEqual(result['input_hashes'][name],digest((ROOT/name).read_bytes()))
+        self.assertEqual(len([p for p in result['input_hashes'] if p.endswith('.receipt.json')]),13)

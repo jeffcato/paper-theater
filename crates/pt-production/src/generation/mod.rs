@@ -67,7 +67,7 @@ async fn write<T: Serialize>(
     let file = services
         .write_candidate(
             CandidateWrite {
-                candidate_id,
+                candidate_id: candidate_id.clone(),
                 relative_path: path.into(),
                 media_type: "application/json".into(),
                 max_bytes: MAX_ARTIFACT_BYTES,
@@ -76,6 +76,15 @@ async fn write<T: Serialize>(
             bytes.clone(),
         )
         .await?;
+    require(
+        file.candidate_id == candidate_id
+            && file.file.path == path
+            && file.file.media_type == "application/json"
+            && file.provenance == Provenance::Diagnostic,
+        "generation_candidate",
+        path,
+        "runtime candidate differs from requested identity",
+    )?;
     file.file.verify(&bytes)?;
     services.check_cancelled().await?;
     Ok(file)
@@ -276,6 +285,7 @@ impl StageExecutor for GenerationExecutor {
         services.check_cancelled().await?;
         services.emit(JournalProposal{kind:EventKind::CheckCompleted,task_id:Some(input.unit_id.clone()),decision_id:None,
             artifact_ids:input.inputs.iter().map(|a|a.id.clone()).collect(),summary:"Diagnostic candidate assembled from verified saved payloads; production evidence remains unresolved.".into()}).await?;
+        services.check_cancelled().await?;
         Ok(StageOutput{outcome:StageOutcome::NeedsRepair,artifacts:vec![inventory_file,acceptance_file,manifest_file,document],
             decisions:vec![Decision{id:format!("{}:saved-reuse",input.unit_id),summary:"Reuse verified saved media and measured timing; retain every unresolved production gate.".into(),
                 inputs:input.inputs.clone(),selected_ids:vec![],rejected_ids:vec![],supersedes:None}],findings,cache_keys:vec![cache_key],library_updates:vec![],package_candidate:Some(package)})

@@ -1,11 +1,17 @@
 use super::*;
 use async_trait::async_trait;
-use std::{collections::BTreeMap, sync::{Mutex, atomic::{AtomicBool, Ordering}}};
+use std::{
+    collections::BTreeMap,
+    sync::{
+        Mutex,
+        atomic::{AtomicBool, Ordering},
+    },
+};
 
 struct OfflineServices {
-    substitute_path:bool,
-    cancel_on_emit:bool,
-    cancelled:AtomicBool,
+    substitute_path: bool,
+    cancel_on_emit: bool,
+    cancelled: AtomicBool,
     inputs: BTreeMap<String, Vec<u8>>,
     writes: Mutex<Vec<(CandidateFile, Vec<u8>)>>,
 }
@@ -27,7 +33,11 @@ impl RunServices for OfflineServices {
             candidate_id: r.candidate_id,
             provenance: r.provenance,
             file: FileRef {
-                path: if self.substitute_path {"substituted.json".into()}else{r.relative_path},
+                path: if self.substitute_path {
+                    "substituted.json".into()
+                } else {
+                    r.relative_path
+                },
                 sha256: digest(&bytes),
                 bytes: bytes.len() as u64,
                 media_type: r.media_type,
@@ -38,11 +48,17 @@ impl RunServices for OfflineServices {
         Ok(candidate)
     }
     async fn emit(&self, _: JournalProposal) -> Result<(), ServiceError> {
-        if self.cancel_on_emit {self.cancelled.store(true, Ordering::SeqCst);}
+        if self.cancel_on_emit {
+            self.cancelled.store(true, Ordering::SeqCst);
+        }
         Ok(())
     }
     async fn check_cancelled(&self) -> Result<(), ServiceError> {
-        if self.cancelled.load(Ordering::SeqCst) {Err(ServiceError::Cancelled)}else{Ok(())}
+        if self.cancelled.load(Ordering::SeqCst) {
+            Err(ServiceError::Cancelled)
+        } else {
+            Ok(())
+        }
     }
     async fn provider(&self, _: ProviderOperation) -> Result<ProviderResult, ServiceError> {
         panic!("offline provider call")
@@ -110,7 +126,9 @@ fn fixture() -> (StageInput, OfflineServices) {
             library_revision: 0,
         },
         OfflineServices {
-            substitute_path:false,cancel_on_emit:false,cancelled:AtomicBool::new(false),
+            substitute_path: false,
+            cancel_on_emit: false,
+            cancelled: AtomicBool::new(false),
             inputs,
             writes: Mutex::new(vec![]),
         },
@@ -151,7 +169,9 @@ async fn diagnostic_candidate_uses_saved_payloads_and_exposes_missing_acceptance
         f.verify(services.inputs.get(&f.path).unwrap()).unwrap();
     }
     if let Ok(path) = std::env::var("PT_GENERATION_EXPORT") {
-        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..").join(path);
+        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../..")
+            .join(path);
         for f in &package.payload_inventory {
             let path = root.join(&f.path);
             std::fs::create_dir_all(path.parent().unwrap()).unwrap();
@@ -269,14 +289,20 @@ async fn existing_failures_uncertainty_and_extra_required_checks_remain_blocking
 
 #[tokio::test]
 async fn rejects_stale_bytes_wrong_pins_substituted_candidates_and_late_cancellation() {
-    let (input,mut services)=fixture();
-    services.inputs.get_mut("audio/master.wav").unwrap()[100]^=1;
-    assert!(GenerationExecutor.execute(input,&services).await.is_err());
+    let (input, mut services) = fixture();
+    services.inputs.get_mut("audio/master.wav").unwrap()[100] ^= 1;
+    assert!(GenerationExecutor.execute(input, &services).await.is_err());
     assert!(services.writes.lock().unwrap().is_empty());
-    let (mut input,services)=fixture();input.pins.profile_sha256="0".repeat(64);
-    assert!(GenerationExecutor.execute(input,&services).await.is_err());
-    let (input,mut services)=fixture();services.substitute_path=true;
-    assert!(GenerationExecutor.execute(input,&services).await.is_err());
-    let (input,mut services)=fixture();services.cancel_on_emit=true;
-    assert!(matches!(GenerationExecutor.execute(input,&services).await,Err(StageError::Service(ServiceError::Cancelled))));
+    let (mut input, services) = fixture();
+    input.pins.profile_sha256 = "0".repeat(64);
+    assert!(GenerationExecutor.execute(input, &services).await.is_err());
+    let (input, mut services) = fixture();
+    services.substitute_path = true;
+    assert!(GenerationExecutor.execute(input, &services).await.is_err());
+    let (input, mut services) = fixture();
+    services.cancel_on_emit = true;
+    assert!(matches!(
+        GenerationExecutor.execute(input, &services).await,
+        Err(StageError::Service(ServiceError::Cancelled))
+    ));
 }
