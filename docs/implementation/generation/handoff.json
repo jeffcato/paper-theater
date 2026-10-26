@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "status": "bounded-diagnostic-handoff",
+  "production_approved": false,
+  "provider_calls": 0,
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.0.0",
+  "shared_fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+  "shared_manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+  "profile": {
+    "id": "paper-player-r186-v1",
+    "status": "selected_unverified",
+    "three": "0.186.0",
+    "types": "0.186.0",
+    "migration_gate": "separate pending gate; schematic tests do not establish browser/device acceptance"
+  },
+  "pins": {
+    "recipe_sha256": "8b626e55693d774361f507bc2c45f40054e6855d71fbec78ad9072d8812f14b4",
+    "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+    "profile_id": "paper-player-r186-v1"
+  },
+  "source_freezes": [
+    {
+      "book_id": "pg-55",
+      "raw_sha256": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75",
+      "clean_sha256": "c9c44a8852872740f9bb8078479510687050e6d69446b0c5e765bdc2382df259",
+      "source_sha256": "1d8c591969dd338fd8f251e3b83d991a76b5a7e5c715b503953c5ce4775ec320",
+      "clean_span": [
+        2319,
+        8277
+      ],
+      "raw_span": [
+        3289,
+        9359
+      ]
+    },
+    {
+      "book_id": "pg-36",
+      "raw_sha256": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+      "clean_sha256": "33e728402e6728e39d5374eff41d2739c032f85bfb12b2954d124682e99e021f",
+      "source_sha256": "d1cea729eaca946ead7c174aa09d0bc664570bb264f46846dea046d1d3b24ef2",
+      "clean_span": [
+        1087,
+        13741
+      ],
+      "raw_span": [
+        2062,
+        14929
+      ]
+    }
+  ],
+  "candidate_manifest_sha256": "43d2ef3351715980c66ad2cbe0c502c1ba4ff9792b00ca0bcf3e60b42aa3a78a",
+  "candidate_inventory_sha256": "94316f801ba86d1b1fe5620d70f20d00dcbcbba3e4b8bc18fcf9f905dde6bd85",
+  "unchanged_delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+  "normalized_evidence_sha256": "30e4d6e6fbee8a244fb8e21b74beff2ff0a6350c4f67f318aa560b974fc1f2a5",
+  "read_along": {
+    "words": 176,
+    "highlight_groups": 170,
+    "grouping_policy": "point-following-same-boundary-v1",
+    "independent_reveal_permissions": []
+  },
+  "unresolved_reveals": [
+    {
+      "group_id": "reveal-1",
+      "diagnostic_bound_only": 168000,
+      "facts": [
+        {
+          "source_span": [
+            15,
+            20
+          ],
+          "image_attestation_id": "reveal-1-image_scope",
+          "primary_anchor_id": "reveal-1-primary_anchor",
+          "independent_anchor_id": "reveal-1-independent_anchor"
+        }
+      ]
+    },
+    {
+      "group_id": "reveal-2",
+      "diagnostic_bound_only": 1656480,
+      "facts": [
+        {
+          "source_span": [
+            437,
+            442
+          ],
+          "image_attestation_id": "reveal-2-image_scope",
+          "primary_anchor_id": "reveal-2-primary_anchor",
+          "independent_anchor_id": "reveal-2-independent_anchor"
+        }
+      ]
+    }
+  ],
+  "unresolved_source_action_review_ids": [
+    "nod-em"
+  ],
+  "unresolved_review_ids": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "font-bundle",
+    "full-audio-review-coverage",
+    "image-extraction-review",
+    "image-reference-review",
+    "image-scope-review",
+    "image-stage-readability",
+    "image-style-review",
+    "incoming-picture-readiness",
+    "independent-acoustic-evidence",
+    "initial-reference-research",
+    "mix-intelligibility",
+    "music-bible",
+    "narrator-continuity",
+    "opening-action-capture-coverage",
+    "product-spend-authorization",
+    "profile-r186-browser",
+    "publication-recovery",
+    "rendered-creative-review",
+    "required-action-accounting",
+    "speech-joins",
+    "story-coverage",
+    "target-device-budget"
+  ],
+  "implemented_stages": [
+    "source",
+    "package"
+  ],
+  "pending_stage_adapters": [
+    "direction",
+    "pilot",
+    "speech",
+    "acoustic",
+    "visual_preflight",
+    "visuals",
+    "presentation",
+    "music_mix",
+    "choreography",
+    "review"
+  ],
+  "verification": [
+    {
+      "command": "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+      "result": "pass",
+      "tests": 11
+    },
+    {
+      "command": "PT_GENERATION_EXPORT=fixtures/generation/diagnostic-candidate cargo test -p pt-production generation:: --offline",
+      "result": "pass",
+      "tests": 4
+    },
+    {
+      "command": "cargo test -p pt-production runtime::tests::real_generation_candidate_keeps_saved_media_and_missing_acceptance_private --offline",
+      "result": "pass",
+      "tests": 1
+    },
+    {
+      "command": "python3 tools/check_product_identity.py .",
+      "result": "pass"
+    }
+  ],
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "929bb02be7090bd733128dd3e7d4b57976400fbb0da0affcb2f8ceed8f6bd89c",
+    "crates/pt-production/src/generation/source.rs": "291f63044de741a4c9e4afb1bf7539ea7a60675b7072599770f08411c9303100",
+    "crates/pt-production/src/generation/tests.rs": "032e13ea117f9e6523595619a1246b8a5173ff8ad37fc1627b17e73c35090cdb",
+    "tools/generation/adapters.py": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996",
+    "tools/generation/evidence.py": "f3d97078b429a537de033028c077abf1c10f7486210b81faae8ec77a02e3d6a7",
+    "tools/generation/geometry.py": "6d72b94f28fb140cc7e62b91774cc6a0b151e11f1a30036bffe2292d46ff54a9",
+    "tools/generation/helper.py": "485bf9a3c1ad6d429f29e77d888d781ca2f2852ed74c17c89f6703d28651e601",
+    "tools/generation/preflight.py": "4139aef30584446e42188f774fca40c124d98947c6028bd2bd9c6bb97cca4427",
+    "tools/generation/source.py": "cf1abec23a4c0a3819012d7be664a2e5a94fb5f48e665d97691109ca9c57d268",
+    "tools/generation/test_acoustic.py": "01c759a7b045f69ed3bf1cbe6968b89be74c59dcfb615e49b934f10578babdef",
+    "tools/generation/test_evidence.py": "5c3008a6f1a6a57176012c5f9b542f111d450508f92e665e8fae1732e2c5358e",
+    "tools/generation/test_geometry.py": "1f89d09be58a148580d7559e0c780bb0fe08e707d29891a21ee1b6b3258acb00",
+    "tools/generation/test_preflight.py": "feb2fd5d69dfaae8735dd1b4803eab4fb250593993f77657703dc62a5bf48fe6",
+    "tools/generation/test_source.py": "3cf7539cf25928673deec6eb8a10a4101165eee302f5d79316a5a97302323af8"
+  },
+  "next_bounded_step": "Add broker-approved offline helper and verified candidate reads; integrate Stage::Acoustic using saved inputs without granting unresolved reveals.",
+  "git_integration": "Agent 1 integrated the implementation; the operator explicitly authorized committing the remaining generation handoff documents."
+}

@@ -1,10 +1,16 @@
 # Agent 3 integration requests
 
-- Consuming `pt-contracts-v1.0.0`, `pt-services-v1.0.0`; no contracts-ready.json freeze published yet.
-- Current shared fixture fails `validate_playback`: `cue_scene` at `nod-em`, "cue outside authored scene slot". Reproducer: `cargo test -p pt-production generation::tests::diagnostic_candidate_uses_saved_payloads_and_exposes_missing_acceptance --offline`. Agent 1 owns fixture repair; generation does not retime or omit the cue.
-- Runtime `Store::commit_stage` currently rejects any `package_candidate`. Please support the diagnostic proposed package boundary, preserving NeedsRepair and preventing production publication. Generation exposes candidates only through RunServices.
-- Runtime initial source stage currently receives no source artifacts. Please supply verified source/raw/frozen inputs and saved package inputs through StageInput; generation will not reach into runtime storage.
-- `CandidateWrite` has no dimensions but `FileRef::validate` requires dimensions for image/png. For future new image candidates add `dimensions: Option<[u32;2]>` to CandidateWrite in Rust/TS and propagate through RunServices::write_candidate. Current package assembly reuses input media without rewriting it.
-- Register bounded offline helper recipe for `tools/generation/helper.py` through runtime's helper allowlist. JSON stdin/stdout, 64 KiB request and 16 MiB response/file cap; zero credentials or provider transport. No helper dispatch is claimed integrated yet.
+Consumed frozen `pt-contracts-v1.0.0`, `pt-services-v1.0.0` and shared fixture digest `5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c`. Rendering profile `paper-player-r186-v1` remains selected/unverified.
 
-Only Agent 1 stages/commits in this shared repository. This lane's explicit paths: `crates/pt-production/src/generation`, `tools/generation`, `fixtures/generation`, `docs/implementation/generation`. Please integrate these as a clean reviewed commit after checks pass; no worker Git mutation has occurred.
+Resolved during integration:
+
+- Agent 1 fixed the pre-freeze `nod-em` cue-slot failure. Generation preserves that authored cue and its unchanged media/timing.
+- Agent 2 supplies source and saved package inputs through StageInput and stores the proposed diagnostic PackageCandidate. The real-generation runtime test passes, retaining NeedsRepair and preventing catalog publication.
+
+Pending exact boundary proposals:
+
+1. Add `dimensions: Option<[u32;2]>` to `CandidateWrite`, mirror it in TypeScript, and propagate it through RunServices::write_candidate. A PNG candidate currently cannot satisfy FileRef::validate, which requires dimensions. Existing package assembly reuses input media without rewriting it.
+2. Register the bounded offline helper `tools/generation/helper.py` through runtime's helper allowlist: JSON stdin/stdout, 64 KiB request, 16 MiB response/per-file cap, no credentials or provider transport. Replay currently runs directly in offline checks; generation does not claim a broker-integrated acoustic stage.
+3. Add `RunServices::read_candidate(&CandidateFile) -> Result<Vec<u8>, ServiceError>` with exact file verification, active-epoch and scratch-path checks, mirrored where appropriate. Reproducer: HelperResult returns CandidateFiles, but generation cannot parse a newly produced normalization report through read_artifact without inventing a committed artifact ID. Reading candidate bytes through the runtime service lets the acoustic executor validate the report before returning its StageOutput.
+
+Agent 1 integrated the implementation in clean commits. The operator explicitly authorized committing the remaining generation handoff documents. This follow-up stages only those documents and preserves other workers' and user edits.
