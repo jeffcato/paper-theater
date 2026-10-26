@@ -1,76 +1,211 @@
 use super::store::*;
-use rusqlite::{params, OptionalExtension};
-use serde::{Serialize, Deserialize};
-use serde_json::{json, Value};
+use rusqlite::{OptionalExtension, params};
+use serde::{Deserialize, Serialize};
+use serde_json::{Value, json};
 use std::{future::Future, pin::Pin};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Operation {
-    pub identity: String, pub recipe: String, pub provider: String, pub project: String, pub model: String,
-    pub request_hash: String, pub payload: Value, pub money: i64, pub requests: i64, pub tokens: i64,
-    pub repair: bool, pub timeout_ms: u64,
+    pub identity: String,
+    pub recipe: String,
+    pub provider: String,
+    pub project: String,
+    pub model: String,
+    pub request_hash: String,
+    pub payload: Value,
+    pub money: i64,
+    pub requests: i64,
+    pub tokens: i64,
+    pub repair: bool,
+    pub timeout_ms: u64,
 }
 impl Operation {
-    fn scope(&self) -> String { format!("{}/{}/{}",self.provider,self.project,self.model) }
+    fn scope(&self) -> String {
+        format!("{}/{}/{}", self.provider, self.project, self.model)
+    }
     fn validate(&self) -> Result<()> {
-        for s in [&self.identity,&self.recipe,&self.provider,&self.project,&self.model] {
-            if s.is_empty() || s.len()>128 || !s.bytes().all(|c|c.is_ascii_alphanumeric() || b"-_.:".contains(&c)) {return fail("invalid_operation","invalid operation identifier");}
+        for s in [
+            &self.identity,
+            &self.recipe,
+            &self.provider,
+            &self.project,
+            &self.model,
+        ] {
+            if s.is_empty()
+                || s.len() > 128
+                || !s
+                    .bytes()
+                    .all(|c| c.is_ascii_alphanumeric() || b"-_.:".contains(&c))
+            {
+                return fail("invalid_operation", "invalid operation identifier");
+            }
         }
-        if self.money<0 || self.tokens<0 || self.requests<1 || self.timeout_ms==0 || self.timeout_ms>300_000 { return fail("invalid_operation","invalid reservation/timeout"); }
-        let bytes=serde_json::to_vec(&self.payload)?;
-        if bytes.len()>1024*1024 || digest(&bytes)!=self.request_hash {return fail("invalid_operation","bounded payload digest mismatch");} Ok(())
+        if self.money < 0
+            || self.tokens < 0
+            || self.requests < 1
+            || self.timeout_ms == 0
+            || self.timeout_ms > 300_000
+        {
+            return fail("invalid_operation", "invalid reservation/timeout");
+        }
+        let bytes = serde_json::to_vec(&self.payload)?;
+        if bytes.len() > 1024 * 1024 || digest(&bytes) != self.request_hash {
+            return fail("invalid_operation", "bounded payload digest mismatch");
+        }
+        Ok(())
     }
 }
-#[derive(Clone,Debug,Serialize,Deserialize)]
-pub struct Limits { pub money: i64, pub requests: i64, pub tokens: i64, pub repairs: i64, pub window_start: i64, pub reset_at: i64 }
-#[derive(Clone,Debug,Serialize,Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Limits {
+    pub money: i64,
+    pub requests: i64,
+    pub tokens: i64,
+    pub repairs: i64,
+    pub window_start: i64,
+    pub reset_at: i64,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Receipt {
     /// completed, rejected or ambiguous. Unknown charges retain the reservation.
-    pub outcome: String, pub actual_money: Option<i64>, pub actual_tokens: Option<i64>,
-    pub response_hash: Option<String>, pub job_id: Option<String>, pub retry_at: Option<i64>,
+    pub outcome: String,
+    pub actual_money: Option<i64>,
+    pub actual_tokens: Option<i64>,
+    pub response_hash: Option<String>,
+    pub job_id: Option<String>,
+    pub retry_at: Option<i64>,
 }
 #[derive(Debug)]
-pub enum Dispatch { Authorized(String), Existing { id: String, state: String, receipt: Option<Receipt> } }
+pub enum Dispatch {
+    Authorized(String),
+    Existing {
+        id: String,
+        state: String,
+        receipt: Option<Receipt>,
+    },
+}
 pub trait Transport: Send + Sync {
     /// Receives one already reserved attempt; implementations may send exactly once.
-    fn send<'a>(&'a self, attempt: &'a str, operation: &'a Operation) -> Pin<Box<dyn Future<Output=Result<Receipt>> + Send + 'a>>;
+    fn send<'a>(
+        &'a self,
+        attempt: &'a str,
+        operation: &'a Operation,
+    ) -> Pin<Box<dyn Future<Output = Result<Receipt>> + Send + 'a>>;
 }
-#[derive(Clone,Debug,Serialize,Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct AccountingImport {
-    pub original_hash: String, pub derivative_hash: String, pub scope: String,
-    pub money: i64, pub requests: i64, pub tokens: i64, pub repairs: i64,
-    pub window_start: i64, pub reset_at: i64, pub retry_at: i64,
+    pub original_hash: String,
+    pub derivative_hash: String,
+    pub scope: String,
+    pub money: i64,
+    pub requests: i64,
+    pub tokens: i64,
+    pub repairs: i64,
+    pub window_start: i64,
+    pub reset_at: i64,
+    pub retry_at: i64,
     pub transformation: String,
 }
 impl Store {
     /// Administrative, neutral hash-bound records only. Original receipts stay external.
     pub fn import_accounting(&self, record: &AccountingImport) -> Result<()> {
-        if !valid_hash(&record.original_hash) || !valid_hash(&record.derivative_hash) || record.scope.is_empty() || [record.money,record.requests,record.tokens,record.repairs,record.retry_at].iter().any(|v|*v<0) {return fail("invalid_accounting","invalid neutral import");}
-        let encoded=serde_json::to_string(record)?;
+        if !valid_hash(&record.original_hash)
+            || !valid_hash(&record.derivative_hash)
+            || record.scope.is_empty()
+            || [
+                record.money,
+                record.requests,
+                record.tokens,
+                record.repairs,
+                record.retry_at,
+            ]
+            .iter()
+            .any(|v| *v < 0)
+        {
+            return fail("invalid_accounting", "invalid neutral import");
+        }
+        let encoded = serde_json::to_string(record)?;
         self.transaction(|tx| {
-            let prior: Option<String> = tx.query_row("SELECT record FROM accounting_imports WHERE original_hash=?1",[&record.original_hash],|r|r.get(0)).optional()?;
-            if let Some(prior)=prior { if prior!=encoded {return fail("accounting_conflict","original receipt already imported differently");} return Ok(()); }
-            tx.execute("INSERT INTO accounting_imports VALUES(?1,?2,?3)",params![record.original_hash,record.derivative_hash,encoded])?;
-            tx.execute("UPDATE limits SET retry_at=MAX(retry_at,?2) WHERE scope=?1",params![record.scope,record.retry_at])?;
+            let prior: Option<String> = tx
+                .query_row(
+                    "SELECT record FROM accounting_imports WHERE original_hash=?1",
+                    [&record.original_hash],
+                    |r| r.get(0),
+                )
+                .optional()?;
+            if let Some(prior) = prior {
+                if prior != encoded {
+                    return fail(
+                        "accounting_conflict",
+                        "original receipt already imported differently",
+                    );
+                }
+                return Ok(());
+            }
+            tx.execute(
+                "INSERT INTO accounting_imports VALUES(?1,?2,?3)",
+                params![record.original_hash, record.derivative_hash, encoded],
+            )?;
+            tx.execute(
+                "UPDATE limits SET retry_at=MAX(retry_at,?2) WHERE scope=?1",
+                params![record.scope, record.retry_at],
+            )?;
             Ok(())
         })
     }
     /// Requires external authorization evidence plus reconciled inherited accounting.
     /// No HTTP endpoint exposes this administrative capability.
     pub fn authorize_live(&self, proof_hash: &str, cap: i64) -> Result<()> {
-        if !valid_hash(proof_hash) || cap<0 {return fail("invalid_authorization","hash-bound authorization required");}
+        if !valid_hash(proof_hash) || cap < 0 {
+            return fail("invalid_authorization", "hash-bound authorization required");
+        }
         self.transaction(|tx| {
-            let count:i64=tx.query_row("SELECT COUNT(*) FROM accounting_imports",[],|r|r.get(0))?;
-            if count==0 {return fail("accounting_pending","inherited accounting must be reconciled");}
-            let old:Option<(String,i64)>=tx.query_row("SELECT proof_hash,cap FROM authorization WHERE id=1",[],|r|Ok((r.get(0)?,r.get(1)?))).optional()?;
-            if let Some(old)=old {if old!=(proof_hash.to_owned(),cap) {return fail("authorization_conflict","authorization cannot reset consumption");} return Ok(());}
-            tx.execute("INSERT INTO authorization VALUES(1,?1,?2)",params![proof_hash,cap])?; Ok(())
+            let count: i64 =
+                tx.query_row("SELECT COUNT(*) FROM accounting_imports", [], |r| r.get(0))?;
+            if count == 0 {
+                return fail(
+                    "accounting_pending",
+                    "inherited accounting must be reconciled",
+                );
+            }
+            let old: Option<(String, i64)> = tx
+                .query_row(
+                    "SELECT proof_hash,cap FROM authorization WHERE id=1",
+                    [],
+                    |r| Ok((r.get(0)?, r.get(1)?)),
+                )
+                .optional()?;
+            if let Some(old) = old {
+                if old != (proof_hash.to_owned(), cap) {
+                    return fail(
+                        "authorization_conflict",
+                        "authorization cannot reset consumption",
+                    );
+                }
+                return Ok(());
+            }
+            tx.execute(
+                "INSERT INTO authorization VALUES(1,?1,?2)",
+                params![proof_hash, cap],
+            )?;
+            Ok(())
         })
     }
-    pub fn configure_limit(&self, provider: &str, project: &str, model: &str, limit: &Limits) -> Result<()> {
-        if [limit.money,limit.requests,limit.tokens,limit.repairs].iter().any(|v|*v<0) || limit.reset_at<=limit.window_start {return fail("invalid_limit","invalid limits/window");}
-        let scope=format!("{provider}/{project}/{model}");
+    pub fn configure_limit(
+        &self,
+        provider: &str,
+        project: &str,
+        model: &str,
+        limit: &Limits,
+    ) -> Result<()> {
+        if [limit.money, limit.requests, limit.tokens, limit.repairs]
+            .iter()
+            .any(|v| *v < 0)
+            || limit.reset_at <= limit.window_start
+        {
+            return fail("invalid_limit", "invalid limits/window");
+        }
+        let scope = format!("{provider}/{project}/{model}");
         self.transaction(|tx| {
             let prior:Option<(i64,i64)>=tx.query_row("SELECT window_start,reset_at FROM limits WHERE scope=?1",[&scope],|r|Ok((r.get(0)?,r.get(1)?))).optional()?;
             if let Some((start,reset))=prior { if now()<reset && (start!=limit.window_start || reset!=limit.reset_at) {return fail("invalid_window","cannot reset an active quota window");} }
@@ -79,12 +214,17 @@ impl Store {
         })
     }
     pub fn allow_recipe(&self, recipe: &str) -> Result<()> {
-        if recipe.is_empty() || recipe.len()>128 {return fail("invalid_recipe","recipe name required");}
-        self.transaction(|tx| {tx.execute("INSERT OR IGNORE INTO recipes VALUES(?1)",[recipe])?;Ok(())})
+        if recipe.is_empty() || recipe.len() > 128 {
+            return fail("invalid_recipe", "recipe name required");
+        }
+        self.transaction(|tx| {
+            tx.execute("INSERT OR IGNORE INTO recipes VALUES(?1)", [recipe])?;
+            Ok(())
+        })
     }
     pub fn reserve(&self, run: &str, epoch: i64, op: &Operation) -> Result<Dispatch> {
         op.validate()?;
-        let descriptor_hash=digest(&serde_json::to_vec(op)?);
+        let descriptor_hash = digest(&serde_json::to_vec(op)?);
         self.transaction(|tx| {
             Self::active(tx,run,epoch)?;
             if let Some((id,hash,state,response))=tx.query_row("SELECT id,descriptor_hash,state,response FROM attempts WHERE run=?1 AND operation=?2",params![run,op.identity],|r|Ok((r.get::<_,String>(0)?,r.get::<_,String>(1)?,r.get::<_,String>(2)?,r.get::<_,Option<String>>(3)?))).optional()? {
@@ -122,13 +262,25 @@ impl Store {
         })
     }
     pub fn record_receipt(&self, attempt: &str, receipt: &Receipt) -> Result<()> {
-        if !matches!(receipt.outcome.as_str(),"completed"|"rejected"|"ambiguous") || receipt.actual_money.is_some_and(|n|n<0) || receipt.actual_tokens.is_some_and(|n|n<0) || receipt.response_hash.as_deref().is_some_and(|s|!valid_hash(s)) || receipt.job_id.as_ref().is_some_and(|s|s.len()>256) {return fail("invalid_receipt","invalid transport receipt");}
-        let encoded=serde_json::to_string(receipt)?;
+        if !matches!(
+            receipt.outcome.as_str(),
+            "completed" | "rejected" | "ambiguous"
+        ) || receipt.actual_money.is_some_and(|n| n < 0)
+            || receipt.actual_tokens.is_some_and(|n| n < 0)
+            || receipt
+                .response_hash
+                .as_deref()
+                .is_some_and(|s| !valid_hash(s))
+            || receipt.job_id.as_ref().is_some_and(|s| s.len() > 256)
+        {
+            return fail("invalid_receipt", "invalid transport receipt");
+        }
+        let encoded = serde_json::to_string(receipt)?;
         self.transaction(|tx| {
             let (run,scope,state,old,money,tokens):(String,String,String,Option<String>,i64,i64)=tx.query_row("SELECT run,scope,state,response,money,tokens FROM attempts WHERE id=?1",[attempt],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?,r.get(3)?,r.get(4)?,r.get(5)?)))?;
             if matches!(state.as_str(),"completed"|"rejected") {if old.as_deref()!=Some(&encoded) {return fail("receipt_conflict","immutable response already recorded");} return Ok(());}
             let state=if receipt.outcome=="ambiguous" {"uncertain"} else {&receipt.outcome};
-            let actual=receipt.actual_money.unwrap_or(money); let actual_tokens=receipt.actual_tokens.unwrap_or(tokens);
+            let actual=if receipt.outcome=="ambiguous"{money.max(receipt.actual_money.unwrap_or(money))}else{receipt.actual_money.unwrap_or(money)}; let actual_tokens=if receipt.outcome=="ambiguous"{tokens.max(receipt.actual_tokens.unwrap_or(tokens))}else{receipt.actual_tokens.unwrap_or(tokens)};
             tx.execute("UPDATE attempts SET state=?2,money=?3,tokens=?4,response=?5,job_id=?6 WHERE id=?1",params![attempt,state,actual,actual_tokens,encoded,receipt.job_id])?;
             if let Some(retry)=receipt.retry_at {tx.execute("UPDATE limits SET retry_at=MAX(retry_at,?2) WHERE scope=?1",params![scope,retry])?;}
             // Accounting is truthful even after cancellation. It cannot commit stage/library/publication data.
@@ -137,16 +289,45 @@ impl Store {
             Ok(())
         })
     }
-    pub async fn dispatch(&self, run: &str, epoch: i64, op: &Operation, transport: &dyn Transport) -> Result<Receipt> {
-        let attempt=match self.reserve(run,epoch,op)? {
-            Dispatch::Authorized(id)=>id,
-            Dispatch::Existing{state,receipt:Some(r),..} if state=="completed"=>return Ok(r),
-            Dispatch::Existing{..}=>return fail("attempt_unresolved","reuse/recover existing attempt; automatic repurchase forbidden"),
+    pub async fn dispatch(
+        &self,
+        run: &str,
+        epoch: i64,
+        op: &Operation,
+        transport: &dyn Transport,
+    ) -> Result<Receipt> {
+        let attempt = match self.reserve(run, epoch, op)? {
+            Dispatch::Authorized(id) => id,
+            Dispatch::Existing {
+                state,
+                receipt: Some(r),
+                ..
+            } if state == "completed" => return Ok(r),
+            Dispatch::Existing { .. } => {
+                return fail(
+                    "attempt_unresolved",
+                    "reuse/recover existing attempt; automatic repurchase forbidden",
+                );
+            }
         };
-        self.mark_dispatched(run,epoch,&attempt)?;
-        let result=tokio::time::timeout(std::time::Duration::from_millis(op.timeout_ms),transport.send(&attempt,op)).await;
-        let receipt=match result {Ok(Ok(r))=>r,_=>Receipt{outcome:"ambiguous".into(),actual_money:None,actual_tokens:None,response_hash:None,job_id:None,retry_at:None}};
-        self.record_receipt(&attempt,&receipt)?;
+        self.mark_dispatched(run, epoch, &attempt)?;
+        let result = tokio::time::timeout(
+            std::time::Duration::from_millis(op.timeout_ms),
+            transport.send(&attempt, op),
+        )
+        .await;
+        let receipt = match result {
+            Ok(Ok(r)) => r,
+            _ => Receipt {
+                outcome: "ambiguous".into(),
+                actual_money: None,
+                actual_tokens: None,
+                response_hash: None,
+                job_id: None,
+                retry_at: None,
+            },
+        };
+        self.record_receipt(&attempt, &receipt)?;
         Ok(receipt)
     }
 }

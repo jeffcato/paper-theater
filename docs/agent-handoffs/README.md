@@ -21,7 +21,7 @@ Run the agents in the same target workspace with the ownership rules below. If t
 
 ## Git repository
 
-Use the product's own Git repository at `~/Projects/paper-theater`, with GitHub remote `jeffcato/paper-theater`, initially private, and default branch `main`. Preserve any repository bootstrap commit and its installed handoffs. Do not initialize a nested repository or import experimental Git history.
+Use the product's own Git repository at `~/Projects/paper-theater`, with GitHub remote `jeffcato/paper-theater` and default branch `main`. The repository must remain public so hackathon judges can review it, as confirmed by the operator on October 26, 2026. Preserve any repository bootstrap commit and its installed handoffs. Do not initialize a nested repository or import experimental Git history.
 
 In a shared working directory there is one Git index and branch: only Agent 1 stages, commits, switches branches and pushes. Workers edit their assigned files and report changes; they do not run broad staging/reset commands. Agent 1 stages explicit reviewed paths and uses implementation branches/PRs. In isolated worktrees, workers may commit only their own files on their assigned branch; Agent 1 integrates and publishes the result. Never force-push or reset another worker's work.
 

@@ -72,5 +72,16 @@
     "live product authorization and inherited accounting reconciliation",
     "one autonomous excerpt and both complete chapters"
   ],
-  "next_integration_action": "Workers consume frozen types and this exact fixture; run saved package through server/journal/diagnostic player, preserving audience rejection and zero provider dispatch"
+  "next_integration_action": "Workers consume frozen types and this exact fixture; run saved package through server/journal/diagnostic player, preserving audience rejection and zero provider dispatch",
+  "verification": {
+    "clean_checkout_commit": "8ac0e5b",
+    "source_root": "unset",
+    "rust_workspace": "pass",
+    "typescript_contract_cases": 14,
+    "player_tests": 43,
+    "studio_check": "pass",
+    "builds": "pass",
+    "identity_outputs": "pass",
+    "provider_calls": 0
+  }
 }

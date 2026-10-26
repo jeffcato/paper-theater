@@ -10,6 +10,8 @@ External source workspaces are read-only. Supply their location transiently; nev
 
 ## Ownership
 
+The GitHub repository `jeffcato/paper-theater` must remain public so hackathon judges can review it. The operator confirmed this requirement on October 26, 2026; it supersedes earlier bootstrap visibility guidance. Keep `main` as the default branch.
+
 - Agent 1: root configuration/lockfiles/Git integration; shared Rust and TypeScript contracts; copied generic core crates; production crate manifest/module root; shared fixtures and integration tooling.
 - Agent 2: `crates/pt-production/src/runtime/**`, `crates/pt-server/**`, `apps/studio/**`, runtime fixtures/documentation.
 - Agent 3: `crates/pt-production/src/generation/**`, `tools/generation/**`, generation fixtures/documentation.
