@@ -43,6 +43,33 @@ impl c::RunServices for Services {
         a.file.verify(&bytes)?;
         Ok(bytes)
     }
+    async fn read_candidate(
+        &self,
+        candidate: &c::CandidateFile,
+    ) -> std::result::Result<Vec<u8>, c::ServiceError> {
+        self.active()?;
+        candidate.file.validate()?;
+        if !c::valid_id(&candidate.candidate_id) {
+            return Err(c::ServiceError::Unauthorized(
+                "invalid candidate identity".into(),
+            ));
+        }
+        let bytes = {
+            let candidates = self.candidates.lock().unwrap();
+            let (stored, bytes) = candidates
+                .get(&candidate.candidate_id)
+                .ok_or_else(|| c::ServiceError::MissingCandidate(candidate.candidate_id.clone()))?;
+            if stored.file != candidate.file || stored.provenance != candidate.provenance {
+                return Err(c::ServiceError::Unauthorized(
+                    "candidate identity mismatch".into(),
+                ));
+            }
+            candidate.file.verify(bytes)?;
+            bytes.clone()
+        };
+        self.active()?;
+        Ok(bytes)
+    }
     async fn write_candidate(
         &self,
         r: c::CandidateWrite,

@@ -19,3 +19,7 @@ atomic-journal = { path = "../atomic-journal" }
 rusqlite = { version = "0.32", features = ["bundled"] }
 tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "process", "io-util"] }
 tempfile = "3"
+
+[[test]]
+name = "candidate_read_contract"
+path = "../../tools/integration/candidate_read_contract.rs"

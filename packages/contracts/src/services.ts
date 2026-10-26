@@ -28,3 +28,18 @@ export type RunEvent=JournalProposal&{schema_version:1;run_id:Id;seq:number;epoc
 export interface RunRequest {schema_version:1;source_id:Id;book_id:Id;mode:ExecutionMode;pins:Pins;limits:Limits}
 export interface StageSnapshot {stage:Stage;unit_id:Id;outcome:StageOutcome|null;artifacts:ArtifactRef[]}
 export interface RunSnapshot {schema_version:1;run_id:Id;request_sha256:Digest;epoch:number;revision:number;state:RunState;last_event_seq:number;stages:StageSnapshot[];findings:Finding[]}
+
+/** Private generation/runtime boundary; this is not an audience HTTP API.
+ * Candidate reads verify execution ownership, scratch path, metadata and bytes,
+ * with cancellation/epoch checks before and after the read.
+ */
+export interface RunServices {
+  read_artifact(artifact: ArtifactRef): Promise<Uint8Array>;
+  read_candidate(candidate: CandidateFile): Promise<Uint8Array>;
+  write_candidate(request: CandidateWrite, bytes: Uint8Array): Promise<CandidateFile>;
+  emit(entry: JournalProposal): Promise<void>;
+  check_cancelled(): Promise<void>;
+  provider(operation: ProviderOperation): Promise<ProviderResult>;
+  helper(operation: HelperOperation): Promise<HelperResult>;
+  library(query: LibraryQuery): Promise<LibraryBinding[]>;
+}

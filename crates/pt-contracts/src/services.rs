@@ -413,6 +413,8 @@ pub enum ServiceError {
     Limit(String),
     #[error("artifact missing: {0}")]
     MissingArtifact(Id),
+    #[error("candidate missing from this execution: {0}")]
+    MissingCandidate(Id),
     #[error("library revision conflict")]
     RevisionConflict,
     #[error("service failed: {0}")]
@@ -432,6 +434,19 @@ pub enum StageError {
 #[async_trait]
 pub trait RunServices: Send + Sync {
     async fn read_artifact(&self, artifact: &ArtifactRef) -> Result<Vec<u8>, ServiceError>;
+    /// Read only candidates owned by this active execution. Verify the full
+    /// candidate identity, safe scratch-relative path, size and exact SHA-256;
+    /// check cancellation/epoch before and after copying bytes. This never
+    /// grants a committed artifact ID or any publication permission.
+    /// Implementations without a candidate store fail closed for compatibility.
+    async fn read_candidate(&self, candidate: &CandidateFile) -> Result<Vec<u8>, ServiceError> {
+        self.check_cancelled().await?;
+        candidate.file.validate()?;
+        Err(ServiceError::MissingCandidate(
+            candidate.candidate_id.clone(),
+        ))
+    }
+
     async fn write_candidate(
         &self,
         request: CandidateWrite,

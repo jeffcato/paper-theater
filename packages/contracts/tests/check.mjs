@@ -9,6 +9,8 @@ assert.equal(build.status,0,build.stdout+build.stderr);
 const publicImport=spawnSync(process.execPath,['--input-type=module','--eval',
   "const c=await import('@paper-theater/contracts');if(typeof c.validatePlayback!=='function'||!c.CONTRACT_REVISION)process.exit(1)"],{cwd:root,encoding:'utf8'});
 assert.equal(publicImport.status,0,publicImport.stdout+publicImport.stderr);
+const declarations=spawnSync('npm',['exec','--','tsc','-p','packages/contracts/tests/tsconfig.json'],{cwd:root,encoding:'utf8'});
+assert.equal(declarations.status,0,declarations.stdout+declarations.stderr);
 const {validatePlayback,productionBlockers}=await import('@paper-theater/contracts');
 const result=spawnSync('cargo',['run','--offline','--quiet','-p','pt-contracts','--example','contract-fixtures'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
 assert.equal(result.status,0,result.stderr);

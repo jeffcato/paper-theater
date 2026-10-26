@@ -1,0 +1,58 @@
+{
+  "service_revision": "pt-services-v1.1.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+  "fixture_changed": false,
+  "signature": "RunServices::read_candidate(&CandidateFile) -> Result<Vec<u8>, ServiceError>",
+  "scope": "private generation/runtime; current execution only; no artifact ID or publication side effect",
+  "verification": [
+    "active run/epoch before and after copying bytes",
+    "safe scratch-relative path; no request-path filesystem reads",
+    "candidate ID exists in this execution map",
+    "full FileRef and provenance match",
+    "exact byte count and SHA-256"
+  ],
+  "failures": {
+    "unknown_or_other_execution": "MissingCandidate",
+    "forged_metadata": "Unauthorized",
+    "unsafe_path": "Invalid(path)",
+    "cancelled_or_stale_epoch": "Cancelled"
+  },
+  "compatibility": "Older RunServices implementations compile and fail closed until they implement candidate reads. The actual runtime implementation is included.",
+  "files": [
+    "crates/pt-contracts/src/services.rs",
+    "crates/pt-production/src/runtime/runner.rs",
+    "packages/contracts/src/services.ts",
+    "packages/contracts/package.json",
+    "tools/integration/candidate_read_contract.rs"
+  ],
+  "checks": {
+    "native_node_package_import": "pass",
+    "exported_types_candidate_consumer": "pass",
+    "runtime_candidate_read_tests": 3,
+    "shared_playback_records": 14,
+    "packed_node_consumer_import": "pass",
+    "staged_snapshot_workspace_tests": "pass",
+    "staged_snapshot_player_studio_builds": "pass",
+    "identity_scans": "pass",
+    "provider_calls": 0
+  },
+  "commands": [
+    "npm run build --workspace @paper-theater/contracts",
+    "node --input-type=module -e \"await import('@paper-theater/contracts')\"",
+    "npm run check:contracts",
+    "cargo test -p pt-production --test candidate_read_contract --locked --offline"
+  ],
+  "consumers": {
+    "generation": "Read HelperResult.outputs through services.read_candidate; parse only verified bytes, without inventing committed artifact IDs.",
+    "server": "Runtime read method is integrated; preserve its execution scope and before/after epoch checks.",
+    "player": "Use package-name imports after contracts build; exported JS and declarations now resolve from dist."
+  },
+  "verified_code_sha256": {
+    "crates/pt-contracts/src/services.rs": "1cd5702f3d27a7160814a762e2be4d76a316becd9295295639cbd3079e03671c",
+    "crates/pt-production/src/runtime/runner.rs": "9c918101695e8b554ce8264913ec53a72d4a7a1847bd244f4507fce594e6e866",
+    "packages/contracts/src/services.ts": "27077c2b02cd8dcdb14e3e2175c9e15d17e989f978a1673a40ea77debfc7d05c",
+    "packages/contracts/package.json": "798e21c19ce779662524a0286928eb16987619dca6a2a07636800c705eaa5201",
+    "tools/integration/candidate_read_contract.rs": "42b3d5f3c9fa35bea6672df3faccaab3335418214951dac1c60aff72a4181ac9"
+  }
+}
