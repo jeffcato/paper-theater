@@ -7,7 +7,7 @@
   "previous_service_revision": "pt-services-v1.2.0",
   "baseline_code_commit": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
   "baseline_ci_receipt_commit": "4884692",
-  "source_base": "fa361fe7324e866a1f01c6ea8ec18d4a425ab1f2",
+  "source_base": "c62d5d571915195e80ee5f2dc3615cd49c1849b7",
   "records": [
     "ProviderContext",
     "ProviderQuotaScope",
@@ -44,11 +44,24 @@
   "production_approved": false,
   "fixture_cases": 76,
   "checks": {
-    "contracts": "pass",
+    "source_root": "unset",
+    "clean_workspace": "pass",
+    "rust_contract_tests": "pass",
+    "rust_workspace": "pass",
+    "serialized_provider_cases": 76,
+    "serialized_playback_cases": 14,
     "native_node_exports": "pass",
     "packed_node_exports": "pass",
     "strict_typescript_consumer": "pass",
-    "clean_workspace": "pending"
+    "packed_strict_typescript_consumer": "pass",
+    "player_tests": 115,
+    "studio_check": "pass",
+    "python_tests": 17,
+    "web_builds": "pass",
+    "server_build": "pass",
+    "source_identity": "pass",
+    "delivery_identity": "pass",
+    "readiness_fixture_hashes_and_outcomes": "unchanged"
   },
   "semantics": "provider-metadata-v2.md",
   "server_handoff": "provider-metadata-server-handoff.md",
@@ -102,7 +115,7 @@
     },
     {
       "path": "packages/contracts/tests/packed.mjs",
-      "sha256": "f31f8504d4659850f45f40ca634f6e822e011c66618547d64b9c94fa417aa48e"
+      "sha256": "a27966e0ce004e48a2611d3f9331f7e70668b3d6fd12722360a5f194ec174360"
     },
     {
       "path": "packages/contracts/tests/service-api.ts",
@@ -139,7 +152,7 @@
       "unresolved book/source/acceptance bindings",
       "production verifier and catalog activation"
     ],
-    "generation_and_player": "G16/G17 and P15/P16 continue independently; no lane implementation edits included"
+    "generation_and_player": "Concurrent generation/server/player lane edits are excluded; the verified committed baseline includes P15/P16."
   },
   "preserved_readiness": {
     "canonical_v1_manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
@@ -147,5 +160,19 @@
     "v1_incoming_eligible": false,
     "v2_incoming_eligible": true
   },
-  "ci_record": "pr-ci-results.json"
+  "ci_record": "pr-ci-results.json",
+  "records_introduced_in_commit": "c62d5d571915195e80ee5f2dc3615cd49c1849b7",
+  "recorded_at": "2026-10-26T22:58:30.625024+00:00",
+  "tdd_observed_failures": [
+    "missing v2 record API",
+    "missing project quota scope accepted",
+    "transport retry changed request identity",
+    "missing v2 result API",
+    "unknown usage released request reservation",
+    "missing aggregate token observation field",
+    "payload/request digest conflict accepted",
+    "missing TypeScript v2 export"
+  ],
+  "legacy_service_traits_sha256": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38",
+  "unchanged_disabled_runtime_provider_sha256": "8143fa6438bfad10164b3e613519fac95b9ca38e9a041e03315d2d72104ed74a"
 }

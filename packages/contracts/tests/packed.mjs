@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {mkdtemp,mkdir,rm} from 'node:fs/promises';
+import {mkdtemp,mkdir,rm,readFile,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -11,5 +11,7 @@ try{
  run('tar',['-xzf',join(temp,packed[0].filename),'-C',modules],temp);
  run('mv',[join(modules,'package'),join(modules,'contracts')],temp);
  run(process.execPath,['--input-type=module','--eval',`import assert from 'node:assert/strict';import * as c from '@paper-theater/contracts';assert.equal(c.PROVIDER_METADATA_VERSION,2);assert.equal(c.SERVICE_REVISION,'pt-services-v1.3.0');assert.equal(typeof c.validateProviderResultV2,'function');assert.equal(typeof c.validatePlayback,'function');`],temp);
- console.log('contracts: isolated packed native Node exports pass');
+ await writeFile(join(temp,'consumer.mts'),await readFile('packages/contracts/tests/service-api.ts'));
+ run(process.execPath,[join(process.cwd(),'node_modules/typescript/bin/tsc'),'--strict','--skipLibCheck','--noEmit','--module','nodenext','--target','ES2022',join(temp,'consumer.mts')],temp);
+ console.log('contracts: isolated packed native Node exports and strict consumer pass');
 }finally{await rm(temp,{recursive:true,force:true});}

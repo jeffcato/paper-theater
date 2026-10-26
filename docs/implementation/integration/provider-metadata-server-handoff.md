@@ -8,6 +8,7 @@ Private sources below are in `crates/pt-production/src/runtime/{broker.rs,schema
 
 | Public field | Existing private source | Required adapter behavior or gap |
 | --- | --- | --- |
+| Both envelopes' `schema_version` | No legacy field | Fixed discriminator 2; negotiate support rather than relabeling old records. |
 | `context.provider`, `context.project_id` | `Operation.provider`, `.project` | Resolve from runtime's configured project registry; compare with the requested provider/model. No caller-created scope. |
 | `context.credential_context_id` | No persisted equivalent | Add a non-secret registry binding. Multiple slots share project limits; never store a key or use a slot to multiply quota. |
 | `operation.attempt_id` | `attempts.id` | Issue the actual persisted attempt ID. Existing reserve computes `digest("{run}:{Operation.identity}")`; retain that mapping for existing records. Do not put a caller attempt ID into `Operation.identity` and accidentally derive a different ID. |
@@ -28,6 +29,7 @@ Private sources below are in `crates/pt-production/src/runtime/{broker.rs,schema
 | `result.attempt_id`, `.request_sha256` | `attempts.id`, `.request_hash` | Must match issued operation and immutable stored descriptor. Reject conflicting receipt identity. |
 | `result.completion` | `Receipt.outcome`, `attempts.state` | `completed` → completed, `rejected` → known_rejection, `ambiguous`/uncertain → ambiguous. Recovery-pending is not successful completion of the underlying job. |
 | `result.response_sha256`, `.raw_response`, `.outputs` | `Receipt.response_hash`; response/artifact store | Hash field maps directly; raw refs/outputs need the bounded verified artifact adapter. Do not invent refs from a hash alone. |
+| `result.diagnostic` | Sanitized adapter errors; no Receipt field | Add bounded non-secret diagnostic recording; it is informational and never a parsed authorization/retry instruction. |
 | `observed_usage.money_microusd`, `.tokens` | `Receipt.actual_money`, `.actual_tokens` | Preserve each Option exactly, including None. Aggregate token observations do not fabricate an input/output split. |
 | `observed_usage.requests`, `.input_tokens`, `.output_tokens` | No authoritative per-metric fields today | Keep unknown until genuine provider receipts supply them. Reserved request count is not observed usage. |
 | `result.usage` | No exact split in current Receipt | Leave null unless all legacy metrics are genuinely known and match observations. Never fill missing values with zero. |

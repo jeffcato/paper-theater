@@ -44,6 +44,16 @@ No fields or signatures of legacy `ProviderOperation`, `ProviderResult`, `RunSer
 
 A plain legacy operation remains plain legacy, with no project/window/retry authorization inferred. It fails v2 validation. A v2 envelope fails the legacy strict decoder. Consumers must negotiate v2 support and use the dedicated validators; do not cast, flatten, silently add defaults or pass an envelope through the legacy method. Optional nullable fields may be omitted and remain unknown; runtime-issued context, identity and quota windows are required. Older consumers need not import the new module.
 
+Executable compatibility examples in the shared fixture:
+
+| Case ID | Behavior |
+| --- | --- |
+| `legacy_operation-unchanged`, `legacy_result-unchanged` | Legacy JSON round-trips unchanged, including null usage. |
+| `legacy-cannot-be-silently-upgraded` | A legacy operation lacks required v2 metadata and is rejected by the v2 decoder. |
+| `v2-is-not-a-legacy-operation` | An old strict decoder rejects the v2 envelope. |
+| `aggregate-observed-tokens-with-unknown-split` | Observed total 90, unknown input/output split, null legacy usage; no invented zeros. |
+| `unknown-money-retained` | Unknown actual money retains the original 25 micro-USD reservation. |
+
 This is service revision `pt-services-v1.3.0`; provider envelope version 2 does not mean a breaking playback/service-v2 migration. Earlier v1.2 receipts and exact-head CI results retain their original identities. Canonical fixture bytes and both diagnostic readiness outcomes remain unchanged. The service revision participates in runtime cache identity; do not relabel old cached evidence as v1.3 evidence.
 
 The existing live provider method still fails closed. New records have no executable adapter yet. [The server handoff](provider-metadata-server-handoff.md) specifies the mapping, missing storage/API work and required behavioral tests. This closes R2-002's contract portion only; actual inherited accounting, live authorization, book/source bindings, production evidence/verifier and activation remain pending.
