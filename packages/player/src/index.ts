@@ -81,6 +81,7 @@ export {
   compositeStagePixel,
   blackoutHolds,
   createStageRenderer,
+  createThreeSink,
   configureColorTexture,
   configureMaskTexture,
 } from "./shell.js";
@@ -90,3 +91,13 @@ export { describeCapture, boundarySamples } from "./capture.js";
 export type { CaptureRequest, CaptureResult } from "./capture.js";
 export { toCueView, toLightView } from "./shared.js";
 export type { SharedCueView, FlatLight } from "./shared.js";
+export { mountPlayer, requireAccepted } from "./mount.js";
+export type { ClockSource } from "./transport.js";
+export type {
+  FrameCapture,
+  FrameSink,
+  MountEvents,
+  MountOptions,
+  MountSource,
+  PlayerMount,
+} from "./mount.js";

@@ -8,9 +8,10 @@ fixture cases), then the aggregate with no group argument.
 
 ## Current results (October 26, 2026, this session)
 
-Aggregate: **49 pass, 0 fail** (`contracts` 9 — 3 API surface + 6 frozen
+Aggregate: **56 pass, 0 fail** (`contracts` 9 — 3 API surface + 6 frozen
 shared revision, `loader` 3, `transport` 6, `timeline` 6, `readalong` 4,
-`shell` 8, `integration` 9, `fixtures` 4).
+`shell` 8, `integration` group 20 — 9 conversions/capture-identities/
+lifecycle + 4 owned fixtures + 7 mount/capture).
 
 Required-case coverage:
 

@@ -211,6 +211,110 @@ export async function createStageRenderer(options: RendererOptions = {}): Promis
   };
 }
 
+/**
+ * Browser frame sink implementing the profile compositing pipeline: the
+ * narrative stage renders into an aperture-clipped linear target, a
+ * fullscreen pass multiplies it by the blackout gain (covering unlit and
+ * emissive contributions alike), and house layers stay independently lit.
+ * Diagnostic geometry is neutral (final artwork follows); the pipeline
+ * itself — target, gain multiply, capture readback — is the real path.
+ *
+ * Headless harnesses have no WebGL context: construction rejects with a
+ * typed `webgl_unavailable` failure instead of crashing, so browser pixel
+ * acceptance stays honestly pending.
+ */
+export async function createThreeSink(
+  width: number,
+  height: number,
+): Promise<import("./mount.js").FrameSink> {
+  if (!Number.isSafeInteger(width) || width <= 0 || !Number.isSafeInteger(height) || height <= 0) {
+    throw new Error(`capture bounds: ${width}x${height}`);
+  }
+  const THREE = await import("three");
+  let renderer: import("three").WebGLRenderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+  } catch (error) {
+    throw new Error(
+      `webgl_unavailable: ${error instanceof Error ? error.message : String(error)} (browser capture pending)`,
+    );
+  }
+  try {
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.NoToneMapping;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+    const dpr = Math.min(
+      (globalThis as { devicePixelRatio?: number }).devicePixelRatio ?? 1,
+      RENDER_DEFAULTS.dpr_max,
+    );
+    renderer.setPixelRatio(dpr);
+    renderer.setSize(width, height);
+  } catch (error) {
+    renderer.dispose();
+    throw new Error(
+      `webgl_unavailable: ${error instanceof Error ? error.message : String(error)} (browser capture pending)`,
+    );
+  }
+
+  // Stage domain: linear working target holding narrative color.
+  const stageTarget = new THREE.WebGLRenderTarget(width, height);
+  stageTarget.texture.colorSpace = THREE.NoColorSpace;
+  stageTarget.texture.minFilter = THREE.LinearFilter;
+  stageTarget.texture.magFilter = THREE.LinearFilter;
+  stageTarget.texture.generateMipmaps = false;
+  const stageScene = new THREE.Scene();
+  stageScene.background = new THREE.Color(0x000000);
+  const stageCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+  const base = baseCameraPose();
+  stageCamera.position.set(base.position[0], base.position[1], base.position[2]);
+  stageCamera.lookAt(base.target[0], base.target[1], base.target[2]);
+
+  // Composite pass: stage color multiplied by the blackout gain.
+  const compositeScene = new THREE.Scene();
+  const compositeCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const gainUniform = { value: 1 };
+  const compositeMaterial = new THREE.ShaderMaterial({
+    uniforms: { map: { value: stageTarget.texture }, gain: gainUniform },
+    vertexShader: "varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }",
+    fragmentShader:
+      "uniform sampler2D map; uniform float gain; varying vec2 vUv;" +
+      "void main() { vec3 c = texture2D(map, vUv).rgb * gain; gl_FragColor = vec4(c, 1.0); }",
+  });
+  const compositeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), compositeMaterial);
+  compositeQuad.frustumCulled = false;
+  compositeScene.add(compositeQuad);
+
+  let disposed = false;
+  return {
+    render(state): void {
+      if (disposed) throw new Error("render after dispose");
+      gainUniform.value = state.stage_gain;
+      renderer.setRenderTarget(stageTarget);
+      renderer.render(stageScene, stageCamera);
+      renderer.setRenderTarget(null);
+      renderer.render(compositeScene, compositeCamera);
+    },
+    capturePixels(captureWidth, captureHeight): Uint8Array {
+      if (disposed) throw new Error("capture after dispose");
+      if (captureWidth !== width || captureHeight !== height) {
+        throw new Error(`capture size ${captureWidth}x${captureHeight} differs from sink ${width}x${height}`);
+      }
+      const pixels = new Uint8Array(captureWidth * captureHeight * 4);
+      renderer.readRenderTargetPixels(stageTarget, 0, 0, captureWidth, captureHeight, pixels);
+      return pixels;
+    },
+    dispose(): void {
+      if (disposed) return;
+      disposed = true;
+      compositeQuad.geometry.dispose();
+      compositeMaterial.dispose();
+      stageTarget.dispose();
+      renderer.dispose();
+    },
+  };
+}
+
 /** Configure a color texture per profile: sRGB, linear filter, no mipmaps. */
 export async function configureColorTexture(texture: {
   colorSpace: unknown;

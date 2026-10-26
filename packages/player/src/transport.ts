@@ -158,7 +158,7 @@ export interface MountHandle {
   readonly sample: number;
 }
 
-interface ClockSource {
+export interface ClockSource {
   readonly currentTime: number;
   readonly paused: boolean;
   readonly seeking: boolean;
