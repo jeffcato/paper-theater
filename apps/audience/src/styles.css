@@ -1,0 +1,137 @@
+/* Paper Theater audience: old-time ticket-booth treatment, quiet plaque area.
+   Decorative booth styling only; stage framing and read-along panel geometry
+   belong to the shared player profile. */
+:root {
+  color-scheme: light;
+  --ink: #2a2118;
+  --paper: #f6efe2;
+  --gold: #8a6d2f;
+  --curtain: #7a1f1f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Serif", Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.booth, .theater {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.booth-sign {
+  text-align: center;
+  border: 3px double var(--gold);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: #fffdf6;
+}
+
+.booth-sign h1 { margin: 0.25rem 0; font-size: 2rem; }
+.tagline { margin: 0; font-style: italic; }
+
+.tickets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.ticket {
+  border: 2px solid var(--curtain);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  background: #fffdf6;
+}
+
+.ticket h2 { margin: 0 0 0.25rem; font-size: 1.25rem; }
+.ticket p { margin: 0.25rem 0; }
+
+.ticket-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--curtain);
+  color: #fff;
+  border-radius: 0.375rem;
+  text-decoration: none;
+}
+
+.unavailable { color: #5f5340; font-style: italic; }
+
+.notice button, .unavailable-stage button, .return button {
+  font: inherit;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--gold);
+  background: #fff;
+  cursor: pointer;
+}
+
+.notice {
+  border: 1px solid var(--gold);
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  background: #fffdf6;
+}
+
+.credits { margin-top: 2rem; font-size: 0.95rem; }
+.credits ul { padding-left: 1.25rem; }
+
+.slate {
+  text-align: center;
+  background: #1d1712;
+  color: var(--paper);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.stage {
+  margin: 1rem 0;
+  aspect-ratio: 16 / 9;
+  background: #0d0b09;
+  color: var(--paper);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.unavailable-stage { max-width: 32rem; text-align: center; }
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  border: 1px solid var(--gold);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #fffdf6;
+}
+
+.controls button {
+  font: inherit;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--gold);
+  background: #fff;
+  cursor: pointer;
+}
+
+.controls button:disabled { opacity: 0.5; cursor: not-allowed; }
+.controls button[aria-pressed="true"] { background: var(--gold); color: #fff; }
+
+.seek { display: inline-flex; gap: 0.5rem; align-items: center; }
+.motion { font-size: 0.85rem; color: #5f5340; }
+.return { margin-top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
