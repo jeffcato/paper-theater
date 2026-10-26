@@ -9,11 +9,13 @@ import {
   baseShell,
   blackoutHolds,
   compositeStagePixel,
+  curtainPanelX,
   envelopeCameraPose,
   plaqueGrowthSteps,
   projectPlaqueSafe,
   projectToCss,
   refitShell,
+  signBoardY,
   solveHomography,
   validateSchematicShell,
   RENDER_DEFAULTS,
@@ -84,6 +86,35 @@ describe("shell: schematic geometry and camera", () => {
 
   it("pins PCFShadowMap (migration off PCFSoftShadowMap)", () => {
     assert.equal(RENDER_DEFAULTS.shadow_map, "PCFShadowMap");
+  });
+});
+
+describe("shell: staging motion math", () => {
+  it("slides curtain panels off the opening with the open ratio", () => {
+    assert.equal(curtainPanelX("left", 0), -4);
+    assert.equal(curtainPanelX("right", 0), 4);
+    assert.equal(curtainPanelX("left", 1), -12);
+    assert.equal(curtainPanelX("right", 1), 12);
+    assert.ok(Math.abs(curtainPanelX("left", 0.5) - -8) < 1e-9);
+    assert.ok(Math.abs(curtainPanelX("right", 0.5) - 8) < 1e-9);
+  });
+
+  it("rejects curtain ratios outside 0..1", () => {
+    assert.throws(() => curtainPanelX("left", -0.1), /curtain/);
+    assert.throws(() => curtainPanelX("right", 1.1), /curtain/);
+    assert.throws(() => curtainPanelX("left", Number.NaN), /curtain/);
+  });
+
+  it("lowers the sign board into its bounds, hiding it above the frame", () => {
+    // Visible center y=6 (SIGN_BOUNDS y [5,7]); hidden clears the frame top.
+    assert.equal(signBoardY(1), 6);
+    assert.ok(signBoardY(0) - 1 > 11, "hidden board clears the shell top");
+    assert.ok(Math.abs(signBoardY(0.5) - 10) < 1e-9);
+  });
+
+  it("rejects sign progress outside 0..1", () => {
+    assert.throws(() => signBoardY(-0.1), /sign/);
+    assert.throws(() => signBoardY(1.1), /sign/);
   });
 });
 

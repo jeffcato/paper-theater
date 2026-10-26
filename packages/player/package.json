@@ -16,6 +16,7 @@
     "check:inventory": "node scripts/chrome-inventory.mjs",
     "check:plaque": "node scripts/chrome-plaque.mjs",
     "check:theater": "node scripts/chrome-theater.mjs",
+    "check:staging": "node scripts/chrome-staging.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {

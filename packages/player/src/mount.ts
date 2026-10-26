@@ -20,6 +20,7 @@ import type {
   IntermissionOptions,
   MountHandle,
   PauseReason,
+  SignPose,
   TransportEvents,
 } from "./transport.js";
 import type { EvaluatedState } from "./evaluate.js";
@@ -39,6 +40,8 @@ export interface FrameSink {
   canvas?: unknown;
   /** Live camera refit (growth, pointer, authored moves). Optional. */
   setCameraPose?(pose: import("./shell.js").CameraPose): void;
+  /** Pause-driven INTERMISSION sign pose from the transport UI clock. */
+  setSign?(pose: SignPose, progress: number): void;
 }
 
 export interface MountSource {
@@ -171,6 +174,10 @@ export function mountPlayer(
       onSample: (sample) => {
         events.onSample?.(sample);
         deliver(sample);
+      },
+      onSign: (pose, progress) => {
+        events.onSign?.(pose, progress);
+        sink?.setSign?.(pose, progress);
       },
     },
     options.signOptions,

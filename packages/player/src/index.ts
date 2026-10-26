@@ -77,6 +77,8 @@ export {
   baseCameraPose,
   baseShell,
   refitShell,
+  curtainPanelX,
+  signBoardY,
   envelopeCameraPose,
   plaqueGrowthSteps,
   projectPlaqueSafe,
@@ -89,7 +91,7 @@ export {
   configureColorTexture,
   configureMaskTexture,
 } from "./shell.js";
-export type { CameraPose, FramedShell, PlaqueScreenRect, ViewportCss } from "./shell.js";
+export type { CameraPose, FramedShell, PlaqueScreenRect, ThreeSinkOptions, TitleCard, ViewportCss } from "./shell.js";
 export { groupWords, layoutChunks, layoutMeasured, ReadAlongModel } from "./readalong.js";
 export type { Chunk, MeasureFn } from "./readalong.js";
 export { describeCapture, boundarySamples } from "./capture.js";

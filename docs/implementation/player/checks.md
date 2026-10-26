@@ -202,3 +202,28 @@ full 3-line "trap" chunk in-frame where the overflow ran off-screen
 before. P12 retained: inventory v2 144/144. Camera refit is live
 (`setCameraPose`); fullscreen, 10 entry/exit cycles, 60 s p95 and target-
 device performance remain separate gates.
+
+## 2026-10-26 — rendered staging shell/curtains/title/sign (P4)
+
+The sink renders the neutral shell (back wall, columns, header, apron
+facing, plaque backing), authored opening curtains, the package title card
+and the pause-driven INTERMISSION sign. `curtainPanelX` / `signBoardY`
+are unit-tested red→green (4 tests); mount forwards the transport sign
+clock to `sink.setSign` (1 wiring test). The sign is the first
+independently-lit house element: it renders after the composite quad on
+capture and screen, surviving blackout gain per the house-stays-lit rule.
+
+`npm run check:player`: 89/89 pass. `npm run check:staging` verifies
+actual Chrome frames at 1280x720 with the real `<audio>` clock: opening
+title over closed curtains, mid-travel curtains both ways, open scene,
+blackout (gain 0, max channel 0), end state, plus pause → mid-lowering →
+settled → resume → restart with screenshot-hash relations proving the
+motion (lowering/travel visible, settled/restarted deterministic, resume
+and restart remove the sign). The run caught three real defects: a back
+wall occluding the players (V3-away depth negated), a stalled media clock
+(harness servers now answer Range/206), and a vacuous resume that never
+raised the sign (harnesses use transport-owned play/pause). Evidence:
+14 eyeballed PNGs (`staging-*.png`) + `staging.json` with per-stop state
+and audio-clock readings. P12 retained: inventory v2 144/144 (hashes
+refreshed for the new architecture; blackout holds), theater + plaque
+checks green. Zero provider calls; full device acceptance still pending.

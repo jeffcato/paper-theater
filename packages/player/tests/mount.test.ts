@@ -269,6 +269,28 @@ describe("mount: actual frame capture", () => {
     assert.deepEqual(container.children, []);
   });
 
+  it("forwards the pause-driven sign to the sink", async () => {
+    const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
+    const digest = await sha256Hex(manifestBytes);
+    const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
+    const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
+    const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
+    const signCalls: Array<{ pose: string; progress: number }> = [];
+    const sink = recordingSink() as FrameSink & { states: EvaluatedState[]; disposed: boolean };
+    (sink as unknown as { setSign: (pose: string, progress: number) => void }).setSign = (pose, progress) => {
+      signCalls.push({ pose, progress });
+    };
+    const mount = mountPlayer({}, { handle, timeline }, { clock: fakeClock(), sink });
+    mount.pause();
+    assert.deepEqual(signCalls.at(-1), { pose: "visible", progress: 1 });
+    await mount.play();
+    assert.deepEqual(signCalls.at(-1), { pose: "hidden", progress: 0 });
+    mount.pause();
+    mount.restart();
+    assert.deepEqual(signCalls.at(-1), { pose: "hidden", progress: 0 });
+    mount.dispose();
+  });
+
   it("controls the plaque through setReadAlong and releases it on dispose", async () => {
     const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
     const digest = await sha256Hex(manifestBytes);

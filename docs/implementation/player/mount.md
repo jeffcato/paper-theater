@@ -73,6 +73,38 @@ usage typechecks against the pinned 0.186.0 declarations.
   reposition the overlay from the refit projection → re-verify. The refit
   keeps the grown plaque and every camera/pointer extreme inside the frame
   (proven pure in `tests/shell.test.ts`, verified live in `check:theater`).
+
+## Rendered staging (shell, curtains, title, INTERMISSION sign)
+
+- `createThreeSink(w, h, {figures, title})` builds the neutral stage
+  architecture in code (shell.json is style neutral-v1 with null images):
+  inner back wall, columns, header, apron facing, plaque backing, two
+  opening curtains, and a title card from the package opening strings.
+  Curtain panels follow `state.curtain_open_ratio` (`curtainPanelX`);
+  the card shows while `state.title_visible`. All opaque unlit materials
+  composite through the stage target, so the blackout gain covers them;
+  the profile shell/curtain alphas stay reserved for the future
+  independently-lit house pass.
+- The pause-driven INTERMISSION sign is the first house element: mount
+  forwards the transport UI clock (`onSign`) to `sink.setSign`, and the
+  rope-hung board renders in a separate house scene after the composite
+  quad on every destination (capture + screen), unlit by the blackout
+  gain per the house-stays-lit rule. Board height follows `signBoardY`
+  inside the pinned SIGN_BOUNDS with the transport tilt bound; progress 0
+  hides the rig. Renderer uses explicit clears (`autoClear = false`)
+  since the house pass shares each destination.
+- Depth note: the back wall stands at negated inner depth (V3 +Z-away
+  maps to three.js distance, as F*M*F maps actor positions);
+  front architecture keeps three.js-near depths matching the verified
+  fixture space. An earlier revision occluded the players and was caught
+  by the staging frames.
+- Media servers must honor HTTP Range requests or the `<audio>` clock
+  stalls with currentTime frozen at 0 (all check harnesses serve 206).
+  Use transport-owned `play()`/`pause()` in harnesses: raw element
+  playback bypasses sign intent and once certified a resume that never
+  raised the sign.
+- Covered by `npm run check:staging` (evidence `staging.json` +
+  `staging-*.png`) and the mount sign-forwarding test.
 - Covered by `npm run check:theater` (combined theater+plaque harness,
   evidence `theater.json` + `theater-{WxH}[-200].png`) and the mount plaque
   wiring tests in `tests/mount.test.ts` (stub metrics; certify nothing).

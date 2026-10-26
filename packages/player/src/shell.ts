@@ -15,6 +15,9 @@ import {
   PLAQUE_SAFE,
   PROFILE_ID,
   RENDER_DEFAULTS,
+  SIGN_BOUNDS,
+  SIGN_ROPE_TOP_Y,
+  SIGN_ROPES_X,
 } from "./profile.js";
 import { nodAngle, pivotOffset } from "./assets.js";
 
@@ -221,6 +224,26 @@ export function projectPlaqueSafe(pose: CameraPose, viewport: ViewportCss): Plaq
   };
 }
 
+/**
+ * Curtain panel center-x for an open ratio in 0..1. Each 8-wide panel
+ * covers half the opening when closed and slides fully clear when open.
+ */
+export function curtainPanelX(side: "left" | "right", openRatio: number): number {
+  if (!(openRatio >= 0 && openRatio <= 1)) throw new Error(`curtain ratio: ${openRatio}`);
+  const closed = side === "left" ? OPENING.x[0] / 2 : OPENING.x[1] / 2;
+  const travel = side === "left" ? OPENING.x[0] : OPENING.x[1];
+  return closed + travel * openRatio;
+}
+
+/**
+ * INTERMISSION board center-y for sign progress 0..1. Visible inside
+ * SIGN_BOUNDS (center 6); hidden lifts clear above the framed shell top.
+ */
+export function signBoardY(progress: number): number {
+  if (!(progress >= 0 && progress <= 1)) throw new Error(`sign progress: ${progress}`);
+  return (SIGN_BOUNDS.y[0] + SIGN_BOUNDS.y[1]) / 2 + (1 - progress) * 8;
+}
+
 /** Projected-DOM homography: solve planar map from inset corners to CSS px. */
 export function solveHomography(
   world: [[number, number], [number, number], [number, number], [number, number]],
@@ -351,11 +374,18 @@ export interface FigureSource {
   allow_mirror: boolean;
 }
 
+export interface TitleCard {
+  heading: string;
+  sub: string;
+}
+
 export interface ThreeSinkOptions {
   /** Registered figures bound to scene instances. Omitted entries fail closed. */
   figures?: FigureSource[];
   /** Neutral calibration fixture (default true; existing evidence depends on it). */
   calibration?: boolean;
+  /** Opening title card strings (default neutral; harness passes authored). */
+  title?: TitleCard;
 }
 
 /** Native crop aspect for a figure source: stage matches pixels. */
@@ -474,6 +504,22 @@ export async function createThreeSink(
   };
 
   // Composite pass: stage color multiplied by the blackout gain.
+  // Neutral stage architecture (always built; the calibration flag covers
+  // only the diagnostic fixture): inner backdrop, columns, header, apron
+  // facing, plaque backing, opening curtains and the title card. Opaque
+  // unlit materials composite through the stage target, so the blackout
+  // gain covers them like every other stage contribution. The profile
+  // shell/curtain alphas stay reserved for the future independently-lit
+  // house pass; only the pause-driven sign renders there today.
+  const staging = buildStaging(
+    THREE,
+    options.title ?? { heading: "Paper Theater", sub: "" },
+  );
+  for (const mesh of staging.stage) stageScene.add(mesh);
+  const houseScene = new THREE.Scene();
+  for (const node of staging.house) houseScene.add(node);
+  for (const resource of staging.resources) owned.push(resource);
+
   const compositeScene = new THREE.Scene();
   const compositeCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   const gainUniform = { value: 1 };
@@ -484,9 +530,16 @@ export async function createThreeSink(
       "uniform sampler2D map; uniform float gain; varying vec2 vUv;" +
       "void main() { vec3 c = texture2D(map, vUv).rgb * gain; gl_FragColor = vec4(c, 1.0); }",
   });
+  // The composite quad never writes or tests depth: the house scene draws
+  // after it against cleared depth on every destination.
+  compositeMaterial.depthTest = false;
+  compositeMaterial.depthWrite = false;
   const compositeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), compositeMaterial);
   compositeQuad.frustumCulled = false;
   compositeScene.add(compositeQuad);
+  // Explicit clears: the house pass shares each destination with the
+  // composite quad, so autoClear cannot own the clear anymore.
+  renderer.autoClear = false;
 
   // Final composited output lives in its own target: capture reads these
   // exact bytes (post blackout gain), and the same bytes go to the screen.
@@ -497,12 +550,17 @@ export async function createThreeSink(
   compositeTarget.texture.generateMipmaps = false;
 
   let disposed = false;
+  let signProgress = 0;
   return {
     canvas: renderer.domElement,
     setCameraPose(pose: CameraPose): void {
       if (disposed) throw new Error("setCameraPose after dispose");
       stageCamera.position.set(pose.position[0], pose.position[1], pose.position[2]);
       stageCamera.lookAt(pose.target[0], pose.target[1], pose.target[2]);
+    },
+    setSign(_pose: unknown, progress: number): void {
+      if (disposed) throw new Error("setSign after dispose");
+      signProgress = Math.max(0, Math.min(1, progress));
     },
     render(state): void {
       if (disposed) throw new Error("render after dispose");
@@ -543,12 +601,32 @@ export async function createThreeSink(
         mesh.matrix.copy(scratch.flipped);
         mesh.visible = true;
       }
+      // Staging follows the evaluated media state; the sign follows the
+      // pause-driven UI clock through setSign (ratios clamp, never throw).
+      const ratio = Math.max(0, Math.min(1, state.curtain_open_ratio));
+      staging.curtainL.position.x = curtainPanelX("left", ratio);
+      staging.curtainR.position.x = curtainPanelX("right", ratio);
+      staging.title.visible = state.title_visible;
+      const boardY = signBoardY(signProgress);
+      staging.sign.group.visible = signProgress > 0.001;
+      staging.sign.board.position.set(0, boardY, SIGN_BOUNDS.z);
+      staging.sign.board.rotation.z = Math.sin(signProgress * Math.PI) * (3 * Math.PI / 180);
+      const ropeLen = Math.max(0.01, SIGN_ROPE_TOP_Y - (boardY + 1));
+      staging.sign.ropeL.position.set(SIGN_ROPES_X[0], SIGN_ROPE_TOP_Y, SIGN_BOUNDS.z);
+      staging.sign.ropeR.position.set(SIGN_ROPES_X[1], SIGN_ROPE_TOP_Y, SIGN_BOUNDS.z);
+      staging.sign.ropeL.scale.set(1, ropeLen, 1);
+      staging.sign.ropeR.scale.set(1, ropeLen, 1);
       renderer.setRenderTarget(stageTarget);
+      renderer.clear();
       renderer.render(stageScene, stageCamera);
       renderer.setRenderTarget(compositeTarget);
+      renderer.clear();
       renderer.render(compositeScene, compositeCamera);
+      renderer.render(houseScene, stageCamera);
       renderer.setRenderTarget(null);
+      renderer.clear();
       renderer.render(compositeScene, compositeCamera);
+      renderer.render(houseScene, stageCamera);
     },
     capturePixels(captureWidth, captureHeight): Uint8Array {
       if (disposed) throw new Error("capture after dispose");
@@ -647,6 +725,173 @@ function buildDiagnosticFixture(THREE: typeof import("three")): import("three").
   card.position.set(2.2, 1.6, 0.4);
 
   return [deck, orientation, card];
+}
+
+interface StagingRig {
+  stage: import("three").Mesh[];
+  house: import("three").Object3D[];
+  resources: { dispose(): void }[];
+  curtainL: import("three").Mesh;
+  curtainR: import("three").Mesh;
+  title: import("three").Mesh;
+  sign: {
+    group: import("three").Group;
+    board: import("three").Mesh;
+    ropeL: import("three").Mesh;
+    ropeR: import("three").Mesh;
+  };
+}
+
+/**
+ * Neutral stage architecture plus the house sign rig, all drawn in code
+ * (shell.json ships style neutral-v1 with null images): backdrop, columns,
+ * header, apron facing, plaque backing, opening curtains, a title card,
+ * and the rope-hung INTERMISSION board. Stage nodes composite through the
+ * blackout gain; only the sign rig enters the independently-lit house
+ * scene, driven by the pause clock through setSign.
+ */
+function buildStaging(
+  THREE: typeof import("three"),
+  title: TitleCard,
+): StagingRig {
+  const resources: { dispose(): void }[] = [];
+  const track = <T extends { dispose(): void }>(resource: T): T => {
+    resources.push(resource);
+    return resource;
+  };
+  const basic = (color: number): import("three").MeshBasicMaterial =>
+    track(new THREE.MeshBasicMaterial({ color }));
+  const codeTexture = (w: number, h: number, draw: (ctx: CanvasRenderingContext2D) => void): import("three").Texture => {
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("2d canvas unavailable");
+    draw(ctx);
+    const texture = track(new THREE.CanvasTexture(canvas));
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = false;
+    return texture;
+  };
+  const flat = (
+    w: number, h: number, color: number, x: number, y: number, z: number,
+  ): import("three").Mesh => {
+    const mesh = new THREE.Mesh(track(new THREE.PlaneGeometry(w, h)), basic(color));
+    mesh.position.set(x, y, z);
+    return mesh;
+  };
+
+  const stage: import("three").Mesh[] = [
+    // Back wall: V3 +Z-away negates into three.js distance (as F*M*F maps
+    // actor positions), so the inner layer stands behind the players at
+    // -inner instead of occluding them. Front architecture keeps
+    // three.js-near depths matching the verified fixture space.
+    flat(22, 14, 0x101010, 0, 4, -LAYER_Z.inner),
+    flat(16, 3, 0x181818, 0, -1.5, LAYER_Z.apron),
+    flat(PLAQUE.x[1] - PLAQUE.x[0], PLAQUE.y[1] - PLAQUE.y[0], 0x0c0c0c, 0, (PLAQUE.y[0] + PLAQUE.y[1]) / 2, LAYER_Z.plaque),
+  ];
+  const headerGeo = (): import("three").BoxGeometry => track(new THREE.BoxGeometry(3, 14, 0.6));
+  for (const side of [-1, 1]) {
+    const column = new THREE.Mesh(headerGeo(), basic(0x232323));
+    column.position.set(side * 9.5, 4, LAYER_Z.columns);
+    stage.push(column);
+  }
+  const header = new THREE.Mesh(track(new THREE.BoxGeometry(22, 2, 0.6)), basic(0x232323));
+  header.position.set(0, 10, LAYER_Z.columns);
+  stage.push(header);
+
+  const curtainTexture = codeTexture(256, 288, (ctx) => {
+    ctx.fillStyle = "#5e1f1f";
+    ctx.fillRect(0, 0, 256, 288);
+    for (let x = 0; x < 256; x += 32) {
+      ctx.fillStyle = "#471515";
+      ctx.fillRect(x, 0, 14, 288);
+      ctx.fillStyle = "#722929";
+      ctx.fillRect(x + 14, 0, 3, 288);
+    }
+    ctx.fillStyle = "#3a1010";
+    ctx.fillRect(0, 0, 256, 10);
+    ctx.fillRect(0, 272, 256, 16);
+  });
+  const curtainHeight = OPENING.y[1] - OPENING.y[0];
+  const curtainY = (OPENING.y[0] + OPENING.y[1]) / 2;
+  const curtainGeo = track(new THREE.PlaneGeometry(8, curtainHeight));
+  const curtainMatL = track(new THREE.MeshBasicMaterial({ map: curtainTexture }));
+  const curtainMatR = track(new THREE.MeshBasicMaterial({ map: curtainTexture }));
+  const curtainL = new THREE.Mesh(curtainGeo, curtainMatL);
+  curtainL.position.set(curtainPanelX("left", 0), curtainY, 2.2);
+  const curtainR = new THREE.Mesh(curtainGeo, curtainMatR);
+  curtainR.position.set(curtainPanelX("right", 0), curtainY, 2.2);
+  stage.push(curtainL, curtainR);
+
+  const titleTexture = codeTexture(512, 160, (ctx) => {
+    ctx.fillStyle = "#131009";
+    ctx.fillRect(0, 0, 512, 160);
+    ctx.fillStyle = "#8a6d2f";
+    ctx.fillRect(40, 14, 432, 4);
+    ctx.fillRect(40, 142, 432, 4);
+    ctx.fillStyle = "#eadfc2";
+    ctx.font = "46px Georgia, serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(title.heading.slice(0, 40), 256, 66);
+    ctx.fillStyle = "#b9a87e";
+    ctx.font = "26px Georgia, serif";
+    ctx.fillText(title.sub.slice(0, 48), 256, 114);
+  });
+  const titleCard = new THREE.Mesh(
+    track(new THREE.PlaneGeometry(10, 3.125)),
+    track(new THREE.MeshBasicMaterial({ map: titleTexture, transparent: true })),
+  );
+  // In front of the closed curtains (2.2); visible only while they hide
+  // the stage behind it.
+  titleCard.position.set(0, 4.5, 2.5);
+  stage.push(titleCard);
+
+  const signTexture = codeTexture(512, 128, (ctx) => {
+    ctx.fillStyle = "#1f1a12";
+    ctx.fillRect(0, 0, 512, 128);
+    ctx.strokeStyle = "#8a6d2f";
+    ctx.lineWidth = 10;
+    ctx.strokeRect(8, 8, 496, 112);
+    ctx.fillStyle = "#ecdfbe";
+    ctx.font = "bold 54px Georgia, serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    try {
+      (ctx as CanvasRenderingContext2D & { letterSpacing?: string }).letterSpacing = "8px";
+    } catch {
+      // Letterspacing is decorative; the board reads without it.
+    }
+    ctx.fillText("INTERMISSION", 256, 68);
+  });
+  const signGroup = new THREE.Group();
+  const board = new THREE.Mesh(
+    track(new THREE.PlaneGeometry(
+      SIGN_BOUNDS.x[1] - SIGN_BOUNDS.x[0],
+      SIGN_BOUNDS.y[1] - SIGN_BOUNDS.y[0],
+    )),
+    track(new THREE.MeshBasicMaterial({ map: signTexture })),
+  );
+  const ropeGeo = track(new THREE.BoxGeometry(0.09, 1, 0.09));
+  ropeGeo.translate(0, -0.5, 0);
+  const ropeMat = basic(0x3d3d3d);
+  const ropeL = new THREE.Mesh(ropeGeo, ropeMat);
+  const ropeR = new THREE.Mesh(ropeGeo, ropeMat);
+  board.position.set(0, signBoardY(1), SIGN_BOUNDS.z);
+  signGroup.add(board, ropeL, ropeR);
+  signGroup.visible = false;
+  return {
+    stage,
+    house: [signGroup],
+    resources,
+    curtainL,
+    curtainR,
+    title: titleCard,
+    sign: { group: signGroup, board, ropeL, ropeR },
+  };
 }
 
 /** Configure a color texture per profile: sRGB, linear filter, no mipmaps. */

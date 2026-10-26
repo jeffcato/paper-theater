@@ -416,6 +416,40 @@ async function serveFile(res, path, type) {
   }
 }
 
+// Media clocks seek: honor Range requests (206) or the element stalls
+// mid-harness with currentTime frozen at 0.
+async function serveRanged(req, res, path, type) {
+  try {
+    const data = await readFile(path);
+    const total = data.length;
+    const match = req.headers.range && /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);
+    if (!match) {
+      res.writeHead(200, { "content-type": type, "content-length": total, "accept-ranges": "bytes" });
+      res.end(data);
+      return;
+    }
+    let start = match[1] === "" ? total - Number(match[2]) : Number(match[1]);
+    let end = match[2] === "" ? total - 1 : Number(match[2]);
+    if (!(start >= 0 && end >= start && start < total)) {
+      res.writeHead(416, { "content-range": `bytes */${total}` });
+      res.end();
+      return;
+    }
+    end = Math.min(end, total - 1);
+    const slice = data.subarray(start, end + 1);
+    res.writeHead(206, {
+      "content-type": type,
+      "content-length": slice.length,
+      "content-range": `bytes ${start}-${end}/${total}`,
+      "accept-ranges": "bytes",
+    });
+    res.end(slice);
+  } catch {
+    res.writeHead(404);
+    res.end("missing");
+  }
+}
+
 const failures = [];
 const check = (cond, message) => {
   if (!cond) failures.push(message);
@@ -462,7 +496,8 @@ try {
         res.end("missing");
         return;
       }
-      return serveFile(res, join(fixtureRoot, name), "application/octet-stream");
+      const type = name.endsWith(".wav") ? "audio/wav" : "application/octet-stream";
+      return serveRanged(req, res, join(fixtureRoot, name), type);
     }
     res.writeHead(404);
     res.end("missing");
