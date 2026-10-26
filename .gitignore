@@ -1,0 +1,45 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+!.env.sample
+.aws/
+*.pem
+*.key
+
+# Dependencies and generated build output
+node_modules/
+target/
+dist/
+build/
+coverage/
+.cache/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.tsbuildinfo
+
+# Production state, private evidence and generated media
+/var/
+/artifacts/
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.db-wal
+*.db-shm
+*.log
+
+# Local machine/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Application workspace lockfiles are intentionally tracked.

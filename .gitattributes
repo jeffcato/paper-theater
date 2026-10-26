@@ -1,0 +1,16 @@
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.wav binary
+*.mp3 binary
+*.mp4 binary
+*.woff binary
+*.woff2 binary
+
+# Hash-bound fixture/evidence/package bytes must not undergo newline conversion.
+fixtures/** -text
+docs/evidence/** -text
+performances/** -text
