@@ -1,8 +1,8 @@
 {
   "pr": 1,
   "pr_url": "https://github.com/jeffcato/paper-theater/pull/1",
-  "recorded_at": "2026-10-26T22:19:16.010134+00:00",
-  "scope": "Final CI certifies integration code commit 306059f0986bbc7a7fb907cb894b567d7916d4c8. The following receipt-only commit records these results; earlier observations retain their original heads.",
+  "recorded_at": "2026-10-26T23:02:51.656463+00:00",
+  "scope": "Final I2 CI certifies code commit 14821da1f87e6795766b1348625b3e9996369c95. This subsequent receipt-only change records those results. Earlier runs/observations retain their exact original heads.",
   "runs": [
     {
       "conclusion": "success",
@@ -836,19 +836,256 @@
       "status": "completed",
       "updatedAt": "2026-10-26T22:18:43Z",
       "url": "https://github.com/jeffcato/paper-theater/actions/runs/40411099254"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-26T22:58:43Z",
+      "databaseId": 40416473230,
+      "event": "push",
+      "headSha": "14821da1f87e6795766b1348625b3e9996369c95",
+      "jobs": [
+        {
+          "completedAt": "2026-10-26T23:01:14Z",
+          "conclusion": "success",
+          "databaseId": 121899956277,
+          "name": "Check product identity",
+          "startedAt": "2026-10-26T22:58:45Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-26T22:58:46Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-26T22:58:46Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:58:48Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-26T22:58:46Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:58:48Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-26T22:58:48Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:58:53Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-26T22:58:48Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:59:02Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-26T22:58:53Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:00:51Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-26T22:59:02Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:00:53Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-26T23:00:51Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:10Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-26T23:00:53Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:11Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-26T23:01:10Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:11Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 17,
+              "startedAt": "2026-10-26T23:01:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:12Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 18,
+              "startedAt": "2026-10-26T23:01:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:12Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 19,
+              "startedAt": "2026-10-26T23:01:12Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40416473230/job/121899956277"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-26T23:01:14Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40416473230"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-26T22:58:46Z",
+      "databaseId": 40416479393,
+      "event": "pull_request",
+      "headSha": "14821da1f87e6795766b1348625b3e9996369c95",
+      "jobs": [
+        {
+          "completedAt": "2026-10-26T23:01:07Z",
+          "conclusion": "success",
+          "databaseId": 121899977766,
+          "name": "Check product identity",
+          "startedAt": "2026-10-26T22:58:48Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-26T22:58:49Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-26T22:58:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:58:52Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-26T22:58:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:58:52Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-26T22:58:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:58:57Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-26T22:58:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T22:59:05Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-26T22:58:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:00:45Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-26T22:59:05Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:00:47Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-26T23:00:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:04Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-26T23:00:47Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:05Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-26T23:01:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:05Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 17,
+              "startedAt": "2026-10-26T23:01:05Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:05Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 18,
+              "startedAt": "2026-10-26T23:01:05Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-26T23:01:05Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 19,
+              "startedAt": "2026-10-26T23:01:05Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40416479393/job/121899977766"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-26T23:01:07Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40416479393"
     }
   ],
   "completed_runs_conclusion": "success",
-  "completed_head_sha": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
+  "completed_head_sha": "14821da1f87e6795766b1348625b3e9996369c95",
   "latest_code_head_observation": {
-    "recorded_at": "2026-10-26T22:19:16.010134+00:00",
-    "headRefOid": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
+    "recorded_at": "2026-10-26T23:02:51.656463+00:00",
+    "headRefOid": "14821da1f87e6795766b1348625b3e9996369c95",
     "status": "completed",
     "conclusion": "success",
     "run_ids": [
-      40411099254,
-      40411090275,
-      40411089279
+      40416479393,
+      40416473230
     ],
     "url": "https://github.com/jeffcato/paper-theater/pull/1"
   },
@@ -878,6 +1115,18 @@
           "status": "IN_PROGRESS",
           "workflowName": "Product identity"
         }
+      ],
+      "url": "https://github.com/jeffcato/paper-theater/pull/1"
+    },
+    {
+      "recorded_at": "2026-10-26T22:19:16.010134+00:00",
+      "headRefOid": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
+      "status": "completed",
+      "conclusion": "success",
+      "run_ids": [
+        40411099254,
+        40411090275,
+        40411089279
       ],
       "url": "https://github.com/jeffcato/paper-theater/pull/1"
     }

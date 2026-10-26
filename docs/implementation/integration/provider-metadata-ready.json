@@ -174,5 +174,23 @@
     "missing TypeScript v2 export"
   ],
   "legacy_service_traits_sha256": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38",
-  "unchanged_disabled_runtime_provider_sha256": "8143fa6438bfad10164b3e613519fac95b9ca38e9a041e03315d2d72104ed74a"
+  "unchanged_disabled_runtime_provider_sha256": "8143fa6438bfad10164b3e613519fac95b9ca38e9a041e03315d2d72104ed74a",
+  "verified_code_commit": "14821da1f87e6795766b1348625b3e9996369c95",
+  "ci": {
+    "head_sha": "14821da1f87e6795766b1348625b3e9996369c95",
+    "status": "completed",
+    "conclusion": "success",
+    "runs": [
+      {
+        "id": 40416479393,
+        "event": "pull_request",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40416479393"
+      },
+      {
+        "id": 40416473230,
+        "event": "push",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40416473230"
+      }
+    ]
+  }
 }
