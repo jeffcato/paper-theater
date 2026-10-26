@@ -11,6 +11,7 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "check:player": "node scripts/check-player.mjs",
+    "check:chrome": "node scripts/chrome-capture.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {

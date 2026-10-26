@@ -24,12 +24,16 @@ browser sink on the profile compositing pipeline.
   identities, provenance + acceptance stamp, sample, phase, state digest
   and the pixel buffer. Without a pixel sink it fails closed (`not_ready`);
   after dispose it fails; nonpositive bounds fail.
-- `createThreeSink(w, h)` renders the narrative stage into a linear target
-  and multiplies by the blackout gain on the GPU (`PCFShadowMap`, sRGB
-  output, no tone mapping, linear filtering without mipmaps, DPR ≤1.5).
-  `capturePixels` reads the stage target via `readRenderTargetPixels`.
-  Diagnostic geometry is neutral — final artwork follows; the pipeline
-  (target, gain multiply, readback) is the real path.
+- `createThreeSink(w, h)` renders the narrative stage (neutral diagnostic
+  fixture drawn in code: deck plane, asymmetric red/blue orientation quad
+  with bright top strip, green actor card — no story facts) into a linear
+  target, multiplies by the blackout gain on the GPU, composites into a
+  final target and presents the same bytes to the screen (`PCFShadowMap`,
+  sRGB output, no tone mapping, linear filtering without mipmaps, DPR
+  ≤1.5). `capturePixels` reads the final composite target via
+  `readRenderTargetPixels` — never the pre-gain stage target. Per-actor
+  registered artwork binds later; unlit basic materials deliberately prove
+  the gain covers unlit pixels too.
 - Headless harnesses have no WebGL context: construction rejects with
   `webgl_unavailable` instead of crashing. Browser pixel acceptance
   (aperture channels ≤1/255, corner parity, support contacts) stays pending

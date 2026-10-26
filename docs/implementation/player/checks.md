@@ -38,15 +38,25 @@ Required-case coverage:
 - Capture: `describeCapture` names manifest/candidate, profile,
   player/checker, sample and contributor identities with a state digest.
 
-## Pending (require a browser/device, not claimed here)
+## Browser capture (claimed, headless Chrome + SwiftShader)
 
-Real-browser capture plus state assertions: aperture-pixel blackout,
+`npm run check:chrome` (`scripts/chrome-capture.mjs`) renders the neutral
+diagnostic fixture through the real sink and asserts on final composited
+pixels: visible content (nonblack 0.044), orientation preserved (left red
+2.3× right red, bright top strip present, dim bottom), full blackout at zero
+gain (max channel exactly 0, covering unlit materials), diagnostic capture
+stamp, and a clean console. Evidence: `chrome-capture.png` (eyeballed this
+session: red/blue orientation quad with white top strip, green actor card,
+deck sliver) + `chrome-capture.json` receipt. Latest run: pass.
+
+## Still pending (require the demo computer/device, not claimed here)
+
 Rust/Three.js vs DOM corner parity (≤1 CSS px), support contacts (≤1e−6),
-960×540 / 1280×720 / 1920×1080 + fullscreen + 100%/200% text + camera/pointer
-extremes, ten entry/exit cycles with resource accounting, 60-second p95 frame
-interval ≤33.3 ms with graphics/master ≤256 MiB on the demo computer, and
-opening/entry/action captures for narrative review. Historical
-software-renderer measurements do not establish the target-device result.
+960×540 / 1280×720 / 1920×1080 + actual fullscreen + 100%/200% text +
+camera/pointer extremes, ten entry/exit cycles with resource accounting,
+60-second p95 frame interval ≤33.3 ms with graphics/master ≤256 MiB on the
+demo computer, and opening/entry/action captures for narrative review. The
+SwiftShader run above proves the pipeline, not target-device performance.
 
 Audience: `npm test` (5 catalog-rule tests), `tsc --noEmit`, and `vite build`
 pass; the built bundle smoke-serves `index.html` (200) with catalog 404, so

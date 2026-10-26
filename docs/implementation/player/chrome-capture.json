@@ -1,0 +1,32 @@
+{
+  "tool": "check:chrome",
+  "profile": "paper-player-r186-v1",
+  "sink": [
+    320,
+    180
+  ],
+  "lit": {
+    "nonblackFraction": 0.04447916666666667,
+    "maxChannel": 0.8862745098039215,
+    "bbox": [
+      71,
+      93,
+      248,
+      134
+    ],
+    "leftRed": 0.0559919848089043,
+    "rightRed": 0.024247002171655208,
+    "topMax": 0.8491670588235294,
+    "bottomLum": 0.06441947565543155,
+    "sample": 200000,
+    "phase": "scene",
+    "accepted": false,
+    "provenance": "diagnostic"
+  },
+  "dark": {
+    "maxChannel": 0,
+    "sample": 432000
+  },
+  "failures": [],
+  "browser": "headless Chrome (SwiftShader)"
+}

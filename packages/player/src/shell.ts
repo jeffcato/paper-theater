@@ -269,6 +269,9 @@ export async function createThreeSink(
   const base = baseCameraPose();
   stageCamera.position.set(base.position[0], base.position[1], base.position[2]);
   stageCamera.lookAt(base.target[0], base.target[1], base.target[2]);
+  for (const mesh of buildDiagnosticFixture(THREE)) {
+    stageScene.add(mesh);
+  }
 
   // Composite pass: stage color multiplied by the blackout gain.
   const compositeScene = new THREE.Scene();
@@ -285,13 +288,24 @@ export async function createThreeSink(
   compositeQuad.frustumCulled = false;
   compositeScene.add(compositeQuad);
 
+  // Final composited output lives in its own target: capture reads these
+  // exact bytes (post blackout gain), and the same bytes go to the screen.
+  const compositeTarget = new THREE.WebGLRenderTarget(width, height);
+  compositeTarget.texture.colorSpace = THREE.NoColorSpace;
+  compositeTarget.texture.minFilter = THREE.LinearFilter;
+  compositeTarget.texture.magFilter = THREE.LinearFilter;
+  compositeTarget.texture.generateMipmaps = false;
+
   let disposed = false;
   return {
+    canvas: renderer.domElement,
     render(state): void {
       if (disposed) throw new Error("render after dispose");
       gainUniform.value = state.stage_gain;
       renderer.setRenderTarget(stageTarget);
       renderer.render(stageScene, stageCamera);
+      renderer.setRenderTarget(compositeTarget);
+      renderer.render(compositeScene, compositeCamera);
       renderer.setRenderTarget(null);
       renderer.render(compositeScene, compositeCamera);
     },
@@ -301,7 +315,7 @@ export async function createThreeSink(
         throw new Error(`capture size ${captureWidth}x${captureHeight} differs from sink ${width}x${height}`);
       }
       const pixels = new Uint8Array(captureWidth * captureHeight * 4);
-      renderer.readRenderTargetPixels(stageTarget, 0, 0, captureWidth, captureHeight, pixels);
+      renderer.readRenderTargetPixels(compositeTarget, 0, 0, captureWidth, captureHeight, pixels);
       return pixels;
     },
     dispose(): void {
@@ -310,9 +324,85 @@ export async function createThreeSink(
       compositeQuad.geometry.dispose();
       compositeMaterial.dispose();
       stageTarget.dispose();
+      compositeTarget.dispose();
       renderer.dispose();
     },
   };
+}
+
+/**
+ * Neutral diagnostic stage fixture, drawn entirely in code: a deck plane,
+ * one asymmetric orientation quad (warm-red left / cool-blue right, bright
+ * top strip, dark bottom strip, pale marker top-left) and a smaller actor
+ * card. No story facts; per-actor registered artwork binds later. Unlit
+ * basic materials deliberately prove the blackout gain covers unlit pixels.
+ */
+function buildDiagnosticFixture(THREE: typeof import("three")): import("three").Mesh[] {
+  const colorTexture = (canvas: HTMLCanvasElement): import("three").CanvasTexture => {
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = false;
+    return texture;
+  };
+  const paint = (w: number, h: number, draw: (ctx: CanvasRenderingContext2D) => void): HTMLCanvasElement => {
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("2d canvas unavailable");
+    draw(ctx);
+    return canvas;
+  };
+
+  const deck = new THREE.Mesh(
+    new THREE.PlaneGeometry(16, 8),
+    new THREE.MeshBasicMaterial({ color: 0x4a4a4a }),
+  );
+  deck.rotation.x = -Math.PI / 2;
+  deck.position.set(0, 0, -1.6);
+
+  // Asymmetric orientation quad: horizontal thirds red/neutral/blue against
+  // the V3 flip (never negate just actor Z), vertical bright-top/dark-bottom
+  // against pivot mistakes, pale marker top-left against mirroring.
+  const orientationCanvas = paint(96, 144, (ctx) => {
+    ctx.fillStyle = "#a83a2c";
+    ctx.fillRect(0, 0, 32, 144);
+    ctx.fillStyle = "#5a5a5a";
+    ctx.fillRect(32, 0, 32, 144);
+    ctx.fillStyle = "#2c5fa8";
+    ctx.fillRect(64, 0, 32, 144);
+    ctx.fillStyle = "#f2ede2";
+    ctx.fillRect(0, 0, 96, 18);
+    ctx.fillStyle = "#0b0b0b";
+    ctx.fillRect(0, 126, 96, 18);
+    ctx.fillStyle = "#f2ede2";
+    ctx.fillRect(4, 22, 12, 12);
+  });
+  const orientation = new THREE.Mesh(
+    new THREE.PlaneGeometry(2, 3),
+    new THREE.MeshBasicMaterial({ map: colorTexture(orientationCanvas) }),
+  );
+  orientation.position.set(-1.5, 2.2, 0);
+
+  const cardCanvas = paint(48, 96, (ctx) => {
+    ctx.fillStyle = "#2ca87a";
+    ctx.fillRect(0, 0, 24, 96);
+    ctx.fillStyle = "#2c9aa8";
+    ctx.fillRect(24, 0, 24, 96);
+    ctx.fillStyle = "#f2ede2";
+    ctx.fillRect(0, 0, 48, 10);
+    ctx.fillStyle = "#0b0b0b";
+    ctx.fillRect(0, 86, 48, 10);
+  });
+  const card = new THREE.Mesh(
+    new THREE.PlaneGeometry(1, 2),
+    new THREE.MeshBasicMaterial({ map: colorTexture(cardCanvas) }),
+  );
+  card.position.set(2.2, 1.6, 0.4);
+
+  return [deck, orientation, card];
 }
 
 /** Configure a color texture per profile: sRGB, linear filter, no mipmaps. */

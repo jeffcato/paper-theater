@@ -31,6 +31,8 @@ export interface FrameSink {
   render(state: EvaluatedState): void;
   capturePixels?(width: number, height: number): Uint8Array;
   dispose?(): void;
+  /** Browser sinks expose their canvas so the page can display it. */
+  canvas?: unknown;
 }
 
 export interface MountSource {
