@@ -35,7 +35,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             pt_production::generation::GenerationExecutor,
         ))),
     )
-    .with_saved_inputs(fixture.clone(), PathBuf::from("fixtures/generation/source"));
+    .with_saved_inputs(fixture.clone(), PathBuf::from("fixtures/generation/source"))
+    .with_acoustic_inputs(PathBuf::from("fixtures/generation/acoustic"))
+    .with_offline_acoustic(PathBuf::from("tools/generation"))?;
     runtime.fixture_delay_ms = 120;
     let worker = tokio::spawn(async move {
         loop {

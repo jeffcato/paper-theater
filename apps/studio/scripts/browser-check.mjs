@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 const root=resolve(import.meta.dirname,'../../..');
 const temp=await mkdtemp(join(tmpdir(),'pt-studio-browser-'));
 const children=[];let ws;let url;
+const eventType=e=>{try{return JSON.parse(e.summary).type||e.kind;}catch{return e.kind;}};
 async function until(fn,message,timeout=15000){const start=Date.now();while(Date.now()-start<timeout){try{const result=await fn();if(result)return result;}catch{}await delay(50);}throw new Error(message);}
 try{
  const server=spawn(process.env.PT_SERVER_BIN||join(root,'target/debug/pt-server'),['--data',join(temp,'data'),'--port','0','--studio',join(root,'apps/studio/dist'),'--fixture',join(root,'fixtures/shared/two-scene-v1')],{cwd:root,stdio:['ignore','pipe','pipe']});children.push(server);server.on('error',()=>{});server.stdout.on('data',b=>{url??=String(b).match(/http:\/\/127\.0\.0\.1:\d+/)?.[0];});
@@ -18,7 +19,7 @@ try{
  ws.onmessage=({data})=>{const m=JSON.parse(data);if(m.id){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(new Error(m.error.message)):p.resolve(m.result);}if(m.method==='Network.requestWillBeSent')requests.push(m.params.request);};
  const call=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});
  const evaluate=async(expression)=>{const result=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true,userGesture:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.text);return result.result.value;};
- await call('Network.enable');await call('Page.enable');
+ await call('Network.enable');await call('Page.enable');await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1100,deviceScaleFactor:1,mobile:false});
  await until(()=>evaluate(`!!document.querySelector('[data-testid="start"]')`),'missing start control');
  await evaluate(`document.querySelector('[data-testid="start"]').click()`);
  await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='running'`),'run did not start');
@@ -40,8 +41,41 @@ try{
  await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='succeeded' && document.querySelector('.journal')?.textContent.includes('cache reused')`),'server restart did not reuse committed checkpoint',20000);
  assert(await evaluate(`!!document.querySelector('[data-testid="saved-diagnostic"]')`),'saved package control missing');
  await evaluate(`document.querySelector('[data-testid="saved-diagnostic"]').click()`);
+ let cancelledAcousticRun;
+ await until(async()=>{cancelledAcousticRun=await evaluate(`new URLSearchParams(location.search).get('run')`);const journal=await(await fetch(url+'/api/v1/runs/'+cancelledAcousticRun+'/journal')).json();return journal.events?.some(e=>eventType(e)==='helper_authorized');},'real acoustic helper was not authorized',40000);
+ await evaluate(`document.querySelector('[data-testid="cancel"]').click()`);
+ await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='cancelled'`),'acoustic cancellation did not persist');
+ await delay(150);
+ const cancelledSnapshot=await(await fetch(url+'/api/v1/runs/'+cancelledAcousticRun)).json();assert.equal(cancelledSnapshot.state,'cancelled');assert(!cancelledSnapshot.stages.find(s=>s.stage==='acoustic').artifacts.some(a=>a.file.path==='acoustic-validation.json'),'cancel accepted late acoustic output');
+ assert.equal(await(await fetch(url+'/api/v1/runs/'+cancelledAcousticRun+'/diagnostic')).json(),null,'cancel published a diagnostic package');
+ await evaluate(`document.querySelector('[data-testid="saved-diagnostic"]').click()`);
  await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='failed'`),'diagnostic findings were not retained',40000);
+ const acousticRun=await evaluate(`new URLSearchParams(location.search).get('run')`);
+ const acousticSnapshot=await(await fetch(url+'/api/v1/runs/'+acousticRun)).json();const acousticStage=acousticSnapshot.stages.find(s=>s.stage==='acoustic');assert.equal(acousticStage.outcome,'needs_repair');
+ const validationRef=acousticStage.artifacts.find(a=>a.file.path==='acoustic-validation.json');assert(validationRef,'real acoustic validation was not persisted');
+ const validation=await(await fetch(url+'/api/v1/artifacts/'+validationRef.id)).json();assert.equal(validation.word_count,176);assert.equal(validation.highlight_group_count,170);assert.equal(validation.provider_calls,0);assert.equal(validation.production_approved,false);assert(validation.missing_evidence.includes('independent-acoustic-evidence'));
+ const acousticJournal=await(await fetch(url+'/api/v1/runs/'+acousticRun+'/journal')).json();assert.equal(acousticJournal.events.filter(e=>eventType(e)==='helper_authorized').length,1);assert(acousticJournal.events.every(e=>!eventType(e).startsWith('provider_')));
+ const replayRequests=requests.length;await evaluate(`document.querySelector('[data-testid="replay"]').click()`);await until(()=>evaluate(`document.querySelector('[data-testid="mode"]')?.textContent==='Recorded replay'`),'acoustic replay not restored');await delay(150);
+ const replaySnapshot=await(await fetch(url+'/api/v1/runs/'+acousticRun)).json();assert.equal(replaySnapshot.last_event_seq,acousticSnapshot.last_event_seq,'replay mutated persisted acoustic work');assert.equal(requests.slice(replayRequests).filter(r=>r.method==='POST').length,0,'acoustic replay dispatched work');
+
  assert(await evaluate(`document.body.textContent.includes('Needs repair')`),'missing acceptance not shown');
- const capture=await call('Page.captureScreenshot' ,{format:'png'});await writeFile(join(root,'docs/implementation/runtime/studio-browser.png'),Buffer.from(capture.data,'base64'));
- console.log(JSON.stringify({start:true,cancel:true,reload:true,reconnect:true,replay_zero_posts:true,process_restart_reuse:true,diagnostic_needs_repair:true,events:seq.length}));
+ const sourceDecision=acousticJournal.events.find(e=>e.kind==='director_decision'&&JSON.parse(e.summary).record.inputs.some(a=>a.file.path==='frozen-source.json'));assert(sourceDecision,'source-linked package decision missing');
+ await evaluate(`document.querySelector('[data-event-seq="${sourceDecision.seq}"] button').click()`);
+ await until(()=>evaluate(`Array.from(document.querySelectorAll('.artifact-link')).some(e=>e.textContent.includes('frozen-source.json'))`),'recorded decision has no source link');
+ await evaluate(`Array.from(document.querySelectorAll('.artifact-link')).find(e=>e.textContent.includes('frozen-source.json')).click()`);
+ await until(()=>evaluate(`document.querySelector('.artifact pre')?.textContent.includes('Dorothy lived')`),'source bytes missing from inspector');
+ assert(await evaluate(`!!document.querySelector('[data-testid="preview-load"]')`),'shared preview control missing');
+ await evaluate(`document.querySelector('[data-testid="preview-load"]').click()`);
+ await until(()=>evaluate(`document.querySelector('[data-testid="player-status"]')?.textContent.includes('Diagnostic mount')`),'shared diagnostic mount unavailable',30000);
+ assert(await evaluate(`!!document.querySelector('.player-surface canvas')`),'shared renderer canvas was not attached');
+ await evaluate(`document.querySelector('[data-testid="player-seek"]').focus()`);
+ await call('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight'});await call('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowRight',code:'ArrowRight'});
+ await until(()=>evaluate(`Number(document.querySelector('[data-testid="player-sample"]')?.textContent)>0`),'shared player seek did not update sampled state');
+ await evaluate(`document.querySelector('[data-testid="player-play"]').click()`);
+ await until(()=>evaluate(`!document.querySelector('.preview audio').paused && document.querySelector('.preview audio').currentTime>0.1`),'verified audio did not play');
+ await evaluate(`document.querySelector('[data-testid="player-pause"]').click()`);
+ assert(await evaluate(`document.querySelector('.inspector').getBoundingClientRect().height<=900`),'inspector must scroll within its column');
+ const metrics=await call('Page.getLayoutMetrics');
+ const capture=await call('Page.captureScreenshot'  ,{format:'png',captureBeyondViewport:true,clip:{x:0,y:0,width:1440,height:metrics.cssContentSize.height,scale:1}});await writeFile(join(root,'docs/implementation/runtime/studio-browser.png'),Buffer.from(capture.data,'base64'));
+ console.log(JSON.stringify({real_acoustic:true,acoustic_cancel:true,acoustic_replay_read_only:true,start:true,cancel:true,reload:true,reconnect:true,replay_zero_posts:true,process_restart_reuse:true,diagnostic_needs_repair:true,recorded_source_link:true,shared_player_mount:true,shared_canvas:true,verified_audio_play:true,events:seq.length}));
 }finally{ws?.close();for(const child of children.reverse())child.kill('SIGKILL');await delay(200);await rm(temp,{recursive:true,force:true});}

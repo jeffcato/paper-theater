@@ -1,0 +1,19 @@
+{
+  "input_manifest_verified": true,
+  "stored_manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+  "production_rejected": true,
+  "nod_pixel_changes": true,
+  "zero_narrative_gain_samples": [
+    1747698,
+    1843697,
+    1843698
+  ],
+  "whole_frame_black_samples": [],
+  "verified_pngs": 11,
+  "verified_bundle_hashes": 3,
+  "real_acoustic_helper": true,
+  "cancel": true,
+  "replay_read_only": true,
+  "provider_calls": 0,
+  "note": "Current player preserves house lighting at zero narrative gain; aperture-region pixel proof belongs to the player lane."
+}

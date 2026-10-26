@@ -16,6 +16,7 @@ pub struct Services {
     mode: c::ExecutionMode,
     candidates: Arc<Mutex<HashMap<String, (c::CandidateFile, Vec<u8>)>>>,
     proposals: Arc<Mutex<Vec<c::JournalProposal>>>,
+    offline_acoustic: Option<super::helper::OfflineAcoustic>,
 }
 fn service(e: Error) -> c::ServiceError {
     if e.code == "stale_epoch" {
@@ -76,14 +77,29 @@ impl c::RunServices for Services {
         bytes: Vec<u8>,
     ) -> std::result::Result<c::CandidateFile, c::ServiceError> {
         self.active()?;
-        if !matches!(r.media_type.as_str(),"application/json"|"text/plain"|"text/vtt"|"image/png"|"image/webp"|"audio/wav"|"audio/mpeg"|"application/octet-stream") {return Err(c::ServiceError::Unauthorized("candidate media type is not allowlisted".into()));}
+        if !matches!(
+            r.media_type.as_str(),
+            "application/json"
+                | "text/plain"
+                | "text/vtt"
+                | "image/png"
+                | "image/webp"
+                | "audio/wav"
+                | "audio/mpeg"
+                | "application/octet-stream"
+        ) {
+            return Err(c::ServiceError::Unauthorized(
+                "candidate media type is not allowlisted".into(),
+            ));
+        }
         if !c::valid_id(&r.candidate_id)
             || !c::safe_path(&r.relative_path)
             || bytes.len() as u64 > r.max_bytes
-            || r.max_bytes > 32 * 1024 * 1024
+            || r.max_bytes > super::media::artifact_limit(&r.media_type) as u64
         {
             return Err(c::ServiceError::Unauthorized("candidate bounds".into()));
         }
+        super::media::validate_artifact_bytes(&bytes, &r.media_type).map_err(service)?;
         let file = c::FileRef {
             path: r.relative_path,
             sha256: digest(&bytes),
@@ -97,10 +113,24 @@ impl c::RunServices for Services {
             file,
             provenance: r.provenance,
         };
+        self.active()?;
         let mut candidates = self.candidates.lock().unwrap();
+        let audio = |f: &c::CandidateFile| f.file.media_type == "audio/wav";
+        let audio_bytes = candidates
+            .values()
+            .filter(|(f, _)| audio(f))
+            .map(|(_, b)| b.len())
+            .sum::<usize>()
+            + if audio(&result) { bytes.len() } else { 0 };
+        let other_bytes = candidates
+            .values()
+            .filter(|(f, _)| !audio(f))
+            .map(|(_, b)| b.len())
+            .sum::<usize>()
+            + if !audio(&result) { bytes.len() } else { 0 };
         if candidates.len() >= 64
-            || candidates.values().map(|(_, b)| b.len()).sum::<usize>() + bytes.len()
-                > 32 * 1024 * 1024
+            || audio_bytes > super::media::MAX_MASTER_BYTES
+            || other_bytes > super::media::MAX_ARTIFACT_BYTES
         {
             return Err(c::ServiceError::Limit("stage candidate size".into()));
         }
@@ -138,12 +168,62 @@ impl c::RunServices for Services {
     }
     async fn helper(
         &self,
-        _: c::HelperOperation,
+        operation: c::HelperOperation,
     ) -> std::result::Result<c::HelperResult, c::ServiceError> {
         self.active()?;
-        Err(c::ServiceError::Unauthorized(
-            "helper recipe not registered".into(),
-        ))
+        let config = self
+            .offline_acoustic
+            .as_ref()
+            .ok_or_else(|| c::ServiceError::Unauthorized("helper recipe not registered".into()))?;
+        let bytes = super::helper::acoustic(
+            &self.store,
+            &self.run,
+            self.epoch,
+            self.mode,
+            config,
+            &operation,
+        )
+        .await
+        .map_err(service)?;
+        let record: serde_json::Value = serde_json::from_slice(&bytes)
+            .map_err(Error::from)
+            .map_err(service)?;
+        if record["provider_calls"] != 0 || record["production_approved"] != false {
+            return Err(c::ServiceError::Unauthorized(
+                "offline helper response boundary".into(),
+            ));
+        }
+        let candidate = self
+            .write_candidate(
+                c::CandidateWrite {
+                    dimensions: None,
+                    candidate_id: digest(format!("{}:{}", operation.id, digest(&bytes)).as_bytes()),
+                    relative_path: "acoustic-replay.json".into(),
+                    media_type: "application/json".into(),
+                    max_bytes: operation.max_output_bytes,
+                    provenance: c::Provenance::Diagnostic,
+                },
+                bytes,
+            )
+            .await?;
+        let findings = record["missing_evidence"]
+            .as_array()
+            .ok_or_else(|| c::ServiceError::Internal("helper findings unavailable".into()))?
+            .iter()
+            .filter_map(|v| v.as_str())
+            .map(|id| c::Finding {
+                id: id.to_owned(),
+                field: "acoustic".into(),
+                outcome: c::ReviewOutcome::Missing,
+                message: format!("Recorded replay leaves {id} unresolved."),
+                evidence: vec![],
+            })
+            .collect();
+        Ok(c::HelperResult {
+            id: operation.id,
+            outputs: vec![candidate],
+            findings,
+        })
     }
     async fn library(
         &self,
@@ -181,6 +261,8 @@ pub struct Runtime {
     executor: Arc<dyn c::StageExecutor>,
     pub fixture_delay_ms: u64,
     saved_inputs: Option<(std::path::PathBuf, std::path::PathBuf)>,
+    acoustic_inputs: Option<std::path::PathBuf>,
+    offline_acoustic: Option<super::helper::OfflineAcoustic>,
 }
 impl Runtime {
     pub fn new(store: Store, executor: Arc<dyn c::StageExecutor>) -> Self {
@@ -189,7 +271,17 @@ impl Runtime {
             executor,
             fixture_delay_ms: 0,
             saved_inputs: None,
+            acoustic_inputs: None,
+            offline_acoustic: None,
         }
+    }
+    pub fn with_offline_acoustic(mut self, directory: std::path::PathBuf) -> Result<Self> {
+        self.offline_acoustic = Some(super::helper::OfflineAcoustic::new(directory)?);
+        Ok(self)
+    }
+    pub fn with_acoustic_inputs(mut self, root: std::path::PathBuf) -> Self {
+        self.acoustic_inputs = Some(root);
+        self
     }
     pub fn with_saved_inputs(
         mut self,
@@ -208,9 +300,16 @@ impl Runtime {
             == digest(b"saved-diagnostic-v1")
         {
             let prepared = match &self.saved_inputs {
-                Some((fixture, sources)) => {
-                    self.store.seed_fixture(&run, epoch, fixture, Some(sources))
-                }
+                Some((fixture, sources)) => self
+                    .store
+                    .seed_fixture(&run, epoch, fixture, Some(sources))
+                    .and_then(|_| match &self.acoustic_inputs {
+                        Some(root) => self.store.seed_acoustic_fixture(&run, epoch, root),
+                        None => fail(
+                            "fixture_unavailable",
+                            "stage-specific acoustic inputs are not configured",
+                        ),
+                    }),
                 None => fail(
                     "fixture_unavailable",
                     "saved fixture inputs are not configured",
@@ -225,12 +324,26 @@ impl Runtime {
         Ok(true)
     }
     pub async fn execute_claimed(&self, run: &str, epoch: i64) -> Result<()> {
+        let request = self.store.snapshot(run)?["request"].clone();
+        let diagnostic = request["mode"] == "fixture"
+            && request["pins"]["recipe_sha256"] == digest(b"saved-diagnostic-v1");
+        let mut needs_repair = false;
         let mut result = Ok(());
         for stage in c::STAGES {
             if let Err(e) = self.execute_stage(run, epoch, stage).await {
+                if diagnostic && stage == c::Stage::Acoustic && e.code == "stage_needs_repair" {
+                    needs_repair = true;
+                    continue;
+                }
                 result = Err(e);
                 break;
             }
+        }
+        if needs_repair && result.is_ok() {
+            result = fail("stage_needs_repair", "acoustic evidence remains unresolved");
+        }
+        if self.store.snapshot(run)?["state"] == "waiting_provider" {
+            return Ok(());
         }
         if self.store.is_active(run, epoch)? {
             match &result {
@@ -253,9 +366,12 @@ impl Runtime {
         let snapshot = self.store.snapshot(run)?;
         let request: c::RunRequest = serde_json::from_value(snapshot["request"].clone())?;
         let stage_name = serde_json::to_value(stage)?.as_str().unwrap().to_owned();
-        let mut inputs = self.store.seed_inputs(run)?;
+        let mut inputs = self.store.seed_inputs_for_stage(run, stage)?;
         let db = self.store.db()?;
         for prior in c::STAGES {
+            if stage == c::Stage::Acoustic {
+                break;
+            }
             if prior == stage {
                 break;
             }
@@ -265,12 +381,21 @@ impl Runtime {
                 inputs.extend(serde_json::from_str::<Vec<c::ArtifactRef>>(&saved)?);
             }
         }
-        let input_hash = digest(&serde_json::to_vec(
-            &json!({"request":snapshot["request"],"inputs":inputs,"stage":stage,"contracts":c::CONTRACT_REVISION,"services":c::SERVICE_REVISION}),
-        )?);
+        let mut identity = json!({"request":snapshot["request"],"inputs":inputs,"stage":stage,"contracts":c::CONTRACT_REVISION,"services":c::SERVICE_REVISION});
+        if stage == c::Stage::Acoustic {
+            identity["helper_recipe_sha256"] =
+                serde_json::to_value(self.offline_acoustic.as_ref().map(|helper| &helper.sha256))?;
+        }
+        let input_hash = digest(&serde_json::to_vec(&identity)?);
         let key = digest(format!("{stage_name}:{input_hash}").as_bytes());
-        if let Some(saved) = self.store.cached(run, &stage_name, &key, &input_hash)? {
-            self.store.transaction(|tx|{Store::active(tx,run,epoch)?;Store::emit(tx,run,"cache_reused",&json!({"stage":stage_name,"unit_key":key,"artifact_ids":saved.iter().map(|a|&a.id).collect::<Vec<_>>()}))?;Ok(())})?;
+        if let Some((outcome, saved)) = self.store.cached(run, &stage_name, &key, &input_hash)? {
+            self.store.transaction(|tx|{Store::active(tx,run,epoch)?;Store::emit(tx,run,"cache_reused",&json!({"stage":stage_name,"unit_key":key,"outcome":outcome,"artifact_ids":saved.iter().map(|a|&a.id).collect::<Vec<_>>()}))?;Ok(())})?;
+            if outcome == "needs_repair" {
+                return fail(
+                    "stage_needs_repair",
+                    "recorded diagnostic findings remain unresolved",
+                );
+            }
             return Ok(saved);
         }
         let input = c::StageInput {
@@ -310,16 +435,28 @@ impl Runtime {
             mode: request.mode,
             candidates: Arc::new(Mutex::new(HashMap::new())),
             proposals: Arc::new(Mutex::new(Vec::new())),
+            offline_acoustic: self.offline_acoustic.clone(),
         };
         if self.fixture_delay_ms > 0 {
             tokio::time::sleep(std::time::Duration::from_millis(self.fixture_delay_ms)).await;
         }
-        let output = self
-            .executor
-            .execute(input, &services)
-            .await
-            .map_err(|e| Error::new("stage_failed", e.to_string()))?;
+        let deadline =
+            tokio::time::sleep(std::time::Duration::from_millis(input.limits.wall_time_ms));
+        tokio::pin!(deadline);
+        let future = self.executor.execute(input, &services);
+        tokio::pin!(future);
+        let output = loop {
+            tokio::select! {
+                result=&mut future=>break result.map_err(|e|match e {c::StageError::Service(c::ServiceError::Cancelled)=>Error::new("stale_epoch","executor cancelled"),_=>Error::new("stage_failed",e.to_string())})?,
+                _=&mut deadline=>return fail("stage_timeout","executor exceeded its wall-time allowance"),
+                _=tokio::time::sleep(std::time::Duration::from_millis(25))=>Store::active(&self.store.db()?,run,epoch)?,
+            }
+        };
         let outcome = output.outcome;
+        if outcome == c::StageOutcome::Cancelled {
+            self.store.cancel(run)?;
+            return fail("stale_epoch", "executor cancelled the run");
+        }
         let artifacts = self.store.commit_shared(
             run,
             epoch,
@@ -329,12 +466,17 @@ impl Runtime {
             output,
             &services,
         )?;
-        if outcome != c::StageOutcome::Complete {
-            return fail(
-                "stage_needs_repair",
-                "diagnostic artifacts preserved; required evidence remains unresolved",
-            );
-        }
+        match outcome {
+            c::StageOutcome::Complete => {}
+            c::StageOutcome::NeedsRepair => {
+                return fail(
+                    "stage_needs_repair",
+                    "diagnostic artifacts preserved; required evidence remains unresolved",
+                );
+            }
+            c::StageOutcome::Failed => return fail("stage_failed", "required stage failed"),
+            c::StageOutcome::Cancelled => return fail("stale_epoch", "executor cancelled"),
+        };
         Ok(artifacts)
     }
 }
@@ -345,9 +487,9 @@ impl Store {
         stage: &str,
         key: &str,
         input_hash: &str,
-    ) -> Result<Option<Vec<c::ArtifactRef>>> {
-        let saved:Option<(String,String)>=self.db()?.query_row("SELECT input_hash,output FROM units WHERE run=?1 AND stage=?2 AND unit_key=?3 AND outcome='complete'",params![run,stage,key],|r|Ok((r.get(0)?,r.get(1)?))).optional()?;
-        if let Some((hash, output)) = saved {
+    ) -> Result<Option<(String, Vec<c::ArtifactRef>)>> {
+        let saved:Option<(String,String,String)>=self.db()?.query_row("SELECT input_hash,output,outcome FROM units WHERE run=?1 AND stage=?2 AND unit_key=?3 AND outcome IN ('complete','needs_repair')",params![run,stage,key],|r|Ok((r.get(0)?,r.get(1)?,r.get(2)?))).optional()?;
+        if let Some((hash, output, outcome)) = saved {
             if hash != input_hash {
                 return fail("stale_unit", "unit inputs changed");
             }
@@ -357,7 +499,7 @@ impl Store {
                     .verify(&self.artifact(&a.id)?.0)
                     .map_err(|e| Error::new("corrupt_artifact", e.to_string()))?;
             }
-            return Ok(Some(artifacts));
+            return Ok(Some((outcome, artifacts)));
         }
         Ok(None)
     }
@@ -397,7 +539,7 @@ impl Store {
                 a.file
                     .verify(bytes)
                     .map_err(|e| Error::new("invalid_candidate", e.to_string()))?;
-                self.put(bytes)?;
+                self.put_typed(bytes, &a.file.media_type)?;
                 artifacts.push(c::ArtifactRef {
                     id: digest(format!("{run}:{key}:{}:{}", a.file.path, a.file.sha256).as_bytes()),
                     file: a.file.clone(),
@@ -407,13 +549,17 @@ impl Store {
         }
         let snapshot = self.snapshot(run)?;
         let pins: c::Pins = serde_json::from_value(snapshot["request"]["pins"].clone())?;
-        let candidates = services
-            .candidates
-            .lock()
-            .unwrap()
-            .values()
-            .map(|(f, b)| (f.file.path.clone(), b.clone()))
-            .collect::<std::collections::BTreeMap<_, _>>();
+        let candidates = if output.package_candidate.is_some() {
+            services
+                .candidates
+                .lock()
+                .unwrap()
+                .values()
+                .map(|(f, b)| (f.file.path.clone(), b.clone()))
+                .collect()
+        } else {
+            std::collections::BTreeMap::new()
+        };
         let mapping = super::fixture::candidate_mapping(
             &output,
             &self.seed_inputs(run)?,
@@ -437,8 +583,8 @@ impl Store {
             }
             for proposal in services.proposals.lock().unwrap().iter(){Store::emit(tx,run,"journal_entry",&serde_json::to_value(proposal)?)?;}
             if let Some((manifest_hash,mapping))=&mapping {tx.execute("INSERT INTO diagnostic_packages VALUES(?1,?2,?3,?4,?5) ON CONFLICT(run) DO UPDATE SET epoch=excluded.epoch,manifest_hash=excluded.manifest_hash,mapping=excluded.mapping,candidate=excluded.candidate",params![run,epoch,manifest_hash,serde_json::to_string(mapping)?,serde_json::to_string(&output.package_candidate)?])?;Store::emit(tx,run,"diagnostic_package_ready",&json!({"manifest_sha256":manifest_hash,"production_acceptance":"unresolved"}))?;}
-            let complete=output.outcome==c::StageOutcome::Complete;let outcome=if complete{"complete"}else{"needs_repair"};
-            tx.execute("INSERT INTO units VALUES(?1,?2,?3,?4,?5,?6)",params![run,stage,key,input_hash,serde_json::to_string(&artifacts)?,outcome])?;tx.execute("UPDATE stages SET state=?3 WHERE run=?1 AND name=?2",params![run,stage,if complete{"succeeded"}else{"repairing"}])?;Store::emit(tx,run,"task_completed",&json!({"stage":stage,"unit_key":key,"artifact_ids":artifacts.iter().map(|a|&a.id).collect::<Vec<_>>()}))?;Ok(artifacts)
+            let (outcome,stage_state)=match output.outcome {c::StageOutcome::Complete=>("complete","succeeded"),c::StageOutcome::NeedsRepair=>("needs_repair","repairing"),c::StageOutcome::Failed=>("failed","failed"),c::StageOutcome::Cancelled=>("cancelled","cancelled")};
+            tx.execute("INSERT INTO units VALUES(?1,?2,?3,?4,?5,?6)",params![run,stage,key,input_hash,serde_json::to_string(&artifacts)?,outcome])?;tx.execute("UPDATE stages SET state=?3 WHERE run=?1 AND name=?2",params![run,stage,stage_state])?;Store::emit(tx,run,"task_completed",&json!({"stage":stage,"unit_key":key,"outcome":outcome,"artifact_ids":artifacts.iter().map(|a|&a.id).collect::<Vec<_>>()}))?;Ok(artifacts)
         })
     }
     pub fn wake_due(&self) -> Result<()> {
@@ -512,7 +658,10 @@ impl c::StageExecutor for FixturePipeline {
         services: &dyn c::RunServices,
     ) -> std::result::Result<c::StageOutput, c::StageError> {
         if input.pins.recipe_sha256 == digest(b"saved-diagnostic-v1")
-            && matches!(input.stage, c::Stage::Source | c::Stage::Package)
+            && matches!(
+                input.stage,
+                c::Stage::Source | c::Stage::Acoustic | c::Stage::Package
+            )
         {
             self.generation.execute(input, services).await
         } else {

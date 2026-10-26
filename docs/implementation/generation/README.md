@@ -1,6 +1,6 @@
 # Generation diagnostic handoff
 
-The bounded first handoff is implemented. Source freezing and diagnostic package assembly implement the shared StageExecutor through RunServices. The ten intervening production stages return explicit NeedsRepair findings. No autonomous production excerpt or accepted full chapter is claimed.
+The bounded first handoff is implemented. Source freezing, offline acoustic validation and diagnostic package assembly implement the shared StageExecutor through RunServices. The other nine production stages return explicit NeedsRepair findings. No autonomous production excerpt or accepted full chapter is claimed.
 
 The two frozen chapters come from cached Gutenberg editions. Oz preserves the existing 5,958-scalar body and source hash exactly. Wells selects Book One Chapter I, “The Eve of the War,” with 12,654 scalars after whitespace/formatting cleanup. Selection checks actual opening/ending prose and parent-book boundaries. Raw editions, clean derivatives, hashes and per-scalar raw mappings are retained locally. Contents headings and repeated Book Two numbering cannot satisfy the selector.
 
@@ -27,7 +27,7 @@ TDD evidence: new source/replay/matching/geometry/preflight tests first failed f
 
 `handoff.json` records consumed contract/profile/fixture identities, source freezes, commands/results, exact unresolved reveal scopes/action/review IDs and next integration work. Neutral component/file/content provenance is in `reuse-provenance.json`. Remaining boundary changes are specified in `integration-requests.md`.
 
-Next bounded integration: register the offline helper and candidate-reader boundary, implement Stage::Acoustic against it, and replay the saved fact inventory through conservative matching. Keep ambiguous independent matches unresolved. Later live work still requires product spending/quota authorization through the runtime broker, inherited accounting reconciliation, real voice/acoustic/visual/music/mix reviews, browser capture and a verified rendering profile. After an accepted autonomous excerpt, both complete chapters remain required.
+The [offline acoustic stage](acoustic-stage.md) now uses the registered helper and verified candidate-reader boundary. Next bounded integration: route its stage-specific input bundle through the saved-fixture runtime composition, then replay an explicit fact inventory through conservative matching. Keep ambiguous independent matches unresolved. Later live work still requires product spending/quota authorization through the runtime broker, inherited accounting reconciliation, real voice/acoustic/visual/music/mix reviews, browser capture and a verified rendering profile. After an accepted autonomous excerpt, both complete chapters remain required.
 
 A separate [frozen capture sampling handoff](capture-inventory.md) now supplies 48 sample positions / 144 player requests for openings, reveal/transition boundaries, duration-labeled holds, paired action motion and terminal state. Its offline state probe reports the late incoming picture and missing `nod-em` gesture state; it contains no rendered images or production approval.
 

@@ -617,19 +617,359 @@ fn ambiguous_usage_cannot_release_a_billable_reservation() {
 struct HtmlCandidate;
 #[async_trait]
 impl c::StageExecutor for HtmlCandidate {
-    async fn execute(&self,input:c::StageInput,services:&dyn c::RunServices)->std::result::Result<c::StageOutput,c::StageError>{let a=services.write_candidate(c::CandidateWrite{dimensions:None,candidate_id:input.unit_id,relative_path:"output.html".into(),media_type:"text/html".into(),max_bytes:1024,provenance:c::Provenance::Synthetic},b"<script>window.bad=true</script>".to_vec()).await?;Ok(c::StageOutput{outcome:c::StageOutcome::Complete,artifacts:vec![a],decisions:vec![],findings:vec![],cache_keys:vec![],library_updates:vec![],package_candidate:None})}
+    async fn execute(
+        &self,
+        input: c::StageInput,
+        services: &dyn c::RunServices,
+    ) -> std::result::Result<c::StageOutput, c::StageError> {
+        let a = services
+            .write_candidate(
+                c::CandidateWrite {
+                    dimensions: None,
+                    candidate_id: input.unit_id,
+                    relative_path: "output.html".into(),
+                    media_type: "text/html".into(),
+                    max_bytes: 1024,
+                    provenance: c::Provenance::Synthetic,
+                },
+                b"<script>window.bad=true</script>".to_vec(),
+            )
+            .await?;
+        Ok(c::StageOutput {
+            outcome: c::StageOutcome::Complete,
+            artifacts: vec![a],
+            decisions: vec![],
+            findings: vec![],
+            cache_keys: vec![],
+            library_updates: vec![],
+            package_candidate: None,
+        })
+    }
 }
 #[tokio::test]
-async fn model_candidate_cannot_create_executable_same_origin_content(){
-    let temp=tempfile::tempdir().unwrap();let store=Store::open(temp.path()).unwrap();let run=store.create("inert-candidate",&request()).unwrap()["id"].as_str().unwrap().to_owned();let(_,epoch)=store.claim().unwrap().unwrap();let runtime=Runtime::new(store.clone(),Arc::new(HtmlCandidate));
-    assert_eq!(runtime.execute_stage(&run,epoch,c::Stage::Source).await.unwrap_err().code,"stage_failed");assert!(store.snapshot(&run).unwrap()["artifacts"].as_array().unwrap().is_empty());
+async fn model_candidate_cannot_create_executable_same_origin_content() {
+    let temp = tempfile::tempdir().unwrap();
+    let store = Store::open(temp.path()).unwrap();
+    let run = store.create("inert-candidate", &request()).unwrap()["id"]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    let (_, epoch) = store.claim().unwrap().unwrap();
+    let runtime = Runtime::new(store.clone(), Arc::new(HtmlCandidate));
+    assert_eq!(
+        runtime
+            .execute_stage(&run, epoch, c::Stage::Source)
+            .await
+            .unwrap_err()
+            .code,
+        "stage_failed"
+    );
+    assert!(
+        store.snapshot(&run).unwrap()["artifacts"]
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
 }
 struct RecordedChoice;
 #[async_trait]
 impl c::StageExecutor for RecordedChoice {
-    async fn execute(&self,input:c::StageInput,services:&dyn c::RunServices)->std::result::Result<c::StageOutput,c::StageError>{let inputs=input.inputs.clone();let mut output=CountedStage(Arc::new(AtomicUsize::new(0))).execute(input,services).await?;if !inputs.is_empty(){output.decisions.push(c::Decision{id:"recorded-choice".into(),summary:"Synthetic test selects its actual candidate.".into(),inputs,selected_ids:vec![output.artifacts[0].candidate_id.clone()],rejected_ids:vec![],supersedes:None});}Ok(output)}
+    async fn execute(
+        &self,
+        input: c::StageInput,
+        services: &dyn c::RunServices,
+    ) -> std::result::Result<c::StageOutput, c::StageError> {
+        let inputs = input.inputs.clone();
+        let mut output = CountedStage(Arc::new(AtomicUsize::new(0)))
+            .execute(input, services)
+            .await?;
+        if !inputs.is_empty() {
+            output.decisions.push(c::Decision {
+                id: "recorded-choice".into(),
+                summary: "Synthetic test selects its actual candidate.".into(),
+                inputs,
+                selected_ids: vec![output.artifacts[0].candidate_id.clone()],
+                rejected_ids: vec![],
+                supersedes: None,
+            });
+        }
+        Ok(output)
+    }
 }
 #[tokio::test]
-async fn recorded_decision_links_verified_source_and_actual_committed_artifact(){
-    let temp=tempfile::tempdir().unwrap();let store=Store::open(temp.path()).unwrap();let run=store.create("decision-links",&request()).unwrap()["id"].as_str().unwrap().to_owned();let(_,epoch)=store.claim().unwrap().unwrap();let runtime=Runtime::new(store.clone(),Arc::new(RecordedChoice));let source=runtime.execute_stage(&run,epoch,c::Stage::Source).await.unwrap();let result=runtime.execute_stage(&run,epoch,c::Stage::Direction).await.unwrap();let events=store.api_journal(&run,0,500).unwrap();let decision=events.iter().find(|e|e.entry.kind==c::EventKind::DirectorDecision).unwrap();assert!(decision.entry.artifact_ids.contains(&source[0].id));assert!(decision.entry.artifact_ids.contains(&result[0].id));
+async fn recorded_decision_links_verified_source_and_actual_committed_artifact() {
+    let temp = tempfile::tempdir().unwrap();
+    let store = Store::open(temp.path()).unwrap();
+    let run = store.create("decision-links", &request()).unwrap()["id"]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    let (_, epoch) = store.claim().unwrap().unwrap();
+    let runtime = Runtime::new(store.clone(), Arc::new(RecordedChoice));
+    let source = runtime
+        .execute_stage(&run, epoch, c::Stage::Source)
+        .await
+        .unwrap();
+    let result = runtime
+        .execute_stage(&run, epoch, c::Stage::Direction)
+        .await
+        .unwrap();
+    let events = store.api_journal(&run, 0, 500).unwrap();
+    let decision = events
+        .iter()
+        .find(|e| e.entry.kind == c::EventKind::DirectorDecision)
+        .unwrap();
+    assert!(decision.entry.artifact_ids.contains(&source[0].id));
+    assert!(decision.entry.artifact_ids.contains(&result[0].id));
+}
+#[test]
+fn invalid_request_version_and_unsafe_limits_fail_before_run_creation() {
+    let temp = tempfile::tempdir().unwrap();
+    let store = Store::open(temp.path()).unwrap();
+    let mut bad = request();
+    bad["schema_version"] = json!(2);
+    assert_eq!(
+        store.create("bad-version", &bad).unwrap_err().code,
+        "invalid_request"
+    );
+    bad = request();
+    bad["limits"]["requests"] = json!(c::MAX_SAFE_INTEGER + 1);
+    assert_eq!(
+        store.create("bad-limit", &bad).unwrap_err().code,
+        "invalid_request"
+    );
+    assert!(store.history(i64::MAX, 100).unwrap().is_empty());
+}
+struct UncooperativeStage(Arc<tokio::sync::Notify>);
+#[async_trait]
+impl c::StageExecutor for UncooperativeStage {
+    async fn execute(
+        &self,
+        _: c::StageInput,
+        _: &dyn c::RunServices,
+    ) -> std::result::Result<c::StageOutput, c::StageError> {
+        self.0.notify_one();
+        std::future::pending().await
+    }
+}
+#[tokio::test]
+async fn cancellation_releases_worker_even_when_executor_never_returns() {
+    let temp = tempfile::tempdir().unwrap();
+    let store = Store::open(temp.path()).unwrap();
+    let run = store.create("stuck", &request()).unwrap()["id"]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    let started = Arc::new(tokio::sync::Notify::new());
+    let runtime = Runtime::new(store.clone(), Arc::new(UncooperativeStage(started.clone())));
+    let task = tokio::spawn(async move { runtime.work_once().await });
+    started.notified().await;
+    store.cancel(&run).unwrap();
+    assert!(
+        tokio::time::timeout(std::time::Duration::from_millis(500), task)
+            .await
+            .is_ok(),
+        "cancelled executor retained the sole worker"
+    );
+}
+struct ExplicitOutcome(c::StageOutcome);
+#[async_trait]
+impl c::StageExecutor for ExplicitOutcome {
+    async fn execute(
+        &self,
+        _: c::StageInput,
+        _: &dyn c::RunServices,
+    ) -> std::result::Result<c::StageOutput, c::StageError> {
+        Ok(c::StageOutput {
+            outcome: self.0,
+            artifacts: vec![],
+            decisions: vec![],
+            findings: vec![],
+            cache_keys: vec![],
+            library_updates: vec![],
+            package_candidate: None,
+        })
+    }
+}
+#[tokio::test]
+async fn failed_repair_and_cancelled_stage_outcomes_stay_distinct() {
+    for (outcome, code) in [
+        (c::StageOutcome::Failed, "stage_failed"),
+        (c::StageOutcome::NeedsRepair, "stage_needs_repair"),
+        (c::StageOutcome::Cancelled, "stale_epoch"),
+    ] {
+        let temp = tempfile::tempdir().unwrap();
+        let store = Store::open(temp.path()).unwrap();
+        let run = store.create("outcome", &request()).unwrap()["id"]
+            .as_str()
+            .unwrap()
+            .to_owned();
+        let (_, epoch) = store.claim().unwrap().unwrap();
+        let runtime = Runtime::new(store.clone(), Arc::new(ExplicitOutcome(outcome)));
+        assert_eq!(
+            runtime
+                .execute_stage(&run, epoch, c::Stage::Source)
+                .await
+                .unwrap_err()
+                .code,
+            code
+        );
+        assert_eq!(
+            store.api_snapshot(&run).unwrap().stages[0].outcome,
+            Some(outcome)
+        );
+    }
+}
+#[tokio::test]
+async fn learned_daily_stop_parks_run_across_restart_without_dispatch() {
+    let temp = tempfile::tempdir().unwrap();
+    let (store, run, epoch) = broker_store(&temp, "parked");
+    let id = match store.reserve(&run, epoch, &operation("rejected")).unwrap() {
+        Dispatch::Authorized(id) => id,
+        _ => panic!(),
+    };
+    let retry_at = now() + 86_400_000;
+    store
+        .record_receipt(
+            &id,
+            &Receipt {
+                outcome: "rejected".into(),
+                actual_money: Some(0),
+                actual_tokens: Some(0),
+                response_hash: Some(digest(b"quota-stop")),
+                job_id: None,
+                retry_at: Some(retry_at),
+            },
+        )
+        .unwrap();
+    let calls = Arc::new(AtomicUsize::new(0));
+    assert_eq!(
+        store
+            .dispatch(
+                &run,
+                epoch,
+                &operation("waiting"),
+                &FakeTransport {
+                    calls: calls.clone()
+                }
+            )
+            .await
+            .unwrap_err()
+            .code,
+        "provider_wait"
+    );
+    assert_eq!(
+        store.api_snapshot(&run).unwrap().state,
+        c::RunState::WaitingProvider
+    );
+    drop(store);
+    let reopened = Store::open(temp.path()).unwrap();
+    reopened.recover().unwrap();
+    reopened.wake_due().unwrap();
+    assert_eq!(
+        reopened.api_snapshot(&run).unwrap().state,
+        c::RunState::WaitingProvider
+    );
+    assert!(reopened.claim().unwrap().is_none());
+    assert_eq!(calls.load(Ordering::SeqCst), 0);
+    assert!(
+        reopened
+            .journal(&run, 0, 500)
+            .unwrap()
+            .iter()
+            .any(|e| e["type"] == "provider_wait" && e["data"]["retry_at"] == retry_at)
+    );
+}
+struct AcousticReplay(c::Digest);
+#[async_trait]
+impl c::StageExecutor for AcousticReplay {
+    async fn execute(
+        &self,
+        input: c::StageInput,
+        services: &dyn c::RunServices,
+    ) -> std::result::Result<c::StageOutput, c::StageError> {
+        let result = services
+            .helper(c::HelperOperation {
+                id: "saved-acoustic".into(),
+                kind: c::HelperKind::AlignAudio,
+                inputs: input.inputs,
+                recipe_sha256: self.0.clone(),
+                timeout_ms: 30000,
+                max_output_bytes: 16 * 1024 * 1024,
+            })
+            .await?;
+        Ok(c::StageOutput {
+            outcome: c::StageOutcome::NeedsRepair,
+            artifacts: result.outputs,
+            decisions: vec![],
+            findings: result.findings,
+            cache_keys: vec![],
+            library_updates: vec![],
+            package_candidate: None,
+        })
+    }
+}
+#[tokio::test]
+async fn registered_offline_helper_replays_real_evidence_without_provider_authorization() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+    let recipe = root.join("tools/generation");
+    let mut bytes = std::fs::read(recipe.join("helper.py")).unwrap();
+    bytes.extend(std::fs::read(recipe.join("adapters.py")).unwrap());
+    let recipe_hash = digest(&bytes);
+    let temp = tempfile::tempdir().unwrap();
+    let store = Store::open(temp.path()).unwrap();
+    let run = store.create("acoustic-helper", &request()).unwrap()["id"]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    let (_, epoch) = store.claim().unwrap().unwrap();
+    store
+        .seed_acoustic_fixture(&run, epoch, &root.join("fixtures/generation/acoustic"))
+        .unwrap();
+    let runtime = Runtime::new(store.clone(), Arc::new(AcousticReplay(recipe_hash)))
+        .with_offline_acoustic(recipe)
+        .unwrap();
+    assert_eq!(
+        runtime
+            .execute_stage(&run, epoch, c::Stage::Acoustic)
+            .await
+            .unwrap_err()
+            .code,
+        "stage_needs_repair"
+    );
+    let snapshot = store.api_snapshot(&run).unwrap();
+    let a = snapshot
+        .stages
+        .iter()
+        .find(|s| s.stage == c::Stage::Acoustic)
+        .unwrap()
+        .artifacts
+        .first()
+        .unwrap();
+    let output: serde_json::Value =
+        serde_json::from_slice(&store.artifact(&a.id).unwrap().0).unwrap();
+    assert_eq!(output["provider_calls"], 0);
+    assert_eq!(output["production_approved"], false);
+    assert_eq!(output["word_track"].as_array().unwrap().len(), 176);
+    assert_eq!(output["highlight_groups"].as_array().unwrap().len(), 170);
+    assert!(store.catalog("pg-55").unwrap().is_none());
+}
+#[test]
+fn cancelling_and_starting_a_new_run_cannot_repurchase_an_uncertain_request() {
+    let temp = tempfile::tempdir().unwrap();
+    let (store, run, epoch) = broker_store(&temp, "original-uncertain");
+    store.reserve(&run, epoch, &operation("purchase")).unwrap();
+    store.cancel(&run).unwrap();
+    let next = store.create("new-run", &request()).unwrap()["id"]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    let (_, epoch) = store.claim().unwrap().unwrap();
+    assert_eq!(
+        store
+            .reserve(&next, epoch, &operation("new-operation"))
+            .unwrap_err()
+            .code,
+        "attempt_unresolved"
+    );
 }

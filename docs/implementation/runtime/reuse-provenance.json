@@ -1,0 +1,94 @@
+{
+  "component_id": "durable-runtime-patterns",
+  "source_snapshot": "experimental-source-snapshot",
+  "reuse_kind": "read-only-pattern-inspection",
+  "source_files": [
+    {
+      "path": "prototype/src/runner.rs",
+      "sha256": "da4345aba8edc6994d96d02a1ab6c8382fecbdf1ad2fce33551d08c4cbf40071"
+    },
+    {
+      "path": "prototype/src/store.rs",
+      "sha256": "a3303538df1dba822af62ee3023333595bcc4c525f316bf641154f4d59e1749f"
+    },
+    {
+      "path": "prototype/src/main.rs",
+      "sha256": "9f1f61cf40936f9c4a835a7d3be484c61650c08fb18f47d35decb3865f0cd005"
+    },
+    {
+      "path": "crates/atomic-journal/src/cas.rs",
+      "sha256": "bc16830cb24911833da71a394b838e91294b7fd9a5122dcfb3d9511d79cc3d45"
+    },
+    {
+      "path": "crates/atomic-journal/src/writer.rs",
+      "sha256": "8732b19665b69f78613a8dbb450bed735e7da23690e40c78978a9663ba18e87e"
+    }
+  ],
+  "transformation": "New product-local SQLite/runtime implementation using inspected persistence, epoch, reservation and fsync patterns. No literal source-file copy, source paths, prototype visual branches or scoped allowances were imported. Generic crate notices are maintained by the integration owner.",
+  "destinations": [
+    {
+      "path": "crates/pt-production/src/runtime/acoustic_pipeline_tests.rs",
+      "sha256": "fb74ba2beae59d529bc31081cd8620457a2f239eb8277e8ec0d9f280125f6431"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/broker.rs",
+      "sha256": "1f2bfcf14918e79bb59b818a6beefb5e23260a2329acdfec6822e46832a640b7"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/fixture.rs",
+      "sha256": "a50575249774949484a2eeeb863f83d1f98c405b496a7b8569d37f21927f0f94"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/helper.rs",
+      "sha256": "a9d0e243193c046fd0578b48e4312d849bebf9169a633a202a3600c773d2a69d"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/master_wav_tests.rs",
+      "sha256": "92f03e206fed05fa8a4584aea73e415238afcc05201a2e9f442cb1bc989bd982"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/media.rs",
+      "sha256": "2bfe0b644c0559faaeebcbe9f72d303fe8a8438c579d87b879edad4e709b484f"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/mod.rs",
+      "sha256": "28254745bd07ac164385d939a37c709f87dcffacacad14a16f5bfdb73cb6fa4f"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/publication.rs",
+      "sha256": "dc6cab301cf2e8f1fa0d4f7c5169a3b8dd3e512961a7c7eaf9c2ee540a9ec856"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/runner.rs",
+      "sha256": "8143fa6438bfad10164b3e613519fac95b9ca38e9a041e03315d2d72104ed74a"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/schema.sql",
+      "sha256": "8436df5e110aa8ece83c4acbbd2ef61388c812446250472a31f2deffe1456b22"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/store.rs",
+      "sha256": "e64839bdff397c9a1bced422ae366140d672d09ac6b8eca9cf27ec15e890dbef"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/tests.rs",
+      "sha256": "bc5e2525d114376c924f39d255c2fd5ef71da7fafbdd75bf36502e351f5f4c99"
+    },
+    {
+      "path": "crates/pt-server/Cargo.toml",
+      "sha256": "420c29a0ee9fd2efda9a51b2cd7a811fc92144c6e0ec2d2e0404c504d7383afe"
+    },
+    {
+      "path": "crates/pt-server/src/lib.rs",
+      "sha256": "0f5dc509f8c22825e08a87b167af4d97b98a7d55b97135f78a8629124f6efb0e"
+    },
+    {
+      "path": "crates/pt-server/src/master_wav_tests.rs",
+      "sha256": "03be378007df99e949e2b50567a0ec0cb927049a5f552376ceb93657d7a106b6"
+    },
+    {
+      "path": "fixtures/runtime/chapter_wav.rs",
+      "sha256": "dcc9c9be106b8e471bec9f3d6d57eeaf195ba13a85e27d77c62d6c6a4d991895"
+    }
+  ]
+}

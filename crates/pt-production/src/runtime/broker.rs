@@ -6,7 +6,7 @@ use std::{future::Future, pin::Pin};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct Operation {
+pub(super) struct Operation {
     pub identity: String,
     pub recipe: String,
     pub provider: String,
@@ -57,7 +57,7 @@ impl Operation {
     }
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct Limits {
+pub(super) struct Limits {
     pub money: i64,
     pub requests: i64,
     pub tokens: i64,
@@ -66,7 +66,7 @@ pub struct Limits {
     pub reset_at: i64,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct Receipt {
+pub(super) struct Receipt {
     /// completed, rejected or ambiguous. Unknown charges retain the reservation.
     pub outcome: String,
     pub actual_money: Option<i64>,
@@ -76,7 +76,7 @@ pub struct Receipt {
     pub retry_at: Option<i64>,
 }
 #[derive(Debug)]
-pub enum Dispatch {
+pub(super) enum Dispatch {
     Authorized(String),
     Existing {
         id: String,
@@ -84,7 +84,7 @@ pub enum Dispatch {
         receipt: Option<Receipt>,
     },
 }
-pub trait Transport: Send + Sync {
+pub(super) trait Transport: Send + Sync {
     /// Receives one already reserved attempt; implementations may send exactly once.
     fn send<'a>(
         &'a self,
@@ -93,7 +93,7 @@ pub trait Transport: Send + Sync {
     ) -> Pin<Box<dyn Future<Output = Result<Receipt>> + Send + 'a>>;
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct AccountingImport {
+pub(super) struct AccountingImport {
     pub original_hash: String,
     pub derivative_hash: String,
     pub scope: String,
@@ -108,7 +108,7 @@ pub struct AccountingImport {
 }
 impl Store {
     /// Administrative, neutral hash-bound records only. Original receipts stay external.
-    pub fn import_accounting(&self, record: &AccountingImport) -> Result<()> {
+    pub(super) fn import_accounting(&self, record: &AccountingImport) -> Result<()> {
         if !valid_hash(&record.original_hash)
             || !valid_hash(&record.derivative_hash)
             || record.scope.is_empty()
@@ -155,7 +155,7 @@ impl Store {
     }
     /// Requires external authorization evidence plus reconciled inherited accounting.
     /// No HTTP endpoint exposes this administrative capability.
-    pub fn authorize_live(&self, proof_hash: &str, cap: i64) -> Result<()> {
+    pub(super) fn authorize_live(&self, proof_hash: &str, cap: i64) -> Result<()> {
         if !valid_hash(proof_hash) || cap < 0 {
             return fail("invalid_authorization", "hash-bound authorization required");
         }
@@ -191,7 +191,7 @@ impl Store {
             Ok(())
         })
     }
-    pub fn configure_limit(
+    pub(super) fn configure_limit(
         &self,
         provider: &str,
         project: &str,
@@ -213,7 +213,7 @@ impl Store {
             Ok(())
         })
     }
-    pub fn allow_recipe(&self, recipe: &str) -> Result<()> {
+    pub(super) fn allow_recipe(&self, recipe: &str) -> Result<()> {
         if recipe.is_empty() || recipe.len() > 128 {
             return fail("invalid_recipe", "recipe name required");
         }
@@ -222,7 +222,7 @@ impl Store {
             Ok(())
         })
     }
-    pub fn reserve(&self, run: &str, epoch: i64, op: &Operation) -> Result<Dispatch> {
+    pub(super) fn reserve(&self, run: &str, epoch: i64, op: &Operation) -> Result<Dispatch> {
         op.validate()?;
         let descriptor_hash = digest(&serde_json::to_vec(op)?);
         self.transaction(|tx| {
@@ -249,6 +249,8 @@ impl Store {
             for (a,b,max,code) in [(used.0,op.money,money,"budget_exhausted"),(used.1,op.requests,requests,"request_quota"),(used.2,op.tokens,tokens,"token_quota"),(used.3,i64::from(op.repair),repairs,"repair_exhausted")] {
                 if a.checked_add(b).is_none_or(|n|n>max) {return Err(Error::new(code,format!("reservation unavailable; retry_at={reset}")));}
             }
+            let unresolved:bool=tx.query_row("SELECT EXISTS(SELECT 1 FROM attempts WHERE scope=?1 AND request_hash=?2 AND requests>0 AND state IN ('reserved','dispatched','uncertain'))",params![scope,op.request_hash],|r|r.get(0))?;
+            if unresolved{return fail("attempt_unresolved","an earlier run/operation has an unresolved matching provider request");}
             let id=digest(format!("{run}:{}",op.identity).as_bytes());
             tx.execute("INSERT INTO attempts(id,run,epoch,operation,request_hash,descriptor_hash,scope,state,money,requests,tokens,repair,created) VALUES(?1,?2,?3,?4,?5,?6,?7,'reserved',?8,?9,?10,?11,?12)",params![id,run,epoch,op.identity,op.request_hash,descriptor_hash,scope,op.money,op.requests,op.tokens,op.repair,now()])?;
             Self::emit(tx,run,"budget_reserved",&json!({"attempt_id":id,"scope":scope,"money":op.money,"requests":op.requests,"tokens":op.tokens,"repair":op.repair}))?;
@@ -261,7 +263,7 @@ impl Store {
             Self::emit(tx,run,"provider_dispatched",&json!({"attempt_id":attempt}))?; Ok(())
         })
     }
-    pub fn record_receipt(&self, attempt: &str, receipt: &Receipt) -> Result<()> {
+    pub(super) fn record_receipt(&self, attempt: &str, receipt: &Receipt) -> Result<()> {
         if !matches!(
             receipt.outcome.as_str(),
             "completed" | "rejected" | "ambiguous"
@@ -289,14 +291,69 @@ impl Store {
             Ok(())
         })
     }
-    pub async fn dispatch(
+    fn park_provider(&self, run: &str, epoch: i64, scope: &str, reason: &str) -> Result<()> {
+        self.transaction(|tx| {
+            Store::active(tx, run, epoch)?;
+            let (reset, cooldown): (i64, i64) = tx.query_row(
+                "SELECT reset_at,retry_at FROM limits WHERE scope=?1",
+                [scope],
+                |r| Ok((r.get(0)?, r.get(1)?)),
+            )?;
+            let mut retry = if reason == "provider_wait" {
+                cooldown
+            } else {
+                reset
+            };
+            let records = tx
+                .prepare("SELECT record FROM accounting_imports")?
+                .query_map([], |r| r.get::<_, String>(0))?
+                .collect::<std::result::Result<Vec<_>, _>>()?;
+            for record in records {
+                let record: AccountingImport = serde_json::from_str(&record)?;
+                if record.scope == scope {
+                    retry = retry.max(record.retry_at);
+                }
+            }
+            if retry <= now() {
+                return fail("limits_unknown", "provider retry time is unavailable");
+            }
+            tx.execute(
+                "UPDATE runs SET state='waiting_provider',retry_at=?2 WHERE id=?1",
+                params![run, retry],
+            )?;
+            tx.execute(
+                "UPDATE stages SET state='waiting_provider' WHERE run=?1 AND state='running'",
+                [run],
+            )?;
+            Store::emit(
+                tx,
+                run,
+                "provider_wait",
+                &json!({"scope":scope,"reason":reason,"retry_at":retry}),
+            )?;
+            Ok(())
+        })
+    }
+    pub(super) async fn dispatch(
         &self,
         run: &str,
         epoch: i64,
         op: &Operation,
         transport: &dyn Transport,
     ) -> Result<Receipt> {
-        let attempt = match self.reserve(run, epoch, op)? {
+        let reservation = match self.reserve(run, epoch, op) {
+            Ok(value) => value,
+            Err(error) => {
+                if matches!(
+                    error.code,
+                    "provider_wait" | "request_quota" | "token_quota"
+                ) {
+                    self.park_provider(run, epoch, &op.scope(), error.code)?;
+                }
+                return Err(error);
+            }
+        };
+        let attempt = match reservation {
             Dispatch::Authorized(id) => id,
             Dispatch::Existing {
                 state,

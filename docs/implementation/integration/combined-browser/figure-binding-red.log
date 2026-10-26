@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: shared player stopped before the first full picture
+    at file:///private/tmp/pt-combined-review-gXGDoJ/apps/studio/scripts/.combined-eb3c47dd-19cb-42a6-b4ed-9847ab555c5e.mjs:63:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.20.0

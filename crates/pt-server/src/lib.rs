@@ -129,8 +129,8 @@ async fn origin(State(app): State<App>, request: Request, next: Next) -> Respons
     response
 }
 async fn books(State(app): State<App>) -> Json<Value> {
-    let diagnostic_pins=app.fixture.as_ref().and_then(|root|std::fs::read(root.join("profile.json")).ok()).and_then(|bytes|serde_json::from_slice::<Value>(&bytes).ok().map(|profile|json!({"recipe_sha256":pt_contracts::digest(b"saved-diagnostic-v1"),"profile_sha256":pt_contracts::digest(&bytes),"profile_id":profile["id"]})));
-    let diagnostic=app.fixture.and_then(|root|std::fs::read(root.join("manifest.json")).ok()).map(|bytes|json!({"manifest_path":"/diagnostic/manifest.json","manifest_sha256":pt_contracts::digest(&bytes)}));
+    let diagnostic_pins=app.fixture.as_ref().and_then(|root|read_file(root,"profile.json",1024*1024).ok()).and_then(|bytes|serde_json::from_slice::<Value>(&bytes).ok().map(|profile|json!({"recipe_sha256":pt_contracts::digest(b"saved-diagnostic-v1"),"profile_sha256":pt_contracts::digest(&bytes),"profile_id":profile["id"]})));
+    let diagnostic=app.fixture.and_then(|root|read_file(&root,"manifest.json",1024*1024).ok()).map(|bytes|json!({"manifest_path":"/diagnostic/manifest.json","manifest_sha256":pt_contracts::digest(&bytes)}));
     Json(
         json!({"books":[{"id":"pg-55","title":"The Wonderful Wizard of Oz","source_id":"pg-55-chapter-1","chapter":1},{"id":"pg-36","title":"The War of the Worlds","source_id":"pg-36-book-1-chapter-1","part":1,"chapter":1}],"execution_modes":["fixture"],"provenance":"synthetic","diagnostic":diagnostic,"diagnostic_pins":diagnostic_pins}),
     )
@@ -246,27 +246,105 @@ async fn diagnostic_ref(
 async fn package_file(
     State(app): State<App>,
     Path((id, path)): Path<(String, String)>,
+    headers: HeaderMap,
 ) -> Result<Response, ApiError> {
-    let (bytes, mime, hash) = db(move || app.store.package_artifact(&id, &path)).await?;
-    Ok((
-        [
-            (header::CONTENT_TYPE, mime),
-            (header::ETAG, format!("\"{hash}\"")),
-        ],
-        Body::from(bytes),
-    )
-        .into_response())
+    let verified = db(move || app.store.open_package_artifact(&id, &path)).await?;
+    Ok(stream_artifact(verified, &headers))
 }
-async fn artifact(State(app): State<App>, Path(id): Path<String>) -> Result<Response, ApiError> {
-    let (bytes, mime, hash) = db(move || app.store.artifact(&id)).await?;
-    Ok((
-        [
-            (header::CONTENT_TYPE, mime),
-            (header::ETAG, format!("\"{hash}\"")),
-        ],
-        Body::from(bytes),
-    )
-        .into_response())
+async fn artifact(
+    State(app): State<App>,
+    Path(id): Path<String>,
+    headers: HeaderMap,
+) -> Result<Response, ApiError> {
+    let verified = db(move || app.store.open_artifact(&id)).await?;
+    Ok(stream_artifact(verified, &headers))
+}
+fn stream_artifact(
+    mut artifact: pt_production::runtime::VerifiedArtifact,
+    headers: &HeaderMap,
+) -> Response {
+    use std::io::{Seek, SeekFrom};
+    use tokio::io::AsyncReadExt;
+    let total = artifact.bytes;
+    let etag = format!("\"{}\"", artifact.sha256);
+    let mut start = 0;
+    let mut length = total;
+    let mut partial = false;
+    if let Some(range) = headers.get(header::RANGE).filter(|_| {
+        headers
+            .get(header::IF_RANGE)
+            .is_none_or(|v| v == etag.as_str())
+    }) {
+        let parsed = range.to_str().ok().and_then(|value| {
+            let value = value.strip_prefix("bytes=")?;
+            if value.contains(',') {
+                return None;
+            }
+            let (a, b) = value.split_once('-')?;
+            if a.is_empty() {
+                let n = b.parse::<u64>().ok()?;
+                if n == 0 || total == 0 {
+                    return None;
+                }
+                Some((total.saturating_sub(n), total - 1))
+            } else {
+                let a = a.parse::<u64>().ok()?;
+                let b = if b.is_empty() {
+                    total.checked_sub(1)?
+                } else {
+                    b.parse::<u64>().ok()?.min(total.checked_sub(1)?)
+                };
+                if a >= total || a > b {
+                    return None;
+                }
+                Some((a, b))
+            }
+        });
+        let Some((a, b)) = parsed else {
+            return (
+                StatusCode::RANGE_NOT_SATISFIABLE,
+                [
+                    (header::CONTENT_RANGE, format!("bytes */{total}")),
+                    (header::ACCEPT_RANGES, "bytes".into()),
+                ],
+            )
+                .into_response();
+        };
+        start = a;
+        length = b - a + 1;
+        partial = true;
+    }
+    if artifact.file.seek(SeekFrom::Start(start)).is_err() {
+        return error("io_error").into_response();
+    }
+    let mut file = tokio::fs::File::from_std(artifact.file).take(length);
+    let stream = async_stream::stream! {let mut buffer=vec![0;65536];loop{match file.read(&mut buffer).await{Ok(0)=>break,Ok(n)=>yield Ok::<_,std::io::Error>(buffer[..n].to_vec()),Err(e)=>{yield Err(e);break;}}}};
+    let mut response = Body::from_stream(stream).into_response();
+    *response.status_mut() = if partial {
+        StatusCode::PARTIAL_CONTENT
+    } else {
+        StatusCode::OK
+    };
+    let h = response.headers_mut();
+    h.insert(
+        header::CONTENT_TYPE,
+        artifact
+            .media_type
+            .parse()
+            .unwrap_or_else(|_| "application/octet-stream".parse().unwrap()),
+    );
+    h.insert(header::CONTENT_LENGTH, length.into());
+    h.insert(header::ACCEPT_RANGES, "bytes".parse().unwrap());
+    h.insert(header::ETAG, etag.parse().unwrap());
+    if partial {
+        h.insert(
+            header::CONTENT_RANGE,
+            format!("bytes {}-{}/{total}", start, start + length - 1)
+                .parse()
+                .unwrap(),
+        );
+    }
+    response
 }
 async fn index(State(app): State<App>) -> Result<Response, ApiError> {
     serve_static(app.studio, "index.html".into()).await
@@ -297,48 +375,47 @@ async fn serve_static(root: Option<PathBuf>, path: String) -> Result<Response, A
 async fn diagnostic(
     State(app): State<App>,
     Path(path): Path<String>,
+    headers: HeaderMap,
 ) -> Result<Response, ApiError> {
     let root = app.fixture.ok_or_else(|| error("not_found"))?;
-    let bytes = db(move || {
-        let manifest_bytes = read_file(&root, "manifest.json", 1024 * 1024)?;
-        let manifest: Value = serde_json::from_slice(&manifest_bytes)?;
-        let mut allowed = vec!["manifest.json".to_owned()];
-        fn collect(v: &Value, allowed: &mut Vec<String>) {
-            match v {
-                Value::Object(map) => {
-                    if let Some(path) = map.get("path").and_then(Value::as_str) {
-                        if map.contains_key("sha256") && map.contains_key("bytes") {
-                            allowed.push(path.to_owned());
-                        }
-                    }
-                    for v in map.values() {
-                        collect(v, allowed);
-                    }
-                }
-                Value::Array(a) => {
-                    for v in a {
-                        collect(v, allowed)
-                    }
-                }
-                _ => {}
+    let verified = db(move || {
+        let bytes = read_file(&root, "manifest.json", 1024 * 1024)?;
+        let manifest: pt_contracts::Manifest = serde_json::from_slice(&bytes)?;
+        let manifest_ref = pt_contracts::FileRef {
+            path: "manifest.json".into(),
+            sha256: pt_contracts::digest(&bytes),
+            bytes: bytes.len() as u64,
+            media_type: "application/json".into(),
+            dimensions: None,
+        };
+        let mut files = std::collections::BTreeMap::new();
+        for reference in manifest
+            .entries
+            .files()
+            .into_iter()
+            .chain(manifest.assets.iter())
+            .chain([&manifest.acceptance, &manifest_ref])
+        {
+            if files
+                .insert(reference.path.clone(), reference)
+                .is_some_and(|old| old != reference)
+            {
+                return Err(Error {
+                    code: "invalid_fixture",
+                    message: "ambiguous inventory path".into(),
+                });
             }
         }
-        collect(&manifest, &mut allowed);
-        if !allowed.contains(&path) {
-            return Err(Error {
-                code: "not_found",
-                message: "fixture path is not inventoried".into(),
-            });
-        }
-        read_file(&root, &path, 32 * 1024 * 1024)
+        let reference = files.get(&path).ok_or_else(|| Error {
+            code: "not_found",
+            message: "fixture path is not inventoried".into(),
+        })?;
+        pt_production::runtime::VerifiedArtifact::open(&root, reference)
     })
     .await?;
-    Ok((
-        [(header::CONTENT_TYPE, "application/octet-stream")],
-        Body::from(bytes),
-    )
-        .into_response())
+    Ok(stream_artifact(verified, &headers))
 }
+
 fn read_file(root: &FsPath, path: &str, limit: u64) -> pt_production::runtime::Result<Vec<u8>> {
     if !pt_contracts::safe_path(path) {
         return Err(Error {
@@ -354,7 +431,20 @@ fn read_file(root: &FsPath, path: &str, limit: u64) -> pt_production::runtime::R
             message: "file denied".into(),
         });
     }
-    Ok(std::fs::read(file)?)
+    use std::io::Read;
+    let mut bytes = Vec::new();
+    std::fs::File::open(file)?
+        .take(limit + 1)
+        .read_to_end(&mut bytes)?;
+    if bytes.len() as u64 > limit {
+        return Err(Error {
+            code: "not_found",
+            message: "file exceeded bounds".into(),
+        });
+    }
+    Ok(bytes)
 }
+#[cfg(test)]
+mod master_wav_tests;
 #[cfg(test)]
 mod tests;

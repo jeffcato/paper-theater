@@ -65,15 +65,12 @@
   },
   "pending": [
     "production acceptance verifier integration; production_blockers always retains production-verifier-pending",
-    "player consumes frozen shared TypeScript definitions",
     "provider quota/retry/recovery metadata proposal R2-002/R2-005",
-    "actual browser capture and target-device profile validation",
+    "target-device profile validation; functional Chrome evidence is in combined-ready.json",
     "live product authorization and inherited accounting reconciliation",
-    "one autonomous excerpt and both complete chapters",
-    "shared player mount/render/capture; complete studio fixture rendering slice",
-    "Remaining acoustic executor integration"
+    "one autonomous excerpt and both complete chapters"
   ],
-  "next_integration_action": "Agent 4 consumes frozen TS records and supplies mount/render/capture; Agent 2 mounts the stored diagnostic package; verify browser rendering while preserving audience rejection.",
+  "next_integration_action": "Generation may proceed with offline acoustic work on v1.2; complete fact evidence and generation media capacity. Live dispatch and production publication remain gated.",
   "verification": {
     "clean_checkout_commit": "41061a6",
     "source_root": "unset",
@@ -100,5 +97,6 @@
     "candidate-read-ready.json",
     "candidate-write-ready.json"
   ],
-  "pr_ci_results": "pr-ci-results.json"
+  "pr_ci_results": "pr-ci-results.json",
+  "combined_handoff": "combined-ready.json"
 }

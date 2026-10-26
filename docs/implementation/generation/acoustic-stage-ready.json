@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "offline-acoustic-stage-implemented",
+  "stage": "acoustic",
+  "outcome": "needs_repair",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.2.0",
+  "provider_calls": 0,
+  "production_approved": false,
+  "source_fixture": "fixtures/generation/acoustic",
+  "manifest_sha256": "f08b128a1f3418a6a8a2b498f6fa0e3880bd689ca04e66eb8ff95c2405605244",
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "helper_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
+  "fixture_outputs": [
+    "acoustic-replay.json",
+    "acoustic-validation.json"
+  ],
+  "recorded_replay_output": "acoustic-validation.json",
+  "recorded_replay_helper_calls": 0,
+  "recorded_replay_journal_proposals": 0,
+  "live_adapter": "unavailable; no dispatch fallback",
+  "word_count": 176,
+  "highlight_group_count": 170,
+  "point_word_count": 6,
+  "reveal_permissions": [],
+  "required_missing_evidence": [
+    "independent-acoustic-evidence",
+    "complete-fact-interval-verification",
+    "speech-fidelity",
+    "narrator-continuity",
+    "rendered-creative-review"
+  ],
+  "checks": {
+    "generation_tests": 12,
+    "candidate_api_tests": 4,
+    "python_tests": 17,
+    "identity": "pass"
+  },
+  "commands": [
+    "cargo test -p pt-production generation:: --offline",
+    "cargo test -p pt-production --test candidate_read_contract --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "python3 tools/check_product_identity.py ."
+  ],
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "c9f95115a52b773d6ea420d0472e65d90836eb71587de207e264ffee1526cf61",
+    "crates/pt-production/src/generation/acoustic.rs": "d4337687267e0afc8e522d5cceaaa7ff67dfeecba38fb9b7654223eb79f10d63",
+    "crates/pt-production/src/generation/acoustic_tests.rs": "06008f00a66798d93125965890a4875f99c2f3c50fb0bc65f8bb11675562c156"
+  },
+  "consumed_runtime_sha256": {
+    "crates/pt-contracts/src/services.rs": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38",
+    "crates/pt-production/src/runtime/helper.rs": "f32e91e4c6e73bd8d8a27d9c66a9fa260ad03d85b82efbf1e15af704d4a02c41",
+    "crates/pt-production/src/runtime/runner.rs": "d185341611cb2416fd45d0cc9bd4e1c2e43d7ec10dbfbe9ef25bae8bee5515fb",
+    "crates/pt-production/src/runtime/fixture.rs": "2da57e946039beef17d9e34ba05162ac8384878c708a71aa5d2cb558a23c24bc"
+  },
+  "next_step": "Agent 2 supplies stage-specific acoustic inputs and routes the saved-fixture composition; generation then adds explicit fact inventory matching without granting ambiguous reveals.",
+  "commit_owner": "Agent 1; integrate completed runtime helper working-tree changes with the generation consumer."
+}

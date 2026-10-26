@@ -1,0 +1,353 @@
+{
+  "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+  "audio_sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+  "incoming_picture_eligible_at_fade_start": true,
+  "production_rejected": true,
+  "nod_pixel_changes": true,
+  "bundles": [
+    {
+      "path": "/assets/index-BAtF1KAT.js",
+      "sha256": "b358fd2da0a4a77e66ca4c7a4359e8f9a996d569db6ee34df333530739c3cc7f"
+    },
+    {
+      "path": "/assets/src-BEQoJemB.js",
+      "sha256": "4f3e452bc11dabfffa895f3683f1977698bca2ecda045ea40393ce7a04a3c805"
+    },
+    {
+      "path": "/assets/three.module-CDJkRhUe.js",
+      "sha256": "c6fdd1cc24057930d6c66210c2c560ecbf0852a36a9142f9f3cc9a2c73019935"
+    }
+  ],
+  "frames": [
+    {
+      "sample": 1747698,
+      "phase": "transition",
+      "scene_id": "scene-2",
+      "stage_gain": 0,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": null,
+        "gesture_intensity": 0,
+        "gesture_progress": null
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "b2af2d0622c19bd6904a70b6463248e315fe4931f8d05f380ece32a884d4a928",
+      "rgba_sha256": "55839d8051d35caa5750e827208e51488daf067ccb99b2e1b0ad00c9cb76ca87",
+      "png_sha256": "43031a2c01f13d31d7ee250cda1c7e0a255423e8b9bf96d503518f622fc6670f",
+      "png_path": "sample-1747698.png"
+    },
+    {
+      "sample": 1843697,
+      "phase": "transition",
+      "scene_id": "scene-2",
+      "stage_gain": 0,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": null,
+        "gesture_intensity": 0,
+        "gesture_progress": null
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "b0443f7e4a1f530d5280bf7a6a7582e53012bc71870c5fce28f0610368e03399",
+      "rgba_sha256": "55839d8051d35caa5750e827208e51488daf067ccb99b2e1b0ad00c9cb76ca87",
+      "png_sha256": "43031a2c01f13d31d7ee250cda1c7e0a255423e8b9bf96d503518f622fc6670f",
+      "png_path": "sample-1843697.png"
+    },
+    {
+      "sample": 1843698,
+      "phase": "transition",
+      "scene_id": "scene-2",
+      "stage_gain": 0,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": null,
+        "gesture_intensity": 0,
+        "gesture_progress": null
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "8f4acd0cbf6bde3b2e24adc718b5b5b5a8e9ad64f88f7e6c9eed102c5bb15040",
+      "rgba_sha256": "55839d8051d35caa5750e827208e51488daf067ccb99b2e1b0ad00c9cb76ca87",
+      "png_sha256": "43031a2c01f13d31d7ee250cda1c7e0a255423e8b9bf96d503518f622fc6670f",
+      "png_path": "sample-1843698.png"
+    },
+    {
+      "sample": 1843699,
+      "phase": "transition",
+      "scene_id": "scene-2",
+      "stage_gain": 8.680555555555555e-10,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": null,
+        "gesture_intensity": 0,
+        "gesture_progress": null
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "0a76404ef2d9ce73f800eb15be9c5626918e72dc996b2564a61a99da7cc095a5",
+      "rgba_sha256": "55839d8051d35caa5750e827208e51488daf067ccb99b2e1b0ad00c9cb76ca87",
+      "png_sha256": "43031a2c01f13d31d7ee250cda1c7e0a255423e8b9bf96d503518f622fc6670f",
+      "png_path": "sample-1843699.png"
+    },
+    {
+      "sample": 1891697,
+      "phase": "transition",
+      "scene_id": "scene-2",
+      "stage_gain": 0.9999999991319445,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": null,
+        "gesture_intensity": 0,
+        "gesture_progress": null
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "3968fa1438997699495962e6fa3a7fb5f7c9d37b85ecca921cedc0744999c0f8",
+      "rgba_sha256": "51ba2d8753908991318bb89e1e405a3dfe2264e4342dce4ad1c2549db18fb75b",
+      "png_sha256": "0e0ea9e17feade0009ae20fd7c1981709ae95fe0afe0d46e30eccfcb743313ce",
+      "png_path": "sample-1891697.png"
+    },
+    {
+      "sample": 1891698,
+      "phase": "scene",
+      "scene_id": "scene-2",
+      "stage_gain": 1,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": "nod",
+        "gesture_intensity": 0.25,
+        "gesture_progress": 0
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "faf0e025c72a2c243711a56e6314eaba375b1a781840cf28eadffac6bb6538b4",
+      "rgba_sha256": "51ba2d8753908991318bb89e1e405a3dfe2264e4342dce4ad1c2549db18fb75b",
+      "png_sha256": "0e0ea9e17feade0009ae20fd7c1981709ae95fe0afe0d46e30eccfcb743313ce",
+      "png_path": "sample-1891698.png"
+    },
+    {
+      "sample": 1891699,
+      "phase": "scene",
+      "scene_id": "scene-2",
+      "stage_gain": 1,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": "nod",
+        "gesture_intensity": 0.25,
+        "gesture_progress": 0.000041666666666666665
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "d7284c8246a289831f86fbd1b5b5f0f7850740d061a68dfe2f794264efb96419",
+      "rgba_sha256": "a703fa01cac0f9993aa46c14db3739bc9f9351932a61fd20884aabd09892f36f",
+      "png_sha256": "db7bac030e3f0729c3ae45fa9130fbf5d6e21a95a376f8b242cb20f3f7c5a287",
+      "png_path": "sample-1891699.png"
+    },
+    {
+      "sample": 1897698,
+      "phase": "scene",
+      "scene_id": "scene-2",
+      "stage_gain": 1,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": "nod",
+        "gesture_intensity": 0.25,
+        "gesture_progress": 0.25
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "e0f666572216e67b50ec7f292bef95eb1aef4f4e950806cae834a7bff6d40c60",
+      "rgba_sha256": "81f9d46c7e2f0bae6b4a32938f456d38bbc5f43484eb6034a63c88563602f089",
+      "png_sha256": "6de5ef946958deb5206fe6d4eec57d864d2556d8244ea8267917d9215bb6116c",
+      "png_path": "sample-1897698.png"
+    },
+    {
+      "sample": 1903698,
+      "phase": "scene",
+      "scene_id": "scene-2",
+      "stage_gain": 1,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": "nod",
+        "gesture_intensity": 0.25,
+        "gesture_progress": 0.5
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "3dfcea93e93ff53193aaf1753665da67413b975fa02c24e4e43fee5c5f66cd3c",
+      "rgba_sha256": "123c22c34bd0a52099e77d94b2e9cf76036e216b427c11f6ed7de717a41693bc",
+      "png_sha256": "0b51215c5261b799b5aabeab73500b3f5e79a7e6532f3cd06033fe612f45357f",
+      "png_path": "sample-1903698.png"
+    },
+    {
+      "sample": 1909698,
+      "phase": "scene",
+      "scene_id": "scene-2",
+      "stage_gain": 1,
+      "actor": {
+        "instance_id": "em-2",
+        "asset_id": "figure-em",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ],
+        "mirrored": false,
+        "present": true,
+        "gesture": "nod",
+        "gesture_intensity": 0.25,
+        "gesture_progress": 0.75
+      },
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "9a999e4ded36ffbca14ac93c73793cd1eeb0e265c14ea5fb6157934da22ee061",
+      "rgba_sha256": "81f9d46c7e2f0bae6b4a32938f456d38bbc5f43484eb6034a63c88563602f089",
+      "png_sha256": "6de5ef946958deb5206fe6d4eec57d864d2556d8244ea8267917d9215bb6116c",
+      "png_path": "sample-1909698.png"
+    },
+    {
+      "sample": 3262560,
+      "phase": "closing",
+      "scene_id": null,
+      "stage_gain": 1,
+      "actor": null,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "profile_id": "paper-player-r186-v1",
+      "state_sha256": "4e59fff3b1006f739186678668464f7e46899a057824916b629ca00b44d3db26",
+      "rgba_sha256": "67050fa82aa7efa882eab2bd221d890bf23a729c2d194b45e5642cf934f15782",
+      "png_sha256": "e78d94f590cd0ad958e8a05fcd360306ebbcd46fc114f5dc5bf0b84f72c8c23b",
+      "png_path": "sample-3262560.png"
+    }
+  ],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.85",
+    "revision": "@0e66b94549a8bd85f03fbdf189b752d6e7b63c32",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.25"
+  }
+}

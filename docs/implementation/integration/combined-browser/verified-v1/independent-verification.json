@@ -1,0 +1,31 @@
+{
+  "png_hashes_verified": 11,
+  "narrative_probe_region": [
+    300,
+    150,
+    660,
+    390
+  ],
+  "house_probe_pixel": [
+    30,
+    200
+  ],
+  "dark_checks": [
+    {
+      "sample": 1464000,
+      "narrative_probe_max_rgb": 0,
+      "house_probe_max_rgb": 94
+    },
+    {
+      "sample": 1559999,
+      "narrative_probe_max_rgb": 0,
+      "house_probe_max_rgb": 94
+    },
+    {
+      "sample": 1560000,
+      "narrative_probe_max_rgb": 0,
+      "house_probe_max_rgb": 94
+    }
+  ],
+  "production_accepted": false
+}

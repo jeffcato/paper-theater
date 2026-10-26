@@ -158,7 +158,26 @@ impl Store {
                 "live generation requires integrated executor and explicit authorization",
             );
         }
-        let _: pt_contracts::RunRequest = serde_json::from_value(request.clone())?;
+        let req: pt_contracts::RunRequest = serde_json::from_value(request.clone())?;
+        let input = pt_contracts::StageInput {
+            schema_version: req.schema_version,
+            run_id: "pending".into(),
+            stage: pt_contracts::Stage::Source,
+            unit_id: "pending".into(),
+            epoch: 0,
+            revision: 0,
+            inputs: vec![],
+            pins: req.pins,
+            mode: req.mode,
+            limits: req.limits,
+            library_revision: 0,
+        };
+        input
+            .validate()
+            .map_err(|e| Error::new("invalid_request", e.to_string()))?;
+        if input.limits.wall_time_ms == 0 || input.limits.wall_time_ms > 300_000 {
+            return fail("invalid_request", "wall time must be 1..300000 ms");
+        }
         let body = serde_json::to_string(request)?;
         if body.len() > 64 * 1024 {
             return fail("request_too_large", "request limit exceeded");
@@ -199,8 +218,8 @@ impl Store {
                 .collect::<std::result::Result<Vec<_>, _>>()?;
             for id in ids {
                 tx.execute(
-                    "UPDATE runs SET state='recovering',epoch=epoch+1 WHERE id=?1",
-                    [&id],
+                    "UPDATE runs SET state=CASE WHEN state='waiting_provider' AND retry_at>?2 THEN 'waiting_provider' ELSE 'recovering' END,epoch=epoch+1 WHERE id=?1",
+                    params![id,now()],
                 )?;
                 tx.execute(
                     "UPDATE stages SET state='pending' WHERE run=?1 AND state='running'",
@@ -242,6 +261,12 @@ impl Store {
                 "UPDATE runs SET state=?3,error=?4 WHERE id=?1 AND epoch=?2",
                 params![run, epoch, state, reason],
             )?;
+            if state == "failed" {
+                tx.execute(
+                    "UPDATE stages SET state='failed' WHERE run=?1 AND state='running'",
+                    [run],
+                )?;
+            }
             Self::emit(
                 tx,
                 run,
@@ -285,10 +310,10 @@ impl Store {
                 Some((key, output)) => (key, serde_json::from_str::<Value>(&output)?),
                 None => (format!("pending-{name}"), json!([])),
             };
-            if name == "source" {
+            if matches!(name, "source" | "acoustic") {
                 let refs = tx
-                    .prepare("SELECT reference FROM run_inputs WHERE run=?1 ORDER BY rowid")?
-                    .query_map([run], |r| r.get::<_, String>(0))?
+                    .prepare("SELECT i.reference FROM run_inputs i WHERE i.run=?1 AND (EXISTS(SELECT 1 FROM run_input_scopes s WHERE s.run=i.run AND s.artifact=i.artifact AND s.scope=?2) OR (?2='saved' AND NOT EXISTS(SELECT 1 FROM run_input_scopes s WHERE s.run=i.run))) ORDER BY i.rowid")?
+                    .query_map(params![run,if name=="acoustic"{"acoustic"}else{"saved"}], |r| r.get::<_, String>(0))?
                     .collect::<std::result::Result<Vec<_>, _>>()?;
                 for a in refs {
                     artifacts
@@ -316,7 +341,7 @@ impl Store {
             .collect::<std::result::Result<Vec<_>, _>>()?;
         for record in records {
             if let Ok(finding) = serde_json::from_str::<pt_contracts::Finding>(&record) {
-                findings.insert(finding.id.clone(), finding);
+                findings.insert((finding.field.clone(), finding.id.clone()), finding);
             }
         }
         let findings = findings.into_values().collect::<Vec<_>>();
@@ -373,18 +398,19 @@ impl Store {
     }
     /// Bytes and their directory entry reach stable storage before any DB reference.
     pub(crate) fn put(&self, bytes: &[u8]) -> Result<String> {
-        if bytes.len() > 32 * 1024 * 1024 {
-            return fail(
-                "artifact_too_large",
-                "candidate exceeds bounded artifact limit",
-            );
-        }
+        self.put_typed(bytes, "application/octet-stream")
+    }
+    pub(crate) fn put_typed(&self, bytes: &[u8], media_type: &str) -> Result<String> {
+        super::media::validate_artifact_bytes(bytes, media_type)?;
         let hash = digest(bytes);
         let path = self.object(&hash)?;
         if path.exists() {
-            if digest(&std::fs::read(&path)?) != hash {
-                return fail("corrupt_artifact", "existing object hash mismatch");
-            }
+            super::media::VerifiedArtifact::checked(
+                std::fs::File::open(&path)?,
+                bytes.len() as u64,
+                media_type.into(),
+                hash.clone(),
+            )?;
             return Ok(hash);
         }
         let mut file = tempfile::NamedTempFile::new_in(self.root.join("objects"))?;
@@ -396,13 +422,23 @@ impl Store {
             }
         }
         std::fs::File::open(self.root.join("objects"))?.sync_all()?;
-        if digest(&std::fs::read(path)?) != hash {
-            return fail("corrupt_artifact", "object hash mismatch");
-        }
+        super::media::VerifiedArtifact::checked(
+            std::fs::File::open(path)?,
+            bytes.len() as u64,
+            media_type.into(),
+            hash.clone(),
+        )?;
         Ok(hash)
     }
-    pub fn artifact(&self, id: &str) -> Result<(Vec<u8>, String, String)> {
-        let (hash, size, mime): (String, usize, String) = self
+    pub fn open_artifact(&self, id: &str) -> Result<super::media::VerifiedArtifact> {
+        self.open_artifact_bounded(id, super::media::MAX_MASTER_BYTES)
+    }
+    pub(crate) fn open_artifact_bounded(
+        &self,
+        id: &str,
+        limit: usize,
+    ) -> Result<super::media::VerifiedArtifact> {
+        let (hash, size, mime): (String, u64, String) = self
             .db()?
             .query_row(
                 "SELECT sha256,bytes,media_type FROM artifacts WHERE id=?1",
@@ -411,12 +447,44 @@ impl Store {
             )
             .optional()?
             .ok_or_else(|| Error::new("not_found", "artifact not found"))?;
-        let bytes = self.read_object(&hash, size)?;
-        Ok((bytes, mime, hash))
+        if size > limit as u64 {
+            return fail("artifact_too_large", "artifact exceeds the caller envelope");
+        }
+        let path = self.object(&hash)?;
+        if !std::fs::symlink_metadata(&path)
+            .map_err(|_| Error::new("corrupt_artifact", "artifact missing"))?
+            .is_file()
+        {
+            return fail("corrupt_artifact", "artifact is not a regular file");
+        }
+        super::media::VerifiedArtifact::checked(std::fs::File::open(path)?, size, mime, hash)
+    }
+    pub fn artifact(&self, id: &str) -> Result<(Vec<u8>, String, String)> {
+        self.artifact_bounded(id, super::media::MAX_MASTER_BYTES)
+    }
+    pub(crate) fn artifact_bounded(
+        &self,
+        id: &str,
+        limit: usize,
+    ) -> Result<(Vec<u8>, String, String)> {
+        use std::io::Read;
+        let verified = self.open_artifact_bounded(id, limit)?;
+        let mut bytes = Vec::with_capacity(verified.bytes as usize);
+        verified
+            .file
+            .take(verified.bytes + 1)
+            .read_to_end(&mut bytes)?;
+        if bytes.len() as u64 != verified.bytes || digest(&bytes) != verified.sha256 {
+            return fail("corrupt_artifact", "artifact changed during reading");
+        }
+        Ok((bytes, verified.media_type, verified.sha256))
     }
     pub(crate) fn read_object(&self, hash: &str, size: usize) -> Result<Vec<u8>> {
+        self.read_object_typed(hash, size, "application/octet-stream")
+    }
+    fn read_object_typed(&self, hash: &str, size: usize, media_type: &str) -> Result<Vec<u8>> {
         let p = self.object(hash)?;
-        if size > 32 * 1024 * 1024
+        if size > super::media::artifact_limit(media_type)
             || std::fs::metadata(&p)
                 .map_err(|_| Error::new("corrupt_artifact", "artifact missing or unreadable"))?
                 .len()
@@ -428,6 +496,8 @@ impl Store {
         if digest(&bytes) != hash {
             return fail("corrupt_artifact", "artifact digest changed");
         }
+        super::media::validate_artifact_bytes(&bytes, media_type)
+            .map_err(|_| Error::new("corrupt_artifact", "stored media validation failed"))?;
         Ok(bytes)
     }
     pub async fn changed(&self) {

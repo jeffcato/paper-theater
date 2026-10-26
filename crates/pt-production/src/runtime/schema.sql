@@ -14,3 +14,4 @@ CREATE TABLE IF NOT EXISTS catalog(book TEXT PRIMARY KEY,publication TEXT REFERE
 CREATE TABLE IF NOT EXISTS recipes(name TEXT PRIMARY KEY);
 CREATE TABLE IF NOT EXISTS run_inputs(run TEXT REFERENCES runs(id),artifact TEXT REFERENCES artifacts(id),reference TEXT NOT NULL,PRIMARY KEY(run,artifact));
 CREATE TABLE IF NOT EXISTS diagnostic_packages(run TEXT PRIMARY KEY REFERENCES runs(id),epoch INTEGER NOT NULL,manifest_hash TEXT NOT NULL,mapping TEXT NOT NULL,candidate TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS run_input_scopes(run TEXT NOT NULL,artifact TEXT NOT NULL,scope TEXT NOT NULL,PRIMARY KEY(run,scope,artifact),FOREIGN KEY(run,artifact) REFERENCES run_inputs(run,artifact));

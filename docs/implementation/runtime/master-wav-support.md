@@ -1,0 +1,27 @@
+# R11 / R2-010: server chapter WAV capacity
+
+Server-owned capacity is complete with `pt-contracts-v1.0.0` / `pt-services-v1.2.0`. Zero provider calls; no credentials, accounting resets, shared-schema changes or publication authorization.
+
+Validated `audio/wav` files may contain up to **268,435,456 bytes (256 MiB), including headers**. Files over 32 MiB must be classic RIFF/WAVE, PCM16, stereo, 48 kHz. Validation checks exact RIFF length, bounded chunk traversal, format/byte-rate/block alignment, a single nonempty frame-aligned data chunk and complete chunk extents. MIME labels cannot grant capacity to arbitrary bytes. Smaller PCM16 mono/stereo clips retain native 8–192 kHz rates, including the existing 24 kHz acoustic inputs. RF64, floating-point and extensible WAV formats are unsupported.
+
+The candidate, typed CAS, committed artifact read, fixture import, private package and diagnostic HTTP paths use this envelope. File length, SHA-256 and WAV structure are verified before HTTP headers; the same open handle streams in 64 KiB chunks. Full responses and single byte ranges carry exact lengths, content type, ETag and Accept-Ranges. Missing, oversized, truncated or changed objects fail closed. Static diagnostic paths must have exact inventoried FileRefs; ambiguous paths and symlinks fail.
+
+Other artifacts, including JSON and images, remain capped at 32 MiB. A stage holds at most 64 candidates, with separate aggregate ceilings of 256 MiB WAV and 32 MiB other data. HTTP request JSON remains 64 KiB; diagnostic manifest/profile lookup is 1 MiB and studio static files 16 MiB. The registered acoustic helper retains 32 MiB per input, 64 MiB combined inputs, 16 MiB output, 64 KiB stdin and a 30-second deadline. Its larger-output requests and chapter-sized inputs are rejected. Generic helper stdout remains capped at 32 MiB.
+
+Candidate bytes are hashed and cancellation is checked again before acceptance. CAS writes still use temporary files, fsync, no-clobber rename and directory fsync before a transaction commits references, unit state and journal events together. Cancellation or rejected output can leave an unreferenced immutable object; neither exposes partial results nor activates a catalog. Restart verifies cached bytes before reuse and never redispatches a corrupt completed unit.
+
+The shared service boundary still takes/returns byte vectors. Candidate storage can retain 288 MiB total; candidate reads can clone another 256 MiB. Diagnostic package mapping can copy the retained candidate buffers. Fixture import buffers its selected inventory with per-file limits. These are bounded-file interfaces, not streaming generation or a measured process-RSS ceiling. HTTP and open-handle verification avoid a chapter-sized response buffer.
+
+## Verification
+
+- `cargo test -p pt-production -p pt-server --locked --offline` — **55 passed**: 44 production unit tests (32 runtime, 12 generation), four candidate contract tests and seven server tests.
+- New cases cover a generated **180-second, 34,560,044-byte** stereo PCM16 WAV through candidate write/read, CAS, fixture import, private package read, full HTTP and byte ranges with identical hashes; exact 256 MiB sparse-file verification; oversized/truncated/invalid-format and changed-PCM rejection; restart reuse without dispatch; cancellation and transaction rollback; aggregate, JSON, helper and request limits. Large media exists only in temporary directories. Replacement fixture audio leaves reveal evidence ineligible.
+- `npm run check --workspace @paper-theater/studio`, `npm run build --workspace @paper-theater/studio`, `cargo build -p pt-server --locked --offline` — passed. Vite retains its Three.js chunk-size advisory.
+- `node tools/integration/check_combined_browser.mjs --fixture fixtures/generation/two-scene-readiness-v2 --output docs/implementation/runtime/combined-master-wav-readiness-v2` — passed: real acoustic helper, cancellation, read-only replay, process restart reuse, shared audio playback, readiness-v2 and P12 nod pixel changes. [Receipt](combined-master-wav-readiness-v2/receipt.json) binds 11 frames and browser/bundle identities; [verification](combined-master-wav-readiness-v2/verification.json) checks all PNG/bundle hashes and three zero-narrative-gain sample bindings. Current player frames preserve readable house lighting; aperture pixel proof remains player-owned. This regression uses the existing 13 MiB diagnostic audio.
+- `python3 tools/check_product_identity.py .`, `python3 tools/check_product_identity.py apps/studio/dist`, `python3 tools/check_product_identity.py target/debug/pt-server` — passed.
+
+## Compatibility handoff
+
+Generation's `crates/pt-production/src/generation/mod.rs::MAX_ARTIFACT_BYTES` still imposes **32 MiB**. Player P14 (`5419a3f`) supports validated delivery masters up to **256 MiB**. Generation capacity and target-device memory measurements remain pending before a combined full-chapter claim. Existing diagnostic playback remains compatible. Missing independent evidence, resource/profile acceptance, live authorization and the production verifier still block audience publication.
+
+Owned changes: runtime `media.rs`, `mod.rs`, `runner.rs`, `store.rs`, `fixture.rs`, `helper.rs`, `master_wav_tests.rs`; server `Cargo.toml`, `src/lib.rs`, `src/master_wav_tests.rs`; `fixtures/runtime/chapter_wav.rs`; this report, runtime readiness/provenance records and the new browser receipts. Agent 1 retains staging/commit ownership.

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "status": "verified-offline-combined-slice",
+  "recorded_at": "2026-10-26T22:14:54.570118+00:00",
+  "base_head": "5419a3f73b41b2a3c92e52a40a3092df732e6e52",
+  "tested_index_tree": "d4e5c01e119e8d6bf17cb696b647985d87b8d44b",
+  "source_hashes": {
+    "path": "combined-source-hashes.json",
+    "sha256": "88ac1ab70bf523974e152a2f54211cd6f6549d2c2b0e42d73b1a30b850476575"
+  },
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.2.0",
+  "fixtures": {
+    "v1": {
+      "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+      "manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+      "readiness_at_fade_start": false
+    },
+    "readiness_v2": {
+      "fixture_sha256": "40dde4e6f8bd36bd2db478c6a6ea8449372a7577cff5407dccb732807cde992c",
+      "manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+      "readiness_at_fade_start": true
+    }
+  },
+  "browser_receipts": {
+    "verified-v1": {
+      "path": "combined-browser/verified-v1/receipt.json",
+      "sha256": "b212ac47b1bbe41b00b2f28378494b2cfcba924b646722f1ad9d720b76a3c474"
+    },
+    "verified-readiness-v2": {
+      "path": "combined-browser/verified-readiness-v2/receipt.json",
+      "sha256": "dce6e9b1eb10c8b1e27914026a1aaf2fac9ea2b5247b2f0811f585827c8df088"
+    }
+  },
+  "browser": {
+    "frames_each": 11,
+    "journal_events_each": 39,
+    "nod_pixel_changes": true,
+    "real_acoustic": true,
+    "cancel_and_replay": true,
+    "production_rejected": true,
+    "chrome": "155.0.8059.85",
+    "viewport": [
+      1440,
+      1100
+    ],
+    "capture": [
+      960,
+      540
+    ],
+    "dpr": 1
+  },
+  "acoustic": {
+    "words": 176,
+    "groups": 170,
+    "points": 6,
+    "outcome": "needs_repair",
+    "reveal_permissions": []
+  },
+  "checks": {
+    "source_root": "unset",
+    "rust_workspace": "pass",
+    "production_unit_tests": 44,
+    "candidate_contract_tests": 4,
+    "server_tests": 7,
+    "typescript_contract_cases": 14,
+    "player_tests": 98,
+    "studio_check": "pass",
+    "python_tests": 17,
+    "web_builds": "pass",
+    "server_build": "pass",
+    "source_and_delivery_identity": "pass"
+  },
+  "media_capacity": {
+    "runtime_master_bytes": 268435456,
+    "player_master_bytes": 268435456,
+    "generation_input_bytes": 33554432,
+    "generation_capacity_pending": true
+  },
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "production_approved": false,
+  "ci_record": "pr-ci-results.json",
+  "report": "combined-review.md",
+  "next_action": "Generation may proceed with offline acoustic work on v1.2; complete fact evidence and generation media capacity. Live dispatch and production publication remain gated."
+}

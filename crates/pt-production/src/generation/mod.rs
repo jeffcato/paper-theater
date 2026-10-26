@@ -4,6 +4,7 @@ use pt_contracts::*;
 use serde::Serialize;
 use std::collections::BTreeMap;
 
+mod acoustic;
 mod source;
 
 pub struct GenerationExecutor;
@@ -136,6 +137,9 @@ impl StageExecutor for GenerationExecutor {
             }
         }
         let cache_key = digest(&json(&input)?);
+        if input.stage == Stage::Acoustic {
+            return acoustic::execute(&input, services, &files, cache_key).await;
+        }
         if input.stage == Stage::Source {
             let get = |path: &str| {
                 files
@@ -292,5 +296,7 @@ impl StageExecutor for GenerationExecutor {
                 inputs:input.inputs.clone(),selected_ids:vec![],rejected_ids:vec![],supersedes:None}],findings,cache_keys:vec![cache_key],library_updates:vec![],package_candidate:Some(package)})
     }
 }
+#[cfg(test)]
+mod acoustic_tests;
 #[cfg(test)]
 mod tests;
