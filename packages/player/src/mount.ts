@@ -42,6 +42,8 @@ export interface FrameSink {
   setCameraPose?(pose: import("./shell.js").CameraPose): void;
   /** Pause-driven INTERMISSION sign pose from the transport UI clock. */
   setSign?(pose: SignPose, progress: number): void;
+  /** Read-only live GL resource census for teardown proofs. Optional. */
+  resourceInfo?(): { geometries: number; textures: number };
 }
 
 export interface MountSource {

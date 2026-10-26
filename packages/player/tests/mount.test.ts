@@ -93,6 +93,23 @@ describe("mount: diagnostic lifecycle", () => {
     assert.equal(sink.disposed, true);
   });
 
+  it("disposed mounts stay silent across play/pause/seek/restart/capture", async () => {
+    const { mount, sink } = await diagnosticMount();
+    mount.tick();
+    const delivered = sink.states.length;
+    const at = mount.sample;
+    mount.dispose();
+    await mount.play();
+    mount.pause();
+    mount.seek(100);
+    mount.restart();
+    assert.equal(mount.tick(), null);
+    await assert.rejects(mount.captureFrame(960, 540), /after dispose/);
+    assert.equal(sink.states.length, delivered);
+    assert.equal(mount.sample, at);
+    mount.dispose();
+  });
+
   it("rejects unsupported cues at mount time, never mid-playback", async () => {
     const { mount, sink } = await diagnosticMount();
     mount.dispose();

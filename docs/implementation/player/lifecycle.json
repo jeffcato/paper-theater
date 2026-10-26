@@ -1,0 +1,359 @@
+{
+  "tool": "check:lifecycle",
+  "fixture": "fixtures/generation/two-scene-readiness-v2",
+  "viewport": "960x540",
+  "sampleCount": 3262560,
+  "races": {
+    "opening": {
+      "posePhase": "opening",
+      "sample": 40800,
+      "phase": "opening",
+      "reason": "seeking",
+      "pose": "lowering"
+    },
+    "blackout": {
+      "posePhase": "transition",
+      "sample": 1756800,
+      "phase": "transition",
+      "reason": "seeking",
+      "pose": "lowering"
+    },
+    "closing": {
+      "posePhase": "closing",
+      "sample": 3231800,
+      "phase": "closing",
+      "reason": "seeking",
+      "pose": "lowering"
+    },
+    "playWins": {
+      "reason": "playing",
+      "tail": [
+        "lowering",
+        "lowering"
+      ]
+    },
+    "signSettled": {
+      "tail": [
+        "lowering",
+        "hidden"
+      ]
+    },
+    "restart": {
+      "sample": 0,
+      "reason": "readiness",
+      "tail": [
+        "hidden"
+      ]
+    },
+    "stalePlay": {
+      "reason": "seeking",
+      "pose": "lowering",
+      "laterPlaying": false
+    }
+  },
+  "rejected": {
+    "message": "Failed to load because no supported source was found.",
+    "reason": "user",
+    "pose": "lowering",
+    "newErrors": 1
+  },
+  "retarget": {
+    "midPose": "lowering",
+    "midProgress": 0.68,
+    "retargetTail": [
+      "lowering",
+      "lowering",
+      "lowering"
+    ],
+    "finalPose": "visible"
+  },
+  "burst": {
+    "sample": 0,
+    "reason": "user",
+    "pose": "lowering"
+  },
+  "baseline": {
+    "raf": 0,
+    "listeners": 0,
+    "ro": 0,
+    "dom": 0,
+    "urls": [
+      0,
+      0
+    ],
+    "targets": 2
+  },
+  "cycles": [
+    {
+      "index": 1,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 2,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 3,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 4,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 5,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 6,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 7,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 8,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 9,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    },
+    {
+      "index": 10,
+      "worked": 14,
+      "workedMem": {
+        "geometries": 13,
+        "textures": 7
+      },
+      "postMem": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "frozen": true,
+      "tickNull": true,
+      "captureThrows": true,
+      "resources": {
+        "raf": 0,
+        "listeners": 0,
+        "ro": 0,
+        "dom": 0,
+        "urls": [
+          0,
+          0
+        ],
+        "targets": 2
+      }
+    }
+  ],
+  "requests": {
+    "count": 237,
+    "remote": 0
+  },
+  "provider_calls": 0,
+  "caller_cleanup": [
+    "Media element state (currentTime/src/playback) stays caller-owned: restart() resets transport state only, matching the staging pattern of resetting currentTime at the call site.",
+    "DOM appended by the caller (sink canvas, audio element, plaque positioner) must be removed by the caller; dispose() removes only mount-owned plaque nodes and disconnects its ResizeObserver.",
+    "No object URLs are created by the player; WebGL context slots release with canvas removal/GC after renderer.dispose()."
+  ],
+  "failures": []
+}

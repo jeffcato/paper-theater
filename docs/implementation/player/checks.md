@@ -281,3 +281,40 @@ fail identity, garbage labeled as WAV reports `invalid_wav` and blocks
 own 32 MiB production cap — no full-chapter production claim. P4/P12/P13
 retained: staging, theater and plaque checks green. Zero provider calls;
 full device acceptance still pending.
+
+## 2026-10-26 — browser control races and ten-cycle teardown (P15)
+
+`npm run check:player`: 106/106 pass (7 race/stale transport tests plus a
+disposed-mount silence test, red→green; one red run corrected the test,
+not the code — a seek intentionally does not cancel a pending play, so the
+completion still reports the live playing state with a benign hidden-repeat
+raise). `npm run check:lifecycle` proves latest-intent control in headless
+Chrome with the real build, real `<audio>` clock, three.js sink and
+read-along plaque: pause/play/seek/restart bursts land exact samples at
+opening/blackout/closing with the pause pose, play-wins reports playing
+with the sign settling hidden, restart resets to 0/readiness/hidden, a
+synchronously-paused play never flips reason to playing, a 404 resume
+rejects (`no supported source`) with reason and sign preserved plus one
+error, and pause→play→pause retargets mid-travel (lowering@0.68, never
+settled, finally visible). Ten load/mount/play/seek/dispose cycles then
+prove teardown: every cycle emits 14 events, freezes after dispose (null
+tick, capture throws), creates GL resources (13 geometries, 7 textures)
+and returns RAF/listeners/observers/DOM/object-URLs plus geometries,
+textures and both render targets to baseline. Evidence: `lifecycle.json`
+(237 local requests, 0 remote, 0 provider calls).
+
+Fixed two reproduced player defects: the diagnostic fixture's two canvas
+textures were never owned (`material.dispose()` frees no map) — every
+cycle leaked 2 textures until the sink dispose loop claimed maps
+explicitly; and `sign.cancel()` cancelled frame id 0 with no loop running
+— the sign now only cancels a genuinely pending frame. Two harness-side
+findings, not player defects: `play()` on a sourceless element pends
+instead of rejecting (the proof uses a fast-failing 404 plus timeout
+races; bare media awaits are banned), and a tick during an in-flight seek
+truthfully reports `seeking` over a standing user pause (unit-pinned
+reason model; the sign still follows the pause). Caller-owned cleanup is
+recorded in the evidence: media element state, caller-appended DOM, no
+player object URLs, and context slots via canvas removal/GC. Retained:
+chapter, staging, theater, plaque, audience 5/5 and inventory v2 144/144
+(executed build digest refreshed). Zero provider calls; headless evidence
+only, not demo-device performance.

@@ -85,7 +85,12 @@ export class IntermissionSign {
   cancel(): void {
     this.intent++;
     this.running = false;
-    cancelFrame(this.raf);
+    // Cancel only a genuinely pending frame: raf holds 0 whenever none is
+    // scheduled, so teardown without animation issues no spurious cancel.
+    if (this.raf !== 0) {
+      cancelFrame(this.raf);
+      this.raf = 0;
+    }
     this.pose = "hidden";
     this.progress = 0;
     this.events.onSign?.("hidden", 0);
@@ -121,6 +126,7 @@ export class IntermissionSign {
         if (this.progress >= 1) {
           this.pose = "visible";
           this.running = false;
+          this.raf = 0;
         }
       } else if (this.pose === "raising") {
         this.progress = Math.max(0, this.progress - dt / upMs);
@@ -128,9 +134,11 @@ export class IntermissionSign {
         if (this.progress <= 0) {
           this.pose = "hidden";
           this.running = false;
+          this.raf = 0;
         }
       } else {
         this.running = false;
+        this.raf = 0;
       }
       this.events.onSign?.(this.pose, this.progress);
       if (this.running) this.raf = frameScheduler(step);

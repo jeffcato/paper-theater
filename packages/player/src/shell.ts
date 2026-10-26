@@ -455,6 +455,10 @@ export async function createThreeSink(
     for (const mesh of buildDiagnosticFixture(THREE)) {
       stageScene.add(mesh);
       owned.push(mesh.geometry, mesh.material as { dispose(): void });
+      // Material disposal never frees its map: the diagnostic quads own
+      // two canvas textures that must join the owned set explicitly.
+      const map = (mesh.material as unknown as { map?: { dispose(): void } | null }).map;
+      if (map) owned.push(map);
     }
   }
 
@@ -649,6 +653,12 @@ export async function createThreeSink(
       stageTarget.dispose();
       compositeTarget.dispose();
       renderer.dispose();
+    },
+    resourceInfo(): { geometries: number; textures: number } {
+      return {
+        geometries: renderer.info.memory.geometries,
+        textures: renderer.info.memory.textures,
+      };
     },
   };
 }

@@ -18,6 +18,7 @@
     "check:theater": "node scripts/chrome-theater.mjs",
     "check:staging": "node scripts/chrome-staging.mjs",
     "check:chapter": "node scripts/chrome-chapter.mjs",
+    "check:lifecycle": "node scripts/chrome-lifecycle.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {
