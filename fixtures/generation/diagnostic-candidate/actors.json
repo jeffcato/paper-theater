@@ -1,0 +1,41 @@
+[
+  {
+    "id": "figure-em",
+    "image": {
+      "path": "assets/figure.png",
+      "sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "bytes": 815524,
+      "media_type": "image/png",
+      "dimensions": [
+        404,
+        1287
+      ]
+    },
+    "pixel_size": [
+      404,
+      1287
+    ],
+    "crop_to_source": [
+      1,
+      0,
+      0,
+      1,
+      594,
+      159
+    ],
+    "pivot_top_left": [
+      0.1806930693069307,
+      0.9953379953379954
+    ],
+    "stage_size": [
+      0.5053948397185302,
+      1.6100078186082878
+    ],
+    "body_height": 1.6100078186082878,
+    "support_id": "deck",
+    "member_ids": [
+      "em"
+    ],
+    "allow_mirror": false
+  }
+]

@@ -1,0 +1,21 @@
+[package]
+name = "pt-production"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+pt-contracts.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+sha2.workspace = true
+async-trait.workspace = true
+
+dramatic-script = { path = "../dramatic-script" }
+monotonic-align = { path = "../monotonic-align" }
+timed-captions = { path = "../timed-captions" }
+atomic-journal = { path = "../atomic-journal" }
+rusqlite = { version = "0.32", features = ["bundled"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "process", "io-util"] }
+tempfile = "3"

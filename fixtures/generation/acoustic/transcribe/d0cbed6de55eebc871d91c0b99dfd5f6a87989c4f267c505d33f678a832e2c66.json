@@ -1,0 +1,64 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "There's a cyclone coming, M.",
+            "audioTranscription": {
+              "text": "There's a cyclone coming, M.",
+              "words": [
+                {
+                  "word": "There's",
+                  "startOffset": "0.400s",
+                  "endOffset": "0.500s"
+                },
+                {
+                  "word": "a",
+                  "startOffset": "0.500s",
+                  "endOffset": "0.600s"
+                },
+                {
+                  "word": "cyclone",
+                  "startOffset": "0.600s",
+                  "endOffset": "1.200s"
+                },
+                {
+                  "word": "coming,",
+                  "startOffset": "1.200s",
+                  "endOffset": "1.600s"
+                },
+                {
+                  "word": "M.",
+                  "startOffset": "1.600s",
+                  "endOffset": "1.900s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 57,
+    "candidatesTokenCount": 9,
+    "totalTokenCount": 66,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      },
+      {
+        "modality": "AUDIO",
+        "tokenCount": 56
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "jnrdaoDnO5qsz7IPovf4kAk"
+}

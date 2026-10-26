@@ -1,0 +1,13 @@
+[package]
+name = "timed-captions"
+version = "0.1.0"
+edition = "2021"
+rust-version.workspace = true
+description = "Subtitle cue segmenter, natural speech-pause detector, header timing announcer, and WebVTT/SRT exporter"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+monotonic-align = { path = "../monotonic-align" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"

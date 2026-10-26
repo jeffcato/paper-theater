@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source_audio_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "source_sample_rate": 24000,
+  "delivery_sample_rate": 48000,
+  "segments": [
+    {
+      "source": [
+        0,
+        660000
+      ],
+      "destination": [
+        96000,
+        1416000
+      ]
+    },
+    {
+      "source": [
+        660000,
+        1451280
+      ],
+      "destination": [
+        1608000,
+        3190560
+      ]
+    }
+  ],
+  "gaps": [
+    [
+      0,
+      96000
+    ],
+    [
+      1416000,
+      1608000
+    ],
+    [
+      3190560,
+      3262560
+    ]
+  ]
+}

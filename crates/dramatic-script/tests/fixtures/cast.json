@@ -1,0 +1,29 @@
+{
+  "book_id": "pg-55-wizard-of-oz",
+  "narrator_voice": {
+    "voice_type": "prebuilt",
+    "voice_id": "Aoede",
+    "description": "Warm, measured, atmospheric Victorian storytelling.",
+    "actor_notes": "Narrator base tone"
+  },
+  "characters": {
+    "Dorothy": {
+      "voice_type": "voice_design",
+      "voice_id": "voice_dorothy_q78a",
+      "description": "Late childhood American girl, earnest, sweet, resonant and brave.",
+      "actor_notes": "Midwestern cadence"
+    },
+    "Uncle Henry": {
+      "voice_type": "prebuilt",
+      "voice_id": "Fenrir",
+      "description": "Deep, formal, weathered Kansas farmer.",
+      "actor_notes": "Laconic, gravelly tone"
+    },
+    "Aunt Em": {
+      "voice_type": "voice_design",
+      "voice_id": "voice_aunt_em_k44b",
+      "description": "Thin, gaunt prairie wife, weary yet fiercely protective.",
+      "actor_notes": "Tense, anxious inflection during crisis"
+    }
+  }
+}

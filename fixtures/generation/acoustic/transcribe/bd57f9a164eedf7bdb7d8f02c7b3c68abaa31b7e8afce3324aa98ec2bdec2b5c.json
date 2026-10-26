@@ -1,0 +1,459 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Toto jumped out of Dorothy's arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightened, threw open the trap door in the floor and climbed down the ladder into the small, dark hole. Dorothy caught Toto at last and started to follow her aunt. When she was halfway across the room, there came a great shriek from the wind and the house shook so hard that she lost her footing and sat down suddenly upon the floor.",
+            "audioTranscription": {
+              "text": "Toto jumped out of Dorothy's arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightened, threw open the trap door in the floor and climbed down the ladder into the small, dark hole. Dorothy caught Toto at last and started to follow her aunt. When she was halfway across the room, there came a great shriek from the wind and the house shook so hard that she lost her footing and sat down suddenly upon the floor.",
+              "words": [
+                {
+                  "word": "Toto",
+                  "startOffset": "0.200s",
+                  "endOffset": "0.500s"
+                },
+                {
+                  "word": "jumped",
+                  "startOffset": "0.500s",
+                  "endOffset": "0.800s"
+                },
+                {
+                  "word": "out",
+                  "startOffset": "0.800s",
+                  "endOffset": "0.900s"
+                },
+                {
+                  "word": "of",
+                  "startOffset": "0.900s",
+                  "endOffset": "1s"
+                },
+                {
+                  "word": "Dorothy's",
+                  "startOffset": "1s",
+                  "endOffset": "1.400s"
+                },
+                {
+                  "word": "arms",
+                  "startOffset": "1.400s",
+                  "endOffset": "1.700s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "1.700s",
+                  "endOffset": "1.800s"
+                },
+                {
+                  "word": "hid",
+                  "startOffset": "1.800s",
+                  "endOffset": "2s"
+                },
+                {
+                  "word": "under",
+                  "startOffset": "2s",
+                  "endOffset": "2.200s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "2.200s",
+                  "endOffset": "2.200s"
+                },
+                {
+                  "word": "bed,",
+                  "startOffset": "2.200s",
+                  "endOffset": "2.600s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "2.700s",
+                  "endOffset": "2.800s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "2.800s",
+                  "endOffset": "2.900s"
+                },
+                {
+                  "word": "girl",
+                  "startOffset": "2.900s",
+                  "endOffset": "3.100s"
+                },
+                {
+                  "word": "started",
+                  "startOffset": "3.100s",
+                  "endOffset": "3.400s"
+                },
+                {
+                  "word": "to",
+                  "startOffset": "3.400s",
+                  "endOffset": "3.500s"
+                },
+                {
+                  "word": "get",
+                  "startOffset": "3.500s",
+                  "endOffset": "3.700s"
+                },
+                {
+                  "word": "him.",
+                  "startOffset": "3.700s",
+                  "endOffset": "4s"
+                },
+                {
+                  "word": "Aunt",
+                  "startOffset": "4.200s",
+                  "endOffset": "4.300s"
+                },
+                {
+                  "word": "Em,",
+                  "startOffset": "4.300s",
+                  "endOffset": "4.600s"
+                },
+                {
+                  "word": "badly",
+                  "startOffset": "4.800s",
+                  "endOffset": "5.100s"
+                },
+                {
+                  "word": "frightened,",
+                  "startOffset": "5.100s",
+                  "endOffset": "5.700s"
+                },
+                {
+                  "word": "threw",
+                  "startOffset": "5.700s",
+                  "endOffset": "6s"
+                },
+                {
+                  "word": "open",
+                  "startOffset": "6s",
+                  "endOffset": "6.200s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "6.200s",
+                  "endOffset": "6.300s"
+                },
+                {
+                  "word": "trap",
+                  "startOffset": "6.300s",
+                  "endOffset": "6.600s"
+                },
+                {
+                  "word": "door",
+                  "startOffset": "6.600s",
+                  "endOffset": "6.700s"
+                },
+                {
+                  "word": "in",
+                  "startOffset": "6.700s",
+                  "endOffset": "6.800s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "6.800s",
+                  "endOffset": "6.900s"
+                },
+                {
+                  "word": "floor",
+                  "startOffset": "6.900s",
+                  "endOffset": "7.200s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "7.200s",
+                  "endOffset": "7.300s"
+                },
+                {
+                  "word": "climbed",
+                  "startOffset": "7.300s",
+                  "endOffset": "7.600s"
+                },
+                {
+                  "word": "down",
+                  "startOffset": "7.600s",
+                  "endOffset": "7.800s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "7.800s",
+                  "endOffset": "7.900s"
+                },
+                {
+                  "word": "ladder",
+                  "startOffset": "7.900s",
+                  "endOffset": "8.100s"
+                },
+                {
+                  "word": "into",
+                  "startOffset": "8.100s",
+                  "endOffset": "8.300s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "8.300s",
+                  "endOffset": "8.400s"
+                },
+                {
+                  "word": "small,",
+                  "startOffset": "8.400s",
+                  "endOffset": "8.800s"
+                },
+                {
+                  "word": "dark",
+                  "startOffset": "8.800s",
+                  "endOffset": "9.100s"
+                },
+                {
+                  "word": "hole.",
+                  "startOffset": "9.100s",
+                  "endOffset": "9.600s"
+                },
+                {
+                  "word": "Dorothy",
+                  "startOffset": "10.400s",
+                  "endOffset": "10.700s"
+                },
+                {
+                  "word": "caught",
+                  "startOffset": "10.700s",
+                  "endOffset": "11s"
+                },
+                {
+                  "word": "Toto",
+                  "startOffset": "11s",
+                  "endOffset": "11.300s"
+                },
+                {
+                  "word": "at",
+                  "startOffset": "11.300s",
+                  "endOffset": "11.400s"
+                },
+                {
+                  "word": "last",
+                  "startOffset": "11.400s",
+                  "endOffset": "11.800s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "11.800s",
+                  "endOffset": "11.900s"
+                },
+                {
+                  "word": "started",
+                  "startOffset": "11.900s",
+                  "endOffset": "12.200s"
+                },
+                {
+                  "word": "to",
+                  "startOffset": "12.200s",
+                  "endOffset": "12.200s"
+                },
+                {
+                  "word": "follow",
+                  "startOffset": "12.200s",
+                  "endOffset": "12.500s"
+                },
+                {
+                  "word": "her",
+                  "startOffset": "12.500s",
+                  "endOffset": "12.700s"
+                },
+                {
+                  "word": "aunt.",
+                  "startOffset": "12.700s",
+                  "endOffset": "13.100s"
+                },
+                {
+                  "word": "When",
+                  "startOffset": "13.600s",
+                  "endOffset": "13.700s"
+                },
+                {
+                  "word": "she",
+                  "startOffset": "13.700s",
+                  "endOffset": "13.800s"
+                },
+                {
+                  "word": "was",
+                  "startOffset": "13.800s",
+                  "endOffset": "13.900s"
+                },
+                {
+                  "word": "halfway",
+                  "startOffset": "13.900s",
+                  "endOffset": "14.200s"
+                },
+                {
+                  "word": "across",
+                  "startOffset": "14.200s",
+                  "endOffset": "14.500s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "14.500s",
+                  "endOffset": "14.700s"
+                },
+                {
+                  "word": "room,",
+                  "startOffset": "14.700s",
+                  "endOffset": "15s"
+                },
+                {
+                  "word": "there",
+                  "startOffset": "15.200s",
+                  "endOffset": "15.400s"
+                },
+                {
+                  "word": "came",
+                  "startOffset": "15.400s",
+                  "endOffset": "15.600s"
+                },
+                {
+                  "word": "a",
+                  "startOffset": "15.600s",
+                  "endOffset": "15.700s"
+                },
+                {
+                  "word": "great",
+                  "startOffset": "15.700s",
+                  "endOffset": "16s"
+                },
+                {
+                  "word": "shriek",
+                  "startOffset": "16s",
+                  "endOffset": "16.500s"
+                },
+                {
+                  "word": "from",
+                  "startOffset": "16.500s",
+                  "endOffset": "16.700s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "16.700s",
+                  "endOffset": "16.800s"
+                },
+                {
+                  "word": "wind",
+                  "startOffset": "16.800s",
+                  "endOffset": "17.100s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "17.100s",
+                  "endOffset": "17.200s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "17.200s",
+                  "endOffset": "17.300s"
+                },
+                {
+                  "word": "house",
+                  "startOffset": "17.300s",
+                  "endOffset": "17.600s"
+                },
+                {
+                  "word": "shook",
+                  "startOffset": "17.600s",
+                  "endOffset": "17.800s"
+                },
+                {
+                  "word": "so",
+                  "startOffset": "17.800s",
+                  "endOffset": "18s"
+                },
+                {
+                  "word": "hard",
+                  "startOffset": "18s",
+                  "endOffset": "18.400s"
+                },
+                {
+                  "word": "that",
+                  "startOffset": "18.700s",
+                  "endOffset": "18.800s"
+                },
+                {
+                  "word": "she",
+                  "startOffset": "18.800s",
+                  "endOffset": "18.900s"
+                },
+                {
+                  "word": "lost",
+                  "startOffset": "18.900s",
+                  "endOffset": "19.200s"
+                },
+                {
+                  "word": "her",
+                  "startOffset": "19.200s",
+                  "endOffset": "19.300s"
+                },
+                {
+                  "word": "footing",
+                  "startOffset": "19.300s",
+                  "endOffset": "19.600s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "19.600s",
+                  "endOffset": "19.800s"
+                },
+                {
+                  "word": "sat",
+                  "startOffset": "19.800s",
+                  "endOffset": "20s"
+                },
+                {
+                  "word": "down",
+                  "startOffset": "20s",
+                  "endOffset": "20.200s"
+                },
+                {
+                  "word": "suddenly",
+                  "startOffset": "20.200s",
+                  "endOffset": "20.700s"
+                },
+                {
+                  "word": "upon",
+                  "startOffset": "20.700s",
+                  "endOffset": "21s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "21s",
+                  "endOffset": "21s"
+                },
+                {
+                  "word": "floor.",
+                  "startOffset": "21s",
+                  "endOffset": "21.500s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 552,
+    "candidatesTokenCount": 96,
+    "totalTokenCount": 648,
+    "promptTokensDetails": [
+      {
+        "modality": "AUDIO",
+        "tokenCount": 551
+      },
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "zXrdasSAFo7yjMcPx4TV8Ao"
+}

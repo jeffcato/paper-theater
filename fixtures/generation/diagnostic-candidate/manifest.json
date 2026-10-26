@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "capability_version": "paper-player-v1",
+  "provenance": "diagnostic",
+  "title": "Paper Theater diagnostic",
+  "author": "L. Frank Baum",
+  "chapter_label": "Saved partial excerpt",
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "sample_rate": 48000,
+  "sample_count": 3262560,
+  "entries": {
+    "bible": {
+      "path": "bible.json",
+      "sha256": "a4326cf7d9b609d264683751896f71dccf6fb8b56d41ce1777424ad931b96aca",
+      "bytes": 120,
+      "media_type": "application/json"
+    },
+    "stages": {
+      "path": "stages.json",
+      "sha256": "838a22f52b049055223762d49a91cf7a0d47785cd7a5fd349c26cd6f9b66296e",
+      "bytes": 192,
+      "media_type": "application/json"
+    },
+    "actors": {
+      "path": "actors.json",
+      "sha256": "f12d379de7b2686ffb77c40cde0ad3d5792e16ab4f382c35173ac073c66cc398",
+      "bytes": 714,
+      "media_type": "application/json"
+    },
+    "timeline": {
+      "path": "timeline.json",
+      "sha256": "60f8e8d78768aad014b38e13cdc3a6e36674cac52b6f56b880e8800dde0a0f1a",
+      "bytes": 6513,
+      "media_type": "application/json"
+    },
+    "shell": {
+      "path": "shell.json",
+      "sha256": "80c3b0c61f67fa9bc62f84efe2830b5ff74f0686cc5f9772732543a17baccf4b",
+      "bytes": 5000,
+      "media_type": "application/json"
+    },
+    "read_along": {
+      "path": "read-along.json",
+      "sha256": "80e6882b1839c6c756718986a6066d8ad6b0614c94eaa99bc2ed99ac8dc2277f",
+      "bytes": 75457,
+      "media_type": "application/json"
+    },
+    "captions": {
+      "path": "captions.vtt",
+      "sha256": "31392bb749d5ecdd7f76cfb2b0fabe62b58a01df39390fda74822137373d20db",
+      "bytes": 67,
+      "media_type": "text/vtt"
+    },
+    "audio": {
+      "path": "audio/master.wav",
+      "sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "bytes": 13050284,
+      "media_type": "audio/wav"
+    },
+    "poster": {
+      "path": "poster.svg",
+      "sha256": "73f19185bb534dfe74dbec4eef3537df475ece269c8aa5e4e77d1af914dc9f4d",
+      "bytes": 109,
+      "media_type": "image/svg+xml"
+    },
+    "credits": {
+      "path": "credits.json",
+      "sha256": "08025c30ce2789e0a18d748152855e1d2d04161b9e472c8d3926ffab4bf20946",
+      "bytes": 647,
+      "media_type": "application/json"
+    }
+  },
+  "assets": [
+    {
+      "path": "assets/figure.png",
+      "sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "bytes": 815524,
+      "media_type": "image/png",
+      "dimensions": [
+        404,
+        1287
+      ]
+    },
+    {
+      "path": "source.txt",
+      "sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "bytes": 960,
+      "media_type": "text/plain"
+    },
+    {
+      "path": "evidence/alignment.json",
+      "sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "bytes": 65183,
+      "media_type": "application/json"
+    },
+    {
+      "path": "presentation-map.json",
+      "sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "bytes": 601,
+      "media_type": "application/json"
+    },
+    {
+      "path": "profile.json",
+      "sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "bytes": 1180,
+      "media_type": "application/json"
+    }
+  ],
+  "reveals": [
+    {
+      "id": "reveal-1",
+      "contributor_ids": [
+        "em-1"
+      ],
+      "not_before_sample": 168000,
+      "facts": [
+        {
+          "source_span": [
+            15,
+            20
+          ],
+          "image_attestation_id": "reveal-1-image_scope",
+          "primary_anchor_id": "reveal-1-primary_anchor",
+          "independent_anchor_id": "reveal-1-independent_anchor"
+        }
+      ]
+    },
+    {
+      "id": "reveal-2",
+      "contributor_ids": [
+        "em-2"
+      ],
+      "not_before_sample": 1656480,
+      "facts": [
+        {
+          "source_span": [
+            437,
+            442
+          ],
+          "image_attestation_id": "reveal-2-image_scope",
+          "primary_anchor_id": "reveal-2-primary_anchor",
+          "independent_anchor_id": "reveal-2-independent_anchor"
+        }
+      ]
+    }
+  ],
+  "acceptance": {
+    "path": "acceptance.json",
+    "sha256": "11da7c3b91a7864f83e881986b3713c8b9e233b2fac72bdfd0973ae15429ae40",
+    "bytes": 12573,
+    "media_type": "application/json"
+  }
+}

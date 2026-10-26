@@ -1,0 +1,46 @@
+{
+  "book_id": "pg-55-wizard-of-oz",
+  "chapter_number": 1,
+  "title": "The Cyclone",
+  "turns": [
+    {
+      "turn_index": 0,
+      "speaker": "Narrator",
+      "clean_spoken_text": "Suddenly, Uncle Henry stood up.",
+      "speech_metadata": null,
+      "source_span": [1200, 1230]
+    },
+    {
+      "turn_index": 1,
+      "speaker": "Uncle Henry",
+      "clean_spoken_text": "There's a cyclone coming, Em. I'll go look after the stock.",
+      "speech_metadata": {
+        "style": "laconic, urgent, weathered shouting over distant wind"
+      },
+      "source_span": [1231, 1290]
+    },
+    {
+      "turn_index": 2,
+      "speaker": "Narrator",
+      "clean_spoken_text": "Then he ran toward the sheds where the cows and horses were kept. Aunt Em dropped her work and came to the door. One glance told her of the danger close at hand.",
+      "speech_metadata": null,
+      "source_span": [1291, 1445]
+    },
+    {
+      "turn_index": 3,
+      "speaker": "Aunt Em",
+      "clean_spoken_text": "Quick, Dorothy! <screams> Run for the cellar!",
+      "speech_metadata": {
+        "style": "screaming in terror, breathless, panicked"
+      },
+      "source_span": [1446, 1489]
+    },
+    {
+      "turn_index": 4,
+      "speaker": "Narrator",
+      "clean_spoken_text": "Toto jumped out of Dorothy's arms and hid under the bed, and the girl started to get him.",
+      "speech_metadata": null,
+      "source_span": [1490, 1576]
+    }
+  ]
+}

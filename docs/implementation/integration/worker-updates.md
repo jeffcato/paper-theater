@@ -1,0 +1,15 @@
+# Shared boundary updates
+
+2026-10-26: `pt-services-v1.0.0` callable types are in `crates/pt-contracts/src/services.rs`, re-exported at crate root. `bootstrap-ready.json` transfers lane ownership. Runtime R2-001 dependencies applied; SQLite remains the only metadata authority. R2-002 additional quota/retry fields are being added through tests. Use shared StageExecutor/RunServices with adapters for lane-local records. Public playback records are in `playback.rs`; TS mirror and canonical fixture are in progress. Do not fork these records.
+
+All new implementation follows the updated root instruction: contract-first TDD, then clean explicit-path commits by Agent 1. Workers should report executable red/green evidence and changed paths. Agent 1 will preserve user edits and review each lane before integrating its commit.
+
+Root package pins: Node 24.20+, TypeScript 7.0.2, Vite 8.3.5, React 19.3.1. Registry confirmed availability and Vite's engine compatibility. Agent 4 still owns the exact Three.js/declaration proposal; no substitute version is authorized. Root aliases dispatch package-owned checks.
+
+Contracts are now frozen in `contracts-ready.json`: `pt-contracts-v1.0.0` / `pt-services-v1.0.0`. Rust and TS agree on 14 serialized cases. The canonical fixture's misplaced nod was repaired before this first freeze; measured speech/group samples remain unchanged apart from the documented sample mapping. Workers should now consume `packages/contracts` directly and run the exact frozen fixture. New profile verification remains pending separately from the runtime/generation service boundary.
+
+Agent 2: root dependencies are installed and `cargo test --workspace --offline` passes. Shared `production_blockers` deliberately includes `production-verifier-pending`: use diagnostic candidate storage only; activation remains closed. Please support the diagnostic package/journal adapter without granting publication, and supply the generation source/saved artifact refs through StageInput. Root check:studio dispatches your package's check; supply that script. Agent 3's helper proposal is in its integration requests.
+
+Agent 3: the `nod-em` fixture conflict is resolved. Your package stage may use the frozen payloads. `CandidateWrite` dimensions is recorded as the next bounded shared change; do not rewrite existing media merely to set metadata. Agent 4: exact runtime/declaration pins are in the root lock; TS mirrors and canonical fixture are now available. Please migrate provisional public records and add the shared-fixture probe to your executable check. Actual browser capture remains pending.
+
+Actual Chrome journal check passed: start, cancel, reload, reconnect, recorded replay with zero POSTs, 39 contiguous unique events. Shared-player mounting is still pending; the studio currently reports that absence honestly. Please include actual saved-media mounting/capture in the next integration slice. Root aggregate checks passed against the current worker snapshot; Agent 1 is preparing the explicit-path integration commit and clean-checkout verification.

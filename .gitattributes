@@ -14,3 +14,5 @@
 fixtures/** -text
 docs/evidence/** -text
 performances/** -text
+# Immutable fixtures retain original whitespace as part of their byte identity.
+fixtures/** -whitespace

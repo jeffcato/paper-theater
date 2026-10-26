@@ -1,0 +1,25 @@
+{
+  "service_revision": "pt-services-v1.0.0",
+  "status": "callable_types_available",
+  "owner_transfers": {
+    "agent_2": [
+      "crates/pt-production/src/runtime",
+      "crates/pt-server",
+      "apps/studio"
+    ],
+    "agent_3": [
+      "crates/pt-production/src/generation"
+    ],
+    "agent_4": [
+      "packages/player",
+      "apps/audience"
+    ]
+  },
+  "contract_files": [
+    "crates/pt-contracts/src/common.rs",
+    "crates/pt-contracts/src/services.rs"
+  ],
+  "fixture_status": "pending",
+  "rendering_profile": "paper-player-r186-v1 selected; unverified",
+  "provider_dispatch": "not_authorized"
+}

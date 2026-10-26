@@ -1,0 +1,2230 @@
+{
+  "audio_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+  "presentation_sha256": "464da23aa1e0087e84461200cbc0aa32a2566e5a3a96374f5e1cea2dd16c6504",
+  "policy": "point-following-same-boundary-v1",
+  "groups": [
+    {
+      "id": "highlight:source:3158:3166",
+      "word": "Suddenly",
+      "word_ids": [
+        "source:3158:3166"
+      ],
+      "words": [
+        "Suddenly"
+      ],
+      "start_sample": 9600,
+      "end_sample": 21600,
+      "interval_word_id": "source:3158:3166"
+    },
+    {
+      "id": "highlight:source:3167:3172",
+      "word": "Uncle",
+      "word_ids": [
+        "source:3167:3172"
+      ],
+      "words": [
+        "Uncle"
+      ],
+      "start_sample": 24000,
+      "end_sample": 28800,
+      "interval_word_id": "source:3167:3172"
+    },
+    {
+      "id": "highlight:source:3173:3178",
+      "word": "Henry",
+      "word_ids": [
+        "source:3173:3178"
+      ],
+      "words": [
+        "Henry"
+      ],
+      "start_sample": 28800,
+      "end_sample": 36000,
+      "interval_word_id": "source:3173:3178"
+    },
+    {
+      "id": "highlight:source:3179:3184",
+      "word": "stood",
+      "word_ids": [
+        "source:3179:3184"
+      ],
+      "words": [
+        "stood"
+      ],
+      "start_sample": 36000,
+      "end_sample": 43200,
+      "interval_word_id": "source:3179:3184"
+    },
+    {
+      "id": "highlight:source:3185:3187",
+      "word": "up",
+      "word_ids": [
+        "source:3185:3187"
+      ],
+      "words": [
+        "up"
+      ],
+      "start_sample": 43200,
+      "end_sample": 48000,
+      "interval_word_id": "source:3185:3187"
+    },
+    {
+      "id": "highlight:source:3191:3198",
+      "word": "There’s",
+      "word_ids": [
+        "source:3191:3198"
+      ],
+      "words": [
+        "There’s"
+      ],
+      "start_sample": 71280,
+      "end_sample": 73680,
+      "interval_word_id": "source:3191:3198"
+    },
+    {
+      "id": "highlight:source:3199:3200",
+      "word": "a",
+      "word_ids": [
+        "source:3199:3200"
+      ],
+      "words": [
+        "a"
+      ],
+      "start_sample": 73680,
+      "end_sample": 76080,
+      "interval_word_id": "source:3199:3200"
+    },
+    {
+      "id": "highlight:source:3201:3208",
+      "word": "cyclone",
+      "word_ids": [
+        "source:3201:3208"
+      ],
+      "words": [
+        "cyclone"
+      ],
+      "start_sample": 76080,
+      "end_sample": 90480,
+      "interval_word_id": "source:3201:3208"
+    },
+    {
+      "id": "highlight:source:3209:3215",
+      "word": "coming",
+      "word_ids": [
+        "source:3209:3215"
+      ],
+      "words": [
+        "coming"
+      ],
+      "start_sample": 90480,
+      "end_sample": 100080,
+      "interval_word_id": "source:3209:3215"
+    },
+    {
+      "id": "highlight:source:3217:3219",
+      "word": "Em",
+      "word_ids": [
+        "source:3217:3219"
+      ],
+      "words": [
+        "Em"
+      ],
+      "start_sample": 100080,
+      "end_sample": 107280,
+      "interval_word_id": "source:3217:3219"
+    },
+    {
+      "id": "highlight:source:3222:3224",
+      "word": "he",
+      "word_ids": [
+        "source:3222:3224"
+      ],
+      "words": [
+        "he"
+      ],
+      "start_sample": 126240,
+      "end_sample": 128640,
+      "interval_word_id": "source:3222:3224"
+    },
+    {
+      "id": "highlight:source:3225:3231",
+      "word": "called",
+      "word_ids": [
+        "source:3225:3231"
+      ],
+      "words": [
+        "called"
+      ],
+      "start_sample": 128640,
+      "end_sample": 135840,
+      "interval_word_id": "source:3225:3231"
+    },
+    {
+      "id": "highlight:source:3232:3234",
+      "word": "to",
+      "word_ids": [
+        "source:3232:3234"
+      ],
+      "words": [
+        "to"
+      ],
+      "start_sample": 135840,
+      "end_sample": 140640,
+      "interval_word_id": "source:3232:3234"
+    },
+    {
+      "id": "highlight:source:3235:3238",
+      "word": "his",
+      "word_ids": [
+        "source:3235:3238"
+      ],
+      "words": [
+        "his"
+      ],
+      "start_sample": 140640,
+      "end_sample": 143040,
+      "interval_word_id": "source:3235:3238"
+    },
+    {
+      "id": "highlight:source:3239:3243",
+      "word": "wife",
+      "word_ids": [
+        "source:3239:3243"
+      ],
+      "words": [
+        "wife"
+      ],
+      "start_sample": 143040,
+      "end_sample": 155040,
+      "interval_word_id": "source:3239:3243"
+    },
+    {
+      "id": "highlight:source:3246:3250",
+      "word": "I’ll",
+      "word_ids": [
+        "source:3246:3250"
+      ],
+      "words": [
+        "I’ll"
+      ],
+      "start_sample": 173040,
+      "end_sample": 175440,
+      "interval_word_id": "source:3246:3250"
+    },
+    {
+      "id": "highlight:source:3251:3253",
+      "word": "go",
+      "word_ids": [
+        "source:3251:3253"
+      ],
+      "words": [
+        "go"
+      ],
+      "start_sample": 175440,
+      "end_sample": 177840,
+      "interval_word_id": "source:3251:3253"
+    },
+    {
+      "id": "highlight:source:3254:3258",
+      "word": "look",
+      "word_ids": [
+        "source:3254:3258"
+      ],
+      "words": [
+        "look"
+      ],
+      "start_sample": 177840,
+      "end_sample": 182640,
+      "interval_word_id": "source:3254:3258"
+    },
+    {
+      "id": "highlight:source:3259:3264",
+      "word": "after",
+      "word_ids": [
+        "source:3259:3264"
+      ],
+      "words": [
+        "after"
+      ],
+      "start_sample": 182640,
+      "end_sample": 189840,
+      "interval_word_id": "source:3259:3264"
+    },
+    {
+      "id": "highlight:source:3265:3268",
+      "word": "the",
+      "word_ids": [
+        "source:3265:3268"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 189840,
+      "end_sample": 192240,
+      "interval_word_id": "source:3265:3268"
+    },
+    {
+      "id": "highlight:source:3269:3274",
+      "word": "stock",
+      "word_ids": [
+        "source:3269:3274"
+      ],
+      "words": [
+        "stock"
+      ],
+      "start_sample": 192240,
+      "end_sample": 199440,
+      "interval_word_id": "source:3269:3274"
+    },
+    {
+      "id": "highlight:source:3277:3281",
+      "word": "Then",
+      "word_ids": [
+        "source:3277:3281"
+      ],
+      "words": [
+        "Then"
+      ],
+      "start_sample": 217920,
+      "end_sample": 225120,
+      "interval_word_id": "source:3277:3281"
+    },
+    {
+      "id": "highlight:source:3282:3284",
+      "word": "he",
+      "word_ids": [
+        "source:3282:3284"
+      ],
+      "words": [
+        "he"
+      ],
+      "start_sample": 225120,
+      "end_sample": 227520,
+      "interval_word_id": "source:3282:3284"
+    },
+    {
+      "id": "highlight:source:3285:3288",
+      "word": "ran",
+      "word_ids": [
+        "source:3285:3288"
+      ],
+      "words": [
+        "ran"
+      ],
+      "start_sample": 227520,
+      "end_sample": 234720,
+      "interval_word_id": "source:3285:3288"
+    },
+    {
+      "id": "highlight:source:3289:3295",
+      "word": "toward",
+      "word_ids": [
+        "source:3289:3295"
+      ],
+      "words": [
+        "toward"
+      ],
+      "start_sample": 234720,
+      "end_sample": 241920,
+      "interval_word_id": "source:3289:3295"
+    },
+    {
+      "id": "highlight:source:3296:3299+source:3300:3305",
+      "word": "the sheds",
+      "word_ids": [
+        "source:3296:3299",
+        "source:3300:3305"
+      ],
+      "words": [
+        "the",
+        "sheds"
+      ],
+      "start_sample": 241920,
+      "end_sample": 249120,
+      "interval_word_id": "source:3300:3305"
+    },
+    {
+      "id": "highlight:source:3306:3311",
+      "word": "where",
+      "word_ids": [
+        "source:3306:3311"
+      ],
+      "words": [
+        "where"
+      ],
+      "start_sample": 249120,
+      "end_sample": 251520,
+      "interval_word_id": "source:3306:3311"
+    },
+    {
+      "id": "highlight:source:3312:3315",
+      "word": "the",
+      "word_ids": [
+        "source:3312:3315"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 251520,
+      "end_sample": 253920,
+      "interval_word_id": "source:3312:3315"
+    },
+    {
+      "id": "highlight:source:3316:3320",
+      "word": "cows",
+      "word_ids": [
+        "source:3316:3320"
+      ],
+      "words": [
+        "cows"
+      ],
+      "start_sample": 253920,
+      "end_sample": 261120,
+      "interval_word_id": "source:3316:3320"
+    },
+    {
+      "id": "highlight:source:3321:3324",
+      "word": "and",
+      "word_ids": [
+        "source:3321:3324"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 261120,
+      "end_sample": 263520,
+      "interval_word_id": "source:3321:3324"
+    },
+    {
+      "id": "highlight:source:3325:3331",
+      "word": "horses",
+      "word_ids": [
+        "source:3325:3331"
+      ],
+      "words": [
+        "horses"
+      ],
+      "start_sample": 263520,
+      "end_sample": 273120,
+      "interval_word_id": "source:3325:3331"
+    },
+    {
+      "id": "highlight:source:3332:3336",
+      "word": "were",
+      "word_ids": [
+        "source:3332:3336"
+      ],
+      "words": [
+        "were"
+      ],
+      "start_sample": 273120,
+      "end_sample": 275520,
+      "interval_word_id": "source:3332:3336"
+    },
+    {
+      "id": "highlight:source:3337:3341",
+      "word": "kept",
+      "word_ids": [
+        "source:3337:3341"
+      ],
+      "words": [
+        "kept"
+      ],
+      "start_sample": 275520,
+      "end_sample": 285120,
+      "interval_word_id": "source:3337:3341"
+    },
+    {
+      "id": "highlight:source:3344:3348",
+      "word": "Aunt",
+      "word_ids": [
+        "source:3344:3348"
+      ],
+      "words": [
+        "Aunt"
+      ],
+      "start_sample": 307440,
+      "end_sample": 309840,
+      "interval_word_id": "source:3344:3348"
+    },
+    {
+      "id": "highlight:source:3349:3351",
+      "word": "Em",
+      "word_ids": [
+        "source:3349:3351"
+      ],
+      "words": [
+        "Em"
+      ],
+      "start_sample": 309840,
+      "end_sample": 317040,
+      "interval_word_id": "source:3349:3351"
+    },
+    {
+      "id": "highlight:source:3352:3359",
+      "word": "dropped",
+      "word_ids": [
+        "source:3352:3359"
+      ],
+      "words": [
+        "dropped"
+      ],
+      "start_sample": 317040,
+      "end_sample": 324240,
+      "interval_word_id": "source:3352:3359"
+    },
+    {
+      "id": "highlight:source:3360:3363",
+      "word": "her",
+      "word_ids": [
+        "source:3360:3363"
+      ],
+      "words": [
+        "her"
+      ],
+      "start_sample": 324240,
+      "end_sample": 326640,
+      "interval_word_id": "source:3360:3363"
+    },
+    {
+      "id": "highlight:source:3364:3368",
+      "word": "work",
+      "word_ids": [
+        "source:3364:3368"
+      ],
+      "words": [
+        "work"
+      ],
+      "start_sample": 326640,
+      "end_sample": 338640,
+      "interval_word_id": "source:3364:3368"
+    },
+    {
+      "id": "highlight:source:3369:3372",
+      "word": "and",
+      "word_ids": [
+        "source:3369:3372"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 338640,
+      "end_sample": 341040,
+      "interval_word_id": "source:3369:3372"
+    },
+    {
+      "id": "highlight:source:3373:3377",
+      "word": "came",
+      "word_ids": [
+        "source:3373:3377"
+      ],
+      "words": [
+        "came"
+      ],
+      "start_sample": 341040,
+      "end_sample": 345840,
+      "interval_word_id": "source:3373:3377"
+    },
+    {
+      "id": "highlight:source:3378:3380",
+      "word": "to",
+      "word_ids": [
+        "source:3378:3380"
+      ],
+      "words": [
+        "to"
+      ],
+      "start_sample": 345840,
+      "end_sample": 348240,
+      "interval_word_id": "source:3378:3380"
+    },
+    {
+      "id": "highlight:source:3381:3384",
+      "word": "the",
+      "word_ids": [
+        "source:3381:3384"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 348240,
+      "end_sample": 350640,
+      "interval_word_id": "source:3381:3384"
+    },
+    {
+      "id": "highlight:source:3385:3389",
+      "word": "door",
+      "word_ids": [
+        "source:3385:3389"
+      ],
+      "words": [
+        "door"
+      ],
+      "start_sample": 350640,
+      "end_sample": 360240,
+      "interval_word_id": "source:3385:3389"
+    },
+    {
+      "id": "highlight:source:3391:3394",
+      "word": "One",
+      "word_ids": [
+        "source:3391:3394"
+      ],
+      "words": [
+        "One"
+      ],
+      "start_sample": 369840,
+      "end_sample": 374640,
+      "interval_word_id": "source:3391:3394"
+    },
+    {
+      "id": "highlight:source:3395:3401",
+      "word": "glance",
+      "word_ids": [
+        "source:3395:3401"
+      ],
+      "words": [
+        "glance"
+      ],
+      "start_sample": 374640,
+      "end_sample": 381840,
+      "interval_word_id": "source:3395:3401"
+    },
+    {
+      "id": "highlight:source:3402:3406",
+      "word": "told",
+      "word_ids": [
+        "source:3402:3406"
+      ],
+      "words": [
+        "told"
+      ],
+      "start_sample": 381840,
+      "end_sample": 386640,
+      "interval_word_id": "source:3402:3406"
+    },
+    {
+      "id": "highlight:source:3407:3410",
+      "word": "her",
+      "word_ids": [
+        "source:3407:3410"
+      ],
+      "words": [
+        "her"
+      ],
+      "start_sample": 386640,
+      "end_sample": 389040,
+      "interval_word_id": "source:3407:3410"
+    },
+    {
+      "id": "highlight:source:3411:3413",
+      "word": "of",
+      "word_ids": [
+        "source:3411:3413"
+      ],
+      "words": [
+        "of"
+      ],
+      "start_sample": 389040,
+      "end_sample": 391440,
+      "interval_word_id": "source:3411:3413"
+    },
+    {
+      "id": "highlight:source:3414:3417",
+      "word": "the",
+      "word_ids": [
+        "source:3414:3417"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 391440,
+      "end_sample": 393840,
+      "interval_word_id": "source:3414:3417"
+    },
+    {
+      "id": "highlight:source:3418:3424",
+      "word": "danger",
+      "word_ids": [
+        "source:3418:3424"
+      ],
+      "words": [
+        "danger"
+      ],
+      "start_sample": 393840,
+      "end_sample": 403440,
+      "interval_word_id": "source:3418:3424"
+    },
+    {
+      "id": "highlight:source:3425:3430",
+      "word": "close",
+      "word_ids": [
+        "source:3425:3430"
+      ],
+      "words": [
+        "close"
+      ],
+      "start_sample": 403440,
+      "end_sample": 408240,
+      "interval_word_id": "source:3425:3430"
+    },
+    {
+      "id": "highlight:source:3431:3433",
+      "word": "at",
+      "word_ids": [
+        "source:3431:3433"
+      ],
+      "words": [
+        "at"
+      ],
+      "start_sample": 408240,
+      "end_sample": 410640,
+      "interval_word_id": "source:3431:3433"
+    },
+    {
+      "id": "highlight:source:3434:3438",
+      "word": "hand",
+      "word_ids": [
+        "source:3434:3438"
+      ],
+      "words": [
+        "hand"
+      ],
+      "start_sample": 410640,
+      "end_sample": 420240,
+      "interval_word_id": "source:3434:3438"
+    },
+    {
+      "id": "highlight:source:3442:3447",
+      "word": "Quick",
+      "word_ids": [
+        "source:3442:3447"
+      ],
+      "words": [
+        "Quick"
+      ],
+      "start_sample": 443040,
+      "end_sample": 450240,
+      "interval_word_id": "source:3442:3447"
+    },
+    {
+      "id": "highlight:source:3449:3456",
+      "word": "Dorothy",
+      "word_ids": [
+        "source:3449:3456"
+      ],
+      "words": [
+        "Dorothy"
+      ],
+      "start_sample": 450240,
+      "end_sample": 467040,
+      "interval_word_id": "source:3449:3456"
+    },
+    {
+      "id": "highlight:source:3459:3462",
+      "word": "she",
+      "word_ids": [
+        "source:3459:3462"
+      ],
+      "words": [
+        "she"
+      ],
+      "start_sample": 482640,
+      "end_sample": 487440,
+      "interval_word_id": "source:3459:3462"
+    },
+    {
+      "id": "highlight:source:3463:3471",
+      "word": "screamed",
+      "word_ids": [
+        "source:3463:3471"
+      ],
+      "words": [
+        "screamed"
+      ],
+      "start_sample": 487440,
+      "end_sample": 506640,
+      "interval_word_id": "source:3463:3471"
+    },
+    {
+      "id": "highlight:source:3474:3477",
+      "word": "Run",
+      "word_ids": [
+        "source:3474:3477"
+      ],
+      "words": [
+        "Run"
+      ],
+      "start_sample": 521280,
+      "end_sample": 526080,
+      "interval_word_id": "source:3474:3477"
+    },
+    {
+      "id": "highlight:source:3478:3481",
+      "word": "for",
+      "word_ids": [
+        "source:3478:3481"
+      ],
+      "words": [
+        "for"
+      ],
+      "start_sample": 526080,
+      "end_sample": 528480,
+      "interval_word_id": "source:3478:3481"
+    },
+    {
+      "id": "highlight:source:3482:3485",
+      "word": "the",
+      "word_ids": [
+        "source:3482:3485"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 528480,
+      "end_sample": 530880,
+      "interval_word_id": "source:3482:3485"
+    },
+    {
+      "id": "highlight:source:3486:3492",
+      "word": "cellar",
+      "word_ids": [
+        "source:3486:3492"
+      ],
+      "words": [
+        "cellar"
+      ],
+      "start_sample": 530880,
+      "end_sample": 545280,
+      "interval_word_id": "source:3486:3492"
+    },
+    {
+      "id": "highlight:source:3496:3500",
+      "word": "Toto",
+      "word_ids": [
+        "source:3496:3500"
+      ],
+      "words": [
+        "Toto"
+      ],
+      "start_sample": 566640,
+      "end_sample": 573840,
+      "interval_word_id": "source:3496:3500"
+    },
+    {
+      "id": "highlight:source:3501:3507",
+      "word": "jumped",
+      "word_ids": [
+        "source:3501:3507"
+      ],
+      "words": [
+        "jumped"
+      ],
+      "start_sample": 573840,
+      "end_sample": 581040,
+      "interval_word_id": "source:3501:3507"
+    },
+    {
+      "id": "highlight:source:3508:3511",
+      "word": "out",
+      "word_ids": [
+        "source:3508:3511"
+      ],
+      "words": [
+        "out"
+      ],
+      "start_sample": 581040,
+      "end_sample": 583440,
+      "interval_word_id": "source:3508:3511"
+    },
+    {
+      "id": "highlight:source:3512:3514",
+      "word": "of",
+      "word_ids": [
+        "source:3512:3514"
+      ],
+      "words": [
+        "of"
+      ],
+      "start_sample": 583440,
+      "end_sample": 585840,
+      "interval_word_id": "source:3512:3514"
+    },
+    {
+      "id": "highlight:source:3515:3524",
+      "word": "Dorothy’s",
+      "word_ids": [
+        "source:3515:3524"
+      ],
+      "words": [
+        "Dorothy’s"
+      ],
+      "start_sample": 585840,
+      "end_sample": 595440,
+      "interval_word_id": "source:3515:3524"
+    },
+    {
+      "id": "highlight:source:3525:3529",
+      "word": "arms",
+      "word_ids": [
+        "source:3525:3529"
+      ],
+      "words": [
+        "arms"
+      ],
+      "start_sample": 595440,
+      "end_sample": 602640,
+      "interval_word_id": "source:3525:3529"
+    },
+    {
+      "id": "highlight:source:3530:3533",
+      "word": "and",
+      "word_ids": [
+        "source:3530:3533"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 602640,
+      "end_sample": 605040,
+      "interval_word_id": "source:3530:3533"
+    },
+    {
+      "id": "highlight:source:3534:3537",
+      "word": "hid",
+      "word_ids": [
+        "source:3534:3537"
+      ],
+      "words": [
+        "hid"
+      ],
+      "start_sample": 605040,
+      "end_sample": 609840,
+      "interval_word_id": "source:3534:3537"
+    },
+    {
+      "id": "highlight:source:3538:3543",
+      "word": "under",
+      "word_ids": [
+        "source:3538:3543"
+      ],
+      "words": [
+        "under"
+      ],
+      "start_sample": 609840,
+      "end_sample": 614640,
+      "interval_word_id": "source:3538:3543"
+    },
+    {
+      "id": "highlight:source:3544:3547+source:3548:3551",
+      "word": "the bed",
+      "word_ids": [
+        "source:3544:3547",
+        "source:3548:3551"
+      ],
+      "words": [
+        "the",
+        "bed"
+      ],
+      "start_sample": 614640,
+      "end_sample": 624240,
+      "interval_word_id": "source:3548:3551"
+    },
+    {
+      "id": "highlight:source:3553:3556",
+      "word": "and",
+      "word_ids": [
+        "source:3553:3556"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 626640,
+      "end_sample": 629040,
+      "interval_word_id": "source:3553:3556"
+    },
+    {
+      "id": "highlight:source:3557:3560",
+      "word": "the",
+      "word_ids": [
+        "source:3557:3560"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 629040,
+      "end_sample": 631440,
+      "interval_word_id": "source:3557:3560"
+    },
+    {
+      "id": "highlight:source:3561:3565",
+      "word": "girl",
+      "word_ids": [
+        "source:3561:3565"
+      ],
+      "words": [
+        "girl"
+      ],
+      "start_sample": 631440,
+      "end_sample": 636240,
+      "interval_word_id": "source:3561:3565"
+    },
+    {
+      "id": "highlight:source:3566:3573",
+      "word": "started",
+      "word_ids": [
+        "source:3566:3573"
+      ],
+      "words": [
+        "started"
+      ],
+      "start_sample": 636240,
+      "end_sample": 643440,
+      "interval_word_id": "source:3566:3573"
+    },
+    {
+      "id": "highlight:source:3574:3576",
+      "word": "to",
+      "word_ids": [
+        "source:3574:3576"
+      ],
+      "words": [
+        "to"
+      ],
+      "start_sample": 643440,
+      "end_sample": 645840,
+      "interval_word_id": "source:3574:3576"
+    },
+    {
+      "id": "highlight:source:3577:3580",
+      "word": "get",
+      "word_ids": [
+        "source:3577:3580"
+      ],
+      "words": [
+        "get"
+      ],
+      "start_sample": 645840,
+      "end_sample": 650640,
+      "interval_word_id": "source:3577:3580"
+    },
+    {
+      "id": "highlight:source:3581:3584",
+      "word": "him",
+      "word_ids": [
+        "source:3581:3584"
+      ],
+      "words": [
+        "him"
+      ],
+      "start_sample": 650640,
+      "end_sample": 657840,
+      "interval_word_id": "source:3581:3584"
+    },
+    {
+      "id": "highlight:source:3586:3590",
+      "word": "Aunt",
+      "word_ids": [
+        "source:3586:3590"
+      ],
+      "words": [
+        "Aunt"
+      ],
+      "start_sample": 662640,
+      "end_sample": 665040,
+      "interval_word_id": "source:3586:3590"
+    },
+    {
+      "id": "highlight:source:3591:3593",
+      "word": "Em",
+      "word_ids": [
+        "source:3591:3593"
+      ],
+      "words": [
+        "Em"
+      ],
+      "start_sample": 665040,
+      "end_sample": 672240,
+      "interval_word_id": "source:3591:3593"
+    },
+    {
+      "id": "highlight:source:3595:3600",
+      "word": "badly",
+      "word_ids": [
+        "source:3595:3600"
+      ],
+      "words": [
+        "badly"
+      ],
+      "start_sample": 677040,
+      "end_sample": 684240,
+      "interval_word_id": "source:3595:3600"
+    },
+    {
+      "id": "highlight:source:3601:3611",
+      "word": "frightened",
+      "word_ids": [
+        "source:3601:3611"
+      ],
+      "words": [
+        "frightened"
+      ],
+      "start_sample": 684240,
+      "end_sample": 698640,
+      "interval_word_id": "source:3601:3611"
+    },
+    {
+      "id": "highlight:source:3613:3618",
+      "word": "threw",
+      "word_ids": [
+        "source:3613:3618"
+      ],
+      "words": [
+        "threw"
+      ],
+      "start_sample": 698640,
+      "end_sample": 705840,
+      "interval_word_id": "source:3613:3618"
+    },
+    {
+      "id": "highlight:source:3619:3623",
+      "word": "open",
+      "word_ids": [
+        "source:3619:3623"
+      ],
+      "words": [
+        "open"
+      ],
+      "start_sample": 705840,
+      "end_sample": 710640,
+      "interval_word_id": "source:3619:3623"
+    },
+    {
+      "id": "highlight:source:3624:3627",
+      "word": "the",
+      "word_ids": [
+        "source:3624:3627"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 710640,
+      "end_sample": 713040,
+      "interval_word_id": "source:3624:3627"
+    },
+    {
+      "id": "highlight:source:3628:3632",
+      "word": "trap",
+      "word_ids": [
+        "source:3628:3632"
+      ],
+      "words": [
+        "trap"
+      ],
+      "start_sample": 713040,
+      "end_sample": 720240,
+      "interval_word_id": "source:3628:3632"
+    },
+    {
+      "id": "highlight:source:3633:3637",
+      "word": "door",
+      "word_ids": [
+        "source:3633:3637"
+      ],
+      "words": [
+        "door"
+      ],
+      "start_sample": 720240,
+      "end_sample": 722640,
+      "interval_word_id": "source:3633:3637"
+    },
+    {
+      "id": "highlight:source:3638:3640",
+      "word": "in",
+      "word_ids": [
+        "source:3638:3640"
+      ],
+      "words": [
+        "in"
+      ],
+      "start_sample": 722640,
+      "end_sample": 725040,
+      "interval_word_id": "source:3638:3640"
+    },
+    {
+      "id": "highlight:source:3641:3644",
+      "word": "the",
+      "word_ids": [
+        "source:3641:3644"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 725040,
+      "end_sample": 727440,
+      "interval_word_id": "source:3641:3644"
+    },
+    {
+      "id": "highlight:source:3645:3650",
+      "word": "floor",
+      "word_ids": [
+        "source:3645:3650"
+      ],
+      "words": [
+        "floor"
+      ],
+      "start_sample": 727440,
+      "end_sample": 734640,
+      "interval_word_id": "source:3645:3650"
+    },
+    {
+      "id": "highlight:source:3651:3654",
+      "word": "and",
+      "word_ids": [
+        "source:3651:3654"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 734640,
+      "end_sample": 737040,
+      "interval_word_id": "source:3651:3654"
+    },
+    {
+      "id": "highlight:source:3655:3662",
+      "word": "climbed",
+      "word_ids": [
+        "source:3655:3662"
+      ],
+      "words": [
+        "climbed"
+      ],
+      "start_sample": 737040,
+      "end_sample": 744240,
+      "interval_word_id": "source:3655:3662"
+    },
+    {
+      "id": "highlight:source:3663:3667",
+      "word": "down",
+      "word_ids": [
+        "source:3663:3667"
+      ],
+      "words": [
+        "down"
+      ],
+      "start_sample": 744240,
+      "end_sample": 749040,
+      "interval_word_id": "source:3663:3667"
+    },
+    {
+      "id": "highlight:source:3668:3671",
+      "word": "the",
+      "word_ids": [
+        "source:3668:3671"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 749040,
+      "end_sample": 751440,
+      "interval_word_id": "source:3668:3671"
+    },
+    {
+      "id": "highlight:source:3672:3678",
+      "word": "ladder",
+      "word_ids": [
+        "source:3672:3678"
+      ],
+      "words": [
+        "ladder"
+      ],
+      "start_sample": 751440,
+      "end_sample": 756240,
+      "interval_word_id": "source:3672:3678"
+    },
+    {
+      "id": "highlight:source:3679:3683",
+      "word": "into",
+      "word_ids": [
+        "source:3679:3683"
+      ],
+      "words": [
+        "into"
+      ],
+      "start_sample": 756240,
+      "end_sample": 761040,
+      "interval_word_id": "source:3679:3683"
+    },
+    {
+      "id": "highlight:source:3684:3687",
+      "word": "the",
+      "word_ids": [
+        "source:3684:3687"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 761040,
+      "end_sample": 763440,
+      "interval_word_id": "source:3684:3687"
+    },
+    {
+      "id": "highlight:source:3688:3693",
+      "word": "small",
+      "word_ids": [
+        "source:3688:3693"
+      ],
+      "words": [
+        "small"
+      ],
+      "start_sample": 763440,
+      "end_sample": 773040,
+      "interval_word_id": "source:3688:3693"
+    },
+    {
+      "id": "highlight:source:3695:3699",
+      "word": "dark",
+      "word_ids": [
+        "source:3695:3699"
+      ],
+      "words": [
+        "dark"
+      ],
+      "start_sample": 773040,
+      "end_sample": 780240,
+      "interval_word_id": "source:3695:3699"
+    },
+    {
+      "id": "highlight:source:3700:3704",
+      "word": "hole",
+      "word_ids": [
+        "source:3700:3704"
+      ],
+      "words": [
+        "hole"
+      ],
+      "start_sample": 780240,
+      "end_sample": 792240,
+      "interval_word_id": "source:3700:3704"
+    },
+    {
+      "id": "highlight:source:3706:3713",
+      "word": "Dorothy",
+      "word_ids": [
+        "source:3706:3713"
+      ],
+      "words": [
+        "Dorothy"
+      ],
+      "start_sample": 811440,
+      "end_sample": 818640,
+      "interval_word_id": "source:3706:3713"
+    },
+    {
+      "id": "highlight:source:3714:3720",
+      "word": "caught",
+      "word_ids": [
+        "source:3714:3720"
+      ],
+      "words": [
+        "caught"
+      ],
+      "start_sample": 818640,
+      "end_sample": 825840,
+      "interval_word_id": "source:3714:3720"
+    },
+    {
+      "id": "highlight:source:3721:3725",
+      "word": "Toto",
+      "word_ids": [
+        "source:3721:3725"
+      ],
+      "words": [
+        "Toto"
+      ],
+      "start_sample": 825840,
+      "end_sample": 833040,
+      "interval_word_id": "source:3721:3725"
+    },
+    {
+      "id": "highlight:source:3726:3728",
+      "word": "at",
+      "word_ids": [
+        "source:3726:3728"
+      ],
+      "words": [
+        "at"
+      ],
+      "start_sample": 833040,
+      "end_sample": 835440,
+      "interval_word_id": "source:3726:3728"
+    },
+    {
+      "id": "highlight:source:3729:3733",
+      "word": "last",
+      "word_ids": [
+        "source:3729:3733"
+      ],
+      "words": [
+        "last"
+      ],
+      "start_sample": 835440,
+      "end_sample": 845040,
+      "interval_word_id": "source:3729:3733"
+    },
+    {
+      "id": "highlight:source:3734:3737",
+      "word": "and",
+      "word_ids": [
+        "source:3734:3737"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 845040,
+      "end_sample": 847440,
+      "interval_word_id": "source:3734:3737"
+    },
+    {
+      "id": "highlight:source:3738:3745",
+      "word": "started",
+      "word_ids": [
+        "source:3738:3745"
+      ],
+      "words": [
+        "started"
+      ],
+      "start_sample": 847440,
+      "end_sample": 854640,
+      "interval_word_id": "source:3738:3745"
+    },
+    {
+      "id": "highlight:source:3746:3748+source:3749:3755",
+      "word": "to follow",
+      "word_ids": [
+        "source:3746:3748",
+        "source:3749:3755"
+      ],
+      "words": [
+        "to",
+        "follow"
+      ],
+      "start_sample": 854640,
+      "end_sample": 861840,
+      "interval_word_id": "source:3749:3755"
+    },
+    {
+      "id": "highlight:source:3756:3759",
+      "word": "her",
+      "word_ids": [
+        "source:3756:3759"
+      ],
+      "words": [
+        "her"
+      ],
+      "start_sample": 861840,
+      "end_sample": 866640,
+      "interval_word_id": "source:3756:3759"
+    },
+    {
+      "id": "highlight:source:3760:3764",
+      "word": "aunt",
+      "word_ids": [
+        "source:3760:3764"
+      ],
+      "words": [
+        "aunt"
+      ],
+      "start_sample": 866640,
+      "end_sample": 876240,
+      "interval_word_id": "source:3760:3764"
+    },
+    {
+      "id": "highlight:source:3766:3770",
+      "word": "When",
+      "word_ids": [
+        "source:3766:3770"
+      ],
+      "words": [
+        "When"
+      ],
+      "start_sample": 888240,
+      "end_sample": 890640,
+      "interval_word_id": "source:3766:3770"
+    },
+    {
+      "id": "highlight:source:3771:3774",
+      "word": "she",
+      "word_ids": [
+        "source:3771:3774"
+      ],
+      "words": [
+        "she"
+      ],
+      "start_sample": 890640,
+      "end_sample": 893040,
+      "interval_word_id": "source:3771:3774"
+    },
+    {
+      "id": "highlight:source:3775:3778",
+      "word": "was",
+      "word_ids": [
+        "source:3775:3778"
+      ],
+      "words": [
+        "was"
+      ],
+      "start_sample": 893040,
+      "end_sample": 895440,
+      "interval_word_id": "source:3775:3778"
+    },
+    {
+      "id": "highlight:source:3779:3786",
+      "word": "halfway",
+      "word_ids": [
+        "source:3779:3786"
+      ],
+      "words": [
+        "halfway"
+      ],
+      "start_sample": 895440,
+      "end_sample": 902640,
+      "interval_word_id": "source:3779:3786"
+    },
+    {
+      "id": "highlight:source:3787:3793",
+      "word": "across",
+      "word_ids": [
+        "source:3787:3793"
+      ],
+      "words": [
+        "across"
+      ],
+      "start_sample": 902640,
+      "end_sample": 909840,
+      "interval_word_id": "source:3787:3793"
+    },
+    {
+      "id": "highlight:source:3794:3797",
+      "word": "the",
+      "word_ids": [
+        "source:3794:3797"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 909840,
+      "end_sample": 914640,
+      "interval_word_id": "source:3794:3797"
+    },
+    {
+      "id": "highlight:source:3798:3802",
+      "word": "room",
+      "word_ids": [
+        "source:3798:3802"
+      ],
+      "words": [
+        "room"
+      ],
+      "start_sample": 914640,
+      "end_sample": 921840,
+      "interval_word_id": "source:3798:3802"
+    },
+    {
+      "id": "highlight:source:3803:3808",
+      "word": "there",
+      "word_ids": [
+        "source:3803:3808"
+      ],
+      "words": [
+        "there"
+      ],
+      "start_sample": 926640,
+      "end_sample": 931440,
+      "interval_word_id": "source:3803:3808"
+    },
+    {
+      "id": "highlight:source:3809:3813",
+      "word": "came",
+      "word_ids": [
+        "source:3809:3813"
+      ],
+      "words": [
+        "came"
+      ],
+      "start_sample": 931440,
+      "end_sample": 936240,
+      "interval_word_id": "source:3809:3813"
+    },
+    {
+      "id": "highlight:source:3814:3815",
+      "word": "a",
+      "word_ids": [
+        "source:3814:3815"
+      ],
+      "words": [
+        "a"
+      ],
+      "start_sample": 936240,
+      "end_sample": 938640,
+      "interval_word_id": "source:3814:3815"
+    },
+    {
+      "id": "highlight:source:3816:3821",
+      "word": "great",
+      "word_ids": [
+        "source:3816:3821"
+      ],
+      "words": [
+        "great"
+      ],
+      "start_sample": 938640,
+      "end_sample": 945840,
+      "interval_word_id": "source:3816:3821"
+    },
+    {
+      "id": "highlight:source:3822:3828",
+      "word": "shriek",
+      "word_ids": [
+        "source:3822:3828"
+      ],
+      "words": [
+        "shriek"
+      ],
+      "start_sample": 945840,
+      "end_sample": 957840,
+      "interval_word_id": "source:3822:3828"
+    },
+    {
+      "id": "highlight:source:3829:3833",
+      "word": "from",
+      "word_ids": [
+        "source:3829:3833"
+      ],
+      "words": [
+        "from"
+      ],
+      "start_sample": 957840,
+      "end_sample": 962640,
+      "interval_word_id": "source:3829:3833"
+    },
+    {
+      "id": "highlight:source:3834:3837",
+      "word": "the",
+      "word_ids": [
+        "source:3834:3837"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 962640,
+      "end_sample": 965040,
+      "interval_word_id": "source:3834:3837"
+    },
+    {
+      "id": "highlight:source:3838:3842",
+      "word": "wind",
+      "word_ids": [
+        "source:3838:3842"
+      ],
+      "words": [
+        "wind"
+      ],
+      "start_sample": 965040,
+      "end_sample": 972240,
+      "interval_word_id": "source:3838:3842"
+    },
+    {
+      "id": "highlight:source:3844:3847",
+      "word": "and",
+      "word_ids": [
+        "source:3844:3847"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 972240,
+      "end_sample": 974640,
+      "interval_word_id": "source:3844:3847"
+    },
+    {
+      "id": "highlight:source:3848:3851",
+      "word": "the",
+      "word_ids": [
+        "source:3848:3851"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 974640,
+      "end_sample": 977040,
+      "interval_word_id": "source:3848:3851"
+    },
+    {
+      "id": "highlight:source:3852:3857",
+      "word": "house",
+      "word_ids": [
+        "source:3852:3857"
+      ],
+      "words": [
+        "house"
+      ],
+      "start_sample": 977040,
+      "end_sample": 984240,
+      "interval_word_id": "source:3852:3857"
+    },
+    {
+      "id": "highlight:source:3858:3863",
+      "word": "shook",
+      "word_ids": [
+        "source:3858:3863"
+      ],
+      "words": [
+        "shook"
+      ],
+      "start_sample": 984240,
+      "end_sample": 989040,
+      "interval_word_id": "source:3858:3863"
+    },
+    {
+      "id": "highlight:source:3864:3866",
+      "word": "so",
+      "word_ids": [
+        "source:3864:3866"
+      ],
+      "words": [
+        "so"
+      ],
+      "start_sample": 989040,
+      "end_sample": 993840,
+      "interval_word_id": "source:3864:3866"
+    },
+    {
+      "id": "highlight:source:3867:3871",
+      "word": "hard",
+      "word_ids": [
+        "source:3867:3871"
+      ],
+      "words": [
+        "hard"
+      ],
+      "start_sample": 993840,
+      "end_sample": 1003440,
+      "interval_word_id": "source:3867:3871"
+    },
+    {
+      "id": "highlight:source:3872:3876",
+      "word": "that",
+      "word_ids": [
+        "source:3872:3876"
+      ],
+      "words": [
+        "that"
+      ],
+      "start_sample": 1010640,
+      "end_sample": 1013040,
+      "interval_word_id": "source:3872:3876"
+    },
+    {
+      "id": "highlight:source:3877:3880",
+      "word": "she",
+      "word_ids": [
+        "source:3877:3880"
+      ],
+      "words": [
+        "she"
+      ],
+      "start_sample": 1013040,
+      "end_sample": 1015440,
+      "interval_word_id": "source:3877:3880"
+    },
+    {
+      "id": "highlight:source:3881:3885",
+      "word": "lost",
+      "word_ids": [
+        "source:3881:3885"
+      ],
+      "words": [
+        "lost"
+      ],
+      "start_sample": 1015440,
+      "end_sample": 1022640,
+      "interval_word_id": "source:3881:3885"
+    },
+    {
+      "id": "highlight:source:3886:3889",
+      "word": "her",
+      "word_ids": [
+        "source:3886:3889"
+      ],
+      "words": [
+        "her"
+      ],
+      "start_sample": 1022640,
+      "end_sample": 1025040,
+      "interval_word_id": "source:3886:3889"
+    },
+    {
+      "id": "highlight:source:3890:3897",
+      "word": "footing",
+      "word_ids": [
+        "source:3890:3897"
+      ],
+      "words": [
+        "footing"
+      ],
+      "start_sample": 1025040,
+      "end_sample": 1032240,
+      "interval_word_id": "source:3890:3897"
+    },
+    {
+      "id": "highlight:source:3898:3901",
+      "word": "and",
+      "word_ids": [
+        "source:3898:3901"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 1032240,
+      "end_sample": 1037040,
+      "interval_word_id": "source:3898:3901"
+    },
+    {
+      "id": "highlight:source:3902:3905",
+      "word": "sat",
+      "word_ids": [
+        "source:3902:3905"
+      ],
+      "words": [
+        "sat"
+      ],
+      "start_sample": 1037040,
+      "end_sample": 1041840,
+      "interval_word_id": "source:3902:3905"
+    },
+    {
+      "id": "highlight:source:3906:3910",
+      "word": "down",
+      "word_ids": [
+        "source:3906:3910"
+      ],
+      "words": [
+        "down"
+      ],
+      "start_sample": 1041840,
+      "end_sample": 1046640,
+      "interval_word_id": "source:3906:3910"
+    },
+    {
+      "id": "highlight:source:3911:3919",
+      "word": "suddenly",
+      "word_ids": [
+        "source:3911:3919"
+      ],
+      "words": [
+        "suddenly"
+      ],
+      "start_sample": 1046640,
+      "end_sample": 1058640,
+      "interval_word_id": "source:3911:3919"
+    },
+    {
+      "id": "highlight:source:3920:3924",
+      "word": "upon",
+      "word_ids": [
+        "source:3920:3924"
+      ],
+      "words": [
+        "upon"
+      ],
+      "start_sample": 1058640,
+      "end_sample": 1065840,
+      "interval_word_id": "source:3920:3924"
+    },
+    {
+      "id": "highlight:source:3925:3928+source:3929:3934",
+      "word": "the floor",
+      "word_ids": [
+        "source:3925:3928",
+        "source:3929:3934"
+      ],
+      "words": [
+        "the",
+        "floor"
+      ],
+      "start_sample": 1065840,
+      "end_sample": 1077840,
+      "interval_word_id": "source:3929:3934"
+    },
+    {
+      "id": "highlight:source:3937:3941",
+      "word": "Then",
+      "word_ids": [
+        "source:3937:3941"
+      ],
+      "words": [
+        "Then"
+      ],
+      "start_sample": 1106400,
+      "end_sample": 1116000,
+      "interval_word_id": "source:3937:3941"
+    },
+    {
+      "id": "highlight:source:3942:3943+source:3944:3951",
+      "word": "a strange",
+      "word_ids": [
+        "source:3942:3943",
+        "source:3944:3951"
+      ],
+      "words": [
+        "a",
+        "strange"
+      ],
+      "start_sample": 1137600,
+      "end_sample": 1159200,
+      "interval_word_id": "source:3944:3951"
+    },
+    {
+      "id": "highlight:source:3952:3957",
+      "word": "thing",
+      "word_ids": [
+        "source:3952:3957"
+      ],
+      "words": [
+        "thing"
+      ],
+      "start_sample": 1159200,
+      "end_sample": 1171200,
+      "interval_word_id": "source:3952:3957"
+    },
+    {
+      "id": "highlight:source:3958:3966",
+      "word": "happened",
+      "word_ids": [
+        "source:3958:3966"
+      ],
+      "words": [
+        "happened"
+      ],
+      "start_sample": 1171200,
+      "end_sample": 1188000,
+      "interval_word_id": "source:3958:3966"
+    },
+    {
+      "id": "highlight:source:3969:3972",
+      "word": "The",
+      "word_ids": [
+        "source:3969:3972"
+      ],
+      "words": [
+        "The"
+      ],
+      "start_sample": 1207920,
+      "end_sample": 1212720,
+      "interval_word_id": "source:3969:3972"
+    },
+    {
+      "id": "highlight:source:3973:3978",
+      "word": "house",
+      "word_ids": [
+        "source:3973:3978"
+      ],
+      "words": [
+        "house"
+      ],
+      "start_sample": 1212720,
+      "end_sample": 1227120,
+      "interval_word_id": "source:3973:3978"
+    },
+    {
+      "id": "highlight:source:3979:3986",
+      "word": "whirled",
+      "word_ids": [
+        "source:3979:3986"
+      ],
+      "words": [
+        "whirled"
+      ],
+      "start_sample": 1227120,
+      "end_sample": 1241520,
+      "interval_word_id": "source:3979:3986"
+    },
+    {
+      "id": "highlight:source:3987:3993",
+      "word": "around",
+      "word_ids": [
+        "source:3987:3993"
+      ],
+      "words": [
+        "around"
+      ],
+      "start_sample": 1241520,
+      "end_sample": 1255920,
+      "interval_word_id": "source:3987:3993"
+    },
+    {
+      "id": "highlight:source:3994:3997",
+      "word": "two",
+      "word_ids": [
+        "source:3994:3997"
+      ],
+      "words": [
+        "two"
+      ],
+      "start_sample": 1255920,
+      "end_sample": 1265520,
+      "interval_word_id": "source:3994:3997"
+    },
+    {
+      "id": "highlight:source:3998:4000",
+      "word": "or",
+      "word_ids": [
+        "source:3998:4000"
+      ],
+      "words": [
+        "or"
+      ],
+      "start_sample": 1265520,
+      "end_sample": 1267920,
+      "interval_word_id": "source:3998:4000"
+    },
+    {
+      "id": "highlight:source:4001:4006",
+      "word": "three",
+      "word_ids": [
+        "source:4001:4006"
+      ],
+      "words": [
+        "three"
+      ],
+      "start_sample": 1267920,
+      "end_sample": 1275120,
+      "interval_word_id": "source:4001:4006"
+    },
+    {
+      "id": "highlight:source:4007:4012",
+      "word": "times",
+      "word_ids": [
+        "source:4007:4012"
+      ],
+      "words": [
+        "times"
+      ],
+      "start_sample": 1275120,
+      "end_sample": 1301520,
+      "interval_word_id": "source:4007:4012"
+    },
+    {
+      "id": "highlight:source:4013:4016",
+      "word": "and",
+      "word_ids": [
+        "source:4013:4016"
+      ],
+      "words": [
+        "and"
+      ],
+      "start_sample": 1301520,
+      "end_sample": 1306320,
+      "interval_word_id": "source:4013:4016"
+    },
+    {
+      "id": "highlight:source:4017:4021",
+      "word": "rose",
+      "word_ids": [
+        "source:4017:4021"
+      ],
+      "words": [
+        "rose"
+      ],
+      "start_sample": 1306320,
+      "end_sample": 1313520,
+      "interval_word_id": "source:4017:4021"
+    },
+    {
+      "id": "highlight:source:4022:4028",
+      "word": "slowly",
+      "word_ids": [
+        "source:4022:4028"
+      ],
+      "words": [
+        "slowly"
+      ],
+      "start_sample": 1313520,
+      "end_sample": 1327920,
+      "interval_word_id": "source:4022:4028"
+    },
+    {
+      "id": "highlight:source:4029:4036",
+      "word": "through",
+      "word_ids": [
+        "source:4029:4036"
+      ],
+      "words": [
+        "through"
+      ],
+      "start_sample": 1327920,
+      "end_sample": 1335120,
+      "interval_word_id": "source:4029:4036"
+    },
+    {
+      "id": "highlight:source:4037:4040",
+      "word": "the",
+      "word_ids": [
+        "source:4037:4040"
+      ],
+      "words": [
+        "the"
+      ],
+      "start_sample": 1335120,
+      "end_sample": 1339920,
+      "interval_word_id": "source:4037:4040"
+    },
+    {
+      "id": "highlight:source:4041:4044",
+      "word": "air",
+      "word_ids": [
+        "source:4041:4044"
+      ],
+      "words": [
+        "air"
+      ],
+      "start_sample": 1339920,
+      "end_sample": 1347120,
+      "interval_word_id": "source:4041:4044"
+    },
+    {
+      "id": "highlight:source:4046:4053",
+      "word": "Dorothy",
+      "word_ids": [
+        "source:4046:4053"
+      ],
+      "words": [
+        "Dorothy"
+      ],
+      "start_sample": 1371120,
+      "end_sample": 1383120,
+      "interval_word_id": "source:4046:4053"
+    },
+    {
+      "id": "highlight:source:4054:4058",
+      "word": "felt",
+      "word_ids": [
+        "source:4054:4058"
+      ],
+      "words": [
+        "felt"
+      ],
+      "start_sample": 1383120,
+      "end_sample": 1395120,
+      "interval_word_id": "source:4054:4058"
+    },
+    {
+      "id": "highlight:source:4059:4061",
+      "word": "as",
+      "word_ids": [
+        "source:4059:4061"
+      ],
+      "words": [
+        "as"
+      ],
+      "start_sample": 1395120,
+      "end_sample": 1397520,
+      "interval_word_id": "source:4059:4061"
+    },
+    {
+      "id": "highlight:source:4062:4064",
+      "word": "if",
+      "word_ids": [
+        "source:4062:4064"
+      ],
+      "words": [
+        "if"
+      ],
+      "start_sample": 1397520,
+      "end_sample": 1399920,
+      "interval_word_id": "source:4062:4064"
+    },
+    {
+      "id": "highlight:source:4065:4068",
+      "word": "she",
+      "word_ids": [
+        "source:4065:4068"
+      ],
+      "words": [
+        "she"
+      ],
+      "start_sample": 1399920,
+      "end_sample": 1404720,
+      "interval_word_id": "source:4065:4068"
+    },
+    {
+      "id": "highlight:source:4069:4073",
+      "word": "were",
+      "word_ids": [
+        "source:4069:4073"
+      ],
+      "words": [
+        "were"
+      ],
+      "start_sample": 1404720,
+      "end_sample": 1407120,
+      "interval_word_id": "source:4069:4073"
+    },
+    {
+      "id": "highlight:source:4074:4079",
+      "word": "going",
+      "word_ids": [
+        "source:4074:4079"
+      ],
+      "words": [
+        "going"
+      ],
+      "start_sample": 1407120,
+      "end_sample": 1416720,
+      "interval_word_id": "source:4074:4079"
+    },
+    {
+      "id": "highlight:source:4080:4082",
+      "word": "up",
+      "word_ids": [
+        "source:4080:4082"
+      ],
+      "words": [
+        "up"
+      ],
+      "start_sample": 1416720,
+      "end_sample": 1421520,
+      "interval_word_id": "source:4080:4082"
+    },
+    {
+      "id": "highlight:source:4083:4085",
+      "word": "in",
+      "word_ids": [
+        "source:4083:4085"
+      ],
+      "words": [
+        "in"
+      ],
+      "start_sample": 1421520,
+      "end_sample": 1426320,
+      "interval_word_id": "source:4083:4085"
+    },
+    {
+      "id": "highlight:source:4086:4087+source:4088:4095",
+      "word": "a balloon",
+      "word_ids": [
+        "source:4086:4087",
+        "source:4088:4095"
+      ],
+      "words": [
+        "a",
+        "balloon"
+      ],
+      "start_sample": 1426320,
+      "end_sample": 1443120,
+      "interval_word_id": "source:4088:4095"
+    }
+  ]
+}

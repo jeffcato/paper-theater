@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "provenance": "diagnostic",
+  "inventory_sha256": "68f46bbe82f209cf8cfd2074d4442b706bb0e61a6645d8f074060b7dea99af52",
+  "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+  "player_version": "pending-r186",
+  "checker_version": "pt-contracts-v1.0.0",
+  "recipe_sha256": "5a21c68380237467ccda502457b7fbb23d03b75adf4fe42f472b906252790017",
+  "required_check_ids": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "image-scope-review",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "story-coverage",
+    "incoming-picture-readiness",
+    "rendered-creative-review",
+    "font-bundle",
+    "profile-r186-browser",
+    "target-device-budget",
+    "publication-recovery",
+    "product-spend-authorization"
+  ],
+  "findings": [
+    {
+      "id": "autonomous-provenance",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "complete-chapter",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "image-scope-review",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "independent-acoustic-evidence",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "narrator-continuity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "story-coverage",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "incoming-picture-readiness",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "rendered-creative-review",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "font-bundle",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "profile-r186-browser",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "target-device-budget",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "publication-recovery",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    },
+    {
+      "id": "product-spend-authorization",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Pending; diagnostic structure cannot certify this gate",
+      "evidence": []
+    }
+  ],
+  "attestations": [
+    {
+      "id": "reveal-1-image_scope",
+      "kind": "image_scope",
+      "provenance": "synthetic",
+      "outcome": "pass",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "recipe_sha256": "5a21c68380237467ccda502457b7fbb23d03b75adf4fe42f472b906252790017",
+      "target_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "source_span": [
+        15,
+        20
+      ],
+      "terminal_word_ids": [
+        "source:3173:3178"
+      ],
+      "measured_end_sample": null,
+      "raw_evidence": null
+    },
+    {
+      "id": "reveal-1-primary_anchor",
+      "kind": "primary_anchor",
+      "provenance": "imported",
+      "outcome": "pass",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "recipe_sha256": "5a21c68380237467ccda502457b7fbb23d03b75adf4fe42f472b906252790017",
+      "target_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "source_span": [
+        15,
+        20
+      ],
+      "terminal_word_ids": [
+        "source:3173:3178"
+      ],
+      "measured_end_sample": 168000,
+      "raw_evidence": {
+        "path": "evidence/alignment.json",
+        "sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+        "bytes": 65183,
+        "media_type": "application/json"
+      }
+    },
+    {
+      "id": "reveal-1-independent_anchor",
+      "kind": "independent_anchor",
+      "provenance": "synthetic",
+      "outcome": "pass",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "recipe_sha256": "5a21c68380237467ccda502457b7fbb23d03b75adf4fe42f472b906252790017",
+      "target_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "source_span": [
+        15,
+        20
+      ],
+      "terminal_word_ids": [
+        "source:3173:3178"
+      ],
+      "measured_end_sample": 168000,
+      "raw_evidence": null
+    },
+    {
+      "id": "reveal-2-image_scope",
+      "kind": "image_scope",
+      "provenance": "synthetic",
+      "outcome": "pass",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "recipe_sha256": "5a21c68380237467ccda502457b7fbb23d03b75adf4fe42f472b906252790017",
+      "target_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "source_span": [
+        437,
+        442
+      ],
+      "terminal_word_ids": [
+        "source:3595:3600"
+      ],
+      "measured_end_sample": null,
+      "raw_evidence": null
+    },
+    {
+      "id": "reveal-2-primary_anchor",
+      "kind": "primary_anchor",
+      "provenance": "imported",
+      "outcome": "pass",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "recipe_sha256": "5a21c68380237467ccda502457b7fbb23d03b75adf4fe42f472b906252790017",
+      "target_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "source_span": [
+        437,
+        442
+      ],
+      "terminal_word_ids": [
+        "source:3595:3600"
+      ],
+      "measured_end_sample": 1656480,
+      "raw_evidence": {
+        "path": "evidence/alignment.json",
+        "sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+        "bytes": 65183,
+        "media_type": "application/json"
+      }
+    },
+    {
+      "id": "reveal-2-independent_anchor",
+      "kind": "independent_anchor",
+      "provenance": "synthetic",
+      "outcome": "pass",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "recipe_sha256": "5a21c68380237467ccda502457b7fbb23d03b75adf4fe42f472b906252790017",
+      "target_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "source_span": [
+        437,
+        442
+      ],
+      "terminal_word_ids": [
+        "source:3595:3600"
+      ],
+      "measured_end_sample": 1656480,
+      "raw_evidence": null
+    }
+  ]
+}

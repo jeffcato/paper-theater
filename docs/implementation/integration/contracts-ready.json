@@ -1,0 +1,76 @@
+{
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.0.0",
+  "status": "frozen-diagnostic-boundary",
+  "fixture_path": "fixtures/shared/two-scene-v1",
+  "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+  "fixture_digest_algorithm": "SHA-256 of UTF-8 compact sorted-key JSON file inventory plus LF; paths sorted lexicographically; see fixture-index.json",
+  "manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+  "delivery_audio_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+  "fixture_provenance": "diagnostic; imported saved media with explicit synthetic image/independent-anchor attestations",
+  "measured_read_along": {
+    "words": 176,
+    "groups": 170,
+    "policy": "point-following-same-boundary-v1"
+  },
+  "negative_cases": [
+    "unknown-action",
+    "short-dark-hold",
+    "wrong-audio-hash",
+    "invalid-scalar-span",
+    "unsafe-sample",
+    "missing-attestation",
+    "stale-attestation",
+    "repeated-terminal",
+    "ambiguous-terminal",
+    "early-reveal",
+    "wrong-pivot",
+    "missing-word-group"
+  ],
+  "commands": [
+    "cargo test -p pt-contracts --offline",
+    "npm run check:contracts",
+    "python3 tools/check_product_identity.py .",
+    "npm run check:player",
+    "cargo test --workspace --offline",
+    "npm run build"
+  ],
+  "files_by_worker": {
+    "agent_2": [
+      "crates/pt-contracts/src/services.rs",
+      "crates/pt-contracts/src/common.rs",
+      "packages/contracts/src/services.ts",
+      "fixtures/shared/two-scene-v1/manifest.json"
+    ],
+    "agent_3": [
+      "crates/pt-contracts/src/services.rs",
+      "crates/pt-contracts/src/playback.rs",
+      "crates/pt-contracts/src/validate.rs",
+      "fixtures/shared/two-scene-v1/fixture.json"
+    ],
+    "agent_4": [
+      "packages/contracts/src/types.ts",
+      "packages/contracts/src/validate.ts",
+      "fixtures/shared/two-scene-v1/catalog.json",
+      "fixtures/shared/two-scene-v1/profile.json"
+    ]
+  },
+  "profile": {
+    "id": "paper-player-r186-v1",
+    "status": "selected_unverified",
+    "three": "0.186.0",
+    "types": "0.186.0",
+    "migration_gate": "separate pending gate; schematic tests do not establish browser/device acceptance"
+  },
+  "pending": [
+    "production acceptance verifier integration; production_blockers always retains production-verifier-pending",
+    "runtime diagnostic package adapter and journal/browser slice",
+    "player consumes frozen shared TypeScript definitions",
+    "provider quota/retry/recovery metadata proposal R2-002/R2-005",
+    "CandidateWrite PNG dimensions proposal",
+    "actual browser capture and target-device profile validation",
+    "live product authorization and inherited accounting reconciliation",
+    "one autonomous excerpt and both complete chapters"
+  ],
+  "next_integration_action": "Workers consume frozen types and this exact fixture; run saved package through server/journal/diagnostic player, preserving audience rejection and zero provider dispatch"
+}

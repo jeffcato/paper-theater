@@ -1,0 +1,14 @@
+{
+  "provenance": "synthetic",
+  "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "observed_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "sample_count": 1000,
+  "beats": [{"id":"beat-1","subjects":["Dorothy"],"picture_ids":["picture-1","picture-2"],"required_actions":["nod-1"],"purposeful_stillness":true}],
+  "pictures": [
+    {"id":"picture-1","interval":[0,500],"required_subjects":["Dorothy"],"instances":[{"subject_id":"Dorothy","owner_id":"dorothy-card"}],"ready":{"Dorothy":0}},
+    {"id":"picture-2","interval":[500,1000],"required_subjects":["Dorothy"],"instances":[{"subject_id":"Dorothy","owner_id":"dorothy-card"}],"ready":{"Dorothy":0}}
+  ],
+  "references": [{"id":"dorothy-reference","subject_id":"Dorothy","permitted_source_end":20,"asset_source_end":20,"environment_empty":false}],
+  "actions": [{"id":"nod-1","picture_id":"picture-2","subject_id":"Dorothy","kind":"nod","interval":[600,700]}],
+  "review": {"opening_picture_ids":["picture-1","picture-2"],"action_ids":["nod-1"],"paired_motion_ids":["nod-1"],"hold_samples":{"picture-1":500,"picture-2":500},"image_scopes":["source","style","reference","extraction","stage"],"audio_windows":[[0,1000]],"semantic_outcome":"pass"}
+}

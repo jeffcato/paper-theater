@@ -1,0 +1,167 @@
+{
+  "assets": [
+    {
+      "asset_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "deterministic": true,
+      "dimensions": [
+        0.5053948397185302,
+        1.6100078186082878
+      ],
+      "ground_pivot": [
+        0.1806930693069307,
+        0.004662004662004615
+      ],
+      "id": "n_em",
+      "registration": {
+        "contacts": [
+          [
+            667.0,
+            1440.0
+          ]
+        ],
+        "crop": [
+          596,
+          161,
+          400,
+          1283
+        ],
+        "measured_supports": [
+          [
+            667.0,
+            1440.0
+          ],
+          [
+            838.0,
+            1422.0
+          ]
+        ],
+        "member_regions": {
+          "e_em": [
+            0.343,
+            0.098,
+            0.625,
+            0.903
+          ]
+        },
+        "original_size": [
+          1600,
+          1600
+        ],
+        "padding": 2
+      },
+      "source_image_sha256": "2e0a7b2f3f7736773bc288607e5fc470d1b39dda8940de8bc1004927639c6325"
+    },
+    {
+      "asset_sha256": "5b46d7978283fc158f23c3d4e5e1d22066f262d966d0a74415885c548f17e10c",
+      "deterministic": true,
+      "dimensions": [
+        0.7176854115729423,
+        1.7069274653626731
+      ],
+      "ground_pivot": [
+        0.48841698841698844,
+        0.0024350649350649567
+      ],
+      "id": "n_henry",
+      "registration": {
+        "contacts": [
+          [
+            656.0,
+            1418.0
+          ],
+          [
+            936.0,
+            1418.0
+          ]
+        ],
+        "crop": [
+          545,
+          191,
+          514,
+          1228
+        ],
+        "measured_supports": [
+          [
+            656.0,
+            1418.0
+          ],
+          [
+            936.0,
+            1418.0
+          ]
+        ],
+        "member_regions": {
+          "e_henry": [
+            0.314,
+            0.142,
+            0.684,
+            0.888
+          ]
+        },
+        "original_size": [
+          1600,
+          1600
+        ],
+        "padding": 2
+      },
+      "source_image_sha256": "176499e08f394b9e96365b02566504b61dff466c89ab17b99834b7cf1efc7efb"
+    },
+    {
+      "asset_sha256": "c931de3a299c3867e165c8fb6d7dfd925139eecddf838daddbf0f5bfc043f02f",
+      "deterministic": true,
+      "dimensions": [
+        4.163120567375886,
+        3.5212765957446805
+      ],
+      "ground_pivot": [
+        0.47018739352640543,
+        0.004028197381671705
+      ],
+      "id": "n_house",
+      "registration": {
+        "contacts": [
+          [
+            765.0,
+            1295.0
+          ]
+        ],
+        "crop": [
+          215,
+          308,
+          1170,
+          989
+        ],
+        "measured_supports": [
+          [
+            488.0,
+            1278.0
+          ],
+          [
+            765.0,
+            1295.0
+          ],
+          [
+            1168.0,
+            1272.0
+          ]
+        ],
+        "member_regions": {
+          "e_house": [
+            0.132,
+            0.193,
+            0.894,
+            0.811
+          ]
+        },
+        "original_size": [
+          1600,
+          1600
+        ],
+        "padding": 2
+      },
+      "source_image_sha256": "a76cf6c1e10f5ac810eaa900081f28eb0fdf356fc0581484f99b5405c6611776"
+    }
+  ],
+  "production_approved": false,
+  "provider_calls": 0
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@paper-theater/studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "tsc --noEmit -p tsconfig.json && node --test tests/*.test.mjs",
+    "check:browser": "node scripts/browser-check.mjs"
+  },
+  "dependencies": {
+    "@paper-theater/player": "0.1.0",
+    "@paper-theater/contracts": "0.1.0"
+  }
+}

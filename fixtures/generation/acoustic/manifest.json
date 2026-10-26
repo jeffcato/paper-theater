@@ -1,0 +1,314 @@
+{
+  "schema": "acoustic-capability-v1",
+  "imported_rehearsal": true,
+  "master_manifest_sha256": "48f6a4627aa81758b184cabe945271033e3aa62633682ebc5a08e9a694411cd2",
+  "master_audio_sha256": "69d8bb5d52c8fa3a4ec11a03365c1fd1fa132940610a23831c2da06449626f1f",
+  "chapter_sha256": "1d8c591969dd338fd8f251e3b83d991a76b5a7e5c715b503953c5ce4775ec320",
+  "master_start_sample": 5593680,
+  "master_end_sample": 7044960,
+  "source_span_characters": [
+    3158,
+    4096
+  ],
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "sample_rate": 24000,
+  "duration_seconds": 60.47,
+  "audio_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "units": [
+    {
+      "turn": 7,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "Suddenly Uncle Henry stood up.",
+      "source_span_characters": [
+        3158,
+        3188
+      ],
+      "audio": "units/turn-007.wav",
+      "audio_sha256": "93bf9a7c439c2123b60c0fdb2e1a47ba9fe8b7bdeea17199aea9d7a7749fb2d4",
+      "start_sample": 0,
+      "end_sample": 55680,
+      "terminal_tokens": [
+        "suddenly",
+        "uncle",
+        "henry",
+        "stood",
+        "up"
+      ]
+    },
+    {
+      "turn": 8,
+      "speaker": "Uncle Henry",
+      "voice": "Algenib",
+      "text": "“There’s a cyclone coming, Em,”",
+      "source_span_characters": [
+        3190,
+        3221
+      ],
+      "audio": "units/turn-008.wav",
+      "audio_sha256": "31f256e0b73b4df8b4e606f78758d1bbc86831987fb1613f729bfb1f33e15134",
+      "start_sample": 61680,
+      "end_sample": 115440,
+      "terminal_tokens": [
+        "theres",
+        "a",
+        "cyclone",
+        "coming",
+        "em"
+      ]
+    },
+    {
+      "turn": 9,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "he called to his wife.",
+      "source_span_characters": [
+        3222,
+        3244
+      ],
+      "audio": "units/turn-009.wav",
+      "audio_sha256": "8c9bb9a0430ce0625e27bea441f0b199a7310afe81522e9478ceaccf10ca3d02",
+      "start_sample": 121440,
+      "end_sample": 159840,
+      "terminal_tokens": [
+        "he",
+        "called",
+        "to",
+        "his",
+        "wife"
+      ]
+    },
+    {
+      "turn": 10,
+      "speaker": "Uncle Henry",
+      "voice": "Algenib",
+      "text": "“I’ll go look after the stock.”",
+      "source_span_characters": [
+        3245,
+        3276
+      ],
+      "audio": "units/turn-010.wav",
+      "audio_sha256": "996631581f40e2e5c4a2777597fe66f861eead4177bb5b84aab1563c87f68fbd",
+      "start_sample": 165840,
+      "end_sample": 207120,
+      "terminal_tokens": [
+        "ill",
+        "go",
+        "look",
+        "after",
+        "the",
+        "stock"
+      ]
+    },
+    {
+      "turn": 11,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "Then he ran toward the sheds where the cows and horses were kept.",
+      "source_span_characters": [
+        3277,
+        3342
+      ],
+      "audio": "units/turn-011.wav",
+      "audio_sha256": "e6da65ac9e4e903dd4fdb30fec887ae1abd9064b8fbadc797cc32c77f2b60801",
+      "start_sample": 213120,
+      "end_sample": 291840,
+      "terminal_tokens": [
+        "the",
+        "cows",
+        "and",
+        "horses",
+        "were",
+        "kept"
+      ]
+    },
+    {
+      "turn": 12,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "Aunt Em dropped her work and came to the door. One glance told her of the danger close at hand.",
+      "source_span_characters": [
+        3344,
+        3439
+      ],
+      "audio": "units/turn-012.wav",
+      "audio_sha256": "e797efc5725cf6737c6a6be6083bde6e817c7abcabaf6cd54597c5549cc05190",
+      "start_sample": 297840,
+      "end_sample": 432240,
+      "terminal_tokens": [
+        "of",
+        "the",
+        "danger",
+        "close",
+        "at",
+        "hand"
+      ]
+    },
+    {
+      "turn": 13,
+      "speaker": "Aunt Em",
+      "voice": "Achernar",
+      "text": "“Quick, Dorothy!”",
+      "source_span_characters": [
+        3441,
+        3458
+      ],
+      "audio": "units/turn-013.wav",
+      "audio_sha256": "01ca45ab173328267b8d251fc99430b17014d2bc8099f925d3426db69edd2a27",
+      "start_sample": 438240,
+      "end_sample": 471840,
+      "terminal_tokens": [
+        "quick",
+        "dorothy"
+      ]
+    },
+    {
+      "turn": 14,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "she screamed.",
+      "source_span_characters": [
+        3459,
+        3472
+      ],
+      "audio": "units/turn-014.wav",
+      "audio_sha256": "93365d5d528504d497001255373f8020d0f4b711ee1b0aaf8db5805330f2cd62",
+      "start_sample": 477840,
+      "end_sample": 510480,
+      "terminal_tokens": [
+        "she",
+        "screamed"
+      ]
+    },
+    {
+      "turn": 15,
+      "speaker": "Aunt Em",
+      "voice": "Achernar",
+      "text": "“Run for the cellar!”",
+      "source_span_characters": [
+        3473,
+        3494
+      ],
+      "audio": "units/turn-015.wav",
+      "audio_sha256": "fd88943457e6a71527909d830f766cc15cf6fc7d3966c719de46525a25afa4ef",
+      "start_sample": 516480,
+      "end_sample": 555840,
+      "terminal_tokens": [
+        "run",
+        "for",
+        "the",
+        "cellar"
+      ]
+    },
+    {
+      "turn": 16,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "Toto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightened, threw open the trap door in the floor and climbed down the ladder into the small, dark hole. Dorothy caught Toto at last and started to follow her aunt. When she was halfway across the room there came a great shriek from the wind, and the house shook so hard that she lost her footing and sat down suddenly upon the floor.",
+      "source_span_characters": [
+        3496,
+        3935
+      ],
+      "audio": "units/turn-016.wav",
+      "audio_sha256": "0303858dfbeec3305affd5f791d94e1a74c8a4d59083abf62f410478bcb7cbff",
+      "start_sample": 561840,
+      "end_sample": 1090800,
+      "terminal_tokens": [
+        "sat",
+        "down",
+        "suddenly",
+        "upon",
+        "the",
+        "floor"
+      ]
+    },
+    {
+      "turn": 17,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "Then a strange thing happened.",
+      "source_span_characters": [
+        3937,
+        3967
+      ],
+      "audio": "units/turn-017.wav",
+      "audio_sha256": "83a057099f3d4b74bd71bf22eb92a589231517acdc5f1146a910704272406a36",
+      "start_sample": 1096800,
+      "end_sample": 1194720,
+      "terminal_tokens": [
+        "then",
+        "a",
+        "strange",
+        "thing",
+        "happened"
+      ]
+    },
+    {
+      "turn": 18,
+      "speaker": "Narrator",
+      "voice": "Sulafat",
+      "text": "The house whirled around two or three times and rose slowly through the air. Dorothy felt as if she were going up in a balloon.",
+      "source_span_characters": [
+        3969,
+        4096
+      ],
+      "audio": "units/turn-018.wav",
+      "audio_sha256": "07c56fb769d4ec02b42133d03bba4b7435df1c44a2832af3ee950d5936b30035",
+      "start_sample": 1200720,
+      "end_sample": 1451280,
+      "terminal_tokens": [
+        "were",
+        "going",
+        "up",
+        "in",
+        "a",
+        "balloon"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean",
+      "audio": "excerpt.wav",
+      "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "expected": "pass"
+    },
+    {
+      "id": "deleted",
+      "audio": "controls/deleted.wav",
+      "sha256": "43ec481e61dbc658b296882586af64feeaad0354b8280a70d37a2f46d545d9ad",
+      "expected": "fail"
+    },
+    {
+      "id": "extra",
+      "audio": "controls/extra.wav",
+      "sha256": "03f5a6ea2e64a1a2aa90673dfb5cad529d999269cea3353d8650383f5ec80b37",
+      "expected": "fail"
+    },
+    {
+      "id": "ambiguous",
+      "audio": "controls/ambiguous.wav",
+      "sha256": "862c385e1b4afef56b695417798522599a1df45c773af26d828baa5636098454",
+      "expected": "fail"
+    },
+    {
+      "id": "masked",
+      "audio": "controls/masked.wav",
+      "sha256": "19d9466bfd1e0c5cca53b04e6041abf591ce45b0884b661c6aa3d382516295c4",
+      "expected": "fail"
+    }
+  ],
+  "ambiguous_anchor": {
+    "audio": "controls/ambiguous-anchor.wav",
+    "turn": 8,
+    "terminal_tokens": [
+      "theres",
+      "a",
+      "cyclone",
+      "coming",
+      "em"
+    ],
+    "sha256": "afc05e2ad07d724ab49784de3dff7576fed21381313b9bbd7b581947a40b2277"
+  },
+  "acoustic_status": "untested"
+}

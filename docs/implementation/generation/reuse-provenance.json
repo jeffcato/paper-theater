@@ -1,0 +1,452 @@
+[
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/proof.py",
+    "source_sha256": "a16523b820c6c44d1df270c72a4abca220da370675e0f5f1bc2163354142d173",
+    "destination": "tools/generation/adapters.py",
+    "transformation": "Selected pure functions; removed all provider transports and environment dependencies. Original normalization remains explicit and diagnostic.",
+    "license_notice": "No license notice present in source file; authorship preserved by content digest.",
+    "destination_sha256": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996"
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/transcribe.py",
+    "source_sha256": "e7ae76af43de70c6bdee2e1bc203ce3d57201a393c636009c4f57a051bcab33a",
+    "destination": "tools/generation/adapters.py",
+    "transformation": "Selected pure functions; removed all provider transports and environment dependencies. Original normalization remains explicit and diagnostic.",
+    "license_notice": "No license notice present in source file; authorship preserved by content digest.",
+    "destination_sha256": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996"
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/meta_transcribe.py",
+    "source_sha256": "c1d0eb19b554047ea652f82a95404fb73c7c8671020ddcb9bb0453279af4c5d4",
+    "destination": "tools/generation/adapters.py",
+    "transformation": "Selected pure functions; removed all provider transports and environment dependencies. Original normalization remains explicit and diagnostic.",
+    "license_notice": "No license notice present in source file; authorship preserved by content digest.",
+    "destination_sha256": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996"
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/readalong.py",
+    "source_sha256": "9403ba7da675fbcbd237d6500ec0d6e58f6c066db21868cd54d8c840b5063a76",
+    "destination": "tools/generation/adapters.py",
+    "transformation": "Selected pure functions; removed all provider transports and environment dependencies. Original normalization remains explicit and diagnostic.",
+    "license_notice": "No license notice present in source file; authorship preserved by content digest.",
+    "destination_sha256": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996"
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/oz_demo/output/oz-chapter-1/gutenberg.txt",
+    "source_sha256": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75",
+    "destination": "fixtures/generation/source/pg55-raw.txt",
+    "destination_sha256": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75",
+    "transformation": "Unchanged cached source bytes; Gutenberg notices retained in raw edition.",
+    "license_notice": "Project Gutenberg edition; original notices retained."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "prototype/var/raw-source.txt",
+    "source_sha256": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+    "destination": "fixtures/generation/source/pg36-raw.txt",
+    "destination_sha256": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+    "transformation": "Unchanged cached source bytes; Gutenberg notices retained in raw edition.",
+    "license_notice": "Project Gutenberg edition; original notices retained."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/oz_demo/output/oz-chapter-1/chapter.txt",
+    "source_sha256": "1d8c591969dd338fd8f251e3b83d991a76b5a7e5c715b503953c5ce4775ec320",
+    "destination": "fixtures/generation/source/pg55-expected.txt",
+    "destination_sha256": "1d8c591969dd338fd8f251e3b83d991a76b5a7e5c715b503953c5ce4775ec320",
+    "transformation": "Unchanged cached source bytes; Gutenberg notices retained in raw edition.",
+    "license_notice": "Project Gutenberg edition; original notices retained."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/manifest.json",
+    "source_sha256": "f08b128a1f3418a6a8a2b498f6fa0e3880bd689ca04e66eb8ff95c2405605244",
+    "destination": "fixtures/generation/acoustic/manifest.json",
+    "destination_sha256": "f08b128a1f3418a6a8a2b498f6fa0e3880bd689ca04e66eb8ff95c2405605244",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/source.txt",
+    "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+    "destination": "fixtures/generation/acoustic/source.txt",
+    "destination_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/excerpt.wav",
+    "source_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+    "destination": "fixtures/generation/acoustic/excerpt.wav",
+    "destination_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/segmented-acoustic-report.json",
+    "source_sha256": "a691296eb3561e8c826a43e541c34f175e98170164e0563d65e98f3ef1f0f10f",
+    "destination": "fixtures/generation/acoustic/segmented-acoustic-report.json",
+    "destination_sha256": "a691296eb3561e8c826a43e541c34f175e98170164e0563d65e98f3ef1f0f10f",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-007.wav",
+    "source_sha256": "93bf9a7c439c2123b60c0fdb2e1a47ba9fe8b7bdeea17199aea9d7a7749fb2d4",
+    "destination": "fixtures/generation/acoustic/units/turn-007.wav",
+    "destination_sha256": "93bf9a7c439c2123b60c0fdb2e1a47ba9fe8b7bdeea17199aea9d7a7749fb2d4",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-008.wav",
+    "source_sha256": "31f256e0b73b4df8b4e606f78758d1bbc86831987fb1613f729bfb1f33e15134",
+    "destination": "fixtures/generation/acoustic/units/turn-008.wav",
+    "destination_sha256": "31f256e0b73b4df8b4e606f78758d1bbc86831987fb1613f729bfb1f33e15134",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-009.wav",
+    "source_sha256": "8c9bb9a0430ce0625e27bea441f0b199a7310afe81522e9478ceaccf10ca3d02",
+    "destination": "fixtures/generation/acoustic/units/turn-009.wav",
+    "destination_sha256": "8c9bb9a0430ce0625e27bea441f0b199a7310afe81522e9478ceaccf10ca3d02",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-010.wav",
+    "source_sha256": "996631581f40e2e5c4a2777597fe66f861eead4177bb5b84aab1563c87f68fbd",
+    "destination": "fixtures/generation/acoustic/units/turn-010.wav",
+    "destination_sha256": "996631581f40e2e5c4a2777597fe66f861eead4177bb5b84aab1563c87f68fbd",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-011.wav",
+    "source_sha256": "e6da65ac9e4e903dd4fdb30fec887ae1abd9064b8fbadc797cc32c77f2b60801",
+    "destination": "fixtures/generation/acoustic/units/turn-011.wav",
+    "destination_sha256": "e6da65ac9e4e903dd4fdb30fec887ae1abd9064b8fbadc797cc32c77f2b60801",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-012.wav",
+    "source_sha256": "e797efc5725cf6737c6a6be6083bde6e817c7abcabaf6cd54597c5549cc05190",
+    "destination": "fixtures/generation/acoustic/units/turn-012.wav",
+    "destination_sha256": "e797efc5725cf6737c6a6be6083bde6e817c7abcabaf6cd54597c5549cc05190",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-013.wav",
+    "source_sha256": "01ca45ab173328267b8d251fc99430b17014d2bc8099f925d3426db69edd2a27",
+    "destination": "fixtures/generation/acoustic/units/turn-013.wav",
+    "destination_sha256": "01ca45ab173328267b8d251fc99430b17014d2bc8099f925d3426db69edd2a27",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-014.wav",
+    "source_sha256": "93365d5d528504d497001255373f8020d0f4b711ee1b0aaf8db5805330f2cd62",
+    "destination": "fixtures/generation/acoustic/units/turn-014.wav",
+    "destination_sha256": "93365d5d528504d497001255373f8020d0f4b711ee1b0aaf8db5805330f2cd62",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-015.wav",
+    "source_sha256": "fd88943457e6a71527909d830f766cc15cf6fc7d3966c719de46525a25afa4ef",
+    "destination": "fixtures/generation/acoustic/units/turn-015.wav",
+    "destination_sha256": "fd88943457e6a71527909d830f766cc15cf6fc7d3966c719de46525a25afa4ef",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-016.wav",
+    "source_sha256": "0303858dfbeec3305affd5f791d94e1a74c8a4d59083abf62f410478bcb7cbff",
+    "destination": "fixtures/generation/acoustic/units/turn-016.wav",
+    "destination_sha256": "0303858dfbeec3305affd5f791d94e1a74c8a4d59083abf62f410478bcb7cbff",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-017.wav",
+    "source_sha256": "83a057099f3d4b74bd71bf22eb92a589231517acdc5f1146a910704272406a36",
+    "destination": "fixtures/generation/acoustic/units/turn-017.wav",
+    "destination_sha256": "83a057099f3d4b74bd71bf22eb92a589231517acdc5f1146a910704272406a36",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/units/turn-018.wav",
+    "source_sha256": "07c56fb769d4ec02b42133d03bba4b7435df1c44a2832af3ee950d5936b30035",
+    "destination": "fixtures/generation/acoustic/units/turn-018.wav",
+    "destination_sha256": "07c56fb769d4ec02b42133d03bba4b7435df1c44a2832af3ee950d5936b30035",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/0663273f73f0a3003dd6d374766954c22dc7cbd3d2dd5e79db87dc83fb303c2b.json",
+    "source_sha256": "3b676e9cedeb5bc892d40954ec4fffeee6f0863e4886d4ddc62395ab669391fb",
+    "destination": "fixtures/generation/acoustic/transcribe/0663273f73f0a3003dd6d374766954c22dc7cbd3d2dd5e79db87dc83fb303c2b.json",
+    "destination_sha256": "3b676e9cedeb5bc892d40954ec4fffeee6f0863e4886d4ddc62395ab669391fb",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/0663273f73f0a3003dd6d374766954c22dc7cbd3d2dd5e79db87dc83fb303c2b.receipt.json",
+    "source_sha256": "c281b6b93f79db0024dbdfdcc16241a6dd871bd4415eda2f86e74e2c702df96a",
+    "destination": "fixtures/generation/acoustic/transcribe/0663273f73f0a3003dd6d374766954c22dc7cbd3d2dd5e79db87dc83fb303c2b.receipt.json",
+    "destination_sha256": "c281b6b93f79db0024dbdfdcc16241a6dd871bd4415eda2f86e74e2c702df96a",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/d0cbed6de55eebc871d91c0b99dfd5f6a87989c4f267c505d33f678a832e2c66.json",
+    "source_sha256": "6cf2ae838ae0416a2ffee44940b1ede6ee692899124bff50cd02929d75741fdd",
+    "destination": "fixtures/generation/acoustic/transcribe/d0cbed6de55eebc871d91c0b99dfd5f6a87989c4f267c505d33f678a832e2c66.json",
+    "destination_sha256": "6cf2ae838ae0416a2ffee44940b1ede6ee692899124bff50cd02929d75741fdd",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/d0cbed6de55eebc871d91c0b99dfd5f6a87989c4f267c505d33f678a832e2c66.receipt.json",
+    "source_sha256": "10f8fceedb99aecb98b166be385fcec486122019016f3f42b42238f6c51f1df7",
+    "destination": "fixtures/generation/acoustic/transcribe/d0cbed6de55eebc871d91c0b99dfd5f6a87989c4f267c505d33f678a832e2c66.receipt.json",
+    "destination_sha256": "10f8fceedb99aecb98b166be385fcec486122019016f3f42b42238f6c51f1df7",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/3b4d0e81677368117239350e3db95a56e4e9b2802369f88ce4b45cd858337d47.json",
+    "source_sha256": "343bc6935feccd66ac8db80e86e0a735b8dc3bb1d73340dea5d249bca623ff4d",
+    "destination": "fixtures/generation/acoustic/transcribe/3b4d0e81677368117239350e3db95a56e4e9b2802369f88ce4b45cd858337d47.json",
+    "destination_sha256": "343bc6935feccd66ac8db80e86e0a735b8dc3bb1d73340dea5d249bca623ff4d",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/3b4d0e81677368117239350e3db95a56e4e9b2802369f88ce4b45cd858337d47.receipt.json",
+    "source_sha256": "3a71b76012b948a3ef2346d35a618d0546cfe6059e2830cca6762bcdc716c7dd",
+    "destination": "fixtures/generation/acoustic/transcribe/3b4d0e81677368117239350e3db95a56e4e9b2802369f88ce4b45cd858337d47.receipt.json",
+    "destination_sha256": "3a71b76012b948a3ef2346d35a618d0546cfe6059e2830cca6762bcdc716c7dd",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/c432b25e0e92b9f7b5899b774b8f66c40ce652c3fd2d6fa821b501e21fdf4df6.json",
+    "source_sha256": "49f2b010419ca2b29e8e9b10b205eee67ea0a67f68c9be4a5cf4c6addfd8e12b",
+    "destination": "fixtures/generation/acoustic/transcribe/c432b25e0e92b9f7b5899b774b8f66c40ce652c3fd2d6fa821b501e21fdf4df6.json",
+    "destination_sha256": "49f2b010419ca2b29e8e9b10b205eee67ea0a67f68c9be4a5cf4c6addfd8e12b",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/c432b25e0e92b9f7b5899b774b8f66c40ce652c3fd2d6fa821b501e21fdf4df6.receipt.json",
+    "source_sha256": "a7d441dc03cc8a6e8727218e21cc465cb4c56db4252255f2017636945348286a",
+    "destination": "fixtures/generation/acoustic/transcribe/c432b25e0e92b9f7b5899b774b8f66c40ce652c3fd2d6fa821b501e21fdf4df6.receipt.json",
+    "destination_sha256": "a7d441dc03cc8a6e8727218e21cc465cb4c56db4252255f2017636945348286a",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/8ea3c4763e090159e1878b9adea1b8e7ef09149486d1aab99a7ac1049943af76.json",
+    "source_sha256": "78ca45c98635ff3746ffd345a2f5cc0f2b73b6c6fc6e9336027f1bffe07326d3",
+    "destination": "fixtures/generation/acoustic/transcribe/8ea3c4763e090159e1878b9adea1b8e7ef09149486d1aab99a7ac1049943af76.json",
+    "destination_sha256": "78ca45c98635ff3746ffd345a2f5cc0f2b73b6c6fc6e9336027f1bffe07326d3",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/8ea3c4763e090159e1878b9adea1b8e7ef09149486d1aab99a7ac1049943af76.receipt.json",
+    "source_sha256": "d0f8f3f25c1d3d49b308252787892cbb424e68f898a570753078ee5fbf0beec3",
+    "destination": "fixtures/generation/acoustic/transcribe/8ea3c4763e090159e1878b9adea1b8e7ef09149486d1aab99a7ac1049943af76.receipt.json",
+    "destination_sha256": "d0f8f3f25c1d3d49b308252787892cbb424e68f898a570753078ee5fbf0beec3",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/d081645107f6707cff2efc0d327d890401613786be5f434ab183e63cf4bd5eae.json",
+    "source_sha256": "d107c4e6e36c19cbc02f289ad606aa03bddb28d79c0032496223f3a189f7ddb4",
+    "destination": "fixtures/generation/acoustic/transcribe/d081645107f6707cff2efc0d327d890401613786be5f434ab183e63cf4bd5eae.json",
+    "destination_sha256": "d107c4e6e36c19cbc02f289ad606aa03bddb28d79c0032496223f3a189f7ddb4",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/d081645107f6707cff2efc0d327d890401613786be5f434ab183e63cf4bd5eae.receipt.json",
+    "source_sha256": "e60adf2bf5b7006a5663a4ccc0f1f360da9789294c5504c43c177a4170a36184",
+    "destination": "fixtures/generation/acoustic/transcribe/d081645107f6707cff2efc0d327d890401613786be5f434ab183e63cf4bd5eae.receipt.json",
+    "destination_sha256": "e60adf2bf5b7006a5663a4ccc0f1f360da9789294c5504c43c177a4170a36184",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.json",
+    "source_sha256": "e8c6664dc6b5b871f8cc2cc0d7c7220620378a62cb5a2b46d15431b0bb4ae64f",
+    "destination": "fixtures/generation/acoustic/transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.json",
+    "destination_sha256": "e8c6664dc6b5b871f8cc2cc0d7c7220620378a62cb5a2b46d15431b0bb4ae64f",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.receipt.json",
+    "source_sha256": "7776b53238b2cf558042a03dc9b1b6e12d24915de2b5d300b71c8688c968b12f",
+    "destination": "fixtures/generation/acoustic/transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.receipt.json",
+    "destination_sha256": "7776b53238b2cf558042a03dc9b1b6e12d24915de2b5d300b71c8688c968b12f",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.json",
+    "source_sha256": "12f8518adab21afb240169407afdcf982ed1873110d4b717a634567a6149c731",
+    "destination": "fixtures/generation/acoustic/transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.json",
+    "destination_sha256": "12f8518adab21afb240169407afdcf982ed1873110d4b717a634567a6149c731",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.receipt.json",
+    "source_sha256": "afd89164389888382444f00047feee7add501ff4c85dd302c2dc07583a452e45",
+    "destination": "fixtures/generation/acoustic/transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.receipt.json",
+    "destination_sha256": "afd89164389888382444f00047feee7add501ff4c85dd302c2dc07583a452e45",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.json",
+    "source_sha256": "dec9a270e7267c34ebeadfc8cc2e28c16f6bfa1ef0bac32518cb7670bcd3c363",
+    "destination": "fixtures/generation/acoustic/transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.json",
+    "destination_sha256": "dec9a270e7267c34ebeadfc8cc2e28c16f6bfa1ef0bac32518cb7670bcd3c363",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.receipt.json",
+    "source_sha256": "68e652205eee66a18db2d192bc8a9e2dc5e1d4cf5eeb4ba3e8fcdf9a78d48c15",
+    "destination": "fixtures/generation/acoustic/transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.receipt.json",
+    "destination_sha256": "68e652205eee66a18db2d192bc8a9e2dc5e1d4cf5eeb4ba3e8fcdf9a78d48c15",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/bd57f9a164eedf7bdb7d8f02c7b3c68abaa31b7e8afce3324aa98ec2bdec2b5c.json",
+    "source_sha256": "8798c03fd1fe46d702f5b05c34d61d3def82992762aff866ad04b10efbaac871",
+    "destination": "fixtures/generation/acoustic/transcribe/bd57f9a164eedf7bdb7d8f02c7b3c68abaa31b7e8afce3324aa98ec2bdec2b5c.json",
+    "destination_sha256": "8798c03fd1fe46d702f5b05c34d61d3def82992762aff866ad04b10efbaac871",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/bd57f9a164eedf7bdb7d8f02c7b3c68abaa31b7e8afce3324aa98ec2bdec2b5c.receipt.json",
+    "source_sha256": "77cfbb34422db4394d41807efc53ead1b79c1c1db1c672b82fa7be768e1ef723",
+    "destination": "fixtures/generation/acoustic/transcribe/bd57f9a164eedf7bdb7d8f02c7b3c68abaa31b7e8afce3324aa98ec2bdec2b5c.receipt.json",
+    "destination_sha256": "77cfbb34422db4394d41807efc53ead1b79c1c1db1c672b82fa7be768e1ef723",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/5642160d7f739b0b8def60a7be69604b01971058878a1cf5a2dac0c20fd6b903.json",
+    "source_sha256": "c26ce0ce44d7d014edbe2cb3de9fe542cc0282ec901003c5419ef957d0571605",
+    "destination": "fixtures/generation/acoustic/transcribe/5642160d7f739b0b8def60a7be69604b01971058878a1cf5a2dac0c20fd6b903.json",
+    "destination_sha256": "c26ce0ce44d7d014edbe2cb3de9fe542cc0282ec901003c5419ef957d0571605",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/5642160d7f739b0b8def60a7be69604b01971058878a1cf5a2dac0c20fd6b903.receipt.json",
+    "source_sha256": "75ba3a676ccc5e3832ae8a53c84762dba69064dc30f34b085711acb8cbc4f2a1",
+    "destination": "fixtures/generation/acoustic/transcribe/5642160d7f739b0b8def60a7be69604b01971058878a1cf5a2dac0c20fd6b903.receipt.json",
+    "destination_sha256": "75ba3a676ccc5e3832ae8a53c84762dba69064dc30f34b085711acb8cbc4f2a1",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/bd655bd8ae23383981c56e7fbe5e602d7304862df4b5aa26f2b95fe30522dc98.json",
+    "source_sha256": "c11c0a3869fe3f72443fe4f2304eac615080bb3b4c75262b1a1f25ddd72d36de",
+    "destination": "fixtures/generation/acoustic/transcribe/bd655bd8ae23383981c56e7fbe5e602d7304862df4b5aa26f2b95fe30522dc98.json",
+    "destination_sha256": "c11c0a3869fe3f72443fe4f2304eac615080bb3b4c75262b1a1f25ddd72d36de",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/transcribe/bd655bd8ae23383981c56e7fbe5e602d7304862df4b5aa26f2b95fe30522dc98.receipt.json",
+    "source_sha256": "9e3b1f3b3ce6f7df8622f2d457757e48d66c0711ba7068d865cf8560b9b73503",
+    "destination": "fixtures/generation/acoustic/transcribe/bd655bd8ae23383981c56e7fbe5e602d7304862df4b5aa26f2b95fe30522dc98.receipt.json",
+    "destination_sha256": "9e3b1f3b3ce6f7df8622f2d457757e48d66c0711ba7068d865cf8560b9b73503",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.json",
+    "source_sha256": "057a44521f631af4da9cbd8b286d26da6892560d3ecbf5ae7da0a72aad679021",
+    "destination": "fixtures/generation/acoustic/meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.json",
+    "destination_sha256": "057a44521f631af4da9cbd8b286d26da6892560d3ecbf5ae7da0a72aad679021",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/acoustic_proof/output/meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.receipt.json",
+    "source_sha256": "c4eabb83b8d63a4fd7175ab717bb9296f36741a21e41d896fd800be3440f64ea",
+    "destination": "fixtures/generation/acoustic/meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.receipt.json",
+    "destination_sha256": "c4eabb83b8d63a4fd7175ab717bb9296f36741a21e41d896fd800be3440f64ea",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  },
+  {
+    "component_id": "experimental-source-snapshot",
+    "source_relative_path": "docs/examples/oz_scene/output/release-risk-check/registration.json",
+    "source_sha256": "2aa1a7bd9e7d88fa7939e825e0472c4eb383ec51dcdf22afe384814484cd7a82",
+    "destination": "fixtures/generation/geometry/registration.json",
+    "destination_sha256": "2aa1a7bd9e7d88fa7939e825e0472c4eb383ec51dcdf22afe384814484cd7a82",
+    "transformation": "Unchanged imported bytes; diagnostic only. No new provider request.",
+    "license_notice": "No additional license notice in response/media artifact."
+  }
+]

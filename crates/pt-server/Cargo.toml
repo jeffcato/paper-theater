@@ -1,0 +1,18 @@
+[package]
+name = "pt-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+pt-contracts.workspace = true
+pt-production.workspace = true
+axum = "0.8"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "net", "signal"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+async-stream = "0.3"
+futures-core = "0.3"
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+tempfile = "3"

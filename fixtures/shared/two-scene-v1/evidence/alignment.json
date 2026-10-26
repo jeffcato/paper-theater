@@ -1,0 +1,3353 @@
+{
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "coverage": 1,
+  "imported": true,
+  "raw_report_sha256": "a691296eb3561e8c826a43e541c34f175e98170164e0563d65e98f3ef1f0f10f",
+  "words": [
+    {
+      "id": "source:3158:3166",
+      "source_span_characters": [
+        3158,
+        3166
+      ],
+      "word": "Suddenly",
+      "recognized_words": [
+        "Suddenly,"
+      ],
+      "start_sample": 9600,
+      "end_sample": 21600,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "source:3167:3172",
+      "source_span_characters": [
+        3167,
+        3172
+      ],
+      "word": "Uncle",
+      "recognized_words": [
+        "Uncle"
+      ],
+      "start_sample": 24000,
+      "end_sample": 28800,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        9,
+        14
+      ]
+    },
+    {
+      "id": "source:3173:3178",
+      "source_span_characters": [
+        3173,
+        3178
+      ],
+      "word": "Henry",
+      "recognized_words": [
+        "Henry"
+      ],
+      "start_sample": 28800,
+      "end_sample": 36000,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "id": "source:3179:3184",
+      "source_span_characters": [
+        3179,
+        3184
+      ],
+      "word": "stood",
+      "recognized_words": [
+        "stood"
+      ],
+      "start_sample": 36000,
+      "end_sample": 43200,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        21,
+        26
+      ]
+    },
+    {
+      "id": "source:3185:3187",
+      "source_span_characters": [
+        3185,
+        3187
+      ],
+      "word": "up",
+      "recognized_words": [
+        "up."
+      ],
+      "start_sample": 43200,
+      "end_sample": 48000,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        27,
+        29
+      ]
+    },
+    {
+      "id": "source:3191:3198",
+      "source_span_characters": [
+        3191,
+        3198
+      ],
+      "word": "There’s",
+      "recognized_words": [
+        "There's"
+      ],
+      "start_sample": 71280,
+      "end_sample": 73680,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        33,
+        40
+      ]
+    },
+    {
+      "id": "source:3199:3200",
+      "source_span_characters": [
+        3199,
+        3200
+      ],
+      "word": "a",
+      "recognized_words": [
+        "a"
+      ],
+      "start_sample": 73680,
+      "end_sample": 76080,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        41,
+        42
+      ]
+    },
+    {
+      "id": "source:3201:3208",
+      "source_span_characters": [
+        3201,
+        3208
+      ],
+      "word": "cyclone",
+      "recognized_words": [
+        "cyclone"
+      ],
+      "start_sample": 76080,
+      "end_sample": 90480,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        43,
+        50
+      ]
+    },
+    {
+      "id": "source:3209:3215",
+      "source_span_characters": [
+        3209,
+        3215
+      ],
+      "word": "coming",
+      "recognized_words": [
+        "coming,"
+      ],
+      "start_sample": 90480,
+      "end_sample": 100080,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        51,
+        57
+      ]
+    },
+    {
+      "id": "source:3217:3219",
+      "source_span_characters": [
+        3217,
+        3219
+      ],
+      "word": "Em",
+      "recognized_words": [
+        "M."
+      ],
+      "start_sample": 100080,
+      "end_sample": 107280,
+      "timing_kind": "interval",
+      "normalization": "initial_name",
+      "source_span": [
+        59,
+        61
+      ]
+    },
+    {
+      "id": "source:3222:3224",
+      "source_span_characters": [
+        3222,
+        3224
+      ],
+      "word": "he",
+      "recognized_words": [
+        "He"
+      ],
+      "start_sample": 126240,
+      "end_sample": 128640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        64,
+        66
+      ]
+    },
+    {
+      "id": "source:3225:3231",
+      "source_span_characters": [
+        3225,
+        3231
+      ],
+      "word": "called",
+      "recognized_words": [
+        "called"
+      ],
+      "start_sample": 128640,
+      "end_sample": 135840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        67,
+        73
+      ]
+    },
+    {
+      "id": "source:3232:3234",
+      "source_span_characters": [
+        3232,
+        3234
+      ],
+      "word": "to",
+      "recognized_words": [
+        "to"
+      ],
+      "start_sample": 135840,
+      "end_sample": 140640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        74,
+        76
+      ]
+    },
+    {
+      "id": "source:3235:3238",
+      "source_span_characters": [
+        3235,
+        3238
+      ],
+      "word": "his",
+      "recognized_words": [
+        "his"
+      ],
+      "start_sample": 140640,
+      "end_sample": 143040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        77,
+        80
+      ]
+    },
+    {
+      "id": "source:3239:3243",
+      "source_span_characters": [
+        3239,
+        3243
+      ],
+      "word": "wife",
+      "recognized_words": [
+        "wife."
+      ],
+      "start_sample": 143040,
+      "end_sample": 155040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        81,
+        85
+      ]
+    },
+    {
+      "id": "source:3246:3250",
+      "source_span_characters": [
+        3246,
+        3250
+      ],
+      "word": "I’ll",
+      "recognized_words": [
+        "I'll"
+      ],
+      "start_sample": 173040,
+      "end_sample": 175440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        88,
+        92
+      ]
+    },
+    {
+      "id": "source:3251:3253",
+      "source_span_characters": [
+        3251,
+        3253
+      ],
+      "word": "go",
+      "recognized_words": [
+        "go"
+      ],
+      "start_sample": 175440,
+      "end_sample": 177840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        93,
+        95
+      ]
+    },
+    {
+      "id": "source:3254:3258",
+      "source_span_characters": [
+        3254,
+        3258
+      ],
+      "word": "look",
+      "recognized_words": [
+        "look"
+      ],
+      "start_sample": 177840,
+      "end_sample": 182640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        96,
+        100
+      ]
+    },
+    {
+      "id": "source:3259:3264",
+      "source_span_characters": [
+        3259,
+        3264
+      ],
+      "word": "after",
+      "recognized_words": [
+        "after"
+      ],
+      "start_sample": 182640,
+      "end_sample": 189840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        101,
+        106
+      ]
+    },
+    {
+      "id": "source:3265:3268",
+      "source_span_characters": [
+        3265,
+        3268
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 189840,
+      "end_sample": 192240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        107,
+        110
+      ]
+    },
+    {
+      "id": "source:3269:3274",
+      "source_span_characters": [
+        3269,
+        3274
+      ],
+      "word": "stock",
+      "recognized_words": [
+        "stock."
+      ],
+      "start_sample": 192240,
+      "end_sample": 199440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        111,
+        116
+      ]
+    },
+    {
+      "id": "source:3277:3281",
+      "source_span_characters": [
+        3277,
+        3281
+      ],
+      "word": "Then",
+      "recognized_words": [
+        "Then"
+      ],
+      "start_sample": 217920,
+      "end_sample": 225120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        119,
+        123
+      ]
+    },
+    {
+      "id": "source:3282:3284",
+      "source_span_characters": [
+        3282,
+        3284
+      ],
+      "word": "he",
+      "recognized_words": [
+        "he"
+      ],
+      "start_sample": 225120,
+      "end_sample": 227520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        124,
+        126
+      ]
+    },
+    {
+      "id": "source:3285:3288",
+      "source_span_characters": [
+        3285,
+        3288
+      ],
+      "word": "ran",
+      "recognized_words": [
+        "ran"
+      ],
+      "start_sample": 227520,
+      "end_sample": 234720,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        127,
+        130
+      ]
+    },
+    {
+      "id": "source:3289:3295",
+      "source_span_characters": [
+        3289,
+        3295
+      ],
+      "word": "toward",
+      "recognized_words": [
+        "toward"
+      ],
+      "start_sample": 234720,
+      "end_sample": 241920,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        131,
+        137
+      ]
+    },
+    {
+      "id": "source:3296:3299",
+      "source_span_characters": [
+        3296,
+        3299
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 241920,
+      "end_sample": 241920,
+      "timing_kind": "point",
+      "normalization": "exact",
+      "source_span": [
+        138,
+        141
+      ]
+    },
+    {
+      "id": "source:3300:3305",
+      "source_span_characters": [
+        3300,
+        3305
+      ],
+      "word": "sheds",
+      "recognized_words": [
+        "sheds"
+      ],
+      "start_sample": 241920,
+      "end_sample": 249120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        142,
+        147
+      ]
+    },
+    {
+      "id": "source:3306:3311",
+      "source_span_characters": [
+        3306,
+        3311
+      ],
+      "word": "where",
+      "recognized_words": [
+        "where"
+      ],
+      "start_sample": 249120,
+      "end_sample": 251520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        148,
+        153
+      ]
+    },
+    {
+      "id": "source:3312:3315",
+      "source_span_characters": [
+        3312,
+        3315
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 251520,
+      "end_sample": 253920,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        154,
+        157
+      ]
+    },
+    {
+      "id": "source:3316:3320",
+      "source_span_characters": [
+        3316,
+        3320
+      ],
+      "word": "cows",
+      "recognized_words": [
+        "cows"
+      ],
+      "start_sample": 253920,
+      "end_sample": 261120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        158,
+        162
+      ]
+    },
+    {
+      "id": "source:3321:3324",
+      "source_span_characters": [
+        3321,
+        3324
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 261120,
+      "end_sample": 263520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        163,
+        166
+      ]
+    },
+    {
+      "id": "source:3325:3331",
+      "source_span_characters": [
+        3325,
+        3331
+      ],
+      "word": "horses",
+      "recognized_words": [
+        "horses"
+      ],
+      "start_sample": 263520,
+      "end_sample": 273120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        167,
+        173
+      ]
+    },
+    {
+      "id": "source:3332:3336",
+      "source_span_characters": [
+        3332,
+        3336
+      ],
+      "word": "were",
+      "recognized_words": [
+        "were"
+      ],
+      "start_sample": 273120,
+      "end_sample": 275520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        174,
+        178
+      ]
+    },
+    {
+      "id": "source:3337:3341",
+      "source_span_characters": [
+        3337,
+        3341
+      ],
+      "word": "kept",
+      "recognized_words": [
+        "kept."
+      ],
+      "start_sample": 275520,
+      "end_sample": 285120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        179,
+        183
+      ]
+    },
+    {
+      "id": "source:3344:3348",
+      "source_span_characters": [
+        3344,
+        3348
+      ],
+      "word": "Aunt",
+      "recognized_words": [
+        "Aunt"
+      ],
+      "start_sample": 307440,
+      "end_sample": 309840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        186,
+        190
+      ]
+    },
+    {
+      "id": "source:3349:3351",
+      "source_span_characters": [
+        3349,
+        3351
+      ],
+      "word": "Em",
+      "recognized_words": [
+        "Em"
+      ],
+      "start_sample": 309840,
+      "end_sample": 317040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        191,
+        193
+      ]
+    },
+    {
+      "id": "source:3352:3359",
+      "source_span_characters": [
+        3352,
+        3359
+      ],
+      "word": "dropped",
+      "recognized_words": [
+        "dropped"
+      ],
+      "start_sample": 317040,
+      "end_sample": 324240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        194,
+        201
+      ]
+    },
+    {
+      "id": "source:3360:3363",
+      "source_span_characters": [
+        3360,
+        3363
+      ],
+      "word": "her",
+      "recognized_words": [
+        "her"
+      ],
+      "start_sample": 324240,
+      "end_sample": 326640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        202,
+        205
+      ]
+    },
+    {
+      "id": "source:3364:3368",
+      "source_span_characters": [
+        3364,
+        3368
+      ],
+      "word": "work",
+      "recognized_words": [
+        "work"
+      ],
+      "start_sample": 326640,
+      "end_sample": 338640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        206,
+        210
+      ]
+    },
+    {
+      "id": "source:3369:3372",
+      "source_span_characters": [
+        3369,
+        3372
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 338640,
+      "end_sample": 341040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        211,
+        214
+      ]
+    },
+    {
+      "id": "source:3373:3377",
+      "source_span_characters": [
+        3373,
+        3377
+      ],
+      "word": "came",
+      "recognized_words": [
+        "came"
+      ],
+      "start_sample": 341040,
+      "end_sample": 345840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        215,
+        219
+      ]
+    },
+    {
+      "id": "source:3378:3380",
+      "source_span_characters": [
+        3378,
+        3380
+      ],
+      "word": "to",
+      "recognized_words": [
+        "to"
+      ],
+      "start_sample": 345840,
+      "end_sample": 348240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        220,
+        222
+      ]
+    },
+    {
+      "id": "source:3381:3384",
+      "source_span_characters": [
+        3381,
+        3384
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 348240,
+      "end_sample": 350640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        223,
+        226
+      ]
+    },
+    {
+      "id": "source:3385:3389",
+      "source_span_characters": [
+        3385,
+        3389
+      ],
+      "word": "door",
+      "recognized_words": [
+        "door."
+      ],
+      "start_sample": 350640,
+      "end_sample": 360240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        227,
+        231
+      ]
+    },
+    {
+      "id": "source:3391:3394",
+      "source_span_characters": [
+        3391,
+        3394
+      ],
+      "word": "One",
+      "recognized_words": [
+        "One"
+      ],
+      "start_sample": 369840,
+      "end_sample": 374640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        233,
+        236
+      ]
+    },
+    {
+      "id": "source:3395:3401",
+      "source_span_characters": [
+        3395,
+        3401
+      ],
+      "word": "glance",
+      "recognized_words": [
+        "glance"
+      ],
+      "start_sample": 374640,
+      "end_sample": 381840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        237,
+        243
+      ]
+    },
+    {
+      "id": "source:3402:3406",
+      "source_span_characters": [
+        3402,
+        3406
+      ],
+      "word": "told",
+      "recognized_words": [
+        "told"
+      ],
+      "start_sample": 381840,
+      "end_sample": 386640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        244,
+        248
+      ]
+    },
+    {
+      "id": "source:3407:3410",
+      "source_span_characters": [
+        3407,
+        3410
+      ],
+      "word": "her",
+      "recognized_words": [
+        "her"
+      ],
+      "start_sample": 386640,
+      "end_sample": 389040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        249,
+        252
+      ]
+    },
+    {
+      "id": "source:3411:3413",
+      "source_span_characters": [
+        3411,
+        3413
+      ],
+      "word": "of",
+      "recognized_words": [
+        "of"
+      ],
+      "start_sample": 389040,
+      "end_sample": 391440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        253,
+        255
+      ]
+    },
+    {
+      "id": "source:3414:3417",
+      "source_span_characters": [
+        3414,
+        3417
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 391440,
+      "end_sample": 393840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        256,
+        259
+      ]
+    },
+    {
+      "id": "source:3418:3424",
+      "source_span_characters": [
+        3418,
+        3424
+      ],
+      "word": "danger",
+      "recognized_words": [
+        "danger"
+      ],
+      "start_sample": 393840,
+      "end_sample": 403440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        260,
+        266
+      ]
+    },
+    {
+      "id": "source:3425:3430",
+      "source_span_characters": [
+        3425,
+        3430
+      ],
+      "word": "close",
+      "recognized_words": [
+        "close"
+      ],
+      "start_sample": 403440,
+      "end_sample": 408240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        267,
+        272
+      ]
+    },
+    {
+      "id": "source:3431:3433",
+      "source_span_characters": [
+        3431,
+        3433
+      ],
+      "word": "at",
+      "recognized_words": [
+        "at"
+      ],
+      "start_sample": 408240,
+      "end_sample": 410640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        273,
+        275
+      ]
+    },
+    {
+      "id": "source:3434:3438",
+      "source_span_characters": [
+        3434,
+        3438
+      ],
+      "word": "hand",
+      "recognized_words": [
+        "hand."
+      ],
+      "start_sample": 410640,
+      "end_sample": 420240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        276,
+        280
+      ]
+    },
+    {
+      "id": "source:3442:3447",
+      "source_span_characters": [
+        3442,
+        3447
+      ],
+      "word": "Quick",
+      "recognized_words": [
+        "Quick,"
+      ],
+      "start_sample": 443040,
+      "end_sample": 450240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        284,
+        289
+      ]
+    },
+    {
+      "id": "source:3449:3456",
+      "source_span_characters": [
+        3449,
+        3456
+      ],
+      "word": "Dorothy",
+      "recognized_words": [
+        "Dorothy."
+      ],
+      "start_sample": 450240,
+      "end_sample": 467040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        291,
+        298
+      ]
+    },
+    {
+      "id": "source:3459:3462",
+      "source_span_characters": [
+        3459,
+        3462
+      ],
+      "word": "she",
+      "recognized_words": [
+        "She"
+      ],
+      "start_sample": 482640,
+      "end_sample": 487440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        301,
+        304
+      ]
+    },
+    {
+      "id": "source:3463:3471",
+      "source_span_characters": [
+        3463,
+        3471
+      ],
+      "word": "screamed",
+      "recognized_words": [
+        "screamed."
+      ],
+      "start_sample": 487440,
+      "end_sample": 506640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        305,
+        313
+      ]
+    },
+    {
+      "id": "source:3474:3477",
+      "source_span_characters": [
+        3474,
+        3477
+      ],
+      "word": "Run",
+      "recognized_words": [
+        "Run"
+      ],
+      "start_sample": 521280,
+      "end_sample": 526080,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        316,
+        319
+      ]
+    },
+    {
+      "id": "source:3478:3481",
+      "source_span_characters": [
+        3478,
+        3481
+      ],
+      "word": "for",
+      "recognized_words": [
+        "for"
+      ],
+      "start_sample": 526080,
+      "end_sample": 528480,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        320,
+        323
+      ]
+    },
+    {
+      "id": "source:3482:3485",
+      "source_span_characters": [
+        3482,
+        3485
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 528480,
+      "end_sample": 530880,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        324,
+        327
+      ]
+    },
+    {
+      "id": "source:3486:3492",
+      "source_span_characters": [
+        3486,
+        3492
+      ],
+      "word": "cellar",
+      "recognized_words": [
+        "cellar."
+      ],
+      "start_sample": 530880,
+      "end_sample": 545280,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        328,
+        334
+      ]
+    },
+    {
+      "id": "source:3496:3500",
+      "source_span_characters": [
+        3496,
+        3500
+      ],
+      "word": "Toto",
+      "recognized_words": [
+        "Toto"
+      ],
+      "start_sample": 566640,
+      "end_sample": 573840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        338,
+        342
+      ]
+    },
+    {
+      "id": "source:3501:3507",
+      "source_span_characters": [
+        3501,
+        3507
+      ],
+      "word": "jumped",
+      "recognized_words": [
+        "jumped"
+      ],
+      "start_sample": 573840,
+      "end_sample": 581040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        343,
+        349
+      ]
+    },
+    {
+      "id": "source:3508:3511",
+      "source_span_characters": [
+        3508,
+        3511
+      ],
+      "word": "out",
+      "recognized_words": [
+        "out"
+      ],
+      "start_sample": 581040,
+      "end_sample": 583440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        350,
+        353
+      ]
+    },
+    {
+      "id": "source:3512:3514",
+      "source_span_characters": [
+        3512,
+        3514
+      ],
+      "word": "of",
+      "recognized_words": [
+        "of"
+      ],
+      "start_sample": 583440,
+      "end_sample": 585840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        354,
+        356
+      ]
+    },
+    {
+      "id": "source:3515:3524",
+      "source_span_characters": [
+        3515,
+        3524
+      ],
+      "word": "Dorothy’s",
+      "recognized_words": [
+        "Dorothy's"
+      ],
+      "start_sample": 585840,
+      "end_sample": 595440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        357,
+        366
+      ]
+    },
+    {
+      "id": "source:3525:3529",
+      "source_span_characters": [
+        3525,
+        3529
+      ],
+      "word": "arms",
+      "recognized_words": [
+        "arms"
+      ],
+      "start_sample": 595440,
+      "end_sample": 602640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        367,
+        371
+      ]
+    },
+    {
+      "id": "source:3530:3533",
+      "source_span_characters": [
+        3530,
+        3533
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 602640,
+      "end_sample": 605040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        372,
+        375
+      ]
+    },
+    {
+      "id": "source:3534:3537",
+      "source_span_characters": [
+        3534,
+        3537
+      ],
+      "word": "hid",
+      "recognized_words": [
+        "hid"
+      ],
+      "start_sample": 605040,
+      "end_sample": 609840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        376,
+        379
+      ]
+    },
+    {
+      "id": "source:3538:3543",
+      "source_span_characters": [
+        3538,
+        3543
+      ],
+      "word": "under",
+      "recognized_words": [
+        "under"
+      ],
+      "start_sample": 609840,
+      "end_sample": 614640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        380,
+        385
+      ]
+    },
+    {
+      "id": "source:3544:3547",
+      "source_span_characters": [
+        3544,
+        3547
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 614640,
+      "end_sample": 614640,
+      "timing_kind": "point",
+      "normalization": "exact",
+      "source_span": [
+        386,
+        389
+      ]
+    },
+    {
+      "id": "source:3548:3551",
+      "source_span_characters": [
+        3548,
+        3551
+      ],
+      "word": "bed",
+      "recognized_words": [
+        "bed,"
+      ],
+      "start_sample": 614640,
+      "end_sample": 624240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        390,
+        393
+      ]
+    },
+    {
+      "id": "source:3553:3556",
+      "source_span_characters": [
+        3553,
+        3556
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 626640,
+      "end_sample": 629040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        395,
+        398
+      ]
+    },
+    {
+      "id": "source:3557:3560",
+      "source_span_characters": [
+        3557,
+        3560
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 629040,
+      "end_sample": 631440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        399,
+        402
+      ]
+    },
+    {
+      "id": "source:3561:3565",
+      "source_span_characters": [
+        3561,
+        3565
+      ],
+      "word": "girl",
+      "recognized_words": [
+        "girl"
+      ],
+      "start_sample": 631440,
+      "end_sample": 636240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        403,
+        407
+      ]
+    },
+    {
+      "id": "source:3566:3573",
+      "source_span_characters": [
+        3566,
+        3573
+      ],
+      "word": "started",
+      "recognized_words": [
+        "started"
+      ],
+      "start_sample": 636240,
+      "end_sample": 643440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        408,
+        415
+      ]
+    },
+    {
+      "id": "source:3574:3576",
+      "source_span_characters": [
+        3574,
+        3576
+      ],
+      "word": "to",
+      "recognized_words": [
+        "to"
+      ],
+      "start_sample": 643440,
+      "end_sample": 645840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        416,
+        418
+      ]
+    },
+    {
+      "id": "source:3577:3580",
+      "source_span_characters": [
+        3577,
+        3580
+      ],
+      "word": "get",
+      "recognized_words": [
+        "get"
+      ],
+      "start_sample": 645840,
+      "end_sample": 650640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        419,
+        422
+      ]
+    },
+    {
+      "id": "source:3581:3584",
+      "source_span_characters": [
+        3581,
+        3584
+      ],
+      "word": "him",
+      "recognized_words": [
+        "him."
+      ],
+      "start_sample": 650640,
+      "end_sample": 657840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        423,
+        426
+      ]
+    },
+    {
+      "id": "source:3586:3590",
+      "source_span_characters": [
+        3586,
+        3590
+      ],
+      "word": "Aunt",
+      "recognized_words": [
+        "Aunt"
+      ],
+      "start_sample": 662640,
+      "end_sample": 665040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        428,
+        432
+      ]
+    },
+    {
+      "id": "source:3591:3593",
+      "source_span_characters": [
+        3591,
+        3593
+      ],
+      "word": "Em",
+      "recognized_words": [
+        "Em,"
+      ],
+      "start_sample": 665040,
+      "end_sample": 672240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        433,
+        435
+      ]
+    },
+    {
+      "id": "source:3595:3600",
+      "source_span_characters": [
+        3595,
+        3600
+      ],
+      "word": "badly",
+      "recognized_words": [
+        "badly"
+      ],
+      "start_sample": 677040,
+      "end_sample": 684240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        437,
+        442
+      ]
+    },
+    {
+      "id": "source:3601:3611",
+      "source_span_characters": [
+        3601,
+        3611
+      ],
+      "word": "frightened",
+      "recognized_words": [
+        "frightened,"
+      ],
+      "start_sample": 684240,
+      "end_sample": 698640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        443,
+        453
+      ]
+    },
+    {
+      "id": "source:3613:3618",
+      "source_span_characters": [
+        3613,
+        3618
+      ],
+      "word": "threw",
+      "recognized_words": [
+        "threw"
+      ],
+      "start_sample": 698640,
+      "end_sample": 705840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        455,
+        460
+      ]
+    },
+    {
+      "id": "source:3619:3623",
+      "source_span_characters": [
+        3619,
+        3623
+      ],
+      "word": "open",
+      "recognized_words": [
+        "open"
+      ],
+      "start_sample": 705840,
+      "end_sample": 710640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        461,
+        465
+      ]
+    },
+    {
+      "id": "source:3624:3627",
+      "source_span_characters": [
+        3624,
+        3627
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 710640,
+      "end_sample": 713040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        466,
+        469
+      ]
+    },
+    {
+      "id": "source:3628:3632",
+      "source_span_characters": [
+        3628,
+        3632
+      ],
+      "word": "trap",
+      "recognized_words": [
+        "trap"
+      ],
+      "start_sample": 713040,
+      "end_sample": 720240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        470,
+        474
+      ]
+    },
+    {
+      "id": "source:3633:3637",
+      "source_span_characters": [
+        3633,
+        3637
+      ],
+      "word": "door",
+      "recognized_words": [
+        "door"
+      ],
+      "start_sample": 720240,
+      "end_sample": 722640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        475,
+        479
+      ]
+    },
+    {
+      "id": "source:3638:3640",
+      "source_span_characters": [
+        3638,
+        3640
+      ],
+      "word": "in",
+      "recognized_words": [
+        "in"
+      ],
+      "start_sample": 722640,
+      "end_sample": 725040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        480,
+        482
+      ]
+    },
+    {
+      "id": "source:3641:3644",
+      "source_span_characters": [
+        3641,
+        3644
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 725040,
+      "end_sample": 727440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        483,
+        486
+      ]
+    },
+    {
+      "id": "source:3645:3650",
+      "source_span_characters": [
+        3645,
+        3650
+      ],
+      "word": "floor",
+      "recognized_words": [
+        "floor"
+      ],
+      "start_sample": 727440,
+      "end_sample": 734640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        487,
+        492
+      ]
+    },
+    {
+      "id": "source:3651:3654",
+      "source_span_characters": [
+        3651,
+        3654
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 734640,
+      "end_sample": 737040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        493,
+        496
+      ]
+    },
+    {
+      "id": "source:3655:3662",
+      "source_span_characters": [
+        3655,
+        3662
+      ],
+      "word": "climbed",
+      "recognized_words": [
+        "climbed"
+      ],
+      "start_sample": 737040,
+      "end_sample": 744240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        497,
+        504
+      ]
+    },
+    {
+      "id": "source:3663:3667",
+      "source_span_characters": [
+        3663,
+        3667
+      ],
+      "word": "down",
+      "recognized_words": [
+        "down"
+      ],
+      "start_sample": 744240,
+      "end_sample": 749040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        505,
+        509
+      ]
+    },
+    {
+      "id": "source:3668:3671",
+      "source_span_characters": [
+        3668,
+        3671
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 749040,
+      "end_sample": 751440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        510,
+        513
+      ]
+    },
+    {
+      "id": "source:3672:3678",
+      "source_span_characters": [
+        3672,
+        3678
+      ],
+      "word": "ladder",
+      "recognized_words": [
+        "ladder"
+      ],
+      "start_sample": 751440,
+      "end_sample": 756240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        514,
+        520
+      ]
+    },
+    {
+      "id": "source:3679:3683",
+      "source_span_characters": [
+        3679,
+        3683
+      ],
+      "word": "into",
+      "recognized_words": [
+        "into"
+      ],
+      "start_sample": 756240,
+      "end_sample": 761040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        521,
+        525
+      ]
+    },
+    {
+      "id": "source:3684:3687",
+      "source_span_characters": [
+        3684,
+        3687
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 761040,
+      "end_sample": 763440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        526,
+        529
+      ]
+    },
+    {
+      "id": "source:3688:3693",
+      "source_span_characters": [
+        3688,
+        3693
+      ],
+      "word": "small",
+      "recognized_words": [
+        "small,"
+      ],
+      "start_sample": 763440,
+      "end_sample": 773040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        530,
+        535
+      ]
+    },
+    {
+      "id": "source:3695:3699",
+      "source_span_characters": [
+        3695,
+        3699
+      ],
+      "word": "dark",
+      "recognized_words": [
+        "dark"
+      ],
+      "start_sample": 773040,
+      "end_sample": 780240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        537,
+        541
+      ]
+    },
+    {
+      "id": "source:3700:3704",
+      "source_span_characters": [
+        3700,
+        3704
+      ],
+      "word": "hole",
+      "recognized_words": [
+        "hole."
+      ],
+      "start_sample": 780240,
+      "end_sample": 792240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        542,
+        546
+      ]
+    },
+    {
+      "id": "source:3706:3713",
+      "source_span_characters": [
+        3706,
+        3713
+      ],
+      "word": "Dorothy",
+      "recognized_words": [
+        "Dorothy"
+      ],
+      "start_sample": 811440,
+      "end_sample": 818640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        548,
+        555
+      ]
+    },
+    {
+      "id": "source:3714:3720",
+      "source_span_characters": [
+        3714,
+        3720
+      ],
+      "word": "caught",
+      "recognized_words": [
+        "caught"
+      ],
+      "start_sample": 818640,
+      "end_sample": 825840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        556,
+        562
+      ]
+    },
+    {
+      "id": "source:3721:3725",
+      "source_span_characters": [
+        3721,
+        3725
+      ],
+      "word": "Toto",
+      "recognized_words": [
+        "Toto"
+      ],
+      "start_sample": 825840,
+      "end_sample": 833040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        563,
+        567
+      ]
+    },
+    {
+      "id": "source:3726:3728",
+      "source_span_characters": [
+        3726,
+        3728
+      ],
+      "word": "at",
+      "recognized_words": [
+        "at"
+      ],
+      "start_sample": 833040,
+      "end_sample": 835440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        568,
+        570
+      ]
+    },
+    {
+      "id": "source:3729:3733",
+      "source_span_characters": [
+        3729,
+        3733
+      ],
+      "word": "last",
+      "recognized_words": [
+        "last"
+      ],
+      "start_sample": 835440,
+      "end_sample": 845040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        571,
+        575
+      ]
+    },
+    {
+      "id": "source:3734:3737",
+      "source_span_characters": [
+        3734,
+        3737
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 845040,
+      "end_sample": 847440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        576,
+        579
+      ]
+    },
+    {
+      "id": "source:3738:3745",
+      "source_span_characters": [
+        3738,
+        3745
+      ],
+      "word": "started",
+      "recognized_words": [
+        "started"
+      ],
+      "start_sample": 847440,
+      "end_sample": 854640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        580,
+        587
+      ]
+    },
+    {
+      "id": "source:3746:3748",
+      "source_span_characters": [
+        3746,
+        3748
+      ],
+      "word": "to",
+      "recognized_words": [
+        "to"
+      ],
+      "start_sample": 854640,
+      "end_sample": 854640,
+      "timing_kind": "point",
+      "normalization": "exact",
+      "source_span": [
+        588,
+        590
+      ]
+    },
+    {
+      "id": "source:3749:3755",
+      "source_span_characters": [
+        3749,
+        3755
+      ],
+      "word": "follow",
+      "recognized_words": [
+        "follow"
+      ],
+      "start_sample": 854640,
+      "end_sample": 861840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        591,
+        597
+      ]
+    },
+    {
+      "id": "source:3756:3759",
+      "source_span_characters": [
+        3756,
+        3759
+      ],
+      "word": "her",
+      "recognized_words": [
+        "her"
+      ],
+      "start_sample": 861840,
+      "end_sample": 866640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        598,
+        601
+      ]
+    },
+    {
+      "id": "source:3760:3764",
+      "source_span_characters": [
+        3760,
+        3764
+      ],
+      "word": "aunt",
+      "recognized_words": [
+        "aunt."
+      ],
+      "start_sample": 866640,
+      "end_sample": 876240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        602,
+        606
+      ]
+    },
+    {
+      "id": "source:3766:3770",
+      "source_span_characters": [
+        3766,
+        3770
+      ],
+      "word": "When",
+      "recognized_words": [
+        "When"
+      ],
+      "start_sample": 888240,
+      "end_sample": 890640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        608,
+        612
+      ]
+    },
+    {
+      "id": "source:3771:3774",
+      "source_span_characters": [
+        3771,
+        3774
+      ],
+      "word": "she",
+      "recognized_words": [
+        "she"
+      ],
+      "start_sample": 890640,
+      "end_sample": 893040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        613,
+        616
+      ]
+    },
+    {
+      "id": "source:3775:3778",
+      "source_span_characters": [
+        3775,
+        3778
+      ],
+      "word": "was",
+      "recognized_words": [
+        "was"
+      ],
+      "start_sample": 893040,
+      "end_sample": 895440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        617,
+        620
+      ]
+    },
+    {
+      "id": "source:3779:3786",
+      "source_span_characters": [
+        3779,
+        3786
+      ],
+      "word": "halfway",
+      "recognized_words": [
+        "halfway"
+      ],
+      "start_sample": 895440,
+      "end_sample": 902640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        621,
+        628
+      ]
+    },
+    {
+      "id": "source:3787:3793",
+      "source_span_characters": [
+        3787,
+        3793
+      ],
+      "word": "across",
+      "recognized_words": [
+        "across"
+      ],
+      "start_sample": 902640,
+      "end_sample": 909840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        629,
+        635
+      ]
+    },
+    {
+      "id": "source:3794:3797",
+      "source_span_characters": [
+        3794,
+        3797
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 909840,
+      "end_sample": 914640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        636,
+        639
+      ]
+    },
+    {
+      "id": "source:3798:3802",
+      "source_span_characters": [
+        3798,
+        3802
+      ],
+      "word": "room",
+      "recognized_words": [
+        "room,"
+      ],
+      "start_sample": 914640,
+      "end_sample": 921840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        640,
+        644
+      ]
+    },
+    {
+      "id": "source:3803:3808",
+      "source_span_characters": [
+        3803,
+        3808
+      ],
+      "word": "there",
+      "recognized_words": [
+        "there"
+      ],
+      "start_sample": 926640,
+      "end_sample": 931440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        645,
+        650
+      ]
+    },
+    {
+      "id": "source:3809:3813",
+      "source_span_characters": [
+        3809,
+        3813
+      ],
+      "word": "came",
+      "recognized_words": [
+        "came"
+      ],
+      "start_sample": 931440,
+      "end_sample": 936240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        651,
+        655
+      ]
+    },
+    {
+      "id": "source:3814:3815",
+      "source_span_characters": [
+        3814,
+        3815
+      ],
+      "word": "a",
+      "recognized_words": [
+        "a"
+      ],
+      "start_sample": 936240,
+      "end_sample": 938640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        656,
+        657
+      ]
+    },
+    {
+      "id": "source:3816:3821",
+      "source_span_characters": [
+        3816,
+        3821
+      ],
+      "word": "great",
+      "recognized_words": [
+        "great"
+      ],
+      "start_sample": 938640,
+      "end_sample": 945840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        658,
+        663
+      ]
+    },
+    {
+      "id": "source:3822:3828",
+      "source_span_characters": [
+        3822,
+        3828
+      ],
+      "word": "shriek",
+      "recognized_words": [
+        "shriek"
+      ],
+      "start_sample": 945840,
+      "end_sample": 957840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        664,
+        670
+      ]
+    },
+    {
+      "id": "source:3829:3833",
+      "source_span_characters": [
+        3829,
+        3833
+      ],
+      "word": "from",
+      "recognized_words": [
+        "from"
+      ],
+      "start_sample": 957840,
+      "end_sample": 962640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        671,
+        675
+      ]
+    },
+    {
+      "id": "source:3834:3837",
+      "source_span_characters": [
+        3834,
+        3837
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 962640,
+      "end_sample": 965040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        676,
+        679
+      ]
+    },
+    {
+      "id": "source:3838:3842",
+      "source_span_characters": [
+        3838,
+        3842
+      ],
+      "word": "wind",
+      "recognized_words": [
+        "wind"
+      ],
+      "start_sample": 965040,
+      "end_sample": 972240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        680,
+        684
+      ]
+    },
+    {
+      "id": "source:3844:3847",
+      "source_span_characters": [
+        3844,
+        3847
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 972240,
+      "end_sample": 974640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        686,
+        689
+      ]
+    },
+    {
+      "id": "source:3848:3851",
+      "source_span_characters": [
+        3848,
+        3851
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 974640,
+      "end_sample": 977040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        690,
+        693
+      ]
+    },
+    {
+      "id": "source:3852:3857",
+      "source_span_characters": [
+        3852,
+        3857
+      ],
+      "word": "house",
+      "recognized_words": [
+        "house"
+      ],
+      "start_sample": 977040,
+      "end_sample": 984240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        694,
+        699
+      ]
+    },
+    {
+      "id": "source:3858:3863",
+      "source_span_characters": [
+        3858,
+        3863
+      ],
+      "word": "shook",
+      "recognized_words": [
+        "shook"
+      ],
+      "start_sample": 984240,
+      "end_sample": 989040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        700,
+        705
+      ]
+    },
+    {
+      "id": "source:3864:3866",
+      "source_span_characters": [
+        3864,
+        3866
+      ],
+      "word": "so",
+      "recognized_words": [
+        "so"
+      ],
+      "start_sample": 989040,
+      "end_sample": 993840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        706,
+        708
+      ]
+    },
+    {
+      "id": "source:3867:3871",
+      "source_span_characters": [
+        3867,
+        3871
+      ],
+      "word": "hard",
+      "recognized_words": [
+        "hard"
+      ],
+      "start_sample": 993840,
+      "end_sample": 1003440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        709,
+        713
+      ]
+    },
+    {
+      "id": "source:3872:3876",
+      "source_span_characters": [
+        3872,
+        3876
+      ],
+      "word": "that",
+      "recognized_words": [
+        "that"
+      ],
+      "start_sample": 1010640,
+      "end_sample": 1013040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        714,
+        718
+      ]
+    },
+    {
+      "id": "source:3877:3880",
+      "source_span_characters": [
+        3877,
+        3880
+      ],
+      "word": "she",
+      "recognized_words": [
+        "she"
+      ],
+      "start_sample": 1013040,
+      "end_sample": 1015440,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        719,
+        722
+      ]
+    },
+    {
+      "id": "source:3881:3885",
+      "source_span_characters": [
+        3881,
+        3885
+      ],
+      "word": "lost",
+      "recognized_words": [
+        "lost"
+      ],
+      "start_sample": 1015440,
+      "end_sample": 1022640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        723,
+        727
+      ]
+    },
+    {
+      "id": "source:3886:3889",
+      "source_span_characters": [
+        3886,
+        3889
+      ],
+      "word": "her",
+      "recognized_words": [
+        "her"
+      ],
+      "start_sample": 1022640,
+      "end_sample": 1025040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        728,
+        731
+      ]
+    },
+    {
+      "id": "source:3890:3897",
+      "source_span_characters": [
+        3890,
+        3897
+      ],
+      "word": "footing",
+      "recognized_words": [
+        "footing"
+      ],
+      "start_sample": 1025040,
+      "end_sample": 1032240,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        732,
+        739
+      ]
+    },
+    {
+      "id": "source:3898:3901",
+      "source_span_characters": [
+        3898,
+        3901
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 1032240,
+      "end_sample": 1037040,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        740,
+        743
+      ]
+    },
+    {
+      "id": "source:3902:3905",
+      "source_span_characters": [
+        3902,
+        3905
+      ],
+      "word": "sat",
+      "recognized_words": [
+        "sat"
+      ],
+      "start_sample": 1037040,
+      "end_sample": 1041840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        744,
+        747
+      ]
+    },
+    {
+      "id": "source:3906:3910",
+      "source_span_characters": [
+        3906,
+        3910
+      ],
+      "word": "down",
+      "recognized_words": [
+        "down"
+      ],
+      "start_sample": 1041840,
+      "end_sample": 1046640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        748,
+        752
+      ]
+    },
+    {
+      "id": "source:3911:3919",
+      "source_span_characters": [
+        3911,
+        3919
+      ],
+      "word": "suddenly",
+      "recognized_words": [
+        "suddenly"
+      ],
+      "start_sample": 1046640,
+      "end_sample": 1058640,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        753,
+        761
+      ]
+    },
+    {
+      "id": "source:3920:3924",
+      "source_span_characters": [
+        3920,
+        3924
+      ],
+      "word": "upon",
+      "recognized_words": [
+        "upon"
+      ],
+      "start_sample": 1058640,
+      "end_sample": 1065840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        762,
+        766
+      ]
+    },
+    {
+      "id": "source:3925:3928",
+      "source_span_characters": [
+        3925,
+        3928
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 1065840,
+      "end_sample": 1065840,
+      "timing_kind": "point",
+      "normalization": "exact",
+      "source_span": [
+        767,
+        770
+      ]
+    },
+    {
+      "id": "source:3929:3934",
+      "source_span_characters": [
+        3929,
+        3934
+      ],
+      "word": "floor",
+      "recognized_words": [
+        "floor."
+      ],
+      "start_sample": 1065840,
+      "end_sample": 1077840,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        771,
+        776
+      ]
+    },
+    {
+      "id": "source:3937:3941",
+      "source_span_characters": [
+        3937,
+        3941
+      ],
+      "word": "Then",
+      "recognized_words": [
+        "Then,"
+      ],
+      "start_sample": 1106400,
+      "end_sample": 1116000,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        779,
+        783
+      ]
+    },
+    {
+      "id": "source:3942:3943",
+      "source_span_characters": [
+        3942,
+        3943
+      ],
+      "word": "a",
+      "recognized_words": [
+        "a"
+      ],
+      "start_sample": 1137600,
+      "end_sample": 1137600,
+      "timing_kind": "point",
+      "normalization": "exact",
+      "source_span": [
+        784,
+        785
+      ]
+    },
+    {
+      "id": "source:3944:3951",
+      "source_span_characters": [
+        3944,
+        3951
+      ],
+      "word": "strange",
+      "recognized_words": [
+        "strange"
+      ],
+      "start_sample": 1137600,
+      "end_sample": 1159200,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        786,
+        793
+      ]
+    },
+    {
+      "id": "source:3952:3957",
+      "source_span_characters": [
+        3952,
+        3957
+      ],
+      "word": "thing",
+      "recognized_words": [
+        "thing"
+      ],
+      "start_sample": 1159200,
+      "end_sample": 1171200,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        794,
+        799
+      ]
+    },
+    {
+      "id": "source:3958:3966",
+      "source_span_characters": [
+        3958,
+        3966
+      ],
+      "word": "happened",
+      "recognized_words": [
+        "happened."
+      ],
+      "start_sample": 1171200,
+      "end_sample": 1188000,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        800,
+        808
+      ]
+    },
+    {
+      "id": "source:3969:3972",
+      "source_span_characters": [
+        3969,
+        3972
+      ],
+      "word": "The",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 1207920,
+      "end_sample": 1212720,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        811,
+        814
+      ]
+    },
+    {
+      "id": "source:3973:3978",
+      "source_span_characters": [
+        3973,
+        3978
+      ],
+      "word": "house",
+      "recognized_words": [
+        "house"
+      ],
+      "start_sample": 1212720,
+      "end_sample": 1227120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        815,
+        820
+      ]
+    },
+    {
+      "id": "source:3979:3986",
+      "source_span_characters": [
+        3979,
+        3986
+      ],
+      "word": "whirled",
+      "recognized_words": [
+        "whirled"
+      ],
+      "start_sample": 1227120,
+      "end_sample": 1241520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        821,
+        828
+      ]
+    },
+    {
+      "id": "source:3987:3993",
+      "source_span_characters": [
+        3987,
+        3993
+      ],
+      "word": "around",
+      "recognized_words": [
+        "around"
+      ],
+      "start_sample": 1241520,
+      "end_sample": 1255920,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        829,
+        835
+      ]
+    },
+    {
+      "id": "source:3994:3997",
+      "source_span_characters": [
+        3994,
+        3997
+      ],
+      "word": "two",
+      "recognized_words": [
+        "two"
+      ],
+      "start_sample": 1255920,
+      "end_sample": 1265520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        836,
+        839
+      ]
+    },
+    {
+      "id": "source:3998:4000",
+      "source_span_characters": [
+        3998,
+        4000
+      ],
+      "word": "or",
+      "recognized_words": [
+        "or"
+      ],
+      "start_sample": 1265520,
+      "end_sample": 1267920,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        840,
+        842
+      ]
+    },
+    {
+      "id": "source:4001:4006",
+      "source_span_characters": [
+        4001,
+        4006
+      ],
+      "word": "three",
+      "recognized_words": [
+        "three"
+      ],
+      "start_sample": 1267920,
+      "end_sample": 1275120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        843,
+        848
+      ]
+    },
+    {
+      "id": "source:4007:4012",
+      "source_span_characters": [
+        4007,
+        4012
+      ],
+      "word": "times",
+      "recognized_words": [
+        "times"
+      ],
+      "start_sample": 1275120,
+      "end_sample": 1301520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        849,
+        854
+      ]
+    },
+    {
+      "id": "source:4013:4016",
+      "source_span_characters": [
+        4013,
+        4016
+      ],
+      "word": "and",
+      "recognized_words": [
+        "and"
+      ],
+      "start_sample": 1301520,
+      "end_sample": 1306320,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        855,
+        858
+      ]
+    },
+    {
+      "id": "source:4017:4021",
+      "source_span_characters": [
+        4017,
+        4021
+      ],
+      "word": "rose",
+      "recognized_words": [
+        "rose"
+      ],
+      "start_sample": 1306320,
+      "end_sample": 1313520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        859,
+        863
+      ]
+    },
+    {
+      "id": "source:4022:4028",
+      "source_span_characters": [
+        4022,
+        4028
+      ],
+      "word": "slowly",
+      "recognized_words": [
+        "slowly"
+      ],
+      "start_sample": 1313520,
+      "end_sample": 1327920,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        864,
+        870
+      ]
+    },
+    {
+      "id": "source:4029:4036",
+      "source_span_characters": [
+        4029,
+        4036
+      ],
+      "word": "through",
+      "recognized_words": [
+        "through"
+      ],
+      "start_sample": 1327920,
+      "end_sample": 1335120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        871,
+        878
+      ]
+    },
+    {
+      "id": "source:4037:4040",
+      "source_span_characters": [
+        4037,
+        4040
+      ],
+      "word": "the",
+      "recognized_words": [
+        "the"
+      ],
+      "start_sample": 1335120,
+      "end_sample": 1339920,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        879,
+        882
+      ]
+    },
+    {
+      "id": "source:4041:4044",
+      "source_span_characters": [
+        4041,
+        4044
+      ],
+      "word": "air",
+      "recognized_words": [
+        "air."
+      ],
+      "start_sample": 1339920,
+      "end_sample": 1347120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        883,
+        886
+      ]
+    },
+    {
+      "id": "source:4046:4053",
+      "source_span_characters": [
+        4046,
+        4053
+      ],
+      "word": "Dorothy",
+      "recognized_words": [
+        "Dorothy"
+      ],
+      "start_sample": 1371120,
+      "end_sample": 1383120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        888,
+        895
+      ]
+    },
+    {
+      "id": "source:4054:4058",
+      "source_span_characters": [
+        4054,
+        4058
+      ],
+      "word": "felt",
+      "recognized_words": [
+        "felt"
+      ],
+      "start_sample": 1383120,
+      "end_sample": 1395120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        896,
+        900
+      ]
+    },
+    {
+      "id": "source:4059:4061",
+      "source_span_characters": [
+        4059,
+        4061
+      ],
+      "word": "as",
+      "recognized_words": [
+        "as"
+      ],
+      "start_sample": 1395120,
+      "end_sample": 1397520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        901,
+        903
+      ]
+    },
+    {
+      "id": "source:4062:4064",
+      "source_span_characters": [
+        4062,
+        4064
+      ],
+      "word": "if",
+      "recognized_words": [
+        "if"
+      ],
+      "start_sample": 1397520,
+      "end_sample": 1399920,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        904,
+        906
+      ]
+    },
+    {
+      "id": "source:4065:4068",
+      "source_span_characters": [
+        4065,
+        4068
+      ],
+      "word": "she",
+      "recognized_words": [
+        "she"
+      ],
+      "start_sample": 1399920,
+      "end_sample": 1404720,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        907,
+        910
+      ]
+    },
+    {
+      "id": "source:4069:4073",
+      "source_span_characters": [
+        4069,
+        4073
+      ],
+      "word": "were",
+      "recognized_words": [
+        "were"
+      ],
+      "start_sample": 1404720,
+      "end_sample": 1407120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        911,
+        915
+      ]
+    },
+    {
+      "id": "source:4074:4079",
+      "source_span_characters": [
+        4074,
+        4079
+      ],
+      "word": "going",
+      "recognized_words": [
+        "going"
+      ],
+      "start_sample": 1407120,
+      "end_sample": 1416720,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        916,
+        921
+      ]
+    },
+    {
+      "id": "source:4080:4082",
+      "source_span_characters": [
+        4080,
+        4082
+      ],
+      "word": "up",
+      "recognized_words": [
+        "up"
+      ],
+      "start_sample": 1416720,
+      "end_sample": 1421520,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        922,
+        924
+      ]
+    },
+    {
+      "id": "source:4083:4085",
+      "source_span_characters": [
+        4083,
+        4085
+      ],
+      "word": "in",
+      "recognized_words": [
+        "in"
+      ],
+      "start_sample": 1421520,
+      "end_sample": 1426320,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        925,
+        927
+      ]
+    },
+    {
+      "id": "source:4086:4087",
+      "source_span_characters": [
+        4086,
+        4087
+      ],
+      "word": "a",
+      "recognized_words": [
+        "a"
+      ],
+      "start_sample": 1426320,
+      "end_sample": 1426320,
+      "timing_kind": "point",
+      "normalization": "exact",
+      "source_span": [
+        928,
+        929
+      ]
+    },
+    {
+      "id": "source:4088:4095",
+      "source_span_characters": [
+        4088,
+        4095
+      ],
+      "word": "balloon",
+      "recognized_words": [
+        "balloon."
+      ],
+      "start_sample": 1426320,
+      "end_sample": 1443120,
+      "timing_kind": "interval",
+      "normalization": "exact",
+      "source_span": [
+        930,
+        937
+      ]
+    }
+  ]
+}

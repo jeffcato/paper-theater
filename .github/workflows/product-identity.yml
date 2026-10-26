@@ -19,3 +19,18 @@ jobs:
           persist-credentials: false
       - name: Check product names and content
         run: python3 tools/check_product_identity.py .
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.20.0'
+          cache: npm
+      - name: Set up tested Rust toolchain
+        run: rustup toolchain install 1.99.0 --profile minimal && rustup default 1.99.0
+      - name: Test Rust workspace
+        run: cargo test --workspace --locked
+      - name: Install pinned web dependencies
+        run: npm ci --ignore-scripts
+      - name: Check shared contracts and applications
+        run: npm run check:contracts && npm run check:player && npm run check:studio && npm run build
+      - name: Build and scan delivery outputs
+        run: cargo build -p pt-server --locked && python3 tools/check_product_identity.py apps/studio/dist apps/audience/dist target/debug/pt-server

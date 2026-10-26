@@ -1,0 +1,64 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Suddenly, Uncle Henry stood up.",
+            "audioTranscription": {
+              "text": "Suddenly, Uncle Henry stood up.",
+              "words": [
+                {
+                  "word": "Suddenly,",
+                  "startOffset": "0.400s",
+                  "endOffset": "0.900s"
+                },
+                {
+                  "word": "Uncle",
+                  "startOffset": "1s",
+                  "endOffset": "1.200s"
+                },
+                {
+                  "word": "Henry",
+                  "startOffset": "1.200s",
+                  "endOffset": "1.500s"
+                },
+                {
+                  "word": "stood",
+                  "startOffset": "1.500s",
+                  "endOffset": "1.800s"
+                },
+                {
+                  "word": "up.",
+                  "startOffset": "1.800s",
+                  "endOffset": "2s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 59,
+    "candidatesTokenCount": 7,
+    "totalTokenCount": 66,
+    "promptTokensDetails": [
+      {
+        "modality": "AUDIO",
+        "tokenCount": 58
+      },
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "h3rdatjgAruV6dkPubWH-QI"
+}

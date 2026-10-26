@@ -1,0 +1,9 @@
+{
+  "model": "muse-voice-transcribe-1.0",
+  "request_sha256": "6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599",
+  "audio_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "response_sha256": "057a44521f631af4da9cbd8b286d26da6892560d3ecbf5ae7da0a72aad679021",
+  "elapsed_seconds": 9.191473999992013,
+  "reservation_usd": "0.00305",
+  "reported_audio_duration_ms": 60480
+}

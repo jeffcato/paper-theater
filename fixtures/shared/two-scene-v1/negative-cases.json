@@ -1,0 +1,62 @@
+[
+  {
+    "id": "unknown-action",
+    "expected_code": "action",
+    "field": "timeline.cues.action"
+  },
+  {
+    "id": "short-dark-hold",
+    "expected_code": "dark_hold",
+    "field": "transitions.scene-2.fade_in_start"
+  },
+  {
+    "id": "wrong-audio-hash",
+    "expected_code": "audio_hash",
+    "field": "delivery_audio_sha256"
+  },
+  {
+    "id": "invalid-scalar-span",
+    "expected_code": "source_span",
+    "field": "source:3158:3166.source_span"
+  },
+  {
+    "id": "unsafe-sample",
+    "expected_code": "interval",
+    "field": "source:3158:3166"
+  },
+  {
+    "id": "missing-attestation",
+    "expected_code": "attestation_missing",
+    "field": "reveal-1-image_scope"
+  },
+  {
+    "id": "stale-attestation",
+    "expected_code": "attestation_hash",
+    "field": "reveal-1-primary_anchor"
+  },
+  {
+    "id": "repeated-terminal",
+    "expected_code": "terminal_ambiguous",
+    "field": "reveal-1-primary_anchor"
+  },
+  {
+    "id": "ambiguous-terminal",
+    "expected_code": "terminal_ambiguous",
+    "field": "reveal-1-primary_anchor"
+  },
+  {
+    "id": "early-reveal",
+    "expected_code": "reveal_early",
+    "field": "reveal-1"
+  },
+  {
+    "id": "wrong-pivot",
+    "expected_code": "registration",
+    "field": "figure-em"
+  },
+  {
+    "id": "missing-word-group",
+    "expected_code": "word_coverage",
+    "field": "read_along.groups"
+  }
+]

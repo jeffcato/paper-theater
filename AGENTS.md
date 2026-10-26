@@ -21,7 +21,7 @@ In a shared working directory, Agent 1 alone stages/commits, switches branches a
 
 ## Execution
 
-Implement bounded runnable increments. Start with zero-provider-call fixture/replay work and a small shared-contract handoff. Do not import a generic DAG engine or build a second player.
+Implement bounded runnable increments. All implementation requires clean git commits and contract-first TDD (first write a failing test that defines the spec, then write the minimum code required to make that test pass). Start with zero-provider-call fixture/replay work and a small shared-contract handoff. Do not import a generic DAG engine or build a second player.
 
 Runtime owns durable reservations, requests, database commits and publication. Generation proposes typed artifacts, decisions and reviewed package candidates. Player validates and renders the authored package. Studio and audience use that same player.
 

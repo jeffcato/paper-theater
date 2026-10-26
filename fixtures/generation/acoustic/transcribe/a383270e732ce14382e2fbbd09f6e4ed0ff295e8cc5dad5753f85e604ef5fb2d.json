@@ -1,0 +1,49 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Quick, Dorothy.",
+            "audioTranscription": {
+              "text": "Quick, Dorothy.",
+              "words": [
+                {
+                  "word": "Quick,",
+                  "startOffset": "0.200s",
+                  "endOffset": "0.500s"
+                },
+                {
+                  "word": "Dorothy.",
+                  "startOffset": "0.500s",
+                  "endOffset": "1.200s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 36,
+    "candidatesTokenCount": 4,
+    "totalTokenCount": 40,
+    "promptTokensDetails": [
+      {
+        "modality": "AUDIO",
+        "tokenCount": 35
+      },
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "tnrdarrPEsG439IPvd-fMQ"
+}

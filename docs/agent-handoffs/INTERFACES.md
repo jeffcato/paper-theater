@@ -67,3 +67,9 @@ Agent 1 publishes `docs/implementation/integration/contracts-ready.json` with co
 Canonical fixture root: `fixtures/shared/two-scene-v1/`. Prefer compatible saved audio/art; preserve original measured timing and the known 176-word/170-group coverage where applicable. Otherwise use explicitly synthetic structural cases. Mark imported/synthetic/diagnostic status honestly; a schema-valid fixture with missing evidence must fail production loading. Each lane may add local negative cases under its own fixture directory, not edit the canonical fixture.
 
 Cross-lane changes go through Agent 1 with an exact proposed API/field change, rationale, affected consumers and a reproducible case. Agent 1 updates both language representations and the shared serialized fixture together, then publishes the new revision.
+
+## Implemented first boundary
+
+The first frozen diagnostic slice is `pt-contracts-v1.0.0` / `pt-services-v1.0.0`; exact files, fixture inventory digest, commands and pending gates are in [contracts-ready.json](../implementation/integration/contracts-ready.json). Rust public records/traits are re-exported by `pt_contracts`; TypeScript public records and validators by `@paper-theater/contracts`. `PlaybackDocument` is a portable load/test envelope around individually hash-bound package files, not another manifest format. The canonical serialized wire records are in `fixtures/shared/two-scene-v1`.
+
+`RunServices::write_candidate` accepts bounded byte proposals and returns candidate file metadata. `provider` and `helper` are separate allowlisted operations; fixture/replay provider calls must fail before credential access. `StageOutput` carries proposed library updates and an optional PackageCandidate; it contains no committed database IDs. `production_blockers` deliberately retains the independent acceptance-verifier gate. Profile/browser migration and provider quota/recovery refinements remain separate pending gates recorded in the handoff.

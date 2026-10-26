@@ -1,0 +1,49 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "She screamed.",
+            "audioTranscription": {
+              "text": "She screamed.",
+              "words": [
+                {
+                  "word": "She",
+                  "startOffset": "0.200s",
+                  "endOffset": "0.400s"
+                },
+                {
+                  "word": "screamed.",
+                  "startOffset": "0.400s",
+                  "endOffset": "1.200s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 35,
+    "candidatesTokenCount": 3,
+    "totalTokenCount": 38,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      },
+      {
+        "modality": "AUDIO",
+        "tokenCount": 34
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "vXrdat_fLIWf-8YPmO2SuAQ"
+}

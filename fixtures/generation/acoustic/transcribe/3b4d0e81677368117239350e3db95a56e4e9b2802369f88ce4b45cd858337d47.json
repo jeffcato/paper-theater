@@ -1,0 +1,64 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "He called to his wife.",
+            "audioTranscription": {
+              "text": "He called to his wife.",
+              "words": [
+                {
+                  "word": "He",
+                  "startOffset": "0.200s",
+                  "endOffset": "0.300s"
+                },
+                {
+                  "word": "called",
+                  "startOffset": "0.300s",
+                  "endOffset": "0.600s"
+                },
+                {
+                  "word": "to",
+                  "startOffset": "0.600s",
+                  "endOffset": "0.800s"
+                },
+                {
+                  "word": "his",
+                  "startOffset": "0.800s",
+                  "endOffset": "0.900s"
+                },
+                {
+                  "word": "wife.",
+                  "startOffset": "0.900s",
+                  "endOffset": "1.400s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 41,
+    "candidatesTokenCount": 6,
+    "totalTokenCount": 47,
+    "promptTokensDetails": [
+      {
+        "modality": "AUDIO",
+        "tokenCount": 40
+      },
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "lnrdasLzL9zwqtsP9rbskQo"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "sets": [
+    {
+      "id": "set-1",
+      "entrances": [],
+      "exits": []
+    },
+    {
+      "id": "set-2",
+      "entrances": [],
+      "exits": []
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "I'll go look after the stock.",
+            "audioTranscription": {
+              "text": "I'll go look after the stock.",
+              "words": [
+                {
+                  "word": "I'll",
+                  "startOffset": "0.300s",
+                  "endOffset": "0.400s"
+                },
+                {
+                  "word": "go",
+                  "startOffset": "0.400s",
+                  "endOffset": "0.500s"
+                },
+                {
+                  "word": "look",
+                  "startOffset": "0.500s",
+                  "endOffset": "0.700s"
+                },
+                {
+                  "word": "after",
+                  "startOffset": "0.700s",
+                  "endOffset": "1s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "1s",
+                  "endOffset": "1.100s"
+                },
+                {
+                  "word": "stock.",
+                  "startOffset": "1.100s",
+                  "endOffset": "1.400s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 44,
+    "candidatesTokenCount": 9,
+    "totalTokenCount": 53,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      },
+      {
+        "modality": "AUDIO",
+        "tokenCount": 43
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "nnrdaqy5NImcz7IPybzAmAQ"
+}

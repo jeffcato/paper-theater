@@ -1,0 +1,77 @@
+{
+  "id": "paper-player-r186-v1",
+  "status": "selected_unverified",
+  "three_version": "0.186.0",
+  "aspect_ratio": [
+    16,
+    9
+  ],
+  "max_dpr": 1.5,
+  "max_image_dimension": 4096,
+  "max_graphics_bytes": 268435456,
+  "max_master_bytes": 268435456,
+  "outer_bounds": {
+    "x": [
+      -11,
+      11
+    ],
+    "y": [
+      -3,
+      11
+    ],
+    "z": [
+      -5.6,
+      3
+    ]
+  },
+  "camera": {
+    "position": [
+      0,
+      4,
+      24.369268817980394
+    ],
+    "target": [
+      0,
+      4,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "fov_y_degrees": 40,
+    "near": 0.1,
+    "far": 100
+  },
+  "camera_target_offset": [
+    0.5,
+    0.25
+  ],
+  "camera_distance_extra": 2,
+  "pointer_offset": [
+    0.8,
+    0.4
+  ],
+  "font_family": "Noto Serif",
+  "font_css_px": 22,
+  "line_height": 1.3,
+  "text_size_range": [
+    1,
+    2
+  ],
+  "line_count": [
+    2,
+    3
+  ],
+  "cutout_alpha": 0.35,
+  "shell_alpha": 0.1,
+  "curtain_alpha": 0.05,
+  "shadow_map_size": 2048,
+  "shadow_type": "PCFShadowMap",
+  "image_color_space": "srgb",
+  "working_color_space": "linear",
+  "tone_mapping": "none",
+  "texture_filter": "linear",
+  "mipmaps": false
+}

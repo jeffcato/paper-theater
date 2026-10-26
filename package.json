@@ -1,0 +1,25 @@
+{
+  "name": "paper-theater",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["packages/*", "apps/*"],
+  "engines": {"node": ">=24.20.0"},
+  "scripts": {
+    "check:contracts": "npm run check --workspace @paper-theater/contracts",
+    "check:player": "npm run check:player --workspace @paper-theater/player",
+    "check:studio": "npm run check --workspace @paper-theater/studio",
+    "check:runtime": "cargo test -p pt-production runtime && cargo test -p pt-server",
+    "check:identity": "python3 tools/check_product_identity.py .",
+    "build": "npm run build --workspaces --if-present",
+    "check": "npm run check:contracts && npm run check:identity"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "provenance": "diagnostic",
+  "source": "The Wonderful Wizard of Oz, L. Frank Baum, Gutenberg 55; saved partial excerpt",
+  "media": "Imported saved speech/art; original recording identity retained, no Flash audition or new provider calls",
+  "transformation": "24 kHz mono to 48 kHz stereo by exact sample duplication; new audio identity, synthetic silence gaps, no new mastering acceptance",
+  "limitations": [
+    "known speech continuity defects",
+    "synthetic image and independent-anchor attestations",
+    "missing Noto Serif bundle",
+    "unverified selected rendering profile",
+    "partial chapter; no autonomous acceptance"
+  ]
+}

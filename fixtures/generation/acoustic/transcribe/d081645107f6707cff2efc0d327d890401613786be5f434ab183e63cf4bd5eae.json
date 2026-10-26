@@ -1,0 +1,139 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Aunt Em dropped her work and came to the door. One glance told her of the danger close at hand.",
+            "audioTranscription": {
+              "text": "Aunt Em dropped her work and came to the door. One glance told her of the danger close at hand.",
+              "words": [
+                {
+                  "word": "Aunt",
+                  "startOffset": "0.400s",
+                  "endOffset": "0.500s"
+                },
+                {
+                  "word": "Em",
+                  "startOffset": "0.500s",
+                  "endOffset": "0.800s"
+                },
+                {
+                  "word": "dropped",
+                  "startOffset": "0.800s",
+                  "endOffset": "1.100s"
+                },
+                {
+                  "word": "her",
+                  "startOffset": "1.100s",
+                  "endOffset": "1.200s"
+                },
+                {
+                  "word": "work",
+                  "startOffset": "1.200s",
+                  "endOffset": "1.700s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "1.700s",
+                  "endOffset": "1.800s"
+                },
+                {
+                  "word": "came",
+                  "startOffset": "1.800s",
+                  "endOffset": "2s"
+                },
+                {
+                  "word": "to",
+                  "startOffset": "2s",
+                  "endOffset": "2.100s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "2.100s",
+                  "endOffset": "2.200s"
+                },
+                {
+                  "word": "door.",
+                  "startOffset": "2.200s",
+                  "endOffset": "2.600s"
+                },
+                {
+                  "word": "One",
+                  "startOffset": "3s",
+                  "endOffset": "3.200s"
+                },
+                {
+                  "word": "glance",
+                  "startOffset": "3.200s",
+                  "endOffset": "3.500s"
+                },
+                {
+                  "word": "told",
+                  "startOffset": "3.500s",
+                  "endOffset": "3.700s"
+                },
+                {
+                  "word": "her",
+                  "startOffset": "3.700s",
+                  "endOffset": "3.800s"
+                },
+                {
+                  "word": "of",
+                  "startOffset": "3.800s",
+                  "endOffset": "3.900s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "3.900s",
+                  "endOffset": "4s"
+                },
+                {
+                  "word": "danger",
+                  "startOffset": "4s",
+                  "endOffset": "4.400s"
+                },
+                {
+                  "word": "close",
+                  "startOffset": "4.400s",
+                  "endOffset": "4.600s"
+                },
+                {
+                  "word": "at",
+                  "startOffset": "4.600s",
+                  "endOffset": "4.700s"
+                },
+                {
+                  "word": "hand.",
+                  "startOffset": "4.700s",
+                  "endOffset": "5.100s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 141,
+    "candidatesTokenCount": 23,
+    "totalTokenCount": 164,
+    "promptTokensDetails": [
+      {
+        "modality": "AUDIO",
+        "tokenCount": 140
+      },
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "rnrdasPrE_rrz7IPr9zS0Ag"
+}

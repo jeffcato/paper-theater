@@ -1,0 +1,27 @@
+{
+  "case": "turn-017",
+  "model": "gemini-3.5-transcribe",
+  "audio_sha256": "83a057099f3d4b74bd71bf22eb92a589231517acdc5f1146a910704272406a36",
+  "request_sha256": "5642160d7f739b0b8def60a7be69604b01971058878a1cf5a2dac0c20fd6b903",
+  "reservation_usd": "0.02592",
+  "response_sha256": "c26ce0ce44d7d014edbe2cb3de9fe542cc0282ec901003c5419ef957d0571605",
+  "elapsed_seconds": 1.6342676249914803,
+  "harness_sha256": "013c65bacbe514650cae997c0391ba85207199b6c9b0aa2d56c47933a79dd9de",
+  "model_version": "gemini-3.5-transcribe",
+  "usage": {
+    "promptTokenCount": 103,
+    "candidatesTokenCount": 7,
+    "totalTokenCount": 110,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      },
+      {
+        "modality": "AUDIO",
+        "tokenCount": 102
+      }
+    ],
+    "serviceTier": "standard"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Run for the cellar.",
+            "audioTranscription": {
+              "text": "Run for the cellar.",
+              "words": [
+                {
+                  "word": "Run",
+                  "startOffset": "0.200s",
+                  "endOffset": "0.400s"
+                },
+                {
+                  "word": "for",
+                  "startOffset": "0.400s",
+                  "endOffset": "0.500s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "0.500s",
+                  "endOffset": "0.600s"
+                },
+                {
+                  "word": "cellar.",
+                  "startOffset": "0.600s",
+                  "endOffset": "1.200s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 42,
+    "candidatesTokenCount": 5,
+    "totalTokenCount": 47,
+    "promptTokensDetails": [
+      {
+        "modality": "AUDIO",
+        "tokenCount": 41
+      },
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "xXrdaqq-Ce-sz7IPr7ySoAc"
+}

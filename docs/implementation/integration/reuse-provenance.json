@@ -1,0 +1,343 @@
+{
+  "source": "experimental-source-snapshot",
+  "snapshot_sha256": "f72a1d1dfc0ea480fe9c48794c52756d4eb271e90c0ec33f5ddfe072ddeb25bf",
+  "notice": "Source manifests declare MIT OR Apache-2.0; no standalone license/notice files were supplied. Existing file headers are preserved. No authorship or Git revision is invented.",
+  "files": [
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/Cargo.toml",
+      "source_sha256": "609852474700aba26c26309cba5b99c4839eec7fbcdf0e325f46bbbd30b991ed",
+      "destination": "crates/dramatic-script/Cargo.toml",
+      "destination_sha256": "609852474700aba26c26309cba5b99c4839eec7fbcdf0e325f46bbbd30b991ed",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/src/cast.rs",
+      "source_sha256": "7a0773dddc635388ae57c8f164d0bea987e86737a9cf16e320939e6db7bda5da",
+      "destination": "crates/dramatic-script/src/cast.rs",
+      "destination_sha256": "7a0773dddc635388ae57c8f164d0bea987e86737a9cf16e320939e6db7bda5da",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/src/error.rs",
+      "source_sha256": "2655cf1610ac0e43bf1342cd56570e1ada0198c3297912f6e981886e0eea174b",
+      "destination": "crates/dramatic-script/src/error.rs",
+      "destination_sha256": "2655cf1610ac0e43bf1342cd56570e1ada0198c3297912f6e981886e0eea174b",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/src/lib.rs",
+      "source_sha256": "3c8d67d4f3db6bf4e47f06b6c018a62170e4b91f9ca7cec1060bf54386ffe210",
+      "destination": "crates/dramatic-script/src/lib.rs",
+      "destination_sha256": "3c8d67d4f3db6bf4e47f06b6c018a62170e4b91f9ca7cec1060bf54386ffe210",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/src/script.rs",
+      "source_sha256": "3d14c0cb5eb3638f61c50cc7a7560987db19514882825f143b989a52625a3aa3",
+      "destination": "crates/dramatic-script/src/script.rs",
+      "destination_sha256": "3d14c0cb5eb3638f61c50cc7a7560987db19514882825f143b989a52625a3aa3",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/src/turn.rs",
+      "source_sha256": "1f39641d4509a461586739519fed387f81fd18e09d4da4a74fa0433521de7e13",
+      "destination": "crates/dramatic-script/src/turn.rs",
+      "destination_sha256": "1f39641d4509a461586739519fed387f81fd18e09d4da4a74fa0433521de7e13",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/src/validator.rs",
+      "source_sha256": "8e849530ab8bd15845ed4570725c4fb189700025d484e7530a5a542a55185e66",
+      "destination": "crates/dramatic-script/src/validator.rs",
+      "destination_sha256": "8e849530ab8bd15845ed4570725c4fb189700025d484e7530a5a542a55185e66",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/tests/contract_tests.rs",
+      "source_sha256": "1504a857fa47c3f492428c8a9ca5f75bf6daa374ff83e3e4269d34a901660b1c",
+      "destination": "crates/dramatic-script/tests/contract_tests.rs",
+      "destination_sha256": "1504a857fa47c3f492428c8a9ca5f75bf6daa374ff83e3e4269d34a901660b1c",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/tests/fixtures/cast.json",
+      "source_sha256": "2eb9a43dccbd6e379d09fa3a5eb85124b1fdc8739363b7dd03c600093d5a6fa4",
+      "destination": "crates/dramatic-script/tests/fixtures/cast.json",
+      "destination_sha256": "2eb9a43dccbd6e379d09fa3a5eb85124b1fdc8739363b7dd03c600093d5a6fa4",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/tests/fixtures/oz_chapter1_script.json",
+      "source_sha256": "027a168daec5aad2218f6b8c9578525be1b45e66a89e7028573fd122b992acff",
+      "destination": "crates/dramatic-script/tests/fixtures/oz_chapter1_script.json",
+      "destination_sha256": "027a168daec5aad2218f6b8c9578525be1b45e66a89e7028573fd122b992acff",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "dramatic-script",
+      "source_path": "crates/dramatic-script/tests/regression_tests.rs",
+      "source_sha256": "c95cd665eb2ab620fa275cb4dbee72812f749bc265c6b872f384ea228a72df0b",
+      "destination": "crates/dramatic-script/tests/regression_tests.rs",
+      "destination_sha256": "c95cd665eb2ab620fa275cb4dbee72812f749bc265c6b872f384ea228a72df0b",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/Cargo.toml",
+      "source_sha256": "ef3fc8afad6122a1d28a825615f3858f136a4dc55c160abaf4670d97da5632c4",
+      "destination": "crates/monotonic-align/Cargo.toml",
+      "destination_sha256": "ef3fc8afad6122a1d28a825615f3858f136a4dc55c160abaf4670d97da5632c4",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/src/error.rs",
+      "source_sha256": "5554bf6e2894f1a44149cdbd6e48adbed7c87208b19472668e6b46cca64cdb0d",
+      "destination": "crates/monotonic-align/src/error.rs",
+      "destination_sha256": "5554bf6e2894f1a44149cdbd6e48adbed7c87208b19472668e6b46cca64cdb0d",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/src/evidence.rs",
+      "source_sha256": "efb092b1151e0fd4847b377d9d6ea5108e6b1fa64cb5c8916c0738c4046d8ace",
+      "destination": "crates/monotonic-align/src/evidence.rs",
+      "destination_sha256": "efb092b1151e0fd4847b377d9d6ea5108e6b1fa64cb5c8916c0738c4046d8ace",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/src/lib.rs",
+      "source_sha256": "072c53e081014014730710802b32ae32a29400222629332372612c5ca9200d1f",
+      "destination": "crates/monotonic-align/src/lib.rs",
+      "destination_sha256": "072c53e081014014730710802b32ae32a29400222629332372612c5ca9200d1f",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/src/matcher.rs",
+      "source_sha256": "59ad11f10500a704deb82bf1ea0d11aa63143c60fc08a21fe526a74cc7cea5b0",
+      "destination": "crates/monotonic-align/src/matcher.rs",
+      "destination_sha256": "59ad11f10500a704deb82bf1ea0d11aa63143c60fc08a21fe526a74cc7cea5b0",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/src/models.rs",
+      "source_sha256": "a064d7da929f3c32ac0d52a7de5a1867e2fbc38a07ccb9e8ee2a3a6a8cb8a030",
+      "destination": "crates/monotonic-align/src/models.rs",
+      "destination_sha256": "a064d7da929f3c32ac0d52a7de5a1867e2fbc38a07ccb9e8ee2a3a6a8cb8a030",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/src/normalize.rs",
+      "source_sha256": "4b3c23885139a867fa0414cc3e6c8047ac6ce74cd3f9a58f5d8ab697311b4011",
+      "destination": "crates/monotonic-align/src/normalize.rs",
+      "destination_sha256": "4b3c23885139a867fa0414cc3e6c8047ac6ce74cd3f9a58f5d8ab697311b4011",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/src/paragraphs.rs",
+      "source_sha256": "eba05f998c70c6470055622279a4a4ac597c68c77d3edbe1336378e63c51c0a7",
+      "destination": "crates/monotonic-align/src/paragraphs.rs",
+      "destination_sha256": "eba05f998c70c6470055622279a4a4ac597c68c77d3edbe1336378e63c51c0a7",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/tests/contract_tests.rs",
+      "source_sha256": "d512fc75848619b9438558639a19fdbc5c10990623bb09334f3ce9a7d13babb0",
+      "destination": "crates/monotonic-align/tests/contract_tests.rs",
+      "destination_sha256": "d512fc75848619b9438558639a19fdbc5c10990623bb09334f3ce9a7d13babb0",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/tests/fixtures/chapter.txt",
+      "source_sha256": "75497fcc03eeccecfc9f840106b9c1d180acf811051e2bc3206aa33a9109a81e",
+      "destination": "crates/monotonic-align/tests/fixtures/chapter.txt",
+      "destination_sha256": "75497fcc03eeccecfc9f840106b9c1d180acf811051e2bc3206aa33a9109a81e",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/tests/fixtures/transcript.json",
+      "source_sha256": "cff24968a8ba0e8681ca2df5da66f90c10d68b2a3cc1eadcb258ddde0bf87e2c",
+      "destination": "crates/monotonic-align/tests/fixtures/transcript.json",
+      "destination_sha256": "cff24968a8ba0e8681ca2df5da66f90c10d68b2a3cc1eadcb258ddde0bf87e2c",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "monotonic-align",
+      "source_path": "crates/monotonic-align/tests/regression_tests.rs",
+      "source_sha256": "f7242c2e8b5383e272c354d6c401e04579754c9211a36cc9e5761419260ca274",
+      "destination": "crates/monotonic-align/tests/regression_tests.rs",
+      "destination_sha256": "f7242c2e8b5383e272c354d6c401e04579754c9211a36cc9e5761419260ca274",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/Cargo.toml",
+      "source_sha256": "4e310331183f099b09240042a92a08c00bb1ccc8d88c6d33658b7bf18d131af1",
+      "destination": "crates/timed-captions/Cargo.toml",
+      "destination_sha256": "4e310331183f099b09240042a92a08c00bb1ccc8d88c6d33658b7bf18d131af1",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/src/cue.rs",
+      "source_sha256": "4074e295ef0a08cc695ea11ea017aa5acf3219333c638c7c543113435112f29b",
+      "destination": "crates/timed-captions/src/cue.rs",
+      "destination_sha256": "4074e295ef0a08cc695ea11ea017aa5acf3219333c638c7c543113435112f29b",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/src/error.rs",
+      "source_sha256": "542e9589292bd2ea3ab38d76435bc18a9e16743c84a79dc945531d041153c716",
+      "destination": "crates/timed-captions/src/error.rs",
+      "destination_sha256": "542e9589292bd2ea3ab38d76435bc18a9e16743c84a79dc945531d041153c716",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/src/export.rs",
+      "source_sha256": "3c4d73eb64e175821dc2e3b3061aa5c0a7f6472920fabefd77d298c6904c4854",
+      "destination": "crates/timed-captions/src/export.rs",
+      "destination_sha256": "3c4d73eb64e175821dc2e3b3061aa5c0a7f6472920fabefd77d298c6904c4854",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/src/lib.rs",
+      "source_sha256": "e1be47382665a4a57b1fa2d95da24deddb3a9448e8fd443f80a46f1e17ba5db1",
+      "destination": "crates/timed-captions/src/lib.rs",
+      "destination_sha256": "e1be47382665a4a57b1fa2d95da24deddb3a9448e8fd443f80a46f1e17ba5db1",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/src/lookup.rs",
+      "source_sha256": "95e3385d199e6fcaf64708e6451fae7cdb0be5eb154f23e13cb59c0e0a06636c",
+      "destination": "crates/timed-captions/src/lookup.rs",
+      "destination_sha256": "95e3385d199e6fcaf64708e6451fae7cdb0be5eb154f23e13cb59c0e0a06636c",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/src/segmenter.rs",
+      "source_sha256": "af8965ddbebd89a216c7bce3f5d1c49ddd07ec9182df415a6d8296829dc67df0",
+      "destination": "crates/timed-captions/src/segmenter.rs",
+      "destination_sha256": "af8965ddbebd89a216c7bce3f5d1c49ddd07ec9182df415a6d8296829dc67df0",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/tests/contract_tests.rs",
+      "source_sha256": "079234a8575513172334ca2cd6185f8cc159b8caf026a7a9f9f20f937c0a9ba8",
+      "destination": "crates/timed-captions/tests/contract_tests.rs",
+      "destination_sha256": "079234a8575513172334ca2cd6185f8cc159b8caf026a7a9f9f20f937c0a9ba8",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/tests/regression_tests.rs",
+      "source_sha256": "f25cb2046a4c97ba3acd17d22ac8ae3c4075a85b4da5d795800a1c49f324e5c0",
+      "destination": "crates/timed-captions/tests/regression_tests.rs",
+      "destination_sha256": "f25cb2046a4c97ba3acd17d22ac8ae3c4075a85b4da5d795800a1c49f324e5c0",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "timed-captions",
+      "source_path": "crates/timed-captions/tests/round4_tests.rs",
+      "source_sha256": "cffdf61882a82ebc578c16601724d47aecef855ae17818c30866058890096ac8",
+      "destination": "crates/timed-captions/tests/round4_tests.rs",
+      "destination_sha256": "cffdf61882a82ebc578c16601724d47aecef855ae17818c30866058890096ac8",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "copied; product identity normalized where present"
+    },
+    {
+      "component": "atomic-file-helpers",
+      "source_path": "crates/atomic-journal/src/cas.rs",
+      "source_sha256": "bc16830cb24911833da71a394b838e91294b7fd9a5122dcfb3d9511d79cc3d45",
+      "destination": "crates/atomic-journal/src/cas.rs",
+      "destination_sha256": "bc16830cb24911833da71a394b838e91294b7fd9a5122dcfb3d9511d79cc3d45",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "selected file only; journal/manifest/stamp modules excluded"
+    },
+    {
+      "component": "atomic-file-helpers",
+      "source_path": "crates/atomic-journal/src/writer.rs",
+      "source_sha256": "8732b19665b69f78613a8dbb450bed735e7da23690e40c78978a9663ba18e87e",
+      "destination": "crates/atomic-journal/src/writer.rs",
+      "destination_sha256": "8732b19665b69f78613a8dbb450bed735e7da23690e40c78978a9663ba18e87e",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "selected file only; journal/manifest/stamp modules excluded"
+    },
+    {
+      "component": "atomic-file-helpers",
+      "source_path": "crates/atomic-journal/src/lock.rs",
+      "source_sha256": "70e641bad88388a07642229a43b6b8c22497fe845f5d04665464d86a7a032b3c",
+      "destination": "crates/atomic-journal/src/lock.rs",
+      "destination_sha256": "70e641bad88388a07642229a43b6b8c22497fe845f5d04665464d86a7a032b3c",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "selected file only; journal/manifest/stamp modules excluded"
+    },
+    {
+      "component": "atomic-file-helpers",
+      "source_path": "crates/atomic-journal/src/error.rs",
+      "source_sha256": "b95331b96e84032def4bedec9dab8951572d59ff08d2759c2c0ae408ba21ee51",
+      "destination": "crates/atomic-journal/src/error.rs",
+      "destination_sha256": "b95331b96e84032def4bedec9dab8951572d59ff08d2759c2c0ae408ba21ee51",
+      "license": "MIT OR Apache-2.0 (source manifest)",
+      "transformation": "selected file only; journal/manifest/stamp modules excluded"
+    }
+  ],
+  "deferred": [
+    "gutenberg-catalog: network client not needed by saved-media slice"
+  ]
+}

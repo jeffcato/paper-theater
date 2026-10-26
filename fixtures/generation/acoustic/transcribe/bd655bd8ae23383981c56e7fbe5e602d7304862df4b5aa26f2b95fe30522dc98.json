@@ -1,0 +1,164 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "the house whirled around two or three times and rose slowly through the air. Dorothy felt as if she were going up in a balloon.",
+            "audioTranscription": {
+              "text": "the house whirled around two or three times and rose slowly through the air. Dorothy felt as if she were going up in a balloon.",
+              "words": [
+                {
+                  "word": "the",
+                  "startOffset": "0.300s",
+                  "endOffset": "0.500s"
+                },
+                {
+                  "word": "house",
+                  "startOffset": "0.500s",
+                  "endOffset": "1.100s"
+                },
+                {
+                  "word": "whirled",
+                  "startOffset": "1.100s",
+                  "endOffset": "1.700s"
+                },
+                {
+                  "word": "around",
+                  "startOffset": "1.700s",
+                  "endOffset": "2.300s"
+                },
+                {
+                  "word": "two",
+                  "startOffset": "2.300s",
+                  "endOffset": "2.700s"
+                },
+                {
+                  "word": "or",
+                  "startOffset": "2.700s",
+                  "endOffset": "2.800s"
+                },
+                {
+                  "word": "three",
+                  "startOffset": "2.800s",
+                  "endOffset": "3.100s"
+                },
+                {
+                  "word": "times",
+                  "startOffset": "3.100s",
+                  "endOffset": "4.200s"
+                },
+                {
+                  "word": "and",
+                  "startOffset": "4.200s",
+                  "endOffset": "4.400s"
+                },
+                {
+                  "word": "rose",
+                  "startOffset": "4.400s",
+                  "endOffset": "4.700s"
+                },
+                {
+                  "word": "slowly",
+                  "startOffset": "4.700s",
+                  "endOffset": "5.300s"
+                },
+                {
+                  "word": "through",
+                  "startOffset": "5.300s",
+                  "endOffset": "5.600s"
+                },
+                {
+                  "word": "the",
+                  "startOffset": "5.600s",
+                  "endOffset": "5.800s"
+                },
+                {
+                  "word": "air.",
+                  "startOffset": "5.800s",
+                  "endOffset": "6.100s"
+                },
+                {
+                  "word": "Dorothy",
+                  "startOffset": "7.100s",
+                  "endOffset": "7.600s"
+                },
+                {
+                  "word": "felt",
+                  "startOffset": "7.600s",
+                  "endOffset": "8.100s"
+                },
+                {
+                  "word": "as",
+                  "startOffset": "8.100s",
+                  "endOffset": "8.200s"
+                },
+                {
+                  "word": "if",
+                  "startOffset": "8.200s",
+                  "endOffset": "8.300s"
+                },
+                {
+                  "word": "she",
+                  "startOffset": "8.300s",
+                  "endOffset": "8.500s"
+                },
+                {
+                  "word": "were",
+                  "startOffset": "8.500s",
+                  "endOffset": "8.600s"
+                },
+                {
+                  "word": "going",
+                  "startOffset": "8.600s",
+                  "endOffset": "9s"
+                },
+                {
+                  "word": "up",
+                  "startOffset": "9s",
+                  "endOffset": "9.200s"
+                },
+                {
+                  "word": "in",
+                  "startOffset": "9.200s",
+                  "endOffset": "9.400s"
+                },
+                {
+                  "word": "a",
+                  "startOffset": "9.400s",
+                  "endOffset": "9.400s"
+                },
+                {
+                  "word": "balloon.",
+                  "startOffset": "9.400s",
+                  "endOffset": "10.100s"
+                }
+              ]
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 262,
+    "candidatesTokenCount": 28,
+    "totalTokenCount": 290,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1
+      },
+      {
+        "modality": "AUDIO",
+        "tokenCount": 261
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-transcribe",
+  "responseId": "3Xrdav-yJcSL-sAP9azM-AY"
+}

@@ -1,0 +1,13 @@
+[package]
+name = "atomic-journal"
+version = "0.1.0"
+edition = "2021"
+rust-version.workspace = true
+license = "MIT OR Apache-2.0"
+description = "Selected CAS and atomic-file helpers"
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+sha2.workspace = true
+tempfile = "3"
