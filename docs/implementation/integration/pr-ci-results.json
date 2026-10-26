@@ -2,7 +2,7 @@
   "pr": 1,
   "pr_url": "https://github.com/jeffcato/paper-theater/pull/1",
   "recorded_at": "2026-10-26T18:24:17.761460+00:00",
-  "scope": "Latest completed checks observed before the CandidateWrite dimensions update; not a result for the new commit.",
+  "scope": "Completed run results and latest code-head observation are recorded separately; no earlier result certifies a later commit.",
   "runs": [
     {
       "conclusion": "success",
@@ -243,6 +243,34 @@
       "url": "https://github.com/jeffcato/paper-theater/actions/runs/40375863400"
     }
   ],
-  "checked_head_sha": "2ee2a8f02722204daf475b97432924e304bf465b",
-  "conclusion": "success"
+  "completed_runs_conclusion": "success",
+  "completed_head_sha": "2ee2a8f02722204daf475b97432924e304bf465b",
+  "latest_code_head_observation": {
+    "recorded_at": "2026-10-26T18:30:45.734243+00:00",
+    "headRefOid": "419ae6990226b66e268e1bcdffa91636646082be",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/jeffcato/paper-theater/actions/runs/40378197386/job/121766952323",
+        "name": "Check product identity",
+        "startedAt": "2026-10-26T18:29:35Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Product identity"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://github.com/jeffcato/paper-theater/actions/runs/40378189904/job/121766924923",
+        "name": "Check product identity",
+        "startedAt": "2026-10-26T18:29:33Z",
+        "status": "IN_PROGRESS",
+        "workflowName": "Product identity"
+      }
+    ],
+    "url": "https://github.com/jeffcato/paper-theater/pull/1"
+  },
+  "current_code_head_state": "in_progress"
 }
