@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "capability_version": "paper-player-v1",
+  "delivery_audio_sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+  "presentation_map_sha256": "5d128e029f8b458b4a5bc4c9e23633d02663267dbbc9e3e43e96879672938280",
+  "sample_rate": 48000,
+  "sample_count": 3262560,
+  "opening": {
+    "title": "Paper Theater diagnostic",
+    "chapter_label": "Saved excerpt",
+    "title_hold": [
+      0,
+      72000
+    ],
+    "title_dismiss": [
+      72000,
+      96000
+    ],
+    "curtain_open": [
+      168000,
+      240000
+    ],
+    "first_prose_sample": 96000,
+    "intro_narration": [
+      96000,
+      168000
+    ],
+    "first_picture_id": "scene-1",
+    "first_picture_eligible_sample": 168000
+  },
+  "scenes": [
+    {
+      "id": "scene-1",
+      "set_id": "set-1",
+      "source_span": [
+        0,
+        548
+      ],
+      "narration": [
+        96000,
+        1699698
+      ],
+      "entry_snapshot": {
+        "set_id": "set-1",
+        "instances": [
+          {
+            "id": "em-1",
+            "asset_id": "figure-em",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation_xyz": [
+              0,
+              0,
+              0
+            ],
+            "support_id": "deck",
+            "reveal_group_id": "reveal-1",
+            "mirrored": false
+          }
+        ],
+        "camera": {
+          "position": [
+            0,
+            4,
+            24.369268817980394
+          ],
+          "target": [
+            0,
+            4,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "fov_y_degrees": 40,
+          "near": 0.1,
+          "far": 100
+        },
+        "lighting": {
+          "ambient": {
+            "color": "#ffffff",
+            "intensity": 0.5
+          },
+          "environment": null,
+          "lights": [
+            {
+              "id": "key",
+              "type": "directional",
+              "enabled": true,
+              "position": [
+                -2,
+                6,
+                5
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "color": "#ffffff",
+              "intensity": 1,
+              "cast_shadow": true,
+              "shadow": {
+                "map_size": 2048,
+                "bias": 0,
+                "normal_bias": 0,
+                "near": 0.1,
+                "far": 100
+              }
+            }
+          ]
+        },
+        "curtain_open_ratio": 1
+      },
+      "required_asset_ids": [
+        "figure-em"
+      ],
+      "reveal_group_ids": [
+        "reveal-1"
+      ]
+    },
+    {
+      "id": "scene-2",
+      "set_id": "set-2",
+      "source_span": [
+        548,
+        938
+      ],
+      "narration": [
+        1891698,
+        3190560
+      ],
+      "entry_snapshot": {
+        "set_id": "set-2",
+        "instances": [
+          {
+            "id": "em-2",
+            "asset_id": "figure-em",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation_xyz": [
+              0,
+              0,
+              0
+            ],
+            "support_id": "deck",
+            "reveal_group_id": "reveal-2",
+            "mirrored": false
+          }
+        ],
+        "camera": {
+          "position": [
+            0,
+            4,
+            24.369268817980394
+          ],
+          "target": [
+            0,
+            4,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "fov_y_degrees": 40,
+          "near": 0.1,
+          "far": 100
+        },
+        "lighting": {
+          "ambient": {
+            "color": "#ffffff",
+            "intensity": 0.5
+          },
+          "environment": null,
+          "lights": [
+            {
+              "id": "key",
+              "type": "directional",
+              "enabled": true,
+              "position": [
+                -2,
+                6,
+                5
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "color": "#ffffff",
+              "intensity": 1,
+              "cast_shadow": true,
+              "shadow": {
+                "map_size": 2048,
+                "bias": 0,
+                "normal_bias": 0,
+                "near": 0.1,
+                "far": 100
+              }
+            }
+          ]
+        },
+        "curtain_open_ratio": 1
+      },
+      "required_asset_ids": [
+        "figure-em"
+      ],
+      "reveal_group_ids": [
+        "reveal-2"
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from_scene_id": "scene-1",
+      "to_scene_id": "scene-2",
+      "fade_out_start": 1699698,
+      "swap_sample": 1747698,
+      "fade_in_start": 1843698,
+      "fade_in_end": 1891698
+    }
+  ],
+  "cues": [
+    {
+      "id": "nod-em",
+      "scene_id": "scene-2",
+      "target_id": "em-2",
+      "action": "gesture",
+      "start_sample": 1891698,
+      "end_sample": 1915698,
+      "easing": "ease_in_out",
+      "reveal_group_ids": [
+        "reveal-2"
+      ],
+      "params": {
+        "gesture": "nod",
+        "intensity": 0.25
+      }
+    }
+  ],
+  "closing": {
+    "last_prose_action_sample": 3190560,
+    "curtain_close": [
+      3190560,
+      3262560
+    ],
+    "score_tail": null,
+    "terminal_sample": 3262560
+  },
+  "terminal_snapshot": {
+    "set_id": "set-2",
+    "instances": [],
+    "camera": {
+      "position": [
+        0,
+        4,
+        24.369268817980394
+      ],
+      "target": [
+        0,
+        4,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "fov_y_degrees": 40,
+      "near": 0.1,
+      "far": 100
+    },
+    "lighting": {
+      "ambient": {
+        "color": "#ffffff",
+        "intensity": 0.5
+      },
+      "environment": null,
+      "lights": [
+        {
+          "id": "key",
+          "type": "directional",
+          "enabled": true,
+          "position": [
+            -2,
+            6,
+            5
+          ],
+          "target": [
+            0,
+            1,
+            0
+          ],
+          "color": "#ffffff",
+          "intensity": 1,
+          "cast_shadow": true,
+          "shadow": {
+            "map_size": 2048,
+            "bias": 0,
+            "normal_bias": 0,
+            "near": 0.1,
+            "far": 100
+          }
+        }
+      ]
+    },
+    "curtain_open_ratio": 0
+  }
+}

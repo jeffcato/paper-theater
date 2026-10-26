@@ -1,0 +1,3488 @@
+{
+  "schema_version": 1,
+  "policy": "point-following-same-boundary-v1",
+  "language": "en",
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+  "presentation_map_sha256": "5d128e029f8b458b4a5bc4c9e23633d02663267dbbc9e3e43e96879672938280",
+  "delivery_audio_sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+  "leading_text": "",
+  "words": [
+    {
+      "id": "source:3158:3166",
+      "source_span": [
+        0,
+        8
+      ],
+      "text": "Suddenly",
+      "following_text": " ",
+      "start_sample": 115200,
+      "end_sample": 139200
+    },
+    {
+      "id": "source:3167:3172",
+      "source_span": [
+        9,
+        14
+      ],
+      "text": "Uncle",
+      "following_text": " ",
+      "start_sample": 144000,
+      "end_sample": 153600
+    },
+    {
+      "id": "source:3173:3178",
+      "source_span": [
+        15,
+        20
+      ],
+      "text": "Henry",
+      "following_text": " ",
+      "start_sample": 153600,
+      "end_sample": 168000
+    },
+    {
+      "id": "source:3179:3184",
+      "source_span": [
+        21,
+        26
+      ],
+      "text": "stood",
+      "following_text": " ",
+      "start_sample": 168000,
+      "end_sample": 182400
+    },
+    {
+      "id": "source:3185:3187",
+      "source_span": [
+        27,
+        29
+      ],
+      "text": "up",
+      "following_text": ".\n\n“",
+      "start_sample": 182400,
+      "end_sample": 192000
+    },
+    {
+      "id": "source:3191:3198",
+      "source_span": [
+        33,
+        40
+      ],
+      "text": "There’s",
+      "following_text": " ",
+      "start_sample": 238560,
+      "end_sample": 243360
+    },
+    {
+      "id": "source:3199:3200",
+      "source_span": [
+        41,
+        42
+      ],
+      "text": "a",
+      "following_text": " ",
+      "start_sample": 243360,
+      "end_sample": 248160
+    },
+    {
+      "id": "source:3201:3208",
+      "source_span": [
+        43,
+        50
+      ],
+      "text": "cyclone",
+      "following_text": " ",
+      "start_sample": 248160,
+      "end_sample": 276960
+    },
+    {
+      "id": "source:3209:3215",
+      "source_span": [
+        51,
+        57
+      ],
+      "text": "coming",
+      "following_text": ", ",
+      "start_sample": 276960,
+      "end_sample": 296160
+    },
+    {
+      "id": "source:3217:3219",
+      "source_span": [
+        59,
+        61
+      ],
+      "text": "Em",
+      "following_text": ",” ",
+      "start_sample": 296160,
+      "end_sample": 310560
+    },
+    {
+      "id": "source:3222:3224",
+      "source_span": [
+        64,
+        66
+      ],
+      "text": "he",
+      "following_text": " ",
+      "start_sample": 348480,
+      "end_sample": 353280
+    },
+    {
+      "id": "source:3225:3231",
+      "source_span": [
+        67,
+        73
+      ],
+      "text": "called",
+      "following_text": " ",
+      "start_sample": 353280,
+      "end_sample": 367680
+    },
+    {
+      "id": "source:3232:3234",
+      "source_span": [
+        74,
+        76
+      ],
+      "text": "to",
+      "following_text": " ",
+      "start_sample": 367680,
+      "end_sample": 377280
+    },
+    {
+      "id": "source:3235:3238",
+      "source_span": [
+        77,
+        80
+      ],
+      "text": "his",
+      "following_text": " ",
+      "start_sample": 377280,
+      "end_sample": 382080
+    },
+    {
+      "id": "source:3239:3243",
+      "source_span": [
+        81,
+        85
+      ],
+      "text": "wife",
+      "following_text": ". “",
+      "start_sample": 382080,
+      "end_sample": 406080
+    },
+    {
+      "id": "source:3246:3250",
+      "source_span": [
+        88,
+        92
+      ],
+      "text": "I’ll",
+      "following_text": " ",
+      "start_sample": 442080,
+      "end_sample": 446880
+    },
+    {
+      "id": "source:3251:3253",
+      "source_span": [
+        93,
+        95
+      ],
+      "text": "go",
+      "following_text": " ",
+      "start_sample": 446880,
+      "end_sample": 451680
+    },
+    {
+      "id": "source:3254:3258",
+      "source_span": [
+        96,
+        100
+      ],
+      "text": "look",
+      "following_text": " ",
+      "start_sample": 451680,
+      "end_sample": 461280
+    },
+    {
+      "id": "source:3259:3264",
+      "source_span": [
+        101,
+        106
+      ],
+      "text": "after",
+      "following_text": " ",
+      "start_sample": 461280,
+      "end_sample": 475680
+    },
+    {
+      "id": "source:3265:3268",
+      "source_span": [
+        107,
+        110
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 475680,
+      "end_sample": 480480
+    },
+    {
+      "id": "source:3269:3274",
+      "source_span": [
+        111,
+        116
+      ],
+      "text": "stock",
+      "following_text": ".” ",
+      "start_sample": 480480,
+      "end_sample": 494880
+    },
+    {
+      "id": "source:3277:3281",
+      "source_span": [
+        119,
+        123
+      ],
+      "text": "Then",
+      "following_text": " ",
+      "start_sample": 531840,
+      "end_sample": 546240
+    },
+    {
+      "id": "source:3282:3284",
+      "source_span": [
+        124,
+        126
+      ],
+      "text": "he",
+      "following_text": " ",
+      "start_sample": 546240,
+      "end_sample": 551040
+    },
+    {
+      "id": "source:3285:3288",
+      "source_span": [
+        127,
+        130
+      ],
+      "text": "ran",
+      "following_text": " ",
+      "start_sample": 551040,
+      "end_sample": 565440
+    },
+    {
+      "id": "source:3289:3295",
+      "source_span": [
+        131,
+        137
+      ],
+      "text": "toward",
+      "following_text": " ",
+      "start_sample": 565440,
+      "end_sample": 579840
+    },
+    {
+      "id": "source:3296:3299",
+      "source_span": [
+        138,
+        141
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 579840,
+      "end_sample": 579840
+    },
+    {
+      "id": "source:3300:3305",
+      "source_span": [
+        142,
+        147
+      ],
+      "text": "sheds",
+      "following_text": " ",
+      "start_sample": 579840,
+      "end_sample": 594240
+    },
+    {
+      "id": "source:3306:3311",
+      "source_span": [
+        148,
+        153
+      ],
+      "text": "where",
+      "following_text": " ",
+      "start_sample": 594240,
+      "end_sample": 599040
+    },
+    {
+      "id": "source:3312:3315",
+      "source_span": [
+        154,
+        157
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 599040,
+      "end_sample": 603840
+    },
+    {
+      "id": "source:3316:3320",
+      "source_span": [
+        158,
+        162
+      ],
+      "text": "cows",
+      "following_text": " ",
+      "start_sample": 603840,
+      "end_sample": 618240
+    },
+    {
+      "id": "source:3321:3324",
+      "source_span": [
+        163,
+        166
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 618240,
+      "end_sample": 623040
+    },
+    {
+      "id": "source:3325:3331",
+      "source_span": [
+        167,
+        173
+      ],
+      "text": "horses",
+      "following_text": " ",
+      "start_sample": 623040,
+      "end_sample": 642240
+    },
+    {
+      "id": "source:3332:3336",
+      "source_span": [
+        174,
+        178
+      ],
+      "text": "were",
+      "following_text": " ",
+      "start_sample": 642240,
+      "end_sample": 647040
+    },
+    {
+      "id": "source:3337:3341",
+      "source_span": [
+        179,
+        183
+      ],
+      "text": "kept",
+      "following_text": ".\n\n",
+      "start_sample": 647040,
+      "end_sample": 666240
+    },
+    {
+      "id": "source:3344:3348",
+      "source_span": [
+        186,
+        190
+      ],
+      "text": "Aunt",
+      "following_text": " ",
+      "start_sample": 710880,
+      "end_sample": 715680
+    },
+    {
+      "id": "source:3349:3351",
+      "source_span": [
+        191,
+        193
+      ],
+      "text": "Em",
+      "following_text": " ",
+      "start_sample": 715680,
+      "end_sample": 730080
+    },
+    {
+      "id": "source:3352:3359",
+      "source_span": [
+        194,
+        201
+      ],
+      "text": "dropped",
+      "following_text": " ",
+      "start_sample": 730080,
+      "end_sample": 744480
+    },
+    {
+      "id": "source:3360:3363",
+      "source_span": [
+        202,
+        205
+      ],
+      "text": "her",
+      "following_text": " ",
+      "start_sample": 744480,
+      "end_sample": 749280
+    },
+    {
+      "id": "source:3364:3368",
+      "source_span": [
+        206,
+        210
+      ],
+      "text": "work",
+      "following_text": " ",
+      "start_sample": 749280,
+      "end_sample": 773280
+    },
+    {
+      "id": "source:3369:3372",
+      "source_span": [
+        211,
+        214
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 773280,
+      "end_sample": 778080
+    },
+    {
+      "id": "source:3373:3377",
+      "source_span": [
+        215,
+        219
+      ],
+      "text": "came",
+      "following_text": " ",
+      "start_sample": 778080,
+      "end_sample": 787680
+    },
+    {
+      "id": "source:3378:3380",
+      "source_span": [
+        220,
+        222
+      ],
+      "text": "to",
+      "following_text": " ",
+      "start_sample": 787680,
+      "end_sample": 792480
+    },
+    {
+      "id": "source:3381:3384",
+      "source_span": [
+        223,
+        226
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 792480,
+      "end_sample": 797280
+    },
+    {
+      "id": "source:3385:3389",
+      "source_span": [
+        227,
+        231
+      ],
+      "text": "door",
+      "following_text": ". ",
+      "start_sample": 797280,
+      "end_sample": 816480
+    },
+    {
+      "id": "source:3391:3394",
+      "source_span": [
+        233,
+        236
+      ],
+      "text": "One",
+      "following_text": " ",
+      "start_sample": 835680,
+      "end_sample": 845280
+    },
+    {
+      "id": "source:3395:3401",
+      "source_span": [
+        237,
+        243
+      ],
+      "text": "glance",
+      "following_text": " ",
+      "start_sample": 845280,
+      "end_sample": 859680
+    },
+    {
+      "id": "source:3402:3406",
+      "source_span": [
+        244,
+        248
+      ],
+      "text": "told",
+      "following_text": " ",
+      "start_sample": 859680,
+      "end_sample": 869280
+    },
+    {
+      "id": "source:3407:3410",
+      "source_span": [
+        249,
+        252
+      ],
+      "text": "her",
+      "following_text": " ",
+      "start_sample": 869280,
+      "end_sample": 874080
+    },
+    {
+      "id": "source:3411:3413",
+      "source_span": [
+        253,
+        255
+      ],
+      "text": "of",
+      "following_text": " ",
+      "start_sample": 874080,
+      "end_sample": 878880
+    },
+    {
+      "id": "source:3414:3417",
+      "source_span": [
+        256,
+        259
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 878880,
+      "end_sample": 883680
+    },
+    {
+      "id": "source:3418:3424",
+      "source_span": [
+        260,
+        266
+      ],
+      "text": "danger",
+      "following_text": " ",
+      "start_sample": 883680,
+      "end_sample": 902880
+    },
+    {
+      "id": "source:3425:3430",
+      "source_span": [
+        267,
+        272
+      ],
+      "text": "close",
+      "following_text": " ",
+      "start_sample": 902880,
+      "end_sample": 912480
+    },
+    {
+      "id": "source:3431:3433",
+      "source_span": [
+        273,
+        275
+      ],
+      "text": "at",
+      "following_text": " ",
+      "start_sample": 912480,
+      "end_sample": 917280
+    },
+    {
+      "id": "source:3434:3438",
+      "source_span": [
+        276,
+        280
+      ],
+      "text": "hand",
+      "following_text": ".\n\n“",
+      "start_sample": 917280,
+      "end_sample": 936480
+    },
+    {
+      "id": "source:3442:3447",
+      "source_span": [
+        284,
+        289
+      ],
+      "text": "Quick",
+      "following_text": ", ",
+      "start_sample": 982080,
+      "end_sample": 996480
+    },
+    {
+      "id": "source:3449:3456",
+      "source_span": [
+        291,
+        298
+      ],
+      "text": "Dorothy",
+      "following_text": "!” ",
+      "start_sample": 996480,
+      "end_sample": 1030080
+    },
+    {
+      "id": "source:3459:3462",
+      "source_span": [
+        301,
+        304
+      ],
+      "text": "she",
+      "following_text": " ",
+      "start_sample": 1061280,
+      "end_sample": 1070880
+    },
+    {
+      "id": "source:3463:3471",
+      "source_span": [
+        305,
+        313
+      ],
+      "text": "screamed",
+      "following_text": ". “",
+      "start_sample": 1070880,
+      "end_sample": 1109280
+    },
+    {
+      "id": "source:3474:3477",
+      "source_span": [
+        316,
+        319
+      ],
+      "text": "Run",
+      "following_text": " ",
+      "start_sample": 1138560,
+      "end_sample": 1148160
+    },
+    {
+      "id": "source:3478:3481",
+      "source_span": [
+        320,
+        323
+      ],
+      "text": "for",
+      "following_text": " ",
+      "start_sample": 1148160,
+      "end_sample": 1152960
+    },
+    {
+      "id": "source:3482:3485",
+      "source_span": [
+        324,
+        327
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 1152960,
+      "end_sample": 1157760
+    },
+    {
+      "id": "source:3486:3492",
+      "source_span": [
+        328,
+        334
+      ],
+      "text": "cellar",
+      "following_text": "!”\n\n",
+      "start_sample": 1157760,
+      "end_sample": 1186560
+    },
+    {
+      "id": "source:3496:3500",
+      "source_span": [
+        338,
+        342
+      ],
+      "text": "Toto",
+      "following_text": " ",
+      "start_sample": 1229280,
+      "end_sample": 1243680
+    },
+    {
+      "id": "source:3501:3507",
+      "source_span": [
+        343,
+        349
+      ],
+      "text": "jumped",
+      "following_text": " ",
+      "start_sample": 1243680,
+      "end_sample": 1258080
+    },
+    {
+      "id": "source:3508:3511",
+      "source_span": [
+        350,
+        353
+      ],
+      "text": "out",
+      "following_text": " ",
+      "start_sample": 1258080,
+      "end_sample": 1262880
+    },
+    {
+      "id": "source:3512:3514",
+      "source_span": [
+        354,
+        356
+      ],
+      "text": "of",
+      "following_text": " ",
+      "start_sample": 1262880,
+      "end_sample": 1267680
+    },
+    {
+      "id": "source:3515:3524",
+      "source_span": [
+        357,
+        366
+      ],
+      "text": "Dorothy’s",
+      "following_text": " ",
+      "start_sample": 1267680,
+      "end_sample": 1286880
+    },
+    {
+      "id": "source:3525:3529",
+      "source_span": [
+        367,
+        371
+      ],
+      "text": "arms",
+      "following_text": " ",
+      "start_sample": 1286880,
+      "end_sample": 1301280
+    },
+    {
+      "id": "source:3530:3533",
+      "source_span": [
+        372,
+        375
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 1301280,
+      "end_sample": 1306080
+    },
+    {
+      "id": "source:3534:3537",
+      "source_span": [
+        376,
+        379
+      ],
+      "text": "hid",
+      "following_text": " ",
+      "start_sample": 1306080,
+      "end_sample": 1315680
+    },
+    {
+      "id": "source:3538:3543",
+      "source_span": [
+        380,
+        385
+      ],
+      "text": "under",
+      "following_text": " ",
+      "start_sample": 1315680,
+      "end_sample": 1325280
+    },
+    {
+      "id": "source:3544:3547",
+      "source_span": [
+        386,
+        389
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 1325280,
+      "end_sample": 1325280
+    },
+    {
+      "id": "source:3548:3551",
+      "source_span": [
+        390,
+        393
+      ],
+      "text": "bed",
+      "following_text": ", ",
+      "start_sample": 1325280,
+      "end_sample": 1344480
+    },
+    {
+      "id": "source:3553:3556",
+      "source_span": [
+        395,
+        398
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 1349280,
+      "end_sample": 1354080
+    },
+    {
+      "id": "source:3557:3560",
+      "source_span": [
+        399,
+        402
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 1354080,
+      "end_sample": 1358880
+    },
+    {
+      "id": "source:3561:3565",
+      "source_span": [
+        403,
+        407
+      ],
+      "text": "girl",
+      "following_text": " ",
+      "start_sample": 1358880,
+      "end_sample": 1368480
+    },
+    {
+      "id": "source:3566:3573",
+      "source_span": [
+        408,
+        415
+      ],
+      "text": "started",
+      "following_text": " ",
+      "start_sample": 1368480,
+      "end_sample": 1382880
+    },
+    {
+      "id": "source:3574:3576",
+      "source_span": [
+        416,
+        418
+      ],
+      "text": "to",
+      "following_text": " ",
+      "start_sample": 1382880,
+      "end_sample": 1387680
+    },
+    {
+      "id": "source:3577:3580",
+      "source_span": [
+        419,
+        422
+      ],
+      "text": "get",
+      "following_text": " ",
+      "start_sample": 1387680,
+      "end_sample": 1397280
+    },
+    {
+      "id": "source:3581:3584",
+      "source_span": [
+        423,
+        426
+      ],
+      "text": "him",
+      "following_text": ". ",
+      "start_sample": 1397280,
+      "end_sample": 1411680
+    },
+    {
+      "id": "source:3586:3590",
+      "source_span": [
+        428,
+        432
+      ],
+      "text": "Aunt",
+      "following_text": " ",
+      "start_sample": 1421280,
+      "end_sample": 1426080
+    },
+    {
+      "id": "source:3591:3593",
+      "source_span": [
+        433,
+        435
+      ],
+      "text": "Em",
+      "following_text": ", ",
+      "start_sample": 1426080,
+      "end_sample": 1440480
+    },
+    {
+      "id": "source:3595:3600",
+      "source_span": [
+        437,
+        442
+      ],
+      "text": "badly",
+      "following_text": " ",
+      "start_sample": 1450080,
+      "end_sample": 1464480
+    },
+    {
+      "id": "source:3601:3611",
+      "source_span": [
+        443,
+        453
+      ],
+      "text": "frightened",
+      "following_text": ", ",
+      "start_sample": 1464480,
+      "end_sample": 1493280
+    },
+    {
+      "id": "source:3613:3618",
+      "source_span": [
+        455,
+        460
+      ],
+      "text": "threw",
+      "following_text": " ",
+      "start_sample": 1493280,
+      "end_sample": 1507680
+    },
+    {
+      "id": "source:3619:3623",
+      "source_span": [
+        461,
+        465
+      ],
+      "text": "open",
+      "following_text": " ",
+      "start_sample": 1507680,
+      "end_sample": 1517280
+    },
+    {
+      "id": "source:3624:3627",
+      "source_span": [
+        466,
+        469
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 1517280,
+      "end_sample": 1522080
+    },
+    {
+      "id": "source:3628:3632",
+      "source_span": [
+        470,
+        474
+      ],
+      "text": "trap",
+      "following_text": " ",
+      "start_sample": 1522080,
+      "end_sample": 1536480
+    },
+    {
+      "id": "source:3633:3637",
+      "source_span": [
+        475,
+        479
+      ],
+      "text": "door",
+      "following_text": " ",
+      "start_sample": 1536480,
+      "end_sample": 1541280
+    },
+    {
+      "id": "source:3638:3640",
+      "source_span": [
+        480,
+        482
+      ],
+      "text": "in",
+      "following_text": " ",
+      "start_sample": 1541280,
+      "end_sample": 1546080
+    },
+    {
+      "id": "source:3641:3644",
+      "source_span": [
+        483,
+        486
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 1546080,
+      "end_sample": 1550880
+    },
+    {
+      "id": "source:3645:3650",
+      "source_span": [
+        487,
+        492
+      ],
+      "text": "floor",
+      "following_text": " ",
+      "start_sample": 1550880,
+      "end_sample": 1565280
+    },
+    {
+      "id": "source:3651:3654",
+      "source_span": [
+        493,
+        496
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 1565280,
+      "end_sample": 1570080
+    },
+    {
+      "id": "source:3655:3662",
+      "source_span": [
+        497,
+        504
+      ],
+      "text": "climbed",
+      "following_text": " ",
+      "start_sample": 1570080,
+      "end_sample": 1584480
+    },
+    {
+      "id": "source:3663:3667",
+      "source_span": [
+        505,
+        509
+      ],
+      "text": "down",
+      "following_text": " ",
+      "start_sample": 1584480,
+      "end_sample": 1594080
+    },
+    {
+      "id": "source:3668:3671",
+      "source_span": [
+        510,
+        513
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 1594080,
+      "end_sample": 1598880
+    },
+    {
+      "id": "source:3672:3678",
+      "source_span": [
+        514,
+        520
+      ],
+      "text": "ladder",
+      "following_text": " ",
+      "start_sample": 1598880,
+      "end_sample": 1608480
+    },
+    {
+      "id": "source:3679:3683",
+      "source_span": [
+        521,
+        525
+      ],
+      "text": "into",
+      "following_text": " ",
+      "start_sample": 1608480,
+      "end_sample": 1618080
+    },
+    {
+      "id": "source:3684:3687",
+      "source_span": [
+        526,
+        529
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 1618080,
+      "end_sample": 1622880
+    },
+    {
+      "id": "source:3688:3693",
+      "source_span": [
+        530,
+        535
+      ],
+      "text": "small",
+      "following_text": ", ",
+      "start_sample": 1622880,
+      "end_sample": 1642080
+    },
+    {
+      "id": "source:3695:3699",
+      "source_span": [
+        537,
+        541
+      ],
+      "text": "dark",
+      "following_text": " ",
+      "start_sample": 1642080,
+      "end_sample": 1656480
+    },
+    {
+      "id": "source:3700:3704",
+      "source_span": [
+        542,
+        546
+      ],
+      "text": "hole",
+      "following_text": ". ",
+      "start_sample": 1656480,
+      "end_sample": 1680480
+    },
+    {
+      "id": "source:3706:3713",
+      "source_span": [
+        548,
+        555
+      ],
+      "text": "Dorothy",
+      "following_text": " ",
+      "start_sample": 1910880,
+      "end_sample": 1925280
+    },
+    {
+      "id": "source:3714:3720",
+      "source_span": [
+        556,
+        562
+      ],
+      "text": "caught",
+      "following_text": " ",
+      "start_sample": 1925280,
+      "end_sample": 1939680
+    },
+    {
+      "id": "source:3721:3725",
+      "source_span": [
+        563,
+        567
+      ],
+      "text": "Toto",
+      "following_text": " ",
+      "start_sample": 1939680,
+      "end_sample": 1954080
+    },
+    {
+      "id": "source:3726:3728",
+      "source_span": [
+        568,
+        570
+      ],
+      "text": "at",
+      "following_text": " ",
+      "start_sample": 1954080,
+      "end_sample": 1958880
+    },
+    {
+      "id": "source:3729:3733",
+      "source_span": [
+        571,
+        575
+      ],
+      "text": "last",
+      "following_text": " ",
+      "start_sample": 1958880,
+      "end_sample": 1978080
+    },
+    {
+      "id": "source:3734:3737",
+      "source_span": [
+        576,
+        579
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 1978080,
+      "end_sample": 1982880
+    },
+    {
+      "id": "source:3738:3745",
+      "source_span": [
+        580,
+        587
+      ],
+      "text": "started",
+      "following_text": " ",
+      "start_sample": 1982880,
+      "end_sample": 1997280
+    },
+    {
+      "id": "source:3746:3748",
+      "source_span": [
+        588,
+        590
+      ],
+      "text": "to",
+      "following_text": " ",
+      "start_sample": 1997280,
+      "end_sample": 1997280
+    },
+    {
+      "id": "source:3749:3755",
+      "source_span": [
+        591,
+        597
+      ],
+      "text": "follow",
+      "following_text": " ",
+      "start_sample": 1997280,
+      "end_sample": 2011680
+    },
+    {
+      "id": "source:3756:3759",
+      "source_span": [
+        598,
+        601
+      ],
+      "text": "her",
+      "following_text": " ",
+      "start_sample": 2011680,
+      "end_sample": 2021280
+    },
+    {
+      "id": "source:3760:3764",
+      "source_span": [
+        602,
+        606
+      ],
+      "text": "aunt",
+      "following_text": ". ",
+      "start_sample": 2021280,
+      "end_sample": 2040480
+    },
+    {
+      "id": "source:3766:3770",
+      "source_span": [
+        608,
+        612
+      ],
+      "text": "When",
+      "following_text": " ",
+      "start_sample": 2064480,
+      "end_sample": 2069280
+    },
+    {
+      "id": "source:3771:3774",
+      "source_span": [
+        613,
+        616
+      ],
+      "text": "she",
+      "following_text": " ",
+      "start_sample": 2069280,
+      "end_sample": 2074080
+    },
+    {
+      "id": "source:3775:3778",
+      "source_span": [
+        617,
+        620
+      ],
+      "text": "was",
+      "following_text": " ",
+      "start_sample": 2074080,
+      "end_sample": 2078880
+    },
+    {
+      "id": "source:3779:3786",
+      "source_span": [
+        621,
+        628
+      ],
+      "text": "halfway",
+      "following_text": " ",
+      "start_sample": 2078880,
+      "end_sample": 2093280
+    },
+    {
+      "id": "source:3787:3793",
+      "source_span": [
+        629,
+        635
+      ],
+      "text": "across",
+      "following_text": " ",
+      "start_sample": 2093280,
+      "end_sample": 2107680
+    },
+    {
+      "id": "source:3794:3797",
+      "source_span": [
+        636,
+        639
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 2107680,
+      "end_sample": 2117280
+    },
+    {
+      "id": "source:3798:3802",
+      "source_span": [
+        640,
+        644
+      ],
+      "text": "room",
+      "following_text": " ",
+      "start_sample": 2117280,
+      "end_sample": 2131680
+    },
+    {
+      "id": "source:3803:3808",
+      "source_span": [
+        645,
+        650
+      ],
+      "text": "there",
+      "following_text": " ",
+      "start_sample": 2141280,
+      "end_sample": 2150880
+    },
+    {
+      "id": "source:3809:3813",
+      "source_span": [
+        651,
+        655
+      ],
+      "text": "came",
+      "following_text": " ",
+      "start_sample": 2150880,
+      "end_sample": 2160480
+    },
+    {
+      "id": "source:3814:3815",
+      "source_span": [
+        656,
+        657
+      ],
+      "text": "a",
+      "following_text": " ",
+      "start_sample": 2160480,
+      "end_sample": 2165280
+    },
+    {
+      "id": "source:3816:3821",
+      "source_span": [
+        658,
+        663
+      ],
+      "text": "great",
+      "following_text": " ",
+      "start_sample": 2165280,
+      "end_sample": 2179680
+    },
+    {
+      "id": "source:3822:3828",
+      "source_span": [
+        664,
+        670
+      ],
+      "text": "shriek",
+      "following_text": " ",
+      "start_sample": 2179680,
+      "end_sample": 2203680
+    },
+    {
+      "id": "source:3829:3833",
+      "source_span": [
+        671,
+        675
+      ],
+      "text": "from",
+      "following_text": " ",
+      "start_sample": 2203680,
+      "end_sample": 2213280
+    },
+    {
+      "id": "source:3834:3837",
+      "source_span": [
+        676,
+        679
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 2213280,
+      "end_sample": 2218080
+    },
+    {
+      "id": "source:3838:3842",
+      "source_span": [
+        680,
+        684
+      ],
+      "text": "wind",
+      "following_text": ", ",
+      "start_sample": 2218080,
+      "end_sample": 2232480
+    },
+    {
+      "id": "source:3844:3847",
+      "source_span": [
+        686,
+        689
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 2232480,
+      "end_sample": 2237280
+    },
+    {
+      "id": "source:3848:3851",
+      "source_span": [
+        690,
+        693
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 2237280,
+      "end_sample": 2242080
+    },
+    {
+      "id": "source:3852:3857",
+      "source_span": [
+        694,
+        699
+      ],
+      "text": "house",
+      "following_text": " ",
+      "start_sample": 2242080,
+      "end_sample": 2256480
+    },
+    {
+      "id": "source:3858:3863",
+      "source_span": [
+        700,
+        705
+      ],
+      "text": "shook",
+      "following_text": " ",
+      "start_sample": 2256480,
+      "end_sample": 2266080
+    },
+    {
+      "id": "source:3864:3866",
+      "source_span": [
+        706,
+        708
+      ],
+      "text": "so",
+      "following_text": " ",
+      "start_sample": 2266080,
+      "end_sample": 2275680
+    },
+    {
+      "id": "source:3867:3871",
+      "source_span": [
+        709,
+        713
+      ],
+      "text": "hard",
+      "following_text": " ",
+      "start_sample": 2275680,
+      "end_sample": 2294880
+    },
+    {
+      "id": "source:3872:3876",
+      "source_span": [
+        714,
+        718
+      ],
+      "text": "that",
+      "following_text": " ",
+      "start_sample": 2309280,
+      "end_sample": 2314080
+    },
+    {
+      "id": "source:3877:3880",
+      "source_span": [
+        719,
+        722
+      ],
+      "text": "she",
+      "following_text": " ",
+      "start_sample": 2314080,
+      "end_sample": 2318880
+    },
+    {
+      "id": "source:3881:3885",
+      "source_span": [
+        723,
+        727
+      ],
+      "text": "lost",
+      "following_text": " ",
+      "start_sample": 2318880,
+      "end_sample": 2333280
+    },
+    {
+      "id": "source:3886:3889",
+      "source_span": [
+        728,
+        731
+      ],
+      "text": "her",
+      "following_text": " ",
+      "start_sample": 2333280,
+      "end_sample": 2338080
+    },
+    {
+      "id": "source:3890:3897",
+      "source_span": [
+        732,
+        739
+      ],
+      "text": "footing",
+      "following_text": " ",
+      "start_sample": 2338080,
+      "end_sample": 2352480
+    },
+    {
+      "id": "source:3898:3901",
+      "source_span": [
+        740,
+        743
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 2352480,
+      "end_sample": 2362080
+    },
+    {
+      "id": "source:3902:3905",
+      "source_span": [
+        744,
+        747
+      ],
+      "text": "sat",
+      "following_text": " ",
+      "start_sample": 2362080,
+      "end_sample": 2371680
+    },
+    {
+      "id": "source:3906:3910",
+      "source_span": [
+        748,
+        752
+      ],
+      "text": "down",
+      "following_text": " ",
+      "start_sample": 2371680,
+      "end_sample": 2381280
+    },
+    {
+      "id": "source:3911:3919",
+      "source_span": [
+        753,
+        761
+      ],
+      "text": "suddenly",
+      "following_text": " ",
+      "start_sample": 2381280,
+      "end_sample": 2405280
+    },
+    {
+      "id": "source:3920:3924",
+      "source_span": [
+        762,
+        766
+      ],
+      "text": "upon",
+      "following_text": " ",
+      "start_sample": 2405280,
+      "end_sample": 2419680
+    },
+    {
+      "id": "source:3925:3928",
+      "source_span": [
+        767,
+        770
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 2419680,
+      "end_sample": 2419680
+    },
+    {
+      "id": "source:3929:3934",
+      "source_span": [
+        771,
+        776
+      ],
+      "text": "floor",
+      "following_text": ".\n\n",
+      "start_sample": 2419680,
+      "end_sample": 2443680
+    },
+    {
+      "id": "source:3937:3941",
+      "source_span": [
+        779,
+        783
+      ],
+      "text": "Then",
+      "following_text": " ",
+      "start_sample": 2500800,
+      "end_sample": 2520000
+    },
+    {
+      "id": "source:3942:3943",
+      "source_span": [
+        784,
+        785
+      ],
+      "text": "a",
+      "following_text": " ",
+      "start_sample": 2563200,
+      "end_sample": 2563200
+    },
+    {
+      "id": "source:3944:3951",
+      "source_span": [
+        786,
+        793
+      ],
+      "text": "strange",
+      "following_text": " ",
+      "start_sample": 2563200,
+      "end_sample": 2606400
+    },
+    {
+      "id": "source:3952:3957",
+      "source_span": [
+        794,
+        799
+      ],
+      "text": "thing",
+      "following_text": " ",
+      "start_sample": 2606400,
+      "end_sample": 2630400
+    },
+    {
+      "id": "source:3958:3966",
+      "source_span": [
+        800,
+        808
+      ],
+      "text": "happened",
+      "following_text": ".\n\n",
+      "start_sample": 2630400,
+      "end_sample": 2664000
+    },
+    {
+      "id": "source:3969:3972",
+      "source_span": [
+        811,
+        814
+      ],
+      "text": "The",
+      "following_text": " ",
+      "start_sample": 2703840,
+      "end_sample": 2713440
+    },
+    {
+      "id": "source:3973:3978",
+      "source_span": [
+        815,
+        820
+      ],
+      "text": "house",
+      "following_text": " ",
+      "start_sample": 2713440,
+      "end_sample": 2742240
+    },
+    {
+      "id": "source:3979:3986",
+      "source_span": [
+        821,
+        828
+      ],
+      "text": "whirled",
+      "following_text": " ",
+      "start_sample": 2742240,
+      "end_sample": 2771040
+    },
+    {
+      "id": "source:3987:3993",
+      "source_span": [
+        829,
+        835
+      ],
+      "text": "around",
+      "following_text": " ",
+      "start_sample": 2771040,
+      "end_sample": 2799840
+    },
+    {
+      "id": "source:3994:3997",
+      "source_span": [
+        836,
+        839
+      ],
+      "text": "two",
+      "following_text": " ",
+      "start_sample": 2799840,
+      "end_sample": 2819040
+    },
+    {
+      "id": "source:3998:4000",
+      "source_span": [
+        840,
+        842
+      ],
+      "text": "or",
+      "following_text": " ",
+      "start_sample": 2819040,
+      "end_sample": 2823840
+    },
+    {
+      "id": "source:4001:4006",
+      "source_span": [
+        843,
+        848
+      ],
+      "text": "three",
+      "following_text": " ",
+      "start_sample": 2823840,
+      "end_sample": 2838240
+    },
+    {
+      "id": "source:4007:4012",
+      "source_span": [
+        849,
+        854
+      ],
+      "text": "times",
+      "following_text": " ",
+      "start_sample": 2838240,
+      "end_sample": 2891040
+    },
+    {
+      "id": "source:4013:4016",
+      "source_span": [
+        855,
+        858
+      ],
+      "text": "and",
+      "following_text": " ",
+      "start_sample": 2891040,
+      "end_sample": 2900640
+    },
+    {
+      "id": "source:4017:4021",
+      "source_span": [
+        859,
+        863
+      ],
+      "text": "rose",
+      "following_text": " ",
+      "start_sample": 2900640,
+      "end_sample": 2915040
+    },
+    {
+      "id": "source:4022:4028",
+      "source_span": [
+        864,
+        870
+      ],
+      "text": "slowly",
+      "following_text": " ",
+      "start_sample": 2915040,
+      "end_sample": 2943840
+    },
+    {
+      "id": "source:4029:4036",
+      "source_span": [
+        871,
+        878
+      ],
+      "text": "through",
+      "following_text": " ",
+      "start_sample": 2943840,
+      "end_sample": 2958240
+    },
+    {
+      "id": "source:4037:4040",
+      "source_span": [
+        879,
+        882
+      ],
+      "text": "the",
+      "following_text": " ",
+      "start_sample": 2958240,
+      "end_sample": 2967840
+    },
+    {
+      "id": "source:4041:4044",
+      "source_span": [
+        883,
+        886
+      ],
+      "text": "air",
+      "following_text": ". ",
+      "start_sample": 2967840,
+      "end_sample": 2982240
+    },
+    {
+      "id": "source:4046:4053",
+      "source_span": [
+        888,
+        895
+      ],
+      "text": "Dorothy",
+      "following_text": " ",
+      "start_sample": 3030240,
+      "end_sample": 3054240
+    },
+    {
+      "id": "source:4054:4058",
+      "source_span": [
+        896,
+        900
+      ],
+      "text": "felt",
+      "following_text": " ",
+      "start_sample": 3054240,
+      "end_sample": 3078240
+    },
+    {
+      "id": "source:4059:4061",
+      "source_span": [
+        901,
+        903
+      ],
+      "text": "as",
+      "following_text": " ",
+      "start_sample": 3078240,
+      "end_sample": 3083040
+    },
+    {
+      "id": "source:4062:4064",
+      "source_span": [
+        904,
+        906
+      ],
+      "text": "if",
+      "following_text": " ",
+      "start_sample": 3083040,
+      "end_sample": 3087840
+    },
+    {
+      "id": "source:4065:4068",
+      "source_span": [
+        907,
+        910
+      ],
+      "text": "she",
+      "following_text": " ",
+      "start_sample": 3087840,
+      "end_sample": 3097440
+    },
+    {
+      "id": "source:4069:4073",
+      "source_span": [
+        911,
+        915
+      ],
+      "text": "were",
+      "following_text": " ",
+      "start_sample": 3097440,
+      "end_sample": 3102240
+    },
+    {
+      "id": "source:4074:4079",
+      "source_span": [
+        916,
+        921
+      ],
+      "text": "going",
+      "following_text": " ",
+      "start_sample": 3102240,
+      "end_sample": 3121440
+    },
+    {
+      "id": "source:4080:4082",
+      "source_span": [
+        922,
+        924
+      ],
+      "text": "up",
+      "following_text": " ",
+      "start_sample": 3121440,
+      "end_sample": 3131040
+    },
+    {
+      "id": "source:4083:4085",
+      "source_span": [
+        925,
+        927
+      ],
+      "text": "in",
+      "following_text": " ",
+      "start_sample": 3131040,
+      "end_sample": 3140640
+    },
+    {
+      "id": "source:4086:4087",
+      "source_span": [
+        928,
+        929
+      ],
+      "text": "a",
+      "following_text": " ",
+      "start_sample": 3140640,
+      "end_sample": 3140640
+    },
+    {
+      "id": "source:4088:4095",
+      "source_span": [
+        930,
+        937
+      ],
+      "text": "balloon",
+      "following_text": ".",
+      "start_sample": 3140640,
+      "end_sample": 3174240
+    }
+  ],
+  "groups": [
+    {
+      "id": "highlight:source:3158:3166",
+      "word_ids": [
+        "source:3158:3166"
+      ],
+      "timing_owner_word_id": "source:3158:3166",
+      "start_sample": 115200,
+      "end_sample": 139200
+    },
+    {
+      "id": "highlight:source:3167:3172",
+      "word_ids": [
+        "source:3167:3172"
+      ],
+      "timing_owner_word_id": "source:3167:3172",
+      "start_sample": 144000,
+      "end_sample": 153600
+    },
+    {
+      "id": "highlight:source:3173:3178",
+      "word_ids": [
+        "source:3173:3178"
+      ],
+      "timing_owner_word_id": "source:3173:3178",
+      "start_sample": 153600,
+      "end_sample": 168000
+    },
+    {
+      "id": "highlight:source:3179:3184",
+      "word_ids": [
+        "source:3179:3184"
+      ],
+      "timing_owner_word_id": "source:3179:3184",
+      "start_sample": 168000,
+      "end_sample": 182400
+    },
+    {
+      "id": "highlight:source:3185:3187",
+      "word_ids": [
+        "source:3185:3187"
+      ],
+      "timing_owner_word_id": "source:3185:3187",
+      "start_sample": 182400,
+      "end_sample": 192000
+    },
+    {
+      "id": "highlight:source:3191:3198",
+      "word_ids": [
+        "source:3191:3198"
+      ],
+      "timing_owner_word_id": "source:3191:3198",
+      "start_sample": 238560,
+      "end_sample": 243360
+    },
+    {
+      "id": "highlight:source:3199:3200",
+      "word_ids": [
+        "source:3199:3200"
+      ],
+      "timing_owner_word_id": "source:3199:3200",
+      "start_sample": 243360,
+      "end_sample": 248160
+    },
+    {
+      "id": "highlight:source:3201:3208",
+      "word_ids": [
+        "source:3201:3208"
+      ],
+      "timing_owner_word_id": "source:3201:3208",
+      "start_sample": 248160,
+      "end_sample": 276960
+    },
+    {
+      "id": "highlight:source:3209:3215",
+      "word_ids": [
+        "source:3209:3215"
+      ],
+      "timing_owner_word_id": "source:3209:3215",
+      "start_sample": 276960,
+      "end_sample": 296160
+    },
+    {
+      "id": "highlight:source:3217:3219",
+      "word_ids": [
+        "source:3217:3219"
+      ],
+      "timing_owner_word_id": "source:3217:3219",
+      "start_sample": 296160,
+      "end_sample": 310560
+    },
+    {
+      "id": "highlight:source:3222:3224",
+      "word_ids": [
+        "source:3222:3224"
+      ],
+      "timing_owner_word_id": "source:3222:3224",
+      "start_sample": 348480,
+      "end_sample": 353280
+    },
+    {
+      "id": "highlight:source:3225:3231",
+      "word_ids": [
+        "source:3225:3231"
+      ],
+      "timing_owner_word_id": "source:3225:3231",
+      "start_sample": 353280,
+      "end_sample": 367680
+    },
+    {
+      "id": "highlight:source:3232:3234",
+      "word_ids": [
+        "source:3232:3234"
+      ],
+      "timing_owner_word_id": "source:3232:3234",
+      "start_sample": 367680,
+      "end_sample": 377280
+    },
+    {
+      "id": "highlight:source:3235:3238",
+      "word_ids": [
+        "source:3235:3238"
+      ],
+      "timing_owner_word_id": "source:3235:3238",
+      "start_sample": 377280,
+      "end_sample": 382080
+    },
+    {
+      "id": "highlight:source:3239:3243",
+      "word_ids": [
+        "source:3239:3243"
+      ],
+      "timing_owner_word_id": "source:3239:3243",
+      "start_sample": 382080,
+      "end_sample": 406080
+    },
+    {
+      "id": "highlight:source:3246:3250",
+      "word_ids": [
+        "source:3246:3250"
+      ],
+      "timing_owner_word_id": "source:3246:3250",
+      "start_sample": 442080,
+      "end_sample": 446880
+    },
+    {
+      "id": "highlight:source:3251:3253",
+      "word_ids": [
+        "source:3251:3253"
+      ],
+      "timing_owner_word_id": "source:3251:3253",
+      "start_sample": 446880,
+      "end_sample": 451680
+    },
+    {
+      "id": "highlight:source:3254:3258",
+      "word_ids": [
+        "source:3254:3258"
+      ],
+      "timing_owner_word_id": "source:3254:3258",
+      "start_sample": 451680,
+      "end_sample": 461280
+    },
+    {
+      "id": "highlight:source:3259:3264",
+      "word_ids": [
+        "source:3259:3264"
+      ],
+      "timing_owner_word_id": "source:3259:3264",
+      "start_sample": 461280,
+      "end_sample": 475680
+    },
+    {
+      "id": "highlight:source:3265:3268",
+      "word_ids": [
+        "source:3265:3268"
+      ],
+      "timing_owner_word_id": "source:3265:3268",
+      "start_sample": 475680,
+      "end_sample": 480480
+    },
+    {
+      "id": "highlight:source:3269:3274",
+      "word_ids": [
+        "source:3269:3274"
+      ],
+      "timing_owner_word_id": "source:3269:3274",
+      "start_sample": 480480,
+      "end_sample": 494880
+    },
+    {
+      "id": "highlight:source:3277:3281",
+      "word_ids": [
+        "source:3277:3281"
+      ],
+      "timing_owner_word_id": "source:3277:3281",
+      "start_sample": 531840,
+      "end_sample": 546240
+    },
+    {
+      "id": "highlight:source:3282:3284",
+      "word_ids": [
+        "source:3282:3284"
+      ],
+      "timing_owner_word_id": "source:3282:3284",
+      "start_sample": 546240,
+      "end_sample": 551040
+    },
+    {
+      "id": "highlight:source:3285:3288",
+      "word_ids": [
+        "source:3285:3288"
+      ],
+      "timing_owner_word_id": "source:3285:3288",
+      "start_sample": 551040,
+      "end_sample": 565440
+    },
+    {
+      "id": "highlight:source:3289:3295",
+      "word_ids": [
+        "source:3289:3295"
+      ],
+      "timing_owner_word_id": "source:3289:3295",
+      "start_sample": 565440,
+      "end_sample": 579840
+    },
+    {
+      "id": "highlight:source:3296:3299+source:3300:3305",
+      "word_ids": [
+        "source:3296:3299",
+        "source:3300:3305"
+      ],
+      "timing_owner_word_id": "source:3300:3305",
+      "start_sample": 579840,
+      "end_sample": 594240
+    },
+    {
+      "id": "highlight:source:3306:3311",
+      "word_ids": [
+        "source:3306:3311"
+      ],
+      "timing_owner_word_id": "source:3306:3311",
+      "start_sample": 594240,
+      "end_sample": 599040
+    },
+    {
+      "id": "highlight:source:3312:3315",
+      "word_ids": [
+        "source:3312:3315"
+      ],
+      "timing_owner_word_id": "source:3312:3315",
+      "start_sample": 599040,
+      "end_sample": 603840
+    },
+    {
+      "id": "highlight:source:3316:3320",
+      "word_ids": [
+        "source:3316:3320"
+      ],
+      "timing_owner_word_id": "source:3316:3320",
+      "start_sample": 603840,
+      "end_sample": 618240
+    },
+    {
+      "id": "highlight:source:3321:3324",
+      "word_ids": [
+        "source:3321:3324"
+      ],
+      "timing_owner_word_id": "source:3321:3324",
+      "start_sample": 618240,
+      "end_sample": 623040
+    },
+    {
+      "id": "highlight:source:3325:3331",
+      "word_ids": [
+        "source:3325:3331"
+      ],
+      "timing_owner_word_id": "source:3325:3331",
+      "start_sample": 623040,
+      "end_sample": 642240
+    },
+    {
+      "id": "highlight:source:3332:3336",
+      "word_ids": [
+        "source:3332:3336"
+      ],
+      "timing_owner_word_id": "source:3332:3336",
+      "start_sample": 642240,
+      "end_sample": 647040
+    },
+    {
+      "id": "highlight:source:3337:3341",
+      "word_ids": [
+        "source:3337:3341"
+      ],
+      "timing_owner_word_id": "source:3337:3341",
+      "start_sample": 647040,
+      "end_sample": 666240
+    },
+    {
+      "id": "highlight:source:3344:3348",
+      "word_ids": [
+        "source:3344:3348"
+      ],
+      "timing_owner_word_id": "source:3344:3348",
+      "start_sample": 710880,
+      "end_sample": 715680
+    },
+    {
+      "id": "highlight:source:3349:3351",
+      "word_ids": [
+        "source:3349:3351"
+      ],
+      "timing_owner_word_id": "source:3349:3351",
+      "start_sample": 715680,
+      "end_sample": 730080
+    },
+    {
+      "id": "highlight:source:3352:3359",
+      "word_ids": [
+        "source:3352:3359"
+      ],
+      "timing_owner_word_id": "source:3352:3359",
+      "start_sample": 730080,
+      "end_sample": 744480
+    },
+    {
+      "id": "highlight:source:3360:3363",
+      "word_ids": [
+        "source:3360:3363"
+      ],
+      "timing_owner_word_id": "source:3360:3363",
+      "start_sample": 744480,
+      "end_sample": 749280
+    },
+    {
+      "id": "highlight:source:3364:3368",
+      "word_ids": [
+        "source:3364:3368"
+      ],
+      "timing_owner_word_id": "source:3364:3368",
+      "start_sample": 749280,
+      "end_sample": 773280
+    },
+    {
+      "id": "highlight:source:3369:3372",
+      "word_ids": [
+        "source:3369:3372"
+      ],
+      "timing_owner_word_id": "source:3369:3372",
+      "start_sample": 773280,
+      "end_sample": 778080
+    },
+    {
+      "id": "highlight:source:3373:3377",
+      "word_ids": [
+        "source:3373:3377"
+      ],
+      "timing_owner_word_id": "source:3373:3377",
+      "start_sample": 778080,
+      "end_sample": 787680
+    },
+    {
+      "id": "highlight:source:3378:3380",
+      "word_ids": [
+        "source:3378:3380"
+      ],
+      "timing_owner_word_id": "source:3378:3380",
+      "start_sample": 787680,
+      "end_sample": 792480
+    },
+    {
+      "id": "highlight:source:3381:3384",
+      "word_ids": [
+        "source:3381:3384"
+      ],
+      "timing_owner_word_id": "source:3381:3384",
+      "start_sample": 792480,
+      "end_sample": 797280
+    },
+    {
+      "id": "highlight:source:3385:3389",
+      "word_ids": [
+        "source:3385:3389"
+      ],
+      "timing_owner_word_id": "source:3385:3389",
+      "start_sample": 797280,
+      "end_sample": 816480
+    },
+    {
+      "id": "highlight:source:3391:3394",
+      "word_ids": [
+        "source:3391:3394"
+      ],
+      "timing_owner_word_id": "source:3391:3394",
+      "start_sample": 835680,
+      "end_sample": 845280
+    },
+    {
+      "id": "highlight:source:3395:3401",
+      "word_ids": [
+        "source:3395:3401"
+      ],
+      "timing_owner_word_id": "source:3395:3401",
+      "start_sample": 845280,
+      "end_sample": 859680
+    },
+    {
+      "id": "highlight:source:3402:3406",
+      "word_ids": [
+        "source:3402:3406"
+      ],
+      "timing_owner_word_id": "source:3402:3406",
+      "start_sample": 859680,
+      "end_sample": 869280
+    },
+    {
+      "id": "highlight:source:3407:3410",
+      "word_ids": [
+        "source:3407:3410"
+      ],
+      "timing_owner_word_id": "source:3407:3410",
+      "start_sample": 869280,
+      "end_sample": 874080
+    },
+    {
+      "id": "highlight:source:3411:3413",
+      "word_ids": [
+        "source:3411:3413"
+      ],
+      "timing_owner_word_id": "source:3411:3413",
+      "start_sample": 874080,
+      "end_sample": 878880
+    },
+    {
+      "id": "highlight:source:3414:3417",
+      "word_ids": [
+        "source:3414:3417"
+      ],
+      "timing_owner_word_id": "source:3414:3417",
+      "start_sample": 878880,
+      "end_sample": 883680
+    },
+    {
+      "id": "highlight:source:3418:3424",
+      "word_ids": [
+        "source:3418:3424"
+      ],
+      "timing_owner_word_id": "source:3418:3424",
+      "start_sample": 883680,
+      "end_sample": 902880
+    },
+    {
+      "id": "highlight:source:3425:3430",
+      "word_ids": [
+        "source:3425:3430"
+      ],
+      "timing_owner_word_id": "source:3425:3430",
+      "start_sample": 902880,
+      "end_sample": 912480
+    },
+    {
+      "id": "highlight:source:3431:3433",
+      "word_ids": [
+        "source:3431:3433"
+      ],
+      "timing_owner_word_id": "source:3431:3433",
+      "start_sample": 912480,
+      "end_sample": 917280
+    },
+    {
+      "id": "highlight:source:3434:3438",
+      "word_ids": [
+        "source:3434:3438"
+      ],
+      "timing_owner_word_id": "source:3434:3438",
+      "start_sample": 917280,
+      "end_sample": 936480
+    },
+    {
+      "id": "highlight:source:3442:3447",
+      "word_ids": [
+        "source:3442:3447"
+      ],
+      "timing_owner_word_id": "source:3442:3447",
+      "start_sample": 982080,
+      "end_sample": 996480
+    },
+    {
+      "id": "highlight:source:3449:3456",
+      "word_ids": [
+        "source:3449:3456"
+      ],
+      "timing_owner_word_id": "source:3449:3456",
+      "start_sample": 996480,
+      "end_sample": 1030080
+    },
+    {
+      "id": "highlight:source:3459:3462",
+      "word_ids": [
+        "source:3459:3462"
+      ],
+      "timing_owner_word_id": "source:3459:3462",
+      "start_sample": 1061280,
+      "end_sample": 1070880
+    },
+    {
+      "id": "highlight:source:3463:3471",
+      "word_ids": [
+        "source:3463:3471"
+      ],
+      "timing_owner_word_id": "source:3463:3471",
+      "start_sample": 1070880,
+      "end_sample": 1109280
+    },
+    {
+      "id": "highlight:source:3474:3477",
+      "word_ids": [
+        "source:3474:3477"
+      ],
+      "timing_owner_word_id": "source:3474:3477",
+      "start_sample": 1138560,
+      "end_sample": 1148160
+    },
+    {
+      "id": "highlight:source:3478:3481",
+      "word_ids": [
+        "source:3478:3481"
+      ],
+      "timing_owner_word_id": "source:3478:3481",
+      "start_sample": 1148160,
+      "end_sample": 1152960
+    },
+    {
+      "id": "highlight:source:3482:3485",
+      "word_ids": [
+        "source:3482:3485"
+      ],
+      "timing_owner_word_id": "source:3482:3485",
+      "start_sample": 1152960,
+      "end_sample": 1157760
+    },
+    {
+      "id": "highlight:source:3486:3492",
+      "word_ids": [
+        "source:3486:3492"
+      ],
+      "timing_owner_word_id": "source:3486:3492",
+      "start_sample": 1157760,
+      "end_sample": 1186560
+    },
+    {
+      "id": "highlight:source:3496:3500",
+      "word_ids": [
+        "source:3496:3500"
+      ],
+      "timing_owner_word_id": "source:3496:3500",
+      "start_sample": 1229280,
+      "end_sample": 1243680
+    },
+    {
+      "id": "highlight:source:3501:3507",
+      "word_ids": [
+        "source:3501:3507"
+      ],
+      "timing_owner_word_id": "source:3501:3507",
+      "start_sample": 1243680,
+      "end_sample": 1258080
+    },
+    {
+      "id": "highlight:source:3508:3511",
+      "word_ids": [
+        "source:3508:3511"
+      ],
+      "timing_owner_word_id": "source:3508:3511",
+      "start_sample": 1258080,
+      "end_sample": 1262880
+    },
+    {
+      "id": "highlight:source:3512:3514",
+      "word_ids": [
+        "source:3512:3514"
+      ],
+      "timing_owner_word_id": "source:3512:3514",
+      "start_sample": 1262880,
+      "end_sample": 1267680
+    },
+    {
+      "id": "highlight:source:3515:3524",
+      "word_ids": [
+        "source:3515:3524"
+      ],
+      "timing_owner_word_id": "source:3515:3524",
+      "start_sample": 1267680,
+      "end_sample": 1286880
+    },
+    {
+      "id": "highlight:source:3525:3529",
+      "word_ids": [
+        "source:3525:3529"
+      ],
+      "timing_owner_word_id": "source:3525:3529",
+      "start_sample": 1286880,
+      "end_sample": 1301280
+    },
+    {
+      "id": "highlight:source:3530:3533",
+      "word_ids": [
+        "source:3530:3533"
+      ],
+      "timing_owner_word_id": "source:3530:3533",
+      "start_sample": 1301280,
+      "end_sample": 1306080
+    },
+    {
+      "id": "highlight:source:3534:3537",
+      "word_ids": [
+        "source:3534:3537"
+      ],
+      "timing_owner_word_id": "source:3534:3537",
+      "start_sample": 1306080,
+      "end_sample": 1315680
+    },
+    {
+      "id": "highlight:source:3538:3543",
+      "word_ids": [
+        "source:3538:3543"
+      ],
+      "timing_owner_word_id": "source:3538:3543",
+      "start_sample": 1315680,
+      "end_sample": 1325280
+    },
+    {
+      "id": "highlight:source:3544:3547+source:3548:3551",
+      "word_ids": [
+        "source:3544:3547",
+        "source:3548:3551"
+      ],
+      "timing_owner_word_id": "source:3548:3551",
+      "start_sample": 1325280,
+      "end_sample": 1344480
+    },
+    {
+      "id": "highlight:source:3553:3556",
+      "word_ids": [
+        "source:3553:3556"
+      ],
+      "timing_owner_word_id": "source:3553:3556",
+      "start_sample": 1349280,
+      "end_sample": 1354080
+    },
+    {
+      "id": "highlight:source:3557:3560",
+      "word_ids": [
+        "source:3557:3560"
+      ],
+      "timing_owner_word_id": "source:3557:3560",
+      "start_sample": 1354080,
+      "end_sample": 1358880
+    },
+    {
+      "id": "highlight:source:3561:3565",
+      "word_ids": [
+        "source:3561:3565"
+      ],
+      "timing_owner_word_id": "source:3561:3565",
+      "start_sample": 1358880,
+      "end_sample": 1368480
+    },
+    {
+      "id": "highlight:source:3566:3573",
+      "word_ids": [
+        "source:3566:3573"
+      ],
+      "timing_owner_word_id": "source:3566:3573",
+      "start_sample": 1368480,
+      "end_sample": 1382880
+    },
+    {
+      "id": "highlight:source:3574:3576",
+      "word_ids": [
+        "source:3574:3576"
+      ],
+      "timing_owner_word_id": "source:3574:3576",
+      "start_sample": 1382880,
+      "end_sample": 1387680
+    },
+    {
+      "id": "highlight:source:3577:3580",
+      "word_ids": [
+        "source:3577:3580"
+      ],
+      "timing_owner_word_id": "source:3577:3580",
+      "start_sample": 1387680,
+      "end_sample": 1397280
+    },
+    {
+      "id": "highlight:source:3581:3584",
+      "word_ids": [
+        "source:3581:3584"
+      ],
+      "timing_owner_word_id": "source:3581:3584",
+      "start_sample": 1397280,
+      "end_sample": 1411680
+    },
+    {
+      "id": "highlight:source:3586:3590",
+      "word_ids": [
+        "source:3586:3590"
+      ],
+      "timing_owner_word_id": "source:3586:3590",
+      "start_sample": 1421280,
+      "end_sample": 1426080
+    },
+    {
+      "id": "highlight:source:3591:3593",
+      "word_ids": [
+        "source:3591:3593"
+      ],
+      "timing_owner_word_id": "source:3591:3593",
+      "start_sample": 1426080,
+      "end_sample": 1440480
+    },
+    {
+      "id": "highlight:source:3595:3600",
+      "word_ids": [
+        "source:3595:3600"
+      ],
+      "timing_owner_word_id": "source:3595:3600",
+      "start_sample": 1450080,
+      "end_sample": 1464480
+    },
+    {
+      "id": "highlight:source:3601:3611",
+      "word_ids": [
+        "source:3601:3611"
+      ],
+      "timing_owner_word_id": "source:3601:3611",
+      "start_sample": 1464480,
+      "end_sample": 1493280
+    },
+    {
+      "id": "highlight:source:3613:3618",
+      "word_ids": [
+        "source:3613:3618"
+      ],
+      "timing_owner_word_id": "source:3613:3618",
+      "start_sample": 1493280,
+      "end_sample": 1507680
+    },
+    {
+      "id": "highlight:source:3619:3623",
+      "word_ids": [
+        "source:3619:3623"
+      ],
+      "timing_owner_word_id": "source:3619:3623",
+      "start_sample": 1507680,
+      "end_sample": 1517280
+    },
+    {
+      "id": "highlight:source:3624:3627",
+      "word_ids": [
+        "source:3624:3627"
+      ],
+      "timing_owner_word_id": "source:3624:3627",
+      "start_sample": 1517280,
+      "end_sample": 1522080
+    },
+    {
+      "id": "highlight:source:3628:3632",
+      "word_ids": [
+        "source:3628:3632"
+      ],
+      "timing_owner_word_id": "source:3628:3632",
+      "start_sample": 1522080,
+      "end_sample": 1536480
+    },
+    {
+      "id": "highlight:source:3633:3637",
+      "word_ids": [
+        "source:3633:3637"
+      ],
+      "timing_owner_word_id": "source:3633:3637",
+      "start_sample": 1536480,
+      "end_sample": 1541280
+    },
+    {
+      "id": "highlight:source:3638:3640",
+      "word_ids": [
+        "source:3638:3640"
+      ],
+      "timing_owner_word_id": "source:3638:3640",
+      "start_sample": 1541280,
+      "end_sample": 1546080
+    },
+    {
+      "id": "highlight:source:3641:3644",
+      "word_ids": [
+        "source:3641:3644"
+      ],
+      "timing_owner_word_id": "source:3641:3644",
+      "start_sample": 1546080,
+      "end_sample": 1550880
+    },
+    {
+      "id": "highlight:source:3645:3650",
+      "word_ids": [
+        "source:3645:3650"
+      ],
+      "timing_owner_word_id": "source:3645:3650",
+      "start_sample": 1550880,
+      "end_sample": 1565280
+    },
+    {
+      "id": "highlight:source:3651:3654",
+      "word_ids": [
+        "source:3651:3654"
+      ],
+      "timing_owner_word_id": "source:3651:3654",
+      "start_sample": 1565280,
+      "end_sample": 1570080
+    },
+    {
+      "id": "highlight:source:3655:3662",
+      "word_ids": [
+        "source:3655:3662"
+      ],
+      "timing_owner_word_id": "source:3655:3662",
+      "start_sample": 1570080,
+      "end_sample": 1584480
+    },
+    {
+      "id": "highlight:source:3663:3667",
+      "word_ids": [
+        "source:3663:3667"
+      ],
+      "timing_owner_word_id": "source:3663:3667",
+      "start_sample": 1584480,
+      "end_sample": 1594080
+    },
+    {
+      "id": "highlight:source:3668:3671",
+      "word_ids": [
+        "source:3668:3671"
+      ],
+      "timing_owner_word_id": "source:3668:3671",
+      "start_sample": 1594080,
+      "end_sample": 1598880
+    },
+    {
+      "id": "highlight:source:3672:3678",
+      "word_ids": [
+        "source:3672:3678"
+      ],
+      "timing_owner_word_id": "source:3672:3678",
+      "start_sample": 1598880,
+      "end_sample": 1608480
+    },
+    {
+      "id": "highlight:source:3679:3683",
+      "word_ids": [
+        "source:3679:3683"
+      ],
+      "timing_owner_word_id": "source:3679:3683",
+      "start_sample": 1608480,
+      "end_sample": 1618080
+    },
+    {
+      "id": "highlight:source:3684:3687",
+      "word_ids": [
+        "source:3684:3687"
+      ],
+      "timing_owner_word_id": "source:3684:3687",
+      "start_sample": 1618080,
+      "end_sample": 1622880
+    },
+    {
+      "id": "highlight:source:3688:3693",
+      "word_ids": [
+        "source:3688:3693"
+      ],
+      "timing_owner_word_id": "source:3688:3693",
+      "start_sample": 1622880,
+      "end_sample": 1642080
+    },
+    {
+      "id": "highlight:source:3695:3699",
+      "word_ids": [
+        "source:3695:3699"
+      ],
+      "timing_owner_word_id": "source:3695:3699",
+      "start_sample": 1642080,
+      "end_sample": 1656480
+    },
+    {
+      "id": "highlight:source:3700:3704",
+      "word_ids": [
+        "source:3700:3704"
+      ],
+      "timing_owner_word_id": "source:3700:3704",
+      "start_sample": 1656480,
+      "end_sample": 1680480
+    },
+    {
+      "id": "highlight:source:3706:3713",
+      "word_ids": [
+        "source:3706:3713"
+      ],
+      "timing_owner_word_id": "source:3706:3713",
+      "start_sample": 1910880,
+      "end_sample": 1925280
+    },
+    {
+      "id": "highlight:source:3714:3720",
+      "word_ids": [
+        "source:3714:3720"
+      ],
+      "timing_owner_word_id": "source:3714:3720",
+      "start_sample": 1925280,
+      "end_sample": 1939680
+    },
+    {
+      "id": "highlight:source:3721:3725",
+      "word_ids": [
+        "source:3721:3725"
+      ],
+      "timing_owner_word_id": "source:3721:3725",
+      "start_sample": 1939680,
+      "end_sample": 1954080
+    },
+    {
+      "id": "highlight:source:3726:3728",
+      "word_ids": [
+        "source:3726:3728"
+      ],
+      "timing_owner_word_id": "source:3726:3728",
+      "start_sample": 1954080,
+      "end_sample": 1958880
+    },
+    {
+      "id": "highlight:source:3729:3733",
+      "word_ids": [
+        "source:3729:3733"
+      ],
+      "timing_owner_word_id": "source:3729:3733",
+      "start_sample": 1958880,
+      "end_sample": 1978080
+    },
+    {
+      "id": "highlight:source:3734:3737",
+      "word_ids": [
+        "source:3734:3737"
+      ],
+      "timing_owner_word_id": "source:3734:3737",
+      "start_sample": 1978080,
+      "end_sample": 1982880
+    },
+    {
+      "id": "highlight:source:3738:3745",
+      "word_ids": [
+        "source:3738:3745"
+      ],
+      "timing_owner_word_id": "source:3738:3745",
+      "start_sample": 1982880,
+      "end_sample": 1997280
+    },
+    {
+      "id": "highlight:source:3746:3748+source:3749:3755",
+      "word_ids": [
+        "source:3746:3748",
+        "source:3749:3755"
+      ],
+      "timing_owner_word_id": "source:3749:3755",
+      "start_sample": 1997280,
+      "end_sample": 2011680
+    },
+    {
+      "id": "highlight:source:3756:3759",
+      "word_ids": [
+        "source:3756:3759"
+      ],
+      "timing_owner_word_id": "source:3756:3759",
+      "start_sample": 2011680,
+      "end_sample": 2021280
+    },
+    {
+      "id": "highlight:source:3760:3764",
+      "word_ids": [
+        "source:3760:3764"
+      ],
+      "timing_owner_word_id": "source:3760:3764",
+      "start_sample": 2021280,
+      "end_sample": 2040480
+    },
+    {
+      "id": "highlight:source:3766:3770",
+      "word_ids": [
+        "source:3766:3770"
+      ],
+      "timing_owner_word_id": "source:3766:3770",
+      "start_sample": 2064480,
+      "end_sample": 2069280
+    },
+    {
+      "id": "highlight:source:3771:3774",
+      "word_ids": [
+        "source:3771:3774"
+      ],
+      "timing_owner_word_id": "source:3771:3774",
+      "start_sample": 2069280,
+      "end_sample": 2074080
+    },
+    {
+      "id": "highlight:source:3775:3778",
+      "word_ids": [
+        "source:3775:3778"
+      ],
+      "timing_owner_word_id": "source:3775:3778",
+      "start_sample": 2074080,
+      "end_sample": 2078880
+    },
+    {
+      "id": "highlight:source:3779:3786",
+      "word_ids": [
+        "source:3779:3786"
+      ],
+      "timing_owner_word_id": "source:3779:3786",
+      "start_sample": 2078880,
+      "end_sample": 2093280
+    },
+    {
+      "id": "highlight:source:3787:3793",
+      "word_ids": [
+        "source:3787:3793"
+      ],
+      "timing_owner_word_id": "source:3787:3793",
+      "start_sample": 2093280,
+      "end_sample": 2107680
+    },
+    {
+      "id": "highlight:source:3794:3797",
+      "word_ids": [
+        "source:3794:3797"
+      ],
+      "timing_owner_word_id": "source:3794:3797",
+      "start_sample": 2107680,
+      "end_sample": 2117280
+    },
+    {
+      "id": "highlight:source:3798:3802",
+      "word_ids": [
+        "source:3798:3802"
+      ],
+      "timing_owner_word_id": "source:3798:3802",
+      "start_sample": 2117280,
+      "end_sample": 2131680
+    },
+    {
+      "id": "highlight:source:3803:3808",
+      "word_ids": [
+        "source:3803:3808"
+      ],
+      "timing_owner_word_id": "source:3803:3808",
+      "start_sample": 2141280,
+      "end_sample": 2150880
+    },
+    {
+      "id": "highlight:source:3809:3813",
+      "word_ids": [
+        "source:3809:3813"
+      ],
+      "timing_owner_word_id": "source:3809:3813",
+      "start_sample": 2150880,
+      "end_sample": 2160480
+    },
+    {
+      "id": "highlight:source:3814:3815",
+      "word_ids": [
+        "source:3814:3815"
+      ],
+      "timing_owner_word_id": "source:3814:3815",
+      "start_sample": 2160480,
+      "end_sample": 2165280
+    },
+    {
+      "id": "highlight:source:3816:3821",
+      "word_ids": [
+        "source:3816:3821"
+      ],
+      "timing_owner_word_id": "source:3816:3821",
+      "start_sample": 2165280,
+      "end_sample": 2179680
+    },
+    {
+      "id": "highlight:source:3822:3828",
+      "word_ids": [
+        "source:3822:3828"
+      ],
+      "timing_owner_word_id": "source:3822:3828",
+      "start_sample": 2179680,
+      "end_sample": 2203680
+    },
+    {
+      "id": "highlight:source:3829:3833",
+      "word_ids": [
+        "source:3829:3833"
+      ],
+      "timing_owner_word_id": "source:3829:3833",
+      "start_sample": 2203680,
+      "end_sample": 2213280
+    },
+    {
+      "id": "highlight:source:3834:3837",
+      "word_ids": [
+        "source:3834:3837"
+      ],
+      "timing_owner_word_id": "source:3834:3837",
+      "start_sample": 2213280,
+      "end_sample": 2218080
+    },
+    {
+      "id": "highlight:source:3838:3842",
+      "word_ids": [
+        "source:3838:3842"
+      ],
+      "timing_owner_word_id": "source:3838:3842",
+      "start_sample": 2218080,
+      "end_sample": 2232480
+    },
+    {
+      "id": "highlight:source:3844:3847",
+      "word_ids": [
+        "source:3844:3847"
+      ],
+      "timing_owner_word_id": "source:3844:3847",
+      "start_sample": 2232480,
+      "end_sample": 2237280
+    },
+    {
+      "id": "highlight:source:3848:3851",
+      "word_ids": [
+        "source:3848:3851"
+      ],
+      "timing_owner_word_id": "source:3848:3851",
+      "start_sample": 2237280,
+      "end_sample": 2242080
+    },
+    {
+      "id": "highlight:source:3852:3857",
+      "word_ids": [
+        "source:3852:3857"
+      ],
+      "timing_owner_word_id": "source:3852:3857",
+      "start_sample": 2242080,
+      "end_sample": 2256480
+    },
+    {
+      "id": "highlight:source:3858:3863",
+      "word_ids": [
+        "source:3858:3863"
+      ],
+      "timing_owner_word_id": "source:3858:3863",
+      "start_sample": 2256480,
+      "end_sample": 2266080
+    },
+    {
+      "id": "highlight:source:3864:3866",
+      "word_ids": [
+        "source:3864:3866"
+      ],
+      "timing_owner_word_id": "source:3864:3866",
+      "start_sample": 2266080,
+      "end_sample": 2275680
+    },
+    {
+      "id": "highlight:source:3867:3871",
+      "word_ids": [
+        "source:3867:3871"
+      ],
+      "timing_owner_word_id": "source:3867:3871",
+      "start_sample": 2275680,
+      "end_sample": 2294880
+    },
+    {
+      "id": "highlight:source:3872:3876",
+      "word_ids": [
+        "source:3872:3876"
+      ],
+      "timing_owner_word_id": "source:3872:3876",
+      "start_sample": 2309280,
+      "end_sample": 2314080
+    },
+    {
+      "id": "highlight:source:3877:3880",
+      "word_ids": [
+        "source:3877:3880"
+      ],
+      "timing_owner_word_id": "source:3877:3880",
+      "start_sample": 2314080,
+      "end_sample": 2318880
+    },
+    {
+      "id": "highlight:source:3881:3885",
+      "word_ids": [
+        "source:3881:3885"
+      ],
+      "timing_owner_word_id": "source:3881:3885",
+      "start_sample": 2318880,
+      "end_sample": 2333280
+    },
+    {
+      "id": "highlight:source:3886:3889",
+      "word_ids": [
+        "source:3886:3889"
+      ],
+      "timing_owner_word_id": "source:3886:3889",
+      "start_sample": 2333280,
+      "end_sample": 2338080
+    },
+    {
+      "id": "highlight:source:3890:3897",
+      "word_ids": [
+        "source:3890:3897"
+      ],
+      "timing_owner_word_id": "source:3890:3897",
+      "start_sample": 2338080,
+      "end_sample": 2352480
+    },
+    {
+      "id": "highlight:source:3898:3901",
+      "word_ids": [
+        "source:3898:3901"
+      ],
+      "timing_owner_word_id": "source:3898:3901",
+      "start_sample": 2352480,
+      "end_sample": 2362080
+    },
+    {
+      "id": "highlight:source:3902:3905",
+      "word_ids": [
+        "source:3902:3905"
+      ],
+      "timing_owner_word_id": "source:3902:3905",
+      "start_sample": 2362080,
+      "end_sample": 2371680
+    },
+    {
+      "id": "highlight:source:3906:3910",
+      "word_ids": [
+        "source:3906:3910"
+      ],
+      "timing_owner_word_id": "source:3906:3910",
+      "start_sample": 2371680,
+      "end_sample": 2381280
+    },
+    {
+      "id": "highlight:source:3911:3919",
+      "word_ids": [
+        "source:3911:3919"
+      ],
+      "timing_owner_word_id": "source:3911:3919",
+      "start_sample": 2381280,
+      "end_sample": 2405280
+    },
+    {
+      "id": "highlight:source:3920:3924",
+      "word_ids": [
+        "source:3920:3924"
+      ],
+      "timing_owner_word_id": "source:3920:3924",
+      "start_sample": 2405280,
+      "end_sample": 2419680
+    },
+    {
+      "id": "highlight:source:3925:3928+source:3929:3934",
+      "word_ids": [
+        "source:3925:3928",
+        "source:3929:3934"
+      ],
+      "timing_owner_word_id": "source:3929:3934",
+      "start_sample": 2419680,
+      "end_sample": 2443680
+    },
+    {
+      "id": "highlight:source:3937:3941",
+      "word_ids": [
+        "source:3937:3941"
+      ],
+      "timing_owner_word_id": "source:3937:3941",
+      "start_sample": 2500800,
+      "end_sample": 2520000
+    },
+    {
+      "id": "highlight:source:3942:3943+source:3944:3951",
+      "word_ids": [
+        "source:3942:3943",
+        "source:3944:3951"
+      ],
+      "timing_owner_word_id": "source:3944:3951",
+      "start_sample": 2563200,
+      "end_sample": 2606400
+    },
+    {
+      "id": "highlight:source:3952:3957",
+      "word_ids": [
+        "source:3952:3957"
+      ],
+      "timing_owner_word_id": "source:3952:3957",
+      "start_sample": 2606400,
+      "end_sample": 2630400
+    },
+    {
+      "id": "highlight:source:3958:3966",
+      "word_ids": [
+        "source:3958:3966"
+      ],
+      "timing_owner_word_id": "source:3958:3966",
+      "start_sample": 2630400,
+      "end_sample": 2664000
+    },
+    {
+      "id": "highlight:source:3969:3972",
+      "word_ids": [
+        "source:3969:3972"
+      ],
+      "timing_owner_word_id": "source:3969:3972",
+      "start_sample": 2703840,
+      "end_sample": 2713440
+    },
+    {
+      "id": "highlight:source:3973:3978",
+      "word_ids": [
+        "source:3973:3978"
+      ],
+      "timing_owner_word_id": "source:3973:3978",
+      "start_sample": 2713440,
+      "end_sample": 2742240
+    },
+    {
+      "id": "highlight:source:3979:3986",
+      "word_ids": [
+        "source:3979:3986"
+      ],
+      "timing_owner_word_id": "source:3979:3986",
+      "start_sample": 2742240,
+      "end_sample": 2771040
+    },
+    {
+      "id": "highlight:source:3987:3993",
+      "word_ids": [
+        "source:3987:3993"
+      ],
+      "timing_owner_word_id": "source:3987:3993",
+      "start_sample": 2771040,
+      "end_sample": 2799840
+    },
+    {
+      "id": "highlight:source:3994:3997",
+      "word_ids": [
+        "source:3994:3997"
+      ],
+      "timing_owner_word_id": "source:3994:3997",
+      "start_sample": 2799840,
+      "end_sample": 2819040
+    },
+    {
+      "id": "highlight:source:3998:4000",
+      "word_ids": [
+        "source:3998:4000"
+      ],
+      "timing_owner_word_id": "source:3998:4000",
+      "start_sample": 2819040,
+      "end_sample": 2823840
+    },
+    {
+      "id": "highlight:source:4001:4006",
+      "word_ids": [
+        "source:4001:4006"
+      ],
+      "timing_owner_word_id": "source:4001:4006",
+      "start_sample": 2823840,
+      "end_sample": 2838240
+    },
+    {
+      "id": "highlight:source:4007:4012",
+      "word_ids": [
+        "source:4007:4012"
+      ],
+      "timing_owner_word_id": "source:4007:4012",
+      "start_sample": 2838240,
+      "end_sample": 2891040
+    },
+    {
+      "id": "highlight:source:4013:4016",
+      "word_ids": [
+        "source:4013:4016"
+      ],
+      "timing_owner_word_id": "source:4013:4016",
+      "start_sample": 2891040,
+      "end_sample": 2900640
+    },
+    {
+      "id": "highlight:source:4017:4021",
+      "word_ids": [
+        "source:4017:4021"
+      ],
+      "timing_owner_word_id": "source:4017:4021",
+      "start_sample": 2900640,
+      "end_sample": 2915040
+    },
+    {
+      "id": "highlight:source:4022:4028",
+      "word_ids": [
+        "source:4022:4028"
+      ],
+      "timing_owner_word_id": "source:4022:4028",
+      "start_sample": 2915040,
+      "end_sample": 2943840
+    },
+    {
+      "id": "highlight:source:4029:4036",
+      "word_ids": [
+        "source:4029:4036"
+      ],
+      "timing_owner_word_id": "source:4029:4036",
+      "start_sample": 2943840,
+      "end_sample": 2958240
+    },
+    {
+      "id": "highlight:source:4037:4040",
+      "word_ids": [
+        "source:4037:4040"
+      ],
+      "timing_owner_word_id": "source:4037:4040",
+      "start_sample": 2958240,
+      "end_sample": 2967840
+    },
+    {
+      "id": "highlight:source:4041:4044",
+      "word_ids": [
+        "source:4041:4044"
+      ],
+      "timing_owner_word_id": "source:4041:4044",
+      "start_sample": 2967840,
+      "end_sample": 2982240
+    },
+    {
+      "id": "highlight:source:4046:4053",
+      "word_ids": [
+        "source:4046:4053"
+      ],
+      "timing_owner_word_id": "source:4046:4053",
+      "start_sample": 3030240,
+      "end_sample": 3054240
+    },
+    {
+      "id": "highlight:source:4054:4058",
+      "word_ids": [
+        "source:4054:4058"
+      ],
+      "timing_owner_word_id": "source:4054:4058",
+      "start_sample": 3054240,
+      "end_sample": 3078240
+    },
+    {
+      "id": "highlight:source:4059:4061",
+      "word_ids": [
+        "source:4059:4061"
+      ],
+      "timing_owner_word_id": "source:4059:4061",
+      "start_sample": 3078240,
+      "end_sample": 3083040
+    },
+    {
+      "id": "highlight:source:4062:4064",
+      "word_ids": [
+        "source:4062:4064"
+      ],
+      "timing_owner_word_id": "source:4062:4064",
+      "start_sample": 3083040,
+      "end_sample": 3087840
+    },
+    {
+      "id": "highlight:source:4065:4068",
+      "word_ids": [
+        "source:4065:4068"
+      ],
+      "timing_owner_word_id": "source:4065:4068",
+      "start_sample": 3087840,
+      "end_sample": 3097440
+    },
+    {
+      "id": "highlight:source:4069:4073",
+      "word_ids": [
+        "source:4069:4073"
+      ],
+      "timing_owner_word_id": "source:4069:4073",
+      "start_sample": 3097440,
+      "end_sample": 3102240
+    },
+    {
+      "id": "highlight:source:4074:4079",
+      "word_ids": [
+        "source:4074:4079"
+      ],
+      "timing_owner_word_id": "source:4074:4079",
+      "start_sample": 3102240,
+      "end_sample": 3121440
+    },
+    {
+      "id": "highlight:source:4080:4082",
+      "word_ids": [
+        "source:4080:4082"
+      ],
+      "timing_owner_word_id": "source:4080:4082",
+      "start_sample": 3121440,
+      "end_sample": 3131040
+    },
+    {
+      "id": "highlight:source:4083:4085",
+      "word_ids": [
+        "source:4083:4085"
+      ],
+      "timing_owner_word_id": "source:4083:4085",
+      "start_sample": 3131040,
+      "end_sample": 3140640
+    },
+    {
+      "id": "highlight:source:4086:4087+source:4088:4095",
+      "word_ids": [
+        "source:4086:4087",
+        "source:4088:4095"
+      ],
+      "timing_owner_word_id": "source:4088:4095",
+      "start_sample": 3140640,
+      "end_sample": 3174240
+    }
+  ],
+  "preferred_break_after": []
+}

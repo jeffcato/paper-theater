@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "entities": [
+    {
+      "id": "em",
+      "name": "Imported diagnostic figure"
+    }
+  ]
+}
