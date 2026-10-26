@@ -8,14 +8,16 @@
     "manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b"
   },
   "executed_identities": {
-    "player_sha256": "4cc1c44beb5e4b89d318621e2d6a0ea081bafbb7e54bf8eaba7f2e503a5f50b5",
+    "player_sha256": "69875dff53f35178af771628dc5caf5ea57cf90df483e385cf8ee08dbef49d86",
     "checker_sha256": "601c9c95e0fad58853c0ed1febdd022d61391e4c4b577ffeaba093e3475e43cb"
   },
   "pinned_identities": {
     "player_sha256": "4cc1c44beb5e4b89d318621e2d6a0ea081bafbb7e54bf8eaba7f2e503a5f50b5",
     "checker_sha256": "601c9c95e0fad58853c0ed1febdd022d61391e4c4b577ffeaba093e3475e43cb"
   },
-  "identity_notes": [],
+  "identity_notes": [
+    "player binding: inventory pins earlier build 4cc1c44beb5e4b89…, executed 69875dff53f35178… (preserved, reported)"
+  ],
   "hash_notes": [],
   "captures": 144,
   "capture_rows": [

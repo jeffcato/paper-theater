@@ -77,6 +77,8 @@ export {
   baseCameraPose,
   envelopeCameraPose,
   plaqueGrowthSteps,
+  projectPlaqueSafe,
+  projectToCss,
   solveHomography,
   compositeStagePixel,
   blackoutHolds,
@@ -85,8 +87,9 @@ export {
   configureColorTexture,
   configureMaskTexture,
 } from "./shell.js";
-export { groupWords, layoutChunks, ReadAlongModel } from "./readalong.js";
-export type { Chunk } from "./readalong.js";
+export type { CameraPose, PlaqueScreenRect, ViewportCss } from "./shell.js";
+export { groupWords, layoutChunks, layoutMeasured, ReadAlongModel } from "./readalong.js";
+export type { Chunk, MeasureFn } from "./readalong.js";
 export { describeCapture, boundarySamples } from "./capture.js";
 export type { CaptureRequest, CaptureResult } from "./capture.js";
 export { toCueView, toLightView } from "./shared.js";
@@ -102,6 +105,7 @@ export type {
   FrameSink,
   MountEvents,
   MountOptions,
+  MountReadAlong,
   MountSource,
   PlayerMount,
 } from "./mount.js";

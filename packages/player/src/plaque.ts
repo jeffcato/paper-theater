@@ -5,8 +5,8 @@
 // tree; reflow regroups chunk boundaries without changing word/group
 // samples; viewer text scaling stays within 100%-200%.
 import { FONT } from "./profile.js";
-import { layoutChunks } from "./readalong.js";
-import type { Chunk } from "./readalong.js";
+import { groupWords, layoutChunks, layoutMeasured } from "./readalong.js";
+import type { Chunk, MeasureFn } from "./readalong.js";
 import type { ReadAlongGroup, ReadAlongWord } from "./types.js";
 
 /** Viewer text scaling, clamped to the supported 100%-200% range. */
@@ -41,6 +41,13 @@ export interface PlaqueOptions {
   basePx?: number;
   /** Viewer text scale 1..2 (default 1). */
   scale?: number;
+  /**
+   * Width measurer for certifying line fits. Omitted: canvas 2D measurement
+   * against the rendered font string. Explicit null is impossible — pass a
+   * stub only in non-browser checks, which then certify nothing (fontReady
+   * resolves false there).
+   */
+  measure?: MeasureFn;
 }
 
 /**
@@ -54,12 +61,22 @@ export class PlaqueView {
   private chunks: Chunk[];
   private currentChunkId: string | null = null;
   private currentGroupId: string | null = null;
+  private lastSample = 0;
   private enabled = true;
   private scale: number;
   private readonly basePx: number;
   private readonly chunkEl: HTMLElement;
+  private readonly canvasMeasure: MeasureFn | null;
+  private readonly injectedMeasure: MeasureFn | null;
   private observer: ResizeObserver | null = null;
   readonly ready: Promise<void>;
+  /**
+   * True once the bundled Noto Serif face is loaded and covers the track
+   * text. False means every line fit below is provisional (fallback serif
+   * or stub metrics) and must not certify layout. Injected stub measurers
+   * always resolve false: non-browser checks certify nothing.
+   */
+  readonly fontReady: Promise<boolean>;
 
   constructor(
     private readonly container: HTMLElement,
@@ -67,15 +84,20 @@ export class PlaqueView {
     private readonly groups: ReadAlongGroup[],
     options: PlaqueOptions = {},
   ) {
+    groupWords(words, groups);
     this.basePx = options.basePx ?? 22;
     this.scale = clampScale(options.scale ?? 1);
+    this.injectedMeasure = options.measure ?? null;
+    this.canvasMeasure = options.measure ? null : this.defaultMeasure();
     this.container.setAttribute("aria-label", "Read along");
     this.chunkEl = container.ownerDocument.createElement("div");
     this.chunkEl.className = "pl-chunk";
     this.container.appendChild(this.chunkEl);
+    // Provisional pre-font layout; ready reflows with real metrics.
     this.chunks = reflowChunks(words, groups, this.budget());
     this.applyScale();
-    this.ready = this.awaitFont().then(() => {
+    this.fontReady = this.awaitFont();
+    this.ready = this.fontReady.then(() => {
       this.reflow();
     });
     if (typeof ResizeObserver !== "undefined") {
@@ -93,20 +115,98 @@ export class PlaqueView {
     return charsPerLine(inset > 0 ? inset : 520, this.fontPx());
   }
 
-  private async awaitFont(): Promise<void> {
+  private fontCss(): string {
+    return `${this.fontPx()}px "Noto Serif", Georgia, serif`;
+  }
+
+  private defaultMeasure(): MeasureFn | null {
     try {
       const doc = this.container.ownerDocument;
-      const fonts = (doc as Document & { fonts?: FontFaceSet }).fonts;
-      if (fonts) await fonts.load(`${this.fontPx()}px "Noto Serif"`, "hush");
+      const canvas = doc.createElement("canvas");
+      const ctx = (canvas as HTMLCanvasElement).getContext("2d");
+      if (!ctx) return null;
+      return (text: string): number => {
+        ctx.font = this.fontCss();
+        return ctx.measureText(text).width;
+      };
     } catch {
-      // Fallback serif renders instead; layout still proceeds.
+      return null;
+    }
+  }
+
+  /**
+   * Wait for the bundled face, then report whether it truly covers the
+   * track. A failed load or missing coverage resolves false: callers must
+   * fail missing font readiness rather than certify fallback metrics.
+   */
+  private async awaitFont(): Promise<boolean> {
+    try {
+      if (this.injectedMeasure) return false;
+      const doc = this.container.ownerDocument;
+      const fonts = (doc as Document & { fonts?: FontFaceSet }).fonts;
+      if (!fonts) return false;
+      const probe = this.words
+        .slice(0, 32)
+        .map((w) => w.text + w.following_text)
+        .join("");
+      await fonts.load(this.fontCss(), probe);
+      return fonts.check(this.fontCss(), probe);
+    } catch {
+      return false;
     }
   }
 
   private applyScale(): void {
     this.chunkEl.style.fontFamily = '"Noto Serif", Georgia, serif';
     this.chunkEl.style.fontSize = `${this.fontPx()}px`;
-    this.chunkEl.style.lineHeight = String(1.3);
+    this.chunkEl.style.lineHeight = String(FONT.line_height);
+  }
+
+  /** Active measurer: injected stub, else canvas; null while provisional. */
+  private measurer(): MeasureFn | null {
+    return this.injectedMeasure ?? this.canvasMeasure;
+  }
+
+  /**
+   * Per-group rendered overhead beyond the text itself (host padding /
+   * borders on .pl-group), read off one probe span wearing the same
+   * classes inside the chunk. Zero when unreadable: packing then matches
+   * the text exactly, as the unit checks assume.
+   */
+  private groupOverheadPx(base: MeasureFn): number {
+    try {
+      const doc = this.container.ownerDocument;
+      const probe = doc.createElement("span") as HTMLElement;
+      probe.className = "pl-group";
+      probe.textContent = "x";
+      probe.style.position = "absolute";
+      probe.style.visibility = "hidden";
+      this.chunkEl.appendChild(probe);
+      const rendered = (probe as HTMLElement & { offsetWidth?: unknown }).offsetWidth;
+      probe.remove();
+      const over = (typeof rendered === "number" ? rendered : Number.NaN) - base("x");
+      return over > 0 && Number.isFinite(over) ? over : 0;
+    } catch {
+      return 0;
+    }
+  }
+
+  /** Inset content width in CSS px for certified line fits (padding out). */
+  private insetWidth(): number {
+    const total = this.container.clientWidth;
+    let pad = 0;
+    try {
+      const view = this.container.ownerDocument.defaultView;
+      if (view) {
+        const cs = view.getComputedStyle(this.container);
+        const parsed = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+        if (Number.isFinite(parsed)) pad = parsed;
+      }
+    } catch {
+      // No view (non-browser check): content box is the whole box.
+    }
+    const inset = total - pad;
+    return inset > 0 ? inset : 520;
   }
 
   /** Viewer text scaling (100%-200%); reflows around the active group. */
@@ -126,6 +226,7 @@ export class PlaqueView {
       this.currentGroupId = null;
     } else {
       this.reflow();
+      this.setSample(this.lastSample);
     }
   }
 
@@ -133,11 +234,25 @@ export class PlaqueView {
     return this.enabled;
   }
 
-  /** Re-measure the inset and regroup chunks; word/group samples untouched. */
+  /**
+   * Re-measure the inset and regroup chunks; word/group samples untouched.
+   * With a measurer this certifies line fits via layoutMeasured; without
+   * one it keeps the provisional character-count layout (fontReady stays
+   * false, so callers must not treat it as certified).
+   */
   reflow(): void {
     if (!this.enabled) return;
     const activeGroup = this.currentGroupId;
-    this.chunks = reflowChunks(this.words, this.groups, this.budget());
+    const measure = this.measurer();
+    if (measure) {
+      // layoutMeasured calls once per group text: fold the rendered
+      // per-group overhead in so CSS wraps exactly the packed lines.
+      const overhead = this.groupOverheadPx(measure);
+      const fitted: MeasureFn = (text) => measure(text) + overhead;
+      this.chunks = layoutMeasured(this.words, this.groups, fitted, this.insetWidth());
+    } else {
+      this.chunks = reflowChunks(this.words, this.groups, this.budget());
+    }
     this.currentChunkId = null;
     this.currentGroupId = null;
     if (activeGroup) {
@@ -149,6 +264,7 @@ export class PlaqueView {
   /** Advance the plaque to a media sample (integer, 48 kHz domain). */
   setSample(sample: number): string | null {
     if (!this.enabled || !Number.isSafeInteger(sample) || sample < 0) return null;
+    this.lastSample = sample;
     let low = 0;
     let high = this.chunks.length;
     while (low < high) {

@@ -1,0 +1,11 @@
+/* Noto Serif for the mounted read-along plaque (profile font). Host pages
+ * (studio, audience, check harnesses) include this sheet before mounting so
+ * layout measures the real face; PlaqueView reports fallback metrics via
+ * fontReady instead of certifying them. */
+@font-face {
+  font-family: "Noto Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./noto-serif-latin-400-normal.woff2") format("woff2");
+}

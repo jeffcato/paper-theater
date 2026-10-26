@@ -2,6 +2,7 @@
 // homography projection, blackout compositing, pinned shadow profile.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
+import * as THREE from "three";
 import {
   baseCameraPose,
   baseDistance,
@@ -9,10 +10,13 @@ import {
   compositeStagePixel,
   envelopeCameraPose,
   plaqueGrowthSteps,
+  projectPlaqueSafe,
+  projectToCss,
   solveHomography,
   validateSchematicShell,
   RENDER_DEFAULTS,
 } from "../src/index.js";
+import type { CameraPose } from "../src/index.js";
 
 describe("shell: schematic geometry and camera", () => {
   it("validates the layered proscenium/deck/apron/plaque joins", () => {
@@ -78,5 +82,64 @@ describe("shell: schematic geometry and camera", () => {
 
   it("pins PCFShadowMap (migration off PCFSoftShadowMap)", () => {
     assert.equal(RENDER_DEFAULTS.shadow_map, "PCFShadowMap");
+  });
+});
+
+describe("shell: projected plaque placement", () => {
+  const viewports = [
+    { width: 960, height: 540 },
+    { width: 1280, height: 720 },
+    { width: 1920, height: 1080 },
+  ];
+
+  function threeProject(
+    point: [number, number, number],
+    pose: CameraPose,
+    viewport: { width: number; height: number },
+  ): [number, number] {
+    const camera = new THREE.PerspectiveCamera(40, viewport.width / viewport.height, 0.1, 100);
+    camera.position.set(pose.position[0], pose.position[1], pose.position[2]);
+    camera.lookAt(pose.target[0], pose.target[1], pose.target[2]);
+    const v = new THREE.Vector3(point[0], point[1], point[2]).project(camera);
+    return [((v.x + 1) / 2) * viewport.width, ((1 - v.y) / 2) * viewport.height];
+  }
+
+  it("centers the shell target and matches the three.js oracle", () => {
+    const pose = baseCameraPose();
+    const points: Array<[number, number, number]> = [
+      [0, 4, 0], [-7, -2.8, 2.8], [7, -0.4, 2.8], [-8, 0, -1.6], [2.2, 1.6, 0.4],
+    ];
+    for (const viewport of viewports) {
+      const center = projectToCss([pose.target[0], pose.target[1], 0], pose, viewport);
+      assert.ok(Math.abs(center[0] - viewport.width / 2) < 1e-6, "target x centered");
+      assert.ok(Math.abs(center[1] - viewport.height / 2) < 1e-6, "target y centered");
+      for (const point of points) {
+        const [x, y] = projectToCss(point, pose, viewport);
+        const [ex, ey] = threeProject(point, pose, viewport);
+        assert.ok(Math.abs(x - ex) < 1e-6 && Math.abs(y - ey) < 1e-6, `oracle ${point}`);
+      }
+    }
+  });
+
+  it("rejects points behind the camera", () => {
+    const pose = baseCameraPose();
+    assert.throws(
+      () => projectToCss([pose.position[0], pose.position[1], pose.position[2] + 1], pose, { width: 960, height: 540 }),
+      /behind camera/,
+    );
+  });
+
+  it("projects the safe plaque rect inside the frame with the floor above it", () => {
+    const pose = baseCameraPose();
+    for (const viewport of viewports) {
+      const rect = projectPlaqueSafe(pose, viewport);
+      const right = rect.left + rect.width;
+      const bottom = rect.top + rect.height;
+      assert.ok(rect.width > 0 && rect.height > 0, "rect ordered");
+      assert.ok(rect.left >= 0 && rect.top >= 0, "rect on screen");
+      assert.ok(right <= viewport.width && bottom <= viewport.height, "rect in frame");
+      assert.ok(rect.floorY < rect.top, "projected floor sits above the plaque");
+      assert.ok(rect.top - rect.floorY >= 1, "visible gap between floor and plaque");
+    }
   });
 });

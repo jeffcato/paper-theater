@@ -13,7 +13,12 @@ export interface PlaqueTrack {
 
 /** Bind the shared player plaque to a container. The view is created only
  * once a loaded performance supplies a track; until then the toggle and
- * sample updates are safe no-ops. */
+ * sample updates are safe no-ops. Loaded performances prefer the
+ * mount-owned plaque instead (MountOptions.readAlong, fed by the sampled
+ * clock and controlled by setReadAlong); this hook covers standalone
+ * plaque containers. Host pages must include
+ * `@paper-theater/player/fonts/noto-serif.css` before mounting, or the
+ * view reports fallback metrics via fontReady instead of certifying them. */
 export function usePlaque(
   track: PlaqueTrack | null,
   sample: number,

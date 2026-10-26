@@ -40,5 +40,30 @@ browser sink on the profile compositing pipeline.
   for the demo computer; see [checks.md](checks.md).
 
 Covered by `npm run check:player -- integration` (`tests/mount.test.ts`,
-7 tests: 3 lifecycle + 4 capture). The three.js API usage typechecks
-against the pinned 0.186.0 declarations.
+10 tests: 3 lifecycle + 4 capture + 3 plaque wiring). The three.js API
+usage typechecks against the pinned 0.186.0 declarations.
+
+## Read-along studio usage
+
+- Host pages include `@paper-theater/player/fonts/noto-serif.css` (bundled
+  Noto Serif latin woff2 + OFL, see `packages/player/fonts/README.md`)
+  before mounting. Without the face, `mount.plaque.fontReady` resolves
+  `false` and every line fit is provisional — studio must surface missing
+  font readiness, never certify fallback metrics.
+- Pass the package track: `mountPlayer(el, {handle, timeline}, {clock,
+  sink, readAlong: {words, groups, container: plaqueEl, scale}})`. Mount
+  validates the grouping up front (invalid tracks throw before any DOM is
+  touched), feeds every delivered media sample to the view, routes
+  `setReadAlong(enabled)` to it, and disposes it with the mount.
+  `mount.plaque` exposes the view (`setScale` for 100%/150%/200%,
+  `fontReady`, `ready`); it is `null` without a track.
+- Position the plaque container from `projectPlaqueSafe(baseCameraPose(),
+  viewport)`: left/top/width track the projection (≤2 px), height covers at
+  least the safe inset and extends per `plaqueGrowthSteps` when measured
+  lines need more room. Line fits come from loaded-font canvas measurement
+  (`layoutMeasured`), never the character-count proxy; the view folds the
+  rendered per-group CSS overhead into packing so CSS wraps exactly the
+  packed lines.
+- Covered by `npm run check:theater` (combined theater+plaque harness,
+  evidence `theater.json` + `theater-{WxH}[-200].png`) and the mount plaque
+  wiring tests in `tests/mount.test.ts` (stub metrics; certify nothing).

@@ -134,3 +134,42 @@ read-along toggle + 100/150/200% selector + plaque styles). No accepted
 package exists yet, so the hook stays dormant in production — no track or
 samples flow — until a loaded performance supplies them. Audience
 `npm test` 5/5, `tsc --noEmit`, and `vite build` pass with the binding.
+
+## 2026-10-26 — P4 read-along integration (mount-owned plaque + theater)
+
+`mountPlayer` takes a backward-compatible `MountOptions.readAlong` track
+input (`packages/player/src/mount.ts:MountReadAlong`): the grouping is
+verified up front (invalid tracks throw before any DOM exists), every
+delivered media sample feeds the mount-owned `PlaqueView`,
+`setReadAlong` controls it, and dispose releases its DOM/listeners/
+observers. `mount.plaque` exposes the view (null without a track).
+
+`packages/player/fonts/` bundles Noto Serif latin 400 woff2 + OFL 1.1 +
+`noto-serif.css` (static registry/CDN fetches, zero provider calls, shas
+in `fonts/README.md`). `PlaqueView.fontReady` resolves true only when the
+face loads and covers the track text; the theater harness fails missing
+readiness instead of certifying fallback metrics. Certified line fits use
+loaded-font canvas measurement (`layoutMeasured`, pure + unit-tested) with
+the rendered per-group CSS overhead folded into packing — the
+character-count proxy remains only for provisional pre-font layout. Below-
+stage placement comes from `projectPlaqueSafe` (pure pinhole projection,
+verified against the three.js oracle to <1e-6 px).
+
+`npm run check:player`: 79/79 pass (new: 4 measured-layout, 3 projection,
+3 mount plaque-wiring). `npm run check:theater` passes at 960x540,
+1280x720, 1920x1080 against readiness-v2 with the real `<audio>` clock
+(28–84 playback frames per viewport, zero sample/group mismatches),
+play/pause/seek/restart/rewind/silence/toggle, overlay tracking the
+projection within 2 px, 3 measured lines at 100% and 200%, 28–52 px floor
+clearance (≥8 required), full-track font coverage, per-viewport frame
+capture + nod-em evidence, and clean disposal with zero console errors.
+The run caught a real packing defect (unpadded canvas widths spilled a
+4th CSS line); the probe-measured overhead fixed it. Growth fires
+honestly: 960x540/1280x720 at 200% extend past the frame (76/40 px
+overflow recorded in `theater.json`) — plaque extension per profile is
+implemented, the companion camera refit stays pending. Evidence
+eyeballed: `theater-*.png` show the stage with the 3-line "trap" chunk
+below it; `-200.png` at 960 documents the overflow. P12 retained:
+`check:inventory --tag v2` still 144/144 (binding drift note preserved).
+Audience `npm test` 5/5 + `tsc` + `vite build` pass; the hook comment now
+points loaded performances at the mount-owned plaque.

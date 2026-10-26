@@ -13,7 +13,7 @@ import {
   requireAccepted,
   sha256Hex,
 } from "../src/index.js";
-import type { CompiledTimeline, EvaluatedState, FrameSink } from "../src/index.js";
+import type { CompiledTimeline, EvaluatedState, FrameSink, ReadAlongGroup, ReadAlongWord } from "../src/index.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ownedRoot = join(here, "..", "..", "..", "..", "fixtures", "player");
@@ -166,6 +166,133 @@ describe("mount: actual frame capture", () => {
     const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
     const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
     assert.throws(() => requireAccepted(handle), /provenance/);
+  });
+
+  function plaqueTrack(): { words: ReadAlongWord[]; groups: ReadAlongGroup[] } {
+    return {
+      words: [
+        { id: "w0", source_span: [0, 5], text: "hush", following_text: " ", start_sample: 0, end_sample: 24000 },
+        { id: "w1", source_span: [5, 8], text: "now", following_text: ".", start_sample: 24000, end_sample: 48000 },
+        { id: "w2", source_span: [8, 14], text: "listen", following_text: ".", start_sample: 48000, end_sample: 96000 },
+      ],
+      groups: [
+        { id: "g0", word_ids: ["w0"], timing_owner_word_id: "w0", start_sample: 0, end_sample: 24000 },
+        { id: "g1", word_ids: ["w1"], timing_owner_word_id: "w1", start_sample: 24000, end_sample: 48000 },
+        { id: "g2", word_ids: ["w2"], timing_owner_word_id: "w2", start_sample: 48000, end_sample: 96000 },
+      ],
+    };
+  }
+
+  function fakeElement(): Record<string, unknown> & {
+    children: unknown[];
+    dataset: Record<string, string>;
+    style: Record<string, string>;
+    attrs: Map<string, string>;
+  } {
+    const el = {
+      children: [] as unknown[],
+      dataset: {} as Record<string, string>,
+      style: {} as Record<string, string>,
+      attrs: new Map<string, string>(),
+      removed: false,
+      clientWidth: 640,
+      textContent: "",
+      classList: { toggle() {}, add() {}, remove() {} },
+      setAttribute(this: unknown, k: string, v: string) {
+        (this as typeof el).attrs.set(k, v);
+      },
+      removeAttribute(this: unknown, k: string) {
+        (this as typeof el).attrs.delete(k);
+      },
+      appendChild(this: unknown, child: unknown) {
+        (this as typeof el).children.push(child);
+        return child;
+      },
+      replaceChildren(this: unknown) {
+        (this as typeof el).children = [];
+      },
+      remove(this: unknown) {
+        (this as typeof el).removed = true;
+      },
+      ownerDocument: null as unknown,
+    };
+    el.ownerDocument = { createElement: () => fakeElement(), fonts: undefined };
+    return el;
+  }
+
+  function plaqueSpans(container: { children: unknown[] }): Array<{ dataset: Record<string, string>; attrs: Map<string, string> }> {
+    const chunk = container.children[0] as { children: unknown[] } | undefined;
+    if (!chunk) return [];
+    return chunk.children as Array<{ dataset: Record<string, string>; attrs: Map<string, string> }>;
+  }
+
+  it("mounts a verified plaque and feeds it the delivered sample", async () => {
+    const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
+    const digest = await sha256Hex(manifestBytes);
+    const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
+    const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
+    const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
+    const { words, groups } = plaqueTrack();
+    const container = fakeElement();
+    const mount = mountPlayer({}, { handle, timeline }, {
+      clock: fakeClock(),
+      sink: recordingSink(),
+      readAlong: { words, groups, container: container as unknown as HTMLElement, measure: (t) => t.length * 10 },
+    });
+    assert.ok(mount.plaque, "mount exposes its plaque");
+    mount.seek(30000);
+    mount.tick();
+    const active = plaqueSpans(container).filter((s) => s.attrs.get("aria-current") === "true");
+    assert.equal(active.length, 1);
+    assert.equal(active[0]!.dataset.groupId, "g1");
+    mount.dispose();
+  });
+
+  it("rejects unverified track data before touching the plaque container", async () => {
+    const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
+    const digest = await sha256Hex(manifestBytes);
+    const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
+    const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
+    const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
+    const { words, groups } = plaqueTrack();
+    const bad = groups.map((g) => ({ ...g }));
+    bad[1]!.end_sample = -1;
+    const container = fakeElement();
+    assert.throws(
+      () => mountPlayer({}, { handle, timeline }, {
+        clock: fakeClock(),
+        sink: recordingSink(),
+        readAlong: { words, groups: bad, container: container as unknown as HTMLElement, measure: (t) => t.length * 10 },
+      }),
+      /interval/,
+    );
+    assert.deepEqual(container.children, []);
+  });
+
+  it("controls the plaque through setReadAlong and releases it on dispose", async () => {
+    const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
+    const digest = await sha256Hex(manifestBytes);
+    const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
+    const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
+    const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
+    const { words, groups } = plaqueTrack();
+    const container = fakeElement();
+    const mount = mountPlayer({}, { handle, timeline }, {
+      clock: fakeClock(),
+      sink: recordingSink(),
+      readAlong: { words, groups, container: container as unknown as HTMLElement, measure: (t) => t.length * 10 },
+    });
+    assert.ok(plaqueSpans(container).length > 0);
+    mount.setReadAlong(false);
+    assert.equal(container.style.display, "none");
+    assert.deepEqual(plaqueSpans(container), []);
+    mount.setReadAlong(true);
+    assert.equal(container.style.display, "");
+    assert.ok(plaqueSpans(container).length > 0);
+    mount.dispose();
+    const chunk = container.children[0] as { removed?: boolean; children: unknown[] };
+    assert.equal(chunk.removed, true);
+    assert.deepEqual(chunk.children, []);
   });
 
   it("reports webgl_unavailable instead of crashing headless", async () => {

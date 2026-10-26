@@ -59,6 +59,65 @@ export function groupWords(
  * proxy for the measured inset); the browser path reflows with real metrics
  * around the current group without changing samples. Groups never split.
  */
+export type MeasureFn = (text: string) => number;
+
+/**
+ * Lay out groups into chunks using measured pixel widths from the loaded
+ * profile font. Groups stay atomic and pack first-fit, at most maxLines
+ * lines per chunk; a single group wider than the inset takes its own line
+ * (the growth rule reports the overflow) instead of splitting. Samples,
+ * intervals and group membership are untouched — only chunk boundaries
+ * move. This is the certifying layout path; layoutChunks is the
+ * provisional pre-font estimate.
+ */
+export function layoutMeasured(
+  words: ReadAlongWord[],
+  groups: ReadAlongGroup[],
+  measure: MeasureFn,
+  maxWidthPx: number,
+  maxLines = 3,
+): Chunk[] {
+  if (!(maxWidthPx > 0)) throw new Error("Measured layout needs a positive inset width");
+  if (!Number.isSafeInteger(maxLines) || maxLines < 1) throw new Error("Measured layout needs at least one line");
+  groupWords(words, groups);
+  const byId = new Map(words.map((w) => [w.id, w]));
+  const chunks: Chunk[] = [];
+  let current: Chunk = { group_ids: [], word_ids: [], text: "", start_sample: 0, end_sample: 0 };
+  let lines = 1;
+  let lineWidth = 0;
+  const flush = (): void => {
+    if (current.group_ids.length > 0) chunks.push(current);
+    current = { group_ids: [], word_ids: [], text: "", start_sample: 0, end_sample: 0 };
+    lines = 1;
+    lineWidth = 0;
+  };
+  for (const group of groups) {
+    const text = group.word_ids
+      .map((id) => {
+        const w = byId.get(id)!;
+        return w.text + w.following_text;
+      })
+      .join("");
+    const width = measure(text);
+    if (!(width >= 0)) throw new Error(`Cannot measure group text: ${group.id}`);
+    if (lineWidth > 0 && lineWidth + width > maxWidthPx) {
+      lines += 1;
+      lineWidth = 0;
+    }
+    if (lines > maxLines) {
+      flush();
+    }
+    if (current.group_ids.length === 0) current.start_sample = group.start_sample;
+    current.group_ids.push(group.id);
+    current.word_ids.push(...group.word_ids);
+    current.text += text;
+    current.end_sample = group.end_sample;
+    lineWidth += width;
+  }
+  flush();
+  return chunks;
+}
+
 export function layoutChunks(
   words: ReadAlongWord[],
   groups: ReadAlongGroup[],

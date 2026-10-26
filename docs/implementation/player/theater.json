@@ -1,0 +1,76 @@
+{
+  "tool": "check:theater",
+  "fixture": "fixtures/generation/two-scene-readiness-v2",
+  "viewports": [
+    {
+      "viewport": "960x540",
+      "fontReady": true,
+      "playSeconds": 1.46,
+      "playFrames": 84,
+      "mismatchCount": 0,
+      "lines1": 3,
+      "lines2": 3,
+      "clearance1": 29.4,
+      "clearance2": 28.4,
+      "growthSteps1": 3,
+      "growthSteps2": 13,
+      "bottomOverflowPx1": 0,
+      "bottomOverflowPx2": 76.3,
+      "captureSha": "2d1ebd965099c179cb284e2c200a62ce31cefef71a4ccaa2aae197911d48634f",
+      "nonblackFraction": 0.0451,
+      "nodGestures": {
+        "1897698": "nod",
+        "1903698": "nod",
+        "1909698": "nod"
+      },
+      "disposeClean": true
+    },
+    {
+      "viewport": "1280x720",
+      "fontReady": true,
+      "playSeconds": 1.48,
+      "playFrames": 56,
+      "mismatchCount": 0,
+      "lines1": 3,
+      "lines2": 3,
+      "clearance1": 36.8,
+      "clearance2": 35.8,
+      "growthSteps1": 0,
+      "growthSteps2": 8,
+      "bottomOverflowPx1": 0,
+      "bottomOverflowPx2": 39.6,
+      "captureSha": "2512470b9c2d6abf004f720273e8b0c366dc50fd07f2d1738634e833586a0ca6",
+      "nonblackFraction": 0.0451,
+      "nodGestures": {
+        "1897698": "nod",
+        "1903698": "nod",
+        "1909698": "nod"
+      },
+      "disposeClean": true
+    },
+    {
+      "viewport": "1920x1080",
+      "fontReady": true,
+      "playSeconds": 1.46,
+      "playFrames": 31,
+      "mismatchCount": 0,
+      "lines1": 3,
+      "lines2": 3,
+      "clearance1": 51.7,
+      "clearance2": 50.7,
+      "growthSteps1": 0,
+      "growthSteps2": 3,
+      "bottomOverflowPx1": 0,
+      "bottomOverflowPx2": 0,
+      "captureSha": "12d2e3b28b1812c525bd577390e646c02aa59b4588c947308aa443371c8c4067",
+      "nonblackFraction": 0.045,
+      "nodGestures": {
+        "1897698": "nod",
+        "1903698": "nod",
+        "1909698": "nod"
+      },
+      "disposeClean": true
+    }
+  ],
+  "failures": []
+}

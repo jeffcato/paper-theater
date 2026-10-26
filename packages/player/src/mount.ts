@@ -5,12 +5,16 @@
 // capture is stamped with their provenance/acceptance; the production path
 // must pass through requireAccepted first.
 import { describeCapture } from "./capture.js";
+import { PlaqueView } from "./plaque.js";
 import { PROFILE_ID } from "./profile.js";
 import { evaluate, validateTimeline } from "./evaluate.js";
 import { isAcceptedHandle } from "./loader.js";
 import type { LoadedRelease } from "./loader.js";
+import { groupWords } from "./readalong.js";
+import type { MeasureFn } from "./readalong.js";
 import { toCueView } from "./shared.js";
 import { createTransport } from "./transport.js";
+import type { ReadAlongGroup, ReadAlongWord } from "./types.js";
 import type {
   ClockSource,
   IntermissionOptions,
@@ -45,9 +49,27 @@ export interface MountEvents extends TransportEvents {
   onState?: (state: EvaluatedState) => void;
 }
 
+/**
+ * Verified read-along track for the mount-owned plaque. Studio passes the
+ * package's read-along words/groups with the below-stage plaque container;
+ * mount validates the grouping up front (invalid tracks throw before any
+ * DOM is touched), feeds every delivered media sample to the view, routes
+ * setReadAlong to it, and disposes it with the mount. `measure` is for
+ * non-browser checks only — browsers measure the bundled Noto Serif face.
+ */
+export interface MountReadAlong {
+  words: ReadAlongWord[];
+  groups: ReadAlongGroup[];
+  container: HTMLElement;
+  basePx?: number;
+  scale?: number;
+  measure?: MeasureFn;
+}
+
 export interface MountOptions {
   clock?: ClockSource | null;
   sink?: FrameSink | null;
+  readAlong?: MountReadAlong | null;
   candidate_id?: string;
   checker_sha256?: string;
   player_sha256?: string;
@@ -73,6 +95,8 @@ export interface FrameCapture {
 export interface PlayerMount extends MountHandle {
   readonly diagnostic: boolean;
   readonly accepted: boolean;
+  /** Mount-owned plaque, or null when no read-along track was supplied. */
+  readonly plaque: PlaqueView | null;
   /** Advance one scheduler step: sample the clock once, evaluate, render. */
   tick(now?: number): EvaluatedState | null;
   /** Actual frame capture. Throws when no pixel sink is attached. */
@@ -112,10 +136,27 @@ export function mountPlayer(
   let disposed = false;
   let lastState: EvaluatedState | null = null;
 
+  // Verified track first: invalid grouping throws before any DOM exists.
+  const track = options.readAlong ?? null;
+  if (track) groupWords(track.words, track.groups);
+  const plaque = track
+    ? new PlaqueView(
+      track.container,
+      track.words,
+      track.groups,
+      {
+        ...(track.basePx !== undefined ? { basePx: track.basePx } : {}),
+        ...(track.scale !== undefined ? { scale: track.scale } : {}),
+        ...(track.measure !== undefined ? { measure: track.measure } : {}),
+      },
+    )
+    : null;
+
   const deliver = (sample: number): EvaluatedState => {
     const state = evaluate(normalized, sample, [...reveals]);
     lastState = state;
     sink?.render(state);
+    plaque?.setSample(sample);
     events.onState?.(state);
     return state;
   };
@@ -141,6 +182,7 @@ export function mountPlayer(
   const mount: PlayerMount = {
     diagnostic,
     accepted: !diagnostic,
+    plaque,
     get epoch() {
       return transport.epoch;
     },
@@ -193,11 +235,15 @@ export function mountPlayer(
     seek: (sample: number) => transport.seek(sample),
     restart: () => transport.restart(),
     setVolume: (volume: number) => transport.setVolume(volume),
-    setReadAlong: (enabled: boolean) => transport.setReadAlong(enabled),
+    setReadAlong: (enabled: boolean) => {
+      transport.setReadAlong(enabled);
+      plaque?.setEnabled(enabled);
+    },
     dispose: () => {
       if (disposed) return;
       disposed = true;
       transport.dispose();
+      plaque?.dispose();
       sink?.dispose?.();
     },
   };

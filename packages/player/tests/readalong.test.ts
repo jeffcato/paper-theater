@@ -2,7 +2,7 @@
 // chunk only in the visible tree, reflow without changing samples.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { ReadAlongModel } from "../src/index.js";
+import { layoutMeasured, ReadAlongModel } from "../src/index.js";
 import type { ReadAlongGroup, ReadAlongWord } from "../src/index.js";
 
 function words(): ReadAlongWord[] {
@@ -66,5 +66,78 @@ describe("readalong: measured grouping and chunking", () => {
     const before = model.chunks.map((c) => [c.start_sample, c.end_sample]);
     const relaid = new ReadAlongModel(words(), groups(), 48000);
     assert.deepEqual(relaid.chunks.map((c) => [c.start_sample, c.end_sample]), before);
+  });
+});
+
+describe("readalong: measured line layout", () => {
+  const px = (text: string): number => text.length * 10;
+
+  function sixTrack(): { words: ReadAlongWord[]; groups: ReadAlongGroup[] } {
+    const letters = ["a", "b", "c", "d", "e", "f"];
+    const words: ReadAlongWord[] = letters.map((letter, i) => ({
+      id: `w${i}`,
+      source_span: [i * 2, i * 2 + 1] as [number, number],
+      text: letter,
+      following_text: " ",
+      start_sample: i * 1000,
+      end_sample: (i + 1) * 1000,
+    }));
+    const groups: ReadAlongGroup[] = letters.map((_, i) => ({
+      id: `g${i}`,
+      word_ids: [`w${i}`],
+      timing_owner_word_id: `w${i}`,
+      start_sample: i * 1000,
+      end_sample: (i + 1) * 1000,
+    }));
+    return { words, groups };
+  }
+
+  it("packs measured groups first-fit without splitting them", () => {
+    const { words: w, groups: g } = sixTrack();
+    // 20 px per group, 50 px lines: two groups per line, three lines.
+    const chunks = layoutMeasured(w, g, px, 50, 3);
+    assert.equal(chunks.length, 1);
+    assert.deepEqual(chunks[0]!.group_ids, ["g0", "g1", "g2", "g3", "g4", "g5"]);
+    assert.equal(chunks[0]!.start_sample, 0);
+    assert.equal(chunks[0]!.end_sample, 6000);
+    assert.ok(chunks[0]!.text.includes("a ") && chunks[0]!.text.includes("f "));
+  });
+
+  it("splits chunks past the line budget, keeping every group exactly once", () => {
+    const { words: w, groups: g } = sixTrack();
+    // 20 px per group, 30 px lines: one group per line, two chunks of 2.
+    const chunks = layoutMeasured(w, g, px, 30, 2);
+    assert.equal(chunks.length, 3);
+    assert.deepEqual(chunks.flatMap((c) => c.group_ids), ["g0", "g1", "g2", "g3", "g4", "g5"]);
+    for (const chunk of chunks) {
+      const first = g.find((x) => x.id === chunk.group_ids[0])!;
+      const last = g.find((x) => x.id === chunk.group_ids.at(-1))!;
+      assert.equal(chunk.start_sample, first.start_sample);
+      assert.equal(chunk.end_sample, last.end_sample);
+    }
+    // Every measured interval resolves to the chunk holding its group.
+    for (const group of g) {
+      const hit = chunks.find((c) => group.start_sample >= c.start_sample && group.start_sample < c.end_sample);
+      assert.ok(hit?.group_ids.includes(group.id), `${group.id} must stay findable`);
+    }
+  });
+
+  it("parks an oversize group alone instead of splitting or throwing", () => {
+    const { words: w, groups: g } = sixTrack();
+    // g0 overflows its line alone; the rest pack normally after it.
+    const chunks = layoutMeasured(w, g, (t) => (t === "a " ? 500 : 20), 50, 3);
+    assert.equal(chunks.length, 2);
+    assert.deepEqual(chunks.flatMap((c) => c.group_ids), ["g0", "g1", "g2", "g3", "g4", "g5"]);
+    assert.equal(chunks[0]!.group_ids[0], "g0");
+  });
+
+  it("rejects invalid tracks and bad budgets", () => {
+    const { words: w, groups: g } = sixTrack();
+    const bad = g.map((x) => ({ ...x }));
+    bad[0]!.end_sample = -1;
+    assert.throws(() => layoutMeasured(w, bad, px, 50, 3), /interval|timing|owner/i);
+    assert.throws(() => layoutMeasured(w, g, px, 0, 3), /width/i);
+    assert.throws(() => layoutMeasured(w, g, px, 50, 0), /line/i);
+    assert.throws(() => layoutMeasured(w, g, () => Number.NaN, 50, 3), /measure/i);
   });
 });

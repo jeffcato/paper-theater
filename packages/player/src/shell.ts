@@ -103,6 +103,82 @@ export function plaqueGrowthSteps(neededHeight: number, insetHeight: number): nu
   return Math.ceil((neededHeight - insetHeight) / 0.25);
 }
 
+export interface ViewportCss {
+  width: number;
+  height: number;
+}
+
+export interface PlaqueScreenRect {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  /** Projected CSS y of the deck/apron join (world Y=0) at plaque depth. */
+  floorY: number;
+}
+
+/**
+ * Pinhole projection of a stage point to CSS px for a camera pose. Pure
+ * (no three.js): the camera basis comes from position/target/up exactly as
+ * the stage PerspectiveCamera orients itself, then a perspective divide
+ * with the profile fov over the viewport aspect. Points at or behind the
+ * camera throw instead of projecting.
+ */
+export function projectToCss(
+  point: [number, number, number],
+  pose: CameraPose,
+  viewport: ViewportCss,
+  fovYDegrees = CAMERA.fov_y_degrees,
+): [number, number] {
+  if (!(viewport.width > 0 && viewport.height > 0)) throw new Error("Nonpositive viewport");
+  const sub = (a: [number, number, number], b: [number, number, number]): [number, number, number] =>
+    [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const norm = (v: [number, number, number]): [number, number, number] => {
+    const len = Math.hypot(v[0], v[1], v[2]);
+    if (!(len > 0)) throw new Error("Degenerate camera basis");
+    return [v[0] / len, v[1] / len, v[2] / len];
+  };
+  const cross = (a: [number, number, number], b: [number, number, number]): [number, number, number] => [
+    a[1] * b[2] - a[2] * b[1],
+    a[2] * b[0] - a[0] * b[2],
+    a[0] * b[1] - a[1] * b[0],
+  ];
+  const dot = (a: [number, number, number], b: [number, number, number]): number =>
+    a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  // three.js convention: the camera looks down its local -Z.
+  const zAxis = norm(sub(pose.position, pose.target));
+  const xAxis = norm(cross(CAMERA.up as [number, number, number], zAxis));
+  const yAxis = cross(zAxis, xAxis);
+  const rel = sub(point, pose.position);
+  const depth = -dot(rel, zAxis);
+  if (!(depth > 0)) throw new Error("Point at or behind camera");
+  const tan = Math.tan(((fovYDegrees * Math.PI) / 180) / 2);
+  const aspect = viewport.width / viewport.height;
+  const ndcX = dot(rel, xAxis) / (tan * aspect * depth);
+  const ndcY = dot(rel, yAxis) / (tan * depth);
+  return [((ndcX + 1) / 2) * viewport.width, ((1 - ndcY) / 2) * viewport.height];
+}
+
+/**
+ * Projected below-stage placement for the plaque overlay: the profile
+ * safe-text inset (PLAQUE_SAFE at plaque depth) plus the projected floor
+ * line the text must clear. DOM overlays position from this rect; the
+ * measured chunk (not the character-count proxy) decides the final height.
+ */
+export function projectPlaqueSafe(pose: CameraPose, viewport: ViewportCss): PlaqueScreenRect {
+  const z = LAYER_Z.plaque;
+  const topLeft = projectToCss([PLAQUE_SAFE.x[0], PLAQUE_SAFE.y[1], z], pose, viewport);
+  const bottomRight = projectToCss([PLAQUE_SAFE.x[1], PLAQUE_SAFE.y[0], z], pose, viewport);
+  const [, floorY] = projectToCss([0, 0, z], pose, viewport);
+  return {
+    left: topLeft[0],
+    top: topLeft[1],
+    width: bottomRight[0] - topLeft[0],
+    height: bottomRight[1] - topLeft[1],
+    floorY,
+  };
+}
+
 /** Projected-DOM homography: solve planar map from inset corners to CSS px. */
 export function solveHomography(
   world: [[number, number], [number, number], [number, number], [number, number]],
