@@ -82,5 +82,16 @@
   "production_approved": false,
   "ci_record": "pr-ci-results.json",
   "report": "combined-review.md",
-  "next_action": "Generation may proceed with offline acoustic work on v1.2; complete fact evidence and generation media capacity. Live dispatch and production publication remain gated."
+  "next_action": "Generation may proceed with offline acoustic work on v1.2; complete fact evidence and generation media capacity. Live dispatch and production publication remain gated.",
+  "verified_code_commit": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
+  "ci": {
+    "head_sha": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
+    "status": "completed",
+    "conclusion": "success",
+    "run_ids": [
+      40411099254,
+      40411090275,
+      40411089279
+    ]
+  }
 }
