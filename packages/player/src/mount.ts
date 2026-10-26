@@ -82,6 +82,21 @@ export interface MountOptions {
   player_sha256?: string;
   events?: MountEvents;
   signOptions?: IntermissionOptions;
+  /**
+   * Caller-owned sink factory for graphics recovery: rebuilds the rendering
+   * surface on the same canvas after context loss. Absent means recovery is
+   * unavailable and retryGraphics rejects with a reload path.
+   */
+  recreateSink?: () => Promise<FrameSink>;
+}
+
+/** Actionable graphics-recovery state for context loss/restore. */
+export interface GraphicsStatus {
+  readonly state: "ready" | "lost";
+  /** Actionable error while lost; null when ready. */
+  readonly error: string | null;
+  /** Media was playing when graphics were lost (never autoresumed: explicit Play required). */
+  readonly suspendedWhilePlaying: boolean;
 }
 
 export interface FrameCapture {
@@ -108,6 +123,33 @@ export interface PlayerMount extends MountHandle {
   tick(now?: number): EvaluatedState | null;
   /** Actual frame capture. Throws when no pixel sink is attached. */
   captureFrame(width: number, height: number): Promise<FrameCapture>;
+  /** Current graphics-recovery state (context loss/restore). */
+  graphicsStatus(): GraphicsStatus;
+  /**
+   * Rebuild the rendering surface after context loss and re-render at the
+   * retained sample. Resolves immediately when ready; joins an in-flight
+   * recovery; rejects stale after a newer seek/restart/loss/disposal, or
+   * with a reload path when no sink factory was supplied. Never autoplays.
+   */
+  retryGraphics(): Promise<void>;
+}
+
+/** Minimal canvas surface for context-loss monitoring (real or test double). */
+interface CanvasMonitor {
+  addEventListener(type: string, listener: (event: { preventDefault(): void }) => void): void;
+  removeEventListener(type: string, listener: (event: { preventDefault(): void }) => void): void;
+}
+
+function asMonitoredCanvas(sink: FrameSink | null): CanvasMonitor | null {
+  const canvas = (sink as { canvas?: unknown } | null)?.canvas;
+  if (
+    canvas !== null && typeof canvas === "object" &&
+    typeof (canvas as CanvasMonitor).addEventListener === "function" &&
+    typeof (canvas as CanvasMonitor).removeEventListener === "function"
+  ) {
+    return canvas as CanvasMonitor;
+  }
+  return null;
 }
 
 /** Production gate: only loader-minted accepted handles pass. Diagnostic,
@@ -138,7 +180,8 @@ export function mountPlayer(
     cues: timeline.cues.map((cue) => ({ ...cue, ...toCueView(cue) })),
   };
   const reveals = source.reveals ?? handle.reveals;
-  const sink = options.sink ?? null;
+  let sink = options.sink ?? null;
+  const clock: ClockSource | null = options.clock ?? null;
   const events = options.events ?? {};
   let disposed = false;
   let lastState: EvaluatedState | null = null;
@@ -185,6 +228,90 @@ export function mountPlayer(
     options.signOptions,
   );
 
+  // Graphics loss/recovery: the mount watches the sink canvas (when it
+  // carries listeners) and pauses media without touching user intent.
+  // Recovery rebuilds the surface through the caller-owned factory and
+  // re-renders at the retained sample; a graphics sequence number rejects
+  // completions overtaken by a newer seek, restart, loss or disposal.
+  let graphics: GraphicsStatus["state"] = "ready";
+  let graphicsError: string | null = null;
+  let suspendedWhilePlaying = false;
+  let graphicsSeq = 0;
+  let recoveryPromise: Promise<void> | null = null;
+  let monitored = asMonitoredCanvas(sink);
+  const attachMonitor = (): void => {
+    monitored?.addEventListener("webglcontextlost", onGraphicsLost);
+    monitored?.addEventListener("webglcontextrestored", onGraphicsRestored);
+  };
+  const detachMonitor = (): void => {
+    monitored?.removeEventListener("webglcontextlost", onGraphicsLost);
+    monitored?.removeEventListener("webglcontextrestored", onGraphicsRestored);
+  };
+  const onGraphicsLost = (event: { preventDefault(): void }): void => {
+    try {
+      event.preventDefault();
+    } catch { /* listener doubles may not implement it */ }
+    if (disposed) return;
+    if (graphics !== "lost") {
+      suspendedWhilePlaying = !!clock && !clock.paused;
+    }
+    graphicsSeq++;
+    graphics = "lost";
+    graphicsError = "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild";
+    if (clock && !clock.paused) {
+      // Non-user pause: the INTERMISSION sign must not lower merely
+      // because graphics failed.
+      transport.pause(false);
+    }
+  };
+  const recoverGraphics = (): Promise<void> => {
+    if (graphics === "ready") return Promise.resolve();
+    if (recoveryPromise) return recoveryPromise;
+    const factory = options.recreateSink ?? null;
+    if (!factory) {
+      return Promise.reject(
+        new Error("graphics_recovery_unavailable: no sink factory supplied; reload the theater"),
+      );
+    }
+    const seq = graphicsSeq;
+    recoveryPromise = (async (): Promise<void> => {
+      try {
+        const fresh = await factory();
+        if (disposed || seq !== graphicsSeq) {
+          try {
+            await fresh.dispose?.();
+          } catch { /* replaced-surface teardown is best effort */ }
+          throw new Error("stale graphics recovery after newer seek/restart/loss/disposal");
+        }
+        try {
+          sink?.dispose?.();
+        } catch { /* replaced-surface teardown is best effort */ }
+        detachMonitor();
+        sink = fresh;
+        monitored = asMonitoredCanvas(sink);
+        attachMonitor();
+        // Re-render at the retained sample through the existing evaluator;
+        // a throwing render keeps graphics suspended (surface not ready).
+        try {
+          deliver(transport.frame());
+        } catch (error) {
+          graphicsError = `graphics recovery render failed (${error instanceof Error ? error.message : String(error)}); call retryGraphics() to try again`;
+          throw error;
+        }
+        graphics = "ready";
+        graphicsError = null;
+      } finally {
+        recoveryPromise = null;
+      }
+    })();
+    return recoveryPromise;
+  };
+  const onGraphicsRestored = (): void => {
+    if (disposed || graphics !== "lost") return;
+    void recoverGraphics();
+  };
+  attachMonitor();
+
   deliver(0);
 
   // Read provenance before the acceptance guard narrows the handle type.
@@ -205,10 +332,14 @@ export function mountPlayer(
     },
     tick(now?: number): EvaluatedState | null {
       if (disposed) return null;
+      if (graphics === "lost") return null;
       return deliver(transport.frame(now));
     },
     async captureFrame(width: number, height: number): Promise<FrameCapture> {
       if (disposed) throw new Error("capture after dispose");
+      if (graphics === "lost") {
+        throw new Error("graphics_lost: capture blocked while graphics are suspended (retryGraphics)");
+      }
       if (!Number.isSafeInteger(width) || width <= 0 || !Number.isSafeInteger(height) || height <= 0) {
         throw new Error(`capture bounds: ${width}x${height}`);
       }
@@ -241,10 +372,23 @@ export function mountPlayer(
         pixels,
       };
     },
-    play: () => transport.play(),
+    play: () => {
+      if (graphics === "lost") {
+        return Promise.reject(
+          new Error("graphics_lost: playback blocked while graphics are suspended (retryGraphics, then Play)"),
+        );
+      }
+      return transport.play();
+    },
     pause: (userInitiated = true) => transport.pause(userInitiated),
-    seek: (sample: number) => transport.seek(sample),
-    restart: () => transport.restart(),
+    seek: (sample: number) => {
+      transport.seek(sample);
+      graphicsSeq++;
+    },
+    restart: () => {
+      transport.restart();
+      graphicsSeq++;
+    },
     setVolume: (volume: number) => transport.setVolume(volume),
     setReadAlong: (enabled: boolean) => {
       transport.setReadAlong(enabled);
@@ -253,10 +397,18 @@ export function mountPlayer(
     dispose: () => {
       if (disposed) return;
       disposed = true;
+      graphicsSeq++;
       transport.dispose();
       plaque?.dispose();
       sink?.dispose?.();
+      detachMonitor();
     },
+    graphicsStatus: () => ({
+      state: graphics,
+      error: graphicsError,
+      suspendedWhilePlaying,
+    }),
+    retryGraphics: () => recoverGraphics(),
   };
   void lastState;
   return mount;

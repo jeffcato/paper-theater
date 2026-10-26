@@ -1,0 +1,49 @@
+# Provider metadata v2 — services v1.3
+
+This additive service revision publishes `ProviderOperationV2` and `ProviderResultV2`, both with `schema_version: 2`. Playback remains `pt-contracts-v1.0.0`. These records describe proposed work, runtime-issued identity and accounting observations; validation grants no dispatch, spending, retry, repair or publication authority. No transport or credential access is added.
+
+Rust exports the records from `pt_contracts::provider_metadata` and the crate root. TypeScript exports them and synchronous validators through `@paper-theater/contracts`. Exact serialized examples and negative cases are in `fixtures/contracts/provider-metadata-v2.json`. The fixture's hashes/IDs describe synthetic records, not actual purchased requests or authorization.
+
+## Identity and authority
+
+`ProviderContext` contains provider, non-secret project ID and a non-secret credential-context registry ID. It contains no key, secret, environment value or credential hash. Runtime resolves and binds the context to its configured registry; callers cannot create a project or allowance by sending another string. Several credential contexts for one project share that project's quota.
+
+The nested legacy `operation` retains its existing shape. Kind, unit, model/provider selection, recipe, payload/input refs, estimates and timeout start as caller proposals. Runtime verifies them against its active run, allowlists and policy before issuing the bound record. Runtime issues `operation.attempt_id`, all `identity` fields, context bindings, quota/window identities and snapshots. All received metadata remains untrusted until compared with persisted runtime state.
+
+`identity.operation_id` identifies one logical purchase across transport attempts and recovery, including across a restarted/new run resuming that work. `run_id`/`epoch` bind this issued record to its run. A creative repair creates a new logical operation and a distinct `repair_id`, identifies its previous logical operation and has a positive `repair_index`. A transport retry retains logical operation, repair identity, request bytes, recipe and context; it has a distinct attempt ID, previous attempt/request digest and positive `retry_index`. Retrying a repair does not create another creative repair. Schema validation checks local relationships; runtime must check the full persisted lineage and consume each repair ID once.
+
+The exact request-byte digest equals `operation.request_sha256` and `operation.payload.file.sha256`. Reading/verifying those actual bytes remains runtime's responsibility. A new attempt ID, epoch, credential slot or run is never permission to repurchase uncertain work.
+
+## Scopes, windows and units
+
+Each quota scope is a tagged provider, provider/project, or provider/project/model tuple. Credential context is deliberately absent. The canonical scope key is SHA-256 of compact UTF-8 JSON for `["provider",provider]`, `["project",provider,project_id]`, or `["model",provider,project_id,model]`. Explicit tuple boundaries and tags prevent delimiter collisions. Rust `scope.key()` and TypeScript `providerQuotaScopeKey(scope)` agree; validate records first.
+
+Operations/results carry 1–16 simultaneous windows. At least one project window is required; runtime must additionally supply **every** configured applicable scope/window. A project minute and day, provider window and model window may overlap. Window IDs and scope/start/reset tuples must be unique. IDs are bounded ASCII identifiers (1–128 bytes, letters/digits/`-_.:`). Job IDs are opaque printable ASCII (1–256 bytes, including `/`). Record size is at most 64 KiB; artifact inventories are bounded at 64 and request-payload metadata at 1 MiB. The server must bound raw JSON before deserialization.
+
+All timestamps ending `_ms` are nonnegative UTC Unix milliseconds. Windows are half-open `[start_at_ms, reset_at_ms)`. Durations such as timeout, elapsed and retry-after are integer milliseconds. All numeric counts/timestamps are at most `Number.MAX_SAFE_INTEGER`; combined estimated tokens must also fit. Timeout is 1–300000 ms. The preserved legacy `started_at` string is informational alongside the new numeric timestamps; elapsed duration may use a monotonic clock and need not equal wall-clock subtraction.
+
+`QuotaAmounts` records money in integer micro-USD, request count, aggregate input-plus-output tokens and creative-repair count, with no conversion between them. A zero-money operation still estimates at least one request. `capacity` and `accounted` are persisted snapshots, never caller authority. Accounted consumption includes conservative unresolved reservations and overlapping inherited accounting. It may exceed capacity: truthful exhausted/overrun descriptions remain schema-valid. Atomic reservation/enforcement of **all** windows is server work; validation does not authorize an exhausted operation.
+
+## Results, unknown usage and retry
+
+`ProviderResultV2::validate_for_operation` / `validateProviderResultV2(result, operation)` requires the original issued operation. It checks context, run/epoch/lineage, attempt/request identity and the original window IDs/bounds/capacities. Result window accounting must include this attempt's conservative charges. Prior window retry deadlines cannot be cleared or shortened. This is consistency checking against supplied records; runtime must authenticate both against its store.
+
+`observed_usage` has independently nullable/omittable money, requests, aggregate `tokens`, input tokens and output tokens. Missing is unknown, never zero. A known aggregate with an unknown split preserves that fact. Known split components cannot exceed the aggregate; a fully known split must sum exactly to it. Nested legacy `result.usage` is present only when requests, money and both token components are known and agree; otherwise it stays null. The new aggregate does not invent a legacy split.
+
+`accounted_usage: QuotaAmounts` is conservative persisted consumption, distinct from observed usage. For money, requests and total tokens, an unknown metric retains at least the original estimate. Ambiguous completion retains at least each original reservation even when a partial receipt reports lower numbers. Observed overages remain charged. A known rejection releases a metric only when an authoritative receipt explicitly establishes its actual value. A timeout is ambiguous, never a known rejection. The per-attempt repair count is zero or one; zero on a retry does not erase the separately persisted repair consumption.
+
+`retry` records a controlled reason, observation time, absolute not-before time, optional original relative delay, and affected window IDs. Rate/quota/repair reasons identify applicable windows. The absolute deadline cannot shorten either the relative delay or any retained window cooldown. The timestamp is a lower bound for reevaluation, **not** permission to resend; unresolved work must remain blocked at that time. No parser extracts authorization from diagnostic strings.
+
+`recovery` identifies an existing attempt, original request digest, provider job ID, observed status and observation time. In an operation, its presence describes inspection/recovery of that same existing work instead of original submission. A result retains any supplied job identity and terminal status. Submitted/running/succeeded/failed/unknown job status is separate from transport completion. A missing job ID leaves uncertain work unresolved. Recovery never falls back to `send`; a separately authorized status-query request may itself require request capacity and must preserve the original reservation.
+
+`epoch_disposition: obsolete` describes a late result. Its truthful charges, raw response refs and job observations may be recorded for the original attempt; it cannot commit stage/library/acceptance/catalog results for a canceled or newer epoch. Schema alone cannot verify the current epoch.
+
+## Compatibility and migration
+
+No fields or signatures of legacy `ProviderOperation`, `ProviderResult`, `RunServices::provider`, helper/candidate methods or stage/player records change. Legacy Rust JSON continues to deserialize/round-trip. TypeScript archive shape validators are explicit `validateLegacyProviderOperation` / `validateLegacyProviderResult`; they describe old wire shapes, not v2 authorization or safe conversion of arbitrary historical numeric data. V2 validators enforce safe integers. Preserve original JSON bytes when archiving evidence.
+
+A plain legacy operation remains plain legacy, with no project/window/retry authorization inferred. It fails v2 validation. A v2 envelope fails the legacy strict decoder. Consumers must negotiate v2 support and use the dedicated validators; do not cast, flatten, silently add defaults or pass an envelope through the legacy method. Optional nullable fields may be omitted and remain unknown; runtime-issued context, identity and quota windows are required. Older consumers need not import the new module.
+
+This is service revision `pt-services-v1.3.0`; provider envelope version 2 does not mean a breaking playback/service-v2 migration. Earlier v1.2 receipts and exact-head CI results retain their original identities. Canonical fixture bytes and both diagnostic readiness outcomes remain unchanged. The service revision participates in runtime cache identity; do not relabel old cached evidence as v1.3 evidence.
+
+The existing live provider method still fails closed. New records have no executable adapter yet. [The server handoff](provider-metadata-server-handoff.md) specifies the mapping, missing storage/API work and required behavioral tests. This closes R2-002's contract portion only; actual inherited accounting, live authorization, book/source bindings, production evidence/verifier and activation remain pending.

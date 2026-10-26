@@ -318,3 +318,41 @@ player object URLs, and context slots via canvas removal/GC. Retained:
 chapter, staging, theater, plaque, audience 5/5 and inventory v2 144/144
 (executed build digest refreshed). Zero provider calls; headless evidence
 only, not demo-device performance.
+
+## 2026-10-26 — WebGL context loss and recovery (P16)
+
+`mountPlayer` now owns an explicit graphics-loss protocol with no builder
+refactor: it watches the sink canvas for context loss (preventing default
+so restoration stays possible), pauses media through the non-user path —
+the INTERMISSION sign never lowers merely because graphics failed, and an
+already-paused reason is kept — retains the sample, blocks ticks and
+captures with an actionable `graphics_lost` error plus retry state, and
+rebuilds through the caller-owned `recreateSink` factory on the same
+canvas (`ThreeSinkOptions.canvas`, additive). Recovery re-renders at the
+retained sample and never autoplays: `play()` while lost rejects, so the
+first successful post-recovery play is necessarily explicit. A graphics
+sequence rejects completions overtaken by a newer seek, restart, loss or
+disposal, and the aborted fresh surface is disposed.
+
+`npm run check:player`: 115/115 pass (10 fake-canvas loss/recovery tests,
+red→green). `npm run check:recovery` forces real loss/restoration with
+`WEBGL_lose_context` in headless Chrome: loss while playing at blackout
+pauses promptly with sample/sign/plaque frozen and restores to
+pixel/state/contributor/plaque-exact equality with a fresh control
+(aperture 0, house lit, acceptance still false); loss while paused with a
+backward rewind mid-rebuild aborts stale and retries clean at the new
+sample (no future contributors); restart stays usable during the outage;
+rejected post-recovery play stays retryable; disposal before restoration
+stays silent and a replacement mount verifies. Three loss cycles plus
+final teardown: 7 sinks all return geometries/textures to 0 with 14
+targets disposed and RAF/listeners/observers/DOM/URLs at baseline.
+Evidence: `recovery.json` plus two posed screenshots (83 local requests,
+0 remote, 0 provider calls).
+
+Two harness-side findings, not player defects: `play()` on a sourceless
+element pends instead of rejecting (fast-failing 404 plus timeout races;
+bare media awaits stay banned), and pose assertions inside a
+microtask-only race window need one UI-clock settle wait or they read the
+pre-window emission. Retained: P15 lifecycle, chapter, staging, theater,
+plaque, audience 5/5 and inventory v2 144/144 (executed digest refreshed).
+Zero provider calls; headless evidence only, not demo-device p95/memory.

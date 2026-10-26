@@ -338,3 +338,281 @@ describe("mount: actual frame capture", () => {
     await assert.rejects(createThreeSink(128, 72), /webgl_unavailable/);
   });
 });
+
+describe("mount: graphics loss and recovery", () => {
+  interface FakeCanvasEvent {
+    preventDefault(): void;
+  }
+  interface FakeCanvas {
+    listeners: Map<string, Array<(event: FakeCanvasEvent) => void>>;
+    addEventListener(type: string, listener: (event: FakeCanvasEvent) => void): void;
+    removeEventListener(type: string, listener: (event: FakeCanvasEvent) => void): void;
+    fire(type: string): { prevented: boolean };
+  }
+  function fakeCanvas(): FakeCanvas {
+    const listeners = new Map<string, Array<(event: FakeCanvasEvent) => void>>();
+    return {
+      listeners,
+      addEventListener(type, listener) {
+        listeners.set(type, [...(listeners.get(type) ?? []), listener]);
+      },
+      removeEventListener(type, listener) {
+        listeners.set(type, (listeners.get(type) ?? []).filter((l) => l !== listener));
+      },
+      fire(type) {
+        let prevented = false;
+        for (const l of listeners.get(type) ?? []) {
+          l({ preventDefault: () => { prevented = true; } });
+        }
+        return { prevented };
+      },
+    };
+  }
+
+  interface GraphicsSink extends FrameSink {
+    renders: number;
+    disposed: boolean;
+  }
+  function graphicsSink(canvas: FakeCanvas): GraphicsSink {
+    return {
+      canvas,
+      renders: 0,
+      disposed: false,
+      render() {
+        if (this.disposed) throw new Error("render after dispose");
+        this.renders++;
+      },
+      dispose() {
+        this.disposed = true;
+      },
+    };
+  }
+
+  async function graphicsMount(factory?: () => Promise<FrameSink>) {
+    const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
+    const digest = await sha256Hex(manifestBytes);
+    const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
+    const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
+    const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
+    const raw = fakeClock();
+    let plays = 0;
+    const clock = {
+      get currentTime(): number {
+        return raw.currentTime;
+      },
+      set currentTime(v: number) {
+        raw.currentTime = v;
+      },
+      get paused(): boolean {
+        return raw.paused;
+      },
+      get seeking(): boolean {
+        return raw.seeking;
+      },
+      get ended(): boolean {
+        return raw.ended;
+      },
+      async play(): Promise<void> {
+        plays++;
+        return raw.play();
+      },
+      pause(): void {
+        return raw.pause();
+      },
+    };
+    const canvas = fakeCanvas();
+    const created: GraphicsSink[] = [graphicsSink(canvas)];
+    const reasons: string[] = [];
+    const poses: string[] = [];
+    const errors: unknown[] = [];
+    const mount = mountPlayer({}, { handle, timeline }, {
+      clock,
+      sink: created[0]!,
+      recreateSink: factory ?? (async () => {
+        const fresh = graphicsSink(canvas);
+        created.push(fresh);
+        return fresh;
+      }),
+      events: {
+        onReason: (r) => reasons.push(r),
+        onSign: (pose) => poses.push(pose),
+        onError: (e) => errors.push(e),
+      },
+    });
+    return {
+      mount, clock: raw, canvas, created, reasons, poses, errors,
+      plays: () => plays,
+      status: () => mount.graphicsStatus(),
+    };
+  }
+
+  it("loss while playing pauses media without lowering the sign and blocks delivery", async () => {
+    const g = await graphicsMount();
+    g.clock.currentTime = 0.5;
+    g.mount.tick();
+    assert.equal(g.mount.sample, 24000);
+    await g.mount.play();
+    assert.equal(g.mount.reason, "playing");
+    const renders = g.created[0]!.renders;
+    assert.ok(renders > 0);
+    const posesAfterPlay = g.poses.length;
+    const lost = g.canvas.fire("webglcontextlost");
+    assert.equal(lost.prevented, true);
+    assert.equal(g.clock.paused, true);
+    assert.equal(g.mount.reason, "readiness");
+    assert.equal(g.mount.sample, 24000);
+    // The loss itself lowers nothing: pose traffic is frozen at the raise.
+    assert.equal(g.poses.length, posesAfterPlay);
+    assert.equal(g.poses[g.poses.length - 1], "hidden");
+    assert.equal(g.mount.tick(), null);
+    assert.equal(g.created[0]!.renders, renders);
+    await assert.rejects(g.mount.captureFrame(960, 540), /graphics_lost/);
+    assert.deepEqual(g.status(), { state: "lost", error: g.status().error, suspendedWhilePlaying: true });
+    assert.ok((g.status().error ?? "").length > 0);
+    g.mount.dispose();
+  });
+
+  it("loss while user-paused keeps the pause intent and the visible sign", async () => {
+    const g = await graphicsMount();
+    g.mount.pause(true);
+    assert.equal(g.mount.reason, "user");
+    g.canvas.fire("webglcontextlost");
+    assert.equal(g.mount.reason, "user");
+    assert.equal(g.poses[g.poses.length - 1], "visible");
+    assert.deepEqual(g.status().state, "lost");
+    assert.equal(g.status().suspendedWhilePlaying, false);
+    g.mount.dispose();
+  });
+
+  it("restored event rebuilds a fresh surface at the retained sample", async () => {
+    const g = await graphicsMount();
+    g.clock.currentTime = 0.5;
+    g.mount.tick();
+    await g.mount.play();
+    g.canvas.fire("webglcontextlost");
+    g.canvas.fire("webglcontextrestored");
+    await g.mount.retryGraphics();
+    assert.equal(g.created.length, 2);
+    assert.equal(g.created[0]!.disposed, true);
+    assert.ok(g.created[1]!.renders > 0);
+    assert.equal(g.mount.sample, 24000);
+    assert.notEqual(g.mount.tick(), null);
+    assert.deepEqual(g.status().state, "ready");
+    assert.equal(g.status().error, null);
+    // Recovery never autoplays: explicit Play still required.
+    assert.equal(g.mount.reason, "readiness");
+    assert.equal(g.clock.paused, true);
+    await g.mount.play();
+    assert.equal(g.mount.reason, "playing");
+    // One listener pair per canvas, not doubled by the swap.
+    assert.equal(g.canvas.listeners.get("webglcontextlost")?.length, 1);
+    assert.equal(g.canvas.listeners.get("webglcontextrestored")?.length, 1);
+    g.mount.dispose();
+  });
+
+  it("retryGraphics while ready resolves without rebuilding", async () => {
+    const g = await graphicsMount();
+    await g.mount.retryGraphics();
+    assert.equal(g.created.length, 1);
+    assert.deepEqual(g.status().state, "ready");
+    g.mount.dispose();
+  });
+
+  it("retryGraphics without a factory rejects with a reload path", async () => {
+    const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
+    const digest = await sha256Hex(manifestBytes);
+    const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
+    const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
+    const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
+    const canvas = fakeCanvas();
+    const mount = mountPlayer({}, { handle, timeline }, { clock: fakeClock(), sink: graphicsSink(canvas) });
+    canvas.fire("webglcontextlost");
+    await assert.rejects(mount.retryGraphics(), /graphics_recovery_unavailable/);
+    assert.deepEqual(mount.graphicsStatus().state, "lost");
+    mount.dispose();
+  });
+
+  it("seek during in-flight recovery rejects stale and retries at the new sample", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const g = await graphicsMount(async () => {
+      await gate;
+      const fresh = graphicsSink(g.canvas);
+      g.created.push(fresh);
+      return fresh;
+    });
+    g.clock.currentTime = 0.5;
+    g.mount.tick();
+    await g.mount.play();
+    g.canvas.fire("webglcontextlost");
+    g.canvas.fire("webglcontextrestored");
+    g.mount.seek(48000);
+    release();
+    await assert.rejects(g.mount.retryGraphics(), /stale/);
+    assert.deepEqual(g.status().state, "lost");
+    assert.equal(g.created[1]!.disposed, true);
+    await g.mount.retryGraphics();
+    assert.deepEqual(g.status().state, "ready");
+    assert.equal(g.mount.sample, 48000);
+    assert.ok(g.created[2]!.renders > 0);
+    g.mount.dispose();
+  });
+
+  it("restart during in-flight recovery also goes stale", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const g = await graphicsMount(async () => {
+      await gate;
+      const fresh = graphicsSink(g.canvas);
+      g.created.push(fresh);
+      return fresh;
+    });
+    g.mount.tick();
+    g.canvas.fire("webglcontextlost");
+    g.canvas.fire("webglcontextrestored");
+    g.mount.restart();
+    release();
+    await assert.rejects(g.mount.retryGraphics(), /stale/);
+    assert.equal(g.mount.sample, 0);
+    await g.mount.retryGraphics();
+    assert.deepEqual(g.status().state, "ready");
+    g.mount.dispose();
+  });
+
+  it("dispose during in-flight recovery stays silent with listeners removed", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const g = await graphicsMount(async () => {
+      await gate;
+      const fresh = graphicsSink(g.canvas);
+      g.created.push(fresh);
+      return fresh;
+    });
+    g.mount.tick();
+    g.canvas.fire("webglcontextlost");
+    g.canvas.fire("webglcontextrestored");
+    g.mount.dispose();
+    // Teardown hides the sign exactly once; everything after is silent.
+    assert.deepEqual(g.poses, ["hidden"]);
+    const reasons = g.reasons.length;
+    const poses = g.poses.length;
+    release();
+    await assert.rejects(g.mount.retryGraphics(), /stale|disposed/);
+    assert.equal(g.mount.tick(), null);
+    assert.equal(g.reasons.length, reasons);
+    assert.equal(g.poses.length, poses);
+    assert.equal(g.created[1]!.disposed, true);
+    assert.deepEqual(g.canvas.listeners.get("webglcontextlost"), []);
+    assert.deepEqual(g.canvas.listeners.get("webglcontextrestored"), []);
+  });
+
+  it("play while lost throws actionable without touching the clock", async () => {
+    const g = await graphicsMount();
+    g.mount.tick();
+    g.canvas.fire("webglcontextlost");
+    await assert.rejects(g.mount.play(), /graphics_lost/);
+    assert.equal(g.plays(), 0);
+    assert.equal(g.clock.paused, true);
+    g.mount.dispose();
+  });
+});

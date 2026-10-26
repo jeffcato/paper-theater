@@ -1,6 +1,6 @@
 {
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.2.0",
+  "service_revision": "pt-services-v1.3.0",
   "status": "frozen-diagnostic-boundary",
   "fixture_path": "fixtures/shared/two-scene-v1",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -70,7 +70,7 @@
     "live product authorization and inherited accounting reconciliation",
     "one autonomous excerpt and both complete chapters"
   ],
-  "next_integration_action": "Generation may proceed with offline acoustic work on v1.2; complete fact evidence and generation media capacity. Live dispatch and production publication remain gated.",
+  "next_integration_action": "Server consumes provider metadata v2 using the exact I2 adapter handoff; live dispatch remains disabled pending enforcement, actual accounting and separate authorization.",
   "verification": {
     "clean_checkout_commit": "41061a6",
     "source_root": "unset",
@@ -95,8 +95,11 @@
   "service_handoff": "candidate-write-ready.json",
   "service_handoffs": [
     "candidate-read-ready.json",
-    "candidate-write-ready.json"
+    "candidate-write-ready.json",
+    "provider-metadata-ready.json"
   ],
   "pr_ci_results": "pr-ci-results.json",
-  "combined_handoff": "combined-ready.json"
+  "combined_handoff": "combined-ready.json",
+  "provider_metadata_handoff": "provider-metadata-ready.json",
+  "verification_scope_note": "Historical verification and combined/candidate receipts retain their exact original code heads and revisions. I2 v1.3 validation is recorded separately in provider-metadata-ready.json."
 }

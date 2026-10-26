@@ -226,14 +226,21 @@ window.__boot = async () => {
   a.mount.pause();
   prog("a4-start");
   const rMark = a.ev.reasons.length;
+  const sMark = a.ev.signs.length;
   const sp = a.mount.play();
   a.mount.pause();
   await sp;
   a.mount.tick();
+  // Let the UI clock run: pose assertions need at least one RAF step, and
+  // the race window above is microtasks only (a step may legitimately not
+  // have fired yet). A genuinely broken loop still reads stale here.
+  await sleep(100);
   prog("a4-done");
   A.stalePlay = {
     reason: a.mount.reason, pose: lastPose(a.ev),
     laterPlaying: a.ev.reasons.slice(rMark).includes("playing"),
+    signAdded: a.ev.signs.length - sMark,
+    tail: signTail(a.ev, 5),
   };
   prog("a5-start");
   a.mount.pause();

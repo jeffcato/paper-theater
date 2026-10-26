@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "status": "contracts-ready-runtime-adapter-pending",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.3.0",
+  "provider_metadata_version": 2,
+  "previous_service_revision": "pt-services-v1.2.0",
+  "baseline_code_commit": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
+  "baseline_ci_receipt_commit": "4884692",
+  "source_base": "fa361fe7324e866a1f01c6ea8ec18d4a425ab1f2",
+  "records": [
+    "ProviderContext",
+    "ProviderQuotaScope",
+    "QuotaAmounts",
+    "ProviderQuotaWindow",
+    "ProviderAttemptIdentity",
+    "CreativeRepairIdentity",
+    "TransportRetryIdentity",
+    "ExistingProviderJob",
+    "ObservedProviderUsage",
+    "ProviderRetryTiming",
+    "ProviderOperationV2",
+    "ProviderResultV2"
+  ],
+  "rust_api": [
+    "ProviderOperationV2::validate",
+    "ProviderResultV2::validate_for_operation",
+    "ProviderQuotaScope::key"
+  ],
+  "typescript_api": [
+    "validateProviderOperationV2",
+    "validateProviderResultV2",
+    "providerQuotaScopeKey",
+    "validateLegacyProviderOperation",
+    "validateLegacyProviderResult"
+  ],
+  "existing_public_method_signatures_changed": false,
+  "provider_v2_method_available": false,
+  "legacy_metadata_grants_authorization": false,
+  "live_dispatch_enabled": false,
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "accounting_reconciled": false,
+  "production_approved": false,
+  "fixture_cases": 76,
+  "checks": {
+    "contracts": "pass",
+    "native_node_exports": "pass",
+    "packed_node_exports": "pass",
+    "strict_typescript_consumer": "pass",
+    "clean_workspace": "pending"
+  },
+  "semantics": "provider-metadata-v2.md",
+  "server_handoff": "provider-metadata-server-handoff.md",
+  "fixture": "fixtures/contracts/provider-metadata-v2.json",
+  "max_record_bytes": 65536,
+  "max_applicable_windows": 16,
+  "timestamp_units": "UTC Unix milliseconds",
+  "usage_units": {
+    "money": "integer micro-USD",
+    "requests": "request count including zero-money requests",
+    "tokens": "input plus output; observed aggregate independent of optional split",
+    "repairs": "distinct creative repair consumption"
+  },
+  "compatibility": "Legacy records/methods and historical receipts remain unchanged. No automatic wrapping, authorization defaults, usage zeros or dispatch fallback. Nullable optional observations remain unknown. New records need authenticated runtime bindings.",
+  "source_files": [
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "sha256": "36bde11f102cdf1da467470b6f02f132e77fec44dfc8579fe971a376e1ed9ee2"
+    },
+    {
+      "path": "crates/pt-contracts/src/provider_metadata.rs",
+      "sha256": "0beff544be61334e625c8301201e0c334ba0f78ed010a66fb0e5ad5b15db887d"
+    },
+    {
+      "path": "crates/pt-contracts/tests/provider_metadata.rs",
+      "sha256": "dcd518a9458e29db55fdc21db08cf9c3caffea651f796ae69aa53288c67eba96"
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/provider_cases.rs",
+      "sha256": "894df561a3bc83c960dcf7e938c912643abfd2c6065890461ea5ec1db3d728b8"
+    },
+    {
+      "path": "crates/pt-contracts/examples/provider-fixtures.rs",
+      "sha256": "0eb80616d764bf2ef3c9a0d6640853012f647a340b423dbb34f644a13ad0fc96"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "246051a3988a03a5e6bd38d380bd99afbe6cfa4388ac464031586f56d8c8ac00"
+    },
+    {
+      "path": "packages/contracts/src/provider-metadata.ts",
+      "sha256": "2d853b8992158490b616116508a2bf4160730ded66bfda70f3d8b992ee617d59"
+    },
+    {
+      "path": "packages/contracts/tests/check.mjs",
+      "sha256": "e79541433605a539727df8d0ffc652c01b18aefc3c87344a6b16e82e152b3b5f"
+    },
+    {
+      "path": "packages/contracts/tests/provider-metadata.mjs",
+      "sha256": "090a9d32e0148aee074bfc787ca0e28979f176ac702505b08ec476bd5a8abb73"
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "sha256": "f31f8504d4659850f45f40ca634f6e822e011c66618547d64b9c94fa417aa48e"
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "sha256": "e1780b1ead6dfad938b69344cca2ed25bd62e47de8c33b5c5e4ba33af25472b2"
+    },
+    {
+      "path": "fixtures/contracts/provider-metadata-v2.json",
+      "sha256": "97978a9f18b0658c6ea42f5c28878cc31dc402ca700080df855f34e5be6de889"
+    }
+  ],
+  "commands": [
+    "cargo test -p pt-contracts --locked --offline",
+    "npm run check:contracts",
+    "cargo test --workspace --locked --offline",
+    "npm run check:player",
+    "npm run check:studio",
+    "npm run build",
+    "python3 -B -m unittest discover -s tools/generation -p test_*.py",
+    "python3 tools/check_product_identity.py ."
+  ],
+  "closes": [
+    "I2 shared-contract portion of R2-002"
+  ],
+  "pending": {
+    "server": [
+      "simultaneous applicable window enforcement and atomic reservations",
+      "runtime-issued registry/context, operation/attempt/repair/retry lineage and idempotency adapter",
+      "once-per-repair consumption across retries/new runs",
+      "raw receipt, timing and existing provider-job recovery adapter",
+      "public versioned issuance/provider method proposal after private boundary proof"
+    ],
+    "integration": [
+      "actual inherited accounting reconciliation and separate live authorization",
+      "unresolved book/source/acceptance bindings",
+      "production verifier and catalog activation"
+    ],
+    "generation_and_player": "G16/G17 and P15/P16 continue independently; no lane implementation edits included"
+  },
+  "preserved_readiness": {
+    "canonical_v1_manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "readiness_v2_manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+    "v1_incoming_eligible": false,
+    "v2_incoming_eligible": true
+  },
+  "ci_record": "pr-ci-results.json"
+}

@@ -22,3 +22,8 @@ for(const record of records){
  count++;
 }
 console.log(`contracts: ${count} Rust-produced records agree in TypeScript; diagnostic release remains blocked`);
+const provider=spawnSync(process.execPath,['packages/contracts/tests/provider-metadata.mjs'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
+assert.equal(provider.status,0,provider.stdout+provider.stderr);
+process.stdout.write(provider.stdout);
+const packed=spawnSync(process.execPath,['packages/contracts/tests/packed.mjs'],{cwd:root,encoding:'utf8'});
+assert.equal(packed.status,0,packed.stdout+packed.stderr);process.stdout.write(packed.stdout);

@@ -28,7 +28,6 @@
     "playWins": {
       "reason": "playing",
       "tail": [
-        "lowering",
         "lowering"
       ]
     },
@@ -48,7 +47,15 @@
     "stalePlay": {
       "reason": "seeking",
       "pose": "lowering",
-      "laterPlaying": false
+      "laterPlaying": false,
+      "signAdded": 6,
+      "tail": [
+        "lowering",
+        "lowering",
+        "lowering",
+        "lowering",
+        "lowering"
+      ]
     }
   },
   "rejected": {
@@ -59,7 +66,7 @@
   },
   "retarget": {
     "midPose": "lowering",
-    "midProgress": 0.68,
+    "midProgress": 0.768,
     "retargetTail": [
       "lowering",
       "lowering",

@@ -386,6 +386,11 @@ export interface ThreeSinkOptions {
   calibration?: boolean;
   /** Opening title card strings (default neutral; harness passes authored). */
   title?: TitleCard;
+  /**
+   * Caller-owned canvas for same-canvas graphics recovery. Defaults to a
+   * fresh canvas; recovery recreates the surface on the supplied element.
+   */
+  canvas?: HTMLCanvasElement;
 }
 
 /** Native crop aspect for a figure source: stage matches pixels. */
@@ -414,7 +419,11 @@ export async function createThreeSink(
   const THREE = await import("three");
   let renderer: import("three").WebGLRenderer;
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+    renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      powerPreference: "high-performance",
+      ...(options.canvas ? { canvas: options.canvas } : {}),
+    });
   } catch (error) {
     throw new Error(
       `webgl_unavailable: ${error instanceof Error ? error.message : String(error)} (browser capture pending)`,

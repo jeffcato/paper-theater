@@ -108,6 +108,7 @@ export type { ClockSource } from "./transport.js";
 export type {
   FrameCapture,
   FrameSink,
+  GraphicsStatus,
   MountEvents,
   MountOptions,
   MountReadAlong,

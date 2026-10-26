@@ -3,9 +3,11 @@ pub mod common;
 pub mod services;
 pub use common::*;
 pub use services::*;
+pub mod provider_metadata;
+pub use provider_metadata::*;
 
 pub const CONTRACT_REVISION: &str = "pt-contracts-v1.0.0";
-pub const SERVICE_REVISION: &str = "pt-services-v1.2.0";
+pub const SERVICE_REVISION: &str = "pt-services-v1.3.0";
 pub const CAPABILITY: &str = "paper-player-v1";
 
 pub mod playback;

@@ -19,6 +19,7 @@
     "check:staging": "node scripts/chrome-staging.mjs",
     "check:chapter": "node scripts/chrome-chapter.mjs",
     "check:lifecycle": "node scripts/chrome-lifecycle.mjs",
+    "check:recovery": "node scripts/chrome-recovery.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {
