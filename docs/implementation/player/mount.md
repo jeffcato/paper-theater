@@ -64,6 +64,15 @@ usage typechecks against the pinned 0.186.0 declarations.
   (`layoutMeasured`), never the character-count proxy; the view folds the
   rendered per-group CSS overhead into packing so CSS wraps exactly the
   packed lines.
+- Refit the camera for growth: `refitShell(growthSteps)` frames the shell
+  expanded downward by the steps plus the full downward envelope margin,
+  `envelopeCameraPose(offset, dolly, pointer, reducedMotion, shell)` resolves
+  any pose against it (default: the base shell, so existing callers are
+  unchanged), and `sink.setCameraPose(pose)` moves the stage camera live.
+  Studio flow per scale/resize: measure → grow → refit → setCameraPose →
+  reposition the overlay from the refit projection → re-verify. The refit
+  keeps the grown plaque and every camera/pointer extreme inside the frame
+  (proven pure in `tests/shell.test.ts`, verified live in `check:theater`).
 - Covered by `npm run check:theater` (combined theater+plaque harness,
   evidence `theater.json` + `theater-{WxH}[-200].png`) and the mount plaque
   wiring tests in `tests/mount.test.ts` (stub metrics; certify nothing).

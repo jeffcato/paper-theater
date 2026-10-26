@@ -6,18 +6,82 @@
       "viewport": "960x540",
       "fontReady": true,
       "playSeconds": 1.46,
-      "playFrames": 84,
+      "playFrames": 82,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
-      "clearance1": 29.4,
-      "clearance2": 28.4,
+      "clearance1": 27.3,
+      "clearance2": 23,
       "growthSteps1": 3,
-      "growthSteps2": 13,
-      "bottomOverflowPx1": 0,
-      "bottomOverflowPx2": 76.3,
-      "captureSha": "2d1ebd965099c179cb284e2c200a62ce31cefef71a4ccaa2aae197911d48634f",
-      "nonblackFraction": 0.0451,
+      "growthSteps2": 15,
+      "refitDistance1": 26.51,
+      "refitDistance2": 31.09,
+      "bottomOverflowPx1": -47.2,
+      "bottomOverflowPx2": -19.4,
+      "extremes": [
+        {
+          "def": "0.5,0.25+d2+p0.8,0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 25.7,
+          "bottomOverflowPx": -38.1
+        },
+        {
+          "def": "-0.5,-0.25+d2+p-0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 25.7,
+          "bottomOverflowPx": -75.6
+        },
+        {
+          "def": "0.5,-0.25+d0+p0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 27.3,
+          "bottomOverflowPx": -67.6
+        },
+        {
+          "def": "0,0+d0+p0.8,0.4+rm",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 27.3,
+          "bottomOverflowPx": -47.2
+        },
+        {
+          "def": "0.5,0.25+d2+p0.8,0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 21.9,
+          "bottomOverflowPx": -7.7
+        },
+        {
+          "def": "-0.5,-0.25+d2+p-0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 21.9,
+          "bottomOverflowPx": -39.5
+        },
+        {
+          "def": "0.5,-0.25+d0+p0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 23,
+          "bottomOverflowPx": -36.4
+        },
+        {
+          "def": "0,0+d0+p0.8,0.4+rm",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 23,
+          "bottomOverflowPx": -19.4
+        }
+      ],
+      "blackoutSample": 1752000,
+      "blackoutMax": 0,
+      "blackoutPhase": "transition",
+      "roLoopNotices": 5,
+      "captureSha": "674440e2d59bab27180f59cb9b50460bc9835294f93de1570fe24c1b577dc5f2",
+      "nonblackFraction": 0.0123,
       "nodGestures": {
         "1897698": "nod",
         "1903698": "nod",
@@ -29,18 +93,82 @@
       "viewport": "1280x720",
       "fontReady": true,
       "playSeconds": 1.48,
-      "playFrames": 56,
+      "playFrames": 65,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
-      "clearance1": 36.8,
-      "clearance2": 35.8,
+      "clearance1": 35.5,
+      "clearance2": 30.7,
       "growthSteps1": 0,
-      "growthSteps2": 8,
-      "bottomOverflowPx1": 0,
-      "bottomOverflowPx2": 39.6,
-      "captureSha": "2512470b9c2d6abf004f720273e8b0c366dc50fd07f2d1738634e833586a0ca6",
-      "nonblackFraction": 0.0451,
+      "growthSteps2": 9,
+      "refitDistance1": 25.36,
+      "refitDistance2": 28.8,
+      "bottomOverflowPx1": -71.2,
+      "bottomOverflowPx2": -51.9,
+      "extremes": [
+        {
+          "def": "0.5,0.25+d2+p0.8,0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 33.2,
+          "bottomOverflowPx": -60.5
+        },
+        {
+          "def": "-0.5,-0.25+d2+p-0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 33.2,
+          "bottomOverflowPx": -112.8
+        },
+        {
+          "def": "0.5,-0.25+d0+p0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 35.5,
+          "bottomOverflowPx": -99.7
+        },
+        {
+          "def": "0,0+d0+p0.8,0.4+rm",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 35.5,
+          "bottomOverflowPx": -71.2
+        },
+        {
+          "def": "0.5,0.25+d2+p0.8,0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 29,
+          "bottomOverflowPx": -37.6
+        },
+        {
+          "def": "-0.5,-0.25+d2+p-0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 29,
+          "bottomOverflowPx": -83.5
+        },
+        {
+          "def": "0.5,-0.25+d0+p0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 30.7,
+          "bottomOverflowPx": -76.6
+        },
+        {
+          "def": "0,0+d0+p0.8,0.4+rm",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 30.7,
+          "bottomOverflowPx": -51.9
+        }
+      ],
+      "blackoutSample": 1752000,
+      "blackoutMax": 0,
+      "blackoutPhase": "transition",
+      "roLoopNotices": 2,
+      "captureSha": "cc9d825c1119900261324ec2de03de0e46297892158ff7b4475ffccc9c79c455",
+      "nonblackFraction": 0.019,
       "nodGestures": {
         "1897698": "nod",
         "1903698": "nod",
@@ -51,19 +179,83 @@
     {
       "viewport": "1920x1080",
       "fontReady": true,
-      "playSeconds": 1.46,
-      "playFrames": 31,
+      "playSeconds": 1.49,
+      "playFrames": 33,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
-      "clearance1": 51.7,
-      "clearance2": 50.7,
+      "clearance1": 49.7,
+      "clearance2": 46.7,
       "growthSteps1": 0,
       "growthSteps2": 3,
-      "bottomOverflowPx1": 0,
-      "bottomOverflowPx2": 0,
-      "captureSha": "12d2e3b28b1812c525bd577390e646c02aa59b4588c947308aa443371c8c4067",
-      "nonblackFraction": 0.045,
+      "refitDistance1": 25.36,
+      "refitDistance2": 26.51,
+      "bottomOverflowPx1": -130.7,
+      "bottomOverflowPx2": -106.4,
+      "extremes": [
+        {
+          "def": "0.5,0.25+d2+p0.8,0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 46.3,
+          "bottomOverflowPx": -124.7
+        },
+        {
+          "def": "-0.5,-0.25+d2+p-0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 46.3,
+          "bottomOverflowPx": -203.3
+        },
+        {
+          "def": "0.5,-0.25+d0+p0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 49.7,
+          "bottomOverflowPx": -173.4
+        },
+        {
+          "def": "0,0+d0+p0.8,0.4+rm",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 49.7,
+          "bottomOverflowPx": -130.7
+        },
+        {
+          "def": "0.5,0.25+d2+p0.8,0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 43.5,
+          "bottomOverflowPx": -88.1
+        },
+        {
+          "def": "-0.5,-0.25+d2+p-0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 43.5,
+          "bottomOverflowPx": -163.2
+        },
+        {
+          "def": "0.5,-0.25+d0+p0.8,-0.4",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 46.7,
+          "bottomOverflowPx": -147.1
+        },
+        {
+          "def": "0,0+d0+p0.8,0.4+rm",
+          "active": "highlight:source:3628:3632",
+          "lines": 3,
+          "clearance": 46.7,
+          "bottomOverflowPx": -106.4
+        }
+      ],
+      "blackoutSample": 1752000,
+      "blackoutMax": 0,
+      "blackoutPhase": "transition",
+      "roLoopNotices": 6,
+      "captureSha": "465369fb525cf57c5c09766fcff842f1085e96bf59a846d869b2c875ebf8ac36",
+      "nonblackFraction": 0.0281,
       "nodGestures": {
         "1897698": "nod",
         "1903698": "nod",

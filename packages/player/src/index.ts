@@ -75,6 +75,8 @@ export type {
 export {
   validateSchematicShell,
   baseCameraPose,
+  baseShell,
+  refitShell,
   envelopeCameraPose,
   plaqueGrowthSteps,
   projectPlaqueSafe,
@@ -87,7 +89,7 @@ export {
   configureColorTexture,
   configureMaskTexture,
 } from "./shell.js";
-export type { CameraPose, PlaqueScreenRect, ViewportCss } from "./shell.js";
+export type { CameraPose, FramedShell, PlaqueScreenRect, ViewportCss } from "./shell.js";
 export { groupWords, layoutChunks, layoutMeasured, ReadAlongModel } from "./readalong.js";
 export type { Chunk, MeasureFn } from "./readalong.js";
 export { describeCapture, boundarySamples } from "./capture.js";

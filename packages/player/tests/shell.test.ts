@@ -6,12 +6,14 @@ import * as THREE from "three";
 import {
   baseCameraPose,
   baseDistance,
+  baseShell,
   blackoutHolds,
   compositeStagePixel,
   envelopeCameraPose,
   plaqueGrowthSteps,
   projectPlaqueSafe,
   projectToCss,
+  refitShell,
   solveHomography,
   validateSchematicShell,
   RENDER_DEFAULTS,
@@ -140,6 +142,72 @@ describe("shell: projected plaque placement", () => {
       assert.ok(right <= viewport.width && bottom <= viewport.height, "rect in frame");
       assert.ok(rect.floorY < rect.top, "projected floor sits above the plaque");
       assert.ok(rect.top - rect.floorY >= 1, "visible gap between floor and plaque");
+    }
+  });
+});
+
+describe("shell: camera refit for plaque growth", () => {
+  const viewports = [
+    { width: 960, height: 540 },
+    { width: 1280, height: 720 },
+    { width: 1920, height: 1080 },
+  ];
+
+  it("frames the base shell unchanged by default", () => {
+    const shell = baseShell();
+    assert.equal(shell.centerX, 0);
+    assert.equal(shell.centerY, 4);
+    assert.equal(shell.distance, baseDistance());
+    const pose = envelopeCameraPose([0, 0], 0, [0, 0], false);
+    assert.deepEqual(pose, baseCameraPose());
+  });
+
+  it("expands the framed shell downward with growth, keeping the envelope margin", () => {
+    const shell = refitShell(13);
+    // 13 steps extend the shell 3.25 world units down plus the 0.65
+    // target/pointer margin: bottom -6.9, center 2.05.
+    assert.equal(shell.centerX, 0);
+    assert.equal(shell.centerY, 2.05);
+    assert.ok(shell.distance > baseDistance(), "refit pulls back");
+    const flat = refitShell(0);
+    assert.equal(flat.centerX, 0);
+    assert.ok(Math.abs(flat.centerY - 3.675) < 1e-9, `margin-only center (${flat.centerY})`);
+    assert.ok(flat.distance > baseDistance(), "margin alone pulls back");
+  });
+
+  it("rejects negative or non-integer growth steps", () => {
+    assert.throws(() => refitShell(-1), /growth/);
+    assert.throws(() => refitShell(1.5), /growth/);
+  });
+
+  it("keeps the grown safe inset inside every frame at the refit pose", () => {
+    for (const steps of [0, 3, 8, 13]) {
+      const shell = refitShell(steps);
+      const pose = envelopeCameraPose([0, 0], 0, [0, 0], false, shell);
+      for (const viewport of viewports) {
+        const rect = projectPlaqueSafe(pose, viewport);
+        assert.ok(rect.top >= 0, `steps ${steps}: top on screen`);
+        assert.ok(rect.top + rect.height <= viewport.height, `steps ${steps}: grown inset in frame`);
+        assert.ok(rect.floorY < rect.top, `steps ${steps}: floor above plaque`);
+      }
+    }
+  });
+
+  it("holds the grown inset through camera/pointer extremes", () => {
+    const shell = refitShell(13);
+    const extremes: Array<[[number, number], number, [number, number], boolean]> = [
+      [[0.5, 0.25], 2, [0.8, 0.4], false],
+      [[-0.5, -0.25], 2, [-0.8, -0.4], false],
+      [[0.5, -0.25], 0, [0.8, -0.4], false],
+      [[0, 0], 0, [0.8, 0.4], true],
+    ];
+    for (const [offset, dolly, pointer, reduced] of extremes) {
+      const pose = envelopeCameraPose(offset, dolly, pointer, reduced, shell);
+      for (const viewport of viewports) {
+        const rect = projectPlaqueSafe(pose, viewport);
+        assert.ok(rect.top + rect.height <= viewport.height, `extreme ${offset}: inset in frame`);
+        assert.ok(rect.top >= 0, `extreme ${offset}: top on screen`);
+      }
     }
   });
 });

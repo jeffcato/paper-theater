@@ -173,3 +173,32 @@ below it; `-200.png` at 960 documents the overflow. P12 retained:
 `check:inventory --tag v2` still 144/144 (binding drift note preserved).
 Audience `npm test` 5/5 + `tsc` + `vite build` pass; the hook comment now
 points loaded performances at the mount-owned plaque.
+
+## 2026-10-26 — companion camera refit for plaque growth (P4)
+
+The reported 76/40 px overflow at 200% text is eliminated. `refitShell`
+(`packages/player/src/shell.ts`) frames the shell expanded downward by the
+growth steps plus the full downward envelope margin under the same
+10%-reserve rule; `envelopeCameraPose` takes an optional shell (default
+unchanged); `FrameSink.setCameraPose` moves the three.js stage camera live.
+TDD red→green: 5 new shell tests, including the pure proof that the grown
+inset stays in-frame at the refit pose through all camera/pointer extremes
+at all three viewports.
+
+`npm run check:player`: 84/84 pass. `npm run check:theater` now refits per
+scale, then runs a 4-pose extreme matrix (max target/pointer/dolly combos
+plus reduced motion) per scale: zero overflow everywhere (worst case
+960x540 at 200% holds a 19 px bottom margin, was +76 over), 3 measured
+lines at 22/44 px on every pose, 22–50 px floor clearance, highlight
+agreement on all 24 extreme poses, and the overlay tracking each
+projection within 2 px. New retention: the evaluator scan finds the
+zero-gain sample 1752000 and the composite pipeline renders it at max
+channel 0 (dark hold black); capture/nod checks unchanged. Rapid
+programmatic resizes trip Chrome's benign ResizeObserver-loop notice
+(2–6 per viewport, counted in `theater.json`, layout proven settled by the
+post-resize measurements); zero real console errors. Evidence: 9 eyeballed
+PNGs (`theater-{WxH}[-200][-extreme].png`) — the 960-200 shot shows the
+full 3-line "trap" chunk in-frame where the overflow ran off-screen
+before. P12 retained: inventory v2 144/144. Camera refit is live
+(`setCameraPose`); fullscreen, 10 entry/exit cycles, 60 s p95 and target-
+device performance remain separate gates.

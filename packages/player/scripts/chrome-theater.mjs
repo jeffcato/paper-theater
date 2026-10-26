@@ -22,7 +22,7 @@ const fixtureRoot = join(root, "fixtures", "generation", "two-scene-readiness-v2
 const evidenceJson = join(root, "docs", "implementation", "player", "theater.json");
 const shotName = (w, h, s) => join(
   root, "docs", "implementation", "player",
-  s === 2 ? `theater-${w}x${h}-200.png` : `theater-${w}x${h}.png`,
+  s === 2 ? `theater-${w}x${h}-200.png` : s === "extreme" ? `theater-${w}x${h}-extreme.png` : `theater-${w}x${h}.png`,
 );
 const CHROME = process.env.PT_CHROME || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const VIEWPORTS = [[960, 540], [1280, 720], [1920, 1080]];
@@ -44,7 +44,17 @@ html, body { margin: 0; padding: 0; background: #141210; }
 <script type="module">
 import * as api from "/dist/src/index.js";
 window.__errors = [];
-addEventListener("error", (e) => window.__errors.push(String(e.message)));
+window.__roLoopNotices = 0;
+addEventListener("error", (e) => {
+  // Benign settled-layout notice from rapid programmatic resizes (each
+  // place() settles before we measure); counted in the report, never mixed
+  // with real failures.
+  if (String(e.message).includes("ResizeObserver loop completed with undelivered notifications")) {
+    window.__roLoopNotices++;
+    return;
+  }
+  window.__errors.push(String(e.message));
+});
 addEventListener("unhandledrejection", (e) => window.__errors.push(String(e.reason?.message ?? e.reason)));
 async function sha256(bytes) {
   const d = await crypto.subtle.digest("SHA-256", bytes);
@@ -152,6 +162,10 @@ window.__boot = async (W, H) => {
   });
   window.__timeline = timeline;
   window.__mount = mount;
+  window.__sink = sink;
+  window.__pose = api.baseCameraPose();
+  window.__W = W;
+  window.__H = H;
   window.__model = model;
   window.__track = track;
   window.__audio = audio;
@@ -219,39 +233,144 @@ window.__boot = async (W, H) => {
   // Future-text exclusion at the mid stop.
   const futureText = track.groups.slice(-3).map((g) => g.word_ids.map((id) => track.words.find((w) => w.id === id).text).join(" ")).join(" ");
   out.futureTextExcluded = !plaqueEl.textContent.includes(futureText.split(" ")[0]);
-  // Measured layout at 100%: placement, lines, clearance, growth.
-  out.layout1 = measureLayout(projected);
-  const lineHeight1 = parseFloat(out.layout1.fontSize) * 1.3;
-  const worldPerPx = 13 / projected.width;
-  const neededWorld1 = (out.layout1.lineCount * lineHeight1 * worldPerPx);
-  out.growthSteps1 = api.plaqueGrowthSteps(Math.max(neededWorld1, 0.01), 1.9);
-  const chunkHeight1 = (out.layout1.chunkBottom ?? 0) - (out.layout1.chunkTop ?? 0);
-  positioner.style.height = Math.max(projected.height, chunkHeight1 + 12) + "px";
-  out.layout1b = measureLayout(projected);
-  // 200% text: active chunk still fits, clearance holds.
-  mount.plaque.setScale(2);
-  await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-  mount.seek(midGroup.start_sample);
-  mount.tick();
-  out.layout2 = measureLayout(projected);
-  const lineHeight2 = parseFloat(out.layout2.fontSize) * 1.3;
-  out.growthSteps2 = api.plaqueGrowthSteps(Math.max(out.layout2.lineCount * lineHeight2 * worldPerPx, 0.01), 1.9);
-  const chunkHeight2 = (out.layout2.chunkBottom ?? 0) - (out.layout2.chunkTop ?? 0);
-  positioner.style.height = Math.max(projected.height, chunkHeight2 + 12) + "px";
-  out.layout2b = measureLayout(projected);
+  // Refit flow per scale: measure, grow, refit the camera to the grown
+  // shell, reposition the overlay from the refit projection, re-measure.
+  const raf2 = () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+  const place = (proj) => {
+    positioner.style.left = proj.left + "px";
+    positioner.style.top = proj.top + "px";
+    positioner.style.width = proj.width + "px";
+    positioner.style.minHeight = proj.height + "px";
+    positioner.style.height = "";
+  };
+  const extend = (proj, layout) => {
+    const chunkHeight = (layout.chunkBottom ?? 0) - (layout.chunkTop ?? 0);
+    positioner.style.height = Math.max(proj.height, chunkHeight + 12) + "px";
+  };
+  window.__layout = async (scale) => {
+    mount.plaque.setScale(scale);
+    await raf2();
+    mount.seek(midGroup.start_sample);
+    mount.tick();
+    const before = measureLayout();
+    const projBefore = api.projectPlaqueSafe(window.__pose, { width: W, height: H });
+    const worldPerPx = 13 / projBefore.width;
+    const needed = before.lineCount * parseFloat(before.fontSize) * 1.3 * worldPerPx;
+    const growth = api.plaqueGrowthSteps(Math.max(needed, 0.01), 1.9);
+    const shell = api.refitShell(growth);
+    const pose = api.envelopeCameraPose([0, 0], 0, [0, 0], false, shell);
+    window.__pose = pose;
+    window.__shell = shell;
+    window.__sink.setCameraPose(pose);
+    const proj = api.projectPlaqueSafe(pose, { width: W, height: H });
+    window.__proj = proj;
+    place(proj);
+    await raf2();
+    mount.seek(midGroup.start_sample);
+    mount.tick();
+    extend(proj, measureLayout());
+    const layout = measureLayout();
+    return { layout, growth, projected: proj, shell, distance: shell.distance };
+  };
+  const EXTREMES = [
+    { offset: [0.5, 0.25], dolly: 2, pointer: [0.8, 0.4], reduced: false },
+    { offset: [-0.5, -0.25], dolly: 2, pointer: [-0.8, -0.4], reduced: false },
+    { offset: [0.5, -0.25], dolly: 0, pointer: [0.8, -0.4], reduced: false },
+    { offset: [0, 0], dolly: 0, pointer: [0.8, 0.4], reduced: true },
+  ];
+  window.__extremes = async () => {
+    const rows = [];
+    for (const def of EXTREMES) {
+      const pose = api.envelopeCameraPose(def.offset, def.dolly, def.pointer, def.reduced, window.__shell);
+      window.__sink.setCameraPose(pose);
+      const proj = api.projectPlaqueSafe(pose, { width: W, height: H });
+      place(proj);
+      await raf2();
+      mount.seek(midGroup.start_sample);
+      mount.tick();
+      extend(proj, measureLayout());
+      const layout = measureLayout();
+      rows.push({
+        def: def.offset + "+d" + def.dolly + "+p" + def.pointer + (def.reduced ? "+rm" : ""),
+        active: domActive(),
+        expect: midGroup.id,
+        layout,
+        projected: proj,
+      });
+    }
+    // Restore the refit pose for screenshots.
+    window.__sink.setCameraPose(window.__pose);
+    place(window.__proj);
+    await raf2();
+    mount.seek(midGroup.start_sample);
+    mount.tick();
+    return rows;
+  };
+  const first = await window.__layout(1);
+  out.layout1b = first.layout;
+  out.growthSteps1 = first.growth;
+  out.projected1 = first.projected;
+  out.refitDistance1 = first.distance;
+  out.extremes1 = await window.__extremes();
+  const second = await window.__layout(2);
+  out.layout2b = second.layout;
+  out.growthSteps2 = second.growth;
+  out.projected2 = second.projected;
+  out.refitDistance2 = second.distance;
+  out.extremes2 = await window.__extremes();
+  out.projected = out.projected2;
+  // Blackout retention: scan the pure evaluator for a zero-gain sample and
+  // prove the composite pipeline renders it black. A fixture with no
+  // full-blackout sample reports the skip instead of certifying one.
+  const reveals = handle.reveals ?? [];
+  let blackSample = -1;
+  for (let s = 0; s <= timeline.sample_count; s += 24000) {
+    if (api.evaluate(timeline, s, [...reveals]).stage_gain === 0) {
+      blackSample = s;
+      break;
+    }
+  }
+  out.blackoutSample = blackSample;
+  if (blackSample >= 0) {
+    mount.seek(blackSample);
+    mount.tick();
+    const dark = await mount.captureFrame(W, H);
+    let darkMax = 0;
+    for (let i = 0; i < dark.pixels.length; i += 4) {
+      darkMax = Math.max(darkMax, dark.pixels[i] / 255, dark.pixels[i + 1] / 255, dark.pixels[i + 2] / 255);
+    }
+    out.blackoutMax = darkMax;
+    out.blackoutPhase = dark.phase;
+  }
   out.errors = window.__errors;
   return out;
 };
-// Screenshot pose on the live mount: scale, mid-track sample, one tick.
+// Screenshot poses on the live mount (refit applied inside __layout).
 window.__poseForShot = async (scale) => {
   const mount = window.__mount;
   mount.setReadAlong(true);
-  mount.plaque.setScale(scale);
+  const applied = await window.__layout(scale);
+  await new Promise((r) => requestAnimationFrame(r));
+  return { active: domActive(), fontSize: getComputedStyle(document.querySelector("#plaque .pl-chunk")).fontSize };
+};
+window.__poseForExtreme = async () => {
+  const mount = window.__mount;
+  mount.setReadAlong(true);
+  await window.__layout(2);
+  const def = { offset: [0.5, 0.25], dolly: 2, pointer: [0.8, 0.4], reduced: false };
+  const pose = api.envelopeCameraPose(def.offset, def.dolly, def.pointer, def.reduced, window.__shell);
+  window.__sink.setCameraPose(pose);
+  const proj = api.projectPlaqueSafe(pose, { width: window.__W, height: window.__H });
+  const positioner = document.querySelector("#positioner");
+  positioner.style.left = proj.left + "px";
+  positioner.style.top = proj.top + "px";
+  positioner.style.width = proj.width + "px";
+  positioner.style.minHeight = proj.height + "px";
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
   mount.seek(window.__stops.mid);
   mount.tick();
   await new Promise((r) => requestAnimationFrame(r));
-  return { active: domActive(), fontSize: getComputedStyle(document.querySelector("#plaque .pl-chunk")).fontSize };
+  return { active: domActive() };
 };
 // P12 retention + release, after screenshots.
 window.__finish = async (W, H) => {
@@ -281,6 +400,7 @@ window.__finish = async (W, H) => {
   mount.dispose();
   out.disposeClean = plaqueEl.childElementCount === 0 && document.querySelectorAll(".pl-chunk").length === 0;
   out.errors = window.__errors;
+  out.roLoopNotices = window.__roLoopNotices;
   return out;
 };
 </script></body></html>`;
@@ -421,8 +541,11 @@ try {
       const pose2 = await evaluate(`window.__poseForShot(2)`);
       const shot2 = await call("Page.captureScreenshot", { format: "png" });
       await writeFile(shotName(W, H, 2), Buffer.from(shot2.data, "base64"));
+      const poseX = await evaluate(`window.__poseForExtreme()`);
+      const shotX = await call("Page.captureScreenshot", { format: "png" });
+      await writeFile(shotName(W, H, "extreme"), Buffer.from(shotX.data, "base64"));
       const tail = await evaluate(`window.__finish(${W}, ${H})`);
-      Object.assign(out, tail, { pose1, pose2 });
+      Object.assign(out, tail, { pose1, pose2, poseX });
 
       // Assertions: every number below is measured in the browser.
       const at = (name) => `${tag} ${name}`;
@@ -441,11 +564,14 @@ try {
       check(out.toggleOff.display === "none" && out.toggleOff.groups === 0, at("toggle hides the plaque"));
       check(out.toggleOnActive === out.toggleOnExpect, at("toggle restores the measured group"));
       check(out.futureTextExcluded === true, at("no future text in the tree"));
-      for (const [scale, layout, growth] of [[1, out.layout1b, out.growthSteps1], [2, out.layout2b, out.growthSteps2]]) {
-        const proj = out.projected;
-        check(Math.abs(layout.overlay.left - proj.left) <= 2, at(`scale ${scale}: overlay left tracks projection`));
-        check(Math.abs(layout.overlay.top - proj.top) <= 2, at(`scale ${scale}: overlay top tracks projection`));
-        check(Math.abs(layout.overlay.width - proj.width) <= 2, at(`scale ${scale}: overlay width tracks projection`));
+      // The refit eliminates growth overflow: every scale stays in frame.
+      for (const [scale, layout, growth, proj] of [
+        [1, out.layout1b, out.growthSteps1, out.projected1],
+        [2, out.layout2b, out.growthSteps2, out.projected2],
+      ]) {
+        check(Math.abs(layout.overlay.left - proj.left) <= 2, at(`scale ${scale}: overlay left tracks refit`));
+        check(Math.abs(layout.overlay.top - proj.top) <= 2, at(`scale ${scale}: overlay top tracks refit`));
+        check(Math.abs(layout.overlay.width - proj.width) <= 2, at(`scale ${scale}: overlay width tracks refit`));
         check(layout.overlay.height + 0.5 >= proj.height, at(`scale ${scale}: overlay covers the safe inset`));
         check(layout.lineCount >= 2 && layout.lineCount <= 3, at(`scale ${scale}: 2-3 measured lines (${layout.lineCount})`));
         const widest = layout.rows.reduce((m, r) => Math.max(m, r.w), 0);
@@ -461,15 +587,31 @@ try {
           layout.overlay.top + layout.overlay.height + 1 >= (layout.chunkBottom ?? 0),
           at(`scale ${scale}: extended plaque covers the chunk`),
         );
-        // Profile growth extends the plaque downward; the companion camera
-        // refit is a pending gate, so past-the-frame overflow is recorded,
-        // not asserted away. Zero-growth plaques must stay in frame.
         const overflow = layout.overlay.top + layout.overlay.height - H;
-        if (growth === 0) {
-          check(overflow <= 0, at(`scale ${scale}: overlay in frame`));
-        }
-        layout.bottomOverflowPx = Math.max(0, overflow);
+        check(overflow <= 0, at(`scale ${scale}: refit keeps the plaque in frame (overflow ${overflow})`));
+        check(layout.overlay.top >= 0, at(`scale ${scale}: plaque top on screen`));
         check(Number.isSafeInteger(growth) && growth >= 0, at(`scale ${scale}: growth steps recorded (${growth})`));
+      }
+      // Camera/pointer extremes hold the same contract through the envelope.
+      const extremeRows = [...(out.extremes1 ?? []), ...(out.extremes2 ?? [])];
+      check(extremeRows.length === 8, at(`extreme matrix complete (${extremeRows.length})`));
+      for (const row of extremeRows) {
+        const proj = row.projected;
+        const layout = row.layout;
+        check(Math.abs(layout.overlay.left - proj.left) <= 2, at(`extreme ${row.def}: tracks projection`));
+        check(Math.abs(layout.overlay.top - proj.top) <= 2, at(`extreme ${row.def}: tracks projection`));
+        check(row.active === row.expect, at(`extreme ${row.def}: highlight agreement`));
+        check(layout.lineCount >= 2 && layout.lineCount <= 3, at(`extreme ${row.def}: 2-3 lines (${layout.lineCount})`));
+        check(layout.chunkTop - proj.floorY >= 8, at(`extreme ${row.def}: floor clearance`));
+        check(layout.overlay.top >= 0, at(`extreme ${row.def}: top on screen`));
+        check(layout.overlay.top + layout.overlay.height <= H, at(`extreme ${row.def}: in frame`));
+      }
+      if ((out.blackoutSample ?? -1) >= 0) {
+        check(out.blackoutMax <= 8 / 255, at(`dark hold composites to black (${out.blackoutMax} in ${out.blackoutPhase})`));
+      } else {
+        // No zero-gain sample in this fixture: blackout stays covered by
+        // the inventory run, and the skip is recorded, not certified.
+        report.blackoutSkipped = true;
       }
       check(out.layout1b.fontSize === "22px", at(`100% text is 22px (${out.layout1b.fontSize})`));
       check(out.layout2b.fontSize === "44px", at(`200% text is 44px (${out.layout2b.fontSize})`));
@@ -478,6 +620,7 @@ try {
       check(out.capture.provenance === "diagnostic", at("capture provenance"));
       check(Object.values(out.nodGestures ?? {}).every((g) => g === "nod"), at(`nod-em gestures (${JSON.stringify(out.nodGestures)})`));
       check(out.disposeClean === true, at("dispose releases plaque DOM"));
+      const overflowOf = (layout) => +((layout.overlay.top + layout.overlay.height - H).toFixed(1));
       report.viewports.push({
         viewport: tag,
         fontReady: out.fontReady,
@@ -486,12 +629,25 @@ try {
         mismatchCount: out.mismatchCount,
         lines1: out.layout1b.lineCount,
         lines2: out.layout2b.lineCount,
-        clearance1: +((out.layout1b.chunkTop ?? 0) - out.projected.floorY).toFixed(1),
-        clearance2: +((out.layout2b.chunkTop ?? 0) - out.projected.floorY).toFixed(1),
+        clearance1: +((out.layout1b.chunkTop ?? 0) - out.projected1.floorY).toFixed(1),
+        clearance2: +((out.layout2b.chunkTop ?? 0) - out.projected2.floorY).toFixed(1),
         growthSteps1: out.growthSteps1,
         growthSteps2: out.growthSteps2,
-        bottomOverflowPx1: +((out.layout1b.bottomOverflowPx ?? 0).toFixed(1)),
-        bottomOverflowPx2: +((out.layout2b.bottomOverflowPx ?? 0).toFixed(1)),
+        refitDistance1: +out.refitDistance1.toFixed(2),
+        refitDistance2: +out.refitDistance2.toFixed(2),
+        bottomOverflowPx1: overflowOf(out.layout1b),
+        bottomOverflowPx2: overflowOf(out.layout2b),
+        extremes: [...(out.extremes1 ?? []), ...(out.extremes2 ?? [])].map((row) => ({
+          def: row.def,
+          active: row.active,
+          lines: row.layout.lineCount,
+          clearance: +((row.layout.chunkTop ?? 0) - row.projected.floorY).toFixed(1),
+          bottomOverflowPx: +((row.layout.overlay.top + row.layout.overlay.height - H).toFixed(1)),
+        })),
+        blackoutSample: out.blackoutSample,
+        blackoutMax: out.blackoutMax,
+        blackoutPhase: out.blackoutPhase,
+        roLoopNotices: out.roLoopNotices ?? 0,
         captureSha: out.capture.pixels_sha256,
         nonblackFraction: +out.capture.nonblackFraction.toFixed(4),
         nodGestures: out.nodGestures,

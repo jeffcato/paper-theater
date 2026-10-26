@@ -62,22 +62,65 @@ export function baseCameraPose(): CameraPose {
   return { position: [cx, cy, d], target: [cx, cy, 0] };
 }
 
+/** Shell framing a camera pose resolves against: XY center + distance. */
+export interface FramedShell {
+  centerX: number;
+  centerY: number;
+  distance: number;
+}
+
+/** Base framing: outer-bounds center at the profile base distance. */
+export function baseShell(): FramedShell {
+  return {
+    centerX: (OUTER.x[0] + OUTER.x[1]) / 2,
+    centerY: (OUTER.y[0] + OUTER.y[1]) / 2,
+    distance: baseDistance(),
+  };
+}
+
+/**
+ * Camera refit for plaque growth: frame the shell expanded downward by the
+ * growth steps (0.25 world units each) plus the full downward envelope
+ * margin (authored target offset + pointer), so the grown plaque and every
+ * camera/pointer extreme stay inside the frame. Same 10%-reserve rule as
+ * the base distance; horizontal framing is unchanged (growth is vertical).
+ */
+export function refitShell(growthSteps: number): FramedShell {
+  if (!Number.isSafeInteger(growthSteps) || growthSteps < 0) {
+    throw new Error(`growth steps: ${growthSteps}`);
+  }
+  const expansion = growthSteps * 0.25;
+  const margin = CAMERA.target_offset_y + CAMERA.pointer_y;
+  const bottom = OUTER.y[0] - expansion - margin;
+  const top = OUTER.y[1];
+  const halfH = (top - bottom) / 2;
+  const tan20 = Math.tan((20 * Math.PI) / 180);
+  const w = (OUTER.x[1] - OUTER.x[0]) / 2;
+  return {
+    centerX: (OUTER.x[0] + OUTER.x[1]) / 2,
+    centerY: (top + bottom) / 2,
+    distance: LAYER_Z.signage + Math.max(halfH / (0.9 * tan20), w / (0.9 * (16 / 9) * tan20)),
+  };
+}
+
 /**
  * Camera envelope: authored target offset X+-0.5/Y+-0.25, distance [d,d+2];
  * pointer adds X+-0.8/Y+-0.4 to both camera and target, resets on leave,
- * zero under reduced motion. No history-dependent smoothing.
+ * zero under reduced motion. No history-dependent smoothing. Poses resolve
+ * against the base shell unless a refit shell is supplied.
  */
 export function envelopeCameraPose(
   targetOffset: [number, number],
   dolly: number,
   pointer: [number, number],
   reducedMotion: boolean,
+  shell: FramedShell = baseShell(),
 ): CameraPose {
   const [ox, oy] = targetOffset;
   if (Math.abs(ox) > CAMERA.target_offset_x + 1e-9 || Math.abs(oy) > CAMERA.target_offset_y + 1e-9) {
     throw new Error("Authored target offset outside envelope");
   }
-  const d = baseDistance();
+  const d = shell.distance;
   if (!(dolly >= 0 && dolly <= CAMERA.distance_pad + 1e-9)) {
     throw new Error("Dolly outside [d,d+2]");
   }
@@ -85,10 +128,9 @@ export function envelopeCameraPose(
   if (Math.abs(px) > CAMERA.pointer_x + 1e-9 || Math.abs(py) > CAMERA.pointer_y + 1e-9) {
     throw new Error("Pointer outside envelope");
   }
-  const base = baseCameraPose();
   return {
-    position: [base.position[0] + ox + px, base.position[1] + oy + py, d + dolly],
-    target: [base.target[0] + ox + px, base.target[1] + oy + py, 0],
+    position: [shell.centerX + ox + px, shell.centerY + oy + py, d + dolly],
+    target: [shell.centerX + ox + px, shell.centerY + oy + py, 0],
   };
 }
 
@@ -457,6 +499,11 @@ export async function createThreeSink(
   let disposed = false;
   return {
     canvas: renderer.domElement,
+    setCameraPose(pose: CameraPose): void {
+      if (disposed) throw new Error("setCameraPose after dispose");
+      stageCamera.position.set(pose.position[0], pose.position[1], pose.position[2]);
+      stageCamera.lookAt(pose.target[0], pose.target[1], pose.target[2]);
+    },
     render(state): void {
       if (disposed) throw new Error("render after dispose");
       gainUniform.value = state.stage_gain;

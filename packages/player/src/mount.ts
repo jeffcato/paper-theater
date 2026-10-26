@@ -37,6 +37,8 @@ export interface FrameSink {
   dispose?(): void;
   /** Browser sinks expose their canvas so the page can display it. */
   canvas?: unknown;
+  /** Live camera refit (growth, pointer, authored moves). Optional. */
+  setCameraPose?(pose: import("./shell.js").CameraPose): void;
 }
 
 export interface MountSource {
