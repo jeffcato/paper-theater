@@ -93,6 +93,8 @@ export { toCueView, toLightView } from "./shared.js";
 export type { SharedCueView, FlatLight } from "./shared.js";
 export { layoutCard, nodAngle, facingAngle, pivotOffset } from "./assets.js";
 export type { CardBinding, CardLayout } from "./assets.js";
+export { PlaqueView, clampScale, charsPerLine, reflowChunks } from "./plaque.js";
+export type { PlaqueOptions } from "./plaque.js";
 export { mountPlayer, requireAccepted } from "./mount.js";
 export type { ClockSource } from "./transport.js";
 export type {

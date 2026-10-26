@@ -103,3 +103,34 @@ SwiftShader run above proves the pipeline, not target-device performance.
 Audience: `npm test` (5 catalog-rule tests), `tsc --noEmit`, and `vite build`
 pass; the built bundle smoke-serves `index.html` (200) with catalog 404, so
 the booth shows the honest unavailable state with retry.
+
+## 2026-10-26 — mounted read-along plaque (player + audience)
+
+The model existed but `setReadAlong` only updated transport state. The
+plaque is now mounted: `PlaqueView` (`packages/player/src/plaque.ts`)
+renders the active two-to-three-line chunk (only that chunk in the DOM/a11y
+tree), highlights the measured group for the current media sample with
+`point-following-same-boundary-v1` atomicity, and supports toggle (hide +
+clear), seek/rewind (same-chunk fast path, reflow otherwise), container
+resize reflow (samples untouched), and 100%/150%/200% text (22/33/44 px
+serif, clamped). Pure helpers `clampScale`, `charsPerLine`, `reflowChunks`
+are unit-tested (4/4, now wired into `check:player` integration).
+
+`npm run check:player`: 69/69 pass. `npm run check:plaque` verifies the
+real `PlaqueView` in headless Chrome against the real 176-word
+`fixtures/shared/two-scene-v1/read-along.json` track: one container child,
+single `aria-current`, first-sample highlight, mid/late seeks, rewind
+returns earlier chunk text, toggle clears and restores, 640→320 px reflow
+preserves the active group, 200% computes to 44 px, silence clears the
+highlight while retaining the chunk, zero console errors. The run caught
+and fixed two harness-side reporting bugs (dropped `chunkText` field,
+undefined expected-group lookup); the plaque implementation itself
+rendered correctly. Evidence `plaque.png` / `plaque-200.png` eyeballed:
+mid-track chunk with "trap" highlighted at 100% and reflowed at 200%.
+Evidence: `plaque.json` (per-step DOM snapshots).
+
+Audience Theater binds the plaque through a `usePlaque` hook (container +
+read-along toggle + 100/150/200% selector + plaque styles). No accepted
+package exists yet, so the hook stays dormant in production — no track or
+samples flow — until a loaded performance supplies them. Audience
+`npm test` 5/5, `tsc --noEmit`, and `vite build` pass with the binding.

@@ -129,6 +129,22 @@ body {
 .controls button[aria-pressed="true"] { background: var(--gold); color: #fff; }
 
 .seek { display: inline-flex; gap: 0.5rem; align-items: center; }
+.text-size { display: inline-flex; gap: 0.5rem; align-items: center; }
+.text-size select { font: inherit; padding: 0.25rem 0.5rem; border-radius: 0.375rem; }
+
+/* Mounted read-along plaque (rendered by the shared player PlaqueView). */
+.plaque {
+  margin: 1rem 0;
+  border: 2px solid var(--gold);
+  border-radius: 0.5rem;
+  background: #1d1712;
+  color: var(--paper);
+  padding: 0.75rem 1rem;
+  min-height: 4rem;
+}
+.pl-chunk { max-width: 42rem; }
+.pl-group { border-radius: 0.2rem; padding: 0 0.1em; }
+.pl-group.pl-active { background: var(--gold); color: #1d1712; }
 .motion { font-size: 0.85rem; color: #5f5340; }
 .return { margin-top: 1rem; }
 

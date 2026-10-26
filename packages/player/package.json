@@ -13,6 +13,7 @@
     "check:player": "node scripts/check-player.mjs",
     "check:chrome": "node scripts/chrome-capture.mjs",
     "check:inventory": "node scripts/chrome-inventory.mjs",
+    "check:plaque": "node scripts/chrome-plaque.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {

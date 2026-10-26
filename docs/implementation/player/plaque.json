@@ -1,0 +1,108 @@
+{
+  "tool": "check:plaque",
+  "track": "fixtures/shared/two-scene-v1/read-along.json",
+  "steps": [
+    {
+      "name": "first-sample",
+      "containerChildren": 1,
+      "chunkChildren": 29,
+      "chunkText": "Suddenly Uncle Henry stood up.\n\n“There’s a cyclone coming, Em,” he called to his wife. “I’ll go look after the stock.” Then he ran toward the sheds where the cows ",
+      "activeGroup": "highlight:source:3158:3166",
+      "ariaCount": 1,
+      "fontSize": "22px",
+      "display": "block",
+      "expectGroup": "highlight:source:3158:3166"
+    },
+    {
+      "name": "seek-mid",
+      "containerChildren": 1,
+      "chunkChildren": 31,
+      "chunkText": "cellar!”\n\nToto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightened, threw open the trap door in the floor and ",
+      "activeGroup": "highlight:source:3628:3632",
+      "ariaCount": 1,
+      "fontSize": "22px",
+      "display": "block",
+      "expectGroup": "highlight:source:3628:3632"
+    },
+    {
+      "name": "seek-last",
+      "containerChildren": 1,
+      "chunkChildren": 22,
+      "chunkText": "whirled around two or three times and rose slowly through the air. Dorothy felt as if she were going up in a balloon.",
+      "activeGroup": "highlight:source:4086:4087+source:4088:4095",
+      "ariaCount": 1,
+      "fontSize": "22px",
+      "display": "block",
+      "expectGroup": "highlight:source:4086:4087+source:4088:4095"
+    },
+    {
+      "name": "rewind-first",
+      "containerChildren": 1,
+      "chunkChildren": 29,
+      "chunkText": "Suddenly Uncle Henry stood up.\n\n“There’s a cyclone coming, Em,” he called to his wife. “I’ll go look after the stock.” Then he ran toward the sheds where the cows ",
+      "activeGroup": "highlight:source:3158:3166",
+      "ariaCount": 1,
+      "fontSize": "22px",
+      "display": "block",
+      "expectGroup": "highlight:source:3158:3166",
+      "rewoundTextMatches": true
+    },
+    {
+      "name": "toggle-off",
+      "containerChildren": 1,
+      "chunkChildren": 0,
+      "chunkText": "",
+      "activeGroup": null,
+      "ariaCount": 0,
+      "fontSize": "22px",
+      "display": "none"
+    },
+    {
+      "name": "toggle-on",
+      "containerChildren": 1,
+      "chunkChildren": 29,
+      "chunkText": "Suddenly Uncle Henry stood up.\n\n“There’s a cyclone coming, Em,” he called to his wife. “I’ll go look after the stock.” Then he ran toward the sheds where the cows ",
+      "activeGroup": "highlight:source:3158:3166",
+      "ariaCount": 1,
+      "fontSize": "22px",
+      "display": "block",
+      "expectGroup": "highlight:source:3158:3166"
+    },
+    {
+      "name": "resize-320",
+      "containerChildren": 1,
+      "chunkChildren": 14,
+      "chunkText": "Suddenly Uncle Henry stood up.\n\n“There’s a cyclone coming, Em,” he called to his ",
+      "activeGroup": "highlight:source:3158:3166",
+      "ariaCount": 1,
+      "fontSize": "22px",
+      "display": "block",
+      "expectGroup": "highlight:source:3158:3166",
+      "activePreserved": true
+    },
+    {
+      "name": "scale-200",
+      "containerChildren": 1,
+      "chunkChildren": 16,
+      "chunkText": "the trap door in the floor and climbed down the ladder into the small, dark hole. ",
+      "activeGroup": "highlight:source:3628:3632",
+      "ariaCount": 1,
+      "fontSize": "44px",
+      "display": "block",
+      "expectGroup": "highlight:source:3628:3632",
+      "activePreserved": true
+    },
+    {
+      "name": "silence",
+      "containerChildren": 1,
+      "chunkChildren": 16,
+      "chunkText": "the trap door in the floor and climbed down the ladder into the small, dark hole. ",
+      "activeGroup": null,
+      "ariaCount": 0,
+      "fontSize": "44px",
+      "display": "block"
+    }
+  ],
+  "failures": [],
+  "browser": "headless Chrome"
+}

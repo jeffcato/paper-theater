@@ -1,8 +1,49 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { PlaqueView } from "@paper-theater/player";
+import type { ReadAlongGroup, ReadAlongWord } from "@paper-theater/player";
 import { TICKETS, ticketState } from "./tickets.js";
 import type { Catalog } from "./tickets.js";
 import "./styles.css";
+
+export interface PlaqueTrack {
+  words: ReadAlongWord[];
+  groups: ReadAlongGroup[];
+}
+
+/** Bind the shared player plaque to a container. The view is created only
+ * once a loaded performance supplies a track; until then the toggle and
+ * sample updates are safe no-ops. */
+export function usePlaque(
+  track: PlaqueTrack | null,
+  sample: number,
+  enabled: boolean,
+  scale: number,
+): React.RefObject<HTMLDivElement | null> {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const view = useRef<PlaqueView | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !track) return;
+    const plaque = new PlaqueView(el, track.words, track.groups, { scale });
+    view.current = plaque;
+    void plaque.ready.then(() => plaque.setSample(sample));
+    return () => {
+      plaque.dispose();
+      view.current = null;
+    };
+  }, [track]);
+  useEffect(() => {
+    view.current?.setEnabled(enabled);
+  }, [enabled]);
+  useEffect(() => {
+    view.current?.setScale(scale);
+  }, [scale]);
+  useEffect(() => {
+    if (enabled) view.current?.setSample(sample);
+  }, [sample, enabled]);
+  return ref;
+}
 
 type CatalogStatus = "loading" | "ready" | "error";
 
@@ -82,6 +123,12 @@ function Theater(props: { performanceId: string; onBack: () => void }): React.JS
   const [status, setStatus] = useState<CatalogStatus>("loading");
   const [readAlong, setReadAlong] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [textScale, setTextScale] = useState(1);
+  // No accepted package exists yet, so no track or samples flow; the hook
+  // stays dormant until a loaded performance supplies them.
+  const [track] = useState<PlaqueTrack | null>(null);
+  const [sample] = useState(0);
+  const plaqueRef = usePlaque(track, sample, readAlong, textScale);
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -136,6 +183,11 @@ function Theater(props: { performanceId: string; onBack: () => void }): React.JS
           </div>
         )}
       </div>
+      <div
+        ref={plaqueRef}
+        className="plaque"
+        hidden={!readAlong || track === null}
+      />
       <div className="controls" role="toolbar" aria-label="Playback controls">
         <button type="button" disabled title="Available once the performance loads">Play</button>
         <button type="button" disabled title="Available once the performance loads">Restart</button>
@@ -150,6 +202,19 @@ function Theater(props: { performanceId: string; onBack: () => void }): React.JS
         >
           Read along
         </button>
+        <label className="text-size">
+          Text size
+          <select
+            aria-label="Read-along text size"
+            value={textScale}
+            disabled={track === null}
+            onChange={(e) => setTextScale(Number(e.target.value))}
+          >
+            <option value={1}>100%</option>
+            <option value={1.5}>150%</option>
+            <option value={2}>200%</option>
+          </select>
+        </label>
         <button type="button" onClick={toggleFullscreen}>Fullscreen</button>
         <span className="motion" aria-live="polite">
           {reducedMotion ? "Reduced motion on" : ""}
