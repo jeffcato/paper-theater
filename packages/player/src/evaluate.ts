@@ -266,20 +266,31 @@ export function evaluate(
     gesture: null,
     gesture_intensity: 0,
   }));
-  const byTarget = new Map<string, EvaluatedActor[]>();
+  const byInstance = new Map<string, EvaluatedActor>();
+  const byAsset = new Map<string, EvaluatedActor[]>();
   for (const a of actors) {
-    const list = byTarget.get(a.asset_id) ?? [];
+    byInstance.set(a.instance_id, a);
+    const list = byAsset.get(a.asset_id) ?? [];
     list.push(a);
-    byTarget.set(a.asset_id, list);
+    byAsset.set(a.asset_id, list);
+  }
+  // Cue recipients: an exact instance id reaches exactly that instance;
+  // otherwise the id names an asset class and reaches every instance of
+  // it. Unknown ids reach nobody. (The frozen nod-em cue names instance
+  // em-2 while em-1 shares its asset: asset-only indexing dropped it.)
+  function recipients(target_id: string): EvaluatedActor[] {
+    const exact = byInstance.get(target_id);
+    if (exact) return [exact];
+    return byAsset.get(target_id) ?? [];
   }
   // Exit-boundary removal: an exit cue ending at/before s removes its target.
   for (const cue of timeline.cues) {
     if (cue.action === "exit" && s >= cue.end_sample) {
-      for (const a of byTarget.get(cue.target_id) ?? []) a.present = false;
+      for (const a of recipients(cue.target_id)) a.present = false;
     }
   }
   for (const cue of activeCues) {
-    for (const a of byTarget.get(cue.target_id) ?? []) applyCueToActor(a, cue, s);
+    for (const a of recipients(cue.target_id)) applyCueToActor(a, cue, s);
   }
 
   // No-spoilers filter before every pass: only approved contributors at or

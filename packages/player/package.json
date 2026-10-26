@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "check:player": "node scripts/check-player.mjs",
     "check:chrome": "node scripts/chrome-capture.mjs",
+    "check:inventory": "node scripts/chrome-inventory.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {

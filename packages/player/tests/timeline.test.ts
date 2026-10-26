@@ -153,3 +153,56 @@ describe("timeline: boundaries and dark hold", () => {
     assert.equal(late.stage_gain, 1);
   });
 });
+
+describe("timeline: instance-targeted cues (nod-em)", () => {
+  // Two instances share one asset, as in the frozen fixture (em-1/em-2 share
+  // figure-em). A cue naming an instance ID must reach exactly that
+  // instance; a cue naming an asset ID still reaches all its instances.
+  function sharedAssetTimeline(): CompiledTimeline {
+    const t = twoSceneTimeline();
+    const sceneB = t.scenes.find((s) => s.id === "scene-b")!;
+    sceneB.entry_snapshot.instances = [
+      { ...sceneB.entry_snapshot.instances[0]!, id: "em-1", asset_id: "figure-em" },
+      { ...sceneB.entry_snapshot.instances[0]!, id: "em-2", asset_id: "figure-em" },
+    ];
+    return t;
+  }
+  function gestureCue(target_id: string) {
+    return {
+      id: `cue-${target_id}`, scene_id: "scene-b", target_id, action: "gesture" as const,
+      start_sample: 600000, end_sample: 624000, easing: "linear" as const,
+      reveal_group_ids: [] as string[], params: { gesture: "nod", intensity: 0.25 },
+    };
+  }
+
+  it("delivers an instance-targeted gesture to exactly that instance", () => {
+    const t = sharedAssetTimeline();
+    t.cues = [gestureCue("em-2")];
+    const state = evaluate(t, 610000);
+    const byId = new Map(state.actors.map((a) => [a.instance_id, a]));
+    assert.equal(byId.get("em-2")?.gesture, "nod");
+    assert.equal(byId.get("em-2")?.gesture_intensity, 0.25);
+    assert.equal(byId.get("em-1")?.gesture, null);
+  });
+
+  it("keeps asset-targeted cues reaching every instance of the asset", () => {
+    const t = sharedAssetTimeline();
+    t.cues = [gestureCue("figure-em")];
+    const state = evaluate(t, 610000);
+    assert.ok(state.actors.length === 2);
+    for (const actor of state.actors) assert.equal(actor.gesture, "nod");
+  });
+
+  it("removes exactly the exited instance at an instance-targeted exit boundary", () => {
+    const t = sharedAssetTimeline();
+    t.cues = [{
+      id: "cue-exit", scene_id: "scene-b", target_id: "em-1", action: "exit" as const,
+      start_sample: 600000, end_sample: 624000, easing: "linear" as const,
+      reveal_group_ids: [] as string[], params: {},
+    }];
+    const during = evaluate(t, 610000).actors.map((a) => a.instance_id).sort();
+    assert.deepEqual(during, ["em-1", "em-2"]);
+    const after = evaluate(t, 624000).actors.map((a) => a.instance_id);
+    assert.deepEqual(after, ["em-2"]);
+  });
+});

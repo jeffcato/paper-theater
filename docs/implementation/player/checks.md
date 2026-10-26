@@ -49,6 +49,23 @@ stamp, and a clean console. Evidence: `chrome-capture.png` (eyeballed this
 session: red/blue orientation quad with white top strip, green actor card,
 deck sliver) + `chrome-capture.json` receipt. Latest run: pass.
 
+## Authored inventory execution (claimed, same browser)
+
+`npm run check:inventory` (`scripts/chrome-inventory.mjs`) executes all 144
+authored requests from `fixtures/generation/capture/inventory.json` — 48
+sample positions × 960×540, 1280×720, 1920×1080 at DPR 1 — through one mount
+per viewport against the shared diagnostic fixture. Hashes are refreshed
+live (inventory bytes, manifest bytes) and recorded; the manifest still
+matches the frozen `04f11a89…`, so no drift notes. Every capture is stamped
+diagnostic/unaccepted with a state digest (48 unique digests: state is
+viewport-independent, as specified). The `nod-em` instance-targeted gesture
+reads `nod` at all 9 probe points (3 samples × 3 viewports), superseding the
+stale `null` expectations in the generation state probe — that probe file is
+generation-owned and left untouched for its owner to refresh. Evidence:
+`inventory-capture.json` (144 rows) + `inventory-{960x540,1280x720,
+1920x1080}.png` (1280×720 eyeballed: oriented fixture at the nod sample).
+Latest run: pass, zero failures.
+
 ## Still pending (require the demo computer/device, not claimed here)
 
 Rust/Three.js vs DOM corner parity (≤1 CSS px), support contacts (≤1e−6),
