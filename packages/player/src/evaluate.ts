@@ -23,6 +23,8 @@ export interface EvaluatedActor {
   present: boolean;
   gesture: string | null;
   gesture_intensity: number;
+  /** Raw 0..1 progress within the active gesture cue window, if any. */
+  gesture_progress: number | null;
 }
 
 export interface EvaluatedState {
@@ -178,6 +180,9 @@ function applyCueToActor(
         actor.gesture = g;
         const intensity = typeof p["intensity"] === "number" ? p["intensity"] : 1;
         actor.gesture_intensity = Math.max(0, Math.min(1, intensity));
+        // Raw cue progress (not eased): the sink renders the gesture as
+        // motion over the cue window, returning to rest at the boundary.
+        actor.gesture_progress = (sample - cue.start_sample) / span;
       }
       break;
     }
@@ -265,6 +270,7 @@ export function evaluate(
     present: true,
     gesture: null,
     gesture_intensity: 0,
+    gesture_progress: null,
   }));
   const byInstance = new Map<string, EvaluatedActor>();
   const byAsset = new Map<string, EvaluatedActor[]>();

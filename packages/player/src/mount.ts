@@ -64,6 +64,7 @@ export interface FrameCapture {
   sample: number;
   phase: string;
   state_digest: string;
+  contributor_ids: string[];
   width: number;
   height: number;
   pixels: Uint8Array;
@@ -181,6 +182,7 @@ export function mountPlayer(
         sample: capture.sample,
         phase: capture.phase,
         state_digest: capture.state_digest,
+        contributor_ids: capture.contributor_ids,
         width,
         height,
         pixels,

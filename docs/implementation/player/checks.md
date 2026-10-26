@@ -66,6 +66,31 @@ generation-owned and left untouched for its owner to refresh. Evidence:
 1920x1080}.png` (1280×720 eyeballed: oriented fixture at the nod sample).
 Latest run: pass, zero failures.
 
+## Authored diagnostic performance (P12, claimed, same browser)
+
+`src/assets.ts` binds registered figures (native aspect, pivot-at-origin
+layout, mirror allowlist) with `nodAngle`/`facingAngle` rigid-gesture math;
+`createThreeSink` accepts `figures` (loaded before the sink exists — a
+failed figure rejects the mount, never a mid-play frame), applies per-frame
+presence/position/rotation/mirror/gesture from the evaluated actors only,
+converts local matrices as F·M·F, and releases every owned texture, material
+and mesh on dispose. A genuine pivot-sign bug found by the new tests
+(`planeOffsetDirect` general branch) is fixed.
+
+`npm run check:inventory -- --fixture
+fixtures/generation/two-scene-readiness-v2 --inventory
+fixtures/player/capture-readiness-v2/inventory.json --tag v2` (fresh derived
+inventory generated with the task's exact generator command, zero provider
+calls, pins the current player build): 144/144 pass, manifest bytes match
+the published `2070bb5f…`, player/checker identities verified against the
+fresh bindings with no drift notes. Nod evidence: `em-2` gestures `nod` at
+all 9 probe points; image hashes prove change-and-return (before/start/end/
+after identical, mid-nod different). `inventory-v2-960x540.png` eyeballed:
+the saved figure stands on the deck between the calibration quads.
+Evidence: `inventory-capture-v2.json` (144 rows with image hashes and
+contributor IDs) + 3 PNGs. Existing `check:player` 65/65 and the legacy v1
+inventory evidence are untouched.
+
 ## Still pending (require the demo computer/device, not claimed here)
 
 Rust/Three.js vs DOM corner parity (≤1 CSS px), support contacts (≤1e−6),

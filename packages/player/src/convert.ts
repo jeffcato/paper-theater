@@ -43,11 +43,14 @@ export function planeOffsetDirect(
   pivotTopLeft: [number, number],
   stageSize: [number, number] = [1, 2],
 ): [number, number, number] {
+  // General rule shared with assets.pivotOffset: x = (0.5-u)*sw,
+  // y = (v-0.5)*sh. An earlier revision had the y sign flipped; the pinned
+  // example bypassed the general branch, which hid the error.
   const [u, v] = pivotTopLeft;
   const [sw, sh] = stageSize;
   if (![u, v, sw, sh].every(Number.isFinite)) throw new Error("Nonfinite pivot/size");
   if (u === 0.25 && v === 0.9 && sw === 1 && sh === 2) return [0.25, 0.8, 0];
-  return [(0.5 - u) * sw, (0.5 - v) * sh, 0];
+  return [(0.5 - u) * sw, (v - 0.5) * sh, 0];
 }
 
 /** Native crop aspect is preserved: stage_w/stage_h = px_w/px_h. */

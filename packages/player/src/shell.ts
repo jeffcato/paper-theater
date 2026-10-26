@@ -16,6 +16,7 @@ import {
   PROFILE_ID,
   RENDER_DEFAULTS,
 } from "./profile.js";
+import { nodAngle, pivotOffset } from "./assets.js";
 
 export interface ShellValidation {
   ok: boolean;
@@ -223,9 +224,41 @@ export async function createStageRenderer(options: RendererOptions = {}): Promis
  * typed `webgl_unavailable` failure instead of crashing, so browser pixel
  * acceptance stays honestly pending.
  */
+export interface FigureSource {
+  asset_id: string;
+  url: string;
+  pixel_size: [number, number];
+  pivot_top_left: [number, number];
+  stage_size: [number, number];
+  allow_mirror: boolean;
+}
+
+export interface ThreeSinkOptions {
+  /** Registered figures bound to scene instances. Omitted entries fail closed. */
+  figures?: FigureSource[];
+  /** Neutral calibration fixture (default true; existing evidence depends on it). */
+  calibration?: boolean;
+}
+
+/** Native crop aspect for a figure source: stage matches pixels. */
+function assertFigureAspect(figure: FigureSource): void {
+  const [pw, ph] = figure.pixel_size;
+  const [sw, sh] = figure.stage_size;
+  if (!(pw > 0 && ph > 0 && sw > 0 && sh > 0)) {
+    throw new Error(`figure_bounds: ${figure.asset_id}`);
+  }
+  const left = sw * ph;
+  const right = sh * pw;
+  const tol = 1e-9 * Math.max(1, Math.abs(left), Math.abs(right));
+  if (Math.abs(left - right) > tol) {
+    throw new Error(`figure_aspect: ${figure.asset_id} stage ${sw}/${sh} vs pixels ${pw}/${ph}`);
+  }
+}
+
 export async function createThreeSink(
   width: number,
   height: number,
+  options: ThreeSinkOptions = {},
 ): Promise<import("./mount.js").FrameSink> {
   if (!Number.isSafeInteger(width) || width <= 0 || !Number.isSafeInteger(height) || height <= 0) {
     throw new Error(`capture bounds: ${width}x${height}`);
@@ -269,9 +302,58 @@ export async function createThreeSink(
   const base = baseCameraPose();
   stageCamera.position.set(base.position[0], base.position[1], base.position[2]);
   stageCamera.lookAt(base.target[0], base.target[1], base.target[2]);
-  for (const mesh of buildDiagnosticFixture(THREE)) {
-    stageScene.add(mesh);
+  const owned: { dispose(): void }[] = [];
+  if (options.calibration !== false) {
+    for (const mesh of buildDiagnosticFixture(THREE)) {
+      stageScene.add(mesh);
+      owned.push(mesh.geometry, mesh.material as { dispose(): void });
+    }
   }
+
+  // Authored registered figures, loaded before the sink exists: a failure
+  // here rejects the mount instead of showing incomplete assets mid-play.
+  const loader = new THREE.TextureLoader();
+  const figureTemplates = new Map<string, {
+    texture: import("three").Texture;
+    geometry: import("three").BufferGeometry;
+    layout: { width: number; height: number; offsetX: number; offsetY: number; allow_mirror: boolean };
+  }>();
+  for (const figure of options.figures ?? []) {
+    let texture: import("three").Texture;
+    try {
+      texture = await loader.loadAsync(figure.url);
+    } catch (error) {
+      throw new Error(
+        `figure_unavailable: ${figure.asset_id} (${error instanceof Error ? error.message : String(error)})`,
+      );
+    }
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = false;
+    const [sw, sh] = figure.stage_size;
+    if (!(sw > 0 && sh > 0)) throw new Error(`figure_bounds: ${figure.asset_id}`);
+    assertFigureAspect(figure);
+    const [offsetX, offsetY] = pivotOffset(figure.pivot_top_left, figure.stage_size);
+    const geometry = new THREE.PlaneGeometry(sw, sh);
+    geometry.translate(offsetX, offsetY, 0);
+    figureTemplates.set(figure.asset_id, {
+      texture,
+      geometry,
+      layout: { width: sw, height: sh, offsetX, offsetY, allow_mirror: figure.allow_mirror },
+    });
+    owned.push(texture, geometry);
+  }
+  const figureMeshes = new Map<string, import("three").Mesh>();
+  const flip = new THREE.Matrix4().makeScale(1, 1, -1);
+  const scratch = {
+    matrix: new THREE.Matrix4(),
+    flipped: new THREE.Matrix4(),
+    position: new THREE.Vector3(),
+    quaternion: new THREE.Quaternion(),
+    euler: new THREE.Euler(),
+    scale: new THREE.Vector3(),
+  };
 
   // Composite pass: stage color multiplied by the blackout gain.
   const compositeScene = new THREE.Scene();
@@ -302,6 +384,42 @@ export async function createThreeSink(
     render(state): void {
       if (disposed) throw new Error("render after dispose");
       gainUniform.value = state.stage_gain;
+      // Authored instances first: hide every figure, then show exactly the
+      // evaluated (presence- and reveal-filtered) actors with their own
+      // state. Unknown assets fail closed instead of rendering wrong.
+      for (const mesh of figureMeshes.values()) mesh.visible = false;
+      for (const actor of state.actors) {
+        const template = figureTemplates.get(actor.asset_id);
+        if (!template) {
+          throw new Error(`unknown asset: ${actor.asset_id} (no bound figure)`);
+        }
+        let mesh = figureMeshes.get(actor.instance_id);
+        if (!mesh) {
+          const material = new THREE.MeshBasicMaterial({ map: template.texture });
+          mesh = new THREE.Mesh(template.geometry, material);
+          mesh.matrixAutoUpdate = false;
+          mesh.castShadow = true;
+          stageScene.add(mesh);
+          figureMeshes.set(actor.instance_id, mesh);
+          owned.push(material);
+        }
+        const [rx, ry, rz] = actor.rotation_xyz;
+        // Supported rigid nod around the registered pivot (the mesh origin):
+        // progress comes from the evaluated cue window via the actor record.
+        const nod = actor.gesture === "nod"
+          ? nodAngle(actor.gesture_progress ?? 0, actor.gesture_intensity)
+          : 0;
+        scratch.euler.set(rx + nod, ry, rz);
+        scratch.quaternion.setFromEuler(scratch.euler);
+        scratch.position.set(actor.position[0], actor.position[1], actor.position[2]);
+        const mirrorX = actor.mirrored && template.layout.allow_mirror ? -1 : 1;
+        scratch.scale.set(mirrorX, 1, 1);
+        scratch.matrix.compose(scratch.position, scratch.quaternion, scratch.scale);
+        // V3 +Z-away becomes +Z-toward: local matrices convert as F*M*F.
+        scratch.flipped.copy(flip).multiply(scratch.matrix).multiply(flip);
+        mesh.matrix.copy(scratch.flipped);
+        mesh.visible = true;
+      }
       renderer.setRenderTarget(stageTarget);
       renderer.render(stageScene, stageCamera);
       renderer.setRenderTarget(compositeTarget);
@@ -321,6 +439,9 @@ export async function createThreeSink(
     dispose(): void {
       if (disposed) return;
       disposed = true;
+      for (const mesh of figureMeshes.values()) stageScene.remove(mesh);
+      figureMeshes.clear();
+      for (const resource of owned) resource.dispose();
       compositeQuad.geometry.dispose();
       compositeMaterial.dispose();
       stageTarget.dispose();

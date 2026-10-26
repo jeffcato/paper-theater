@@ -148,6 +148,7 @@ describe("mount: actual frame capture", () => {
     assert.equal(frame.sample, 48000);
     assert.equal(frame.state_digest.length, 64);
     assert.deepEqual(frame.pixels, pixels);
+    assert.ok(Array.isArray(frame.contributor_ids));
     capturing.dispose();
   });
 

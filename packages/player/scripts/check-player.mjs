@@ -30,6 +30,7 @@ run("./node_modules/.bin/tsc", ["-p", "tsconfig.json"]);
 const GROUP_FILES = Object.fromEntries(GROUPS.map((g) => [g, [`dist/tests/${g}.test.js`]]));
 GROUP_FILES["integration"].push("dist/tests/fixtures.test.js");
 GROUP_FILES["integration"].push("dist/tests/mount.test.js");
+GROUP_FILES["integration"].push("dist/tests/assets.test.js");
 GROUP_FILES["contracts"].push("dist/tests/shared-contracts.test.js");
 const targets = (requested ? [requested] : GROUPS).flatMap((g) => GROUP_FILES[g]);
 for (const t of targets) {

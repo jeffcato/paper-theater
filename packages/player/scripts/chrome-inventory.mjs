@@ -17,10 +17,45 @@ import { setTimeout as delay } from "node:timers/promises";
 
 const pkgDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const root = resolve(pkgDir, "..", "..");
-const evidenceJson = join(root, "docs", "implementation", "player", "inventory-capture.json");
 const CHROME = process.env.PT_CHROME || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
+function arg(name, fallback) {
+  const i = process.argv.indexOf(name);
+  return i >= 0 && i + 1 < process.argv.length ? process.argv[i + 1] : fallback;
+}
+// Versioned fixture/inventory inputs. Legacy defaults reproduce the earlier
+// shared-fixture run; the published v2 run passes explicit v2 paths.
+const fixtureRoot = resolve(root, arg("--fixture", "fixtures/shared/two-scene-v1"));
+const inventoryPath = resolve(root, arg("--inventory", "fixtures/generation/capture/inventory.json"));
+const tag = arg("--tag", "");
+const evidenceJson = join(
+  root, "docs", "implementation", "player",
+  tag ? `inventory-capture-${tag}.json` : "inventory-capture.json",
+);
+const shotName = (w, h) => join(
+  root, "docs", "implementation", "player",
+  tag ? `inventory-${tag}-${w}x${h}.png` : `inventory-${w}x${h}.png`,
+);
+
 const shaFile = async (path) => createHash("sha256").update(await readFile(path)).digest("hex");
+
+// Mirror of the generator's binding digest: SHA-256 of sorted-path player
+// file records as UTF-8 sorted-key compact JSON plus LF.
+async function playerFilesDigest() {
+  const { readdir } = await import("node:fs/promises");
+  const dir = join(pkgDir, "dist", "src");
+  const names = (await readdir(dir)).filter((n) => n.endsWith(".js")).sort();
+  if (!names.length) throw new Error("player build required before pinning capture code");
+  const records = [];
+  for (const name of names) {
+    const data = await readFile(join(dir, name));
+    // Sorted-key order (bytes, path, sha256) to match the generator's
+    // canonical encoding exactly; JSON.stringify emits insertion order.
+    records.push({ bytes: data.length, path: `packages/player/dist/src/${name}`, sha256: createHash("sha256").update(data).digest("hex") });
+  }
+  records.sort((a, b) => (a.path < b.path ? -1 : 1));
+  return createHash("sha256").update(JSON.stringify(records) + "\n").digest("hex");
+}
 
 const PAGE = `<!doctype html><html><head><meta charset="utf-8">
 <script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script></head>
@@ -51,17 +86,30 @@ function stats(pixels) {
   return { nonblackFraction: nonblack / (pixels.length / 4), maxChannel: max };
 }
 window.__run = async () => {
-  const inventory = JSON.parse(new TextDecoder().decode(await load("/inventory/inventory.json", 4 * 1024 * 1024)));
-  const manifestBytes = await load("/shared/manifest.json", 1024 * 1024);
+  const inventory = JSON.parse(new TextDecoder().decode(await load("/inventory.json", 4 * 1024 * 1024)));
+  const manifestBytes = await load("/fx/manifest.json", 1024 * 1024);
   const manifestDigest = await sha256(manifestBytes);
-  const read = async (path) => load("/shared/" + path, 64 * 1024 * 1024);
+  const read = async (path) => load("/fx/" + path, 64 * 1024 * 1024);
   const policy = { player_sha256: "0".repeat(64), checker_sha256: "0".repeat(64), recipe_sha256: "0".repeat(64), allow_diagnostic: false };
   const handle = await api.loadDiagnostic(manifestBytes, manifestDigest, read, policy);
-  const timeline = JSON.parse(new TextDecoder().decode(await load("/shared/timeline.json", 1024 * 1024)));
+  const timeline = JSON.parse(new TextDecoder().decode(await load("/fx/timeline.json", 1024 * 1024)));
+  const actorsDoc = JSON.parse(new TextDecoder().decode(await load("/fx/actors.json", 1024 * 1024)));
+  const figures = actorsDoc.map((card) => ({
+    asset_id: card.id,
+    url: "/fx/" + card.image.path,
+    pixel_size: card.pixel_size,
+    pivot_top_left: card.pivot_top_left,
+    stage_size: card.stage_size,
+    allow_mirror: card.allow_mirror,
+  }));
+  const nodCue = timeline.cues.find((c) => c.id === "nod-em");
+  const nodSamples = nodCue
+    ? [6000, 12000, 18000].map((d) => nodCue.start_sample + d)
+    : [];
   const stage = document.querySelector("#stage");
   const results = [];
   for (const [width, height] of [[960, 540], [1280, 720], [1920, 1080]]) {
-    const sink = await api.createThreeSink(width, height);
+    const sink = await api.createThreeSink(width, height, { figures });
     stage.replaceChildren(sink.canvas);
     const mount = api.mountPlayer(document.body, { handle, timeline }, { sink, candidate_id: "inventory-run-1" });
     for (const item of inventory.requests.filter((r) => r.request.width === width && r.request.height === height)) {
@@ -73,22 +121,23 @@ window.__run = async () => {
       const s = stats(frame.pixels);
       results.push({
         id: item.id, sample: frame.sample, phase: frame.phase,
-        gain: undefined, state_digest: frame.state_digest,
+        state_digest: frame.state_digest, contributor_ids: frame.contributor_ids,
         accepted: frame.accepted, provenance: frame.provenance,
+        pixels_sha256: await sha256(frame.pixels),
         nonblackFraction: s.nonblackFraction, maxChannel: s.maxChannel,
       });
     }
-    // nod-em gesture evidence at the authored probe samples (instance em-2).
+    // nod-em gesture evidence at cue-interior samples (instance em-2).
     const gestures = {};
-    for (const sample of [1662480, 1668480, 1674480]) {
+    for (const sample of nodSamples) {
       mount.seek(sample);
       const state = mount.tick();
       gestures[sample] = (state.actors.find((a) => a.instance_id === "em-2") ?? {}).gesture ?? null;
     }
     results.push({ id: "nod-em:" + width + "x" + height, gestures });
-    // Evidence screenshot handshake: re-render the nod sample, publish the
+    // Evidence screenshot handshake: re-render the nod interior, publish the
     // shot request, and wait for the driver to capture before disposing.
-    mount.seek(1668480);
+    mount.seek(nodSamples[1] ?? 0);
     mount.tick();
     window.__wantShot = { width, height };
     window.__shotAck = false;
@@ -142,11 +191,17 @@ try {
       return serveFile(res, join(pkgDir, "node_modules", "three", "build", name), "text/javascript");
     }
     if (url.pathname.startsWith("/dist/")) return serveFile(res, join(pkgDir, url.pathname), "text/javascript");
-    if (url.pathname.startsWith("/shared/")) {
-      return serveFile(res, join(root, "fixtures", "shared", "two-scene-v1", url.pathname.slice("/shared/".length)), "application/octet-stream");
+    if (url.pathname.startsWith("/fx/")) {
+      const name = url.pathname.slice("/fx/".length);
+      if (name.includes("..")) {
+        res.writeHead(404);
+        res.end("missing");
+        return;
+      }
+      return serveFile(res, join(fixtureRoot, name), "application/octet-stream");
     }
-    if (url.pathname.startsWith("/inventory/")) {
-      return serveFile(res, join(root, "fixtures", "generation", "capture", url.pathname.slice("/inventory/".length)), "application/octet-stream");
+    if (url.pathname === "/inventory.json") {
+      return serveFile(res, inventoryPath, "application/octet-stream");
     }
     res.writeHead(404);
     res.end("missing");
@@ -224,7 +279,7 @@ try {
         await call("Emulation.setDeviceMetricsOverride", { width: want.width + 40, height: want.height + 40, deviceScaleFactor: 1, mobile: false });
         await delay(400);
         const shot = await call("Page.captureScreenshot", { format: "png" });
-        await writeFile(join(root, "docs", "implementation", "player", `inventory-${want.width}x${want.height}.png`), Buffer.from(shot.data, "base64"));
+        await writeFile(shotName(want.width, want.height), Buffer.from(shot.data, "base64"));
         shotsTaken.push(want.width + "x" + want.height);
         await evaluate(`window.__shotAck = true`);
       } else {
@@ -237,24 +292,39 @@ try {
   if (out.errors?.length) throw new Error(`console errors: ${out.errors.join("; ").slice(0, 400)}`);
 
   // Refreshed hashes, computed live from the bytes actually executed.
-  const manifestPath = join(root, "fixtures", "shared", "two-scene-v1", "manifest.json");
-  const inventoryPath = join(root, "fixtures", "generation", "capture", "inventory.json");
+  const manifestPath = join(fixtureRoot, "manifest.json");
+  const inventoryDoc = JSON.parse(await readFile(inventoryPath, "utf8"));
   const refreshed = {
     inventory_sha256: await shaFile(inventoryPath),
     manifest_sha256: await shaFile(manifestPath),
   };
-  const frozen = JSON.parse(await readFile(join(root, "docs", "implementation", "integration", "contracts-ready.json"), "utf8"));
   const hashNotes = [];
-  if (refreshed.manifest_sha256 !== frozen.manifest_sha256) {
-    hashNotes.push(`manifest drift: live ${refreshed.manifest_sha256} vs frozen ${frozen.manifest_sha256}`);
+  if (refreshed.manifest_sha256 !== inventoryDoc.bindings.manifest_sha256) {
+    hashNotes.push(`manifest drift: live ${refreshed.manifest_sha256} vs inventory binding ${inventoryDoc.bindings.manifest_sha256}`);
+  }
+  // Exact executed player/checker identities: recompute the pinned digests
+  // from the live build and generator, and report (never silently switch).
+  const playerDigest = await playerFilesDigest();
+  const checkerDigest = await shaFile(join(root, "tools", "generation", "capture_inventory.py"));
+  const identityNotes = [];
+  const pinnedPlayer = inventoryDoc.bindings.player_sha256;
+  const pinnedChecker = inventoryDoc.bindings.checker_sha256;
+  if (playerDigest !== pinnedPlayer) {
+    identityNotes.push(`player binding: inventory pins earlier build ${pinnedPlayer.slice(0, 16)}…, executed ${playerDigest.slice(0, 16)}… (preserved, reported)`);
+  }
+  if (checkerDigest !== pinnedChecker) {
+    identityNotes.push(`checker binding: inventory pins ${pinnedChecker.slice(0, 16)}…, executed ${checkerDigest.slice(0, 16)}… (preserved, reported)`);
   }
   const captures = out.results.filter((r) => r.state_digest);
-  if (captures.length !== 144) throw new Error(`expected 144 captures, got ${captures.length}`);
+  const expected = inventoryDoc.requests.length;
+  if (captures.length !== expected) throw new Error(`expected ${expected} captures, got ${captures.length}`);
   const failures = [...hashNotes];
   for (const c of captures) {
     if (c.accepted !== false) failures.push(`${c.id}: not stamped diagnostic`);
     if (c.provenance !== "diagnostic") failures.push(`${c.id}: wrong provenance`);
     if (!/^[a-f0-9]{64}$/.test(c.state_digest)) failures.push(`${c.id}: bad state digest`);
+    if (!/^[a-f0-9]{64}$/.test(c.pixels_sha256)) failures.push(`${c.id}: bad image hash`);
+    if (!Array.isArray(c.contributor_ids)) failures.push(`${c.id}: missing contributor ids`);
   }
   const nodRows = out.results.filter((r) => r.gestures);
   for (const row of nodRows) {
@@ -264,18 +334,24 @@ try {
   }
   await writeFile(evidenceJson, JSON.stringify({
     tool: "check:inventory", profile: "paper-player-r186-v1",
-    refreshed_hashes: refreshed, frozen_manifest_sha256: frozen.manifest_sha256,
+    fixture: fixtureRoot, inventory: inventoryPath,
+    refreshed_hashes: refreshed,
+    executed_identities: { player_sha256: playerDigest, checker_sha256: checkerDigest },
+    pinned_identities: { player_sha256: pinnedPlayer, checker_sha256: pinnedChecker },
+    identity_notes: identityNotes,
     hash_notes: hashNotes, captures: captures.length,
     capture_rows: captures.map((c) => ({
       id: c.id, sample: c.sample, phase: c.phase, state_digest: c.state_digest,
-      accepted: c.accepted, provenance: c.provenance,
+      contributor_ids: c.contributor_ids, accepted: c.accepted, provenance: c.provenance,
+      pixels_sha256: c.pixels_sha256,
       nonblackFraction: c.nonblackFraction, maxChannel: c.maxChannel,
     })),
     nod_em_gestures: nodRows, failures,
     browser: "headless Chrome (SwiftShader)",
   }, null, 2));
   if (failures.length) throw new Error(`inventory run failed: ${failures.slice(0, 5).join("; ")}${failures.length > 5 ? ` (+${failures.length - 5} more)` : ""}`);
-  console.log(`check:inventory pass (144 captures, nod-em gestures nod x${nodRows.length * 3}, hashes refreshed)`);
+  console.log(`check:inventory pass (${captures.length} captures, nod-em gestures nod x${nodRows.length * 3}, hashes refreshed)`);
+  for (const note of identityNotes) console.log(`identity note: ${note}`);
 } catch (error) {
   console.error(`check:inventory failed: ${error instanceof Error ? error.message : String(error)}`);
   process.exitCode = 1;

@@ -91,6 +91,8 @@ export { describeCapture, boundarySamples } from "./capture.js";
 export type { CaptureRequest, CaptureResult } from "./capture.js";
 export { toCueView, toLightView } from "./shared.js";
 export type { SharedCueView, FlatLight } from "./shared.js";
+export { layoutCard, nodAngle, facingAngle, pivotOffset } from "./assets.js";
+export type { CardBinding, CardLayout } from "./assets.js";
 export { mountPlayer, requireAccepted } from "./mount.js";
 export type { ClockSource } from "./transport.js";
 export type {
