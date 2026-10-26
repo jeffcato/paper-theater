@@ -520,6 +520,27 @@
   "ci_record": "pr-ci-results.json",
   "report": "shared-index-reconciliation.md",
   "ci": {
+    "head_sha": "f585fb50045c9a3b1b15173a4ada7d72a63bd477",
+    "status": "completed",
+    "conclusion": "success",
+    "runs": [
+      {
+        "id": 40419911377,
+        "event": "pull_request",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40419911377"
+      },
+      {
+        "id": 40419905860,
+        "event": "push",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40419905860"
+      }
+    ],
+    "edge_probes_in_aggregate": false
+  },
+  "historical_ci_records_preserved": true,
+  "i2_followup_source_hashes_verified": true,
+  "legacy_services_and_offline_methods_unchanged": true,
+  "source_correction_ci": {
     "head_sha": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
     "status": "completed",
     "conclusion": "success",
@@ -537,7 +558,12 @@
     ],
     "edge_probes_in_aggregate": false
   },
-  "historical_ci_records_preserved": true,
-  "i2_followup_source_hashes_verified": true,
-  "legacy_services_and_offline_methods_unchanged": true
+  "publication_head": "f585fb50045c9a3b1b15173a4ada7d72a63bd477",
+  "publication_source_equivalence": {
+    "source_checked_commit": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+    "all_compiled_inputs_unchanged": true,
+    "changes": "audit documentation/evidence and the separately executed edge-probe tool",
+    "probe_source_sha256": "a54a0dd56eac290bb0e7b03c8c7f4c0066a68c1784d07da8953110125facda86"
+  },
+  "pr_metadata_scope": "PR snapshot was captured at source candidate 23f8f7a; publication CI is separately bound to publication_head."
 }
