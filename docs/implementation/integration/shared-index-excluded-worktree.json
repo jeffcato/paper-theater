@@ -1,0 +1,255 @@
+{
+  "head": "a979c332d45548fb39fe48f95e044b8e935a87b4",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "b724caba19afc866c41cea8df6267486194844d20e25ea64024c2c24811a84f4",
+      "bytes": 3944
+    },
+    {
+      "path": "README.md",
+      "sha256": "0876b98a0c790a38e23d41f4fc03f491f2ae8ecc53045175517dff47f29dcbd9",
+      "bytes": 3835
+    },
+    {
+      "path": "TODO.md",
+      "sha256": "6876edd06529af16f346e95becde49146f7ac0539260d312b884966a40477e1e",
+      "bytes": 77928
+    },
+    {
+      "path": "apps/studio/package.json",
+      "sha256": "05301677197a20fa793dabf0b79610dde7579336da3685e1c89927765d50bfb3",
+      "bytes": 463
+    },
+    {
+      "path": "apps/studio/scripts/browser-check.mjs",
+      "sha256": "196a7e4ea732db8fc6987bdce0db59a33c177fc3c19c8edf3142a9fc90eabc61",
+      "bytes": 14385
+    },
+    {
+      "path": "apps/studio/scripts/preview-browser-check.mjs",
+      "sha256": "eaeef8ccb1531e2ecc854c9773a9111415d478265360a475655081bc5de04fe5",
+      "bytes": 236
+    },
+    {
+      "path": "apps/studio/scripts/studio-player-check.mjs",
+      "sha256": "7b614c261912e99fffd1762120e97e88a466a3b506c360fedda0c1dd3fd36ce4",
+      "bytes": 24551
+    },
+    {
+      "path": "apps/studio/src/Preview.tsx",
+      "sha256": "63d292e6a42d477276a995dd8877aa4715c50fc6faed7c99b9f655ec06db76c9",
+      "bytes": 12939
+    },
+    {
+      "path": "apps/studio/src/main.tsx",
+      "sha256": "4f444567febd61358449e77bfe86f0884ab9d2f59b80964e98c5d14ed170e311",
+      "bytes": 11005
+    },
+    {
+      "path": "apps/studio/src/style.css",
+      "sha256": "87bd9dbdc22e2db9c2e69726ae69f39f4a610056f8a8b900c05af81087644ff3",
+      "bytes": 4326
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic.rs",
+      "sha256": "01494ee738525a6014fb0fdad883fb8359cd58b69fd02c25201f7b93123f97dd",
+      "bytes": 21954
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_facts.rs",
+      "sha256": "7d6f1985365ff0188efecb86790e2646bb3dab385152520b7b80648ccaa50e96",
+      "bytes": 32277
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_tests.rs",
+      "sha256": "d75daf56f3972ddd380aeaf729f7a512e57fb339acb030e457b8526d9c0cc45a",
+      "bytes": 47416
+    },
+    {
+      "path": "crates/pt-production/src/generation/mod.rs",
+      "sha256": "23ab88281c3ad292c75030214ffb834dc186ba74faa552318051581da3e30b1c",
+      "bytes": 11908
+    },
+    {
+      "path": "docs/agent-handoffs/README.md",
+      "sha256": "7c4606e25f147747412752adb3feb73a240f5bf1e4f7c4657d7585ca95e3213f",
+      "bytes": 10633
+    },
+    {
+      "path": "docs/implementation/generation/README.md",
+      "sha256": "1c255527c0fac65fd28f39a055da7ceee02da15182fa43e21d0cf2e2edde60c8",
+      "bytes": 6420
+    },
+    {
+      "path": "docs/implementation/generation/acoustic-facts.md",
+      "sha256": "9ce0d0f2b10dcdfa3031eaa665e44679d187e9fdd2551cdb37d97a660aeb0761",
+      "bytes": 6051
+    },
+    {
+      "path": "docs/implementation/generation/acoustic-stage-ready.json",
+      "sha256": "2d1f91422ef9a60d6a9ed068b56a5271a546e1168b354f00d6c7d3b73d9e89e5",
+      "bytes": 5175
+    },
+    {
+      "path": "docs/implementation/generation/acoustic-stage.md",
+      "sha256": "feab57b0775a7a32da52d94e0a80aa24cba2c3ac795d3b18e025b6633ce6b88a",
+      "bytes": 4745
+    },
+    {
+      "path": "docs/implementation/generation/integration-requests.md",
+      "sha256": "45b8e6f84c7aabeaa5bb6339889eab15314c80959081fc49cf579c522cf9a23b",
+      "bytes": 2086
+    },
+    {
+      "path": "docs/implementation/integration/generation-fact-evidence-task.md",
+      "sha256": "4906f02e5c7bc32625cc75ee5322dc1a061b0f3afe7226d4d9f478aea13a1ddd",
+      "bytes": 4381
+    },
+    {
+      "path": "docs/implementation/integration/player-authored-rendering-task.md",
+      "sha256": "8d15b816c8e74cf24ca8377937e8bd5fce77d48fce742179f73afcd6f8f2aac9",
+      "bytes": 4998
+    },
+    {
+      "path": "docs/implementation/integration/player-graphics-recovery-task.md",
+      "sha256": "6a1a6fa3aa18299308b74018f3962dee82226494b09edc0578ffe2141f179c8a",
+      "bytes": 4460
+    },
+    {
+      "path": "docs/implementation/integration/server-studio-player-task.md",
+      "sha256": "02e7b5417130bd0786c87c512cdbeebce04744a97e85f770e8c3b5a83c900e14",
+      "bytes": 4680
+    },
+    {
+      "path": "docs/implementation/integration/shared-index-incident.json",
+      "sha256": "f842b9968dae533bfb07ae086132d5e1c1336751f71b1565e7ac7df39a34f1ad",
+      "bytes": 7282
+    },
+    {
+      "path": "docs/implementation/integration/shared-index-incident.md",
+      "sha256": "cc60719b33bfabd8c8ad8b13d49a3a4d10afd0e502a6adf13a30757829eef11e",
+      "bytes": 4155
+    },
+    {
+      "path": "docs/implementation/integration/two-agent-next-tasks.md",
+      "sha256": "aa98efbec4c09f3f014bc94b4f18e34bd5fb8122fbd8ab21a77c3bb2f565d302",
+      "bytes": 6133
+    },
+    {
+      "path": "docs/implementation/runtime/handoff.md",
+      "sha256": "c4a368347709e631418569eb60a3fe8d9ab472cdd2ccc9f256612185b696bcf8",
+      "bytes": 7363
+    },
+    {
+      "path": "docs/implementation/runtime/integration-requests.md",
+      "sha256": "956feab08443a56bf34bd187ff57a9d596521e62c69883bb073550b87478f2bd",
+      "bytes": 5359
+    },
+    {
+      "path": "docs/implementation/runtime/runtime-ready.json",
+      "sha256": "664ab7543d3c1d209fd842544929ff9fc4dc52c13d0cee946a069c704b37c751",
+      "bytes": 4432
+    },
+    {
+      "path": "docs/implementation/runtime/studio-browser.png",
+      "sha256": "7e01d292246b9c50890d82ab0fa75e5887f0df32ae49dde5017a1901c9fa519d",
+      "bytes": 240463
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player.md",
+      "sha256": "0447b43c1fdbbd12ac778ef12f16004213b138c37fa5f9b088131b74604d1479",
+      "bytes": 6716
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1280x720-blackout-paused.png",
+      "sha256": "efe138d4a28a7dfee3979a9797b1d68d639ead1e9dc81bb6202b00f01a2633dd",
+      "bytes": 35519
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.25.png",
+      "sha256": "8ba3bc8719b4622cc6b4ea6d764f891fb7c260d0336941c7e0f93ad3470abde6",
+      "bytes": 40469
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.5.png",
+      "sha256": "a4178530831dde5740c6ecf8a641b1d220ea62d7dac732d8bb0c52ec9b4cd7af",
+      "bytes": 40500
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.75.png",
+      "sha256": "8ba3bc8719b4622cc6b4ea6d764f891fb7c260d0336941c7e0f93ad3470abde6",
+      "bytes": 40469
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1280x720-title.png",
+      "sha256": "84aa9c09fcedfdad6208f8d45cde2e5fdfa36d953d9cbbbad782f2b8f0c3fcd1",
+      "bytes": 6356
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1920x1080-blackout-paused.png",
+      "sha256": "4066beea85d9c742f31089bd3f9d3fc00c9422c327621c595ccf085b2ddcfb55",
+      "bytes": 47625
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.25.png",
+      "sha256": "8ad86fb10a973f29f93bf777b256bb2f2f4ba5d38e4cec9d9ad1cd8385d427b9",
+      "bytes": 54286
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.5.png",
+      "sha256": "7c5b28fc3d136d6106d47822f211766a373dad17046da34570da3907ea7070f1",
+      "bytes": 54390
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.75.png",
+      "sha256": "8ad86fb10a973f29f93bf777b256bb2f2f4ba5d38e4cec9d9ad1cd8385d427b9",
+      "bytes": 54286
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/1920x1080-title.png",
+      "sha256": "38b5acdf738570b60c8e93436fc49c9a0f349fc027f1e41b18d2fa1083672d47",
+      "bytes": 8803
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/960x540-blackout-paused.png",
+      "sha256": "ebe5005106199ab6ef0ab68dece441dec8b94ca3b1d29fd7b4751f8af1204795",
+      "bytes": 17699
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.25.png",
+      "sha256": "e71ec1a895cb9b936bea82f3d10d70cac6fcfef15d41122838d87afcee319955",
+      "bytes": 28891
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.5.png",
+      "sha256": "085ea7584f61bcb8d483be8fab1b3c0a6276a110cd09eccd19d5cee7d3a54de1",
+      "bytes": 28884
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.75.png",
+      "sha256": "e71ec1a895cb9b936bea82f3d10d70cac6fcfef15d41122838d87afcee319955",
+      "bytes": 28891
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/960x540-title.png",
+      "sha256": "5c891665b5e893a3829f8c62ae18898d64d59580471adce3ce1d767716aa4a42",
+      "bytes": 4572
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/receipt.json",
+      "sha256": "3090121f803f2a8b8f649f75750fd5bdb52c3aabb384a17a136cbf8ed0e70b8d",
+      "bytes": 44638
+    },
+    {
+      "path": "docs/implementation/runtime/studio-player/verification.json",
+      "sha256": "296c6d807a82cff770e722ea06868d28a0be0d8d5dec5c90231c84a2c2876cf0",
+      "bytes": 1672
+    },
+    {
+      "path": "fixtures/generation/acoustic-facts-v1/source-facts.json",
+      "sha256": "e77c04d2448cb0b7095533d76108fd85115e4e7fdfba3db0cbfa90b23d683b3b",
+      "bytes": 2729
+    }
+  ]
+}

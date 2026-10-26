@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "task": "I13",
+  "status": "reconciled-review-complete-with-open-player-findings",
+  "recorded_at": "2026-10-26T23:21:07.789524+00:00",
+  "review_verdict": "not_ready_for_broader_player_recovery",
+  "contract_verdict": "ready",
+  "mixed_commit": "c62d5d571915195e80ee5f2dc3615cd49c1849b7",
+  "parent": "fa361fe7324e866a1f01c6ea8ec18d4a425ab1f2",
+  "history_preserved": true,
+  "ownership": {
+    "integration": 19,
+    "player": 13,
+    "total": 32
+  },
+  "mixed_blobs_verified": true,
+  "files": [
+    {
+      "path": "crates/pt-contracts/examples/provider-fixtures.rs",
+      "owner": "integration",
+      "git_blob": "29994fe45bba108e97011b93a74ff11f2934bfe8",
+      "mixed_sha256": "0eb80616d764bf2ef3c9a0d6640853012f647a340b423dbb34f644a13ad0fc96",
+      "candidate_blob": "29994fe45bba108e97011b93a74ff11f2934bfe8",
+      "candidate_sha256": "0eb80616d764bf2ef3c9a0d6640853012f647a340b423dbb34f644a13ad0fc96",
+      "reviewed": true
+    },
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "owner": "integration",
+      "git_blob": "340ca814b3c41172bacf6b1902f13c10ea0e371f",
+      "mixed_sha256": "36bde11f102cdf1da467470b6f02f132e77fec44dfc8579fe971a376e1ed9ee2",
+      "candidate_blob": "e04226820cb84e7598373496d4b2ce3e82191073",
+      "candidate_sha256": "46f3b095c5ee810635396b9bccc606c22ca889d8fedae13f396ca4d412eee0e8",
+      "reviewed": true
+    },
+    {
+      "path": "crates/pt-contracts/src/provider_metadata.rs",
+      "owner": "integration",
+      "git_blob": "a80c065fa28cf191e9348a56a630ad49b5db2cc1",
+      "mixed_sha256": "0beff544be61334e625c8301201e0c334ba0f78ed010a66fb0e5ad5b15db887d",
+      "candidate_blob": "a80c065fa28cf191e9348a56a630ad49b5db2cc1",
+      "candidate_sha256": "0beff544be61334e625c8301201e0c334ba0f78ed010a66fb0e5ad5b15db887d",
+      "reviewed": true
+    },
+    {
+      "path": "crates/pt-contracts/tests/provider_metadata.rs",
+      "owner": "integration",
+      "git_blob": "01f184b218dac693d79572c1686e7c5fb3c79317",
+      "mixed_sha256": "dcd518a9458e29db55fdc21db08cf9c3caffea651f796ae69aa53288c67eba96",
+      "candidate_blob": "01f184b218dac693d79572c1686e7c5fb3c79317",
+      "candidate_sha256": "dcd518a9458e29db55fdc21db08cf9c3caffea651f796ae69aa53288c67eba96",
+      "reviewed": true
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/provider_cases.rs",
+      "owner": "integration",
+      "git_blob": "0826f5a34d4e09ef3e02cd244597597e3469b3c9",
+      "mixed_sha256": "894df561a3bc83c960dcf7e938c912643abfd2c6065890461ea5ec1db3d728b8",
+      "candidate_blob": "c3ca577d2dba02da6982f690d8559d56dc457a2a",
+      "candidate_sha256": "aa977f70031b33754102bf7462d14833b60e43706e8dd05e678c7eb21a4171c0",
+      "reviewed": true
+    },
+    {
+      "path": "docs/agent-handoffs/INTERFACES.md",
+      "owner": "integration",
+      "git_blob": "608079f5b954f720e5c45c55e9cab016583bfb32",
+      "mixed_sha256": "d52debf527d5ff58ef38d84ab7ec5d04f82d9f5e2176737ebad1127156cc667d",
+      "candidate_blob": "608079f5b954f720e5c45c55e9cab016583bfb32",
+      "candidate_sha256": "d52debf527d5ff58ef38d84ab7ec5d04f82d9f5e2176737ebad1127156cc667d",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/integration/contracts-ready.json",
+      "owner": "integration",
+      "git_blob": "574e94c59862303b9afcf6750e6c4e4519055f32",
+      "mixed_sha256": "dedf287d4d83d1b11b6924b6cd30014f57095e8fa941a178f03057ed28badedd",
+      "candidate_blob": "574e94c59862303b9afcf6750e6c4e4519055f32",
+      "candidate_sha256": "dedf287d4d83d1b11b6924b6cd30014f57095e8fa941a178f03057ed28badedd",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-ready.json",
+      "owner": "integration",
+      "git_blob": "63bb82c69bd3c45d7d16047e59ee4e414318fa43",
+      "mixed_sha256": "a94acdea7636276f838a24fab64cb114c3425ca8162372fa9e51a4acbf639ac3",
+      "candidate_blob": "4dfc1f13968bcf5944a8dad5cb3e0b6cab3a1b93",
+      "candidate_sha256": "fc5ba8779ce9212725d4ab31821e91ec1594e3ccdec75444708d5f74832c3f9b",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-server-handoff.md",
+      "owner": "integration",
+      "git_blob": "374f21387689f578294c33cd7fcd8b112b5ae3aa",
+      "mixed_sha256": "dd6d1d78f7d2d1ae463a610482b04adb62d15cc537d7fd70a9899b263f0c5811",
+      "candidate_blob": "b587b16043ce8c2979a9b4be73a11f1cac5ad4c6",
+      "candidate_sha256": "44b53ac022edca1d17467d63c47243d37d0cbc214d4f8a87e8abda2e81a1d05f",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-task.md",
+      "owner": "integration",
+      "git_blob": "9b4b17d603563f48ef7ce558c9159113ae395f4a",
+      "mixed_sha256": "e4165ef96c96ff9daaa1f73cff2f0e2c0c5bb20d0a38a127455ec04b1a82203c",
+      "candidate_blob": "9b4b17d603563f48ef7ce558c9159113ae395f4a",
+      "candidate_sha256": "e4165ef96c96ff9daaa1f73cff2f0e2c0c5bb20d0a38a127455ec04b1a82203c",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-v2.md",
+      "owner": "integration",
+      "git_blob": "0a37ba161ffc33bbdb5dc9d96c71cb99aa2874c6",
+      "mixed_sha256": "f9b34d2cd31de7e7f0c6e85dd86dd2b8fcc6b691043ea8bdd21c80b37f8e4610",
+      "candidate_blob": "7ba94ce9f43077dd7f79f1713e0d67ff51749d78",
+      "candidate_sha256": "fed50aa4f00ad46291805ef1c7a255431a450efd80d357be74c36076c348552b",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/integration/worker-updates.md",
+      "owner": "integration",
+      "git_blob": "ab059a00f71080a76eb957fbf9fb9e0dc0c567b0",
+      "mixed_sha256": "5831feb123ba5a51a2176989fc34664b794a976bc8be6a60da755ab9e3ff762d",
+      "candidate_blob": "580318b61a5fb49d727df7d555b5538d6cdcc70d",
+      "candidate_sha256": "a90728d8a39de97388d36310093e35e950acbdd81c5a2d5916ba416849a9f1fb",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/player/checks.md",
+      "owner": "player",
+      "git_blob": "0953a4510fb9f9ecb7dcaecd64e0ecd5db9db9c7",
+      "mixed_sha256": "747c832d8a845e27ccf77e6dd045bf0955e2808212f0117c93ec14b6d9a2cc28",
+      "candidate_blob": "0953a4510fb9f9ecb7dcaecd64e0ecd5db9db9c7",
+      "candidate_sha256": "747c832d8a845e27ccf77e6dd045bf0955e2808212f0117c93ec14b6d9a2cc28",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/player/inventory-capture-v2.json",
+      "owner": "player",
+      "git_blob": "00b728ffb7b844eded595d6eb827822bc9fdd4e4",
+      "mixed_sha256": "19bf5ccbde449646257b1c41156d951cfb985777512912cef42c1851a7374fd0",
+      "candidate_blob": "00b728ffb7b844eded595d6eb827822bc9fdd4e4",
+      "candidate_sha256": "19bf5ccbde449646257b1c41156d951cfb985777512912cef42c1851a7374fd0",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/player/lifecycle.json",
+      "owner": "player",
+      "git_blob": "e9937093a4e2640b355fbaa828e6e807fab1026a",
+      "mixed_sha256": "7c158d442e13acb6a972ee5d964e36e39526a44ccd2acc2e20b8eb7fc445c66a",
+      "candidate_blob": "e9937093a4e2640b355fbaa828e6e807fab1026a",
+      "candidate_sha256": "7c158d442e13acb6a972ee5d964e36e39526a44ccd2acc2e20b8eb7fc445c66a",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/player/recovery-restored-blackout.png",
+      "owner": "player",
+      "git_blob": "017403cb815f1800cd9dc67d1eb6a16356d9b796",
+      "mixed_sha256": "d3bc9e6ce46d2a32e2e569bd139c7bf3d915ebd19f9d4fdb8dc67f5da7143fa0",
+      "candidate_blob": "017403cb815f1800cd9dc67d1eb6a16356d9b796",
+      "candidate_sha256": "d3bc9e6ce46d2a32e2e569bd139c7bf3d915ebd19f9d4fdb8dc67f5da7143fa0",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/player/recovery-restored-scene.png",
+      "owner": "player",
+      "git_blob": "82958a37d4192f0c64818efed3159bd079c28747",
+      "mixed_sha256": "604c8d74112213d90292b53e8ca56b35767321121e8430ed2621bd85d17b94b9",
+      "candidate_blob": "82958a37d4192f0c64818efed3159bd079c28747",
+      "candidate_sha256": "604c8d74112213d90292b53e8ca56b35767321121e8430ed2621bd85d17b94b9",
+      "reviewed": true
+    },
+    {
+      "path": "docs/implementation/player/recovery.json",
+      "owner": "player",
+      "git_blob": "612964e0c723dae5404c4767b8672763a9bee7a4",
+      "mixed_sha256": "30b94822d3344adefabfc654829941403e586445b9e50978920bf1d0ed60b26a",
+      "candidate_blob": "612964e0c723dae5404c4767b8672763a9bee7a4",
+      "candidate_sha256": "30b94822d3344adefabfc654829941403e586445b9e50978920bf1d0ed60b26a",
+      "reviewed": true
+    },
+    {
+      "path": "fixtures/contracts/provider-metadata-v2.json",
+      "owner": "integration",
+      "git_blob": "2984e609d948f2a0468e2fd80d2ca9bc05285a50",
+      "mixed_sha256": "97978a9f18b0658c6ea42f5c28878cc31dc402ca700080df855f34e5be6de889",
+      "candidate_blob": "2984e609d948f2a0468e2fd80d2ca9bc05285a50",
+      "candidate_sha256": "97978a9f18b0658c6ea42f5c28878cc31dc402ca700080df855f34e5be6de889",
+      "reviewed": true
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "owner": "integration",
+      "git_blob": "df1655cdc30ad83a1383a6a365862a1aa75a7f91",
+      "mixed_sha256": "246051a3988a03a5e6bd38d380bd99afbe6cfa4388ac464031586f56d8c8ac00",
+      "candidate_blob": "ab47865ed75134d58960a463fa3be90cee23b1ea",
+      "candidate_sha256": "9b92272c52497a7d0e5e733585f9c842f5435fe5c614f78654a44c76c5be588d",
+      "reviewed": true
+    },
+    {
+      "path": "packages/contracts/src/provider-metadata.ts",
+      "owner": "integration",
+      "git_blob": "88f20e5615672bb49f4c01dac1dc42538c818470",
+      "mixed_sha256": "2d853b8992158490b616116508a2bf4160730ded66bfda70f3d8b992ee617d59",
+      "candidate_blob": "1a717e9a46c94d2ea99a18058a0647a019c965e5",
+      "candidate_sha256": "1ceac4496608353b0af3ca178e98e7bfabb4ce5dd061e683aea084a20c2faa74",
+      "reviewed": true
+    },
+    {
+      "path": "packages/contracts/tests/check.mjs",
+      "owner": "integration",
+      "git_blob": "7337839ffd78c4b0dcde0beb84454e8990949a04",
+      "mixed_sha256": "e79541433605a539727df8d0ffc652c01b18aefc3c87344a6b16e82e152b3b5f",
+      "candidate_blob": "7337839ffd78c4b0dcde0beb84454e8990949a04",
+      "candidate_sha256": "e79541433605a539727df8d0ffc652c01b18aefc3c87344a6b16e82e152b3b5f",
+      "reviewed": true
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "owner": "integration",
+      "git_blob": "3a134ffeb09bf45806793c5b2079127bbde03da0",
+      "mixed_sha256": "f31f8504d4659850f45f40ca634f6e822e011c66618547d64b9c94fa417aa48e",
+      "candidate_blob": "225a6911b8abe87d74fbdfb0b28325f837e3d71e",
+      "candidate_sha256": "eea4f4ac0005db0011dd1b47f6e7fa7c49724f4043f27d66dd95e5cdfaa1fe91",
+      "reviewed": true
+    },
+    {
+      "path": "packages/contracts/tests/provider-metadata.mjs",
+      "owner": "integration",
+      "git_blob": "ec90cd32497313fb46bd3f431a4fbf03cc9e0afd",
+      "mixed_sha256": "090a9d32e0148aee074bfc787ca0e28979f176ac702505b08ec476bd5a8abb73",
+      "candidate_blob": "32985feba8faa640f88a69e48fae8e8ba686f64d",
+      "candidate_sha256": "725dd0d6ce6e99e03d2c822a8a005794e3964eaafde491396e950d6e47fe00b6",
+      "reviewed": true
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "owner": "integration",
+      "git_blob": "b1e21a660ce6dd93390cdb4139a5c10b066da4d8",
+      "mixed_sha256": "e1780b1ead6dfad938b69344cca2ed25bd62e47de8c33b5c5e4ba33af25472b2",
+      "candidate_blob": "8895f7ab633ef23e70b774b00aa7a9e3c6468361",
+      "candidate_sha256": "b6edb3fe86125429970b464cc307d470b030ce01995d47cfa30f72ded1dd7aca",
+      "reviewed": true
+    },
+    {
+      "path": "packages/player/package.json",
+      "owner": "player",
+      "git_blob": "96a1101984ff2824bf075728f4718d9b85e20005",
+      "mixed_sha256": "19ab13332043e4dffad96ef2f19e4200a99627c46b1ae81e920e6b514e2d554b",
+      "candidate_blob": "96a1101984ff2824bf075728f4718d9b85e20005",
+      "candidate_sha256": "19ab13332043e4dffad96ef2f19e4200a99627c46b1ae81e920e6b514e2d554b",
+      "reviewed": true
+    },
+    {
+      "path": "packages/player/scripts/chrome-lifecycle.mjs",
+      "owner": "player",
+      "git_blob": "daf9593057993f52ff2541a972cce9e04b5df34c",
+      "mixed_sha256": "2c424c4d712e264a674c3f18794b495419093f4cf5756258e923d410a9de250f",
+      "candidate_blob": "daf9593057993f52ff2541a972cce9e04b5df34c",
+      "candidate_sha256": "2c424c4d712e264a674c3f18794b495419093f4cf5756258e923d410a9de250f",
+      "reviewed": true
+    },
+    {
+      "path": "packages/player/scripts/chrome-recovery.mjs",
+      "owner": "player",
+      "git_blob": "ed531282d1f6ef7a07ad7f4926ae00a484773d43",
+      "mixed_sha256": "b2b68f5fb93d107dbf2d3a609d40554f666f459a88176f9967b673b6515d676b",
+      "candidate_blob": "ed531282d1f6ef7a07ad7f4926ae00a484773d43",
+      "candidate_sha256": "b2b68f5fb93d107dbf2d3a609d40554f666f459a88176f9967b673b6515d676b",
+      "reviewed": true
+    },
+    {
+      "path": "packages/player/src/index.ts",
+      "owner": "player",
+      "git_blob": "8894156a9694cc5e3eda584d8456364d618106d5",
+      "mixed_sha256": "cacb0e577561274feda4117a7ef3a8880ddab94c03d0fc4dd85543289e92156b",
+      "candidate_blob": "8894156a9694cc5e3eda584d8456364d618106d5",
+      "candidate_sha256": "cacb0e577561274feda4117a7ef3a8880ddab94c03d0fc4dd85543289e92156b",
+      "reviewed": true
+    },
+    {
+      "path": "packages/player/src/mount.ts",
+      "owner": "player",
+      "git_blob": "87592543f6723faef8c89301d62a163efa6a3e34",
+      "mixed_sha256": "1742a90883b6c5dd10670fdc6605b6ea7aa211316dd0d51f78ab2a0db0390e50",
+      "candidate_blob": "87592543f6723faef8c89301d62a163efa6a3e34",
+      "candidate_sha256": "1742a90883b6c5dd10670fdc6605b6ea7aa211316dd0d51f78ab2a0db0390e50",
+      "reviewed": true
+    },
+    {
+      "path": "packages/player/src/shell.ts",
+      "owner": "player",
+      "git_blob": "3e7b350d6c16b1a86e227c65b2201147346892be",
+      "mixed_sha256": "1097c4c7d167df3b7034ea93cc0e0565defd74686f551ae34ebbabec2bdf54b4",
+      "candidate_blob": "3e7b350d6c16b1a86e227c65b2201147346892be",
+      "candidate_sha256": "1097c4c7d167df3b7034ea93cc0e0565defd74686f551ae34ebbabec2bdf54b4",
+      "reviewed": true
+    },
+    {
+      "path": "packages/player/tests/mount.test.ts",
+      "owner": "player",
+      "git_blob": "9be20bf05db675e6933cebb08a5b1bd4deab6194",
+      "mixed_sha256": "01dd02d745bf6cbdb7d018ac4a0d6e3f95cddc1ffb6a1cb90e0f9d2e25ac06e6",
+      "candidate_blob": "9be20bf05db675e6933cebb08a5b1bd4deab6194",
+      "candidate_sha256": "01dd02d745bf6cbdb7d018ac4a0d6e3f95cddc1ffb6a1cb90e0f9d2e25ac06e6",
+      "reviewed": true
+    }
+  ],
+  "p15": {
+    "commit": "fa361fe7324e866a1f01c6ea8ec18d4a425ab1f2",
+    "paths": 10,
+    "only_player_owned": true
+  },
+  "original_scope_receipt_unchanged": true,
+  "initial_review_head": "a979c332d45548fb39fe48f95e044b8e935a87b4",
+  "default_branch": "main",
+  "pr": {
+    "baseRefName": "main",
+    "baseRefOid": "d2b73abecc4f5bf7bee37210b07aa9e261b53057",
+    "headRefName": "integration/contracts-v1",
+    "headRefOid": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+    "isDraft": true,
+    "number": 1,
+    "url": "https://github.com/jeffcato/paper-theater/pull/1"
+  },
+  "repository": {
+    "defaultBranchRef": {
+      "name": "main"
+    },
+    "visibility": "PUBLIC"
+  },
+  "followups": [
+    {
+      "commit": "14821da1f87e6795766b1348625b3e9996369c95",
+      "paths": [
+        "docs/implementation/integration/provider-metadata-ready.json",
+        "docs/implementation/integration/provider-metadata-server-handoff.md",
+        "docs/implementation/integration/provider-metadata-v2.md",
+        "docs/implementation/integration/worker-updates.md",
+        "packages/contracts/tests/packed.mjs"
+      ]
+    },
+    {
+      "commit": "a979c332d45548fb39fe48f95e044b8e935a87b4",
+      "paths": [
+        "docs/implementation/integration/pr-ci-results.json",
+        "docs/implementation/integration/provider-metadata-ready.json",
+        "docs/implementation/integration/worker-updates.md"
+      ]
+    },
+    {
+      "commit": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+      "paths": [
+        "crates/pt-contracts/src/lib.rs",
+        "crates/pt-contracts/tests/support/provider_cases.rs",
+        "fixtures/contracts/provider-metadata-v2-i13.json",
+        "packages/contracts/src/index.ts",
+        "packages/contracts/src/provider-metadata.ts",
+        "packages/contracts/tests/packed.mjs",
+        "packages/contracts/tests/provider-metadata.mjs",
+        "packages/contracts/tests/service-api.ts"
+      ]
+    }
+  ],
+  "excluded_worktree_inventory": "shared-index-excluded-worktree.json",
+  "excluded_initial_paths": 50,
+  "active_r12_and_generation_integrated": false,
+  "shared_index_policy": "Integration only; detached verification; no long-lived shared staging; new explicit-path commits with --only; workers return owned diffs.",
+  "service_revision": "pt-services-v1.3.1",
+  "provider_envelope_version": 2,
+  "checks": {
+    "code_commit": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+    "code_tree": "cfa070a32861b2b3eea9e572d1753a2b764369d4",
+    "source_root": "unset",
+    "rust_workspace": "pass",
+    "provider_cases": 80,
+    "playback_cases": 14,
+    "native_node": "pass",
+    "packed_node": "pass",
+    "strict_consumers": "pass",
+    "player_tests": 115,
+    "studio": "pass",
+    "web_builds": "pass",
+    "server_build": "pass",
+    "python_tests": 17,
+    "source_identity": "pass",
+    "delivery_identity": "pass",
+    "binary": {
+      "source_commit": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+      "binary_sha256": "68711034881804139b9fdea46fe2485d091bd2b67de1fccf3885b70c583017bc",
+      "build_log_sha256": "a04f41637f314c3bfaa02a8fc368ee33c96e3198e2de61ba4ff851493ed45049"
+    },
+    "browser": {
+      "v1": {
+        "frames": 11,
+        "events": 39,
+        "incoming_eligible": false,
+        "nod_pixels_change": true,
+        "production_rejected": true,
+        "manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d"
+      },
+      "readiness-v2": {
+        "frames": 11,
+        "events": 39,
+        "incoming_eligible": true,
+        "nod_pixels_change": true,
+        "production_rejected": true,
+        "manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b"
+      }
+    },
+    "recovery_matrix": {
+      "exit_code": 0,
+      "context_loss_supported": true,
+      "failures": [],
+      "local_requests": 84,
+      "disposed_sinks": 7,
+      "disposed_targets": 14
+    },
+    "edge_probe": {
+      "exit_code": 1,
+      "in_ci_aggregate": false,
+      "findings": [
+        {
+          "id": "p16-unhandled-restore-rejection",
+          "severity": "medium"
+        },
+        {
+          "id": "p16-pending-play-resumes-during-loss",
+          "severity": "high"
+        }
+      ],
+      "tool": "tools/integration/probe_i13_recovery.mjs",
+      "tool_sha256": "a54a0dd56eac290bb0e7b03c8c7f4c0066a68c1784d07da8953110125facda86"
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "sha256": "46f3b095c5ee810635396b9bccc606c22ca889d8fedae13f396ca4d412eee0e8"
+    },
+    {
+      "path": "crates/pt-contracts/src/services.rs",
+      "sha256": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38"
+    },
+    {
+      "path": "crates/pt-contracts/src/provider_metadata.rs",
+      "sha256": "0beff544be61334e625c8301201e0c334ba0f78ed010a66fb0e5ad5b15db887d"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "9b92272c52497a7d0e5e733585f9c842f5435fe5c614f78654a44c76c5be588d"
+    },
+    {
+      "path": "packages/contracts/src/provider-metadata.ts",
+      "sha256": "1ceac4496608353b0af3ca178e98e7bfabb4ce5dd061e683aea084a20c2faa74"
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "sha256": "b6edb3fe86125429970b464cc307d470b030ce01995d47cfa30f72ded1dd7aca"
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "sha256": "eea4f4ac0005db0011dd1b47f6e7fa7c49724f4043f27d66dd95e5cdfaa1fe91"
+    },
+    {
+      "path": "fixtures/contracts/provider-metadata-v2.json",
+      "sha256": "97978a9f18b0658c6ea42f5c28878cc31dc402ca700080df855f34e5be6de889"
+    },
+    {
+      "path": "fixtures/contracts/provider-metadata-v2-i13.json",
+      "sha256": "74ab6313bea8de7b929750bc97bf14461f08719f55ac986d94e83bebd4a4975b"
+    },
+    {
+      "path": "packages/player/src/mount.ts",
+      "sha256": "1742a90883b6c5dd10670fdc6605b6ea7aa211316dd0d51f78ab2a0db0390e50"
+    },
+    {
+      "path": "packages/player/src/shell.ts",
+      "sha256": "1097c4c7d167df3b7034ea93cc0e0565defd74686f551ae34ebbabec2bdf54b4"
+    },
+    {
+      "path": "apps/studio/src/main.tsx",
+      "sha256": "26390a7a6ec78ac7026925ead93caaa1e33c9f604bc4c8a518deafa6df5908c3"
+    },
+    {
+      "path": "apps/studio/scripts/browser-check.mjs",
+      "sha256": "9438af888e04a1a5183d657a8fe76e8b376036c825fc61132390d102c41938ed"
+    },
+    {
+      "path": "tools/integration/check_combined_browser.mjs",
+      "sha256": "1699abc60af3d50546e74e0f7c661d6bbad16076628126f63059d30bad5348d9"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/runner.rs",
+      "sha256": "8143fa6438bfad10164b3e613519fac95b9ca38e9a041e03315d2d72104ed74a"
+    },
+    {
+      "path": "crates/pt-server/src/main.rs",
+      "sha256": "bbd7c9ebca00f0ff8cfcc6f2e257d437456c511eec1ba4198bdaf4c557f7bb08"
+    }
+  ],
+  "graph_review": "i13-evidence/graph-review.json",
+  "player_findings": "i13-player-recovery-findings.md",
+  "p16_original_observations": {
+    "receipt_local_requests": 84,
+    "narrative_local_requests": 83,
+    "original_receipt_unchanged": false
+  },
+  "pending": [
+    "P16 pending-Play/context-loss race",
+    "P16 unhandled automatic recovery rejection",
+    "R12 title rendering and future recovery consumer binding",
+    "simultaneous quota-window enforcement and provider metadata adapter",
+    "actual accounting reconciliation and separate live authorization",
+    "unresolved book/source/acceptance bindings",
+    "target-device evidence, accepted generation, production verification and activation"
+  ],
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "production_approved": false,
+  "ci_record": "pr-ci-results.json",
+  "report": "shared-index-reconciliation.md",
+  "ci": {
+    "head_sha": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+    "status": "completed",
+    "conclusion": "success",
+    "runs": [
+      {
+        "id": 40418898012,
+        "event": "pull_request",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40418898012"
+      },
+      {
+        "id": 40418890782,
+        "event": "push",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40418890782"
+      }
+    ],
+    "edge_probes_in_aggregate": false
+  },
+  "historical_ci_records_preserved": true,
+  "i2_followup_source_hashes_verified": true,
+  "legacy_services_and_offline_methods_unchanged": true
+}

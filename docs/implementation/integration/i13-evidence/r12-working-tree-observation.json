@@ -1,0 +1,12 @@
+{
+  "candidate_includes_r12": false,
+  "receipt_path": "docs/implementation/runtime/studio-player/receipt.json",
+  "receipt_sha256": "3090121f803f2a8b8f649f75750fd5bdb52c3aabb384a17a136cbf8ed0e70b8d",
+  "preview_path": "apps/studio/src/Preview.tsx",
+  "preview_sha256": "63d292e6a42d477276a995dd8877aa4715c50fc6faed7c99b9f655ec06db76c9",
+  "complete": false,
+  "title_rendered": false,
+  "production_rejected": true,
+  "provider_calls": 0,
+  "recreate_sink_supplied": false
+}

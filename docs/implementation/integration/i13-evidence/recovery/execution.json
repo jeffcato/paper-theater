@@ -1,0 +1,65 @@
+{
+  "code_commit": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+  "command": "node packages/player/scripts/chrome-recovery.mjs",
+  "exit_code": 0,
+  "harness_sha256": "b2b68f5fb93d107dbf2d3a609d40554f666f459a88176f9967b673b6515d676b",
+  "fixture_manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+  "player_js": [
+    {
+      "path": "packages/player/dist/src/assets.js",
+      "sha256": "923f022e2819cff7d1a7796b0cc966a166be08d1f5bcdfb09735c2524a93e032"
+    },
+    {
+      "path": "packages/player/dist/src/capture.js",
+      "sha256": "5688e903a297b99fd0182dc26b30e46f49d7d370841c3edd55785a9166a8c8cb"
+    },
+    {
+      "path": "packages/player/dist/src/convert.js",
+      "sha256": "14e3932ed5e1f182033a21fa44065723e3d7ffb2708feef61a7b63b094419970"
+    },
+    {
+      "path": "packages/player/dist/src/evaluate.js",
+      "sha256": "3e6b1e6ecfa068e346dce0a05f5fe98f5cbafa6783aa85a01ab52d1314694c68"
+    },
+    {
+      "path": "packages/player/dist/src/index.js",
+      "sha256": "f753a240ea6e9d81961cee4a49d7c8208a275f66e258d597273cd68ce6ca051e"
+    },
+    {
+      "path": "packages/player/dist/src/loader.js",
+      "sha256": "59252f0cee9daaa20296800de6b2076e3f0fdfd1ed86ce99fefbf62ea2b56197"
+    },
+    {
+      "path": "packages/player/dist/src/mount.js",
+      "sha256": "0010859d1a050329575caf48bdf4c95ab58c338c8a268b88521c98e688e9082f"
+    },
+    {
+      "path": "packages/player/dist/src/plaque.js",
+      "sha256": "2dcbb954faee07f1ef59261f6297ff4687811d7b21dbc30d8eca535e01800a2c"
+    },
+    {
+      "path": "packages/player/dist/src/profile.js",
+      "sha256": "1f3b1af216e3696df703b90ddc70b4794f1423bed1d3d3d1577ff660deb9c2cb"
+    },
+    {
+      "path": "packages/player/dist/src/readalong.js",
+      "sha256": "da5d3d2806ff83e4a781744793794b0a277e5fcaf14c92e78764e1173fefe4fc"
+    },
+    {
+      "path": "packages/player/dist/src/shared.js",
+      "sha256": "962d75b4c201bff98609d6683d653f18ddc98de22664c76bcc90f91ca592e4f3"
+    },
+    {
+      "path": "packages/player/dist/src/shell.js",
+      "sha256": "3caaa3539d8b1a390af393c68a37cef91c8a91a4438779f50e4ba809fbd11a25"
+    },
+    {
+      "path": "packages/player/dist/src/transport.js",
+      "sha256": "dc0284c03442a41c3940d5fc8376457b2716eb42e5251aebe00d0150a432208b"
+    },
+    {
+      "path": "packages/player/dist/src/types.js",
+      "sha256": "4999bbef67f1682128e18dfe9eae0a228e1b6cdcc0db37d0ff9983f217d0a9d0"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.3.0",
+  "service_revision": "pt-services-v1.3.1",
   "status": "frozen-diagnostic-boundary",
   "fixture_path": "fixtures/shared/two-scene-v1",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -64,13 +64,15 @@
     "migration_gate": "separate pending gate; schematic tests do not establish browser/device acceptance"
   },
   "pending": [
-    "production acceptance verifier integration; production_blockers always retains production-verifier-pending",
-    "provider quota/retry/recovery metadata proposal R2-002/R2-005",
-    "target-device profile validation; functional Chrome evidence is in combined-ready.json",
-    "live product authorization and inherited accounting reconciliation",
-    "one autonomous excerpt and both complete chapters"
+    "production acceptance verifier and catalog activation",
+    "server simultaneous quota/retry/recovery enforcement and versioned adapter",
+    "actual inherited accounting reconciliation and separate live authorization",
+    "P16 pending-Play/context-loss race and automatic recovery rejection",
+    "active R12 title-rendering blocker and future graphics recovery consumer binding",
+    "target-device profile/resource validation",
+    "one autonomous excerpt and both complete accepted chapters"
   ],
-  "next_integration_action": "Server consumes provider metadata v2 using the exact I2 adapter handoff; live dispatch remains disabled pending enforcement, actual accounting and separate authorization.",
+  "next_integration_action": "Player resolves the I13 recovery findings. Server/generation continue their owned adapters/evidence work; live dispatch and production publication remain disabled.",
   "verification": {
     "clean_checkout_commit": "41061a6",
     "source_root": "unset",
@@ -96,10 +98,12 @@
   "service_handoffs": [
     "candidate-read-ready.json",
     "candidate-write-ready.json",
-    "provider-metadata-ready.json"
+    "provider-metadata-ready.json",
+    "provider-metadata-i13-ready.json"
   ],
   "pr_ci_results": "pr-ci-results.json",
   "combined_handoff": "combined-ready.json",
-  "provider_metadata_handoff": "provider-metadata-ready.json",
-  "verification_scope_note": "Historical verification and combined/candidate receipts retain their exact original code heads and revisions. I2 v1.3 validation is recorded separately in provider-metadata-ready.json."
+  "provider_metadata_handoff": "provider-metadata-i13-ready.json",
+  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes.",
+  "reconciliation_handoff": "shared-index-reconciliation.json"
 }

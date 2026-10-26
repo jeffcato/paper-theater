@@ -1,0 +1,40 @@
+{
+  "service_revision": "pt-services-v1.3.1",
+  "provider_envelope_version": 2,
+  "previous_service_revision": "pt-services-v1.3.0",
+  "wire_format_changed": false,
+  "old_method_signatures_changed": false,
+  "provider_fixture_cases": 80,
+  "original_fixture_cases": 76,
+  "original_fixture_unchanged": true,
+  "new_fixture": "fixtures/contracts/provider-metadata-v2-i13.json",
+  "correction": "Nullable/omittable provider wire types now match accepted Rust JSON; strict null-only guard regression is enforced. Legacy method types remain unchanged.",
+  "candidate_commit": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+  "runtime_adapter_available": false,
+  "live_dispatch_enabled": false,
+  "credentials_loaded": false,
+  "provider_calls": 0,
+  "semantics": "provider-metadata-v2.md",
+  "server_handoff": "provider-metadata-server-handoff.md",
+  "reconciliation": "shared-index-reconciliation.json",
+  "historical_i2_receipt": "provider-metadata-ready.json",
+  "ci": {
+    "head_sha": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+    "status": "completed",
+    "conclusion": "success",
+    "runs": [
+      {
+        "id": 40418898012,
+        "event": "pull_request",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40418898012"
+      },
+      {
+        "id": 40418890782,
+        "event": "push",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40418890782"
+      }
+    ],
+    "edge_probes_in_aggregate": false
+  },
+  "status": "contracts-ready-player-followups-open"
+}

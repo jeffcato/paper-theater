@@ -1,0 +1,34 @@
+{
+  "tool": "i13-recovery-edge-probes",
+  "runtime": "v24.20.0",
+  "fixture_manifest_sha256": "b71d712c94caf1640c5a02adcc75dc4c900c932de81f81418e33d7ab387738ae",
+  "mount_source_sha256": "1742a90883b6c5dd10670fdc6605b6ea7aa211316dd0d51f78ab2a0db0390e50",
+  "probe_sha256": "a54a0dd56eac290bb0e7b03c8c7f4c0066a68c1784d07da8953110125facda86",
+  "restore_without_factory": {
+    "status": {
+      "state": "lost",
+      "error": "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild",
+      "suspendedWhilePlaying": false
+    },
+    "unhandled_rejections": [
+      "Error: graphics_recovery_unavailable: no sink factory supplied; reload the theater"
+    ]
+  },
+  "loss_during_pending_play": {
+    "paused": false,
+    "graphics": "lost",
+    "reason": "playing"
+  },
+  "findings": [
+    {
+      "id": "p16-unhandled-restore-rejection",
+      "severity": "medium"
+    },
+    {
+      "id": "p16-pending-play-resumes-during-loss",
+      "severity": "high"
+    }
+  ],
+  "provider_calls": 0,
+  "production_approved": false
+}

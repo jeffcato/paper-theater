@@ -1,0 +1,12 @@
+{
+  "omitted_usage_validator": "accepted",
+  "null_guard_consumer_error": "TypeError: Cannot read properties of undefined (reading 'requests')",
+  "restore_without_factory_unhandled_rejections": [
+    "Error: graphics_recovery_unavailable: no sink factory supplied; reload the theater"
+  ],
+  "graphics_status": {
+    "state": "lost",
+    "error": "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild",
+    "suspendedWhilePlaying": false
+  }
+}

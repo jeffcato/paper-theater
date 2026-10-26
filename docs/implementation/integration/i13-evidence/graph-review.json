@@ -1,0 +1,47 @@
+{
+  "candidate": "23f8f7af3b93f79271153266c5e47bd3c0791c40",
+  "index": "PDG refreshed for exact candidate",
+  "changed_summary": {
+    "changed_count": 401,
+    "affected_count": 40,
+    "changed_files": 34,
+    "risk_level": "critical"
+  },
+  "provider_context": {
+    "uid": "Function:packages/contracts/src/provider-metadata.ts:validateProviderResultV2",
+    "name": "validateProviderResultV2",
+    "kind": "Function",
+    "filePath": "packages/contracts/src/provider-metadata.ts",
+    "startLine": 103,
+    "endLine": 118
+  },
+  "provider_impact": {
+    "direct": 3,
+    "processes_affected": 0,
+    "modules_affected": 1
+  },
+  "mount_context": {
+    "uid": "Function:packages/player/src/mount.ts:mountPlayer",
+    "name": "mountPlayer",
+    "kind": "Function",
+    "filePath": "packages/player/src/mount.ts",
+    "startLine": 166,
+    "endLine": 415
+  },
+  "mount_impact": {
+    "direct": 3,
+    "processes_affected": 0,
+    "modules_affected": 1
+  },
+  "sink_impact_boundaries": [
+    "1 call site invoking `createThreeSink` was dropped at index time because the receiver's type could not be established (e.g. an unresolved constructor, factory or chained expression). Those callers are absent from this result \u2014 actual impact may be higher."
+  ],
+  "taint_findings": 0,
+  "dependence_results": 40,
+  "limitations": [
+    "entrypoint/callee truncation",
+    "cross-language field linking",
+    "dynamic imports and callback/promise modeling",
+    "untracked R12 source excluded from committed graph"
+  ]
+}

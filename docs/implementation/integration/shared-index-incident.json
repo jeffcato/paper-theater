@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "status": "scope-audited-content-review-and-ci-pending",
+  "commit": "c62d5d571915195e80ee5f2dc3615cd49c1849b7",
+  "parent": "fa361fe7324e866a1f01c6ea8ec18d4a425ab1f2",
+  "history_policy": "preserve-existing-commits-use-follow-up-commits",
+  "total_paths": 32,
+  "player_paths": 13,
+  "integration_paths": 19,
+  "all_paths_present": true,
+  "p15": {
+    "commit": "fa361fe7324e866a1f01c6ea8ec18d4a425ab1f2",
+    "path_count": 10,
+    "only_player_owned": true
+  },
+  "recovery_evidence": {
+    "path": "docs/implementation/player/recovery.json",
+    "sha256": "30b94822d3344adefabfc654829941403e586445b9e50978920bf1d0ed60b26a",
+    "receipt_local_requests": 84,
+    "narrative_local_requests": 83,
+    "provider_calls": 0
+  },
+  "files": [
+    {
+      "path": "crates/pt-contracts/examples/provider-fixtures.rs",
+      "owner": "integration",
+      "git_blob": "29994fe45bba108e97011b93a74ff11f2934bfe8",
+      "present_in_worktree": true
+    },
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "owner": "integration",
+      "git_blob": "340ca814b3c41172bacf6b1902f13c10ea0e371f",
+      "present_in_worktree": true
+    },
+    {
+      "path": "crates/pt-contracts/src/provider_metadata.rs",
+      "owner": "integration",
+      "git_blob": "a80c065fa28cf191e9348a56a630ad49b5db2cc1",
+      "present_in_worktree": true
+    },
+    {
+      "path": "crates/pt-contracts/tests/provider_metadata.rs",
+      "owner": "integration",
+      "git_blob": "01f184b218dac693d79572c1686e7c5fb3c79317",
+      "present_in_worktree": true
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/provider_cases.rs",
+      "owner": "integration",
+      "git_blob": "0826f5a34d4e09ef3e02cd244597597e3469b3c9",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/agent-handoffs/INTERFACES.md",
+      "owner": "integration",
+      "git_blob": "608079f5b954f720e5c45c55e9cab016583bfb32",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/integration/contracts-ready.json",
+      "owner": "integration",
+      "git_blob": "574e94c59862303b9afcf6750e6c4e4519055f32",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-ready.json",
+      "owner": "integration",
+      "git_blob": "63bb82c69bd3c45d7d16047e59ee4e414318fa43",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-server-handoff.md",
+      "owner": "integration",
+      "git_blob": "374f21387689f578294c33cd7fcd8b112b5ae3aa",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-task.md",
+      "owner": "integration",
+      "git_blob": "9b4b17d603563f48ef7ce558c9159113ae395f4a",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/integration/provider-metadata-v2.md",
+      "owner": "integration",
+      "git_blob": "0a37ba161ffc33bbdb5dc9d96c71cb99aa2874c6",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/integration/worker-updates.md",
+      "owner": "integration",
+      "git_blob": "ab059a00f71080a76eb957fbf9fb9e0dc0c567b0",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/player/checks.md",
+      "owner": "player",
+      "git_blob": "0953a4510fb9f9ecb7dcaecd64e0ecd5db9db9c7",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/player/inventory-capture-v2.json",
+      "owner": "player",
+      "git_blob": "00b728ffb7b844eded595d6eb827822bc9fdd4e4",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/player/lifecycle.json",
+      "owner": "player",
+      "git_blob": "e9937093a4e2640b355fbaa828e6e807fab1026a",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/player/recovery-restored-blackout.png",
+      "owner": "player",
+      "git_blob": "017403cb815f1800cd9dc67d1eb6a16356d9b796",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/player/recovery-restored-scene.png",
+      "owner": "player",
+      "git_blob": "82958a37d4192f0c64818efed3159bd079c28747",
+      "present_in_worktree": true
+    },
+    {
+      "path": "docs/implementation/player/recovery.json",
+      "owner": "player",
+      "git_blob": "612964e0c723dae5404c4767b8672763a9bee7a4",
+      "present_in_worktree": true
+    },
+    {
+      "path": "fixtures/contracts/provider-metadata-v2.json",
+      "owner": "integration",
+      "git_blob": "2984e609d948f2a0468e2fd80d2ca9bc05285a50",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "owner": "integration",
+      "git_blob": "df1655cdc30ad83a1383a6a365862a1aa75a7f91",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/contracts/src/provider-metadata.ts",
+      "owner": "integration",
+      "git_blob": "88f20e5615672bb49f4c01dac1dc42538c818470",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/contracts/tests/check.mjs",
+      "owner": "integration",
+      "git_blob": "7337839ffd78c4b0dcde0beb84454e8990949a04",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "owner": "integration",
+      "git_blob": "3a134ffeb09bf45806793c5b2079127bbde03da0",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/contracts/tests/provider-metadata.mjs",
+      "owner": "integration",
+      "git_blob": "ec90cd32497313fb46bd3f431a4fbf03cc9e0afd",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "owner": "integration",
+      "git_blob": "b1e21a660ce6dd93390cdb4139a5c10b066da4d8",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/player/package.json",
+      "owner": "player",
+      "git_blob": "96a1101984ff2824bf075728f4718d9b85e20005",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/player/scripts/chrome-lifecycle.mjs",
+      "owner": "player",
+      "git_blob": "daf9593057993f52ff2541a972cce9e04b5df34c",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/player/scripts/chrome-recovery.mjs",
+      "owner": "player",
+      "git_blob": "ed531282d1f6ef7a07ad7f4926ae00a484773d43",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/player/src/index.ts",
+      "owner": "player",
+      "git_blob": "8894156a9694cc5e3eda584d8456364d618106d5",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/player/src/mount.ts",
+      "owner": "player",
+      "git_blob": "87592543f6723faef8c89301d62a163efa6a3e34",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/player/src/shell.ts",
+      "owner": "player",
+      "git_blob": "3e7b350d6c16b1a86e227c65b2201147346892be",
+      "present_in_worktree": true
+    },
+    {
+      "path": "packages/player/tests/mount.test.ts",
+      "owner": "player",
+      "git_blob": "9be20bf05db675e6933cebb08a5b1bd4deab6194",
+      "present_in_worktree": true
+    }
+  ],
+  "coordinator_task": "I13",
+  "prior_verified_ci_commit": "306059f0986bbc7a7fb907cb894b567d7916d4c8",
+  "mixed_commit_ci_verified": false,
+  "production_approved": false
+}

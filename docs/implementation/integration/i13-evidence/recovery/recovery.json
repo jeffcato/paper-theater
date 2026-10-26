@@ -1,0 +1,189 @@
+{
+  "tool": "check:recovery",
+  "fixture": "fixtures/generation/two-scene-readiness-v2",
+  "viewport": "960x540",
+  "sampleCount": 3262560,
+  "loseContextSupported": true,
+  "c1Loss": {
+    "status": {
+      "state": "lost",
+      "error": "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild",
+      "suspendedWhilePlaying": true
+    },
+    "sampleRetained": true,
+    "tickNull": true,
+    "capErr": "graphics_lost: capture blocked while graphics are suspended (retryGraphics)",
+    "signFrozen": true,
+    "plaqueFrozen": true
+  },
+  "c1Restored": {
+    "status": {
+      "state": "ready",
+      "error": null,
+      "suspendedWhilePlaying": true
+    },
+    "sample": 1768467,
+    "stillPaused": true,
+    "reason": "readiness",
+    "capture": {
+      "sample": 1768467,
+      "phase": "transition",
+      "accepted": false,
+      "stateDigest": "965ac96d2c7a2b8159768979f2d738e46f08bfe473310dbcd135acf1ca088f1c",
+      "contributors": [
+        "em-1",
+        "em-2"
+      ],
+      "pixelsSha": "f2d6b8d15bc4170c0891146fa5eef0bb19067b8338b822059ee7699083ecb63c",
+      "openingMax": 0,
+      "houseMax": 0.16862745098039217,
+      "plaque": "Dorothy!” she screamed. “Run for the cellar!” Toto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightene"
+    },
+    "control": {
+      "sample": 1768467,
+      "phase": "transition",
+      "accepted": false,
+      "stateDigest": "965ac96d2c7a2b8159768979f2d738e46f08bfe473310dbcd135acf1ca088f1c",
+      "contributors": [
+        "em-1",
+        "em-2"
+      ],
+      "pixelsSha": "f2d6b8d15bc4170c0891146fa5eef0bb19067b8338b822059ee7699083ecb63c",
+      "openingMax": 0,
+      "houseMax": 0.16862745098039217,
+      "plaque": "Dorothy!” she screamed. “Run for the cellar!” Toto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightene"
+    }
+  },
+  "c1Play": {
+    "reason": "playing"
+  },
+  "c2Loss": {
+    "status": {
+      "state": "lost",
+      "error": "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild",
+      "suspendedWhilePlaying": false
+    },
+    "signTail": [
+      "lowering",
+      "lowering",
+      "lowering",
+      "lowering",
+      "lowering"
+    ]
+  },
+  "c2Stale": {
+    "staleErr": "stale graphics recovery after newer seek/restart/loss/disposal",
+    "status": {
+      "state": "lost",
+      "error": "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild",
+      "suspendedWhilePlaying": false
+    }
+  },
+  "c2Retried": {
+    "status": {
+      "state": "ready",
+      "error": null,
+      "suspendedWhilePlaying": false
+    },
+    "sample": 4800,
+    "eqA": {
+      "sample": 4800,
+      "phase": "opening",
+      "accepted": false,
+      "stateDigest": "fa23a52faca58da2d66e8c64c7bca55222ea8e6248411049d5e31e1c7c914d4f",
+      "contributors": [],
+      "pixelsSha": "834db95a19b2e46ad48292b73a5a0d351cfdeaf6eed84b0f49846f28ff3ad3f0",
+      "openingMax": 0.16862745098039217,
+      "houseMax": 0.01568627450980392,
+      "plaque": "Dorothy!” she screamed. “Run for the cellar!” Toto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightene"
+    },
+    "eqB": {
+      "sample": 4800,
+      "phase": "opening",
+      "accepted": false,
+      "stateDigest": "fa23a52faca58da2d66e8c64c7bca55222ea8e6248411049d5e31e1c7c914d4f",
+      "contributors": [],
+      "pixelsSha": "834db95a19b2e46ad48292b73a5a0d351cfdeaf6eed84b0f49846f28ff3ad3f0",
+      "openingMax": 0.16862745098039217,
+      "houseMax": 0.01568627450980392,
+      "plaque": "Dorothy!” she screamed. “Run for the cellar!” Toto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightene"
+    }
+  },
+  "c3SceneContributors": [
+    "em-1"
+  ],
+  "c3Restart": {
+    "sample": 0,
+    "status": {
+      "state": "lost",
+      "error": "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild",
+      "suspendedWhilePlaying": true
+    },
+    "tickNull": true
+  },
+  "c3Play": {
+    "missOutcome": "rejected:Failed to load because no supported source was found.",
+    "reason": "playing"
+  },
+  "c3Dispose": {
+    "frozen": true,
+    "tickNull": true
+  },
+  "replacement": {
+    "tick": true,
+    "reason": "playing",
+    "captureAccepted": false
+  },
+  "teardown": {
+    "raf": 0,
+    "listeners": 0,
+    "ro": 0,
+    "dom": 0,
+    "urls": [
+      0,
+      0
+    ],
+    "targets": 14,
+    "sinks": 7,
+    "mems": [
+      {
+        "geometries": 0,
+        "textures": 0
+      },
+      {
+        "geometries": 0,
+        "textures": 0
+      },
+      {
+        "geometries": 0,
+        "textures": 0
+      },
+      {
+        "geometries": 0,
+        "textures": 0
+      },
+      {
+        "geometries": 0,
+        "textures": 0
+      },
+      {
+        "geometries": 0,
+        "textures": 0
+      },
+      {
+        "geometries": 0,
+        "textures": 0
+      }
+    ]
+  },
+  "shotSha256": {
+    "restored-blackout": "d3bc9e6ce46d2a32e2e569bd139c7bf3d915ebd19f9d4fdb8dc67f5da7143fa0",
+    "restored-scene": "604c8d74112213d90292b53e8ca56b35767321121e8430ed2621bd85d17b94b9"
+  },
+  "requests": {
+    "count": 84,
+    "remote": 0
+  },
+  "provider_calls": 0,
+  "failures": []
+}

@@ -57,3 +57,11 @@ Executable compatibility examples in the shared fixture:
 This is service revision `pt-services-v1.3.0`; provider envelope version 2 does not mean a breaking playback/service-v2 migration. Earlier v1.2 receipts and exact-head CI results retain their original identities. Canonical fixture bytes and both diagnostic readiness outcomes remain unchanged. The service revision participates in runtime cache identity; do not relabel old cached evidence as v1.3 evidence.
 
 The existing live provider method still fails closed. New records have no executable adapter yet. [The server handoff](provider-metadata-server-handoff.md) specifies the mapping, missing storage/API work and required behavioral tests. This closes R2-002's contract portion only; actual inherited accounting, live authorization, book/source bindings, production evidence/verifier and activation remain pending.
+
+## I13 declaration patch: services v1.3.1
+
+`ProviderArtifactRefWire`, `ProviderOperationWire` and `ProviderResultWire` describe raw JSON accepted by Rust, including omitted nullable result fields and explicit null file dimensions. V2 envelopes and archive validators use these wire types. Legacy provider method signatures/types remain unchanged. This corrects the v1.3.0 assertion that accepted missing usage while promising it was always present.
+
+After validation, use a nullish guard or optional chaining: `const requests = result.result.usage?.requests`. A null-only guard cannot establish that an omitted observation exists. Validation preserves unknown values; it does not insert zeros or rewrite the input. The new separate I13 fixture adds four cases while preserving the original 76-case fixture. Provider envelope version 2 and serialized formats are unchanged.
+
+Exact candidate verification, CI and remaining player findings are in [the I13 reconciliation](shared-index-reconciliation.json). Earlier v1.3.0 readiness/CI receipts retain their original code heads and are not upgraded receipts.

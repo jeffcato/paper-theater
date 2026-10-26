@@ -1,0 +1,11 @@
+{
+  "afterLoss": {
+    "paused": true,
+    "status": "lost"
+  },
+  "afterCompletion": {
+    "paused": false,
+    "status": "lost",
+    "reason": "playing"
+  }
+}
