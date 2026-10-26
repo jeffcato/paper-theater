@@ -252,3 +252,32 @@ restart), and an over-strict plaque assertion (in-gap samples show the
 containing chunk unhighlighted; only past-end silence retains).
 `check:inventory --tag v2` 144/144, audience 5/5, identity clean. Zero
 provider calls; full device acceptance still pending.
+
+## 2026-10-26 — chapter-sized WAV loading (P14, matches server R11)
+
+The loader is media-aware: only the delivery master claim
+(`entries["audio"]` typed `audio/wav`) may approach the new
+`MAX_AUDIO_BYTES` (256 MiB) under its own audio budget, with post-read
+hash identity and `inspectWav` confirmation so the label alone never
+accepts. Every other artifact — including non-master audio — stays under
+the tight `MAX_FILE_BYTES` (32 MiB) per-file cap, and the shared
+non-audio total stays under `MAX_TOTAL_BYTES` (256 MiB); both fire on
+declared bytes before the offending ref is read. Handles stay byte-free
+(`files.size === 0`) so a 34 MiB master never pins to the handle.
+
+`npm run check:player`: 98/98 pass (9 new chapter tests red→green:
+valid >32 MiB master with exact bytes/hash, exact 256 MiB ceiling,
+over-ceiling/meta/asset/total rejection, garbage/truncated/wrong-hash/
+wrong-size/read-failure cases). `npm run check:chapter` proves a real
+180 s PCM16 stereo 48 kHz master (34,560,044 bytes, synthesized into a
+temp dir — never into fixtures) in headless Chrome with the real build:
+loader delivers exact bytes + matching sha with no bounds/invalid_wav
+issues, WebAudio decodes 2 ch / 48 kHz / 8,640,000 frames / 180 s with
+the ramp head intact, the `<audio>` element reports 180 s, seeks to
+90/179 exactly and advances under playback, tampered/truncated bytes
+fail identity, garbage labeled as WAV reports `invalid_wav` and blocks
+`loadRelease`, and the AudioContext closes. Evidence: `chapter.json`
+(31 local requests, 0 remote, 0 provider calls). Generation keeps its
+own 32 MiB production cap — no full-chapter production claim. P4/P12/P13
+retained: staging, theater and plaque checks green. Zero provider calls;
+full device acceptance still pending.

@@ -9,6 +9,12 @@ import { validateTimeline } from "./evaluate.js";
 
 export const MAX_MANIFEST_BYTES = 1024 * 1024;
 export const MAX_FILE_BYTES = 32 * 1024 * 1024;
+/**
+ * Chapter-master ceiling: only the delivery audio claim (entries["audio"]
+ * typed audio/wav) may approach this. Every other artifact stays under
+ * MAX_FILE_BYTES, and the non-audio total stays under MAX_TOTAL_BYTES.
+ */
+export const MAX_AUDIO_BYTES = 256 * 1024 * 1024;
 export const MAX_TOTAL_BYTES = 256 * 1024 * 1024;
 export const MAX_IMAGE_PX = 4096;
 
@@ -61,14 +67,19 @@ export async function sha256Hex(bytes: Uint8Array): Promise<string> {
   return [...new Uint8Array(digest)].map((n) => n.toString(16).padStart(2, "0")).join("");
 }
 
-function checkFileRef(ref: FileRef): string | null {
+function checkFileRef(ref: FileRef, isDeliveryAudio = false): string | null {
   try {
     safePackagePath(ref.path);
   } catch {
     return `path:${ref.path}`;
   }
   if (!isDigest(ref.sha256)) return `digest:${ref.path}`;
-  if (!Number.isSafeInteger(ref.bytes) || ref.bytes <= 0 || ref.bytes > MAX_FILE_BYTES) {
+  // Media-aware per-file bound: the delivery master claim may approach the
+  // chapter ceiling; the bytes are still hash-verified and WAV-validated
+  // after the read, so the label alone never accepts. Everything else,
+  // including non-master audio, stays under the tight file cap.
+  const cap = isDeliveryAudio && ref.media_type === "audio/wav" ? MAX_AUDIO_BYTES : MAX_FILE_BYTES;
+  if (!Number.isSafeInteger(ref.bytes) || ref.bytes <= 0 || ref.bytes > cap) {
     return `bounds:${ref.path}`;
   }
   if (!ref.media_type) return `media:${ref.path}`;
@@ -175,18 +186,29 @@ export async function inspectRelease(
   if (manifest.provenance !== "autonomous") {
     issue("provenance", "release", "Only autonomous provenance can be accepted");
   }
-  // Bounded fetch with exact identity per artifact.
+  // Bounded fetch with exact identity per artifact. The delivery master
+  // draws from its own audio budget; everything else shares the tight
+  // non-audio total, so a chapter-sized master cannot crowd out — or be
+  // smuggled through — the metadata/image budget.
   const files = new Map<string, Uint8Array>();
   const paths = new Set<string>();
-  let total = 0;
+  const deliveryPath = manifest.entries["audio"]?.path;
+  let audioTotal = 0;
+  let otherTotal = 0;
   const refs: FileRef[] = [...Object.values(manifest.entries), ...manifest.assets, manifest.acceptance];
   for (const ref of refs) {
-    const bad = checkFileRef(ref);
+    const isDeliveryAudio = ref.media_type === "audio/wav" && deliveryPath !== undefined && ref.path === deliveryPath;
+    const bad = checkFileRef(ref, isDeliveryAudio);
     if (bad) throw new Error(`Invalid/bounded artifact: ${bad}`);
     if (paths.has(ref.path)) throw new Error(`Duplicate path: ${ref.path}`);
     paths.add(ref.path);
-    total += ref.bytes;
-    if (total > MAX_TOTAL_BYTES) throw new Error("Release exceeds total byte bound");
+    if (isDeliveryAudio) {
+      audioTotal += ref.bytes;
+      if (audioTotal > MAX_AUDIO_BYTES) throw new Error("Release exceeds audio total byte bound");
+    } else {
+      otherTotal += ref.bytes;
+      if (otherTotal > MAX_TOTAL_BYTES) throw new Error("Release exceeds total byte bound");
+    }
     const bytes = await read(ref.path, ref.bytes);
     if (bytes.length !== ref.bytes || (await sha256Hex(bytes)) !== ref.sha256) {
       throw new Error(`Artifact identity mismatch: ${ref.path}`);

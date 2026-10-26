@@ -1,0 +1,74 @@
+{
+  "tool": "check:chapter",
+  "fixture": "synthetic 180 s master in temp dir (not a fixture)",
+  "audio": {
+    "bytes": 34560044,
+    "sha256": "39f5cb0b44da12f56b674dd39047efe568e90a41799b1729d223a74fbb29b3c6",
+    "frames": 8640000,
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "load": {
+    "inspectionIssues": [
+      "provenance:release",
+      "missing_entry:bible",
+      "missing_entry:stages",
+      "missing_entry:actors",
+      "missing_entry:timeline",
+      "missing_entry:shell",
+      "missing_entry:read_along",
+      "missing_entry:captions",
+      "missing_entry:poster",
+      "missing_entry:credits"
+    ],
+    "shaMatch": true,
+    "handleFiles": 0
+  },
+  "decode": {
+    "contextRate": 48000,
+    "decodedRate": 48000,
+    "channels": 2,
+    "length": 8640000,
+    "duration": 180,
+    "rampHead": [
+      -1,
+      -0.99993896484375,
+      -0.9998779296875,
+      -0.99981689453125
+    ]
+  },
+  "seek": {
+    "mediaDuration": 180,
+    "seek90": 90,
+    "playheadAfter1s": 90.957893,
+    "seek179": 179
+  },
+  "rejection": {
+    "tamper": "Artifact identity mismatch: audio/master.wav",
+    "truncate": "Artifact identity mismatch: audio/master.wav",
+    "evilIssues": [
+      "provenance:release",
+      "missing_entry:bible",
+      "missing_entry:stages",
+      "missing_entry:actors",
+      "missing_entry:timeline",
+      "missing_entry:shell",
+      "missing_entry:read_along",
+      "missing_entry:captions",
+      "missing_entry:poster",
+      "missing_entry:credits",
+      "invalid_wav:audio"
+    ],
+    "evil": "Release blocked: provenance:release, missing_entry:bible, missing_entry:stages, missing_entry:actors, missing_entry:timeline, missing_entry:shell, missing_entry:read_along, missing_entry:captions, missing_entry:poster, missing_entry:credits, invalid_wav:audio"
+  },
+  "disposal": {
+    "contextState": "closed"
+  },
+  "requests": {
+    "count": 31,
+    "remote": 0
+  },
+  "provider_calls": 0,
+  "generation_cap_note": "Generation keeps its own 32 MiB production cap; this proof synthesizes its chapter master locally and makes no full-chapter production claim.",
+  "failures": []
+}

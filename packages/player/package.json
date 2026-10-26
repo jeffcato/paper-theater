@@ -17,6 +17,7 @@
     "check:plaque": "node scripts/chrome-plaque.mjs",
     "check:theater": "node scripts/chrome-theater.mjs",
     "check:staging": "node scripts/chrome-staging.mjs",
+    "check:chapter": "node scripts/chrome-chapter.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {

@@ -59,6 +59,7 @@ export {
   isAcceptedHandle,
   safePackagePath,
   sha256Hex,
+  MAX_AUDIO_BYTES,
   MAX_FILE_BYTES,
   MAX_MANIFEST_BYTES,
   MAX_TOTAL_BYTES,
