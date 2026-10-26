@@ -1,1 +1,23 @@
-{"name":"@paper-theater/contracts","version":"0.1.0","private":true,"type":"module","exports":{".":"./src/index.ts"},"scripts":{"build":"tsc -p tsconfig.json","check":"node tests/check.mjs"}}
+{
+  "name": "@paper-theater/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "node tests/check.mjs",
+    "prepack": "npm run build"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ]
+}

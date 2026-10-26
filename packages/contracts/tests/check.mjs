@@ -5,7 +5,11 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../../../',import.meta.url));
 const build=spawnSync('npm',['exec','--','tsc','-p','packages/contracts/tsconfig.json'],{cwd:root,encoding:'utf8'});
 assert.equal(build.status,0,build.stdout+build.stderr);
-const {validatePlayback,productionBlockers}=await import('../dist/index.js');
+// Exercise the public package export, not a path that bypasses package.json.
+const publicImport=spawnSync(process.execPath,['--input-type=module','--eval',
+  "const c=await import('@paper-theater/contracts');if(typeof c.validatePlayback!=='function'||!c.CONTRACT_REVISION)process.exit(1)"],{cwd:root,encoding:'utf8'});
+assert.equal(publicImport.status,0,publicImport.stdout+publicImport.stderr);
+const {validatePlayback,productionBlockers}=await import('@paper-theater/contracts');
 const result=spawnSync('cargo',['run','--offline','--quiet','-p','pt-contracts','--example','contract-fixtures'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
 assert.equal(result.status,0,result.stderr);
 const records=JSON.parse(result.stdout);
