@@ -1,6 +1,6 @@
 # Paper Theater TODO and work log
 
-Last reviewed: October 26, 2026, 11:35 MDT. Integrated baseline: `8ac0e5b`; clean-checkout checks passed.
+Last reviewed: October 26, 2026, 11:35 MDT. Integrated baseline: `41061a6`; clean-checkout and saved-generation browser checks passed.
 
 Deliver two complete, accepted first-chapter performances: *The Wonderful Wizard of Oz* (Gutenberg #55, Chapter 1) and *The War of the Worlds* (Gutenberg #36, Book One Chapter I, “The Eve of the War”). Generation runs autonomously through the local Rust server and studio; the static audience app uses the same player.
 

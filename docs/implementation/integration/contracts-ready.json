@@ -64,17 +64,18 @@
   },
   "pending": [
     "production acceptance verifier integration; production_blockers always retains production-verifier-pending",
-    "runtime diagnostic package adapter and journal/browser slice",
     "player consumes frozen shared TypeScript definitions",
     "provider quota/retry/recovery metadata proposal R2-002/R2-005",
     "CandidateWrite PNG dimensions proposal",
     "actual browser capture and target-device profile validation",
     "live product authorization and inherited accounting reconciliation",
-    "one autonomous excerpt and both complete chapters"
+    "one autonomous excerpt and both complete chapters",
+    "shared player mount/render/capture; complete studio fixture rendering slice",
+    "RunServices candidate reads and PNG dimensions proposals; bounded offline acoustic helper integration"
   ],
-  "next_integration_action": "Workers consume frozen types and this exact fixture; run saved package through server/journal/diagnostic player, preserving audience rejection and zero provider dispatch",
+  "next_integration_action": "Agent 4 consumes frozen TS records and supplies mount/render/capture; Agent 2 mounts the stored diagnostic package; verify browser rendering while preserving audience rejection.",
   "verification": {
-    "clean_checkout_commit": "8ac0e5b",
+    "clean_checkout_commit": "41061a6",
     "source_root": "unset",
     "rust_workspace": "pass",
     "typescript_contract_cases": 14,
@@ -82,6 +83,16 @@
     "studio_check": "pass",
     "builds": "pass",
     "identity_outputs": "pass",
-    "provider_calls": 0
+    "provider_calls": 0,
+    "browser": {
+      "chrome": "155.0.8059.85",
+      "macos": "26.5.2",
+      "start_cancel_reload_reconnect_replay": "pass",
+      "saved_generation_candidate_needs_repair": "pass",
+      "journal_events": 39,
+      "provider_calls": 0,
+      "rendering_acceptance": "pending; mount/capture unavailable; viewport/device profile not acceptance-pinned",
+      "server_restart_checkpoint_reuse": "pass (follow-up browser test against unchanged server code)"
+    }
   }
 }

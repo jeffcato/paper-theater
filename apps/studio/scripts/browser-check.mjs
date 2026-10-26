@@ -32,10 +32,16 @@ try{
  await call('Network.emulateNetworkConditions',{offline:true,latency:0,downloadThroughput:-1,uploadThroughput:-1});await delay(400);await call('Network.emulateNetworkConditions',{offline:false,latency:0,downloadThroughput:-1,uploadThroughput:-1});
  await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='succeeded'`),'run failed to reconnect',20000);
  const seq=await evaluate(`Array.from(document.querySelectorAll('[data-event-seq]'),e=>Number(e.dataset.eventSeq))`);assert(seq.length>12);assert.equal(new Set(seq).size,seq.length);assert(seq.every((n,i)=>i===0||n===seq[i-1]+1),'journal lost an event');
+ await evaluate(`document.querySelector('[data-testid="start"]').click()`);
+ await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='running'`),'restart run did not start');
+ await until(()=>evaluate(`fetch('/api/v1/runs/'+new URLSearchParams(location.search).get('run')).then(r=>r.json()).then(s=>s.stages[0].outcome==='complete')`),'source checkpoint not committed');
+ server.kill('SIGKILL');await new Promise(resolve=>server.once('exit',resolve));
+ const replacement=spawn(process.env.PT_SERVER_BIN||join(root,'target/debug/pt-server'),['--data',join(temp,'data'),'--port',new URL(url).port,'--studio',join(root,'apps/studio/dist'),'--fixture',join(root,'fixtures/shared/two-scene-v1')],{cwd:root,stdio:'ignore'});children.push(replacement);
+ await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='succeeded' && document.querySelector('.journal')?.textContent.includes('cache reused')`),'server restart did not reuse committed checkpoint',20000);
  assert(await evaluate(`!!document.querySelector('[data-testid="saved-diagnostic"]')`),'saved package control missing');
  await evaluate(`document.querySelector('[data-testid="saved-diagnostic"]').click()`);
  await until(()=>evaluate(`document.querySelector('[data-testid="run-state"]')?.textContent==='failed'`),'diagnostic findings were not retained',40000);
  assert(await evaluate(`document.body.textContent.includes('Needs repair')`),'missing acceptance not shown');
  const capture=await call('Page.captureScreenshot' ,{format:'png'});await writeFile(join(root,'docs/implementation/runtime/studio-browser.png'),Buffer.from(capture.data,'base64'));
- console.log(JSON.stringify({start:true,cancel:true,reload:true,reconnect:true,replay_zero_posts:true,diagnostic_needs_repair:true,events:seq.length}));
+ console.log(JSON.stringify({start:true,cancel:true,reload:true,reconnect:true,replay_zero_posts:true,process_restart_reuse:true,diagnostic_needs_repair:true,events:seq.length}));
 }finally{ws?.close();for(const child of children.reverse())child.kill('SIGKILL');await delay(200);await rm(temp,{recursive:true,force:true});}
