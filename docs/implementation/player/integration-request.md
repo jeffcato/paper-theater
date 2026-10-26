@@ -42,7 +42,29 @@ Failing case for proceeding without it: generation registration has no frozen
 profile to target. The measured geometry brief is in
 [shell-brief.md](shell-brief.md).
 
-## 5. Optional: pinned Tutor corpus
+## 5. Shared fixture probe (October 26, read-only, uncommitted /tmp script)
+
+The built player was run against `fixtures/shared/two-scene-v1` without
+modifying it. Results for the integration record:
+
+- Manifest (`diagnostic`, 3,262,560 samples, 2 reveals, 5 assets) verifies
+  end to end: all artifact hashes, WAV decode and PNG dimensions pass.
+- `loadRelease` rejects it (`provenance:release`,
+  `missing_acceptance:reveal-1-image_scope`); `loadDiagnostic` reports 6
+  missing acceptance IDs without accepting. This is the correct first-slice
+  behavior: the audience must keep rejecting this fixture.
+- Shared `timeline.json` (2 scenes, 1 cue, 1 transition) passes
+  `validateTimeline` with zero errors; swap boundary resolves scene-1 →
+  scene-2 with gain reaching exactly 0; terminal state closes the curtains.
+- Shared `read-along.json` (176 words / 170 groups,
+  `point-following-same-boundary-v1`) loads into `ReadAlongModel`
+  unchanged, laying out 8 chunks.
+- No shared-record fork was needed: the shared tagged-union `StoryCue` and
+  discriminated `Light` shapes are runtime-readable through the player's
+  `{action, params}` / optional-field views. The TS migration at
+  contracts-ready time will narrow the shared unions explicitly.
+
+## 6. Optional: pinned Tutor corpus
 
 `tutor_status` exposes no source revision for the `three.js` corpus, so the
 corpus name is not revision proof (see
