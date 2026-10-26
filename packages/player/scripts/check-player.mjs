@@ -25,9 +25,11 @@ if (requested && !GROUPS.includes(requested)) {
 // Clean build first: tests run against freshly compiled modules.
 run("./node_modules/.bin/tsc", ["-p", "tsconfig.json"]);
 
-// Owned fixture cases run under the integration group.
+// Owned fixture cases run under the integration group; the frozen shared
+// revision check runs under contracts.
 const GROUP_FILES = Object.fromEntries(GROUPS.map((g) => [g, [`dist/tests/${g}.test.js`]]));
 GROUP_FILES["integration"].push("dist/tests/fixtures.test.js");
+GROUP_FILES["contracts"].push("dist/tests/shared-contracts.test.js");
 const targets = (requested ? [requested] : GROUPS).flatMap((g) => GROUP_FILES[g]);
 for (const t of targets) {
   if (!existsSync(join(pkgDir, t))) {

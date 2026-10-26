@@ -88,3 +88,5 @@ export { groupWords, layoutChunks, ReadAlongModel } from "./readalong.js";
 export type { Chunk } from "./readalong.js";
 export { describeCapture, boundarySamples } from "./capture.js";
 export type { CaptureRequest, CaptureResult } from "./capture.js";
+export { toCueView, toLightView } from "./shared.js";
+export type { SharedCueView, FlatLight } from "./shared.js";

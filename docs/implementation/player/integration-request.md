@@ -13,13 +13,60 @@ workspace install so the shared lockfile records these pins, and confirm the
 resolved `@types/three` patch. Failing case without it: a fresh checkout has
 no pinned three/types revisions for the player build.
 
+Note: the player does not yet declare `@paper-theater/contracts` as a
+dependency — it cannot be imported until the §3 boundary fix lands. The dep
+will be added together with the type-level aliasing in that follow-up.
+
 ## 2. Root `check:player` alias
 
 Already present at root (`check:player → npm run check:player --workspace
 @paper-theater/player`) and verified working from this lane. No change
 requested; record that the handoff's required aggregate command exists.
 
-## 3. Shared contract revision (blocking public interfaces)
+## 3. Shared contract revision: consumed at the adapter boundary
+
+`contracts-ready.json` froze `pt-contracts-v1.0.0` / `pt-services-v1.0.0`
+with the canonical fixture digest, and this lane has consumed it as far as
+the package interface permits:
+
+- `src/shared.ts` normalizes the frozen tagged-union cues and
+  discriminated-union lights once, at the adapter boundary
+  (`toCueView`/`toLightView`, exported from the package index).
+- `check:player -- contracts` runs the frozen canonical fixture through the
+  real loader/evaluator: frozen digest recomputed byte-for-byte, diagnostic
+  rejected in production with missing IDs reported, swap/terminal
+  evaluation, and the owned negative cases (short hold, unknown action).
+- Field names already match the frozen mirror exactly, so no record was
+  forked. Full type-level aliasing (annotating adapter inputs with the
+  shared types) waits on the boundary fix below.
+
+### Boundary issue: contracts package not directly importable (Agent 1)
+
+Reproducer (no product files touched):
+
+```sh
+node -e "import('@paper-theater/contracts').then(m => console.log(m.CONTRACT_REVISION))"
+# ERR_MODULE_NOT_FOUND: .../packages/contracts/src/types.js
+```
+
+Two defects, both outside this lane:
+
+1. The package `exports` map points at TS source (`./src/index.ts`) whose
+   `.js`-suffixed relative imports plain Node cannot remap. No runtime
+   consumer (player, studio, audience) can import the package. Repointing
+   `exports` at the built `./dist` (which exists) fixes it; the studio will
+   hit the same wall when mounting.
+2. `src/validate.ts` does not compile under consumer
+   `noUncheckedIndexedAccess` flags, so even type-only source imports break
+   strict consumers' builds. Built `.d.ts` (skipped via `skipLibCheck`)
+   avoids the bleed.
+
+Until both are fixed this lane reads the frozen JSON records as data and
+adapts the shared shapes structurally. No provisional schema was invented:
+identical records keep the frozen names, and the adapters reject anything
+outside the frozen allowlists.
+
+## 3b. Original shared-contract proposal (superseded by the freeze)
 
 `packages/contracts/src` is currently empty — no `contracts-ready.json has
 been published. Until then the player exposes only Agent 4-local provisional

@@ -8,8 +8,9 @@ fixture cases), then the aggregate with no group argument.
 
 ## Current results (October 26, 2026, this session)
 
-Aggregate: **43 pass, 0 fail** (`contracts` 3, `loader` 3, `transport` 6,
-`timeline` 6, `readalong` 4, `shell` 8, `integration` 9, `fixtures` 4).
+Aggregate: **49 pass, 0 fail** (`contracts` 9 — 3 API surface + 6 frozen
+shared revision, `loader` 3, `transport` 6, `timeline` 6, `readalong` 4,
+`shell` 8, `integration` 9, `fixtures` 4).
 
 Required-case coverage:
 
