@@ -3,10 +3,17 @@ use serde::{Serialize, de::DeserializeOwned};
 use serde_json::Value;
 
 pub fn cases() -> Vec<Value> {
-    serde_json::from_str(include_str!(
+    let mut cases: Vec<Value> = serde_json::from_str(include_str!(
         "../../../../fixtures/contracts/provider-metadata-v2.json"
     ))
-    .unwrap()
+    .unwrap();
+    cases.extend(
+        serde_json::from_str::<Vec<Value>>(include_str!(
+            "../../../../fixtures/contracts/provider-metadata-v2-i13.json"
+        ))
+        .unwrap(),
+    );
+    cases
 }
 fn decode<T: DeserializeOwned>(value: &Value) -> ContractResult<T> {
     serde_json::from_value(value.clone()).map_err(|e| ContractError {

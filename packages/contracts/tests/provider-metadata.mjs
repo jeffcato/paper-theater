@@ -11,7 +11,7 @@ for(const {case:c,rust_error,roundtrip,scope_keys} of records){
  assert.equal(!failure,c.valid,c.id+': '+failure?.message);
  if(failure){assert(failure.code&&failure.field,c.id+' needs a typed field/error');if(c.code)assert.equal(failure.code,rust_error.code,c.id);}
  else if(c.kind==='operation')assert.deepEqual(await Promise.all(c.wire.quota_windows.map(w=>api.providerQuotaScopeKey(w.scope))),scope_keys,c.id);
- else if(c.kind.startsWith('legacy_'))assert.deepEqual(roundtrip,c.wire);
+ else if(c.kind.startsWith('legacy_'))assert.deepEqual(roundtrip,c.expected_roundtrip??c.wire);
 }
 const key=async id=>api.providerQuotaScopeKey(records.find(r=>r.case.id===id).case.wire.quota_windows[0].scope);
 assert.equal(await key('free-money-request'),await key('second-credential-shares-project-scope'));

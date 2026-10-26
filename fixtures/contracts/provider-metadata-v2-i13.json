@@ -1,0 +1,384 @@
+[
+  {
+    "id": "i13-omitted-result-nullables-stay-unknown",
+    "kind": "result",
+    "valid": true,
+    "wire": {
+      "schema_version": 2,
+      "result": {
+        "attempt_id": "attempt-1",
+        "completion": "ambiguous",
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "outputs": [],
+        "started_at": "2026-10-26T00:00:00Z",
+        "elapsed_ms": 1000,
+        "diagnostic": "Timeout; usage remains unknown."
+      },
+      "context": {
+        "provider": "provider-a",
+        "project_id": "project-a",
+        "credential_context_id": "credential-slot-a"
+      },
+      "identity": {
+        "run_id": "run-1",
+        "epoch": 1,
+        "operation_id": "logical-1",
+        "repair": null,
+        "transport_retry": null
+      },
+      "quota_windows": [
+        {
+          "window_id": "project-minute",
+          "scope": {
+            "kind": "project",
+            "provider": "provider-a",
+            "project_id": "project-a"
+          },
+          "start_at_ms": 1000,
+          "reset_at_ms": 61000,
+          "retry_at_ms": null,
+          "capacity": {
+            "money_microusd": 0,
+            "requests": 100,
+            "tokens": 10000,
+            "repairs": 2
+          },
+          "accounted": {
+            "money_microusd": 0,
+            "requests": 1,
+            "tokens": 120,
+            "repairs": 0
+          }
+        }
+      ],
+      "observed_usage": {
+        "requests": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "money_microusd": null,
+        "tokens": null
+      },
+      "accounted_usage": {
+        "requests": 1,
+        "tokens": 120,
+        "money_microusd": 0,
+        "repairs": 0
+      },
+      "started_at_ms": 2000,
+      "recorded_at_ms": 3000,
+      "epoch_disposition": "current",
+      "retry": null,
+      "recovery": null
+    },
+    "operation": {
+      "schema_version": 2,
+      "operation": {
+        "attempt_id": "attempt-1",
+        "unit_id": "unit-1",
+        "kind": "transcription",
+        "provider": "provider-a",
+        "model": "model-a",
+        "recipe_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "payload": {
+          "id": "payload-1",
+          "file": {
+            "path": "request.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "bytes": 2,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        "inputs": [],
+        "estimate": {
+          "requests": 1,
+          "input_tokens": 100,
+          "output_tokens": 20,
+          "money_microusd": 0
+        },
+        "timeout_ms": 30000
+      },
+      "context": {
+        "provider": "provider-a",
+        "project_id": "project-a",
+        "credential_context_id": "credential-slot-a"
+      },
+      "identity": {
+        "run_id": "run-1",
+        "epoch": 1,
+        "operation_id": "logical-1",
+        "repair": null,
+        "transport_retry": null
+      },
+      "quota_windows": [
+        {
+          "window_id": "project-minute",
+          "scope": {
+            "kind": "project",
+            "provider": "provider-a",
+            "project_id": "project-a"
+          },
+          "start_at_ms": 1000,
+          "reset_at_ms": 61000,
+          "retry_at_ms": null,
+          "capacity": {
+            "money_microusd": 0,
+            "requests": 100,
+            "tokens": 10000,
+            "repairs": 2
+          },
+          "accounted": {
+            "money_microusd": 0,
+            "requests": 0,
+            "tokens": 0,
+            "repairs": 0
+          }
+        }
+      ],
+      "recovery": null
+    }
+  },
+  {
+    "id": "i13-omitted-observed-metric-stays-unknown",
+    "kind": "result",
+    "valid": true,
+    "wire": {
+      "schema_version": 2,
+      "result": {
+        "attempt_id": "attempt-1",
+        "completion": "ambiguous",
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "response_sha256": null,
+        "raw_response": null,
+        "outputs": [],
+        "usage": null,
+        "started_at": "2026-10-26T00:00:00Z",
+        "elapsed_ms": 1000,
+        "diagnostic": "Timeout; usage remains unknown."
+      },
+      "context": {
+        "provider": "provider-a",
+        "project_id": "project-a",
+        "credential_context_id": "credential-slot-a"
+      },
+      "identity": {
+        "run_id": "run-1",
+        "epoch": 1,
+        "operation_id": "logical-1",
+        "repair": null,
+        "transport_retry": null
+      },
+      "quota_windows": [
+        {
+          "window_id": "project-minute",
+          "scope": {
+            "kind": "project",
+            "provider": "provider-a",
+            "project_id": "project-a"
+          },
+          "start_at_ms": 1000,
+          "reset_at_ms": 61000,
+          "retry_at_ms": null,
+          "capacity": {
+            "money_microusd": 0,
+            "requests": 100,
+            "tokens": 10000,
+            "repairs": 2
+          },
+          "accounted": {
+            "money_microusd": 0,
+            "requests": 1,
+            "tokens": 120,
+            "repairs": 0
+          }
+        }
+      ],
+      "observed_usage": {
+        "input_tokens": null,
+        "output_tokens": null,
+        "money_microusd": null,
+        "tokens": null
+      },
+      "accounted_usage": {
+        "requests": 1,
+        "tokens": 120,
+        "money_microusd": 0,
+        "repairs": 0
+      },
+      "started_at_ms": 2000,
+      "recorded_at_ms": 3000,
+      "epoch_disposition": "current",
+      "retry": null,
+      "recovery": null
+    },
+    "operation": {
+      "schema_version": 2,
+      "operation": {
+        "attempt_id": "attempt-1",
+        "unit_id": "unit-1",
+        "kind": "transcription",
+        "provider": "provider-a",
+        "model": "model-a",
+        "recipe_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "payload": {
+          "id": "payload-1",
+          "file": {
+            "path": "request.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "bytes": 2,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        "inputs": [],
+        "estimate": {
+          "requests": 1,
+          "input_tokens": 100,
+          "output_tokens": 20,
+          "money_microusd": 0
+        },
+        "timeout_ms": 30000
+      },
+      "context": {
+        "provider": "provider-a",
+        "project_id": "project-a",
+        "credential_context_id": "credential-slot-a"
+      },
+      "identity": {
+        "run_id": "run-1",
+        "epoch": 1,
+        "operation_id": "logical-1",
+        "repair": null,
+        "transport_retry": null
+      },
+      "quota_windows": [
+        {
+          "window_id": "project-minute",
+          "scope": {
+            "kind": "project",
+            "provider": "provider-a",
+            "project_id": "project-a"
+          },
+          "start_at_ms": 1000,
+          "reset_at_ms": 61000,
+          "retry_at_ms": null,
+          "capacity": {
+            "money_microusd": 0,
+            "requests": 100,
+            "tokens": 10000,
+            "repairs": 2
+          },
+          "accounted": {
+            "money_microusd": 0,
+            "requests": 0,
+            "tokens": 0,
+            "repairs": 0
+          }
+        }
+      ],
+      "recovery": null
+    }
+  },
+  {
+    "id": "i13-explicit-null-file-dimensions",
+    "kind": "operation",
+    "valid": true,
+    "wire": {
+      "schema_version": 2,
+      "operation": {
+        "attempt_id": "attempt-1",
+        "unit_id": "unit-1",
+        "kind": "transcription",
+        "provider": "provider-a",
+        "model": "model-a",
+        "recipe_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "payload": {
+          "id": "payload-1",
+          "file": {
+            "path": "request.json",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "bytes": 2,
+            "media_type": "application/json",
+            "dimensions": null
+          },
+          "provenance": "diagnostic"
+        },
+        "inputs": [],
+        "estimate": {
+          "requests": 1,
+          "input_tokens": 100,
+          "output_tokens": 20,
+          "money_microusd": 0
+        },
+        "timeout_ms": 30000
+      },
+      "context": {
+        "provider": "provider-a",
+        "project_id": "project-a",
+        "credential_context_id": "credential-slot-a"
+      },
+      "identity": {
+        "run_id": "run-1",
+        "epoch": 1,
+        "operation_id": "logical-1",
+        "repair": null,
+        "transport_retry": null
+      },
+      "quota_windows": [
+        {
+          "window_id": "project-minute",
+          "scope": {
+            "kind": "project",
+            "provider": "provider-a",
+            "project_id": "project-a"
+          },
+          "start_at_ms": 1000,
+          "reset_at_ms": 61000,
+          "retry_at_ms": null,
+          "capacity": {
+            "money_microusd": 0,
+            "requests": 100,
+            "tokens": 10000,
+            "repairs": 2
+          },
+          "accounted": {
+            "money_microusd": 0,
+            "requests": 0,
+            "tokens": 0,
+            "repairs": 0
+          }
+        }
+      ],
+      "recovery": null
+    }
+  },
+  {
+    "id": "i13-legacy-omitted-nullables",
+    "kind": "legacy_result",
+    "valid": true,
+    "wire": {
+      "attempt_id": "attempt-1",
+      "completion": "ambiguous",
+      "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "outputs": [],
+      "started_at": "2026-10-26T00:00:00Z",
+      "elapsed_ms": 1000,
+      "diagnostic": "Timeout; usage remains unknown."
+    },
+    "expected_roundtrip": {
+      "attempt_id": "attempt-1",
+      "completion": "ambiguous",
+      "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "response_sha256": null,
+      "raw_response": null,
+      "outputs": [],
+      "usage": null,
+      "started_at": "2026-10-26T00:00:00Z",
+      "elapsed_ms": 1000,
+      "diagnostic": "Timeout; usage remains unknown."
+    }
+  }
+]

@@ -1,9 +1,14 @@
 import type {ProviderOperation,ProviderResult,Usage} from './services.js';
-import type {ArtifactRef} from './types.js';
+import type {ArtifactRef,FileRef} from './types.js';
 import {ContractError,isDigest,isSample,validateFile,sha256} from './validate.js';
 
 export const PROVIDER_METADATA_VERSION=2;
 export const MAX_PROVIDER_RECORD_BYTES=64*1024;
+// Raw JSON accepted by Rust can omit nullable fields, or spell dimensions null.
+// Keep the legacy method types unchanged; these aliases describe validated wire input.
+export type ProviderArtifactRefWire=Omit<ArtifactRef,'file'>&{file:Omit<FileRef,'dimensions'>&{dimensions?:[number,number]|null}};
+export type ProviderOperationWire=Omit<ProviderOperation,'payload'|'inputs'>&{payload:ProviderArtifactRefWire;inputs:ProviderArtifactRefWire[]};
+export type ProviderResultWire=Omit<ProviderResult,'usage'|'raw_response'|'response_sha256'|'outputs'>&{usage?:Usage|null;raw_response?:ProviderArtifactRefWire|null;response_sha256?:string|null;outputs:ProviderArtifactRefWire[]};
 export interface ProviderContext {provider:string;project_id:string;credential_context_id:string}
 export type ProviderQuotaScope=
  | {kind:'provider';provider:string}
@@ -16,12 +21,12 @@ export interface TransportRetryIdentity {previous_attempt_id:string;previous_req
 export interface ProviderAttemptIdentity {run_id:string;epoch:number;operation_id:string;repair?:CreativeRepairIdentity|null;transport_retry?:TransportRetryIdentity|null}
 export type ProviderJobStatus='submitted'|'running'|'succeeded'|'failed'|'unknown';
 export interface ExistingProviderJob {attempt_id:string;request_sha256:string;provider_job_id:string;status:ProviderJobStatus;observed_at_ms:number}
-export interface ProviderOperationV2 {schema_version:2;operation:ProviderOperation;context:ProviderContext;identity:ProviderAttemptIdentity;quota_windows:ProviderQuotaWindow[];recovery?:ExistingProviderJob|null}
+export interface ProviderOperationV2 {schema_version:2;operation:ProviderOperationWire;context:ProviderContext;identity:ProviderAttemptIdentity;quota_windows:ProviderQuotaWindow[];recovery?:ExistingProviderJob|null}
 export interface ObservedProviderUsage {tokens?:number|null;requests?:number|null;input_tokens?:number|null;output_tokens?:number|null;money_microusd?:number|null}
 export type ProviderRetryReason='rate_limited'|'quota_exhausted'|'repair_exhausted'|'transient_transport'|'provider_unavailable'|'unknown_completion';
 export interface ProviderRetryTiming {reason:ProviderRetryReason;observed_at_ms:number;not_before_ms:number;retry_after_ms?:number|null;window_ids:string[]}
 export type ProviderEpochDisposition='current'|'obsolete';
-export interface ProviderResultV2 {schema_version:2;result:ProviderResult;context:ProviderContext;identity:ProviderAttemptIdentity;quota_windows:ProviderQuotaWindow[];observed_usage:ObservedProviderUsage;accounted_usage:QuotaAmounts;started_at_ms:number;recorded_at_ms:number;epoch_disposition:ProviderEpochDisposition;retry?:ProviderRetryTiming|null;recovery?:ExistingProviderJob|null}
+export interface ProviderResultV2 {schema_version:2;result:ProviderResultWire;context:ProviderContext;identity:ProviderAttemptIdentity;quota_windows:ProviderQuotaWindow[];observed_usage:ObservedProviderUsage;accounted_usage:QuotaAmounts;started_at_ms:number;recorded_at_ms:number;epoch_disposition:ProviderEpochDisposition;retry?:ProviderRetryTiming|null;recovery?:ExistingProviderJob|null}
 
 type Check=(v:unknown,f:string)=>void;
 function need(ok:unknown,code:string,field:string,message:string):asserts ok {if(!ok)throw new ContractError(code,field,message);}
@@ -56,8 +61,8 @@ const retryShape:Check=(v,f)=>object(v,f,{reason:oneOf('rate_limited','quota_exh
 function operationV2Shape(v:unknown):asserts v is ProviderOperationV2 {object(v,'record',{schema_version:integer,operation:operationShape,context:contextShape,identity:identityShape,quota_windows:list(windowShape)},{recovery:nullable(jobShape)});}
 function resultV2Shape(v:unknown):asserts v is ProviderResultV2 {object(v,'record',{schema_version:integer,result:resultShape,context:contextShape,identity:identityShape,quota_windows:list(windowShape),observed_usage:(v,f)=>object(v,f,{},Object.fromEntries(['requests','tokens','input_tokens','output_tokens','money_microusd'].map(k=>[k,nullable(integer)]))),accounted_usage:amountsShape,started_at_ms:integer,recorded_at_ms:integer,epoch_disposition:oneOf('current','obsolete')},{retry:nullable(retryShape),recovery:nullable(jobShape)});}
 /** Archive shape checks only: absent metadata is never authority for dispatch. */
-export function validateLegacyProviderOperation(v:unknown):asserts v is ProviderOperation {operationShape(v,'record');}
-export function validateLegacyProviderResult(v:unknown):asserts v is ProviderResult {resultShape(v,'record');}
+export function validateLegacyProviderOperation(v:unknown):asserts v is ProviderOperationWire {operationShape(v,'record');}
+export function validateLegacyProviderResult(v:unknown):asserts v is ProviderResultWire {resultShape(v,'record');}
 
 const bytes=(s:string)=>new TextEncoder().encode(s).length;
 function envelope(version:number,v:unknown){need(version===2,'version','schema_version','expected provider metadata version 2');need(bytes(JSON.stringify(v))<=MAX_PROVIDER_RECORD_BYTES,'bounds','record','provider record exceeds 64 KiB');}
@@ -65,7 +70,7 @@ function id(v:string,f:string){need(/^[A-Za-z0-9_.:-]{1,128}$/.test(v),'id',f,'e
 function num(v:number,f:string){need(isSample(v),'integer',f,'expected a nonnegative JSON safe integer');}
 function hash(v:string,f:string){need(isDigest(v),'digest',f,'expected lowercase SHA-256');}
 function usage(v:Usage,f:string){for(const n of Object.values(v))num(n,f);need(isSample(v.input_tokens+v.output_tokens),'integer',f,'combined token count exceeds safe integer range');}
-function artifact(a:ArtifactRef){id(a.id,'artifact.id');validateFile({...a.file,dimensions:a.file.dimensions??undefined});}
+function artifact(a:ProviderArtifactRefWire){id(a.id,'artifact.id');validateFile({...a.file,dimensions:a.file.dimensions??undefined});}
 function scopeTuple(s:ProviderQuotaScope):string[]{return s.kind==='provider'?['provider',s.provider]:s.kind==='project'?['project',s.provider,s.project_id]:['model',s.provider,s.project_id,s.model];}
 export async function providerQuotaScopeKey(s:ProviderQuotaScope):Promise<string>{scopeShape(s,'scope');for(const part of scopeTuple(s))id(part,'scope');return sha256(new TextEncoder().encode(JSON.stringify(scopeTuple(s))));}
 function windows(values:ProviderQuotaWindow[],ctx:ProviderContext,model:string){

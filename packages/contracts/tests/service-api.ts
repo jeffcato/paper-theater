@@ -1,4 +1,4 @@
-import type {CandidateFile, CandidateWrite, RunServices,ProviderOperationV2,ProviderResultV2,ProviderContext,ProviderQuotaScope,ProviderAttemptIdentity} from '@paper-theater/contracts';
+import type {CandidateFile, CandidateWrite, RunServices,ProviderOperationV2,ProviderResultV2,ProviderContext,ProviderQuotaScope,ProviderAttemptIdentity,ProviderArtifactRefWire} from '@paper-theater/contracts';
 import {validateProviderOperationV2,validateProviderResultV2,providerQuotaScopeKey} from '@paper-theater/contracts';
 // Compile through the package's exported declarations, as downstream workers do.
 export async function parseCandidate(services: RunServices, candidate: CandidateFile): Promise<unknown> {
@@ -19,3 +19,18 @@ export function readProviderResult(operation:unknown,result:unknown):ProviderRes
  return result;
 }
 export function scopeIdentity(scope:ProviderQuotaScope):Promise<string>{return providerQuotaScopeKey(scope);}
+
+// The Rust wire decoder accepts missing nullable legacy fields in v2 envelopes.
+export function nullOnlyUsageGuardIsInsufficient(operation:unknown,result:unknown):number|null {
+ validateProviderResultV2(result,operation);
+ if(result.result.usage!==null){
+  // @ts-expect-error Missing usage remains unknown, so a null-only guard is insufficient.
+  return result.result.usage.requests;
+ }
+ return null;
+}
+export function nullishUsageGuard(operation:unknown,result:unknown):number|null {
+ validateProviderResultV2(result,operation);
+ return result.result.usage!=null?result.result.usage.requests:null;
+}
+export const nullableProviderArtifact:ProviderArtifactRefWire={id:'payload-1',provenance:'diagnostic',file:{path:'request.json',sha256:'a'.repeat(64),bytes:2,media_type:'application/json',dimensions:null}};
