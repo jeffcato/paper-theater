@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "revision_id": "two-scene-readiness-v2",
+  "provenance": "diagnostic",
+  "production_approved": false,
+  "provider_calls": 0,
+  "parent_fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+  "parent_manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+  "recipe_sha256": "c5c61e9131a9af15287537028577e6408b9bdd05a42ea5ee4088a46813cb1f98",
+  "problem": {
+    "figure_id": "em-2",
+    "old_fade_in_start": 1560000,
+    "old_eligible_sample": 1656480,
+    "late_samples": 96480,
+    "late_seconds": 2.01
+  },
+  "decision": "Move the formal transition after the complete source sentence ending in hole; retain exact source PCM and the narration-free 1s fade / 2s dark hold / 1s fade.",
+  "sentence_pause": {
+    "last_word_id": "source:3700:3704",
+    "next_word_id": "source:3706:3713",
+    "source_gap": [
+      792240,
+      811440
+    ],
+    "cut_source_sample": 801849,
+    "cut_value_pcm16": 0,
+    "local_window_peak_pcm16": 86,
+    "window_radius_samples": 120,
+    "local_window_peak_dbfs": -51.619029674323,
+    "scope": "Local edit observation only; production join/listening review remains missing."
+  },
+  "transition_before": {
+    "from_scene_id": "scene-1",
+    "to_scene_id": "scene-2",
+    "fade_out_start": 1416000,
+    "swap_sample": 1464000,
+    "fade_in_start": 1560000,
+    "fade_in_end": 1608000
+  },
+  "transition_after": {
+    "from_scene_id": "scene-1",
+    "to_scene_id": "scene-2",
+    "fade_out_start": 1699698,
+    "swap_sample": 1747698,
+    "fade_in_start": 1843698,
+    "fade_in_end": 1891698
+  },
+  "source_partition": [
+    548
+  ],
+  "cue_revisions": [
+    {
+      "id": "nod-em",
+      "before": [
+        1656480,
+        1680480
+      ],
+      "after": [
+        1891698,
+        1915698
+      ],
+      "reason": "Explicit diagnostic revision: retain the same action/target/duration at the incoming full-picture entrance."
+    }
+  ],
+  "unchanged": [
+    "verbatim source",
+    "source audio bytes",
+    "raw alignment bytes",
+    "176 word identities",
+    "170 group memberships",
+    "profile/art bytes",
+    "sample count",
+    "closing phases"
+  ],
+  "new_bindings": {
+    "delivery_audio_sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+    "presentation_map_sha256": "5d128e029f8b458b4a5bc4c9e23633d02663267dbbc9e3e43e96879672938280"
+  },
+  "incoming_readiness": {
+    "scene_id": "scene-2",
+    "eligible_sample": 1464480,
+    "fade_in_start": 1843698,
+    "outcome": "pass",
+    "scope": "Deterministic diagnostic schedule only; synthetic evidence is not production approval."
+  },
+  "pending": [
+    "production acoustic/image/fact acceptance",
+    "narrative/readability review of revised hold",
+    "audio join and mix review",
+    "actual browser capture",
+    "nod-em rendered motion",
+    "rendering profile/device acceptance"
+  ]
+}

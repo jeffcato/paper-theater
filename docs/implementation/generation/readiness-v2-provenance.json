@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "revision_id": "two-scene-readiness-v2",
+  "status": "published-diagnostic",
+  "provider_calls": 0,
+  "production_approved": false,
+  "revision": {
+    "schema_version": 1,
+    "revision_id": "two-scene-readiness-v2",
+    "status": "published-diagnostic-correction",
+    "provenance": "diagnostic",
+    "production_approved": false,
+    "provider_calls": 0,
+    "parent_fixture_path": "fixtures/shared/two-scene-v1",
+    "parent_fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+    "parent_manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "fixture_sha256": "40dde4e6f8bd36bd2db478c6a6ea8449372a7577cff5407dccb732807cde992c",
+    "manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+    "inventory_sha256": "1ff44f31750d10b4c901b53c7cb239da522cbe798c58ee3705b29d42775d33e5",
+    "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+    "recipe_sha256": "c5c61e9131a9af15287537028577e6408b9bdd05a42ea5ee4088a46813cb1f98",
+    "note": "Separate immutable diagnostic fixture; no production catalog activation or acceptance."
+  },
+  "recipe_dependencies": {
+    "tools/generation/readiness_correction.py": "c5c61e9131a9af15287537028577e6408b9bdd05a42ea5ee4088a46813cb1f98",
+    "tools/generation/capture_inventory.py": "601c9c95e0fad58853c0ed1febdd022d61391e4c4b577ffeaba093e3475e43cb"
+  },
+  "transformations": [
+    {
+      "path": "audio/master.wav",
+      "before_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "after_sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "presentation-map.json",
+      "before_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "after_sha256": "5d128e029f8b458b4a5bc4c9e23633d02663267dbbc9e3e43e96879672938280",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "read-along.json",
+      "before_sha256": "80e6882b1839c6c756718986a6066d8ad6b0614c94eaa99bc2ed99ac8dc2277f",
+      "after_sha256": "3668ccc97432c0cd72d284deaddf2e8aab3cd866ee2e6dabf06b6c53696e949b",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "timeline.json",
+      "before_sha256": "60f8e8d78768aad014b38e13cdc3a6e36674cac52b6f56b880e8800dde0a0f1a",
+      "after_sha256": "62b2d2f6aa7e45cb8b73c65476b947dccd26cbda465281cef30c67d468389d6f",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "credits.json",
+      "before_sha256": "08025c30ce2789e0a18d748152855e1d2d04161b9e472c8d3926ffab4bf20946",
+      "after_sha256": "89b8b8a8675b0bfdded29b9089657882eea40aefa2aa43e2e5a9b49378633f95",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "acceptance.json",
+      "before_sha256": "8bfdc3ffe8a19872d2cdf27d17d5765bf585e7d56af7a1510f58d8f3ec387d29",
+      "after_sha256": "dc1cfa3414f3716028470f21c5f66fe4631fd483f8b0bde1c60df0f34dc5f3dc",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "manifest.json",
+      "before_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+      "after_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "fixture.json",
+      "before_sha256": "b91738c96f13f6c332d99fd3e22087de6dd14c556972687490e3900cbe57de85",
+      "after_sha256": "0e1fb1dda79ec77ce5e3071f663c873779eec9896573e1a0c1d93586afc37594",
+      "status": "new derivative; original preserved"
+    },
+    {
+      "path": "evidence/alignment.json",
+      "before_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "after_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "status": "unchanged bytes"
+    },
+    {
+      "path": "assets/figure.png",
+      "before_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "after_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "status": "unchanged bytes"
+    },
+    {
+      "path": "profile.json",
+      "before_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "after_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "status": "unchanged bytes"
+    },
+    {
+      "path": "source.txt",
+      "before_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "after_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "status": "unchanged bytes"
+    }
+  ],
+  "evidence_policy": "Original source PCM, raw alignment and synthetic/imported provenance are preserved. Final-domain anchors are remapped; no production attestation is newly passed.",
+  "remaining_findings": [
+    "readiness-v2-audio-join-review",
+    "readiness-v2-narrative-render-review",
+    "action:nod-em:gesture-state"
+  ]
+}

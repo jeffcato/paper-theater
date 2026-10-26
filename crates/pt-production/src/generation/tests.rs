@@ -306,3 +306,40 @@ async fn rejects_stale_bytes_wrong_pins_substituted_candidates_and_late_cancella
         Err(StageError::Service(ServiceError::Cancelled))
     ));
 }
+
+#[test]
+fn readiness_v2_passes_shared_integrity_without_granting_production_acceptance() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../fixtures/generation/two-scene-readiness-v2");
+    let doc: PlaybackDocument =
+        serde_json::from_slice(&std::fs::read(root.join("fixture.json")).unwrap()).unwrap();
+    validate_playback(&doc).unwrap();
+    verify_package_files(&doc, &root).unwrap();
+    let entry = doc.timeline.transitions[0].fade_in_start;
+    let bound = doc
+        .manifest
+        .reveals
+        .iter()
+        .find(|g| g.id == "reveal-2")
+        .unwrap()
+        .not_before_sample
+        .unwrap();
+    assert!(bound <= entry);
+    assert_eq!(doc.manifest.provenance, Provenance::Diagnostic);
+    assert!(
+        production_blockers(&doc)
+            .iter()
+            .any(|id| id == "readiness-v2-audio-join-review")
+    );
+    assert!(
+        production_blockers(&doc)
+            .iter()
+            .any(|id| id == "independent-acoustic-evidence")
+    );
+    let old = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../fixtures/shared/two-scene-v1/manifest.json");
+    assert_eq!(
+        digest(&std::fs::read(old).unwrap()),
+        "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d"
+    );
+}

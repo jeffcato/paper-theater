@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "id": "diagnostic-shell",
+  "style_version": "neutral-v1",
+  "layers": [
+    {
+      "id": "inner",
+      "image": null,
+      "transform": {
+        "position": [
+          0,
+          0,
+          1.3
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ]
+      },
+      "dimensions": [
+        22,
+        14
+      ],
+      "anchors": []
+    },
+    {
+      "id": "columns",
+      "image": null,
+      "transform": {
+        "position": [
+          0,
+          0,
+          1.8
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ]
+      },
+      "dimensions": [
+        22,
+        14
+      ],
+      "anchors": []
+    },
+    {
+      "id": "apron",
+      "image": null,
+      "transform": {
+        "position": [
+          0,
+          0,
+          2.4
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ]
+      },
+      "dimensions": [
+        22,
+        14
+      ],
+      "anchors": []
+    },
+    {
+      "id": "plaque",
+      "image": null,
+      "transform": {
+        "position": [
+          0,
+          0,
+          2.8
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ]
+      },
+      "dimensions": [
+        22,
+        14
+      ],
+      "anchors": []
+    },
+    {
+      "id": "signage",
+      "image": null,
+      "transform": {
+        "position": [
+          0,
+          0,
+          3
+        ],
+        "rotation_xyz": [
+          0,
+          0,
+          0
+        ]
+      },
+      "dimensions": [
+        22,
+        14
+      ],
+      "anchors": []
+    }
+  ],
+  "opening": {
+    "x": [
+      -8,
+      8
+    ],
+    "y": [
+      0,
+      9
+    ],
+    "z": [
+      1.3,
+      1.3
+    ]
+  },
+  "deck": {
+    "x": [
+      -8,
+      8
+    ],
+    "y": [
+      0,
+      0
+    ],
+    "z": [
+      -5.6,
+      2.4
+    ]
+  },
+  "apron": {
+    "x": [
+      -8,
+      8
+    ],
+    "y": [
+      -3,
+      0
+    ],
+    "z": [
+      2.4,
+      2.4
+    ]
+  },
+  "supports": [
+    {
+      "id": "deck",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    }
+  ],
+  "plaque": {
+    "bounds": {
+      "x": [
+        -7,
+        7
+      ],
+      "y": [
+        -2.8,
+        -0.4
+      ],
+      "z": [
+        2.8,
+        2.8
+      ]
+    },
+    "inset": {
+      "x": [
+        -6.5,
+        6.5
+      ],
+      "y": [
+        -2.55,
+        -0.65
+      ],
+      "z": [
+        2.8,
+        2.8
+      ]
+    },
+    "font": null,
+    "text": ""
+  },
+  "title": {
+    "bounds": {
+      "x": [
+        -4,
+        4
+      ],
+      "y": [
+        5,
+        7
+      ],
+      "z": [
+        3,
+        3
+      ]
+    },
+    "inset": {
+      "x": [
+        -3.6,
+        3.6
+      ],
+      "y": [
+        5.2,
+        6.8
+      ],
+      "z": [
+        3,
+        3
+      ]
+    },
+    "font": null,
+    "text": "Paper Theater"
+  },
+  "sign": {
+    "panel": {
+      "bounds": {
+        "x": [
+          -4,
+          4
+        ],
+        "y": [
+          5,
+          7
+        ],
+        "z": [
+          3,
+          3
+        ]
+      },
+      "inset": {
+        "x": [
+          -3.6,
+          3.6
+        ],
+        "y": [
+          5.2,
+          6.8
+        ],
+        "z": [
+          3,
+          3
+        ]
+      },
+      "font": null,
+      "text": "INTERMISSION"
+    },
+    "rope_anchors": [
+      [
+        -3,
+        11,
+        3
+      ],
+      [
+        3,
+        11,
+        3
+      ]
+    ],
+    "hidden_clearance": 1,
+    "lower_ms": 1200,
+    "raise_ms": 800,
+    "max_tilt_degrees": 3,
+    "max_bounce": 0.15
+  },
+  "profile": {
+    "id": "paper-player-r186-v1",
+    "status": "selected_unverified",
+    "three_version": "0.186.0",
+    "aspect_ratio": [
+      16,
+      9
+    ],
+    "max_dpr": 1.5,
+    "max_image_dimension": 4096,
+    "max_graphics_bytes": 268435456,
+    "max_master_bytes": 268435456,
+    "outer_bounds": {
+      "x": [
+        -11,
+        11
+      ],
+      "y": [
+        -3,
+        11
+      ],
+      "z": [
+        -5.6,
+        3
+      ]
+    },
+    "camera": {
+      "position": [
+        0,
+        4,
+        24.369268817980394
+      ],
+      "target": [
+        0,
+        4,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "fov_y_degrees": 40,
+      "near": 0.1,
+      "far": 100
+    },
+    "camera_target_offset": [
+      0.5,
+      0.25
+    ],
+    "camera_distance_extra": 2,
+    "pointer_offset": [
+      0.8,
+      0.4
+    ],
+    "font_family": "Noto Serif",
+    "font_css_px": 22,
+    "line_height": 1.3,
+    "text_size_range": [
+      1,
+      2
+    ],
+    "line_count": [
+      2,
+      3
+    ],
+    "cutout_alpha": 0.35,
+    "shell_alpha": 0.1,
+    "curtain_alpha": 0.05,
+    "shadow_map_size": 2048,
+    "shadow_type": "PCFShadowMap",
+    "image_color_space": "srgb",
+    "working_color_space": "linear",
+    "tone_mapping": "none",
+    "texture_filter": "linear",
+    "mipmaps": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "revision_id": "two-scene-readiness-v2",
+  "status": "published-diagnostic-correction",
+  "provenance": "diagnostic",
+  "production_approved": false,
+  "provider_calls": 0,
+  "parent_fixture_path": "fixtures/shared/two-scene-v1",
+  "parent_fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+  "parent_manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+  "fixture_sha256": "40dde4e6f8bd36bd2db478c6a6ea8449372a7577cff5407dccb732807cde992c",
+  "manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+  "inventory_sha256": "1ff44f31750d10b4c901b53c7cb239da522cbe798c58ee3705b29d42775d33e5",
+  "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+  "recipe_sha256": "c5c61e9131a9af15287537028577e6408b9bdd05a42ea5ee4088a46813cb1f98",
+  "note": "Separate immutable diagnostic fixture; no production catalog activation or acceptance."
+}
