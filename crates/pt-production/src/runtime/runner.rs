@@ -89,7 +89,7 @@ impl c::RunServices for Services {
             sha256: digest(&bytes),
             bytes: bytes.len() as u64,
             media_type: r.media_type,
-            dimensions: None,
+            dimensions: r.dimensions,
         };
         file.validate()?;
         let result = c::CandidateFile {
@@ -473,6 +473,7 @@ impl c::StageExecutor for FixtureExecutor {
         let artifact = services
             .write_candidate(
                 c::CandidateWrite {
+                    dimensions: None,
                     candidate_id: input.unit_id,
                     relative_path: format!("{name}-fixture.json"),
                     media_type: "application/json".into(),

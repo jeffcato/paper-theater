@@ -67,6 +67,7 @@ async fn write<T: Serialize>(
     let file = services
         .write_candidate(
             CandidateWrite {
+                dimensions: None,
                 candidate_id: candidate_id.clone(),
                 relative_path: path.into(),
                 media_type: "application/json".into(),

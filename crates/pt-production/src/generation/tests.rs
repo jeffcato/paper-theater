@@ -41,7 +41,7 @@ impl RunServices for OfflineServices {
                 sha256: digest(&bytes),
                 bytes: bytes.len() as u64,
                 media_type: r.media_type,
-                dimensions: None,
+                dimensions: r.dimensions,
             },
         };
         self.writes.lock().unwrap().push((candidate.clone(), bytes));

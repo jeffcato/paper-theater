@@ -21,7 +21,7 @@ export interface ProviderResult {attempt_id:Id;completion:'completed'|'known_rej
 export type HelperKind='decode_audio'|'align_audio'|'mix_audio'|'register_image'|'capture'|'validate_package';
 export interface HelperOperation {id:Id;kind:HelperKind;inputs:ArtifactRef[];recipe_sha256:Digest;timeout_ms:number;max_output_bytes:number}
 export interface HelperResult {id:Id;outputs:CandidateFile[];findings:Finding[]}
-export interface CandidateWrite {candidate_id:Id;relative_path:string;media_type:string;max_bytes:number;provenance:Provenance}
+export interface CandidateWrite {dimensions?:[number,number];candidate_id:Id;relative_path:string;media_type:string;max_bytes:number;provenance:Provenance}
 export type EventKind='task_started'|'task_completed'|'director_decision'|'artifact_ready'|'check_completed'|'repair_planned'|'cache_reused'|'provider_wait'|'budget_update'|'run_terminal';
 export interface JournalProposal {kind:EventKind;task_id:Id|null;decision_id:Id|null;artifact_ids:Id[];summary:string}
 export type RunEvent=JournalProposal&{schema_version:1;run_id:Id;seq:number;epoch:number;revision:number;timestamp:string};

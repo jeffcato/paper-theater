@@ -19,6 +19,7 @@ impl c::StageExecutor for CountedStage {
         let artifact = services
             .write_candidate(
                 c::CandidateWrite {
+                    dimensions: None,
                     candidate_id: input.unit_id.clone(),
                     relative_path: format!("{:?}.json", input.stage).to_lowercase(),
                     media_type: "application/json".into(),
@@ -616,7 +617,7 @@ fn ambiguous_usage_cannot_release_a_billable_reservation() {
 struct HtmlCandidate;
 #[async_trait]
 impl c::StageExecutor for HtmlCandidate {
-    async fn execute(&self,input:c::StageInput,services:&dyn c::RunServices)->std::result::Result<c::StageOutput,c::StageError>{let a=services.write_candidate(c::CandidateWrite{candidate_id:input.unit_id,relative_path:"output.html".into(),media_type:"text/html".into(),max_bytes:1024,provenance:c::Provenance::Synthetic},b"<script>window.bad=true</script>".to_vec()).await?;Ok(c::StageOutput{outcome:c::StageOutcome::Complete,artifacts:vec![a],decisions:vec![],findings:vec![],cache_keys:vec![],library_updates:vec![],package_candidate:None})}
+    async fn execute(&self,input:c::StageInput,services:&dyn c::RunServices)->std::result::Result<c::StageOutput,c::StageError>{let a=services.write_candidate(c::CandidateWrite{dimensions:None,candidate_id:input.unit_id,relative_path:"output.html".into(),media_type:"text/html".into(),max_bytes:1024,provenance:c::Provenance::Synthetic},b"<script>window.bad=true</script>".to_vec()).await?;Ok(c::StageOutput{outcome:c::StageOutcome::Complete,artifacts:vec![a],decisions:vec![],findings:vec![],cache_keys:vec![],library_updates:vec![],package_candidate:None})}
 }
 #[tokio::test]
 async fn model_candidate_cannot_create_executable_same_origin_content(){

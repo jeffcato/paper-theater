@@ -1,0 +1,34 @@
+{
+  "service_revision": "pt-services-v1.2.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
+  "fixture_changed": false,
+  "field": "CandidateWrite.dimensions",
+  "rust": "Option<[u32; 2]>",
+  "typescript": "dimensions?: [number, number]",
+  "serialization": "Omitted/null input becomes None; None is omitted on output. Existing JSON without the field remains valid.",
+  "runtime": "Propagate into CandidateFile.file.dimensions and committed ArtifactRef metadata. Existing FileRef bounds apply: PNG writes require dimensions, each 1..4096. This grants no image/production approval.",
+  "rust_callers": "Set dimensions: None for non-image writes; supply Some([width,height]) for PNG.",
+  "verification": {
+    "legacy_and_png_json_roundtrip": "pass",
+    "png_runtime_write_read_commit": "pass",
+    "missing_zero_oversized_png_dimensions": "rejected",
+    "exported_types_with_and_without_dimensions": "pass",
+    "candidate_read_write_tests": 4,
+    "shared_playback_records": 14,
+    "staged_workspace_tests": "pass",
+    "identity_scan": "pass",
+    "provider_calls": 0
+  },
+  "commands": [
+    "cargo test -p pt-contracts --test candidate_write --locked --offline",
+    "cargo test -p pt-production --test candidate_read_contract --locked --offline",
+    "npm run check:contracts"
+  ],
+  "ci_results": "pr-ci-results.json",
+  "verified_code_sha256": {
+    "crates/pt-contracts/src/services.rs": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38",
+    "crates/pt-production/src/runtime/runner.rs": "77b6e349bc6a140699dd13983b796c7ba9a0e51811e8b4297726b9449ed640e7",
+    "packages/contracts/src/services.ts": "8dd5a3b352885c12cbb17f4d96fe271cb1102799d76e5e67eea38154f5293e49"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.1.0",
+  "service_revision": "pt-services-v1.2.0",
   "status": "frozen-diagnostic-boundary",
   "fixture_path": "fixtures/shared/two-scene-v1",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -67,12 +67,11 @@
     "production acceptance verifier integration; production_blockers always retains production-verifier-pending",
     "player consumes frozen shared TypeScript definitions",
     "provider quota/retry/recovery metadata proposal R2-002/R2-005",
-    "CandidateWrite PNG dimensions proposal",
     "actual browser capture and target-device profile validation",
     "live product authorization and inherited accounting reconciliation",
     "one autonomous excerpt and both complete chapters",
     "shared player mount/render/capture; complete studio fixture rendering slice",
-    "PNG dimensions proposal; remaining acoustic executor integration"
+    "Remaining acoustic executor integration"
   ],
   "next_integration_action": "Agent 4 consumes frozen TS records and supplies mount/render/capture; Agent 2 mounts the stored diagnostic package; verify browser rendering while preserving audience rejection.",
   "verification": {
@@ -96,5 +95,10 @@
       "server_restart_checkpoint_reuse": "pass (follow-up browser test against unchanged server code)"
     }
   },
-  "service_handoff": "candidate-read-ready.json"
+  "service_handoff": "candidate-write-ready.json",
+  "service_handoffs": [
+    "candidate-read-ready.json",
+    "candidate-write-ready.json"
+  ],
+  "pr_ci_results": "pr-ci-results.json"
 }

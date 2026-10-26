@@ -326,6 +326,8 @@ pub struct HelperResult {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct CandidateWrite {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub dimensions: Option<[u32; 2]>,
     pub candidate_id: Id,
     pub relative_path: String,
     pub media_type: String,

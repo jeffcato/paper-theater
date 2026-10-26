@@ -16,6 +16,7 @@ impl c::StageExecutor for ReadCandidate {
         let candidate = services
             .write_candidate(
                 c::CandidateWrite {
+                    dimensions: None,
                     candidate_id: input.unit_id,
                     relative_path: "helper/report.json".into(),
                     media_type: "application/json".into(),
@@ -82,6 +83,7 @@ impl c::StageExecutor for ForgedReads {
         let candidate = services
             .write_candidate(
                 c::CandidateWrite {
+                    dimensions: None,
                     candidate_id: input.unit_id,
                     relative_path: "helper/report.json".into(),
                     media_type: "application/json".into(),
@@ -152,6 +154,7 @@ impl c::StageExecutor for CancelledRead {
         let candidate = services
             .write_candidate(
                 c::CandidateWrite {
+                    dimensions: None,
                     candidate_id: input.unit_id,
                     relative_path: "helper/report.json".into(),
                     media_type: "application/json".into(),
@@ -187,4 +190,82 @@ async fn candidate_read_after_cancellation_cannot_return_or_commit_bytes() {
     let snapshot = store.api_snapshot(&run).unwrap();
     assert_eq!(snapshot.state, c::RunState::Cancelled);
     assert!(snapshot.stages.iter().all(|s| s.artifacts.is_empty()));
+}
+
+struct PngCandidate;
+#[async_trait]
+impl c::StageExecutor for PngCandidate {
+    async fn execute(
+        &self,
+        input: c::StageInput,
+        services: &dyn c::RunServices,
+    ) -> Result<c::StageOutput, c::StageError> {
+        let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../fixtures/shared/two-scene-v1/assets/figure.png");
+        let bytes = std::fs::read(path).unwrap();
+        let dimensions = [
+            u32::from_be_bytes(bytes[16..20].try_into().unwrap()),
+            u32::from_be_bytes(bytes[20..24].try_into().unwrap()),
+        ];
+        let candidate = services
+            .write_candidate(
+                c::CandidateWrite {
+                    candidate_id: input.unit_id.clone(),
+                    relative_path: "candidate.png".into(),
+                    media_type: "image/png".into(),
+                    max_bytes: 2 * 1024 * 1024,
+                    provenance: c::Provenance::Diagnostic,
+                    dimensions: Some(dimensions),
+                },
+                bytes.clone(),
+            )
+            .await?;
+        assert_eq!(candidate.file.dimensions, Some(dimensions));
+        assert_eq!(services.read_candidate(&candidate).await?, bytes);
+        for invalid in [None, Some([0, 64]), Some([4097, 64])] {
+            let result = services
+                .write_candidate(
+                    c::CandidateWrite {
+                        candidate_id: format!("{}-invalid", input.unit_id),
+                        relative_path: "invalid.png".into(),
+                        media_type: "image/png".into(),
+                        max_bytes: 2 * 1024 * 1024,
+                        provenance: c::Provenance::Diagnostic,
+                        dimensions: invalid,
+                    },
+                    bytes.clone(),
+                )
+                .await;
+            assert!(matches!(result,Err(c::ServiceError::Invalid(ref e)) if e.code=="dimensions"));
+        }
+        Ok(c::StageOutput {
+            outcome: c::StageOutcome::Complete,
+            artifacts: vec![candidate],
+            decisions: vec![],
+            findings: vec![],
+            cache_keys: vec![],
+            library_updates: vec![],
+            package_candidate: None,
+        })
+    }
+}
+#[tokio::test]
+async fn png_candidate_dimensions_survive_runtime_write_read_and_commit() {
+    let temp = tempfile::tempdir().unwrap();
+    let store = Store::open(temp.path()).unwrap();
+    let run = store.create("png-candidate", &request()).unwrap()["id"]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    let (_, epoch) = store.claim().unwrap().unwrap();
+    let artifacts = Runtime::new(store.clone(), Arc::new(PngCandidate))
+        .execute_stage(&run, epoch, c::Stage::Source)
+        .await
+        .unwrap();
+    assert!(artifacts[0].file.dimensions.is_some());
+    let saved = store.api_snapshot(&run).unwrap();
+    assert_eq!(
+        saved.stages[0].artifacts[0].file.dimensions,
+        artifacts[0].file.dimensions
+    );
 }
