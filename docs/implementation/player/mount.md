@@ -102,9 +102,22 @@ usage typechecks against the pinned 0.186.0 declarations.
   stalls with currentTime frozen at 0 (all check harnesses serve 206).
   Use transport-owned `play()`/`pause()` in harnesses: raw element
   playback bypasses sign intent and once certified a resume that never
-  raised the sign.
+  raised the sign. Guard every media wait with a timeout race: a wedged
+  element must report `media stall` instead of hanging the run, and prefer
+  synchronous recovery (`restart()` cancels the sign with no round-trip).
+- Blackout verification is aperture-scoped, not full-frame: the opening
+  ROI (projected world (0,2,0), below the sign band) must read exactly 0
+  while the column ROI (projected (-9.5,4,1.8)) stays bright. Readback is
+  linear (NoColorSpace target), so thresholds are linear units: column
+  gray ≈0.013, curtain red ≈0.11, sign text ≈0.84.
+- Plaque gap semantics: a sample inside a chunk span but outside every
+  group interval shows that chunk with no highlight (current context);
+  only past-chunk-end silence retains the previous chunk. Either way text
+  stays visible; a fresh view with no chunk yet stays blank.
 - Covered by `npm run check:staging` (evidence `staging.json` +
-  `staging-*.png`) and the mount sign-forwarding test.
+  `staging-*.png`), `npm run check:theater` (paused blackout + read-along,
+  evidence `theater.json` + `theater-*-blackout-paused.png`) and the mount
+  sign-forwarding test.
 - Covered by `npm run check:theater` (combined theater+plaque harness,
   evidence `theater.json` + `theater-{WxH}[-200].png`) and the mount plaque
   wiring tests in `tests/mount.test.ts` (stub metrics; certify nothing).

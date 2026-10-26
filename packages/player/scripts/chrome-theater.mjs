@@ -22,7 +22,10 @@ const fixtureRoot = join(root, "fixtures", "generation", "two-scene-readiness-v2
 const evidenceJson = join(root, "docs", "implementation", "player", "theater.json");
 const shotName = (w, h, s) => join(
   root, "docs", "implementation", "player",
-  s === 2 ? `theater-${w}x${h}-200.png` : s === "extreme" ? `theater-${w}x${h}-extreme.png` : `theater-${w}x${h}.png`,
+  s === 2 ? `theater-${w}x${h}-200.png`
+    : s === "extreme" ? `theater-${w}x${h}-extreme.png`
+      : s === "blackout-paused" ? `theater-${w}x${h}-blackout-paused.png`
+        : `theater-${w}x${h}.png`,
 );
 const CHROME = process.env.PT_CHROME || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const VIEWPORTS = [[960, 540], [1280, 720], [1920, 1080]];
@@ -71,6 +74,13 @@ const text = (v) => new TextDecoder().decode(v);
 function domActive() {
   const el = document.querySelector("#plaque .pl-group.pl-active");
   return el ? el.dataset.groupId : null;
+}
+// A stalled media element reports instead of hanging the run.
+async function guard(promise, ms, label) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error("media stall: " + label)), ms)),
+  ]);
 }
 function lineBoxes() {
   const spans = [...document.querySelectorAll("#plaque .pl-group")];
@@ -122,6 +132,8 @@ function measureLayout(projected) {
   };
 }
 window.__boot = async (W, H) => {
+  window.__progress = [];
+  const prog = (name) => window.__progress.push([name, Math.round(performance.now())]);
   const out = { width: W, height: H };
   const theater = document.querySelector("#theater");
   theater.style.width = W + "px";
@@ -161,6 +173,7 @@ window.__boot = async (W, H) => {
     clock: audio, sink, candidate_id: "theater-run-1", readAlong: { words: track.words, groups: track.groups, container: plaqueEl },
   });
   window.__timeline = timeline;
+  window.__gainAt = (s) => api.evaluate(timeline, s, [...(handle.reveals ?? [])]).stage_gain;
   window.__mount = mount;
   window.__sink = sink;
   window.__pose = api.baseCameraPose();
@@ -180,7 +193,7 @@ window.__boot = async (W, H) => {
   mount.seek(firstGroup.start_sample);
   mount.tick();
   out.firstChunkText = plaqueEl.textContent;
-  await audio.play();
+  await guard(audio.play(), 20000, "playback");
   const t0 = audio.currentTime;
   const frames = [];
   await new Promise((resolve) => {
@@ -306,17 +319,21 @@ window.__boot = async (W, H) => {
     mount.tick();
     return rows;
   };
+  prog("layout1");
   const first = await window.__layout(1);
   out.layout1b = first.layout;
   out.growthSteps1 = first.growth;
   out.projected1 = first.projected;
   out.refitDistance1 = first.distance;
+  prog("extremes1");
   out.extremes1 = await window.__extremes();
+  prog("layout2");
   const second = await window.__layout(2);
   out.layout2b = second.layout;
   out.growthSteps2 = second.growth;
   out.projected2 = second.projected;
   out.refitDistance2 = second.distance;
+  prog("extremes2");
   out.extremes2 = await window.__extremes();
   out.projected = out.projected2;
   // Blackout retention: scan the pure evaluator for a zero-gain sample and
@@ -330,17 +347,97 @@ window.__boot = async (W, H) => {
       break;
     }
   }
+  prog("blackout-scan");
   out.blackoutSample = blackSample;
+  // ROI maxima from the WebGL composite: opening box inside the aperture
+  // below the sign band, house box on the left column, sign box over the
+  // board center. Pixel rows run bottom-up in readback order.
+  const roiMax = (pixels, cx, cy, hw, hh) => {
+    let m = 0;
+    const x0 = Math.max(0, Math.floor(cx - hw));
+    const x1 = Math.min(W - 1, Math.ceil(cx + hw));
+    const y0 = Math.max(0, Math.floor(cy - hh));
+    const y1 = Math.min(H - 1, Math.ceil(cy + hh));
+    for (let y = y0; y <= y1; y++) {
+      for (let x = x0; x <= x1; x++) {
+        const i = ((H - 1 - y) * W + x) * 4;
+        m = Math.max(m, pixels[i] / 255, pixels[i + 1] / 255, pixels[i + 2] / 255);
+      }
+    }
+    return m;
+  };
+  const roiFor = (pose) => {
+    const vp = { width: W, height: H };
+    const [apX, apY] = api.projectToCss([0, 2, 0], pose, vp);
+    const [hoX, hoY] = api.projectToCss([-9.5, 4, 1.8], pose, vp);
+    const [sgX, sgY] = api.projectToCss([0, 6, 3.0], pose, vp);
+    return { apX, apY, hoX, hoY, sgX, sgY };
+  };
+  const captureRois = async () => {
+    const frame = await mount.captureFrame(W, H);
+    const r = roiFor(window.__pose);
+    return {
+      frame,
+      openingMax: roiMax(frame.pixels, r.apX, r.apY, 20, 20),
+      houseMax: roiMax(frame.pixels, r.hoX, r.hoY, 20, 20),
+      signMax: roiMax(frame.pixels, r.sgX, r.sgY, 50, 16),
+    };
+  };
   if (blackSample >= 0) {
     mount.seek(blackSample);
     mount.tick();
-    const dark = await mount.captureFrame(W, H);
-    let darkMax = 0;
-    for (let i = 0; i < dark.pixels.length; i += 4) {
-      darkMax = Math.max(darkMax, dark.pixels[i] / 255, dark.pixels[i + 1] / 255, dark.pixels[i + 2] / 255);
-    }
-    out.blackoutMax = darkMax;
-    out.blackoutPhase = dark.phase;
+    const dark = await captureRois();
+    out.blackoutPhase = dark.frame.phase;
+    out.blackoutOpening = dark.openingMax;
+    out.blackoutHouse = dark.houseMax;
+  }
+  // Paused blackout: deterministic plaque chunk, then play/pause inside
+  // the dark hold so the sign lowers over a black aperture with the house
+  // and read-along staying readable.
+  const audioDiag = () => {
+    const buffered = [];
+    try {
+      for (let i = 0; i < audio.buffered.length; i++) {
+        buffered.push([Math.round(audio.buffered.start(i)), Math.round(audio.buffered.end(i))]);
+      }
+    } catch { /* ignore */ }
+    return {
+      t: +audio.currentTime.toFixed(2), paused: audio.paused, seeking: audio.seeking,
+      ready: audio.readyState, net: audio.networkState, buffered,
+    };
+  };
+  if (blackSample >= 0) {
+    const pb = {};
+    mount.seek(midGroup.start_sample);
+    mount.tick();
+    pb.midText = document.querySelector("#plaque").textContent;
+    mount.seek(blackSample);
+    mount.tick();
+    pb.chunkText = document.querySelector("#plaque").textContent;
+    await guard(mount.play(), 20000, "paused-blackout play");
+    await new Promise((r) => setTimeout(r, 400));
+    mount.pause();
+    await new Promise((r) => setTimeout(r, 1600));
+    pb.audio = audioDiag();
+    const state = mount.tick();
+    pb.sample = state.sample;
+    pb.gain = state.stage_gain;
+    const paused = await captureRois();
+    pb.openingMax = paused.openingMax;
+    pb.houseMax = paused.houseMax;
+    pb.signMax = paused.signMax;
+    pb.pixels_sha256 = await sha256(paused.frame.pixels);
+    const layout = measureLayout();
+    pb.overlayBottom = layout.overlay.top + layout.overlay.height;
+    pb.clearance = (layout.chunkTop ?? 0) - window.__proj.floorY;
+    pb.lines = layout.lineCount;
+    out.pausedBlackout = pb;
+    prog("paused-blackout");
+    // Clean state for screenshots: restart cancels the sign synchronously
+    // (no media round-trip to stall on), then re-pose the mid chunk.
+    mount.restart();
+    mount.seek(midGroup.start_sample);
+    mount.tick();
   }
   out.errors = window.__errors;
   return out;
@@ -372,11 +469,40 @@ window.__poseForExtreme = async () => {
   await new Promise((r) => requestAnimationFrame(r));
   return { active: domActive() };
 };
+window.__posePausedBlackout = async () => {
+  const mount = window.__mount;
+  mount.setReadAlong(true);
+  await window.__layout(2);
+  const stops = window.__stops;
+  let blackSample = -1;
+  for (let s = 0; s <= 3262560; s += 24000) {
+    if (window.__gainAt(s) === 0) {
+      blackSample = s;
+      break;
+    }
+  }
+  mount.seek(stops.mid);
+  mount.tick();
+  mount.seek(blackSample);
+  mount.tick();
+  await guard(mount.play(), 20000, "pose paused-blackout play");
+  await new Promise((r) => setTimeout(r, 400));
+  mount.pause();
+  await new Promise((r) => setTimeout(r, 1600));
+  mount.tick();
+  await new Promise((r) => requestAnimationFrame(r));
+  return { sample: mount.sample };
+};
 // P12 retention + release, after screenshots.
 window.__finish = async (W, H) => {
   const out = {};
   const mount = window.__mount;
   const plaqueEl = document.querySelector("#plaque");
+  // restart() first: the paused-blackout pose leaves the sign lowered, and
+  // canceling it is synchronous (no media round-trip to stall on).
+  mount.restart();
+  mount.seek(window.__stops.mid);
+  mount.tick();
   const frame = await mount.captureFrame(W, H);
   let nonblack = 0;
   for (let i = 0; i < frame.pixels.length; i += 4) {
@@ -579,8 +705,11 @@ try {
       const poseX = await evaluate(`window.__poseForExtreme()`);
       const shotX = await call("Page.captureScreenshot", { format: "png" });
       await writeFile(shotName(W, H, "extreme"), Buffer.from(shotX.data, "base64"));
+      const poseB = await evaluate(`window.__posePausedBlackout()`);
+      const shotB = await call("Page.captureScreenshot", { format: "png" });
+      await writeFile(shotName(W, H, "blackout-paused"), Buffer.from(shotB.data, "base64"));
       const tail = await evaluate(`window.__finish(${W}, ${H})`);
-      Object.assign(out, tail, { pose1, pose2, poseX });
+      Object.assign(out, tail, { pose1, pose2, poseX, poseB });
 
       // Assertions: every number below is measured in the browser.
       const at = (name) => `${tag} ${name}`;
@@ -642,7 +771,23 @@ try {
         check(layout.overlay.top + layout.overlay.height <= H, at(`extreme ${row.def}: in frame`));
       }
       if ((out.blackoutSample ?? -1) >= 0) {
-        check(out.blackoutMax <= 8 / 255, at(`dark hold composites to black (${out.blackoutMax} in ${out.blackoutPhase})`));
+        check(out.blackoutOpening === 0, at(`dark hold blacks the aperture (${out.blackoutOpening})`));
+        check(out.blackoutHouse >= 0.008, at(`house readable in blackout (${out.blackoutHouse})`));
+        const pb = out.pausedBlackout;
+        {
+          // In-gap samples show the containing chunk with no highlight; only
+          // past-chunk-end silence retains. Either way text stays visible.
+          const got = (pb && pb.chunkText) || "";
+          check(pb && got.length > 0, at(`paused blackout keeps plaque text visible (${got.length} chars)`));
+        }
+        check(pb && pb.gain === 0, at("paused stop stays in the dark hold"));
+        check(pb && pb.sample >= 1747698 && pb.sample < 1843698, at(`paused sample inside the hold (${pb && pb.sample})`));
+        check(pb && pb.openingMax === 0, at(`paused aperture stays black (${pb && pb.openingMax})`));
+        check(pb && pb.houseMax >= 0.008, at(`paused house stays readable (${pb && pb.houseMax})`));
+        check(pb && pb.signMax > 0.5, at(`INTERMISSION shows in paused blackout (${pb && pb.signMax})`));
+        check(pb && pb.lines >= 2 && pb.lines <= 3, at(`paused plaque keeps 2-3 lines (${pb && pb.lines})`));
+        check(pb && pb.overlayBottom <= H, at("paused plaque in frame"));
+        check(pb && pb.clearance >= 8, at(`paused floor clearance (${pb && pb.clearance})`));
       } else {
         // No zero-gain sample in this fixture: blackout stays covered by
         // the inventory run, and the skip is recorded, not certified.
@@ -680,8 +825,24 @@ try {
           bottomOverflowPx: +((row.layout.overlay.top + row.layout.overlay.height - H).toFixed(1)),
         })),
         blackoutSample: out.blackoutSample,
-        blackoutMax: out.blackoutMax,
         blackoutPhase: out.blackoutPhase,
+        blackoutOpening: out.blackoutOpening,
+        blackoutHouse: out.blackoutHouse,
+        pausedBlackout: out.pausedBlackout
+          ? {
+            sample: out.pausedBlackout.sample,
+            gain: out.pausedBlackout.gain,
+            openingMax: out.pausedBlackout.openingMax,
+            houseMax: out.pausedBlackout.houseMax,
+            signMax: +out.pausedBlackout.signMax.toFixed(3),
+            chunkChars: (out.pausedBlackout.chunkText ?? "").length,
+            audio: out.pausedBlackout.audio ?? null,
+            lines: out.pausedBlackout.lines,
+            clearance: +out.pausedBlackout.clearance.toFixed(1),
+            overlayBottom: +out.pausedBlackout.overlayBottom.toFixed(1),
+            pixels_sha256: out.pausedBlackout.pixels_sha256,
+          }
+          : null,
         roLoopNotices: out.roLoopNotices ?? 0,
         captureSha: out.capture.pixels_sha256,
         nonblackFraction: +out.capture.nonblackFraction.toFixed(4),

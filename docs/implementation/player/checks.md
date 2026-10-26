@@ -227,3 +227,28 @@ raised the sign (harnesses use transport-owned play/pause). Evidence:
 and audio-clock readings. P12 retained: inventory v2 144/144 (hashes
 refreshed for the new architecture; blackout holds), theater + plaque
 checks green. Zero provider calls; full device acceptance still pending.
+
+## 2026-10-26 — independent house pass with black aperture (P4)
+
+Permanent house geometry (columns, header, apron facing, plaque backing,
+opening curtains — motion still media-driven) moved from the stage target
+into the independent house pass with the INTERMISSION sign; only the
+narrative aperture (back wall, title card, fixture, figures) composites
+under the blackout gain. The inventory records stats rather than blackout
+bounds, so P12 holds with refreshed hashes.
+
+`npm run check:player`: 89/89 pass (no new pure surface; the move is
+browser-only). `npm run check:staging` now asserts aperture-scoped ROIs
+from WebGL readback (linear units): blackout opening exactly 0 with house
+bright at every stop, curtains/title/curtain-travel unchanged.
+`npm run check:theater` adds the paused blackout at all three viewports:
+play/pause inside the dark hold (sample 1763264, gain 0), aperture 0,
+house ≈0.17, sign text ≈0.84, plaque text visible in 3 lines with
+clearance, overlay in frame — evidence `theater-*-blackout-paused.png`
+shows the black aperture, lit house, lowered sign and readable chunk.
+Resolved along the way: a 20-minute hang from an unguarded play promise
+(harness media waits now race a timeout and recover via synchronous
+restart), and an over-strict plaque assertion (in-gap samples show the
+containing chunk unhighlighted; only past-end silence retains).
+`check:inventory --tag v2` 144/144, audience 5/5, identity clean. Zero
+provider calls; full device acceptance still pending.

@@ -5,8 +5,8 @@
     {
       "viewport": "960x540",
       "fontReady": true,
-      "playSeconds": 1.47,
-      "playFrames": 84,
+      "playSeconds": 1.46,
+      "playFrames": 81,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
@@ -77,11 +77,41 @@
         }
       ],
       "blackoutSample": 1752000,
-      "blackoutMax": 0,
       "blackoutPhase": "transition",
+      "blackoutOpening": 0,
+      "blackoutHouse": 0.16862745098039217,
+      "pausedBlackout": {
+        "sample": 1763264,
+        "gain": 0,
+        "openingMax": 0,
+        "houseMax": 0.16862745098039217,
+        "signMax": 0.839,
+        "chunkChars": 37,
+        "audio": {
+          "t": 36.73,
+          "paused": true,
+          "seeking": false,
+          "ready": 2,
+          "net": 1,
+          "buffered": [
+            [
+              0,
+              27
+            ],
+            [
+              32,
+              60
+            ]
+          ]
+        },
+        "lines": 3,
+        "clearance": 23,
+        "overlayBottom": 521.8,
+        "pixels_sha256": "c19e9961ba7a4d91e3a7bd57b9b41a608b8e00ded6bc7051abbd931920a551f7"
+      },
       "roLoopNotices": 5,
-      "captureSha": "653801d30ff585cd32e2e045cc371a57e3ecd4bb8b1b786be003d77e49f91f30",
-      "nonblackFraction": 0.1554,
+      "captureSha": "3e93807f49d7a88731799a0256d0c01ea2c55010926f11a008ea68a30ab0ce92",
+      "nonblackFraction": 0.1702,
       "nodGestures": {
         "1897698": "nod",
         "1903698": "nod",
@@ -93,7 +123,7 @@
       "viewport": "1280x720",
       "fontReady": true,
       "playSeconds": 1.48,
-      "playFrames": 56,
+      "playFrames": 52,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
@@ -164,11 +194,41 @@
         }
       ],
       "blackoutSample": 1752000,
-      "blackoutMax": 0,
       "blackoutPhase": "transition",
+      "blackoutOpening": 0,
+      "blackoutHouse": 0.16862745098039217,
+      "pausedBlackout": {
+        "sample": 1763264,
+        "gain": 0,
+        "openingMax": 0,
+        "houseMax": 0.16862745098039217,
+        "signMax": 0.839,
+        "chunkChars": 58,
+        "audio": {
+          "t": 36.73,
+          "paused": true,
+          "seeking": false,
+          "ready": 2,
+          "net": 1,
+          "buffered": [
+            [
+              0,
+              28
+            ],
+            [
+              32,
+              60
+            ]
+          ]
+        },
+        "lines": 3,
+        "clearance": 30.7,
+        "overlayBottom": 669.3,
+        "pixels_sha256": "ad77d5359da03b6010dc648819e400b448b636bdb1e88bf3e10fe056d45ce18f"
+      },
       "roLoopNotices": 2,
-      "captureSha": "333bf8bf9afae4b4d130a776c185b100b02b55caaf3e2e8026bdd1f7cf4a7d40",
-      "nonblackFraction": 0.1914,
+      "captureSha": "25e2c8edde1ec3eb6e3a3a9624ddcfd83aaf2e251dd46bb1f9bc753e9d7e0a8e",
+      "nonblackFraction": 0.219,
       "nodGestures": {
         "1897698": "nod",
         "1903698": "nod",
@@ -179,8 +239,8 @@
     {
       "viewport": "1920x1080",
       "fontReady": true,
-      "playSeconds": 1.48,
-      "playFrames": 30,
+      "playSeconds": 1.49,
+      "playFrames": 24,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
@@ -251,11 +311,41 @@
         }
       ],
       "blackoutSample": 1752000,
-      "blackoutMax": 0,
       "blackoutPhase": "transition",
+      "blackoutOpening": 0,
+      "blackoutHouse": 0.16862745098039217,
+      "pausedBlackout": {
+        "sample": 1763264,
+        "gain": 0,
+        "openingMax": 0,
+        "houseMax": 0.16862745098039217,
+        "signMax": 0.839,
+        "chunkChars": 93,
+        "audio": {
+          "t": 36.73,
+          "paused": true,
+          "seeking": false,
+          "ready": 2,
+          "net": 1,
+          "buffered": [
+            [
+              0,
+              27
+            ],
+            [
+              32,
+              60
+            ]
+          ]
+        },
+        "lines": 3,
+        "clearance": 46.7,
+        "overlayBottom": 974.8,
+        "pixels_sha256": "7304e2ff58636b5463d05c41949b6f1c8710782752f67af71ed9ac8413c31a9c"
+      },
       "roLoopNotices": 6,
-      "captureSha": "5a9bdc897907343e9060aadca3640556d727a89657a3d3f4385a5ce647f69668",
-      "nonblackFraction": 0.2348,
+      "captureSha": "73e482a1328e7344609273c0dcc78bf362860ab5c25f696893aaee5b8961db77",
+      "nonblackFraction": 0.2719,
       "nodGestures": {
         "1897698": "nod",
         "1903698": "nod",

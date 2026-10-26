@@ -81,6 +81,29 @@ window.__boot = async () => {
     t: +audio.currentTime.toFixed(3), paused: audio.paused,
     seeking: audio.seeking, ended: audio.ended, ready: audio.readyState,
   });
+  // ROI maxima from the WebGL composite (stage x gain + lit house): the
+  // opening box sits inside the narrative aperture below the sign band,
+  // the house box sits on the left column. Readback is linear
+  // (NoColorSpace target): column gray 0x23 reads ~0.013, curtain red
+  // ~0.11, sign text ~0.84 — thresholds below are linear units.
+  const roiMax = (pixels, cx, cy, half) => {
+    let m = 0;
+    const x0 = Math.max(0, Math.floor(cx - half));
+    const x1 = Math.min(${W} - 1, Math.ceil(cx + half));
+    const y0 = Math.max(0, Math.floor(cy - half));
+    const y1 = Math.min(${H} - 1, Math.ceil(cy + half));
+    for (let y = y0; y <= y1; y++) {
+      for (let x = x0; x <= x1; x++) {
+        const i = ((${H} - 1 - y) * ${W} + x) * 4;
+        m = Math.max(m, pixels[i] / 255, pixels[i + 1] / 255, pixels[i + 2] / 255);
+      }
+    }
+    return m;
+  };
+  const poseForRoi = api.baseCameraPose();
+  const vp = { width: ${W}, height: ${H} };
+  const [apX, apY] = api.projectToCss([0, 2, 0], poseForRoi, vp);
+  const [hoX, hoY] = api.projectToCss([-9.5, 4, 1.8], poseForRoi, vp);
   const at = async (name, sample) => {
     mount.seek(sample);
     const state = mount.tick();
@@ -93,6 +116,8 @@ window.__boot = async () => {
       sample: state.sample, phase: state.phase, curtain: state.curtain_open_ratio,
       title: state.title_visible, gain: state.stage_gain,
       pixels_sha256: await sha256(frame.pixels), maxChannel,
+      openingMax: roiMax(frame.pixels, apX, apY, 20),
+      houseMax: roiMax(frame.pixels, hoX, hoY, 20),
       audio: audioState(),
     };
     await snap(name);
@@ -327,9 +352,16 @@ try {
 
   // State linkage per stop (evaluated values behind the rendered frames).
   check(out.title.phase === "opening" && out.title.title === true && out.title.curtain === 0, "opening title stop");
+  for (const key of ["title", "curtainMid", "scene", "closingMid", "end"]) {
+    check(out[key].houseMax >= 0.008, `${key}: house readable (${out[key].houseMax})`);
+  }
   check(out.curtainMid.phase === "scene" && out.curtainMid.curtain > 0.35 && out.curtainMid.curtain < 0.65, `curtain opens over scene-1 (${out.curtainMid.curtain})`);
   check(out.scene.phase === "scene" && out.scene.curtain === 1 && out.scene.title === false, "open scene stop");
-  check(out.blackout.gain === 0 && out.blackout.maxChannel === 0, `blackout composites black (${out.blackout.maxChannel})`);
+  // Black narrative aperture alongside readable house: the opening box is
+  // black (gain 0 covers every stage contribution) while the column box
+  // stays lit through the independent pass.
+  check(out.blackout.gain === 0 && out.blackout.openingMax === 0, `aperture blacks out (${out.blackout.openingMax})`);
+  check(out.blackout.houseMax >= 0.008, `house stays readable (${out.blackout.houseMax})`);
   check(out.closingMid.phase === "closing" && out.closingMid.curtain > 0.35 && out.closingMid.curtain < 0.65, `curtain closes (${out.closingMid.curtain})`);
   check(out.end.phase === "closing" && out.end.curtain === 0, "end stop");
   // Sign motion is visible across pause/resume/restart (screenshot hashes).
@@ -351,6 +383,7 @@ try {
         {
           sample: out[k].sample, phase: out[k].phase, curtain: +out[k].curtain.toFixed(3),
           title: out[k].title, gain: out[k].gain, pixels_sha256: out[k].pixels_sha256,
+          openingMax: out[k].openingMax, houseMax: out[k].houseMax,
           audio: out[k].audio,
         },
       ]),

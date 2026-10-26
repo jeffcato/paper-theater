@@ -505,12 +505,13 @@ export async function createThreeSink(
 
   // Composite pass: stage color multiplied by the blackout gain.
   // Neutral stage architecture (always built; the calibration flag covers
-  // only the diagnostic fixture): inner backdrop, columns, header, apron
-  // facing, plaque backing, opening curtains and the title card. Opaque
-  // unlit materials composite through the stage target, so the blackout
-  // gain covers them like every other stage contribution. The profile
-  // shell/curtain alphas stay reserved for the future independently-lit
-  // house pass; only the pause-driven sign renders there today.
+  // only the diagnostic fixture): the narrative aperture (inner back wall,
+  // title card) composites through the stage target under the blackout
+  // gain, while permanent house geometry (columns, header, apron facing,
+  // plaque backing, opening curtains) and the pause-driven sign render in
+  // the independent house pass, staying readable through blackouts. All
+  // opaque unlit materials. The profile shell/curtain alphas stay reserved
+  // for future house lighting moods.
   const staging = buildStaging(
     THREE,
     options.title ?? { heading: "Paper Theater", sub: "" },
@@ -743,12 +744,13 @@ interface StagingRig {
 }
 
 /**
- * Neutral stage architecture plus the house sign rig, all drawn in code
- * (shell.json ships style neutral-v1 with null images): backdrop, columns,
- * header, apron facing, plaque backing, opening curtains, a title card,
- * and the rope-hung INTERMISSION board. Stage nodes composite through the
- * blackout gain; only the sign rig enters the independently-lit house
- * scene, driven by the pause clock through setSign.
+ * Neutral stage architecture plus the house rigs, all drawn in code
+ * (shell.json ships style neutral-v1 with null images). The narrative
+ * aperture (back wall, title card) composites through the blackout gain;
+ * permanent house geometry (columns, header, apron facing, plaque backing,
+ * opening curtains — motion still media-driven) and the rope-hung
+ * INTERMISSION board (pause-driven through setSign) enter the
+ * independently-lit house scene and stay readable through blackouts.
  */
 function buildStaging(
   THREE: typeof import("three"),
@@ -783,12 +785,15 @@ function buildStaging(
     return mesh;
   };
 
+  // Narrative aperture: back wall (V3 +Z-away negates into three.js
+  // distance, as F*M*F maps actor positions) plus the title card. These
+  // composite through the blackout gain.
   const stage: import("three").Mesh[] = [
-    // Back wall: V3 +Z-away negates into three.js distance (as F*M*F maps
-    // actor positions), so the inner layer stands behind the players at
-    // -inner instead of occluding them. Front architecture keeps
-    // three.js-near depths matching the verified fixture space.
     flat(22, 14, 0x101010, 0, 4, -LAYER_Z.inner),
+  ];
+  // Permanent house geometry: proscenium, apron facing, plaque backing.
+  // Depths keep three.js-near values matching the verified fixture space.
+  const house: import("three").Object3D[] = [
     flat(16, 3, 0x181818, 0, -1.5, LAYER_Z.apron),
     flat(PLAQUE.x[1] - PLAQUE.x[0], PLAQUE.y[1] - PLAQUE.y[0], 0x0c0c0c, 0, (PLAQUE.y[0] + PLAQUE.y[1]) / 2, LAYER_Z.plaque),
   ];
@@ -796,11 +801,11 @@ function buildStaging(
   for (const side of [-1, 1]) {
     const column = new THREE.Mesh(headerGeo(), basic(0x232323));
     column.position.set(side * 9.5, 4, LAYER_Z.columns);
-    stage.push(column);
+    house.push(column);
   }
   const header = new THREE.Mesh(track(new THREE.BoxGeometry(22, 2, 0.6)), basic(0x232323));
   header.position.set(0, 10, LAYER_Z.columns);
-  stage.push(header);
+  house.push(header);
 
   const curtainTexture = codeTexture(256, 288, (ctx) => {
     ctx.fillStyle = "#5e1f1f";
@@ -824,7 +829,7 @@ function buildStaging(
   curtainL.position.set(curtainPanelX("left", 0), curtainY, 2.2);
   const curtainR = new THREE.Mesh(curtainGeo, curtainMatR);
   curtainR.position.set(curtainPanelX("right", 0), curtainY, 2.2);
-  stage.push(curtainL, curtainR);
+  house.push(curtainL, curtainR);
 
   const titleTexture = codeTexture(512, 160, (ctx) => {
     ctx.fillStyle = "#131009";
@@ -883,9 +888,10 @@ function buildStaging(
   board.position.set(0, signBoardY(1), SIGN_BOUNDS.z);
   signGroup.add(board, ropeL, ropeR);
   signGroup.visible = false;
+  house.push(signGroup);
   return {
     stage,
-    house: [signGroup],
+    house,
     resources,
     curtainL,
     curtainR,
