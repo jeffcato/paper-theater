@@ -23,3 +23,7 @@ tempfile = "3"
 [[test]]
 name = "candidate_read_contract"
 path = "../../tools/integration/candidate_read_contract.rs"
+
+[[test]]
+name = "wav_conformance"
+path = "../../tools/integration/wav_conformance.rs"

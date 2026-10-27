@@ -348,8 +348,17 @@ fn legacy_matrix_and_receipt_identities_are_preserved() {
     assert!(r.validate(&acceptance_binding_checker()).is_err());
     let old = acceptance_check_matrix_for_version("pt-acceptance-required-v1").unwrap();
     let current = acceptance_check_matrix();
+    assert_eq!(
+        acceptance_check_matrix_for_version("pt-acceptance-required-v2")
+            .unwrap()
+            .checks
+            .iter()
+            .filter(|c| c.implemented)
+            .count(),
+        4
+    );
     assert_eq!(old.checks.iter().filter(|c| c.implemented).count(), 3);
-    assert_eq!(current.checks.iter().filter(|c| c.implemented).count(), 4);
+    assert_eq!(current.checks.iter().filter(|c| c.implemented).count(), 5);
     for scope in [
         AcceptanceScope::Diagnostic,
         AcceptanceScope::AutonomousExcerpt,

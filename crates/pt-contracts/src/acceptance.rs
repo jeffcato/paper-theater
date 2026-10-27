@@ -2,9 +2,11 @@
 use crate::*;
 use serde::{Deserialize, Serialize};
 
-pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v2";
-pub const ACCEPTANCE_REPORT_VERSION: u32 = 3;
+pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v3";
+pub const ACCEPTANCE_REPORT_VERSION: u32 = 4;
 const MATRIX_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v3.json");
+const MATRIX_V2_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v2.json");
 const MATRIX_V1_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v1.json");
@@ -36,7 +38,8 @@ pub fn acceptance_check_matrix() -> AcceptanceCheckMatrix {
 pub fn acceptance_check_matrix_for_version(version: &str) -> ContractResult<AcceptanceCheckMatrix> {
     let bytes = match version {
         "pt-acceptance-required-v1" => MATRIX_V1_BYTES,
-        "pt-acceptance-required-v2" => MATRIX_BYTES,
+        "pt-acceptance-required-v2" => MATRIX_V2_BYTES,
+        "pt-acceptance-required-v3" => MATRIX_BYTES,
         _ => {
             return invalid(
                 "acceptance_report",
@@ -205,12 +208,13 @@ pub struct AcceptanceCheckerIdentity {
 }
 pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
     AcceptanceCheckerIdentity {
-        version: "pt-acceptance-bindings-v3".into(),
+        version: "pt-acceptance-bindings-v4".into(),
         sha256: digest(
             &[
                 include_bytes!("acceptance.rs").as_slice(),
                 include_bytes!("acceptance_source.rs").as_slice(),
                 include_bytes!("source_slice.rs").as_slice(),
+                include_bytes!("wav.rs").as_slice(),
                 include_bytes!("validate.rs").as_slice(),
                 include_bytes!("common.rs").as_slice(),
                 include_bytes!("playback.rs").as_slice(),
@@ -220,6 +224,7 @@ pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
                 include_bytes!("../../../Cargo.lock").as_slice(),
                 MATRIX_BYTES,
                 MATRIX_V1_BYTES,
+                MATRIX_V2_BYTES,
             ]
             .concat(),
         ),
@@ -247,6 +252,9 @@ pub enum AcceptanceReason {
     SourceCoverageOrder,
     SourceCoverageOutsideScope,
     SourceContentMismatch,
+    InvalidAudioFormat,
+    AudioDomainMismatch,
+    AudioFrameCountMismatch,
 }
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(deny_unknown_fields)]
@@ -298,6 +306,8 @@ pub struct AcceptanceVerificationReport {
     pub binding: AcceptanceBinding,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source_slice: Option<SourceSliceBindingV1>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub delivery_audio: Option<DeliveryAudioObservationV1>,
     pub checker: AcceptanceCheckerIdentity,
     pub declared_check_ids: Vec<Id>,
     pub requirements: Vec<AcceptanceRequirement>,
@@ -400,6 +410,20 @@ pub(crate) struct Reads {
     total: u64,
 }
 impl Reads {
+    fn bound<T: serde::de::DeserializeOwned + Serialize>(
+        &mut self,
+        root: &Path,
+        file: &FileRef,
+        value: &T,
+        role: &str,
+    ) -> Result<(), AcceptanceReason> {
+        let b = self.read(root, file, role, 32 * 1024 * 1024)?;
+        let disk: T = serde_json::from_slice(&b).map_err(|_| AcceptanceReason::InvalidBinding)?;
+        if serde_json::to_value(disk).ok() != serde_json::to_value(value).ok() {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+        Ok(())
+    }
     pub(crate) fn read(
         &mut self,
         root: &Path,
@@ -650,6 +674,7 @@ fn verify_acceptance_internal(
     let mut package_reasons = Vec::new();
     let mut binding_reasons = Vec::new();
     let mut source_read_error = AcceptanceReason::MissingBytes;
+    let mut inspected_audio = Err(AcceptanceReason::MissingBytes);
     let payload = doc
         .manifest
         .entries
@@ -663,8 +688,22 @@ fn verify_acceptance_internal(
         } else {
             32 * 1024 * 1024
         };
-        if let Err(r) = reads.read(package_root, f, "payload", limit) {
-            package_reasons.push(r);
+        match reads.read(package_root, f, "payload", limit) {
+            Ok(bytes) => {
+                if f == &doc.manifest.entries.audio {
+                    inspected_audio = inspect_pcm16_wav(
+                        &mut std::io::Cursor::new(bytes.as_slice()),
+                        bytes.len() as u64,
+                    )
+                    .map_err(|_| AcceptanceReason::InvalidAudioFormat);
+                }
+            }
+            Err(r) => {
+                if f == &doc.manifest.entries.audio {
+                    inspected_audio = Err(r);
+                }
+                package_reasons.push(r);
+            }
         }
     }
     if let Err(r) = reads.read(
@@ -1178,30 +1217,13 @@ fn verify_acceptance_internal(
             {
                 return Err(AcceptanceReason::InvalidBinding);
             }
-            fn bound<T: serde::de::DeserializeOwned + Serialize>(
-                reads: &mut Reads,
-                root: &Path,
-                file: &FileRef,
-                value: &T,
-                role: &str,
-            ) -> Result<(), AcceptanceReason> {
-                let b = reads.read(root, file, role, 32 * 1024 * 1024)?;
-                let disk: T =
-                    serde_json::from_slice(&b).map_err(|_| AcceptanceReason::InvalidBinding)?;
-                if serde_json::to_value(disk).ok() != serde_json::to_value(value).ok() {
-                    return Err(AcceptanceReason::InvalidBinding);
-                }
-                Ok(())
-            }
-            bound(
-                &mut reads,
+            reads.bound(
                 package_root,
                 &doc.manifest.entries.timeline,
                 &doc.timeline,
                 "source_coverage_timeline",
             )?;
-            bound(
-                &mut reads,
+            reads.bound(
                 package_root,
                 &doc.manifest.entries.read_along,
                 &doc.read_along,
@@ -1247,6 +1269,57 @@ fn verify_acceptance_internal(
     } else {
         Ok(())
     };
+    let mut delivery_audio = None;
+    let audio_result = if required.iter().any(|r| r.check_id == "audio-format-review") {
+        (|| {
+            let info = inspected_audio.clone()?;
+            if doc.manifest.schema_version != 1
+                || doc.timeline.schema_version != 1
+                || policy.checker_sha256 != checker.sha256
+                || manifest_bytes
+                    .as_ref()
+                    .and_then(|b| serde_json::from_slice::<Manifest>(b).ok())
+                    .and_then(|m| serde_json::to_value(m).ok())
+                    != serde_json::to_value(&doc.manifest).ok()
+            {
+                return Err(AcceptanceReason::InvalidBinding);
+            }
+            reads.bound(
+                package_root,
+                &doc.manifest.entries.timeline,
+                &doc.timeline,
+                "audio_format_timeline",
+            )?;
+            delivery_audio = Some(DeliveryAudioObservationV1 {
+                schema_version: 1,
+                master_sha256: doc.manifest.entries.audio.sha256.clone(),
+                timeline_sha256: doc.manifest.entries.timeline.sha256.clone(),
+                wav_label: doc.manifest.entries.audio.media_type == "audio/wav",
+                format: info.clone(),
+                manifest_sample_rate: doc.manifest.sample_rate,
+                timeline_sample_rate: doc.timeline.sample_rate,
+                manifest_frame_count: doc.manifest.sample_count,
+                timeline_frame_count: doc.timeline.sample_count,
+            });
+            if doc.manifest.entries.audio.media_type != "audio/wav" {
+                return Err(AcceptanceReason::InvalidAudioFormat);
+            }
+            if info.require_delivery_domain().is_err()
+                || doc.manifest.sample_rate != 48000
+                || doc.timeline.sample_rate != 48000
+            {
+                return Err(AcceptanceReason::AudioDomainMismatch);
+            }
+            if info.frame_count != doc.manifest.sample_count
+                || info.frame_count != doc.timeline.sample_count
+            {
+                return Err(AcceptanceReason::AudioFrameCountMismatch);
+            }
+            Ok(())
+        })()
+    } else {
+        Ok(())
+    };
     let consumed = reads
         .consumed
         .iter()
@@ -1262,6 +1335,7 @@ fn verify_acceptance_internal(
                 "package-byte-integrity" => package_reasons.clone(),
                 "required-check-coverage" => coverage_reasons.clone(),
                 "complete-source-coverage" => source_result.err().into_iter().collect(),
+                "audio-format-review" => audio_result.err().into_iter().collect(),
                 _ => binding_reasons.clone(),
             }
         } else {
@@ -1284,6 +1358,11 @@ fn verify_acceptance_internal(
                     Err(
                         AcceptanceReason::MissingSourceMapping | AcceptanceReason::MissingBytes,
                     ) => ReviewOutcome::Missing,
+                    Err(_) => ReviewOutcome::Fail,
+                },
+                "audio-format-review" => match audio_result {
+                    Ok(()) => ReviewOutcome::Pass,
+                    Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
                     Err(_) => ReviewOutcome::Fail,
                 },
                 _ => binding_status,
@@ -1380,6 +1459,7 @@ fn verify_acceptance_internal(
             acceptance_sha256,
             binding,
             source_slice: source_policy.map(|p| p.summary()),
+            delivery_audio,
             checker,
             declared_check_ids: declared.clone(),
             requirements: required,
@@ -1405,6 +1485,7 @@ impl AcceptanceVerificationReport {
                 (1, "pt-acceptance-required-v1")
                     | (2, "pt-acceptance-required-v2")
                     | (3, "pt-acceptance-required-v2")
+                    | (4, "pt-acceptance-required-v3")
             ),
             "acceptance_report",
             "version",
@@ -1433,6 +1514,7 @@ impl AcceptanceVerificationReport {
                 (1, "pt-acceptance-bindings-v1")
                     | (2, "pt-acceptance-bindings-v2")
                     | (3, "pt-acceptance-bindings-v3")
+                    | (4, "pt-acceptance-bindings-v4")
             ),
             "acceptance_report",
             "checker.version",
@@ -1440,12 +1522,29 @@ impl AcceptanceVerificationReport {
         )?;
         if let Some(slice) = &self.source_slice {
             require(
-                self.schema_version == 3,
+                matches!(self.schema_version, 3 | 4),
                 "acceptance_report",
                 "source_slice",
                 "archived reports cannot claim source relationships",
             )?;
             slice.validate_for_binding(&self.binding)?;
+        }
+        if let Some(audio) = &self.delivery_audio {
+            require(
+                self.schema_version == 4,
+                "acceptance_report",
+                "delivery_audio",
+                "archived reports cannot claim audio format execution",
+            )?;
+            audio.validate()?;
+            require(
+                audio.master_sha256 == self.binding.master_sha256
+                    && audio.manifest_sample_rate == self.binding.delivery_sample_rate
+                    && audio.manifest_frame_count == self.binding.delivery_sample_count,
+                "acceptance_report",
+                "delivery_audio",
+                "audio observation differs from candidate delivery binding",
+            )?;
         }
         let binding = &self.binding;
         for h in [
@@ -1591,6 +1690,46 @@ impl AcceptanceVerificationReport {
                     "verified relationship must consume full source, slice and mapping bytes",
                 )?;
             }
+        }
+        if let Some(audio) = &self.delivery_audio {
+            let row = self
+                .checks
+                .iter()
+                .find(|c| c.check_id == "audio-format-review")
+                .ok_or_else(|| ContractError {
+                    code: "acceptance_report".into(),
+                    field: "delivery_audio".into(),
+                    message: "audio observation needs an executed audio check".into(),
+                })?;
+            require(
+                [&audio.master_sha256, &audio.timeline_sha256]
+                    .into_iter()
+                    .all(|h| row.consumed_sha256s.contains(h)),
+                "acceptance_report",
+                "delivery_audio",
+                "observed audio/timeline must consume verified bytes",
+            )?;
+            if row.outcome == ReviewOutcome::Pass {
+                require(
+                    audio.matches_delivery(),
+                    "acceptance_report",
+                    "delivery_audio",
+                    "audio pass requires matching physical delivery domain and frame count",
+                )?;
+            }
+        }
+        if self.schema_version == 4
+            && self
+                .checks
+                .iter()
+                .any(|c| c.check_id == "audio-format-review" && c.outcome == ReviewOutcome::Pass)
+        {
+            require(
+                self.delivery_audio.is_some(),
+                "acceptance_report",
+                "delivery_audio",
+                "audio pass needs actual inspection metadata",
+            )?;
         }
         for o in &self.observations {
             require(

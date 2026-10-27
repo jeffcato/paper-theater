@@ -63,3 +63,7 @@ import type {AcceptanceVerificationPolicyV2,SourceSliceRelationshipV1,SourceSlic
 import {validateAcceptanceVerificationPolicyV2,validateSourceSliceRelationshipV1} from '@paper-theater/contracts';
 export function readSourceSlice(policy:unknown,relationship:unknown):SourceSliceRelationshipV1{validateAcceptanceVerificationPolicyV2(policy);const trusted:AcceptanceVerificationPolicyV2=policy;validateSourceSliceRelationshipV1(relationship,trusted);return relationship;}
 export function mappedSourceSummary(report:AcceptanceVerificationReport):SourceSliceBindingV1|null{return report.source_slice??null;}
+
+import type {DeliveryAudioObservationV1,Pcm16WavInfo} from '@paper-theater/contracts';
+import {validateDeliveryAudioObservationV1} from '@paper-theater/contracts';
+export function deliveryObservation(raw:unknown):Pcm16WavInfo{validateDeliveryAudioObservationV1(raw);const audio:DeliveryAudioObservationV1=raw;return audio.format;}
