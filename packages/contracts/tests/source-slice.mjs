@@ -1,0 +1,6 @@
+import assert from 'node:assert/strict';import {spawnSync} from 'node:child_process';import * as api from '@paper-theater/contracts';
+const out=spawnSync('cargo',['run','-p','pt-contracts','--example','source-slice-fixtures','--locked','--offline','--quiet'],{encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(out.status,0,out.stderr);const data=JSON.parse(out.stdout);
+for(const c of data.cases){let error;try{api.validateAcceptanceVerificationReport(c.report,c.checker??data.checker);}catch(e){error=e;}assert.equal(!error,c.valid,c.id+': '+error?.message);if(error)assert(error.code&&error.field);}
+for(const c of data.records){let error;try{if(c.kind==='policy')api.validateAcceptanceVerificationPolicyV2(c.wire);else api.validateSourceSliceRelationshipV1(c.wire,data.expected_policy);}catch(e){error=e;}assert.equal(!error,c.valid,c.id+': '+error?.message);if(error)assert(error.code&&error.field);}
+assert.equal(data.cases[0].report.source_slice.local_origin,0);assert(data.cases[0].report.source_slice.global_origin>600);assert.equal(data.cases[0].report.production_approved,false);
+console.log(`source slices: ${data.cases.length} Rust-executed report cases and ${data.records.length} policy/relationship records agree; global coordinates remain private`);

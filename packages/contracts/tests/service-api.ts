@@ -58,3 +58,8 @@ export function preserveOldImplementor(s:Omit<RunServices,'issue_provider_v2'|'e
 
 // Archive validation and scoped accessors retain explicit matrix identities.
 export const legacyChapterRequirements=requiredAcceptanceChecks('production_chapter','pt-acceptance-required-v1');
+
+import type {AcceptanceVerificationPolicyV2,SourceSliceRelationshipV1,SourceSliceBindingV1} from '@paper-theater/contracts';
+import {validateAcceptanceVerificationPolicyV2,validateSourceSliceRelationshipV1} from '@paper-theater/contracts';
+export function readSourceSlice(policy:unknown,relationship:unknown):SourceSliceRelationshipV1{validateAcceptanceVerificationPolicyV2(policy);const trusted:AcceptanceVerificationPolicyV2=policy;validateSourceSliceRelationshipV1(relationship,trusted);return relationship;}
+export function mappedSourceSummary(report:AcceptanceVerificationReport):SourceSliceBindingV1|null{return report.source_slice??null;}

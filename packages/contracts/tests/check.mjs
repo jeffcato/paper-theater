@@ -32,3 +32,5 @@ assert.equal(acceptance.status,0,acceptance.stdout+acceptance.stderr);process.st
 
 const providerService=spawnSync(process.execPath,['packages/contracts/tests/provider-service.mjs'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
 assert.equal(providerService.status,0,providerService.stdout+providerService.stderr);process.stdout.write(providerService.stdout);
+
+const sourceSlice=spawnSync(process.execPath,['packages/contracts/tests/source-slice.mjs'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(sourceSlice.status,0,sourceSlice.stdout+sourceSlice.stderr);process.stdout.write(sourceSlice.stdout);

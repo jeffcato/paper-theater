@@ -22,9 +22,25 @@ fn main() {
     }
     let run = || -> Result<_, Box<dyn std::error::Error>> {
         let d: PlaybackDocument = json(&args[1])?;
-        let p: AcceptanceVerificationPolicy = json(&args[2])?;
+        let p: serde_json::Value = json(&args[2])?;
         let evidence: Vec<AcceptanceEvidenceProposal> = json(&args[3])?;
-        let v = verify_acceptance(&d, Path::new(&args[0]), &p, &evidence, Path::new(&args[4]))?;
+        let v = match p.get("schema_version").and_then(|v| v.as_u64()) {
+            Some(1) => verify_acceptance(
+                &d,
+                Path::new(&args[0]),
+                &serde_json::from_value::<AcceptanceVerificationPolicy>(p)?,
+                &evidence,
+                Path::new(&args[4]),
+            )?,
+            Some(2) => verify_acceptance_v2(
+                &d,
+                Path::new(&args[0]),
+                &serde_json::from_value::<AcceptanceVerificationPolicyV2>(p)?,
+                &evidence,
+                Path::new(&args[4]),
+            )?,
+            _ => return Err("unsupported private policy version".into()),
+        };
         v.recheck_inputs()?;
         v.report().validate(&acceptance_binding_checker())?;
         Ok(v)

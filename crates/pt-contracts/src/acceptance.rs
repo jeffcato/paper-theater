@@ -3,7 +3,7 @@ use crate::*;
 use serde::{Deserialize, Serialize};
 
 pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v2";
-pub const ACCEPTANCE_REPORT_VERSION: u32 = 2;
+pub const ACCEPTANCE_REPORT_VERSION: u32 = 3;
 const MATRIX_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v2.json");
 const MATRIX_V1_BYTES: &[u8] =
@@ -205,11 +205,12 @@ pub struct AcceptanceCheckerIdentity {
 }
 pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
     AcceptanceCheckerIdentity {
-        version: "pt-acceptance-bindings-v2".into(),
+        version: "pt-acceptance-bindings-v3".into(),
         sha256: digest(
             &[
                 include_bytes!("acceptance.rs").as_slice(),
                 include_bytes!("acceptance_source.rs").as_slice(),
+                include_bytes!("source_slice.rs").as_slice(),
                 include_bytes!("validate.rs").as_slice(),
                 include_bytes!("common.rs").as_slice(),
                 include_bytes!("playback.rs").as_slice(),
@@ -295,6 +296,8 @@ pub struct AcceptanceVerificationReport {
     pub manifest_sha256: Option<Digest>,
     pub acceptance_sha256: Option<Digest>,
     pub binding: AcceptanceBinding,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_slice: Option<SourceSliceBindingV1>,
     pub checker: AcceptanceCheckerIdentity,
     pub declared_check_ids: Vec<Id>,
     pub requirements: Vec<AcceptanceRequirement>,
@@ -391,13 +394,13 @@ struct ReadPin {
     max: u64,
 }
 #[derive(Default)]
-struct Reads {
+pub(crate) struct Reads {
     pins: Vec<ReadPin>,
     consumed: Vec<AcceptanceConsumedHash>,
     total: u64,
 }
 impl Reads {
-    fn read(
+    pub(crate) fn read(
         &mut self,
         root: &Path,
         file: &FileRef,
@@ -592,6 +595,35 @@ pub fn verify_acceptance(
     policy: &AcceptanceVerificationPolicy,
     evidence: &[AcceptanceEvidenceProposal],
     private_root: &Path,
+) -> ContractResult<PrivateAcceptanceVerification> {
+    verify_acceptance_internal(doc, package_root, policy, evidence, private_root, None)
+}
+/// Requires an explicit runtime-pinned relationship; never falls back to file-local success.
+pub fn verify_acceptance_v2(
+    doc: &PlaybackDocument,
+    package_root: &Path,
+    policy: &AcceptanceVerificationPolicyV2,
+    evidence: &[AcceptanceEvidenceProposal],
+    private_root: &Path,
+) -> ContractResult<PrivateAcceptanceVerification> {
+    policy.validate()?;
+    verify_acceptance_internal(
+        doc,
+        package_root,
+        &policy.base,
+        evidence,
+        private_root,
+        Some(policy),
+    )
+}
+
+fn verify_acceptance_internal(
+    doc: &PlaybackDocument,
+    package_root: &Path,
+    policy: &AcceptanceVerificationPolicy,
+    evidence: &[AcceptanceEvidenceProposal],
+    private_root: &Path,
+    source_policy: Option<&AcceptanceVerificationPolicyV2>,
 ) -> ContractResult<PrivateAcceptanceVerification> {
     policy.validate()?;
     require(
@@ -878,6 +910,18 @@ pub fn verify_acceptance(
             }
         }
     }
+    if policy.scope != AcceptanceScope::Diagnostic {
+        if let Some(p) = source_policy {
+            if payload.iter().any(|f| {
+                f.sha256 == p.full_source.file.sha256
+                    || p.relationship
+                        .as_ref()
+                        .is_some_and(|m| m.sha256 == f.sha256)
+            }) {
+                binding_reasons.push(AcceptanceReason::PrivateEvidenceExported);
+            }
+        }
+    }
     let mut observations = Vec::new();
     for f in &doc.acceptance.findings {
         let mut reasons = if f.evidence.is_empty() {
@@ -1051,12 +1095,20 @@ pub fn verify_acceptance(
         .collect::<BTreeSet<_>>()
         .into_iter()
         .collect::<Vec<_>>();
+    let mut effective_extra = policy.additional_required_check_ids.clone();
+    if source_policy.is_some()
+        && !effective_extra
+            .iter()
+            .any(|id| id == "complete-source-coverage")
+    {
+        effective_extra.push("complete-source-coverage".into());
+    }
     let matrix = acceptance_check_matrix();
     let required = requirements(
         &matrix,
         policy.scope,
         &doc.acceptance.required_check_ids,
-        &policy.additional_required_check_ids,
+        &effective_extra,
         &facts,
         &render_assets,
         &binding,
@@ -1176,6 +1228,19 @@ pub fn verify_acceptance(
                 || inventory.source_sha256 != file(AcceptanceInputRole::Source).sha256
             {
                 return Err(AcceptanceReason::InvalidBinding);
+            }
+            if let Some(p) = source_policy {
+                if inventory.facts.iter().any(|f| {
+                    f.source_span[0] >= f.source_span[1]
+                        || f.source_span[1] > policy.source_span[1]
+                        || !doc.manifest.reveals.iter().any(|g| {
+                            g.id == f.reveal_id
+                                && g.facts.iter().any(|a| a.source_span == f.source_span)
+                        })
+                }) {
+                    return Err(AcceptanceReason::InvalidBinding);
+                }
+                crate::source_slice::verify(p, private_root, source, &mut reads)?;
             }
             Ok(())
         })()
@@ -1314,10 +1379,11 @@ pub fn verify_acceptance(
             manifest_sha256,
             acceptance_sha256,
             binding,
+            source_slice: source_policy.map(|p| p.summary()),
             checker,
             declared_check_ids: declared.clone(),
             requirements: required,
-            additional_check_ids: policy.additional_required_check_ids.clone(),
+            additional_check_ids: effective_extra,
             fact_targets: facts,
             render_asset_sha256s: render_assets,
             checks,
@@ -1336,7 +1402,9 @@ impl AcceptanceVerificationReport {
         require(
             matches!(
                 (self.schema_version, self.matrix_version.as_str()),
-                (1, "pt-acceptance-required-v1") | (2, "pt-acceptance-required-v2")
+                (1, "pt-acceptance-required-v1")
+                    | (2, "pt-acceptance-required-v2")
+                    | (3, "pt-acceptance-required-v2")
             ),
             "acceptance_report",
             "version",
@@ -1359,6 +1427,26 @@ impl AcceptanceVerificationReport {
             "checker",
             "unexpected executed checker identity",
         )?;
+        require(
+            matches!(
+                (self.schema_version, self.checker.version.as_str()),
+                (1, "pt-acceptance-bindings-v1")
+                    | (2, "pt-acceptance-bindings-v2")
+                    | (3, "pt-acceptance-bindings-v3")
+            ),
+            "acceptance_report",
+            "checker.version",
+            "checker/report execution versions differ",
+        )?;
+        if let Some(slice) = &self.source_slice {
+            require(
+                self.schema_version == 3,
+                "acceptance_report",
+                "source_slice",
+                "archived reports cannot claim source relationships",
+            )?;
+            slice.validate_for_binding(&self.binding)?;
+        }
         let binding = &self.binding;
         for h in [
             &binding.inventory_sha256,
@@ -1478,6 +1566,29 @@ impl AcceptanceVerificationReport {
                     "acceptance_report",
                     "package",
                     "missing verified package identity",
+                )?;
+            }
+        }
+        if let Some(slice) = &self.source_slice {
+            let source = self
+                .checks
+                .iter()
+                .find(|c| c.check_id == "complete-source-coverage")
+                .ok_or_else(|| ContractError {
+                    code: "acceptance_report".into(),
+                    field: "source_slice".into(),
+                    message: "relationship needs executed source coverage".into(),
+                })?;
+            if source.outcome == ReviewOutcome::Pass {
+                require(
+                    slice.relationship_sha256.as_ref().is_some_and(|m| {
+                        [&slice.full_source_sha256, &slice.slice_sha256, m]
+                            .into_iter()
+                            .all(|h| source.consumed_sha256s.contains(h))
+                    }),
+                    "acceptance_report",
+                    "source_slice",
+                    "verified relationship must consume full source, slice and mapping bytes",
                 )?;
             }
         }
