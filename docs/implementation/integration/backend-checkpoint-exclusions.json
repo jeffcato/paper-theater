@@ -1,0 +1,2349 @@
+{
+  "schema_version": 1,
+  "task": "I20",
+  "candidate_commit": "d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c",
+  "observed_at": "2026-10-27T19:50:04.895975+00:00",
+  "scope": "Post-source-commit worktree inventory; none of these later worker/UI/PM paths enters the frozen backend snapshot. Earlier capture and later changed overlap pins remain in backend-checkpoint-source.json.",
+  "paths": [
+    {
+      "status": " M",
+      "path": "AGENTS.md",
+      "sha256": "b724caba19afc866c41cea8df6267486194844d20e25ea64024c2c24811a84f4",
+      "bytes": 3944
+    },
+    {
+      "status": " M",
+      "path": "README.md",
+      "sha256": "7d893068669ef38c8eb0f104bd4565f3578da68b78294d34866b69f364483b48",
+      "bytes": 4166
+    },
+    {
+      "status": " M",
+      "path": "TODO.md",
+      "sha256": "7351f4cefae27be8304fd79de8fe94cd53bd39a5907da8625e39967df797d0b1",
+      "bytes": 110675
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/package.json",
+      "sha256": "727957c71d5cc8d4fa3b1ecb2c7412709c6e2f5341290b73de350ba4ee461cb1",
+      "bytes": 492
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/src/main.tsx",
+      "sha256": "3c6c9ff17adae5c690c36c4ef77bbf84be9339294ec07805c36e48e6143e6759",
+      "bytes": 12990
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/src/styles.css",
+      "sha256": "749d05373a9efc52cc5e246a63cc2a7e3b78ca26ebba9df585c7fbc1d050681f",
+      "bytes": 1242
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/src/tickets.ts",
+      "sha256": "57d99f5fa786be2c137b54b4cb4b1b5e57e366f4f359e4120ecbe563dbda75a2",
+      "bytes": 2862
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/tests/tickets.test.ts",
+      "sha256": "c4ca03c100a2e0d5d2011e1b9aa919361a2b21f97858069b098206a325c7fa36",
+      "bytes": 3464
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/package.json",
+      "sha256": "05301677197a20fa793dabf0b79610dde7579336da3685e1c89927765d50bfb3",
+      "bytes": 463
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/scripts/browser-check.mjs",
+      "sha256": "196a7e4ea732db8fc6987bdce0db59a33c177fc3c19c8edf3142a9fc90eabc61",
+      "bytes": 14385
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/src/main.tsx",
+      "sha256": "4f444567febd61358449e77bfe86f0884ab9d2f59b80964e98c5d14ed170e311",
+      "bytes": 11005
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/src/style.css",
+      "sha256": "87bd9dbdc22e2db9c2e69726ae69f39f4a610056f8a8b900c05af81087644ff3",
+      "bytes": 4326
+    },
+    {
+      "status": " M",
+      "path": "crates/pt-production/src/generation/mod.rs",
+      "sha256": "c403a6259a099a0b4323f72d35f8c3a200a3baa09e23ffb901842d955124aa2a",
+      "bytes": 11037
+    },
+    {
+      "status": " M",
+      "path": "crates/pt-production/src/generation/tests.rs",
+      "sha256": "538cf120a8ff106c0007feb375cd04021382d649e70cb616a5dad485013f8ea0",
+      "bytes": 12925
+    },
+    {
+      "status": " M",
+      "path": "crates/pt-production/src/runtime/media.rs",
+      "sha256": "4023bcac739595e7f060b3559a755888a9a734f7e04e3d650b37e5f5e436cd76",
+      "bytes": 3951
+    },
+    {
+      "status": " M",
+      "path": "crates/pt-production/src/runtime/mod.rs",
+      "sha256": "8ea48e95334ed9334f3acc1023d14c4f9601039e5219e446a8e96bfad1194b8c",
+      "bytes": 1138
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/03-generation.md",
+      "sha256": "d5dee5377d9c1aeeef83c2d13015d65eddc919f41aba180bff7576b8233761da",
+      "bytes": 10177
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/04-player-and-audience.md",
+      "sha256": "0ac4e577d39565bc409383685bae47bcf5fbcd2caf68d5320a76afa477acc67c",
+      "bytes": 9521
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/COMMON.md",
+      "sha256": "84294410d2bc3b46a02f609dd0c41d10641ea30b8f1d9e9117236756e3651d94",
+      "bytes": 10660
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/INTERFACES.md",
+      "sha256": "9d721f0ceed780d026cdb9dc13fa1b7fe6c2f21e467e44ac15aa46e621d378e0",
+      "bytes": 12766
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/README.md",
+      "sha256": "7c4606e25f147747412752adb3feb73a240f5bf1e4f7c4657d7585ca95e3213f",
+      "bytes": 10633
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/integration/acceptance-evidence-task.md",
+      "sha256": "484931067c4f1e252397f66a0049add5cfe429b76b5e4f9906480dcda306afac",
+      "bytes": 5568
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/chapter.json",
+      "sha256": "f5bf416bda867ec4183eccd60ea70cb2ac33431dff2a039d4d4690a4529556ab",
+      "bytes": 2133
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/checks.md",
+      "sha256": "fd7fbe39ede6e15c83c186430283a374e2814065a2f230a001d5dc557525dd85",
+      "bytes": 32884
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/integration-request.md",
+      "sha256": "005667eef9454278ef9b5c19a2411be379fe94f6dfcaadce2af5801fa24e96c9",
+      "bytes": 7973
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-1280x720.png",
+      "sha256": "f889467a1b657b556153634ee6d70cf2ab00a6ed08b9aa63ce7288314b2c8eec",
+      "bytes": 10013
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-1920x1080.png",
+      "sha256": "826140186bd3d46c88da4c179f7bdebde3cf3541436664b6923737d86feabcd2",
+      "bytes": 18869
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-960x540.png",
+      "sha256": "e214951baa44a392ee7e84d4049d9cf0d483cb6cb2bb87c881d64ebb368389e2",
+      "bytes": 6567
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-capture-v2.json",
+      "sha256": "a1e732d062023032b4edf014cf89fe1b66749094a77e94fd7f103d01e22df432",
+      "bytes": 71029
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-capture.json",
+      "sha256": "89505e3b30e74e866080a81e1473a6fe96a4b9d4164ddab4e62d1cb08df0cbf0",
+      "bytes": 70493
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/lifecycle.json",
+      "sha256": "c5dda8f4aff455c6d8f06ae69c65a43db6f54311886dc67ecbeaa0a5abd5c877",
+      "bytes": 6991
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/mount.md",
+      "sha256": "886e974ab4b31e5ca321d79bd53e263e98584fbd94b95f4d77acfdd9b39f9f44",
+      "bytes": 8371
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/recovery.json",
+      "sha256": "05943f72e6cf7e36d7389176375cdab6cdfdee3c2e81a81c2cfffed758174328",
+      "bytes": 5912
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/shell-brief.md",
+      "sha256": "2c3f88821905c5da986bb199243bf3ce8121daecac648cb174aaa7e1c9c3cb97",
+      "bytes": 3523
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-opening-title.png",
+      "sha256": "ab373dd3505fe31bcb6b70bcc7465e4bb47e47838fbd773482e83b9d234cb887",
+      "bytes": 25328
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-restarted.png",
+      "sha256": "ab373dd3505fe31bcb6b70bcc7465e4bb47e47838fbd773482e83b9d234cb887",
+      "bytes": 25328
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-restarted2.png",
+      "sha256": "ab373dd3505fe31bcb6b70bcc7465e4bb47e47838fbd773482e83b9d234cb887",
+      "bytes": 25328
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-sign-mid.png",
+      "sha256": "f74cc6ef2f868209973f13ee48ebb30c03e663510217722179fe621ed5a8e189",
+      "bytes": 21495
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-sign-settled.png",
+      "sha256": "c01779ab67842fe7bab087c228445ee5db910a80390dc5a5ee2ec026ecd2694b",
+      "bytes": 18456
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-sign-settled2.png",
+      "sha256": "c01779ab67842fe7bab087c228445ee5db910a80390dc5a5ee2ec026ecd2694b",
+      "bytes": 18456
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging.json",
+      "sha256": "bb28ed71dfdcfbeb6c889e3a156e05c611664ddf73dfa8d72f13ebbe9e7d46c4",
+      "bytes": 6182
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater-1280x720-blackout-paused.png",
+      "sha256": "285a4da3a45fb786b0a9df5e9b6e2cc11e323b95415ddf30daaba0c75d6b1c47",
+      "bytes": 33787
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater-1920x1080-blackout-paused.png",
+      "sha256": "e38637967911d18b88b4344e09682a1a43fc5d1c834ce4c6ace218bfd2d0781c",
+      "bytes": 59416
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater-960x540-blackout-paused.png",
+      "sha256": "813fca30bd45eed060e29f8a61f7e1fe9c2e6eb2825d2864979b1d2da685931a",
+      "bytes": 20528
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater.json",
+      "sha256": "1100678a08e038a8d5967d0840ad2ef4033b58d98f7f212da76b7f651986f8fc",
+      "bytes": 9570
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/runtime/integration-requests.md",
+      "sha256": "88dbd77a1bcb6a7d8b79e27920574c96ad198bb2987ff54aa15225cd0cbee4e2",
+      "bytes": 10983
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/runtime/studio-browser.png",
+      "sha256": "7e01d292246b9c50890d82ab0fa75e5887f0df32ae49dde5017a1901c9fa519d",
+      "bytes": 240463
+    },
+    {
+      "status": " M",
+      "path": "docs/spec/playback.md",
+      "sha256": "117335bab49e78e65e1a7ff13edac1b50ce519b064ef13d7777d9112b52ce79e",
+      "bytes": 3712
+    },
+    {
+      "status": " M",
+      "path": "packages/player/package.json",
+      "sha256": "bc4bf61cbb6c186d24c9af7497771609a9b7bd50e67518f5b275323650bb8244",
+      "bytes": 1249
+    },
+    {
+      "status": " M",
+      "path": "packages/player/scripts/check-player.mjs",
+      "sha256": "a7fab94781b5813d8c2536a23a2c4a11ae38eaa534fc83576e5aa34c79fb472c",
+      "bytes": 2199
+    },
+    {
+      "status": " M",
+      "path": "packages/player/scripts/chrome-recovery.mjs",
+      "sha256": "c0c4e565bf52102c0ae8d2344bfdccff78bf4942ec998c85f9339267adac1fc7",
+      "bytes": 31185
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/evaluate.ts",
+      "sha256": "b807c19e34bb4c58f74b6b6b7b30eeb7077dd52d655c242c21f8e4c8fd34b32d",
+      "bytes": 14204
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/index.ts",
+      "sha256": "637f3c577f6ecb2e9d0d2a3bce1fe82dcfe430033881aac0c5965caf5fb7f452",
+      "bytes": 4132
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/loader.ts",
+      "sha256": "b2a6493e8040455eb88a210616f871b103cba6f5ad4155620b94d34cfec4fcbe",
+      "bytes": 17549
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/mount.ts",
+      "sha256": "60cefc1743df9c3ae68fcb0a45045cac383004cff96e7624aee05cf7825b02f1",
+      "bytes": 17025
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/shared.ts",
+      "sha256": "34492000355981c2c78ade9af135a7abdfb40b704d07a8debd9ec58830042e40",
+      "bytes": 4977
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/shell.ts",
+      "sha256": "0b5cb021be6c0ac52bbcc08203b592dcb52f17fd104b8e8b3e1996a7599c3257",
+      "bytes": 50213
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/types.ts",
+      "sha256": "f3316a95f112cd9a3bd6070792721b83103f9a1ea8f438b38af67cd29d8035aa",
+      "bytes": 2987
+    },
+    {
+      "status": " M",
+      "path": "packages/player/tests/mount.test.ts",
+      "sha256": "013d99a8696e4b6a7d66716b0bf659c17829f7facef7719c3ba52a64049ada8c",
+      "bytes": 29922
+    },
+    {
+      "status": " M",
+      "path": "packages/player/tests/shared-contracts.test.ts",
+      "sha256": "a841489fa8861ac9ee5cd702c980bdee2aa1f6c0986d223b66ab41350c44aca6",
+      "bytes": 5842
+    },
+    {
+      "status": " M",
+      "path": "packages/player/tests/timeline.test.ts",
+      "sha256": "3c1c07f7715d323af06d89db3b03b786fce670f6ec99eefacca9ee8a78c7d810",
+      "bytes": 7364
+    },
+    {
+      "status": "??",
+      "path": "apps/audience/scripts/chrome-audience.mjs",
+      "sha256": "ddb18c9578c483abf582f5a1c2185ba23e46b052bad829752bdd8886abe0d3b4",
+      "bytes": 12282
+    },
+    {
+      "status": "??",
+      "path": "apps/audience/src/dev-art.ts",
+      "sha256": "b2eaa3867c0a666cf4b80abe0e60f2a43c8d6a72d3eeb0d7ab72168efad8b904",
+      "bytes": 7754
+    },
+    {
+      "status": "??",
+      "path": "apps/studio/scripts/preview-browser-check.mjs",
+      "sha256": "eaeef8ccb1531e2ecc854c9773a9111415d478265360a475655081bc5de04fe5",
+      "bytes": 236
+    },
+    {
+      "status": "??",
+      "path": "apps/studio/scripts/studio-player-check.mjs",
+      "sha256": "7b614c261912e99fffd1762120e97e88a466a3b506c360fedda0c1dd3fd36ce4",
+      "bytes": 24551
+    },
+    {
+      "status": "??",
+      "path": "apps/studio/src/Preview.tsx",
+      "sha256": "63d292e6a42d477276a995dd8877aa4715c50fc6faed7c99b9f655ec06db76c9",
+      "bytes": 12939
+    },
+    {
+      "status": "??",
+      "path": "crates/pt-production/src/generation/speech.rs",
+      "sha256": "05795af097de30be4c840edab0b805f94e6ba6b08292e252a82b7bcae230d368",
+      "bytes": 11304
+    },
+    {
+      "status": "??",
+      "path": "crates/pt-production/src/generation/speech_takes.rs",
+      "sha256": "44ef1076786da226dc2a2de4877078bf07c8e91bf9e33e289174c9eb9c2e0efb",
+      "bytes": 5132
+    },
+    {
+      "status": "??",
+      "path": "crates/pt-production/src/generation/speech_transcription.rs",
+      "sha256": "31ac0c83642c750504f109253d7d51c714e8ab2ea38cfa4ec2d530d30fbbd2f0",
+      "bytes": 3335
+    },
+    {
+      "status": "??",
+      "path": "crates/pt-production/src/generation/speech_units.rs",
+      "sha256": "97feb0d727999c33533b7fd452ddacf3830a6ddbb747e145be3d74081e336ca7",
+      "bytes": 3323
+    },
+    {
+      "status": "??",
+      "path": "crates/pt-production/src/generation/speech_verify.rs",
+      "sha256": "d29115c44f63c22bb952f1af41a075f0cfaad7b151855b0deac687852a84c28e",
+      "bytes": 2522
+    },
+    {
+      "status": "??",
+      "path": "crates/pt-production/src/generation/tests/speech.rs",
+      "sha256": "865e929cb1132bb071fb1eea6b77f4d99cdc82b6b6a9877bcda0242165c6508b",
+      "bytes": 17349
+    },
+    {
+      "status": "??",
+      "path": "crates/pt-production/src/runtime/direction_pilot_tests.rs",
+      "sha256": "e458f1e1edef15941719c41edb537ae2847bac083ee14e2adb8c27ea2f4fc2d9",
+      "bytes": 2872
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/README.md",
+      "sha256": "2ad820a44534e71e76b4dcc3ffe8ade11ade80cb3f2a0c75e6e390ba935b4de1",
+      "bytes": 3776
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-aisle-1280x720.png",
+      "sha256": "87b588cc97970a61809be5e8566149368699253a8b7333797748529dcbb0aa34",
+      "bytes": 276740
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-aisle-1920x1080.png",
+      "sha256": "3b1293f051397085c755b8a0f9135e45a6b63079d458dee96bcd29bd848e7f7a",
+      "bytes": 512429
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-aisle-960x540.png",
+      "sha256": "c98c93b09e64f78876a567d188b9cd7a8a7e4ef68c791941e16f5a095869a01d",
+      "bytes": 158719
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-booth-1280x720.png",
+      "sha256": "0c521980b184871c98f09c10898ca9365cbe02a128bc6c06c764b4d28a8479ed",
+      "bytes": 573682
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-booth-1920x1080.png",
+      "sha256": "93f1daf843013b305a12c19bbb0228c3c4dc504f135e63f1840010768b9a1087",
+      "bytes": 1115744
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-booth-960x540.png",
+      "sha256": "abcfffa0b93461574a514c3d9f2dd05aed17d7f3e352a9d0a2aff8a9f81224f9",
+      "bytes": 352617
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-inspect-1280x720.png",
+      "sha256": "0f5193118896bbe3a9674cbd21020e7104ddc0fb961bc5cae58ba83eef2c0f31",
+      "bytes": 581470
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-inspect-1920x1080.png",
+      "sha256": "819baa5f4469a65f60120637df2817aca11d02e06ea1044db5711a8768477e12",
+      "bytes": 1080289
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-inspect-960x540.png",
+      "sha256": "99d3574a8c6ed49a7b22f4949747aaa27d7680d8a80e0b1340c37131be9fa64b",
+      "bytes": 358278
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-1280x720.png",
+      "sha256": "4e9422673b11d0f1bf5e1ae14fd3e082b9009840f929bccabf9d725d2d56ebec",
+      "bytes": 384620
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-1920x1080.png",
+      "sha256": "f924411600bc7294ab479c2b205b325a50862382b13047bbd80bc6823e2c7d55",
+      "bytes": 783930
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-960x540.png",
+      "sha256": "961a1881f0f21d2fe936f182e5390941b81b3a8bd8fd2ec08f063ea36b671b82",
+      "bytes": 246471
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-deeplink-1280x720.png",
+      "sha256": "ab93539dc7c2e4c6d82b06e96bf549663381b74accf917c91ab6059e4ad229c6",
+      "bytes": 385980
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-deeplink-1920x1080.png",
+      "sha256": "3a47565f2f9f92bf0cffa079ec33e883ebf60590d13c89ecf48ea396700753ae",
+      "bytes": 783556
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-deeplink-960x540.png",
+      "sha256": "4bcf8e7f29332aad8a3a552710492ffddb5601c75015c95af349c15ec2023ff4",
+      "bytes": 246212
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience.json",
+      "sha256": "3f1d2d9b6b5f670ae79d9f433ae7e1495bbb178a5631ac430f1b19690121fe86",
+      "bytes": 3708
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/immersive-house-test-v1.md",
+      "sha256": "36330923bf6d75d5c215910fda5237998814438336e18855681877a28c19b2f6",
+      "bytes": 4111
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/immersive-house-test-v2.md",
+      "sha256": "dd3ced98710d0474339ae3af7d92912bcdc7f876339ee2c2ea9db1576804be0a",
+      "bytes": 19363
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/pilot-g23-freeze.json",
+      "sha256": "3f93ad1aa07651b7b878f4d5a64fafc5da58633181b1a689d5f0e47c4e63ee0a",
+      "bytes": 20082
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/player-sha-refresh-request.md",
+      "sha256": "7fd48e5fa4e0c4a3662c60f8191812bd93bc032b14f5c49c0319cc2eb2c53eac",
+      "bytes": 3204
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/scene-art-style.md",
+      "sha256": "d405bf4f35beddce8650a4e27aa82676743ca46f1c4420b689a3190c4b2109f4",
+      "bytes": 3251
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/acceptance-audio-format-task.md",
+      "sha256": "16b1947c10a4aa4c8682c217b4009c924db33ede424b6c1e43a0cb116ba71a21",
+      "bytes": 4651
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/acceptance-source-coverage-task.md",
+      "sha256": "d288fe36aa1635570f7cbf8cb8451f935870bf709b1fdb6d905d166388b46927",
+      "bytes": 4180
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/backend-next-tasks.md",
+      "sha256": "c20fce7da078d445cc3a04ddc7d63c93dc1884dcdbe9d47237e81fe424071275",
+      "bytes": 3524
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-speech-task.md",
+      "sha256": "1733de180125925582d8267ddede1a880709df827dbb33d590032c6aea17d6f9",
+      "bytes": 4233
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-authored-rendering-task.md",
+      "sha256": "8d15b816c8e74cf24ca8377937e8bd5fce77d48fce742179f73afcd6f8f2aac9",
+      "bytes": 4998
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-geometry-task.md",
+      "sha256": "44915859d06ba1ec3176dc714b263c8e9b92421a38b45f2f0c875c571d484fed",
+      "bytes": 4722
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-graphics-recovery-task.md",
+      "sha256": "75288fb63c4af861b45c4f19d671c96a85ae62f0ba7fd163a0adaf94e33b3b69",
+      "bytes": 4653
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-public-types-task.md",
+      "sha256": "17ceb95539b941736138db73d3f53c1abed2ab4ef21be79afb1ac5408af22b78",
+      "bytes": 4214
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-recovery-repair-task.md",
+      "sha256": "0821c6ea65a41afa6b1f1cda9e1ee355c39d9fae3f3231b705042a2892c8e8c9",
+      "bytes": 3168
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-direction-pilot-task.md",
+      "sha256": "02892a0c5cadb6f95222a113bb2f57d96f5f5a52172f093d200d0752d91f66b0",
+      "bytes": 3714
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-studio-player-task.md",
+      "sha256": "84254e8bd81d81036e5fedf278cf8aa5f53bd13fe6d8077c707ceb49cdd1e368",
+      "bytes": 4943
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/source-slice-mapping-task.md",
+      "sha256": "6f4bd2c2ae809b664025240812a46e112021a64f4428ab76266248bd320a3d08",
+      "bytes": 3543
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/two-agent-next-tasks.md",
+      "sha256": "abcfcdf17a0b20c8dcf11784fb73abe4bcac32be07b92e7176ce0a9dafa079fa",
+      "bytes": 1722
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720-blackout.png",
+      "sha256": "c59f282cf1cee20906c98faf9a80272237a5519e38fdfa6b2bab9dd7d1a5007a",
+      "bytes": 32480
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720-nod.png",
+      "sha256": "cbc63298cab1a4963a9f6da89b6545b2f93422a4ab8195aef395c27e98e00259",
+      "bytes": 29355
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720.png",
+      "sha256": "b4d705178baa642bebae6cba69d05f53e332e20ccc29f981c73e0c86cc54a636",
+      "bytes": 31981
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720@15-blackout.png",
+      "sha256": "2a328f0730edd76152f75e72680c67f4ccb08c097a7a8a843a091c68a15fe53e",
+      "bytes": 50364
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720@15-nod.png",
+      "sha256": "fdd12ed7199e854b5d6c424201d7dd877c83f86ec9d32a5cb571266b51015774",
+      "bytes": 46432
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720@15.png",
+      "sha256": "200a8e7340a04b45b5155d38dbc72ae849f871f41b2684919c4fcb10ea749179",
+      "bytes": 48847
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1920x1080-blackout.png",
+      "sha256": "9bdd8515327d9f388e7d4aae819393628f54ed3b01d662b5af92fdac491e0703",
+      "bytes": 59416
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1920x1080-nod.png",
+      "sha256": "bca2148d651e98a0c3692e7cf71e84cdeaea236dcd3200bc667f7d0ac36fae95",
+      "bytes": 52676
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1920x1080.png",
+      "sha256": "d0db825fd5cb6b85429b938e3c9dd5dd528c9dd80fb45f197686aced52684519",
+      "bytes": 54378
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-960x540-blackout.png",
+      "sha256": "437b889428943f4a879d021bde2443996679e84cae066b5460f29decf2fd5ebb",
+      "bytes": 20960
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-960x540-nod.png",
+      "sha256": "6b196cad520b1386d520c5d7453a2ca77494f3d3f18a5cef62cde32e531dee86",
+      "bytes": 19161
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-960x540.png",
+      "sha256": "2fef2e6b770ffab54f203fc29db992272e7aa5e10602eb938ba96339413ea2ee",
+      "bytes": 20847
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry.json",
+      "sha256": "21d00806d84aa7d3bdac58126be237cef34b2e9c1bb18138d3254faa9417fad8",
+      "bytes": 124181
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/house-art-manifest.md",
+      "sha256": "838fa4a864eebae1fb710da7fb094d9d84383c722f0de35e1d311f3575f1899f",
+      "bytes": 3719
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-aisle-1280x720.png",
+      "sha256": "a052f4836f444f8cda7c8cae497bbbf12191c0265c9d92d7fd004ca6041f2db0",
+      "bytes": 250599
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-aisle-1920x1080.png",
+      "sha256": "7c2137cc880a51ed96140a435a032ef618a6ea6ed643a3f4667709f878748237",
+      "bytes": 471357
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-aisle-960x540.png",
+      "sha256": "8173c89f382c1527b6d55bf5dd6a7c6b1ad43c45b9a0a8eb448051879a22a7e3",
+      "bytes": 166644
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-art-brief.json",
+      "sha256": "064b9d35845bef0cf664963e623a3ddd3f5b5ea52482b004f574ea63bbc72b85",
+      "bytes": 104596
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-art-brief.md",
+      "sha256": "574a139ede7b2dbf02f5ec41e2fe654f007de47bb07d95acd1619a5719e68cf6",
+      "bytes": 27510
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-hover-1280x720.png",
+      "sha256": "0efa4fdf02659425153d3a828d2805770607bc3e4d19f07a875a4b62845a65f0",
+      "bytes": 572179
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-hover-1920x1080.png",
+      "sha256": "212efb1561f5c4a484adc2fd753341d69c28842ec20908acfcc47a9cc88728b5",
+      "bytes": 1107754
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-hover-960x540.png",
+      "sha256": "f86a8496090b2c28659ee769b8edcfc98417f383ecee878be5723d486347c2ec",
+      "bytes": 350458
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-inspect-1280x720.png",
+      "sha256": "6fe4b5728a62ae0f55ed0e43103b9c772d226b22ae27623d3029fa7fc0b68eb1",
+      "bytes": 564740
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-inspect-1920x1080.png",
+      "sha256": "a95bbab3523dfa3dad75e56563683a53e136b77edd2fbc3f1be4b7f61e2e9d33",
+      "bytes": 1049715
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-inspect-960x540.png",
+      "sha256": "6608a40b8dc5d1df7cdaca175376aecbe276c95cfcee23b0ceb1ab5e030bd244",
+      "bytes": 347947
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-intermission-1280x720.png",
+      "sha256": "3b52795d5ffb46f82c8eb69ab3ce6aed1e4c2c0f0cb9624b8a07aa51a952cc3e",
+      "bytes": 301645
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-intermission-1920x1080.png",
+      "sha256": "d3f66b0915c851a89f8a6a57cd5fbab21d8f0d5df20b66c021a42ec6292871ba",
+      "bytes": 580996
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-intermission-960x540.png",
+      "sha256": "be6c69fa2d113d7006469f940221b9d3f7afc90c369a49dae378b4deb6d7978e",
+      "bytes": 191055
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-lobby-1280x720.png",
+      "sha256": "648b7c044a6957a24c1668487a90bce4bfedef75d6ba2886f51e22bfbe062e58",
+      "bytes": 564515
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-lobby-1920x1080.png",
+      "sha256": "942aa8336ca842d0f8ff38a6a98d1e325a177f37edae783228b07597a3f2a24b",
+      "bytes": 1096500
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-lobby-960x540.png",
+      "sha256": "95a375f6d9ad9e7e22098aaa6592ea9ab6d6b698dc38ce831faaed703bd97161",
+      "bytes": 346747
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-1280x720.png",
+      "sha256": "10ab1ae8d39c74bf7c0116a87b7e72339fdcceb0aaf588b0865d75b091ee8f6c",
+      "bytes": 294956
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-1920x1080.png",
+      "sha256": "48739a57d0b06836ac794692a0415603ecc5bd600d7fc3cab77e4b1870868572",
+      "bytes": 568601
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-960x540.png",
+      "sha256": "6af4fe284af57792f4c07307ce6d139ecd1e9eb4ec6e930334c7b9658ce9b173",
+      "bytes": 187173
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-resized-1600x1200.png",
+      "sha256": "a493a07a1ea5c562a52d7886751c9760c7c58f12ddc0e96585f1de974b3ffa8d",
+      "bytes": 508688
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive.json",
+      "sha256": "bb39441117ba2764973ecd4372fce3ba24fc66fa6438e0a03444c2eb4c553cc0",
+      "bytes": 15269
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/recovery-repair.json",
+      "sha256": "ae84adb708f84936a15041929d26aa8b5a1f5b93fddbd9c4ab1b18f5f1b89975",
+      "bytes": 2319
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/shared-types.md",
+      "sha256": "8b54f3c99859db93ae8b9869f9ec00912f292408d660bebf6c10062c04da372a",
+      "bytes": 5188
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title-1280x720.png",
+      "sha256": "9a89468ec58676e8df4d0c87d85fcaa1b3787c0971356ebb9cb476ca9f06ee25",
+      "bytes": 15590
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title-1920x1080.png",
+      "sha256": "c7e071d370b8a604da5258fa4e6f2ee4da1ba21a63a256df31a37301ed231f22",
+      "bytes": 26928
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title-960x540.png",
+      "sha256": "2fbc136d363396ae1d091659d00a735616162c785d098c3f63c5be13c4e8be7a",
+      "bytes": 9742
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title.json",
+      "sha256": "8e92538a14bb8e11fa027cb4c962ae94b75110f8dc82bc9baf08c59d394893c0",
+      "bytes": 2420
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/checkpoints/r17/README.md",
+      "sha256": "33f9158ae657c4f8de5ae07656fabcd00cc0cc75ecd554862b8ca33c6f456775",
+      "bytes": 730
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/checkpoints/r17/handoff.json",
+      "sha256": "c8f5d6c725e28b9c49324d2f56d57c1ee7dd898559beaf326601965af5679949",
+      "bytes": 868
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/checkpoints/r17/r17-ce25b9a72c4dedf0eaec3797270b26d3d2198e07a7200bd6efb38bcaa3c7c3f4.tar",
+      "sha256": "ce25b9a72c4dedf0eaec3797270b26d3d2198e07a7200bd6efb38bcaa3c7c3f4",
+      "bytes": 870400
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/p17-studio-rerun.json",
+      "sha256": "aa8f6fbed6c9512b21fec654c46c9d95a79f7f871ac095a04ab5cda4d08fdf13",
+      "bytes": 1211
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player.md",
+      "sha256": "c717031e0142f10ec1d9b672965566700175a87756a2ecb73e01984c0e0129fb",
+      "bytes": 7026
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-blackout-paused.png",
+      "sha256": "efe138d4a28a7dfee3979a9797b1d68d639ead1e9dc81bb6202b00f01a2633dd",
+      "bytes": 35519
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.25.png",
+      "sha256": "8ba3bc8719b4622cc6b4ea6d764f891fb7c260d0336941c7e0f93ad3470abde6",
+      "bytes": 40469
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.5.png",
+      "sha256": "a4178530831dde5740c6ecf8a641b1d220ea62d7dac732d8bb0c52ec9b4cd7af",
+      "bytes": 40500
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.75.png",
+      "sha256": "8ba3bc8719b4622cc6b4ea6d764f891fb7c260d0336941c7e0f93ad3470abde6",
+      "bytes": 40469
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-title.png",
+      "sha256": "84aa9c09fcedfdad6208f8d45cde2e5fdfa36d953d9cbbbad782f2b8f0c3fcd1",
+      "bytes": 6356
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-blackout-paused.png",
+      "sha256": "4066beea85d9c742f31089bd3f9d3fc00c9422c327621c595ccf085b2ddcfb55",
+      "bytes": 47625
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.25.png",
+      "sha256": "8ad86fb10a973f29f93bf777b256bb2f2f4ba5d38e4cec9d9ad1cd8385d427b9",
+      "bytes": 54286
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.5.png",
+      "sha256": "7c5b28fc3d136d6106d47822f211766a373dad17046da34570da3907ea7070f1",
+      "bytes": 54390
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.75.png",
+      "sha256": "8ad86fb10a973f29f93bf777b256bb2f2f4ba5d38e4cec9d9ad1cd8385d427b9",
+      "bytes": 54286
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-title.png",
+      "sha256": "38b5acdf738570b60c8e93436fc49c9a0f349fc027f1e41b18d2fa1083672d47",
+      "bytes": 8803
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-blackout-paused.png",
+      "sha256": "ebe5005106199ab6ef0ab68dece441dec8b94ca3b1d29fd7b4751f8af1204795",
+      "bytes": 17699
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.25.png",
+      "sha256": "e71ec1a895cb9b936bea82f3d10d70cac6fcfef15d41122838d87afcee319955",
+      "bytes": 28891
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.5.png",
+      "sha256": "085ea7584f61bcb8d483be8fab1b3c0a6276a110cd09eccd19d5cee7d3a54de1",
+      "bytes": 28884
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.75.png",
+      "sha256": "e71ec1a895cb9b936bea82f3d10d70cac6fcfef15d41122838d87afcee319955",
+      "bytes": 28891
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-title.png",
+      "sha256": "459180d361c9459ef5417a6bcfbf0525a35130296ded3fdd2adf312bc93b80e8",
+      "bytes": 25929
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/receipt.json",
+      "sha256": "3090121f803f2a8b8f649f75750fd5bdb52c3aabb384a17a136cbf8ed0e70b8d",
+      "bytes": 44638
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/verification.json",
+      "sha256": "296c6d807a82cff770e722ea06868d28a0be0d8d5dec5c90231c84a2c2876cf0",
+      "bytes": 1672
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/base/crates/pt-production/src/generation/mod.rs",
+      "sha256": "caaf30b2f009134e8e1f34e5ddbe7b45173f67e63c0d81f269a8cd5afc21a92e",
+      "bytes": 10731
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/base/crates/pt-production/src/generation/tests.rs",
+      "sha256": "dc1e4b822efda6b9e16e57490a9ab120be9af0062530ac92020b1e615048a0ca",
+      "bytes": 12902
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/files/crates/pt-production/src/generation/mod.rs",
+      "sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4",
+      "bytes": 10913
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/files/crates/pt-production/src/generation/pilot.rs",
+      "sha256": "905f1cc3accb77449a0885879fdd7740909b2742dab02312abff3c74349060fb",
+      "bytes": 25986
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/files/crates/pt-production/src/generation/pilot_direction.rs",
+      "sha256": "91cc144f68dba5a2479bdb8e5ec43a3c48d342d9e5e82be6b21c232fcfd689a8",
+      "bytes": 4215
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/files/crates/pt-production/src/generation/pilot_evidence.rs",
+      "sha256": "2d9f48db1c279396ae9c2026e0cb48e9c5ae926e292e9b645cacd28a3342b2b7",
+      "bytes": 7271
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/files/crates/pt-production/src/generation/pilot_provider.rs",
+      "sha256": "f12f42ac1a88d7ca4bdd6cfee5c53f1e84be4548eee3089c4b9d7b0422953148",
+      "bytes": 9893
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/files/crates/pt-production/src/generation/tests.rs",
+      "sha256": "deba6455f1d50da38f4b3080b99447a0b825772195a0aca026da887487d7e694",
+      "bytes": 12913
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/files/crates/pt-production/src/generation/tests/pilot.rs",
+      "sha256": "89f86f974c6836f62a94af493a9cc392f53a19d62e7c5ff2978692cd2ee42799",
+      "bytes": 49795
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/g23-completed-source-v1/g23-source.patch",
+      "sha256": "ff2f7dc8a2ff06108ba53dc13ade4aa87c5e8b5fc1266b179865d2f776ed6a0c",
+      "bytes": 101025
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/checks-a.json",
+      "sha256": "93b92fe397bc75ca76040559199189169c1f02ef643f9808fc5203f99ab1fe05",
+      "bytes": 350
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/checks-b.json",
+      "sha256": "50ad310a94144d9aef4fb7db7c683b6a8790f462d39c2aceaa34a8794c50a292",
+      "bytes": 349
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+      "sha256": "2207f140ce6f59df239d0c824bef16d1836941b2116d883ccc887bc3ec3e64cb",
+      "bytes": 4450173
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade-b.raw.png",
+      "sha256": "bf50c7f3d85a22ac6778da79e9e083cfa7673bf94afd5d86345081a49c94ad4f",
+      "bytes": 4412130
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade.png",
+      "sha256": "c3cc4ea6e96f4c85adcf8fb7738192f554ff59747580f3466c3ea9309fe0bb35",
+      "bytes": 4390096
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade.raw.png",
+      "sha256": "33227041d515390ffbf6255ad302b24b002738234bf03dea426be3e956e2c5a4",
+      "bytes": 4359387
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/manifest-b.json",
+      "sha256": "5fca209ec2cd10d7dff2a057189f399a5236daeef60c00b145f971eeff59f0eb",
+      "bytes": 1203
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/manifest.json",
+      "sha256": "8349e1deaa733ef5cf0df0ec026f1f3d7599a7fabb09c4cdb1613c2bc6973b67",
+      "bytes": 1131
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-a.manifest.json",
+      "sha256": "ab248bc7b6cb5b35d3beffb98623cc247d9f7dbcf80cd674f501194c2dffd788",
+      "bytes": 1152
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-a.png",
+      "sha256": "9fdfe4bd0ac4b64bc1dcd8af17649c0a6565336c6fcfc666c544a5aafa782e9c",
+      "bytes": 1516079
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-a.raw.png",
+      "sha256": "8da98cbfd49b794bf6895cf2fbb26044ef3dc0051a7c00f55818fb9b902135f2",
+      "bytes": 3858333
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-b.manifest.json",
+      "sha256": "1cf7a1671f914b8b67f1c0ffed9d7d035cc9089d91645e9c93c00c9477117855",
+      "bytes": 1152
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-b.png",
+      "sha256": "411467014645ecc473e476625849392ce98c6647da28aa70fca905a57d95ddbd",
+      "bytes": 1086879
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-b.raw.png",
+      "sha256": "f8c1497c81e6dab5ac0cf1dd4fa5118de7a2d22a31b194b4a48c0aabfbd9d0dc",
+      "bytes": 2700723
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-carpet.manifest.json",
+      "sha256": "f248ca42943cca4ab61df7fd61959ff6835cf0ad694c209917827a6001967a38",
+      "bytes": 1155
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-carpet.png",
+      "sha256": "7d1122e0caa4daa459544cb7b118c8e0ce8d579cc83ed40c9189f8c9e4ba71ba",
+      "bytes": 631766
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-carpet.raw.png",
+      "sha256": "7b1dc5858277bc24477f5c04ec97d63e5d7555271434125f4501aefcb4acb131",
+      "bytes": 5521581
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-runner.manifest.json",
+      "sha256": "335339616a27d4aa54deb913f6fcd52e9be824f5a9f764c95d7f5e08f3d5abf3",
+      "bytes": 1155
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-runner.png",
+      "sha256": "74c88f300dc253ae990622f09e5c1e66a8fbd5e9b2d8130518b34964e47de323",
+      "bytes": 280883
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-runner.raw.png",
+      "sha256": "316a77c692b867b6bd822b9698e9e38569b3114b21225063e1b0e63a9c0c1739",
+      "bytes": 4954364
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/full-set-batch.json",
+      "sha256": "103a1bf4dc132f2c3cb8ec3a89d10b6f6059b3bc9d21639cb5557e9b5ff44aaf",
+      "bytes": 1037
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-apron.manifest.json",
+      "sha256": "6928f45f03fcc5e4e7cee437452be9e9c37a26552e37d5acb238b1c64fe589e4",
+      "bytes": 1152
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-apron.png",
+      "sha256": "3f4e1de3443fc771c512ad535805f027a598deaa531824aa3e4dd697c1e3acfc",
+      "bytes": 756407
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-apron.raw.png",
+      "sha256": "347115e426c6b7d2dbd6fad078f464147ea441ef1c9daa660c2378c96da1a6d1",
+      "bytes": 4323328
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-ceiling.manifest.json",
+      "sha256": "e27a961154db64726dbdd046ba25e831ef11b48955faf943c3b59e1e6af8bd66",
+      "bytes": 1159
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-ceiling.png",
+      "sha256": "f0c19fc0b650a492c4f062b860fb825ff6eb0bb782effa3dd5a1573321c9ece7",
+      "bytes": 597397
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-ceiling.raw.png",
+      "sha256": "2b7ce2a157aa116bdb8ba3207d30352299a29ba3eb79cc7f43828a029fd4b5da",
+      "bytes": 5592837
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-curtain.manifest.json",
+      "sha256": "44646e82ef485dc2f9afa77926054c13e12df08b0f9a17b7d4f61532f807b1e2",
+      "bytes": 1159
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-curtain.png",
+      "sha256": "a848c2fe2e11063e1254c8587d825d4044146a2c3a5ac0ac8fb33ceb803cb58b",
+      "bytes": 1280107
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-curtain.raw.png",
+      "sha256": "aede5b2078c06749c3d1ffed3812124da7dce92ba86e6254bfeaecba215e9e23",
+      "bytes": 4211025
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights-error.json",
+      "sha256": "7db14e33ccba8f024284f22e6ebfbc7717ccfa42832cde31bd141387dbdc8432",
+      "bytes": 219
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights.manifest.json",
+      "sha256": "61d48899b0f5336ab01dc0833534e0ca8d68a545ff1cb9b5df07c13f228f0776",
+      "bytes": 1171
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights.png",
+      "sha256": "7c0357dd38af91303b967578c9084ddad831d5e13db5f540d28a0e2e02557911",
+      "bytes": 238553
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights.raw.png",
+      "sha256": "4039d8d257464fb4ee6ad332e2cf9b7804bd767c97c91357aed137603b293e86",
+      "bytes": 3529817
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern-r1.manifest.json",
+      "sha256": "ce5125d81085b07a8a9fbf98012a223a3c9fb0a98f48e2445a7070c5027b5644",
+      "bytes": 1166
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern-r1.png",
+      "sha256": "b470e49bdbca95726c00b7e50af876f7dabc15e22ba6c3eeb2b20a0fe563df1b",
+      "bytes": 471352
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern-r1.raw.png",
+      "sha256": "5c128e20737a46adf21593548b950d1922272d2665a5104effff7923b5273a57",
+      "bytes": 2204785
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern.manifest.json",
+      "sha256": "e7c72f1744521c28ac009e8f74b17c4dfe830674c736a26eacb12a4cb951c481",
+      "bytes": 1160
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern.png",
+      "sha256": "e390e2872762f79941e1ee456db93125e3f139fd213bab31d31261e1cd80f8e1",
+      "bytes": 959214
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern.raw.png",
+      "sha256": "4da4420941c5d1a64e460c41f608246b82dcf55ec5101dd05914f537e0917270",
+      "bytes": 4446612
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left-r1.manifest.json",
+      "sha256": "2a499db23290952ba263207a106d1941484b47e4eb2a579ccee68e73c19718e4",
+      "bytes": 1186
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left-r1.png",
+      "sha256": "ee58cf8ecc3a3035add488cd357209d1cde338c5c713ac23bb48a0e435ba8fc9",
+      "bytes": 490074
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left-r1.raw.png",
+      "sha256": "8590e5383f27dfd6f84e674513324d6e8438274e02961a0e2505c8d532f40de2",
+      "bytes": 2814199
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left.manifest.json",
+      "sha256": "b3873cd28a0275c5c374fb35c281f17c2f44b88ca62ffb3dcefd651ca2005dd3",
+      "bytes": 1180
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left.png",
+      "sha256": "bae26dadfe5c0ce9b10ea510722190184e72b79732bd7659432303ca341a7b76",
+      "bytes": 658793
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left.raw.png",
+      "sha256": "e9b7d345f3e4009f7bb0dbfcc85afe5f3dba4a57a88359a0b2ba8ce49f6cd22b",
+      "bytes": 3774962
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right-r1.manifest.json",
+      "sha256": "1e1712ba4d73de55462675172fe2492bfc1103e67a4797c3fe3b677372905ea1",
+      "bytes": 1190
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right-r1.png",
+      "sha256": "ea43dbf6fbba6eaa8a6746b1dae96706a4af91346e9246a672660d3664bf06a9",
+      "bytes": 467477
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right-r1.raw.png",
+      "sha256": "5f6e0d8604bc453c5fde60dda7c8804de0c9a3d2587967f8687013895d57c2b3",
+      "bytes": 2614895
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right.manifest.json",
+      "sha256": "de3eb2bdab7526bf816969bd9efae07081c03fdbfa8ffdb6961655730be84afb",
+      "bytes": 1184
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right.png",
+      "sha256": "1d7d370dc4b4398c9cbb919673229d791fc2825c8410a7531a35ffc9e611f8fd",
+      "bytes": 434019
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right.raw.png",
+      "sha256": "a884da4c15b30423975253f1f695cd215889a9f6fe2f9263f77ca794a86772dc",
+      "bytes": 2412758
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail-r1.manifest.json",
+      "sha256": "d8fd54ef9968fcc46acd1d6fdf087c0be519b13de1b7dbf46703661565160c62",
+      "bytes": 1168
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail-r1.png",
+      "sha256": "9a5850013dd4e9f7e604e14716682029c9c5c1a1c5d342cac89aed901be86cfb",
+      "bytes": 137175
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail-r1.raw.png",
+      "sha256": "6117c566287fa01903dbf3f928cd16c004036623aff527e841290fd7df729f49",
+      "bytes": 3179124
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail.manifest.json",
+      "sha256": "697b6e820a7dc163b42ffb07062fe3994e919cb75b1ae778702ad6208eb83461",
+      "bytes": 1162
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail.png",
+      "sha256": "0fd1fb65812221bf3c8bf90236a25f34b23e604f2ded82c8ec26ad3c4f704efb",
+      "bytes": 159304
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail.raw.png",
+      "sha256": "b139ebe45f566a27488dcd735f530f30241c2db021a703e8bd9bbf45b2f37786",
+      "bytes": 3816475
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-rope.manifest.json",
+      "sha256": "53047c88842dfd09d19e5f20d584dd8edf19939e5b77315228886609099488a6",
+      "bytes": 1144
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-rope.png",
+      "sha256": "3ca738286eec4f93304837dac9dd9b71cac85a6716d32bf54fff2e74b641c93c",
+      "bytes": 56138
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-rope.raw.png",
+      "sha256": "7240edb8d7a4ca1c956276e96901ab181ef2f586871f6a00c6922d462610f41f",
+      "bytes": 3883181
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-sign-board.manifest.json",
+      "sha256": "646bff970d30bd1d58a8c96b60907de13af9c344f144ef296a8b26ef505bdb81",
+      "bytes": 1172
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-sign-board.png",
+      "sha256": "6ac4176d1c4fc900c4e9be988971dfe18fa41cc06d7a043532661806113d851b",
+      "bytes": 474924
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-sign-board.raw.png",
+      "sha256": "dedbc18a4749e4cfa59a0b6537e40ec2e1620cbb1519954e4d4a245dd1429303",
+      "bytes": 4230665
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-title-board.manifest.json",
+      "sha256": "88ee05e3b223a8f4a8bf8e0ff15f09481a9554cb694b74270152c36a05a0077e",
+      "bytes": 1176
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-title-board.png",
+      "sha256": "05db70e2deca3929530650eb52006189a9efa8ba5cdba74d020877755c037448",
+      "bytes": 650835
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-title-board.raw.png",
+      "sha256": "aa725a83f4cc0a30164ef25c676b9c708fb08af08458d2714fbe242dfddd9788",
+      "bytes": 4115795
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-wall.manifest.json",
+      "sha256": "d029f4976d33bf7c6a0cc03cff558b8aff818371cfaf5f8006479d260d5a0399",
+      "bytes": 1147
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-wall.png",
+      "sha256": "7f483332a96a215259fd04f848ceada3d01c95ec5b702974852f89d5bd4ef13c",
+      "bytes": 589418
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-wall.raw.png",
+      "sha256": "0d9a3c8ead5b59ce7c7721de1eab0c442edc7f6d987df464b7f71ad0054af09e",
+      "bytes": 5389038
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-empty.json",
+      "sha256": "819a8f5f0c48cbf322e613641b0f4a2b395d128c5cc81af50a946fefdff0328c",
+      "bytes": 183
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-manifest.json",
+      "sha256": "1a2b088f67c2787810a092d32f58c88685751729f9f265995e965ffb9a8fb0a7",
+      "bytes": 1405
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-mask.json",
+      "sha256": "90b15ad47ab1061b4271efc5b2b4965223ee403badf4e6ac50fe1b487f979ff9",
+      "bytes": 4358198
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-masked.png",
+      "sha256": "e245e9ae4fa950ba818ec4d7d139a2ebf6d55f5fd4b01164f28027f33eeb9353",
+      "bytes": 4903173
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-stream.txt",
+      "sha256": "4bf7621b7321bf17fd7fe3598d36ff3fce0c8629bc0713ebb981266ca41a4a81",
+      "bytes": 92771
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-text.txt",
+      "sha256": "107f4408aa7132ffd6e38a6e79fe8e022b5e027697449fdaa4751c2b2a655280",
+      "bytes": 17879
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.checks.json",
+      "sha256": "d24ca6be8846854cba258f3ec5f912fafb36acc9bb9d3ee703586475cb09edfb",
+      "bytes": 353
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.flood-cut.png",
+      "sha256": "247fba44cfd088e1b6d8272ca272e335e38bbbea85566ba1554365147490b40c",
+      "bytes": 4699559
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.flood-manifest.json",
+      "sha256": "72271fa4554adec224045fae8c2067c4f360bdcb07476f244ab043029ac3b18c",
+      "bytes": 1176
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.flood-stats.json",
+      "sha256": "63d276c89d34ad5d35a92740ca34df16905f2c04e9605db67136b864fa935a3f",
+      "bytes": 217
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.manifest.json",
+      "sha256": "95a9ae5ee5fc605db678801f541e20c5e8ce5de596db38a2bca37f50a2f25477",
+      "bytes": 1156
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.png",
+      "sha256": "247fba44cfd088e1b6d8272ca272e335e38bbbea85566ba1554365147490b40c",
+      "bytes": 4699559
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.pre-flood.png",
+      "sha256": "4c4e5599220c3854666ebb08ecebfeb310d593f2e1286cc3646d95ef7a9f9c2d",
+      "bytes": 3450409
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.raw.png",
+      "sha256": "ad6bcf2ba1f7a3966893af27b74b3a559bab0c88b83031ae80521971e08bf56e",
+      "bytes": 3445669
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-manifest.json",
+      "sha256": "0cc54cc716d96ef4513ee84a5474311cfab8a0680852fe933667a84469da8767",
+      "bytes": 1403
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-mask.json",
+      "sha256": "e8bd939cdea57558fe621a9f456e2d04fd6720366bb07e8b0bc3176eb6daf12d",
+      "bytes": 4444214
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-masked.png",
+      "sha256": "e36f7fede906efa2131d5f7e4a206374221c5cb49b70ff3ef05209bf240cecec",
+      "bytes": 4767521
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-stream.txt",
+      "sha256": "2401b7668c880eff877eaa98320d7f2837d74fd373e2cff5ec5377706b87eb52",
+      "bytes": 31651
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-text.txt",
+      "sha256": "d48fe2156243b664053cc7821aee3b6f5e5f599970a4c82f709abe2477591ed3",
+      "bytes": 5655
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-archway.manifest.json",
+      "sha256": "3470a3b9d42210d559d48aa5d292c2cba9d06a8c0ceb7af69b64fa1da79f0248",
+      "bytes": 1161
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-archway.png",
+      "sha256": "8470ee112dbfdb49a14da0d5962ac4cf730a4db7212841ce38ccfd50aa2f5b4e",
+      "bytes": 1615949
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-archway.raw.png",
+      "sha256": "d55379d456ce7ba12f7853e888a6796ae52c003d8bad12893fe9b73d312889a6",
+      "bytes": 3683685
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-booth-surround.manifest.json",
+      "sha256": "7955812861d47cefed4dc900bf20eebfb4557dca569fd7317f9427ff56550a2b",
+      "bytes": 1187
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-booth-surround.png",
+      "sha256": "6bb3128c05640a28b96248182761d0bd7b49b882361f05ebc00d09de98c7ce9f",
+      "bytes": 527962
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-booth-surround.raw.png",
+      "sha256": "12d55be1f721bbd66b40593240b12e6b3e9486f183bfc969d52743fd6a6de92b",
+      "bytes": 5292455
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter-r1.manifest.json",
+      "sha256": "823b7fc82036f7bc8428ee163739d5abac585feed5912f6ab52f3c60dc4acc3e",
+      "bytes": 1167
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter-r1.png",
+      "sha256": "18f38864d1c7457118ca6a9639b7dfeca22c7e1907c2f490262f9a8abaa105c0",
+      "bytes": 1671344
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter-r1.raw.png",
+      "sha256": "9c6bc3927176be7a4fda942fafae8c67127fa6e4105d92cf47df996cd551a3e4",
+      "bytes": 4956622
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter.manifest.json",
+      "sha256": "990582c2506d3acd61a4d799630d9755fd18bc64cdc7ae7e31b49978ee6a6387",
+      "bytes": 1161
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter.png",
+      "sha256": "afdbaddcde4fcf4b0c8339df7834703ee521344d4b28396c02786436e384ef5e",
+      "bytes": 1514335
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter.raw.png",
+      "sha256": "de0e68d4f53b1ea0e77015738ac99f61e7e814cce28652bc624e68feb440830b",
+      "bytes": 4448891
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors-r1.manifest.json",
+      "sha256": "506332625e69c6d743d6f63ac2fa2f5dc50ee81bd651975196f6353bff2d2d2b",
+      "bytes": 1161
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors-r1.png",
+      "sha256": "2f0159818c984eb995537f3ab35664dcf02e2cfc028d819a24f71b07133217fe",
+      "bytes": 3023586
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors-r1.raw.png",
+      "sha256": "92c60107e92ca41ed75d06e7d641547bf7862a38739f46de60b381701ea12cd9",
+      "bytes": 4572599
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors.manifest.json",
+      "sha256": "6562f5eb9808410e9f82a02873ab57439d03b5c4f12de06b67a60deac0488f8c",
+      "bytes": 1155
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors.png",
+      "sha256": "f54400905521bcb6959a7d11d023a09ff9e32d7c314331aab38f15b5b299195e",
+      "bytes": 2687683
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors.raw.png",
+      "sha256": "268ca0a4481d380ca9869b49b8183cc3320a5490576a363dfaf68b643b093a04",
+      "bytes": 3990924
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-left.manifest.json",
+      "sha256": "94f5331bfe6f67c2f2172189b6c33acbb4113d998c0ac6fcdacf79cd70c03889",
+      "bytes": 1172
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-left.png",
+      "sha256": "da61a3aa154785ab5799ccc2ddf1e5cf4dbcba0189a81f3377fa10a7f9607c71",
+      "bytes": 1217508
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-left.raw.png",
+      "sha256": "73fa6715250967941308bce08db29e2ffc4d2ea41253623e06b00279ad35a99e",
+      "bytes": 3903537
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-error.json",
+      "sha256": "835f6ea28fcbb22b5884fb926c85dbcd274f2bb4bf15d224a1c3782d3dbc4da4",
+      "bytes": 176
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-r1.manifest.json",
+      "sha256": "6b83b4ae57cff77c020b6c49dd914a4baf8f288e909560a0a2954ce9bd8634d9",
+      "bytes": 1182
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-r1.png",
+      "sha256": "1e0628dea724b7f8eb0e6de6bf1b638c46aef7357c6747830461dd94f8828777",
+      "bytes": 1102823
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-r1.raw.png",
+      "sha256": "9d5383bc4d492b293150147b8e29350fdb7f459e643996e928d5fb343150df09",
+      "bytes": 3460197
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right.manifest.json",
+      "sha256": "0033d9d7c3b5f09ee9845904ac910399c0db420cd176ec237e59f3a42ac74c85",
+      "bytes": 1176
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right.png",
+      "sha256": "91ce0ba3031ffdcfd868b2050fbfe2cfeb86d9536f830cec8ad85d2766a7bf03",
+      "bytes": 1182827
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right.raw.png",
+      "sha256": "ed07dbfb072c062238981d554cf53d09741e898bd8b219281e239e262e991fc4",
+      "bytes": 3740527
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-manifest.json",
+      "sha256": "b232a49514b95aa6af08a81608413e4563b2fa7c82ac5cd12af607a28f602242",
+      "bytes": 1398
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-mask.json",
+      "sha256": "240e830ce75a99e1534470393b56daeb8454a282421171b0915c82cfc3546774",
+      "bytes": 5290038
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-masked.png",
+      "sha256": "5f677b9f7c28a166a3594303381398da0af6d4c0c9a992982cbf42ba40418a65",
+      "bytes": 7807822
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-stream.txt",
+      "sha256": "efb291cbe80f50302151b34b7170bcf3c60c8d9d4f0800aba3c8d48dc9ff9fec",
+      "bytes": 40836
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-text.txt",
+      "sha256": "efd3fa2f9944d5aea2d46b24b4c45ff6ca8b22fdafcba2ed61307c036ecc4a6c",
+      "bytes": 7492
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.flood-cut.png",
+      "sha256": "a5d5bb94987279281844be9346e0292681ab2593e5a78d879f34d4c8c8b1a578",
+      "bytes": 7675084
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.flood-manifest.json",
+      "sha256": "d104cfca339283b4ab48062a4a6bdf8c00e82ae2487c1ec06efaffde6afcce1c",
+      "bytes": 1163
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.flood-stats.json",
+      "sha256": "f58ce96e7f05e7cfd29f61007cb8ab68ca7aebf520bb5520cbae119cb8a30c82",
+      "bytes": 216
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.manifest.json",
+      "sha256": "33dc33d6e8ca901c72b05c1344e190553c6bd895ca1bc0721d67090a408c93ab",
+      "bytes": 1159
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.png",
+      "sha256": "a5d5bb94987279281844be9346e0292681ab2593e5a78d879f34d4c8c8b1a578",
+      "bytes": 7675084
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.pre-flood.png",
+      "sha256": "32f399b930dc7df30686d6dcc566535fa8a12d1786475ff616d586c0f10b218e",
+      "bytes": 5376146
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.raw.png",
+      "sha256": "f60c051eed37167386aea7576e5ab63e87ec53d9a2283ccbf7570effab88fdee",
+      "bytes": 3075880
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-manifest.json",
+      "sha256": "1187adcae163ab6cd7e3a4668ad6b406c161493232544251657f20dbec9374a6",
+      "bytes": 1394
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-mask.json",
+      "sha256": "a6f9db860a936ec3f18ac4f93e38c538c84a81650770dcf20c118b4b3bd8e7ab",
+      "bytes": 5290038
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-masked.png",
+      "sha256": "dcfb41a8e7eedaded1642fbe52c2cc1d31f6619f4f7e5319897d7dd452d3ac69",
+      "bytes": 7808859
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-stream.txt",
+      "sha256": "5f3a149267be3117a95af099de7415b38cfa4f7bf6d6af659bd934a0f8450258",
+      "bytes": 41201
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-text.txt",
+      "sha256": "8a85d61a4afd24e0914a4729e8d1f65e442294d493476b4c51118fe2c53c15b4",
+      "bytes": 7565
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-inspect-card.manifest.json",
+      "sha256": "ebeec538dd1db61dde5bd301ecd887b1de21e565991d1756579b7a669036d1c2",
+      "bytes": 1183
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-inspect-card.png",
+      "sha256": "ec649e2a80dcb343620197050a75a7f2e3f2e07b7d5d076d8f50dd1763c8c807",
+      "bytes": 3057294
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-inspect-card.raw.png",
+      "sha256": "5c7ead31a2e2e405f837bfc5c6497c4542b8138cb04a72d9b31112369bf96a02",
+      "bytes": 3956925
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-a.manifest.json",
+      "sha256": "5cb6327dddac0d90d0876ca226fc733a31774bcca73f716ed4869876c6d40e70",
+      "bytes": 1171
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-a.png",
+      "sha256": "35ffa972797767edef6f697448a1aef4a8539a9d777834767349d4d986e9a4ba",
+      "bytes": 1144502
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-a.raw.png",
+      "sha256": "4194e27bfc73114227691063782b16e8e7de0b86249315540ef5cf08ff9b5cd7",
+      "bytes": 4318644
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-b.manifest.json",
+      "sha256": "e8d6a26891a8a71d0a2a6596778dc065b2cdb75db79004e417b2d47ac987a886",
+      "bytes": 1171
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-b.png",
+      "sha256": "1f2d0f4392d93f19237fd48e28458245459be1882cff1f060fb29ec7206b97a1",
+      "bytes": 1192495
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-b.raw.png",
+      "sha256": "ff7043e9cb2ea71454ba8ae11e5e3f03717f6b41d6dff055cecb43e1560cd054",
+      "bytes": 4626430
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-sconce.manifest.json",
+      "sha256": "ecb83f14667f69093dc299533e906de8eb7fbe3421cbd48e215dda386b81529a",
+      "bytes": 1155
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-sconce.png",
+      "sha256": "fa5c038c9538866434d7540b017bb3ca201eb67b59ba1037f7b6deb389517773",
+      "bytes": 151470
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-sconce.raw.png",
+      "sha256": "314700581c693967f162037a0730a6d42bf621b31e11dc5e729f5f44041532b8",
+      "bytes": 2549966
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-ticket.manifest.json",
+      "sha256": "5d62fd8fabfb154ff7d3565474c666d9829cf2d7079132cfc6c30a283ce9908e",
+      "bytes": 1157
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-ticket.png",
+      "sha256": "17f18566a710c60ce754f02e2e77586924da44ad2f0066643d7e36d38f96241f",
+      "bytes": 966287
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-ticket.raw.png",
+      "sha256": "dba7fc4ae33af1fa31e0ee07a1c2f83e0a649c5ffafdab8490fe26eb1c1a3455",
+      "bytes": 3522133
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-wallpaper.manifest.json",
+      "sha256": "475b3d05f47cac457298bfd2c405374b61113b3b53480a9e59126ce972d428ca",
+      "bytes": 1167
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-wallpaper.png",
+      "sha256": "061060b43415387ce57c2f47b9389ee197258964649f1695fbec4b2f82dee85a",
+      "bytes": 646839
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-wallpaper.raw.png",
+      "sha256": "527cd1622ba977a8a19250f700c16babcf148ac01f7505b967d1bb58a20a9021",
+      "bytes": 6117527
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-gauge.manifest.json",
+      "sha256": "31c648c7ae563a5f4cd712a10a69ccbca3d15e89f4f5cc6c43e7d305258a4551",
+      "bytes": 1146
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-gauge.png",
+      "sha256": "e4c3b0ed27f45b46195004dff23ac4b9f09f7717c0c66988abf2234ab784d0f3",
+      "bytes": 109834
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-gauge.raw.png",
+      "sha256": "e96887004b85cb9c09a64793a4b757442ea2028922e5c10d016ae3c584882955",
+      "bytes": 3774790
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-lever.manifest.json",
+      "sha256": "8c983dea40306afef5ed9caa0ebf551454e27431b85188685678584006a727a3",
+      "bytes": 1147
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-lever.png",
+      "sha256": "c0487755ec9fe69aca65007d2552f5e5cc9792bc9e4770b6e9f9c18d0851257a",
+      "bytes": 147033
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-lever.raw.png",
+      "sha256": "cb66428bccb1a113bc8fceaf410c85df282a10c459068dd43985c48a98a67993",
+      "bytes": 2793885
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-needle.manifest.json",
+      "sha256": "8496293f7e6d60928a99655e89ebd26574a46b6b79d7edeb3952355a32b0f675",
+      "bytes": 1148
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-needle.png",
+      "sha256": "62fee76295501fa92f6f6679d31724c409071ee3f7b028b02e2fb3db07575e6c",
+      "bytes": 27221
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-needle.raw.png",
+      "sha256": "fe82acc2183cae411960942f5041ca7b36d63f9765049ef605e40db1cc845b09",
+      "bytes": 2323563
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate-r1.manifest.json",
+      "sha256": "55150fd493b098ae07f0fa28330b4186bd7f3e09e4ee965fb9fbcbf2d348e8f1",
+      "bytes": 1154
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate-r1.png",
+      "sha256": "3a6c3803e682a4ec9d71a9fd7e4bc737da6646ef7f1b05d337c9654749196f2f",
+      "bytes": 464319
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate-r1.raw.png",
+      "sha256": "411e8fda932974a5a2201bd68a7961ebb22111bcaaebafd969a4510ebd76df70",
+      "bytes": 4155060
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate.manifest.json",
+      "sha256": "625db9f74bccec9a5fc09dc820d0f581baf511880874f57086524926f6ca5f06",
+      "bytes": 1148
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate.png",
+      "sha256": "986e05f0d6c2e54e05ddcf055c7ce96e3339a0329e993acb456ecb810a504872",
+      "bytes": 539281
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate.raw.png",
+      "sha256": "587da9e1ee8aab3f52e307ce053b7cf816dc0527336b72cdd37d2f0baa4d2467",
+      "bytes": 4762038
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate-r1.manifest.json",
+      "sha256": "921eea5269d4bbe94b2334f7f958cca8886665a279116fb34a670e4a29583dee",
+      "bytes": 1186
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate-r1.png",
+      "sha256": "92761c6fe5c9e195e21fa05a8065fd433a320c06637f84f5d2d973f91ceabee8",
+      "bytes": 434333
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate-r1.raw.png",
+      "sha256": "58ef41ec764021ec72bcd8ef6b4818a1b56ae57c84c9459e76357a4b86543c97",
+      "bytes": 4114126
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate.manifest.json",
+      "sha256": "66e5aa4dd403114cfa2ed163b506ddbd6bbcc715fa02d763ad24f89f0f82e1dc",
+      "bytes": 1180
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate.png",
+      "sha256": "ab8dc54c8e38dbb2d2b9fa2c8a5d01f077d99b6dad5bcb20e83abb6ea3481ea6",
+      "bytes": 392524
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate.raw.png",
+      "sha256": "b88e87c5cc36d227f65b206972e3058fa490442292d9081eb8bbfb11dc788a7c",
+      "bytes": 3700874
+    },
+    {
+      "status": "??",
+      "path": "fixtures/runtime/direction-pilot-v1/registration.json",
+      "sha256": "692c418c8b06eeb49172ba804d241ac0f3c36caf0aa8e4b9d05c30c443a712ac",
+      "bytes": 13300
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/chrome-geometry.mjs",
+      "sha256": "64c362777ea458c8ff3cb72095f75cf9cb8d655e8bc087fd95155e41ea59d8e7",
+      "bytes": 41867
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/chrome-immersive.mjs",
+      "sha256": "33a2bd06504c7e4b7bd2f4da7d798b1b333e59f5df5d3781af04a5aaa8da3c45",
+      "bytes": 23224
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/chrome-title.mjs",
+      "sha256": "8b2346ffccddcd39668b0a2a3dd3aff440a338f41c7b0db9563cbf9aa26f4859",
+      "bytes": 15869
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/immersive-art-brief.mjs",
+      "sha256": "e3140bf32bf5c1ddc2d18d93396b8c5e5d1f540024de3c9e415169636fa3c3af",
+      "bytes": 34068
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/house-art.ts",
+      "sha256": "0c71065ef2de199518336e0fe0ff42ee68336dc7aecd79bab72817f696276633",
+      "bytes": 17744
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/house-brief.ts",
+      "sha256": "1641c8a13852d00c217cb3c244f57d396bdbd9df4db277547f4706a1b0d0d0fc",
+      "bytes": 16462
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/house.ts",
+      "sha256": "de2a1c16e80b835fa671c1a8cb9e3ae8cd9955efd2abe19751fdda165d52f25e",
+      "bytes": 44027
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/immersive.ts",
+      "sha256": "1dd9325c9d304c40cd1e6bf05a23a3323450f30cdc32a1e6c0c1e14ca8d4ca2a",
+      "bytes": 9194
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/multiplane.ts",
+      "sha256": "2513c2d8b0ad951cb53e0fc105c9eafa17827ea7e2089a2376453675c7a0312a",
+      "bytes": 17347
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/contract-adoption.test.ts",
+      "sha256": "ddc05a2eb0556c27610c1777377197552e154c0afaba8077959e8b5b6b656e85",
+      "bytes": 6486
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/geometry.test.ts",
+      "sha256": "ad3eac0a9ba913db15a6a74ba62457ae736b272123fcb362fcee21d90cfa9924",
+      "bytes": 10119
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/house-art.test.ts",
+      "sha256": "2db20019a48193531a81828b314ad21cb53b368f5ba32d645375bda861e347f8",
+      "bytes": 26660
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/multiplane.test.ts",
+      "sha256": "6f9a62f97612622cacaece429d2f0914160470f05c0dd1bb3d35112274ca56f7",
+      "bytes": 15642
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/check_house_art.py",
+      "sha256": "045c07eb86869f3179acf295a841e204324abd0059df414f523e8c4d69704370",
+      "bytes": 2962
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-mask.mjs",
+      "sha256": "b102d8e08a79632b4de6c6eddcebc08694f4551bad788cdbccc87d46a1d7b1b1",
+      "bytes": 9544
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-mask.test.mjs",
+      "sha256": "e12e011b81421e356c5d438b503518533e3459c2a6016bd183bbb6901bb47b56",
+      "bytes": 3429
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave1.mjs",
+      "sha256": "0e4223bf7c834ea84a305b6461dfdf33d10c82ff28a06b8fd5f2a8cc2bee69aa",
+      "bytes": 5613
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave1.test.mjs",
+      "sha256": "0cd3fc228fd4a739d22143338bd42d1ffbbd230e33807ef98293b71badf8a158",
+      "bytes": 967
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave2.mjs",
+      "sha256": "7d53d78e63c87fff442505b70b9d11b182f44135138e84fbe5c9791cd3682e73",
+      "bytes": 7549
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave2.test.mjs",
+      "sha256": "aedff867c8c04c40be525086af1ffa62b0ac9d5825d5eec6a753427eade0142f",
+      "bytes": 1486
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/sam_mask_apply.py",
+      "sha256": "3c69b3fa91753803ff0f5f3d0191a0e5d733f30b473fba5594ae7bce40547b44",
+      "bytes": 10591
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/test_art_style.mjs",
+      "sha256": "d3def8e0368b2401e07e2848d458e1761bbf066d32a9a44b0784fed3ed90ab67",
+      "bytes": 1431
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/LICENSE",
+      "sha256": "4dea99bfaa016e21bc860d73f344236bd1e5c4977d1a9a8fd32f822b500ae1be",
+      "bytes": 7353
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/PROVENANCE.md",
+      "sha256": "0a448946b37da780990751a35c117143b12f39164d0ad185156e53387678fb75",
+      "bytes": 1874
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/coco-rle.js",
+      "sha256": "8448c2003f03a5b54314d14f2d10b707052f668a57f951358db7377360a2ccc6",
+      "bytes": 4817
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/errors.js",
+      "sha256": "907a37c8301d5646de6897b0660e980058d96860c4df2489396ae4e08206b00e",
+      "bytes": 2231
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/index.js",
+      "sha256": "0fd7c5aa4f253ef9e8b8c5be1d61816512d3bece514c7bab3050875bf3cee609",
+      "bytes": 759
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/mask-codec.js",
+      "sha256": "a1ee71bf3186904696ff790658214ba4d501e14deac9b139d0831b0476a95005",
+      "bytes": 19668
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/mask-conversion.js",
+      "sha256": "a1a687e6d712043664d91b0bd929938b5037b3d3eb83c61779c918a2489febee",
+      "bytes": 1038
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/object-prompt.js",
+      "sha256": "4449ee5544eb373cdd60ac402cbc63a5187975021d9c7475126d2936deeaf403",
+      "bytes": 5098
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/segmentation.js",
+      "sha256": "c56aada3daf313f0fe05569daf67f7f030d76fad01842a713aa3aa73bc1e4b31",
+      "bytes": 16524
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/stream.js",
+      "sha256": "538b26127b5b5c6e2edb6dcbc4e7be0120cd76aded6419acf3f633609fb51c6c",
+      "bytes": 20643
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/svg-path.js",
+      "sha256": "3a8b1bde1c32ea82352060b50338d282ea00203d4e65f05811cb9a9ec109e27d",
+      "bytes": 7434
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/types.js",
+      "sha256": "dddb798fb4ea8a0bb25da07356ee7481f6872d4e8e6ff342c2c98c034963bfdb",
+      "bytes": 93
+    }
+  ]
+}

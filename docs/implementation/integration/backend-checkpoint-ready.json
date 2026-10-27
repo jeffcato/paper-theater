@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "task": "I20",
+  "status": "coherent-offline-backend-verified-production-and-ui-blocked",
+  "recorded_at": "2026-10-27T19:50:04.895975+00:00",
+  "candidate_commit": "d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c",
+  "candidate_tree": "3096aedd0bbd96016c60f699c549d1d3710f4fd2",
+  "baseline_commit": "4ffc5c1ab7e926b1d49406af89bfda15bbccda61",
+  "service_revision": "pt-services-v1.8.0",
+  "checker": {
+    "version": "pt-acceptance-bindings-v4",
+    "sha256": "ba96222b73e795a5e5dd5cfc80e3a4e653c2ec692d9c1a72ea1f39c4fb842ba5"
+  },
+  "report_version": 4,
+  "matrix_version": "pt-acceptance-required-v3",
+  "source_inventory": "backend-checkpoint-source.json",
+  "source_inventory_sha256": "bdba27573258c253164564c9f4721c82888b49416f2a458a23f2cbe8ddbd2b63",
+  "exact_source_binding": "All 609 frozen backend files match committed candidate; all local tests used those exact bytes. Only integration CI/documentation/evidence was added before commit. No later R18/G24/worker source was consumed.",
+  "tests": [
+    {
+      "name": "scoped-backend-aggregate",
+      "command": "env -u SOURCE_ROOT cargo test -p pt-contracts -p pt-production -p pt-server --locked --offline",
+      "status": "passed",
+      "tests": 268,
+      "stdout_stderr_sha256": "c3f73df4c0000597f67314b044e3c4bcd46f6b59bc4098b27228c5579b6fa54f"
+    },
+    {
+      "name": "complete-generation",
+      "command": "env -u SOURCE_ROOT cargo test -p pt-production generation:: --locked --offline",
+      "status": "passed",
+      "tests": 103,
+      "stdout_stderr_sha256": "47ba6b8a89f4d225e6ab1284e644e3feafba7c33918f4b1ade5e9e546218e285"
+    },
+    {
+      "name": "complete-python",
+      "command": "env -u SOURCE_ROOT python3 -B -m unittest discover -s tools/generation -p test_*.py",
+      "status": "passed",
+      "tests": 37,
+      "stdout_stderr_sha256": "a1452efe5465a3add4bc8191bde00ffb0237ac65bc49cf1d2292eef3d50ec097"
+    },
+    {
+      "name": "contracts-strict-native-packed",
+      "command": "env -u SOURCE_ROOT npm run check:contracts",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "a662f84b6b12b64644fdb5103430492203f22612e06a3887a9d0e1b51fcbe106"
+    },
+    {
+      "name": "baseline-player",
+      "command": "env -u SOURCE_ROOT npm run check:player",
+      "status": "passed",
+      "tests": 115,
+      "stdout_stderr_sha256": "f9261d65aa13957eac1ce9a21bb134e52aec1cc011f27e3670882c31ac0c6244"
+    },
+    {
+      "name": "baseline-studio",
+      "command": "env -u SOURCE_ROOT npm run check:studio",
+      "status": "passed",
+      "tests": 1,
+      "stdout_stderr_sha256": "564c41eb335a903ab66ab8997c8eac1cea28592299125bf63ca5b10938703933"
+    },
+    {
+      "name": "baseline-web-builds",
+      "command": "env -u SOURCE_ROOT npm run build",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "8c4406343cddf3a13463423638b13e986298a014a5bfa2edbbd671ca0dc0c5d7"
+    },
+    {
+      "name": "server-build",
+      "command": "env -u SOURCE_ROOT cargo build -p pt-server --locked --offline",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "e362670247ebe6efd2b043a70a0166db7c7b76fa746436e746464b31c13e09cf"
+    },
+    {
+      "name": "source-built-server-identity",
+      "command": "env -u SOURCE_ROOT python3 tools/check_product_identity.py . target/debug/pt-server",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "cf9bfbf9bb84af739ae7748d432ee8a8a6d68ca8def1ad736fe576382cf92338"
+    },
+    {
+      "name": "real-server-restart",
+      "command": "env -u SOURCE_ROOT python3 -B crates/pt-server/tests/chapter_runtime_process.py --receipt <temporary receipt>",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "3146764c480111ce327ec9aea9288b941a78652b88a37611644f31996047779f"
+    }
+  ],
+  "aggregate": {
+    "contracts_tests": 48,
+    "production_tests": 207,
+    "runtime_tests": 104,
+    "generation_tests": 103,
+    "candidate_contract_tests": 4,
+    "wav_conformance_tests": 1,
+    "server_tests": 8,
+    "total_tests": 268,
+    "failed": 0,
+    "ignored": 0,
+    "focused_runs_supply_aggregate_green": false,
+    "separate_complete_generation_tests": 103,
+    "source_workspace_access": "SOURCE_ROOT unset"
+  },
+  "contracts": {
+    "playback_records": 14,
+    "provider_records": 80,
+    "provider_service_records": 67,
+    "private_report_cases": 14,
+    "source_slice_report_cases": 8,
+    "policy_relationship_cases": 8,
+    "audio_report_cases": 41,
+    "native_delivery_variants": 32,
+    "strict_native_packed": "pass"
+  },
+  "server_binary_sha256": "87a76be8ebd03c62613b833920d24f84d6fd043988d85f938e5a24c7800b8efe",
+  "server_process": {
+    "schema_version": 1,
+    "test": "chapter_runtime_process",
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "real_server_processes": 2,
+    "forced_process_terminations": 1,
+    "original_inputs_removed": true,
+    "helper_attempts_before_restart": 4,
+    "helper_attempts_after_restart": 4,
+    "resumed_units": 4,
+    "unit_outputs_unchanged": true,
+    "checkpoint_events": 4,
+    "private_artifact_http_status": 404,
+    "external_provider_calls": 0,
+    "outcome": "needs_repair",
+    "run_state": "failed",
+    "production_approved": false,
+    "publication_enabled": false
+  },
+  "historical_aggregate_failures": [
+    {
+      "name": "pt-r17-full.log",
+      "sha256": "dd9a38b74df43b39b4dc33110cbe5a57c98ffa7595f2f75191c91c5584e63d6a",
+      "bytes": 30822,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-full.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    },
+    {
+      "name": "pt-r17-full-final.log",
+      "sha256": "e447c785382135a20d74fa70f6c1678c290952bf955b3537b37237609d8933cf",
+      "bytes": 30811,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-full-final.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    },
+    {
+      "name": "pt-r17-pilot-repro.log",
+      "sha256": "c8e4fb1386c8f86f1a3f3a7a9c9477291a2d179be8c32f4dd8aa78eccc6c968f",
+      "bytes": 1257,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-pilot-repro.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    },
+    {
+      "name": "pt-r17-pilot-final.log",
+      "sha256": "ea162a2874b3877c531addb1c514c187122f5b79616415f1473de7e5e30ed979",
+      "bytes": 2420,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-pilot-final.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    }
+  ],
+  "reconciliation": {
+    "old_aggregate_heads": "unavailable concurrent worker trees; no fabricated commit attribution",
+    "first_failure": "missing private/pilot-plan.json; 188 passed/1 failed",
+    "second_failure": "duplicate catalog model/voice IDs accepted; 193 passed/1 failed",
+    "owned_corrections": "G23 real Pilot compilation and uniqueness validation, with original red/green receipts preserved",
+    "both_original_regressions_in_current_aggregate": "passed; unchanged final G23 tests",
+    "focused_15_case_pass": "historical only; does not establish aggregate green"
+  },
+  "setup_failures_retained": [
+    {
+      "case": "Python capture build prerequisite",
+      "failed_tests": 4,
+      "resolution": "Build unchanged committed baseline player, rerun all 37 Python tests; no check removed",
+      "raw_archive": "backend-checkpoint-history/i20-python-build-prerequisite.txt.gz",
+      "raw_sha256": "c695ce7f3a9d540b03d77253e550bc9401a79a7e3ca3add403042b57809547c3"
+    },
+    {
+      "case": "offline npm cache miss",
+      "resolution": "Pinned installation in isolated worktree with private temporary npm cache; no shared root install/lock change",
+      "raw_archive": "backend-checkpoint-history/i20-offline-cache-miss.txt.gz",
+      "raw_sha256": "7c05639da89c9eace58254f349b1723307c6039e5c4551aa73f33f2ae15bdd74"
+    }
+  ],
+  "ui_scope": {
+    "commit": "4ffc5c1ab7e926b1d49406af89bfda15bbccda61",
+    "player_revision": "committed baseline only; active player repairs/redesign excluded",
+    "root_lockfiles_changed": false,
+    "r12_browser_gate": "historically red: Nonpositive viewport; not rerun or cleared",
+    "package_versions": {
+      "packages/player/package.json": {
+        "name": "@paper-theater/player",
+        "version": "0.1.0",
+        "dependencies": {
+          "three": "0.186.0"
+        },
+        "devDependencies": {
+          "@types/node": "^26.6.5",
+          "@types/three": "0.186.0",
+          "typescript": "^5.6.3"
+        }
+      },
+      "apps/audience/package.json": {
+        "name": "@paper-theater/audience",
+        "version": "0.1.0",
+        "dependencies": {
+          "@paper-theater/player": "0.1.0"
+        },
+        "devDependencies": {
+          "@types/node": "^26.6.5",
+          "typescript": "^7.0.2"
+        }
+      },
+      "apps/studio/package.json": {
+        "name": "@paper-theater/studio",
+        "version": "0.1.0",
+        "dependencies": {
+          "@paper-theater/player": "0.1.0",
+          "@paper-theater/contracts": "0.1.0"
+        }
+      }
+    },
+    "root_lock_sha256": "e22cc250f93d37aa5ce975bc00628a6ca417df7c82ed66128f4b48e03bcbc835"
+  },
+  "remaining_production_verifiers": 32,
+  "implemented_acceptance_checks": 5,
+  "pending": [
+    "R18 authoritative Source/Direction/Pilot runtime wiring",
+    "G24 speech",
+    "R11 shared inspector wrapper adoption after freeze",
+    "stable UI-owner handoff/I14 player lockfile gate",
+    "retained R12 Nonpositive viewport/browser and all current UI repairs/redesign",
+    "32 independent production verifiers",
+    "actual inherited accounting/live authorization/provider transport",
+    "speech/listening/voice/mix/creative/profile/device/production acceptance/catalog activation"
+  ],
+  "ci": {
+    "status": "completed_success",
+    "head_sha": "d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c",
+    "run_ids": [
+      40570985878,
+      40570998700
+    ],
+    "events": [
+      "push",
+      "pull_request"
+    ],
+    "urls": [
+      "https://github.com/jeffcato/paper-theater/actions/runs/40570985878",
+      "https://github.com/jeffcato/paper-theater/actions/runs/40570998700"
+    ],
+    "all_jobs_and_steps": "pr-ci-results.json",
+    "workspace_tests": 343,
+    "full_python_tests": 37,
+    "real_server_restart": "passed",
+    "raw_pr_log_sha256": "712e71d45e035a48b5951aee88cc8b2169cb08270725d51058241d66a856ac84",
+    "scope": "Exact implementation head. Later receipt-only commits do not inherit or relabel these CI results."
+  },
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "production_approved": false,
+  "publication_enabled": false,
+  "accounting_reconciled": false,
+  "production_verifier_pending_retained": true,
+  "worker_changes_overwritten": false,
+  "root_lockfiles_changed": false,
+  "handoff": "backend-checkpoint.md",
+  "excluded_worktree_inventory": {
+    "path": "backend-checkpoint-exclusions.json",
+    "sha256": "a46e8c11912987ad40706fd2bddd6d968ec3a38fef42aa0cf78bae4111013cab",
+    "paths": 390
+  },
+  "readiness_verdict": "The frozen backend snapshot is reviewed and its full scoped aggregate plus exact-head workspace/Python/process CI pass. This is not production acceptance, a live provider adapter, R18/G24 integration or UI readiness."
+}

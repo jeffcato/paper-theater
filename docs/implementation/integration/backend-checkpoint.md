@@ -1,6 +1,6 @@
 # I20: coherent offline backend checkpoint
 
-This checkpoint freezes completed R13–R17 runtime and G16–G23 generation dependencies on the published I19 services v1.8.0 boundary. It adds no provider transport or activation authority. Exact source inventories, inherited receipt pins and excluded working paths are in [backend-checkpoint-source.json](backend-checkpoint-source.json); exact implementation-head results and CI will be recorded in `backend-checkpoint-ready.json` and `pr-ci-results.json`.
+This checkpoint freezes completed R13–R17 runtime and G16–G23 generation dependencies on the published I19 services v1.8.0 boundary. It adds no provider transport or activation authority. Exact source inventories, inherited receipt pins and excluded working paths are in [backend-checkpoint-source.json](backend-checkpoint-source.json); exact implementation-head results and CI are recorded in `backend-checkpoint-ready.json` and `pr-ci-results.json`.
 
 ## Frozen boundary and review
 
@@ -34,3 +34,7 @@ The real server probe verifies four exact helper checkpoints survive forced proc
 Player, Audience and Studio layout/source/manifests use only committed baseline `4ffc5c1`. Their local repairs/redesign, all new immersive house/art work, R12's red `Nonpositive viewport` browser receipt and the I14 root player/lockfile gate are explicitly excluded. Baseline tests/builds establish build/capture prerequisites only; no new browser, redesign, profile, device, voice, speech or creative-readiness claim follows. There is no broad install or lockfile change in the shared working tree.
 
 Five independent acceptance implementations and 32 missing production verifiers remain. Format validity proves neither spoken prose nor mix/listening quality. Live dispatch, actual inherited accounting reconciliation, credentials, provider implementation, production acceptance and catalog activation remain disabled/pending. R11's exact shared-inspector wrapper adoption remains a separate server-owned follow-up; native/shared conformance is retained. Zero external provider calls.
+
+## Final verification
+
+Implementation `d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c` passes the full scoped backend aggregate (268 tests, including 103 generation and 104 runtime), a separate complete generation run (103), full Python discovery (37), contracts/strict/native/packed consumers and real built-server restart/private replay. Exact-head [push CI](https://github.com/jeffcato/paper-theater/actions/runs/40570985878) and [PR CI](https://github.com/jeffcato/paper-theater/actions/runs/40570998700) both pass the entire workspace (343 tests), complete Python suite and restart check. Current evidence is [backend-checkpoint-ready.json](backend-checkpoint-ready.json); later excluded worker/UI paths are [inventoried separately](backend-checkpoint-exclusions.json). The offline backend checkpoint is ready; all stated production, live and UI gates remain blocked. These runs certify the implementation head, not subsequent receipt-only publication.
