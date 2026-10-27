@@ -403,6 +403,8 @@ pub struct RunSnapshot {
 
 #[derive(Debug, thiserror::Error)]
 pub enum ServiceError {
+    #[error("provider-v2 service unavailable; no legacy fallback")]
+    ProviderV2Unavailable,
     #[error(transparent)]
     Invalid(#[from] ContractError),
     #[error("run cancelled or epoch stale")]
@@ -457,6 +459,31 @@ pub trait RunServices: Send + Sync {
     async fn emit(&self, entry: JournalProposal) -> Result<(), ServiceError>;
     async fn check_cancelled(&self) -> Result<(), ServiceError>;
     async fn provider(&self, operation: ProviderOperation) -> Result<ProviderResult, ServiceError>;
+    /// Propose content only. Runtime binds this service's run/epoch/unit and
+    /// registry/grant lineage, verifies bytes and persists issuance/reservations.
+    /// Fixture/replay must refuse before credential or reservation access.
+    async fn issue_provider_v2(
+        &self,
+        _proposal: ProviderProposalV2,
+    ) -> Result<ProviderOperationV2, ServiceError> {
+        Err(ServiceError::ProviderV2Unavailable)
+    }
+    /// Descriptor JSON is not a capability. Runtime must match immutable issuance
+    /// and this active service scope; recovery descriptors cannot submit work.
+    async fn execute_provider_v2(
+        &self,
+        _issued: &ProviderOperationV2,
+    ) -> Result<ProviderResultV2, ServiceError> {
+        Err(ServiceError::ProviderV2Unavailable)
+    }
+    /// Query only existing persisted work with a separately authorized observer.
+    /// Preserve original result identity/charges; never invoke original submission.
+    async fn recover_provider_v2(
+        &self,
+        _request: ProviderRecoveryRequestV2,
+    ) -> Result<ProviderRecoveryResultV2, ServiceError> {
+        Err(ServiceError::ProviderV2Unavailable)
+    }
     async fn helper(&self, operation: HelperOperation) -> Result<HelperResult, ServiceError>;
     async fn library(&self, query: LibraryQuery) -> Result<Vec<LibraryBinding>, ServiceError>;
 }

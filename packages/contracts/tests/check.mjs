@@ -29,3 +29,6 @@ const packed=spawnSync(process.execPath,['packages/contracts/tests/packed.mjs'],
 assert.equal(packed.status,0,packed.stdout+packed.stderr);process.stdout.write(packed.stdout);
 const acceptance=spawnSync(process.execPath,['packages/contracts/tests/acceptance.mjs'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
 assert.equal(acceptance.status,0,acceptance.stdout+acceptance.stderr);process.stdout.write(acceptance.stdout);
+
+const providerService=spawnSync(process.execPath,['packages/contracts/tests/provider-service.mjs'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});
+assert.equal(providerService.status,0,providerService.stdout+providerService.stderr);process.stdout.write(providerService.stdout);

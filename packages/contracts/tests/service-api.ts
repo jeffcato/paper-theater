@@ -43,3 +43,15 @@ export function readPrivateVerification(raw:unknown,checker:AcceptanceCheckerIde
  return raw;
 }
 export const chapterRequirements=requiredAcceptanceChecks('production_chapter');
+
+import type {ProviderProposalV2,ProviderObserverV2,ProviderRecoveryRequestV2,ProviderRecoveryResultV2,ProviderServicesV2} from '@paper-theater/contracts';
+import {providerServicesV2,validateProviderProposalV2,validateProviderIssuedOperationV2,validateProviderRecoveryResultV2} from '@paper-theater/contracts';
+export async function issueAndExecuteV2(services:RunServices,raw:unknown,observer:ProviderObserverV2):Promise<ProviderResultV2>{
+ validateProviderProposalV2(raw);const p:ProviderProposalV2=raw;const v2:ProviderServicesV2=providerServicesV2(services);
+ const issued=await v2.issue_provider_v2(p);validateProviderIssuedOperationV2(issued,p,observer);return v2.execute_provider_v2(issued);
+}
+export async function recoverV2(services:RunServices,request:ProviderRecoveryRequestV2,observer:ProviderObserverV2):Promise<ProviderRecoveryResultV2>{
+ const receipt=await providerServicesV2(services).recover_provider_v2(request);validateProviderRecoveryResultV2(receipt,request,observer);return receipt;
+}
+// Existing implementations do not acquire three new required methods.
+export function preserveOldImplementor(s:Omit<RunServices,'issue_provider_v2'|'execute_provider_v2'|'recover_provider_v2'>):RunServices{return s;}

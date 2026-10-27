@@ -116,3 +116,59 @@ export function validateProviderResultV2(v:unknown,operation:unknown):asserts v 
  if(v.retry){const t=v.retry;num(t.observed_at_ms,'retry');num(t.not_before_ms,'retry');need(t.observed_at_ms<=v.recorded_at_ms&&t.not_before_ms>=t.observed_at_ms,'retry','retry','invalid observation/retry chronology');if(t.retry_after_ms!=null){num(t.retry_after_ms,'retry.retry_after_ms');need(t.observed_at_ms+t.retry_after_ms<=t.not_before_ms,'retry','retry.not_before_ms','retry deadline shortens the observed relative delay');}const ids=new Set(t.window_ids);need(ids.size===t.window_ids.length&&ids.size<=16&&[...ids].every(id=>v.quota_windows.some(w=>w.window_id===id)),'retry','retry.window_ids','unknown or duplicate retry window');need(!['quota_exhausted','repair_exhausted','rate_limited'].includes(t.reason)||ids.size>0,'retry','retry.window_ids','quota/rate/repair reason requires its applicable window');need(v.quota_windows.every(w=>w.retry_at_ms==null||t.not_before_ms>=w.retry_at_ms),'retry','retry.not_before_ms','retry deadline shortens a persisted window cooldown');}
  if(v.recovery){recovery(v.recovery,r.attempt_id,r.request_sha256);need(v.recovery.observed_at_ms<=v.recorded_at_ms,'recovery','recovery.observed_at_ms','job observation postdates this record');}if(op.recovery){const j=v.recovery,old=op.recovery;need(j&&j.provider_job_id===old.provider_job_id&&j.observed_at_ms>=old.observed_at_ms&&(!['succeeded','failed'].includes(old.status)||j.status===old.status),'recovery','recovery','existing job identity/observation or terminal state changed');}
 }
+
+export const PROVIDER_SERVICE_VERSION=2;
+/** Stage content only; runtime alone binds service scope, registry and lineage. */
+export interface ProviderProposalV2 {
+ schema_version:2;kind:ProviderOperation['kind'];provider:string;model:string;recipe_sha256:string;
+ payload:ProviderArtifactRefWire;inputs:ProviderArtifactRefWire[];estimate:Usage;timeout_ms:number;
+}
+/** Describes a trusted service binding, never a serialized authorization token. */
+export interface ProviderObserverV2 {schema_version:2;run_id:string;epoch:number;unit_id:string}
+export interface ProviderRecoveryRequestV2 {schema_version:2;original:ProviderOperationV2}
+/** Query usage remains separate from the immutable original attempt/result identity. */
+export interface ProviderRecoveryResultV2 {
+ schema_version:2;observer:ProviderObserverV2;query_id:string;original:ProviderResultV2;
+ query_completion:ProviderResult['completion'];query_reserved_usage:QuotaAmounts;query_accounted_usage:QuotaAmounts;
+ query_observed_usage:ObservedProviderUsage;query_started_at_ms:number;query_recorded_at_ms:number;
+}
+const proposalShape:Check=(v,f)=>object(v,f,{schema_version:integer,kind:oneOf('research','direction','speech','transcription','acoustic_verification','image','segmentation','music','review','token_count'),provider:text,model:text,recipe_sha256:text,payload:artifactShape,inputs:list(artifactShape),estimate:usageShape,timeout_ms:integer});
+const observerShape:Check=(v,f)=>object(v,f,{schema_version:integer,run_id:text,epoch:integer,unit_id:text});
+const observedShape:Check=(v,f)=>object(v,f,{},Object.fromEntries(['requests','tokens','input_tokens','output_tokens','money_microusd'].map(k=>[k,nullable(integer)])));
+export function validateProviderProposalV2(v:unknown):asserts v is ProviderProposalV2 {
+ proposalShape(v,'record');const p=v as ProviderProposalV2;envelope(p.schema_version,p);
+ id(p.provider,'provider');id(p.model,'model');hash(p.recipe_sha256,'recipe_sha256');artifact(p.payload);usage(p.estimate,'estimate');
+ need(p.estimate.requests>0,'usage','estimate.requests','zero money does not remove request accounting');
+ need(p.timeout_ms>0&&p.timeout_ms<=300000,'bounds','timeout_ms','expected 1..300000 milliseconds');
+ need(p.payload.file.bytes<=1024*1024&&p.inputs.length<=64,'bounds','proposal','payload or input inventory exceeds bounds');p.inputs.forEach(artifact);
+}
+export function validateProviderObserverV2(v:unknown):asserts v is ProviderObserverV2 {
+ observerShape(v,'record');const o=v as ProviderObserverV2;envelope(o.schema_version,o);id(o.run_id,'observer.run_id');id(o.unit_id,'observer.unit_id');num(o.epoch,'observer.epoch');
+}
+/** Consistency only: runtime must also recheck exact immutable persisted issuance. */
+export function validateProviderIssuedOperationV2(v:unknown,proposal:unknown,observer:unknown):asserts v is ProviderOperationV2 {
+ validateProviderOperationV2(v);validateProviderProposalV2(proposal);validateProviderObserverV2(observer);
+ need(v.recovery==null,'recovery','recovery','an existing-job descriptor cannot submit new work');const op=v.operation;
+ need(v.identity.run_id===observer.run_id&&v.identity.epoch===observer.epoch&&op.unit_id===observer.unit_id,'provider_binding','observer','issued work differs from the runtime-bound service scope');
+ const {kind,provider,model,recipe_sha256,payload,inputs,estimate,timeout_ms}=op;
+ need(same({schema_version:2,kind,provider,model,recipe_sha256,payload,inputs,estimate,timeout_ms},proposal),'provider_binding','proposal','issued descriptor differs from proposed content');
+}
+export function validateProviderRecoveryRequestV2(v:unknown):asserts v is ProviderRecoveryRequestV2 {
+ object(v,'record',{schema_version:integer,original:operationV2Shape});const r=v as ProviderRecoveryRequestV2;envelope(r.schema_version,r);validateProviderOperationV2(r.original);
+ need(r.original.recovery!=null,'recovery','original.recovery','existing persisted job identity required');
+}
+export function validateProviderRecoveryResultV2(v:unknown,request:unknown,expectedObserver:unknown):asserts v is ProviderRecoveryResultV2 {
+ object(v,'record',{schema_version:integer,observer:observerShape,query_id:text,original:resultV2Shape,query_completion:oneOf('completed','known_rejection','ambiguous'),query_reserved_usage:amountsShape,query_accounted_usage:amountsShape,query_observed_usage:observedShape,query_started_at_ms:integer,query_recorded_at_ms:integer});
+ const r=v as ProviderRecoveryResultV2;envelope(r.schema_version,r);validateProviderRecoveryRequestV2(request);validateProviderObserverV2(r.observer);validateProviderObserverV2(expectedObserver);
+ need(same(r.observer,expectedObserver),'provider_binding','observer','query observer differs from the runtime-bound service scope');id(r.query_id,'query_id');need(r.query_id!==r.original.result.attempt_id,'recovery','query_id','status query identity must differ from the original attempt');validateProviderResultV2(r.original,request.original);
+ num(r.query_started_at_ms,'query_started_at_ms');num(r.query_recorded_at_ms,'query_recorded_at_ms');
+ need(r.query_started_at_ms<=r.query_recorded_at_ms&&r.original.recorded_at_ms<=r.query_recorded_at_ms,'retry','query_recorded_at_ms','query or original result postdates query recording');
+ const reserved=r.query_reserved_usage,charged=r.query_accounted_usage,obs=r.query_observed_usage;
+ for(const [name,amount]of [['query_reserved_usage',reserved],['query_accounted_usage',charged]]as const)for(const n of Object.values(amount))num(n,name);
+ need(reserved.requests>0&&charged.requests>0&&reserved.repairs===0&&charged.repairs===0,'usage','query_accounting','status queries consume requests and cannot consume creative repairs');
+ for(const n of Object.values(obs))if(n!=null)num(n,'query_observed_usage');const split=(obs.input_tokens??0)+(obs.output_tokens??0);
+ if(obs.input_tokens!=null&&obs.output_tokens!=null)need(isSample(split)&&obs.tokens===split,'usage','query_observed_usage.tokens','aggregate and split observations differ');
+ if(obs.tokens!=null)need(split<=obs.tokens,'usage','query_observed_usage.tokens','known token components exceed observed aggregate');
+ need(charged.tokens>=split,'usage','query_accounted_usage.tokens','known token observations exceed retained query charges');
+ for(const key of ['requests','tokens','money_microusd']as const){const actual=obs[key];need(charged[key]>=(actual??0)&&(!(r.query_completion==='ambiguous'||actual==null)||charged[key]>=reserved[key]),'usage','query_accounted_usage','unknown or ambiguous query usage must retain reservations; observed overages stay charged');}
+}

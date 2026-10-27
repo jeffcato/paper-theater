@@ -509,7 +509,7 @@ impl ProviderResultV2 {
     }
 }
 
-fn envelope(version: u32, value: &impl Serialize) -> ContractResult<()> {
+pub(crate) fn envelope(version: u32, value: &impl Serialize) -> ContractResult<()> {
     require(
         version == PROVIDER_METADATA_VERSION,
         "version",
@@ -523,7 +523,7 @@ fn envelope(version: u32, value: &impl Serialize) -> ContractResult<()> {
         "provider record exceeds 64 KiB",
     )
 }
-fn id(value: &str, field: &str) -> ContractResult<()> {
+pub(crate) fn id(value: &str, field: &str) -> ContractResult<()> {
     require(
         !value.is_empty()
             && value.len() <= 128
@@ -535,7 +535,7 @@ fn id(value: &str, field: &str) -> ContractResult<()> {
         "expected a bounded ASCII identifier",
     )
 }
-fn number(value: u64, field: &str) -> ContractResult<()> {
+pub(crate) fn number(value: u64, field: &str) -> ContractResult<()> {
     require(
         value <= MAX_SAFE_INTEGER,
         "integer",
@@ -543,7 +543,7 @@ fn number(value: u64, field: &str) -> ContractResult<()> {
         "expected a nonnegative JSON safe integer",
     )
 }
-fn hash(value: &str, field: &str) -> ContractResult<()> {
+pub(crate) fn hash(value: &str, field: &str) -> ContractResult<()> {
     require(
         valid_digest(value),
         "digest",
@@ -551,7 +551,7 @@ fn hash(value: &str, field: &str) -> ContractResult<()> {
         "expected lowercase SHA-256",
     )
 }
-fn usage(value: &Usage, field: &str) -> ContractResult<()> {
+pub(crate) fn usage(value: &Usage, field: &str) -> ContractResult<()> {
     for n in [
         value.money_microusd,
         value.requests,
@@ -570,7 +570,7 @@ fn usage(value: &Usage, field: &str) -> ContractResult<()> {
         "combined token count exceeds safe integer range",
     )
 }
-fn artifact(a: &ArtifactRef) -> ContractResult<()> {
+pub(crate) fn artifact(a: &ArtifactRef) -> ContractResult<()> {
     id(&a.id, "artifact.id")?;
     a.file.validate()
 }
@@ -650,7 +650,7 @@ fn context(value: &ProviderContext, provider: &str) -> ContractResult<()> {
         "provider identity differs",
     )
 }
-fn amounts(value: &QuotaAmounts, field: &str) -> ContractResult<()> {
+pub(crate) fn amounts(value: &QuotaAmounts, field: &str) -> ContractResult<()> {
     for n in [
         value.money_microusd,
         value.requests,

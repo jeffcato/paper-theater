@@ -1,3 +1,4 @@
+import type {ProviderProposalV2,ProviderOperationV2,ProviderResultV2,ProviderRecoveryRequestV2,ProviderRecoveryResultV2} from './provider-metadata.js';
 import type {Id,Digest,ArtifactRef,Provenance,FileRef,Finding} from './types.js';
 export type ExecutionMode='fixture'|'replay'|'live';
 export type Stage='source'|'direction'|'pilot'|'speech'|'acoustic'|'visual_preflight'|'visuals'|'presentation'|'music_mix'|'choreography'|'review'|'package';
@@ -40,6 +41,29 @@ export interface RunServices {
   emit(entry: JournalProposal): Promise<void>;
   check_cancelled(): Promise<void>;
   provider(operation: ProviderOperation): Promise<ProviderResult>;
+  /** Optional for source compatibility; use providerServicesV2 for unavailable defaults. */
+  issue_provider_v2?(proposal:ProviderProposalV2):Promise<ProviderOperationV2>;
+  execute_provider_v2?(issued:ProviderOperationV2):Promise<ProviderResultV2>;
+  recover_provider_v2?(request:ProviderRecoveryRequestV2):Promise<ProviderRecoveryResultV2>;
   helper(operation: HelperOperation): Promise<HelperResult>;
   library(query: LibraryQuery): Promise<LibraryBinding[]>;
+}
+
+/** Staged private boundary; runtime rechecks mode, persisted issuance and active observer. */
+export interface ProviderServicesV2 {
+ issue_provider_v2(proposal:ProviderProposalV2):Promise<ProviderOperationV2>;
+ execute_provider_v2(issued:ProviderOperationV2):Promise<ProviderResultV2>;
+ recover_provider_v2(request:ProviderRecoveryRequestV2):Promise<ProviderRecoveryResultV2>;
+}
+export class ProviderV2Unavailable extends Error {
+ readonly code='provider_v2_unavailable';
+ constructor(){super('provider-v2 service unavailable; no legacy fallback');this.name='ProviderV2Unavailable';}
+}
+/** Bind optional implementations; missing methods reject without legacy calls or side effects. */
+export function providerServicesV2(services:RunServices):ProviderServicesV2 {
+ return {
+  async issue_provider_v2(p){if(!services.issue_provider_v2)throw new ProviderV2Unavailable();return services.issue_provider_v2(p);},
+  async execute_provider_v2(p){if(!services.execute_provider_v2)throw new ProviderV2Unavailable();return services.execute_provider_v2(p);},
+  async recover_provider_v2(p){if(!services.recover_provider_v2)throw new ProviderV2Unavailable();return services.recover_provider_v2(p);},
+ };
 }
