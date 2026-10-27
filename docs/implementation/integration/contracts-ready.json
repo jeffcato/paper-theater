@@ -1,6 +1,6 @@
 {
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.7.0",
+  "service_revision": "pt-services-v1.8.0",
   "status": "frozen-diagnostic-boundary",
   "fixture_path": "fixtures/shared/two-scene-v1",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -72,7 +72,7 @@
     "target-device profile/resource validation",
     "one autonomous excerpt and both complete accepted chapters"
   ],
-  "next_integration_action": "R15/runtime independently freezes policy-v2 full-source/slice/mapping pins and generation G21 explicitly derives local proposals from preserved global records, following source-slice-mapping.md. Refresh checker-v3 identities and privately persist report-v3 with rechecks. Missing mappings and all 33 production verifiers remain unresolved; no live/publication/UI gate is opened.",
+  "next_integration_action": "Server adopts the shared R11-native inspector wrapper; R15/runtime and generation adopt checker/report-v4 and matrix-v3 delivery targets from acceptance-audio-format.md. Format verification is real, but 32 production reviews and production-verifier-pending remain; no live/accounting/device/UI/publication gate is opened.",
   "verification": {
     "clean_checkout_commit": "41061a6",
     "source_root": "unset",
@@ -103,15 +103,17 @@
     "acceptance-evidence-ready.json",
     "provider-service-ready.json",
     "acceptance-source-ready.json",
-    "source-slice-ready.json"
+    "source-slice-ready.json",
+    "acceptance-audio-ready.json"
   ],
   "pr_ci_results": "pr-ci-results.json",
   "combined_handoff": "combined-ready.json",
   "provider_metadata_handoff": "provider-metadata-i13-ready.json",
-  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes. I4 independently verifies c965855 with services v1.4.0; see acceptance-evidence-ready.json. Earlier receipts retain their exact versions and heads; no active worker edits are absorbed. I15 service API candidate 7d50703 is independently verified in provider-service-ready.json; R13 supplied private source and all active worker/UI edits remain excluded. I17 source-verifier candidate 4fa698c and prior G20 acknowledgement 9b2e5b6 have separate successful exact-head CI, recorded in acceptance-source-ready.json. Historical v1 matrices/receipts and canonical diagnostics stay immutable. I18 candidate ace1dc9 has successful exact-head push/PR CI and isolated/CLI proof in source-slice-ready.json. Matrix-v2 and prior v1/v2 receipts/G20 acknowledgement stay immutable; relationship/report data remains private.",
+  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes. I4 independently verifies c965855 with services v1.4.0; see acceptance-evidence-ready.json. Earlier receipts retain their exact versions and heads; no active worker edits are absorbed. I15 service API candidate 7d50703 is independently verified in provider-service-ready.json; R13 supplied private source and all active worker/UI edits remain excluded. I17 source-verifier candidate 4fa698c and prior G20 acknowledgement 9b2e5b6 have separate successful exact-head CI, recorded in acceptance-source-ready.json. Historical v1 matrices/receipts and canonical diagnostics stay immutable. I18 candidate ace1dc9 has successful exact-head push/PR CI and isolated/CLI proof in source-slice-ready.json. Matrix-v2 and prior v1/v2 receipts/G20 acknowledgement stay immutable; relationship/report data remains private. I19 candidate 24f74e5 has successful exact-head CI and actual WAV/frame evidence in acceptance-audio-ready.json. Native R11 behavior and archived v1/v2/v3 receipts remain immutable; runtime wrapper adoption is separate.",
   "reconciliation_handoff": "shared-index-reconciliation.json",
   "acceptance_handoff": "acceptance-evidence-ready.json",
   "provider_service_handoff": "provider-service-ready.json",
   "source_coverage_handoff": "acceptance-source-ready.json",
-  "source_slice_handoff": "source-slice-ready.json"
+  "source_slice_handoff": "source-slice-ready.json",
+  "audio_format_handoff": "acceptance-audio-ready.json"
 }

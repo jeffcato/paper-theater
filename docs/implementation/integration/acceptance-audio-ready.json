@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "task": "I19",
+  "status": "independent-delivery-format-ready-runtime-wrapper-adoption-pending",
+  "recorded_at": "2026-10-27T18:53:31.093238+00:00",
+  "candidate_commit": "24f74e5fadf40de6cacedcaf30c5f94f84e6470d",
+  "candidate_tree": "923d0136ad8db443a6e6da5159c4a5a363644895",
+  "service_revision": "pt-services-v1.8.0",
+  "playback_revision": "pt-contracts-v1.0.0",
+  "report_version": 4,
+  "matrix_version": "pt-acceptance-required-v3",
+  "policy_versions_unchanged": [
+    1,
+    2
+  ],
+  "source_relationship_version_unchanged": 1,
+  "checker": {
+    "version": "pt-acceptance-bindings-v4",
+    "sha256": "ba96222b73e795a5e5dd5cfc80e3a4e653c2ec692d9c1a72ea1f39c4fb842ba5"
+  },
+  "api": {
+    "native_inspector": "inspect_pcm16_wav(&mut (impl Read + Seek), size) -> Pcm16WavInfo",
+    "delivery_inspector": "inspect_delivery_wav(&mut (impl Read + Seek), size) -> Pcm16WavInfo",
+    "verification": "verify_acceptance / verify_acceptance_v2 -> opaque PrivateAcceptanceVerification; report(); recheck_inputs()",
+    "typescript": [
+      "validatePcm16WavInfo",
+      "validateDeliveryAudioObservationV1",
+      "validateAcceptanceVerificationReport"
+    ]
+  },
+  "required_delivery": {
+    "container": "classic RIFF/WAVE",
+    "encoding": 1,
+    "channels": 2,
+    "sample_rate": 48000,
+    "bits_per_sample": 16,
+    "data": "one nonempty frame-aligned chunk; exact bounded RIFF/file/chunk extents",
+    "count": "physical data_bytes / block_align must equal both manifest and actual timeline sample counts",
+    "target": "audio/delivery/[0,manifest.sample_count]",
+    "count_domain": "supported playback-v1 schemas only"
+  },
+  "limits": {
+    "small_native_bytes": 33554432,
+    "master_bytes": 268435456,
+    "cumulative_acceptance_read_bytes": 536870912,
+    "maximum_chunks": 1024,
+    "extra_master_clone": false,
+    "decoded_float_buffer": false,
+    "sparse_exact_over_limit_checks": "pass; bounded header reads, no master-sized allocation"
+  },
+  "r11_reuse": {
+    "source_path": "crates/pt-production/src/runtime/media.rs",
+    "source_sha256": "2bfe0b644c0559faaeebcbe9f72d303fe8a8438c579d87b879edad4e709b484f",
+    "runtime_source_edited": false,
+    "native_parity_cases": 32,
+    "conformance_target": "cargo test -p pt-production --test wav_conformance --locked --offline",
+    "integration_owned_probe": "tools/integration/wav_conformance.rs",
+    "contracts_depend_on_runtime": false,
+    "wrapper_adoption": "pending server-owned validate_wav delegation to inspect_pcm16_wav; preserve native/size/hash/range behavior",
+    "native_small_mono_and_rate_compatibility": "preserved; delivery strictness applies at every size"
+  },
+  "new_observation_schema": "DeliveryAudioObservationV1: actual Pcm16WavInfo, master/timeline hashes, label match, manifest/timeline rates and counts; no raw source/audio/receipts/paths",
+  "test_first": {
+    "first_red": {
+      "command": "cargo test -p pt-contracts --test delivery_audio --locked --offline",
+      "test": "saved_hash_verified_delivery_audio_is_independently_checked",
+      "observed": "unimplemented candidate-target row instead of actual audio execution"
+    },
+    "frame_red": {
+      "test": "physical_frames_must_match_both_manifest_and_timeline",
+      "observed": "format-only inspection passed despite declared/physical frame mismatch",
+      "fix": "compare physical data frames to both manifest and hash-bound timeline"
+    },
+    "schema_red": {
+      "test": "unsupported_playback_schema_cannot_supply_a_delivery_count_domain",
+      "observed": "unknown timeline schema supplied apparently matching numeric counts",
+      "fix": "require supported manifest/timeline schemas"
+    },
+    "green_commands": [
+      "cargo test -p pt-contracts --test delivery_audio --test wav_inspector --locked --offline",
+      "cargo test -p pt-production --test wav_conformance --locked --offline",
+      "npm run check:contracts"
+    ],
+    "logs": [
+      {
+        "phase": "unimplemented-red",
+        "sha256": "4756bb33619478c55f76fb36c9ddf1705ac2f9aba64efd5cc7a9596e91651a89"
+      },
+      {
+        "phase": "physical-frame-red",
+        "sha256": "7ccdb44399e74d6214249fbd64fc7ec5748c966a4212501d2dbcbd4ae24ca36a"
+      },
+      {
+        "phase": "schema-red",
+        "sha256": "8ad36a978095234e28536f83d3ee2f1598f3f6e1e6234065315e421fcd2f988a"
+      },
+      {
+        "phase": "media-green",
+        "sha256": "58c6694b04c06572c2e262291472b9fa11e2728791865c33f87b2ca3067e1ee6"
+      },
+      {
+        "phase": "parity-green",
+        "sha256": "fb7a7963d73c77eec168c8c088a3bd3a7ca23bd14ab2b7d4c3fb7b290d7a409a"
+      }
+    ]
+  },
+  "tests": {
+    "source_root": "unset",
+    "rust_workspace_tests": 179,
+    "delivery_acceptance_tests": 7,
+    "inspector_tests": 2,
+    "production_side_conformance_tests": 1,
+    "native_delivery_cases": 32,
+    "rust_typescript_audio_report_cases": 41,
+    "retained_source_tests": 9,
+    "retained_slice_tests": 8,
+    "retained_acceptance_behavior_tests": 10,
+    "retained_private_report_cases": 14,
+    "retained_slice_report_cases": 8,
+    "retained_policy_relationship_cases": 8,
+    "retained_provider_records": 80,
+    "retained_provider_service_records": 67,
+    "retained_playback_records": 14,
+    "native_packed_strict_exports": "pass",
+    "player_tests": 115,
+    "studio_check": "pass",
+    "web_server_builds": "pass",
+    "source_web_server_identity": "pass"
+  },
+  "cli": {
+    "exit": 2,
+    "audio_executed": true,
+    "audio_outcome": "pass",
+    "target": {
+      "kind": "audio",
+      "domain": "delivery",
+      "span": [
+        0,
+        3262560
+      ]
+    },
+    "measurement": {
+      "schema_version": 1,
+      "master_sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+      "timeline_sha256": "62b2d2f6aa7e45cb8b73c65476b947dccd26cbda465281cef30c67d468389d6f",
+      "wav_label": true,
+      "format": {
+        "encoding": 1,
+        "channels": 2,
+        "sample_rate": 48000,
+        "bits_per_sample": 16,
+        "block_align": 4,
+        "byte_rate": 192000,
+        "file_bytes": 13050284,
+        "data_offset": 44,
+        "data_bytes": 13050240,
+        "frame_count": 3262560
+      },
+      "manifest_sample_rate": 48000,
+      "timeline_sample_rate": 48000,
+      "manifest_frame_count": 3262560,
+      "timeline_frame_count": 3262560
+    },
+    "report_sha256": "721fdacf40fc38daa69b2f25a1acd31b86ac4b59501739eced0e5c08e5b3506e",
+    "required_rows": 21,
+    "private_report_published": false,
+    "production_approved": false,
+    "package_export": "explicit frozen diagnostic payload allowlist; private inputs/document separate"
+  },
+  "remaining_production_verifier_count": 32,
+  "implemented_check_count": 5,
+  "unimplemented_production_checks": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "initial-reference-research",
+    "image-scope-review",
+    "image-style-review",
+    "image-reference-review",
+    "image-extraction-review",
+    "image-stage-readability",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "speech-joins",
+    "music-bible",
+    "mix-intelligibility",
+    "story-coverage",
+    "incoming-picture-readiness",
+    "required-action-accounting",
+    "rendered-creative-review",
+    "opening-action-capture-coverage",
+    "full-audio-review-coverage",
+    "font-bundle",
+    "profile-r186-browser",
+    "target-device-budget",
+    "publication-recovery",
+    "product-spend-authorization",
+    "speech-fidelity",
+    "pilot-recording-review",
+    "primary-acoustic-evidence",
+    "delivery-fact-mapping",
+    "graphics-recovery-review",
+    "control-lifecycle-review",
+    "title-visibility-review",
+    "public-export-boundary"
+  ],
+  "quality_reviews_added": 0,
+  "format_does_not_establish": [
+    "speech fidelity/listening",
+    "narrator continuity/joins",
+    "loudness/mix quality",
+    "autonomous provenance",
+    "complete chapter/source semantics",
+    "profile/device performance",
+    "public export/privacy review",
+    "accepted release/catalog activation"
+  ],
+  "archives": [
+    {
+      "path": "packages/contracts/src/acceptance-required-v1.json",
+      "sha256": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-required-v2.json",
+      "sha256": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v1.json",
+      "sha256": "c86cae3390b7daea5226146a4d2ed8a0913f337c3dde41be4f45380e4c4b8b73"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v2.json",
+      "sha256": "243a52bb9592a2f2224162b9beff4f25bb470ed5e2e8d52179695620cfb9cdd8"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v3.json",
+      "sha256": "04b0cc2ed7425f5a10bba26ae257123601299bf79b5c940e9d0dba77b020511c"
+    },
+    {
+      "path": "docs/implementation/integration/g20-compatibility-ack.json",
+      "sha256": "15182563216a28d4c8de64fa8cf42cd908e9ae8253e4779db9dff5cd6f9ce017"
+    }
+  ],
+  "canonical_fixture_manifests": {
+    "v1": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "readiness_v2": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+    "bytes_unchanged": true
+  },
+  "source_files": [
+    {
+      "path": "crates/pt-contracts/examples/audio-format-fixtures.rs",
+      "sha256": "a2e5415ccb31c109152a9063a94ddf111560ee898865bb96c3cd192f12a53d7e"
+    },
+    {
+      "path": "crates/pt-contracts/src/acceptance.rs",
+      "sha256": "4a531d52bb667f66525c55d4bb76b5eb64d2d5ec7b686c6b2cff438f3d6bf0ad"
+    },
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "sha256": "49866b9a2dc6acece0520813204f071e563f6f2d17e4b68ecf27bf70183d98c6"
+    },
+    {
+      "path": "crates/pt-contracts/src/wav.rs",
+      "sha256": "e4af78a097ca2e49736e6b3cb4ae1a7e0a997a3867b4156108b837aefbd5219e"
+    },
+    {
+      "path": "crates/pt-contracts/tests/acceptance_source_coverage.rs",
+      "sha256": "8fe17d8f464ea9c680d949fb52ce0f9d1c9b340681cb233bb4b74b6f8755747c"
+    },
+    {
+      "path": "crates/pt-contracts/tests/delivery_audio.rs",
+      "sha256": "ae8d4b9c41636340960c621651f894ae7dbeb9a09d7a08e0c441114a510f1bde"
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/audio_fixture.rs",
+      "sha256": "0c73f9cf0055fbd189c9a17d3229d32c09ecfbe32de75b024ddcde505770f226"
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/wav_cases.rs",
+      "sha256": "ade9875f96d5c9141f4d28fb4caa4bc9d52ac77f4c987184498fe775689d1081"
+    },
+    {
+      "path": "crates/pt-contracts/tests/wav_inspector.rs",
+      "sha256": "3cba36e22c01a09f9735b09289b30b84bb67b34a45a876765451bfbf899adaf5"
+    },
+    {
+      "path": "crates/pt-production/Cargo.toml",
+      "sha256": "838d993b9756f7b032d2b640d8cff10f09949d9d4b90b179d81998d881245338"
+    },
+    {
+      "path": "docs/implementation/integration/acceptance-audio-format.md",
+      "sha256": "da4ad8b26ccdf6c3645f5f9c7c26ae3b92f575b77bce3d9f002bccfd1fef37d8"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v3.json",
+      "sha256": "04b0cc2ed7425f5a10bba26ae257123601299bf79b5c940e9d0dba77b020511c"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-matrix.ts",
+      "sha256": "57c5101ac18b94944a47dbec35d4840be96aa12ad0a79af603af35b3e7efa9fd"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-report.ts",
+      "sha256": "f0bb934745b99291e09cbac9836ee74e5f13806e898c20fcb3678b1cf9f1556e"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-required-v3.json",
+      "sha256": "c2d0680ff121cdc419bf733e5a2628709d3b2a4c3684fdef7c86c246d994c9a0"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "9ecf4b8708bd3cebc3ca238419f0f293361c1cbe63a1b4d3b53dcd7cbffbc5eb"
+    },
+    {
+      "path": "packages/contracts/src/wav.ts",
+      "sha256": "b506bd147f8a49f69e56f2618b5dbdddd16e4723d526df5246c591106817cc8e"
+    },
+    {
+      "path": "packages/contracts/tests/acceptance.mjs",
+      "sha256": "263658713da8a9f3688f6af60729a861ebfbdd74ce26b2fa64237edb4ec1a858"
+    },
+    {
+      "path": "packages/contracts/tests/audio-format.mjs",
+      "sha256": "7eb852eba8949828092460cfd5b2af7cb8defae2252c4c69c7a73806b4a4087a"
+    },
+    {
+      "path": "packages/contracts/tests/check.mjs",
+      "sha256": "9d9070db6022759295624204fae632336817fd0995bfb901e720c500814786ad"
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "sha256": "a9b3346f9f0d850ac1422d89eeb5696d9ab85ccb20241da9b46c9374c6248476"
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "sha256": "5116d685e265f701793e2661fb17d631402a01a37a3bc311f7693e0e6d04f813"
+    },
+    {
+      "path": "tools/integration/wav_conformance.rs",
+      "sha256": "611fe9129610e36ddeb3f15b922eaf743dd8c1e0941a1f12a972595ce38bfb1e"
+    }
+  ],
+  "ci": {
+    "head_sha": "24f74e5fadf40de6cacedcaf30c5f94f84e6470d",
+    "run_ids": [
+      40562954963,
+      40562969039
+    ],
+    "events": [
+      "push",
+      "pull_request"
+    ],
+    "conclusion": "success",
+    "urls": [
+      "https://github.com/jeffcato/paper-theater/actions/runs/40562954963",
+      "https://github.com/jeffcato/paper-theater/actions/runs/40562969039"
+    ],
+    "job_and_step_record": "pr-ci-results.json",
+    "scope": "Exact implementation candidate; subsequent receipt-only publication does not inherit/relabel CI."
+  },
+  "pending": [
+    "server-owned R11 thin-wrapper adoption",
+    "R15 trusted checker-v4/report-v4 persistence and generation matrix-v3/delivery-target adoption",
+    "all 32 remaining independent production verifiers",
+    "actual inherited accounting/live authorization/profile/device evidence/publication",
+    "all historical worker/UI gates"
+  ],
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "actual_accounting_reconciled": false,
+  "production_approved": false,
+  "production_verifier_pending_retained": true,
+  "active_runtime_generation_ui_modules_edited": false,
+  "handoff": "acceptance-audio-format.md",
+  "ci_status": "completed_success"
+}
