@@ -7,10 +7,12 @@ pub mod provider_metadata;
 pub use provider_metadata::*;
 
 pub const CONTRACT_REVISION: &str = "pt-contracts-v1.0.0";
-pub const SERVICE_REVISION: &str = "pt-services-v1.3.1";
+pub const SERVICE_REVISION: &str = "pt-services-v1.4.0";
 pub const CAPABILITY: &str = "paper-player-v1";
 
 pub mod playback;
 pub mod validate;
 pub use playback::*;
 pub use validate::*;
+pub mod acceptance;
+pub use acceptance::*;

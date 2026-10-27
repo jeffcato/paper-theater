@@ -34,3 +34,12 @@ export function nullishUsageGuard(operation:unknown,result:unknown):number|null 
  return result.result.usage!=null?result.result.usage.requests:null;
 }
 export const nullableProviderArtifact:ProviderArtifactRefWire={id:'payload-1',provenance:'diagnostic',file:{path:'request.json',sha256:'a'.repeat(64),bytes:2,media_type:'application/json',dimensions:null}};
+
+import type {AcceptanceVerificationReport,AcceptanceCheckerIdentity} from '@paper-theater/contracts';
+import {validateAcceptanceVerificationReport,requiredAcceptanceChecks} from '@paper-theater/contracts';
+export function readPrivateVerification(raw:unknown,checker:AcceptanceCheckerIdentity):AcceptanceVerificationReport {
+ validateAcceptanceVerificationReport(raw,checker);
+ const privateOnly:true=raw.private;const neverApproval:false=raw.production_approved;void privateOnly;void neverApproval;
+ return raw;
+}
+export const chapterRequirements=requiredAcceptanceChecks('production_chapter');
