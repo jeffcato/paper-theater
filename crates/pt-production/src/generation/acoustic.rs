@@ -12,6 +12,15 @@ fn recipe_digest() -> Digest {
     digest(&[HELPER, ADAPTERS].concat())
 }
 
+pub(super) fn verify_recorded(files: &Inputs) -> Result<(), StageError> {
+    validate(
+        &get(files, "acoustic-replay.json")?.1,
+        files,
+        &recipe_digest(),
+    )?;
+    Ok(())
+}
+
 #[derive(Deserialize)]
 struct Manifest {
     schema: String,
@@ -64,6 +73,12 @@ struct RecordedValidation {
     source_sha256: Digest,
     narration_sha256: Digest,
     findings: Vec<Finding>,
+    #[serde(default)]
+    fact_matching: Option<FileRef>,
+    #[serde(default)]
+    source_facts_sha256: Option<Digest>,
+    #[serde(default)]
+    fact_matching_recipe_sha256: Option<Digest>,
 }
 
 #[derive(Deserialize)]
@@ -379,6 +394,7 @@ pub(super) async fn execute(
         }
     };
     let report = validate(&bytes, files, &recipe)?;
+    let mut recorded_fact_ref = None;
     if input.mode == ExecutionMode::Replay
         && let Some((_, bytes)) = files.get("acoustic-validation.json")
     {
@@ -397,6 +413,22 @@ pub(super) async fn execute(
             "acoustic-validation.json",
             "recorded findings are bound to different observations",
         )?;
+        if recorded.fact_matching.is_some()
+            || recorded.source_facts_sha256.is_some()
+            || recorded.fact_matching_recipe_sha256.is_some()
+        {
+            require(
+                recorded.fact_matching.is_some()
+                    && recorded.source_facts_sha256
+                        == files.get("source-facts.json").map(|f| f.0.sha256.clone())
+                    && recorded.fact_matching_recipe_sha256
+                        == Some(super::acoustic_facts::recipe_digest()),
+                "acoustic_fact_replay_binding",
+                "source-facts.json",
+                "recorded fact inventory or matching recipe changed",
+            )?;
+            recorded_fact_ref = recorded.fact_matching;
+        }
         findings = recorded.findings;
     }
     let mut required = report.missing_evidence.clone();
@@ -425,6 +457,70 @@ pub(super) async fn execute(
         findings.push(Finding{id,field:"acoustic".into(),outcome:ReviewOutcome::Missing,
             message:"Saved acoustic observations do not establish complete production fact/fidelity acceptance.".into(),evidence:input.inputs.clone()});
     }
+    let matching = super::acoustic_facts::evaluate(input, files, &bytes, &normalized_ref)?;
+    let mut fact_artifact = None;
+    let mut fact_cache_key = None;
+    let source_facts_sha = files.get("source-facts.json").map(|f| f.0.sha256.clone());
+    let fact_recipe = matching
+        .as_ref()
+        .map(|_| super::acoustic_facts::recipe_digest());
+    if input.mode == ExecutionMode::Replay && matching.is_none() {
+        require(
+            recorded_fact_ref.is_none() && !files.contains_key("fact-evidence.json"),
+            "acoustic_fact_replay_binding",
+            "source-facts.json",
+            "recorded fact inventory missing",
+        )?;
+    }
+    if let Some(matching) = matching {
+        if input.mode == ExecutionMode::Replay {
+            let expected = json(&matching.report)?;
+            for previous in recorded_fact_ref
+                .iter()
+                .chain(files.get("fact-evidence.json").map(|f| &f.0))
+            {
+                require(
+                    previous.path == "fact-evidence.json"
+                        && previous.media_type == "application/json"
+                        && previous.sha256 == digest(&expected)
+                        && previous.bytes == expected.len() as u64,
+                    "acoustic_fact_replay_binding",
+                    "fact-evidence.json",
+                    "recorded matching result changed",
+                )?;
+            }
+        }
+        for fact in matching.findings {
+            if findings.iter().any(|previous| {
+                previous.id == fact.id
+                    && matches!(
+                        previous.outcome,
+                        ReviewOutcome::Fail | ReviewOutcome::Uncertain
+                    )
+            }) {
+                continue;
+            }
+            findings.retain(|f| f.id != fact.id);
+            findings.push(fact);
+        }
+        let candidate = write(services, input, "fact-evidence.json", &matching.report).await?;
+        fact_cache_key = Some(digest(&json(&(
+            &source_facts_sha,
+            &fact_recipe,
+            &candidate.file.sha256,
+        ))?));
+        fact_artifact = Some(candidate.file.clone());
+        artifacts.push(candidate);
+    } else {
+        findings.push(Finding {
+            id: "source-fact-inventory".into(),
+            field: "acoustic.source_facts".into(),
+            outcome: ReviewOutcome::Missing,
+            message: "Explicit source-facts.json is required for per-fact interval matching."
+                .into(),
+            evidence: vec![],
+        });
+    }
     let missing_ids = findings
         .iter()
         .filter(|f| f.outcome != ReviewOutcome::Pass)
@@ -440,7 +536,8 @@ pub(super) async fn execute(
         "contract_revision":CONTRACT_REVISION,"service_revision":SERVICE_REVISION,
         "run_id":input.run_id,"unit_id":input.unit_id,"epoch":input.epoch,"revision":input.revision,
         "pins":input.pins,"inputs":input.inputs,"input_hashes":report.input_hashes,
-        "reveal_permissions":[],"missing_evidence":missing_ids,"findings":findings,
+        "reveal_permissions":[],"missing_evidence":missing_ids,"findings":findings,"fact_matching":fact_artifact,
+        "source_facts_sha256":source_facts_sha,"fact_matching_recipe_sha256":fact_recipe,
         "scope":"Original narration-domain observations; delivery mapping, full speech fidelity and independent per-fact reveal verification remain unresolved."});
     artifacts.push(write(services, input, "acoustic-validation.json", &summary).await?);
     services.check_cancelled().await?;
@@ -454,6 +551,6 @@ pub(super) async fn execute(
         decisions:vec![Decision{id:digest(&json(&(input.unit_id.as_str(),normalized_ref.sha256.as_str(),input.mode))?),
             summary:"Preserve verified saved timing and point grouping; do not grant source-fact reveal permissions.".into(),
             inputs:input.inputs.clone(),selected_ids:vec![selected_id],rejected_ids:vec![],supersedes:None}],
-        findings,cache_keys:vec![cache_key,digest(&json(&(recipe,digest(include_bytes!("acoustic.rs")),normalized_ref.sha256))?)],
+        findings,cache_keys:vec![cache_key,digest(&json(&(recipe,digest(include_bytes!("acoustic.rs")),normalized_ref.sha256))?)].into_iter().chain(fact_cache_key).collect(),
         library_updates:vec![],package_candidate:None})
 }

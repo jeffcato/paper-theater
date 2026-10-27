@@ -1,0 +1,591 @@
+{
+  "book_id": "pg-55",
+  "chapter_id": "chapter-1",
+  "constraints": [
+    "verbatim-prose-and-unicode-scalar-spans",
+    "mentioned-characters-are-not-speakers",
+    "concrete-source-backed-pictures-and-actions",
+    "canonical-per-book-identities",
+    "initial-reference-research-required",
+    "no-final-timing-voices-images-or-acceptance-authority"
+  ],
+  "recipe": {
+    "bytes": 107,
+    "media_type": "application/json",
+    "path": "private/direction-recipe.json",
+    "sha256": "7acfa6f64a11022327dd8bad3862fdfe58eb3024cee9cfec0ee57b9071f603d4"
+  },
+  "registry": {
+    "file": {
+      "bytes": 242,
+      "media_type": "application/json",
+      "path": "private/book-registry.json",
+      "sha256": "80985697c473a2449e718696017292dcd3ee174c04f79641824d3c979d464fb3"
+    },
+    "snapshot": {
+      "book_id": "pg-55",
+      "entities": [
+        {
+          "aliases": [
+            "Narrator"
+          ],
+          "id": "pg-55:narrator",
+          "name": "Narrator",
+          "sprite": null,
+          "voice": null
+        }
+      ],
+      "revision": 1,
+      "schema_version": 1
+    }
+  },
+  "response_json_schema": {
+    "$defs": {
+      "action": {
+        "additionalProperties": false,
+        "properties": {
+          "actor_id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "assertion": {
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "enter",
+              "exit",
+              "move",
+              "facing",
+              "nod",
+              "shrug",
+              "recoil",
+              "bow",
+              "wobble"
+            ]
+          },
+          "support": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/citation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "actor_id",
+          "kind",
+          "assertion",
+          "support"
+        ],
+        "type": "object"
+      },
+      "beat": {
+        "additionalProperties": false,
+        "properties": {
+          "action_ids": {
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "depiction": {
+            "enum": [
+              "picture",
+              "continuation",
+              "omission"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "fact_ids": {
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "span": {
+            "description": "Half-open Unicode scalar indices in the exact source file.",
+            "items": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "subjects": {
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "span",
+          "text",
+          "depiction",
+          "description",
+          "subjects",
+          "fact_ids",
+          "action_ids"
+        ],
+        "type": "object"
+      },
+      "cast": {
+        "additionalProperties": false,
+        "properties": {
+          "canonical_id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "narrator",
+              "character",
+              "subject",
+              "location"
+            ]
+          },
+          "mentions": {
+            "items": {
+              "$ref": "#/$defs/citation"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "canonical_id",
+          "kind",
+          "mentions"
+        ],
+        "type": "object"
+      },
+      "citation": {
+        "additionalProperties": false,
+        "properties": {
+          "quote": {
+            "type": "string"
+          },
+          "span": {
+            "description": "Half-open Unicode scalar indices in the exact source file.",
+            "items": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          }
+        },
+        "required": [
+          "span",
+          "quote"
+        ],
+        "type": "object"
+      },
+      "fact": {
+        "additionalProperties": false,
+        "properties": {
+          "assertion": {
+            "type": "string"
+          },
+          "entity_ids": {
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "support": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/citation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "entity_ids",
+          "assertion",
+          "support"
+        ],
+        "type": "object"
+      },
+      "picture": {
+        "additionalProperties": false,
+        "properties": {
+          "beat_ids": {
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "span": {
+            "description": "Half-open Unicode scalar indices in the exact source file.",
+            "items": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "subjects": {
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "span",
+          "beat_ids",
+          "subjects",
+          "description"
+        ],
+        "type": "object"
+      },
+      "reference": {
+        "additionalProperties": false,
+        "properties": {
+          "entity_ids": {
+            "items": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "features": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "subject_type_id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "support": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/citation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "usage": {
+            "enum": [
+              "subject",
+              "style_only"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "subject_type_id",
+          "entity_ids",
+          "support",
+          "features",
+          "usage"
+        ],
+        "type": "object"
+      },
+      "scene": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "pictures": {
+            "items": {
+              "$ref": "#/$defs/picture"
+            },
+            "maxItems": 1024,
+            "type": "array"
+          },
+          "span": {
+            "description": "Half-open Unicode scalar indices in the exact source file.",
+            "items": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "span",
+          "text",
+          "pictures"
+        ],
+        "type": "object"
+      },
+      "turn": {
+        "additionalProperties": false,
+        "properties": {
+          "attribution": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/citation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "narration",
+              "dialogue"
+            ]
+          },
+          "span": {
+            "description": "Half-open Unicode scalar indices in the exact source file.",
+            "items": {
+              "maximum": 9007199254740991,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "speaker": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "span",
+          "text",
+          "speaker",
+          "kind",
+          "attribution"
+        ],
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "actions": {
+        "items": {
+          "$ref": "#/$defs/action"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      },
+      "beats": {
+        "items": {
+          "$ref": "#/$defs/beat"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      },
+      "book_id": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "cast": {
+        "items": {
+          "$ref": "#/$defs/cast"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      },
+      "chapter_id": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "facts": {
+        "items": {
+          "$ref": "#/$defs/fact"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      },
+      "questions": {
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      },
+      "references": {
+        "items": {
+          "$ref": "#/$defs/reference"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      },
+      "request_sha256": {
+        "anyOf": [
+          {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "description": "Optional collector-provided echo. Models may omit it; actual binding is checked through committed request/observation/provider-v2 records."
+      },
+      "scenes": {
+        "items": {
+          "$ref": "#/$defs/scene"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      },
+      "schema_version": {
+        "const": 1
+      },
+      "source_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "type": "string"
+      },
+      "turns": {
+        "items": {
+          "$ref": "#/$defs/turn"
+        },
+        "maxItems": 1024,
+        "type": "array"
+      }
+    },
+    "required": [
+      "schema_version",
+      "book_id",
+      "chapter_id",
+      "source_sha256",
+      "cast",
+      "turns",
+      "beats",
+      "scenes",
+      "facts",
+      "actions",
+      "references",
+      "questions"
+    ],
+    "title": "Private source-backed direction response v1",
+    "type": "object"
+  },
+  "response_schema": "direction-plan-v1",
+  "schema_version": 1,
+  "source": {
+    "artifact": {
+      "bytes": 270211,
+      "media_type": "application/json",
+      "path": "source.json",
+      "sha256": "71e8f7ba407cdedd8aec594e9973b10d864199f454d00a1d0a476ede8421cf92"
+    },
+    "sha256": "1d8c591969dd338fd8f251e3b83d991a76b5a7e5c715b503953c5ce4775ec320",
+    "span": [
+      0,
+      5958
+    ],
+    "text": "Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their house was small, for the lumber to build it had to be carried by wagon many miles. There were four walls, a floor and a roof, which made one room; and this room contained a rusty looking cookstove, a cupboard for the dishes, a table, three or four chairs, and the beds. Uncle Henry and Aunt Em had a big bed in one corner, and Dorothy a little bed in another corner. There was no garret at all, and no cellar—except a small hole dug in the ground, called a cyclone cellar, where the family could go in case one of those great whirlwinds arose, mighty enough to crush any building in its path. It was reached by a trap door in the middle of the floor, from which a ladder led down into the small, dark hole.\n\nWhen Dorothy stood in the doorway and looked around, she could see nothing but the great gray prairie on every side. Not a tree nor a house broke the broad sweep of flat country that reached to the edge of the sky in all directions. The sun had baked the plowed land into a gray mass, with little cracks running through it. Even the grass was not green, for the sun had burned the tops of the long blades until they were the same gray color to be seen everywhere. Once the house had been painted, but the sun blistered the paint and the rains washed it away, and now the house was as dull and gray as everything else.\n\nWhen Aunt Em came there to live she was a young, pretty wife. The sun and wind had changed her, too. They had taken the sparkle from her eyes and left them a sober gray; they had taken the red from her cheeks and lips, and they were gray also. She was thin and gaunt, and never smiled now. When Dorothy, who was an orphan, first came to her, Aunt Em had been so startled by the child’s laughter that she would scream and press her hand upon her heart whenever Dorothy’s merry voice reached her ears; and she still looked at the little girl with wonder that she could find anything to laugh at.\n\nUncle Henry never laughed. He worked hard from morning till night and did not know what joy was. He was gray also, from his long beard to his rough boots, and he looked stern and solemn, and rarely spoke.\n\nIt was Toto that made Dorothy laugh, and saved her from growing as gray as her other surroundings. Toto was not gray; he was a little black dog, with long silky hair and small black eyes that twinkled merrily on either side of his funny, wee nose. Toto played all day long, and Dorothy played with him, and loved him dearly.\n\nToday, however, they were not playing. Uncle Henry sat upon the doorstep and looked anxiously at the sky, which was even grayer than usual. Dorothy stood in the door with Toto in her arms, and looked at the sky too. Aunt Em was washing the dishes.\n\nFrom the far north they heard a low wail of the wind, and Uncle Henry and Dorothy could see where the long grass bowed in waves before the coming storm. There now came a sharp whistling in the air from the south, and as they turned their eyes that way they saw ripples in the grass coming from that direction also.\n\nSuddenly Uncle Henry stood up.\n\n“There’s a cyclone coming, Em,” he called to his wife. “I’ll go look after the stock.” Then he ran toward the sheds where the cows and horses were kept.\n\nAunt Em dropped her work and came to the door. One glance told her of the danger close at hand.\n\n“Quick, Dorothy!” she screamed. “Run for the cellar!”\n\nToto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightened, threw open the trap door in the floor and climbed down the ladder into the small, dark hole. Dorothy caught Toto at last and started to follow her aunt. When she was halfway across the room there came a great shriek from the wind, and the house shook so hard that she lost her footing and sat down suddenly upon the floor.\n\nThen a strange thing happened.\n\nThe house whirled around two or three times and rose slowly through the air. Dorothy felt as if she were going up in a balloon.\n\nThe north and south winds met where the house stood, and made it the exact center of the cyclone. In the middle of a cyclone the air is generally still, but the great pressure of the wind on every side of the house raised it up higher and higher, until it was at the very top of the cyclone; and there it remained and was carried miles and miles away as easily as you could carry a feather.\n\nIt was very dark, and the wind howled horribly around her, but Dorothy found she was riding quite easily. After the first few whirls around, and one other time when the house tipped badly, she felt as if she were being rocked gently, like a baby in a cradle.\n\nToto did not like it. He ran about the room, now here, now there, barking loudly; but Dorothy sat quite still on the floor and waited to see what would happen.\n\nOnce Toto got too near the open trap door, and fell in; and at first the little girl thought she had lost him. But soon she saw one of his ears sticking up through the hole, for the strong pressure of the air was keeping him up so that he could not fall. She crept to the hole, caught Toto by the ear, and dragged him into the room again, afterward closing the trap door so that no more accidents could happen.\n\nHour after hour passed away, and slowly Dorothy got over her fright; but she felt quite lonely, and the wind shrieked so loudly all about her that she nearly became deaf. At first she had wondered if she would be dashed to pieces when the house fell again; but as the hours passed and nothing terrible happened, she stopped worrying and resolved to wait calmly and see what the future would bring. At last she crawled over the swaying floor to her bed, and lay down upon it; and Toto followed and lay down beside her.\n\nIn spite of the swaying of the house and the wailing of the wind, Dorothy soon closed her eyes and fell fast asleep."
+  },
+  "task": "source-backed-direction-v1"
+}

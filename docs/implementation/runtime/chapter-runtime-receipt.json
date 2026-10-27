@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "task": "R16",
+  "fixed_acoustic_pipeline": {
+    "checkpoint_events": 4,
+    "helper_authorizations": 4,
+    "helper_completions": 4,
+    "helper_failures": 0,
+    "helper_starts": 4,
+    "outcome": "needs_repair",
+    "plan_sha256": "5355d0b478e531f52b21c0fa4a9d2cef2b14d866396c18872dfd7a554d58087c",
+    "production_approved": false,
+    "provider_calls": 0,
+    "publication_enabled": false,
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "reused_units": 1,
+    "run_state": "failed",
+    "schema_version": 1,
+    "test": "fixed_acoustic_stage_resumes_only_missing_units_and_never_creates_a_package",
+    "units": [
+      {
+        "label": "chunk-0000",
+        "outcome": "needs_repair",
+        "outputs": [
+          {
+            "file": {
+              "bytes": 9379,
+              "media_type": "application/json",
+              "path": "private/chapter-import-validation.json",
+              "sha256": "a1425fc7bbc0a20cc9ff0fc0ad1cb9ff6d613089f517cafa3e496ad945e01ad0"
+            },
+            "id": "f4e3ceeab75ff9dae20170a24280b3fb1ea8f87c5b102717a9eb51cf9af2ea76",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 2,
+              "media_type": "application/json",
+              "path": "private/chapter-import-proposals.json",
+              "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            "id": "9ce697644a73cbe0c2a8482828a29bd17f426c6c5773486a309f1f8541d4fd09",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 44,
+              "media_type": "application/json",
+              "path": "private/chapter-import-evidence-inventory.json",
+              "sha256": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d"
+            },
+            "id": "5c1518435bd317995ab692936d9e59f7fac6b3545bf1d4c1d69ff30f0150033f",
+            "provenance": "diagnostic"
+          }
+        ],
+        "unit_key": "c2e9e15689d0fa96e9d1d84c604aa2ec5b3a24ddd4c8d4da3ec284384a9d33d3"
+      },
+      {
+        "label": "chunk-0001",
+        "outcome": "needs_repair",
+        "outputs": [
+          {
+            "file": {
+              "bytes": 10336,
+              "media_type": "application/json",
+              "path": "private/chapter-import-validation.json",
+              "sha256": "cb093bbf90df5e912f58ba3c38382d576a6d492d18e4aaa7d71d09b285e46045"
+            },
+            "id": "4c75cc8cf57af5ec379ef57e2eea45c0cfa20391b150b895129a66374a4928a5",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 2,
+              "media_type": "application/json",
+              "path": "private/chapter-import-proposals.json",
+              "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            "id": "0b9a0e68c8a61c1ca5ca854dc1cb8ffc338d6af43447e5871e8e4de83f1e0505",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 44,
+              "media_type": "application/json",
+              "path": "private/chapter-import-evidence-inventory.json",
+              "sha256": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d"
+            },
+            "id": "855c916a505308e54dcef2d9348f9e52cdae04d4ebdf2ffe364d635e06f3bbb4",
+            "provenance": "diagnostic"
+          }
+        ],
+        "unit_key": "0316eabb2fb412e34260bcf5ba854382af6dac1aa114d623df028049d980ecfa"
+      },
+      {
+        "label": "chunk-0002",
+        "outcome": "needs_repair",
+        "outputs": [
+          {
+            "file": {
+              "bytes": 10353,
+              "media_type": "application/json",
+              "path": "private/chapter-import-validation.json",
+              "sha256": "34442b3a15095e5114595fa153938636660ef98413260a4480c50df5384fae47"
+            },
+            "id": "2fd8305e7a22d52446135c571e3116c02e612a23ad22d3dc5052ce9550cb99ed",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 2,
+              "media_type": "application/json",
+              "path": "private/chapter-import-proposals.json",
+              "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            "id": "0a47b7ef827aa52ad2e31cceeff2b8e858d010dba175b27c9ad428057a77a6be",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 44,
+              "media_type": "application/json",
+              "path": "private/chapter-import-evidence-inventory.json",
+              "sha256": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d"
+            },
+            "id": "3ef7b5ae89e78f1764a22699449eacc9de6d381ea58351567e2e925c22fe385e",
+            "provenance": "diagnostic"
+          }
+        ],
+        "unit_key": "58b6694e91590389858b43daf80d91cb522e31b18a69fe8babffecb60dd03fc6"
+      },
+      {
+        "label": "chunk-0003",
+        "outcome": "needs_repair",
+        "outputs": [
+          {
+            "file": {
+              "bytes": 9404,
+              "media_type": "application/json",
+              "path": "private/chapter-import-validation.json",
+              "sha256": "75cd19e3e220db6da2aed753b29b5e5858ef9fae0665bf9a41b3db99f9b5fbd9"
+            },
+            "id": "79d715c51dc7acb267a328292b7636e0168debe16fc446e87209c467a6583f07",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 2,
+              "media_type": "application/json",
+              "path": "private/chapter-import-proposals.json",
+              "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            "id": "f4d0074aec30c527035b41ffe953844fc6aa45a71d06db911f97e2ed77175ba5",
+            "provenance": "diagnostic"
+          },
+          {
+            "file": {
+              "bytes": 44,
+              "media_type": "application/json",
+              "path": "private/chapter-import-evidence-inventory.json",
+              "sha256": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d"
+            },
+            "id": "8be5620ad4febd3c58aee16c366e7149018fce2052ddd0ae1e9ac8f2a7f88b36",
+            "provenance": "diagnostic"
+          }
+        ],
+        "unit_key": "cd9d14e78caec75a34f1b6ced0a9e2e69ad39a4757e684b7b1a28e97c9feb366"
+      }
+    ]
+  },
+  "temporary_chapter_capacity": {
+    "duration_seconds": 1200,
+    "full_native_in_stage_inputs": false,
+    "helper_attempts": 2,
+    "native_bytes": 19200044,
+    "production_approved": false,
+    "replay_helper_dispatches": 0,
+    "replay_provider_dispatches": 0,
+    "sample_rate": 8000,
+    "schema_version": 1,
+    "snapshot_unchanged_by_replay": true,
+    "test": "temporary_1200_second_native_chapter_freezes_and_runs_under_per_unit_bounds",
+    "planned_units": [
+      {
+        "label": "chunk-0000",
+        "unit_key": "20ebdf710ce53c96e74e86a1cd2f4852f3500f0a09bc41b0ed4d0805779dafdc"
+      },
+      {
+        "label": "chunk-0001",
+        "unit_key": "3ea3303d83f117ad99721edf0d8c010ea65282ff32bf32600c59e0152c0ede99"
+      }
+    ],
+    "executed_units": 2
+  },
+  "actual_server_process_restart": {
+    "schema_version": 1,
+    "test": "chapter_runtime_process",
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "real_server_processes": 2,
+    "forced_process_terminations": 1,
+    "original_inputs_removed": true,
+    "helper_attempts_before_restart": 4,
+    "helper_attempts_after_restart": 4,
+    "resumed_units": 4,
+    "unit_outputs_unchanged": true,
+    "checkpoint_events": 4,
+    "private_artifact_http_status": 404,
+    "external_provider_calls": 0,
+    "outcome": "needs_repair",
+    "run_state": "failed",
+    "production_approved": false,
+    "publication_enabled": false
+  },
+  "recorded_replay": {
+    "four_small_units": true,
+    "three_outputs_per_unit": true,
+    "byte_identical": true,
+    "sqlite_bytes_unchanged": true,
+    "journal_snapshot_accounting_catalog_unchanged": true,
+    "helper_redispatches": 0,
+    "provider_dispatches": 0
+  },
+  "cancellation": {
+    "before_dispatch_attempts": 0,
+    "during_process_group_killed": true,
+    "after_generation_no_checkpoint": true,
+    "attempt_outcomes_retained": true
+  },
+  "rollback_and_crash": {
+    "checkpoint_failure_no_private_reference_or_finding_events": true,
+    "completed_helper_reused_without_redispatch": true,
+    "uncertain_attempt_preserved_without_retry": true
+  },
+  "tests": [
+    "runtime::chapter::services::tests::exact_grants_reject_bad_envelopes_and_cross_unit_substitution_without_fallback",
+    "runtime::chapter_tests::cancellation_after_helper_and_generation_unwinds_without_a_checkpoint",
+    "runtime::chapter_tests::cancellation_during_registered_subprocess_kills_its_group_and_preserves_the_attempt",
+    "runtime::chapter_tests::corrupt_inputs_records_outputs_and_cross_unit_checkpoint_substitution_never_redispatch",
+    "runtime::chapter_tests::cancelled_runs_and_uncertain_recovered_attempts_never_dispatch_again",
+    "runtime::chapter_tests::fixed_acoustic_stage_resumes_only_missing_units_and_never_creates_a_package",
+    "runtime::chapter_tests::distinct_units_restart_and_replay_exact_private_outputs_without_redispatch",
+    "runtime::chapter_tests::helper_completion_survives_crash_and_checkpoint_rollback_without_double_dispatch",
+    "runtime::chapter_tests::verified_bundle_runs_real_registered_helper_and_checkpoints_private_needs_repair",
+    "runtime::chapter_tests::whole_bundle_reconstruction_raw_metadata_and_pre_read_budgets_reject_before_import",
+    "runtime::chapter_tests::cross_cut_global_ambiguity_and_original_adverse_observations_remain_unresolved",
+    "runtime::chapter_tests::temporary_1200_second_native_chapter_freezes_and_runs_under_per_unit_bounds"
+  ]
+}

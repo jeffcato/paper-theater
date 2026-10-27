@@ -1,16 +1,19 @@
 use super::*;
+mod direction;
+mod pilot;
 use async_trait::async_trait;
 use std::{
     collections::BTreeMap,
     sync::{
         Mutex,
-        atomic::{AtomicBool, Ordering},
+        atomic::{AtomicBool, AtomicUsize, Ordering},
     },
 };
 
 struct OfflineServices {
     substitute_path: bool,
     cancel_on_emit: bool,
+    emits: AtomicUsize,
     cancelled: AtomicBool,
     inputs: BTreeMap<String, Vec<u8>>,
     writes: Mutex<Vec<(CandidateFile, Vec<u8>)>>,
@@ -48,6 +51,7 @@ impl RunServices for OfflineServices {
         Ok(candidate)
     }
     async fn emit(&self, _: JournalProposal) -> Result<(), ServiceError> {
+        self.emits.fetch_add(1, Ordering::SeqCst);
         if self.cancel_on_emit {
             self.cancelled.store(true, Ordering::SeqCst);
         }
@@ -128,6 +132,7 @@ fn fixture() -> (StageInput, OfflineServices) {
         OfflineServices {
             substitute_path: false,
             cancel_on_emit: false,
+            emits: AtomicUsize::new(0),
             cancelled: AtomicBool::new(false),
             inputs,
             writes: Mutex::new(vec![]),
@@ -299,7 +304,8 @@ async fn rejects_stale_bytes_wrong_pins_substituted_candidates_and_late_cancella
     let (input, mut services) = fixture();
     services.substitute_path = true;
     assert!(GenerationExecutor.execute(input, &services).await.is_err());
-    let (input, mut services) = fixture();
+    let (mut input, mut services) = fixture();
+    input.mode = ExecutionMode::Fixture;
     services.cancel_on_emit = true;
     assert!(matches!(
         GenerationExecutor.execute(input, &services).await,
@@ -343,3 +349,6 @@ fn readiness_v2_passes_shared_integrity_without_granting_production_acceptance()
         "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d"
     );
 }
+
+mod acceptance_proposals;
+mod master_capacity;

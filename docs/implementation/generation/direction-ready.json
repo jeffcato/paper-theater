@@ -1,0 +1,1192 @@
+{
+  "schema_version": 1,
+  "task": "G22",
+  "status": "offline-source-backed-direction-increment-complete",
+  "service_revision": "pt-services-v1.8.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "provider_envelope_version": 2,
+  "private_response_version": 1,
+  "outcome": "needs_repair",
+  "provenance": "diagnostic",
+  "production_approved": false,
+  "real_provider_transport_calls": 0,
+  "fixture_replay_issuance_or_dispatch_calls": 0,
+  "helper_calls": 0,
+  "journal_emissions": 0,
+  "library_updates": 0,
+  "accounting_catalog_mutations_by_generation": 0,
+  "runtime_policy_authority": false,
+  "reveal_permissions": [],
+  "checks": {
+    "generation_suite": 84,
+    "new_direction_tests": 14,
+    "final_native_direction_recheck": 14,
+    "isolated_real_library_direction_tests": 14,
+    "python_suite": 37,
+    "candidate_contract_tests": 4,
+    "provider_metadata_tests": 2,
+    "provider_service_tests": 3,
+    "unique_suite_test_count": 130,
+    "library_check": "pass",
+    "formatting": "pass",
+    "identity": "pass",
+    "owned_whitespace": "pass",
+    "frozen_evidence_identity_checks": "pass",
+    "scoped_acceptance_regressions": 16,
+    "frozen_fixture_hashes_verified": 108,
+    "identity_files_scanned": 1432,
+    "generation_suite_result": "84 passed; 0 failed",
+    "native_direction_result": "14 passed; 0 failed"
+  },
+  "commands": [
+    "cargo test -p pt-production generation:: --locked --offline",
+    "cargo test -p pt-production generation::tests::direction:: --locked --offline",
+    "PT_DIRECTION_EXPORT=fixtures/generation/direction-v1 python3 -B tools/generation/run_direction_tests.py",
+    "cargo test -p pt-production --test candidate_read_contract --locked --offline",
+    "cargo test -p pt-contracts --test provider_metadata --test provider_service --locked --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "cargo check -p pt-production --lib --offline",
+    "rustfmt --edition 2024 --config skip_children=true --check crates/pt-production/src/generation/mod.rs crates/pt-production/src/generation/direction.rs crates/pt-production/src/generation/tests.rs crates/pt-production/src/generation/tests/direction.rs crates/pt-production/src/generation/tests/acceptance_proposals.rs",
+    "python3 tools/check_product_identity.py ."
+  ],
+  "red_green": [
+    {
+      "command": "cargo test -p pt-production generation::tests::direction:: --offline",
+      "red": "adapter-pending produced no private/direction-plan.json for a valid saved response",
+      "green": "saved dialogue and narration-only compile with exact source/citations and no dispatch"
+    },
+    {
+      "test": "direction_request_requires_runtime_commit_and_default_v2_unavailable_stays_unresolved",
+      "red": "default unavailable seam was not represented as direction-provider-v2-unavailable",
+      "green": "two-phase committed ArtifactRef required; unavailable returns NeedsRepair without fallback"
+    },
+    {
+      "test": "issued_provider_double_validates_identity_and_replays_compiled_bytes_without_redispatch",
+      "red": "observation FileRef hashed struct order rather than exact candidate JSON; then fresh-capture/status/cache differed on replay",
+      "green": "exact canonical candidate bytes bound; original metadata count stays unknown; unchanged compiled outputs/cache replay without redispatch"
+    },
+    {
+      "test": "partial_names_cannot_invent_a_speaker_or_rebind_a_canonical_character",
+      "red": "Mir matched the Mira source mention and speaker",
+      "green": "whole-token mention and canonical alias checks keep unsupported speaker unresolved"
+    },
+    {
+      "test": "unrelated_attribution_citation_cannot_assign_a_quoted_performance",
+      "red": "a separate Mira said citation assigned a performance it did not contain",
+      "green": "citation must contain the complete quote with adjacent supported named attribution"
+    },
+    {
+      "test": "saved_direction_compiles_verbatim_dialogue_and_narration_without_dispatch",
+      "red": "reference task status and inline response schema were absent",
+      "green": "private explicit research/applicability gaps and self-contained bounded schema emitted"
+    },
+    {
+      "test": "mentioned_characters_cannot_become_narrators_to_create_voice_variety",
+      "red": "a mentioned character could be relabeled narrator to create another voice",
+      "green": "only the separate Narrator role can narrate; canonical conflicts and unsupported roles stay unresolved"
+    },
+    {
+      "command": "cargo test -p pt-production generation:: --locked --offline",
+      "red": "83 passed; scope snapshot compared current matrix-v3 execution metadata with frozen v2 metadata",
+      "green": "84 passed; current v3 examples separately versioned; both archived v1/v2 scope rows and adverse findings verified unchanged"
+    }
+  ],
+  "schemas": {
+    "context_example": {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-context.json",
+      "sha256": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d",
+      "bytes": 851,
+      "media_type": "application/json"
+    },
+    "registry_example": {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/book-registry.json",
+      "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+      "bytes": 400,
+      "media_type": "application/json"
+    },
+    "request_example": {
+      "path": "fixtures/generation/direction-v1/dialogue/candidates/private/direction-request.json",
+      "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+      "bytes": 14049,
+      "media_type": "application/json"
+    },
+    "response": {
+      "path": "fixtures/generation/direction-v1/response-schema.json",
+      "sha256": "d9e78068ba7717691307250707c50855a59b1ea8f4f58b58b2258f099bb4da8a",
+      "bytes": 11141,
+      "media_type": "application/json"
+    },
+    "saved_observation_example": {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-observation.json",
+      "sha256": "e5ac2537dd5b3b7a348a2b8a434117a0cfc3ff6d21b9509ea85a714d9fb1270e",
+      "bytes": 980,
+      "media_type": "application/json"
+    },
+    "issued_result_double_example": {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-observation.json",
+      "sha256": "67c09bb702f5c9debe8be5a61a2d3a48029d1fbc9efa759d631d67a713c69aca",
+      "bytes": 7144,
+      "media_type": "application/json"
+    },
+    "provider_proposal_example": {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-provider-proposal.json",
+      "sha256": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+      "bytes": 2498,
+      "media_type": "application/json"
+    }
+  },
+  "runtime_request": {
+    "path": "docs/implementation/generation/direction-runtime-request.json",
+    "sha256": "c5c32a24a99bf21001e66899fb5c54195c609ec09ca5233201e28488499c7494",
+    "bytes": 4702,
+    "media_type": "application/json"
+  },
+  "source_requirements": {
+    "component": "source-direction-workflow",
+    "relative_document": "docs/architecture/generation/01-source-and-direction.md",
+    "sha256": "46f20f085e01d5b3966a8b982dfc9bb4cfc622c867930f5e3ea22104b6128bdb",
+    "access": "transient read-only source; no external path serialized"
+  },
+  "reuse": {
+    "component": "dramatic-script",
+    "api": "ScriptTurn::new / source-independent speech syntax validator",
+    "copied_source": false,
+    "note": "No sanction from the generic parser can override exact source equality or unresolved attribution/voice-pilot gates."
+  },
+  "limits": {
+    "raw_clean_file_bytes": 16777216,
+    "other_metadata_request_response_candidate_bytes": 1048576,
+    "aggregate_input_bytes": 67108864,
+    "references": 64,
+    "top_level_response_inventories": 1024,
+    "proposal_timeout_max_ms": 300000
+  },
+  "cases": [
+    {
+      "case": "dialogue",
+      "outcome": "needs_repair",
+      "stage_input": {
+        "path": "fixtures/generation/direction-v1/dialogue/stage-input.json",
+        "sha256": "ad6eca4177a4796d02c95f3d0171a11b367ec53a15a50227d1d721f03a0587fa",
+        "bytes": 3725,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/direction-v1/dialogue/input-index.json",
+        "sha256": "314c53745d17c2a27188149b7b6ba15afdac1c075c9293052ea750dc3793a7ec",
+        "bytes": 4279,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/direction-v1/dialogue/stage-output.json",
+        "sha256": "2ff9881acd2c4f5ea83946f23cfb48154a29d0bdc89feddd207a560426c3a78a",
+        "bytes": 3698,
+        "media_type": "application/json"
+      },
+      "private_artifacts": [
+        {
+          "candidate_id": "26ed384a160b603b77e2367193db150ad546dedb6a551fd44d828f105b51a1b4",
+          "file": {
+            "path": "private/direction-request.json",
+            "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+            "bytes": 14049,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "74038775d9d470206f9048ff0b2c65a3bfd8e0781d0a87fb67b1031de97ecc28",
+          "file": {
+            "path": "private/direction-provider-proposal.json",
+            "sha256": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+            "bytes": 2498,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "85482cd8e8f7cf42adc431dcc4bc530f24a478812847e168f006eefae4b6a8a8",
+          "file": {
+            "path": "private/direction-plan.json",
+            "sha256": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42",
+            "bytes": 12149,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "46636e7121ea188662568afe309e7dab310351a0d3856651a970158be48a524b",
+          "file": {
+            "path": "private/direction-request-handoff.json",
+            "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+            "bytes": 2625,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "20402b984d6665db3255d548965c05e84ef7c68d17abd6d91ba86fd294a1eb95",
+          "file": {
+            "path": "private/direction-status.json",
+            "sha256": "06d97191393c66d408a1828d44ac5251d6e780a8fe89454e4f89ea9f5b6bc568",
+            "bytes": 2833,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ],
+      "finding_ids": [
+        "initial-reference-research",
+        "canonical-reference-applicability",
+        "voice-pilot",
+        "direction-semantic-review",
+        "rendered-stage-clarity",
+        "production-verifier-pending"
+      ],
+      "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "source_scalars": 51,
+      "speakers": [
+        "mira",
+        "narrator"
+      ],
+      "coverage": {
+        "beats": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              51
+            ]
+          ]
+        },
+        "scenes": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              51
+            ]
+          ]
+        },
+        "turns": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              11
+            ],
+            [
+              11,
+              27
+            ],
+            [
+              27,
+              51
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "narration-only",
+      "outcome": "needs_repair",
+      "stage_input": {
+        "path": "fixtures/generation/direction-v1/narration-only/stage-input.json",
+        "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+        "bytes": 3725,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/direction-v1/narration-only/input-index.json",
+        "sha256": "8f9234cbe88b0b178a05e671552cbdebf4d56531dd9417b364d6289c896de2db",
+        "bytes": 4339,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/direction-v1/narration-only/stage-output.json",
+        "sha256": "c087bd9f24a81715429a4342ecab4e5eefbb9b864f26004d6e65a851886183e0",
+        "bytes": 3697,
+        "media_type": "application/json"
+      },
+      "private_artifacts": [
+        {
+          "candidate_id": "723989a53545647a6832457367f947effc5179905981da162530429ba5bed7e8",
+          "file": {
+            "path": "private/direction-request.json",
+            "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef",
+            "bytes": 14041,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "856c1b592735d4fafb51f53bfa30d94bfdd1cf25b5ecccb5a4b1de21f1cadac4",
+          "file": {
+            "path": "private/direction-provider-proposal.json",
+            "sha256": "acc32a14bb6e39f5f142c666273e43076fe2a38260e2e9075c681894e52e5315",
+            "bytes": 2498,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "9e2bcb60097421277f70755a28ab8a37e874ea1aac03269c5a9d53188e7d1e57",
+          "file": {
+            "path": "private/direction-plan.json",
+            "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2",
+            "bytes": 9391,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b46c870eff4019dc0959a573ef74e76b8296189b396c0ae9751e3fb0e6ec04c3",
+          "file": {
+            "path": "private/direction-request-handoff.json",
+            "sha256": "9c1cfbd536a208b4dfca0e99ae1160afe38b6134fd5b3f8f9315040ca9bfc340",
+            "bytes": 2625,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "1db77a499ecfe88dacfedf07cbe3e94921d56dcda5b710fa62b5d2e13abac96d",
+          "file": {
+            "path": "private/direction-status.json",
+            "sha256": "db728d4b81ed52ec18da7ef3cbfd8614a23779f8286d35453cdec863fe2d8854",
+            "bytes": 2833,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ],
+      "finding_ids": [
+        "initial-reference-research",
+        "canonical-reference-applicability",
+        "voice-pilot",
+        "direction-semantic-review",
+        "rendered-stage-clarity",
+        "production-verifier-pending"
+      ],
+      "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+      "source_scalars": 46,
+      "speakers": [
+        "narrator"
+      ],
+      "coverage": {
+        "beats": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              46
+            ]
+          ]
+        },
+        "scenes": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              46
+            ]
+          ]
+        },
+        "turns": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              46
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "request-phase",
+      "outcome": "needs_repair",
+      "stage_input": {
+        "path": "fixtures/generation/direction-v1/request-phase/stage-input.json",
+        "sha256": "cfc2a1433b0e6b9184196c7e71dbe8a7a1b1f6f670fec43a0f9802e1f583af6c",
+        "bytes": 3055,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/direction-v1/request-phase/input-index.json",
+        "sha256": "691c0f08ed62ed8249aedeade9fbf20f6ad564686d9ba5331b2cf7fc89bc3562",
+        "bytes": 3411,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/direction-v1/request-phase/stage-output.json",
+        "sha256": "90e92ef1bed5865fb6ffb6f19d167ca4e3d24d84734d4376fa187a97ca5acf8b",
+        "bytes": 3461,
+        "media_type": "application/json"
+      },
+      "private_artifacts": [
+        {
+          "candidate_id": "26ed384a160b603b77e2367193db150ad546dedb6a551fd44d828f105b51a1b4",
+          "file": {
+            "path": "private/direction-request.json",
+            "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+            "bytes": 14049,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "46636e7121ea188662568afe309e7dab310351a0d3856651a970158be48a524b",
+          "file": {
+            "path": "private/direction-request-handoff.json",
+            "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+            "bytes": 2625,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "f7c80686139ac36af0c802b709f82410be95600f240c2730813e01807ffd9941",
+          "file": {
+            "path": "private/direction-status.json",
+            "sha256": "5673f64b7bfd877807d8322637d0c423a2cbe9b8b093ce805f5afc1b8c3596e2",
+            "bytes": 3138,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ],
+      "finding_ids": [
+        "direction-request-commit-pending",
+        "direction-response-missing",
+        "initial-reference-research",
+        "canonical-reference-applicability",
+        "voice-pilot",
+        "direction-semantic-review",
+        "rendered-stage-clarity",
+        "production-verifier-pending"
+      ]
+    },
+    {
+      "case": "canonical-reuse",
+      "outcome": "needs_repair",
+      "stage_input": {
+        "path": "fixtures/generation/direction-v1/canonical-reuse/stage-input.json",
+        "sha256": "f8a304e0b08db21c04ac3bcf6d8f33dad34b1fc9c75cc26acc0c21f9ab7bcd6d",
+        "bytes": 4051,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/direction-v1/canonical-reuse/input-index.json",
+        "sha256": "8b9a0844bae820dd2dd6c2183284def0d408833fe4b0d0b33ba1ac51f0a23de9",
+        "bytes": 4797,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/direction-v1/canonical-reuse/stage-output.json",
+        "sha256": "e8033ce35cdbf35fa25c5d4590c55d747fc14937965ec19113d86bdc56161737",
+        "bytes": 3886,
+        "media_type": "application/json"
+      },
+      "private_artifacts": [
+        {
+          "candidate_id": "937ca85b76ceb13ef73480e60754ca0c05469a19b9c2ce7a52aa0790ebf307cb",
+          "file": {
+            "path": "private/direction-request.json",
+            "sha256": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638",
+            "bytes": 14418,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b8710dbc033cb78e683bc4f0cf97be5126edfaa4a3795b0717cb0c75f3bf7801",
+          "file": {
+            "path": "private/direction-provider-proposal.json",
+            "sha256": "43150350cdca6cc84d288dc793c0c936bca0993b45ce355f5bad2b61d4c9046d",
+            "bytes": 2498,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "3405117fdb9b7a8e9d9944a371b6403b3971f107ef72daf17c56ae192af1b5d3",
+          "file": {
+            "path": "private/direction-plan.json",
+            "sha256": "563cf639f2f0d9c3e0028f5cef604630c8535624b8ac251fa9fd83afd82cb77e",
+            "bytes": 12689,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "4c1c93a3f589b0ef8088580091d16c7b273689029641aaa69afb0bb1afedaeda",
+          "file": {
+            "path": "private/direction-request-handoff.json",
+            "sha256": "7e356956daec50b44405a66fc640c4a8ec18a87ef720725b397d843d1d0e3c35",
+            "bytes": 2625,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "2b5499acf40efdce02e42ccc1b5ce403363376b9e104f18a421de7d8fd280c74",
+          "file": {
+            "path": "private/direction-status.json",
+            "sha256": "16b9e0d316776af0a3aa660f1d7276f1b4832c2a6a015f42dfd08f55293532d0",
+            "bytes": 3022,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ],
+      "finding_ids": [
+        "older-direction-failure",
+        "initial-reference-research",
+        "canonical-reference-applicability",
+        "voice-pilot",
+        "direction-semantic-review",
+        "rendered-stage-clarity",
+        "production-verifier-pending"
+      ],
+      "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "source_scalars": 51,
+      "speakers": [
+        "mira",
+        "narrator"
+      ],
+      "coverage": {
+        "beats": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              51
+            ]
+          ]
+        },
+        "scenes": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              51
+            ]
+          ]
+        },
+        "turns": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              11
+            ],
+            [
+              11,
+              27
+            ],
+            [
+              27,
+              51
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "provider-double",
+      "outcome": "needs_repair",
+      "stage_input": {
+        "path": "fixtures/generation/direction-v1/provider-double/stage-input.json",
+        "sha256": "33ac9aad67d36123c4540af98f42bfcc140c769524f0ef693d35d363629f3564",
+        "bytes": 3385,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/direction-v1/provider-double/input-index.json",
+        "sha256": "3958d95d3b78c36d99c5b1cdf1bda9f3c021ebab0eb4a90e4da5affaf764d04b",
+        "bytes": 3883,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/direction-v1/provider-double/stage-output.json",
+        "sha256": "eacc0190f1a4868a3fb9354807e6ded7f16cc8f0085625c618efbfde1e996c97",
+        "bytes": 4063,
+        "media_type": "application/json"
+      },
+      "private_artifacts": [
+        {
+          "candidate_id": "26ed384a160b603b77e2367193db150ad546dedb6a551fd44d828f105b51a1b4",
+          "file": {
+            "path": "private/direction-request.json",
+            "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+            "bytes": 14049,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "74038775d9d470206f9048ff0b2c65a3bfd8e0781d0a87fb67b1031de97ecc28",
+          "file": {
+            "path": "private/direction-provider-proposal.json",
+            "sha256": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+            "bytes": 2498,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "8e2908ec40057e3d369951b6b1e0a5cabc7a3d0dfb8864caf9ce380121745d58",
+          "file": {
+            "path": "private/direction-observation.json",
+            "sha256": "67c09bb702f5c9debe8be5a61a2d3a48029d1fbc9efa759d631d67a713c69aca",
+            "bytes": 7144,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "caadb3cb08d89926552704f9f33d7dcc3e7bb822fe4fc6f2bf9c6cc007d65984",
+          "file": {
+            "path": "private/direction-plan.json",
+            "sha256": "f692c285835d15f696a3c0bacf5ff48d1b77d0424f8047a19943683529399bbe",
+            "bytes": 12150,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "46636e7121ea188662568afe309e7dab310351a0d3856651a970158be48a524b",
+          "file": {
+            "path": "private/direction-request-handoff.json",
+            "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+            "bytes": 2625,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "5477c8482ed790e88cd8a62c11086870f6cf4cb28827392a4f231931557ff2b6",
+          "file": {
+            "path": "private/direction-status.json",
+            "sha256": "b2a5f4e5eafd55887d79b55a849311baff7d7090a1afad37c2bc7b29bec7c674",
+            "bytes": 2837,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ],
+      "finding_ids": [
+        "initial-reference-research",
+        "canonical-reference-applicability",
+        "voice-pilot",
+        "direction-semantic-review",
+        "rendered-stage-clarity",
+        "production-verifier-pending"
+      ],
+      "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "source_scalars": 51,
+      "speakers": [
+        "mira",
+        "narrator"
+      ],
+      "coverage": {
+        "beats": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              51
+            ]
+          ]
+        },
+        "scenes": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              51
+            ]
+          ]
+        },
+        "turns": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              11
+            ],
+            [
+              11,
+              27
+            ],
+            [
+              27,
+              51
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "oz-source",
+      "outcome": "needs_repair",
+      "stage_input": {
+        "path": "fixtures/generation/direction-v1/oz-source/stage-input.json",
+        "sha256": "a871ae6f519c381a95847d7bc3c557823481ac5e35faf462e6394eeef1c10085",
+        "bytes": 3738,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/direction-v1/oz-source/input-index.json",
+        "sha256": "c90c7c748796a1a5655ab61ca2193e19ea4c701650aef6bfce6967479a2aac04",
+        "bytes": 4227,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/direction-v1/oz-source/stage-output.json",
+        "sha256": "7c152c7348570956d2b137e7153a89d74948b12dd193e8ba73d416dcb63712d7",
+        "bytes": 5098,
+        "media_type": "application/json"
+      },
+      "private_artifacts": [
+        {
+          "candidate_id": "e96dde5cb7a0fb0b1d4053ad0f8d5d53f6de8773052dfbdab1b3ddd488f0cf20",
+          "file": {
+            "path": "private/direction-request.json",
+            "sha256": "67fe6a03f3810edb50e3dff13def118d0a66b6f51818b1ae2c0f36af962080fe",
+            "bytes": 19827,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "45cbab58d2212f0a117591e620787b9fda874258db9b1ed198af5505487a3ca8",
+          "file": {
+            "path": "private/direction-provider-proposal.json",
+            "sha256": "7ddd82a559b396b76698119535585135ac1595f6cdafb2507f2274ced5659cc9",
+            "bytes": 2510,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "27ff834072fb82b11d4c985a703658275ce6cebfbbdfb305b38341f0144d92cb",
+          "file": {
+            "path": "private/direction-plan.json",
+            "sha256": "08d5ff58be99cc3060a1a4b894e1f9d2e3830590db07ae085ec375202350cff2",
+            "bytes": 55729,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "7b1ea99acc977b6f4896537e61fc509a93f53e274ea3870a626ab10642537df7",
+          "file": {
+            "path": "private/direction-request-handoff.json",
+            "sha256": "36e6307617d10a9905915cd2913bd87d4510c2ed79f423fc2b4c1f1cb731a533",
+            "bytes": 2637,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "3400e2956ddd66f31baba604190f73ea7c87f03ec5adb32db1b6a00d29b333c4",
+          "file": {
+            "path": "private/direction-status.json",
+            "sha256": "19aee47a0bea0ae90dc86bc3fe98ad7c73ba6e1a52505c61fe8289c1c73116cd",
+            "bytes": 4236,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ],
+      "finding_ids": [
+        "unattributed-quoted-prose",
+        "unattributed-quoted-prose",
+        "unattributed-quoted-prose",
+        "unattributed-quoted-prose",
+        "picture:s0-coverage",
+        "beat-omission:b0",
+        "initial-reference-research",
+        "canonical-reference-applicability",
+        "voice-pilot",
+        "direction-semantic-review",
+        "rendered-stage-clarity",
+        "production-verifier-pending"
+      ],
+      "source_sha256": "1d8c591969dd338fd8f251e3b83d991a76b5a7e5c715b503953c5ce4775ec320",
+      "source_scalars": 5958,
+      "speakers": [
+        "narrator"
+      ],
+      "coverage": {
+        "beats": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              5958
+            ]
+          ]
+        },
+        "scenes": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              5958
+            ]
+          ]
+        },
+        "turns": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              5958
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "wells-source",
+      "outcome": "needs_repair",
+      "stage_input": {
+        "path": "fixtures/generation/direction-v1/wells-source/stage-input.json",
+        "sha256": "f07f720da4dcee8eaeec2c42965d2ae79f8cc96b61b4a2b7ca4f05e366bfcdec",
+        "bytes": 3739,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/direction-v1/wells-source/input-index.json",
+        "sha256": "a2633237952921af14035a8bda944779ffa533a9fa60524bc15ce894abb10bc6",
+        "bytes": 4249,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/direction-v1/wells-source/stage-output.json",
+        "sha256": "af2796c4ec807cf924ac750582a975beb299ed0a3d6cb29fc122e6213aa1ffcd",
+        "bytes": 4848,
+        "media_type": "application/json"
+      },
+      "private_artifacts": [
+        {
+          "candidate_id": "31fcbe80dc062cfc9438e15f962329a0ffc75935c0481dcac0b5790c007e40b0",
+          "file": {
+            "path": "private/direction-request.json",
+            "sha256": "8727f8a7670ca9ced897afef7ff4a74be033ab91ce6c740acde00ff70ab83c5e",
+            "bytes": 26533,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "385aa1fff0688d770bffff6124b022a3f28ce99f69729d52b1e01164fe03d9ca",
+          "file": {
+            "path": "private/direction-provider-proposal.json",
+            "sha256": "79cf79d9ef5b372ac84b947ae143e7dcb0a0a372c56be3082d4f78f3242ef1e7",
+            "bytes": 2511,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "57dba724fd89313968a6737a884d6c6e58be48456e893bd8ee9c0256b0edd230",
+          "file": {
+            "path": "private/direction-plan.json",
+            "sha256": "99d8949a68dc79786239b134d8df7e906122748e4dfbbb3395476405dab79def",
+            "bytes": 83319,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "13dabe97e21971756004e5b5ff07bdad99ebd50261875f90ae444fd1099abd9c",
+          "file": {
+            "path": "private/direction-request-handoff.json",
+            "sha256": "ba36645292189fef1f01f6ac5e68d1955db6ce702657dca4445ae20a7c9ce868",
+            "bytes": 2638,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "a930466952ee2aadf2a73de3111b33a8de80dbf00ce2ad1a81123a6156157816",
+          "file": {
+            "path": "private/direction-status.json",
+            "sha256": "8ccfef1d4755e7f1b36794b15ddd2830b94410351da96affdc2fff92c31de22f",
+            "bytes": 3986,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ],
+      "finding_ids": [
+        "script-grammar:t0",
+        "unattributed-quoted-prose",
+        "unattributed-quoted-prose",
+        "picture:s0-coverage",
+        "beat-omission:b0",
+        "initial-reference-research",
+        "canonical-reference-applicability",
+        "voice-pilot",
+        "direction-semantic-review",
+        "rendered-stage-clarity",
+        "production-verifier-pending"
+      ],
+      "source_sha256": "d1cea729eaca946ead7c174aa09d0bc664570bb264f46846dea046d1d3b24ef2",
+      "source_scalars": 12654,
+      "speakers": [
+        "narrator"
+      ],
+      "coverage": {
+        "beats": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              12654
+            ]
+          ]
+        },
+        "scenes": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              12654
+            ]
+          ]
+        },
+        "turns": {
+          "missing_source_spans": [],
+          "ordered_verbatim_complete": true,
+          "proposed_spans": [
+            [
+              0,
+              12654
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "preserved": {
+    "g16_words": 176,
+    "g16_highlight_groups": 170,
+    "g16_points": 6,
+    "g16_matched_facts": 4,
+    "g16_unresolved_facts": [
+      {
+        "id": "strange-event",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "balloon-ascent",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "unprovided-fact",
+        "outcome": "missing"
+      }
+    ],
+    "g17_temporary_master_seconds": 180,
+    "g18_frozen_report_sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+    "g19_temporary_chapter_seconds": 600,
+    "g21_temporary_chapter_seconds": 1200,
+    "g19_recipe_sha256": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+    "g21_recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "g20_scopes_adverse_and_private_exports": "16 scoped acceptance regressions pass; archived v1/v2 hashes verified unchanged; new v3 fixtures separately versioned"
+  },
+  "private_export_proof": "Actual Direction candidates and an SVG alias are supplied to Package; their paths/hashes remain excluded from the explicit audience payload inventory.",
+  "provider_proof": "Injected v2 doubles only. Exact issued/proposal/observer/result/request/raw identities checked; mismatches reject before candidate output. Fixture/replay never issue/execute. Actual transport envelopes/authorization remain unimplemented owner work.",
+  "replay_proof": "Original observation bytes remain inputs. Compiler request/proposal/plan/status and cache keys are byte-identical; no model/helper redispatch or journal/library/accounting/catalog updates.",
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "caaf30b2f009134e8e1f34e5ddbe7b45173f67e63c0d81f269a8cd5afc21a92e",
+    "crates/pt-production/src/generation/direction.rs": "0d3b1d2d78939563bca1c4d926d30ef91f7601fbde270289b008e20cd7d7e9b7",
+    "crates/pt-production/src/generation/tests.rs": "dc1e4b822efda6b9e16e57490a9ab120be9af0062530ac92020b1e615048a0ca",
+    "crates/pt-production/src/generation/tests/direction.rs": "5cd1025ba4997e00bc61667b786be6e89ed062e695dae9025e55781781047766",
+    "tools/generation/run_direction_tests.py": "dbc4b59013e52040fe99eae93660c35d9945647d71623e27662c6a8729f996be",
+    "crates/pt-production/src/generation/tests/acceptance_proposals.rs": "9b4fca2b1452d716c969699727ddf5ebc473a9822d5cbfc8167502c7bfac4b44"
+  },
+  "fixture_sha256": {
+    "README.md": "66395eb429dc760cf84b3776fa3c794829ea8968015ba595ec24dfabe35edc29",
+    "canonical-reuse/candidates/private/direction-plan.json": "563cf639f2f0d9c3e0028f5cef604630c8535624b8ac251fa9fd83afd82cb77e",
+    "canonical-reuse/candidates/private/direction-provider-proposal.json": "43150350cdca6cc84d288dc793c0c936bca0993b45ce355f5bad2b61d4c9046d",
+    "canonical-reuse/candidates/private/direction-request-handoff.json": "7e356956daec50b44405a66fc640c4a8ec18a87ef720725b397d843d1d0e3c35",
+    "canonical-reuse/candidates/private/direction-request.json": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638",
+    "canonical-reuse/candidates/private/direction-status.json": "16b9e0d316776af0a3aa660f1d7276f1b4832c2a6a015f42dfd08f55293532d0",
+    "canonical-reuse/input-index.json": "8b9a0844bae820dd2dd6c2183284def0d408833fe4b0d0b33ba1ac51f0a23de9",
+    "canonical-reuse/inputs/clean-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "canonical-reuse/inputs/frozen-source.json": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+    "canonical-reuse/inputs/private/book-registry.json": "f59ee4d2d9bc4b206692795da0c59e1bf5bbbe84d5dfa5eb9ff8d9ef04ad7ef9",
+    "canonical-reuse/inputs/private/canonical-voice.json": "d833436de924e8b7c8ea39c5b49ad7aed8692d0ca68716073eade011cb875a1a",
+    "canonical-reuse/inputs/private/direction-context.json": "4fbde386952c739fd354b3b248b0a1f174c8141a05e76b374294bc96553a1f08",
+    "canonical-reuse/inputs/private/direction-observation.json": "6f3b0e4d1aa411deaff171dc0be4dd7b75fcbd59a8d9b8f0c4b08a16b0e98de7",
+    "canonical-reuse/inputs/private/direction-recipe.json": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+    "canonical-reuse/inputs/private/direction-request.json": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638",
+    "canonical-reuse/inputs/private/direction-response.json": "d46e6fbe980711d5db6d2b182c88dff052921a172a93deeeb34a7820584edd50",
+    "canonical-reuse/inputs/raw-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "canonical-reuse/inputs/source.json": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+    "canonical-reuse/stage-input.json": "f8a304e0b08db21c04ac3bcf6d8f33dad34b1fc9c75cc26acc0c21f9ab7bcd6d",
+    "canonical-reuse/stage-output.json": "e8033ce35cdbf35fa25c5d4590c55d747fc14937965ec19113d86bdc56161737",
+    "dialogue/candidates/private/direction-plan.json": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42",
+    "dialogue/candidates/private/direction-provider-proposal.json": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+    "dialogue/candidates/private/direction-request-handoff.json": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+    "dialogue/candidates/private/direction-request.json": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+    "dialogue/candidates/private/direction-status.json": "06d97191393c66d408a1828d44ac5251d6e780a8fe89454e4f89ea9f5b6bc568",
+    "dialogue/input-index.json": "314c53745d17c2a27188149b7b6ba15afdac1c075c9293052ea750dc3793a7ec",
+    "dialogue/inputs/clean-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "dialogue/inputs/frozen-source.json": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+    "dialogue/inputs/private/book-registry.json": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+    "dialogue/inputs/private/direction-context.json": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d",
+    "dialogue/inputs/private/direction-observation.json": "e5ac2537dd5b3b7a348a2b8a434117a0cfc3ff6d21b9509ea85a714d9fb1270e",
+    "dialogue/inputs/private/direction-recipe.json": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+    "dialogue/inputs/private/direction-request.json": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+    "dialogue/inputs/private/direction-response.json": "abe575162b96adf765ee6f9c2eb6d8417d6114e8e1a5064e0af20d6868ffd37d",
+    "dialogue/inputs/raw-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "dialogue/inputs/source.json": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+    "dialogue/stage-input.json": "ad6eca4177a4796d02c95f3d0171a11b367ec53a15a50227d1d721f03a0587fa",
+    "dialogue/stage-output.json": "2ff9881acd2c4f5ea83946f23cfb48154a29d0bdc89feddd207a560426c3a78a",
+    "narration-only/candidates/private/direction-plan.json": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2",
+    "narration-only/candidates/private/direction-provider-proposal.json": "acc32a14bb6e39f5f142c666273e43076fe2a38260e2e9075c681894e52e5315",
+    "narration-only/candidates/private/direction-request-handoff.json": "9c1cfbd536a208b4dfca0e99ae1160afe38b6134fd5b3f8f9315040ca9bfc340",
+    "narration-only/candidates/private/direction-request.json": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef",
+    "narration-only/candidates/private/direction-status.json": "db728d4b81ed52ec18da7ef3cbfd8614a23779f8286d35453cdec863fe2d8854",
+    "narration-only/input-index.json": "8f9234cbe88b0b178a05e671552cbdebf4d56531dd9417b364d6289c896de2db",
+    "narration-only/inputs/clean-source.txt": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+    "narration-only/inputs/frozen-source.json": "dc5ee12ebf4a29e7e5516907d6bd1070eb5c0d2a92e0f56886772387b9d889a9",
+    "narration-only/inputs/private/book-registry.json": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+    "narration-only/inputs/private/direction-context.json": "e755225a78516d516f1e647ac868577760ca9c2cc7c8bf39683e23bc20772988",
+    "narration-only/inputs/private/direction-observation.json": "72918eb8cacb1308d3f76b33833fe0154c9dbc9d3bd204c0a16bcc3270d5cecd",
+    "narration-only/inputs/private/direction-recipe.json": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+    "narration-only/inputs/private/direction-request.json": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef",
+    "narration-only/inputs/private/direction-response.json": "ffc1e3e8ff25a2d4c98d4a6ded4b72812cdfc66421dd9b061e135b067e6eefe0",
+    "narration-only/inputs/raw-source.txt": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+    "narration-only/inputs/source.json": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9",
+    "narration-only/stage-input.json": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+    "narration-only/stage-output.json": "c087bd9f24a81715429a4342ecab4e5eefbb9b864f26004d6e65a851886183e0",
+    "oz-source/candidates/private/direction-plan.json": "08d5ff58be99cc3060a1a4b894e1f9d2e3830590db07ae085ec375202350cff2",
+    "oz-source/candidates/private/direction-provider-proposal.json": "7ddd82a559b396b76698119535585135ac1595f6cdafb2507f2274ced5659cc9",
+    "oz-source/candidates/private/direction-request-handoff.json": "36e6307617d10a9905915cd2913bd87d4510c2ed79f423fc2b4c1f1cb731a533",
+    "oz-source/candidates/private/direction-request.json": "67fe6a03f3810edb50e3dff13def118d0a66b6f51818b1ae2c0f36af962080fe",
+    "oz-source/candidates/private/direction-status.json": "19aee47a0bea0ae90dc86bc3fe98ad7c73ba6e1a52505c61fe8289c1c73116cd",
+    "oz-source/input-index.json": "c90c7c748796a1a5655ab61ca2193e19ea4c701650aef6bfce6967479a2aac04",
+    "oz-source/inputs/private/book-registry.json": "80985697c473a2449e718696017292dcd3ee174c04f79641824d3c979d464fb3",
+    "oz-source/inputs/private/direction-context.json": "7a7e546f9a89a31be44e86214d051d3b9805214cb93ca5f26998645ba647daa2",
+    "oz-source/inputs/private/direction-observation.json": "85df569558fd7aa7b23698aed78a44c3ab4de9bdb8ee8eb02f330ded94fd6878",
+    "oz-source/inputs/private/direction-recipe.json": "7acfa6f64a11022327dd8bad3862fdfe58eb3024cee9cfec0ee57b9071f603d4",
+    "oz-source/inputs/private/direction-request.json": "67fe6a03f3810edb50e3dff13def118d0a66b6f51818b1ae2c0f36af962080fe",
+    "oz-source/inputs/private/direction-response.json": "18864852affad1368d85ba3655caffb3d3cc8fccf7652b36258bc2e833441ea6",
+    "oz-source/inputs/source.json": "71e8f7ba407cdedd8aec594e9973b10d864199f454d00a1d0a476ede8421cf92",
+    "oz-source/stage-input.json": "a871ae6f519c381a95847d7bc3c557823481ac5e35faf462e6394eeef1c10085",
+    "oz-source/stage-output.json": "7c152c7348570956d2b137e7153a89d74948b12dd193e8ba73d416dcb63712d7",
+    "provider-double/candidates/private/direction-observation.json": "67c09bb702f5c9debe8be5a61a2d3a48029d1fbc9efa759d631d67a713c69aca",
+    "provider-double/candidates/private/direction-plan.json": "f692c285835d15f696a3c0bacf5ff48d1b77d0424f8047a19943683529399bbe",
+    "provider-double/candidates/private/direction-provider-proposal.json": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+    "provider-double/candidates/private/direction-request-handoff.json": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+    "provider-double/candidates/private/direction-request.json": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+    "provider-double/candidates/private/direction-status.json": "b2a5f4e5eafd55887d79b55a849311baff7d7090a1afad37c2bc7b29bec7c674",
+    "provider-double/input-index.json": "3958d95d3b78c36d99c5b1cdf1bda9f3c021ebab0eb4a90e4da5affaf764d04b",
+    "provider-double/inputs/clean-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "provider-double/inputs/frozen-source.json": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+    "provider-double/inputs/private/book-registry.json": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+    "provider-double/inputs/private/direction-context.json": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d",
+    "provider-double/inputs/private/direction-recipe.json": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+    "provider-double/inputs/private/direction-request.json": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+    "provider-double/inputs/private/direction-response.json": "abe575162b96adf765ee6f9c2eb6d8417d6114e8e1a5064e0af20d6868ffd37d",
+    "provider-double/inputs/raw-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "provider-double/inputs/source.json": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+    "provider-double/stage-input.json": "33ac9aad67d36123c4540af98f42bfcc140c769524f0ef693d35d363629f3564",
+    "provider-double/stage-output.json": "eacc0190f1a4868a3fb9354807e6ded7f16cc8f0085625c618efbfde1e996c97",
+    "request-phase/candidates/private/direction-request-handoff.json": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+    "request-phase/candidates/private/direction-request.json": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+    "request-phase/candidates/private/direction-status.json": "5673f64b7bfd877807d8322637d0c423a2cbe9b8b093ce805f5afc1b8c3596e2",
+    "request-phase/input-index.json": "691c0f08ed62ed8249aedeade9fbf20f6ad564686d9ba5331b2cf7fc89bc3562",
+    "request-phase/inputs/clean-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "request-phase/inputs/frozen-source.json": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+    "request-phase/inputs/private/book-registry.json": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+    "request-phase/inputs/private/direction-context.json": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d",
+    "request-phase/inputs/private/direction-recipe.json": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+    "request-phase/inputs/private/direction-response.json": "abe575162b96adf765ee6f9c2eb6d8417d6114e8e1a5064e0af20d6868ffd37d",
+    "request-phase/inputs/raw-source.txt": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "request-phase/inputs/source.json": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+    "request-phase/stage-input.json": "cfc2a1433b0e6b9184196c7e71dbe8a7a1b1f6f670fec43a0f9802e1f583af6c",
+    "request-phase/stage-output.json": "90e92ef1bed5865fb6ffb6f19d167ca4e3d24d84734d4376fa187a97ca5acf8b",
+    "response-schema.json": "d9e78068ba7717691307250707c50855a59b1ea8f4f58b58b2258f099bb4da8a",
+    "wells-source/candidates/private/direction-plan.json": "99d8949a68dc79786239b134d8df7e906122748e4dfbbb3395476405dab79def",
+    "wells-source/candidates/private/direction-provider-proposal.json": "79cf79d9ef5b372ac84b947ae143e7dcb0a0a372c56be3082d4f78f3242ef1e7",
+    "wells-source/candidates/private/direction-request-handoff.json": "ba36645292189fef1f01f6ac5e68d1955db6ce702657dca4445ae20a7c9ce868",
+    "wells-source/candidates/private/direction-request.json": "8727f8a7670ca9ced897afef7ff4a74be033ab91ce6c740acde00ff70ab83c5e",
+    "wells-source/candidates/private/direction-status.json": "8ccfef1d4755e7f1b36794b15ddd2830b94410351da96affdc2fff92c31de22f",
+    "wells-source/input-index.json": "a2633237952921af14035a8bda944779ffa533a9fa60524bc15ce894abb10bc6",
+    "wells-source/inputs/private/book-registry.json": "9163ef94222ab95b77a9911f2ad34678d7818f128d1d7fe147841e5ff9a7d84c",
+    "wells-source/inputs/private/direction-context.json": "a52cc866a7dca50b592cb1364722397d2b548cabcd207ca057fb286955a176e6",
+    "wells-source/inputs/private/direction-observation.json": "63736ea55771598ccdb45ced8527054c43e03bb0a465d4fc4af758283345ae59",
+    "wells-source/inputs/private/direction-recipe.json": "7acfa6f64a11022327dd8bad3862fdfe58eb3024cee9cfec0ee57b9071f603d4",
+    "wells-source/inputs/private/direction-request.json": "8727f8a7670ca9ced897afef7ff4a74be033ab91ce6c740acde00ff70ab83c5e",
+    "wells-source/inputs/private/direction-response.json": "3e8b2e67aee7d25f725813ebd612d94ff0ab5d7c8cb6f351bc203a4f53167fa1",
+    "wells-source/inputs/source.json": "9008afa3353ef301222057eac4bb775e04da7abdb4bd92e09145d9e96a6bd197",
+    "wells-source/stage-input.json": "f07f720da4dcee8eaeec2c42965d2ae79f8cc96b61b4a2b7ca4f05e366bfcdec",
+    "wells-source/stage-output.json": "af2796c4ec807cf924ac750582a975beb299ed0a3d6cb29fc122e6213aa1ffcd"
+  },
+  "remaining": [
+    "Runtime two-phase request commits, authoritative registry/source/chapter provenance, immutable operation/result/raw capture and audited replay mapping",
+    "Real model adapter/envelope decoding and established live product authorization; no legacy fallback",
+    "Muse initial reference research, single canonical external references/art profile/applicability and voice pilot",
+    "Independent semantic direction/coverage/enactment/clarity review and actual rendered evidence",
+    "Speech/acoustic/presentation/art/music/reviews and accepted autonomous chapters"
+  ],
+  "parallel_build_note": "Unrelated runtime cfg(test) modules were temporarily incomplete. Owned test runner linked the real compiled library and unchanged owned test source; no product/shared code was replaced. Final native generation 84 and Direction 14 suites passed after the runtime edits compiled.",
+  "git_operations": 0,
+  "ui_edits": 0,
+  "shared_contract_edits": 0,
+  "commit_owner": "integration",
+  "matrix_version": "pt-acceptance-required-v3",
+  "checker_version": "pt-acceptance-bindings-v4",
+  "acceptance_v3_fixture_sha256": {
+    "README.md": "0ebe02f55bde7fb7ecb5419acfa1a2c252ad113754d26b5a79643cae46247f43",
+    "acceptance-context.json": "bba8b90405fedf1de2e2284f028d894d14acc54e56f5fe4d1abda5a2fe89d0f0",
+    "private/acceptance-evidence-inventory.json": "5fa2e9309c517debfc1ead72f253471302f65464453579da2be07bf0361d4a59",
+    "private/acceptance-facts.json": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+    "private/acceptance-proposal-status.json": "476f4081aed83b64c64d15b787071022cd7b7dcbac1aa3989775749431d45e98",
+    "private/acceptance-proposals.json": "9b1aaeb931d4ff5a89f08478900d6a8833470585ebae840d5c653ac8c235b237",
+    "private/authored-acceptance.json": "968a7b383ce2e73751024f7a54e3f953b3e4d8aab0f276782a61e5b858091444",
+    "public-allowlist.json": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+    "scopes.json": "f0a676bef6705b60ccbb899bf4d195687bab5acdef5acd072c60f36eaaddf934"
+  },
+  "owned_paths": [
+    "crates/pt-production/src/generation/mod.rs",
+    "crates/pt-production/src/generation/direction.rs",
+    "crates/pt-production/src/generation/tests.rs",
+    "crates/pt-production/src/generation/tests/direction.rs",
+    "tools/generation/run_direction_tests.py",
+    "crates/pt-production/src/generation/tests/acceptance_proposals.rs",
+    "fixtures/generation/direction-v1/**",
+    "fixtures/generation/acceptance-proposals-v3/**",
+    "docs/implementation/generation/direction.md",
+    "docs/implementation/generation/direction-ready.json",
+    "docs/implementation/generation/direction-runtime-request.json",
+    "docs/implementation/generation/README.md",
+    "docs/implementation/generation/integration-requests.md"
+  ]
+}

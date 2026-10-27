@@ -139,12 +139,12 @@ impl Store {
         run: &str,
         stage: c::Stage,
     ) -> Result<Vec<c::ArtifactRef>> {
-        let scope = if stage == c::Stage::Acoustic {
-            "acoustic"
-        } else {
-            "saved"
+        let scope = match stage {
+            c::Stage::Acoustic => "acoustic",
+            c::Stage::Presentation => "presentation",
+            _ => "saved",
         };
-        self.db()?.prepare("SELECT i.reference FROM run_inputs i WHERE i.run=?1 AND (EXISTS(SELECT 1 FROM run_input_scopes s WHERE s.run=i.run AND s.artifact=i.artifact AND s.scope=?2) OR NOT EXISTS(SELECT 1 FROM run_input_scopes s WHERE s.run=i.run)) ORDER BY i.rowid")?.query_map(params![run,scope],|r|r.get::<_,String>(0))?.map(|s|Ok(serde_json::from_str(&s?)?)).collect()
+        self.db()?.prepare("SELECT i.reference FROM run_inputs i WHERE i.run=?1 AND (EXISTS(SELECT 1 FROM run_input_scopes s WHERE s.run=i.run AND s.artifact=i.artifact AND s.scope=?2) OR (?2='saved' AND NOT EXISTS(SELECT 1 FROM run_input_scopes s WHERE s.run=i.run))) ORDER BY i.rowid")?.query_map(params![run,scope],|r|r.get::<_,String>(0))?.map(|s|Ok(serde_json::from_str(&s?)?)).collect()
     }
     pub fn diagnostic_ref(&self, run: &str) -> Result<Option<c::ReleaseRef>> {
         Ok(self

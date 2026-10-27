@@ -1,0 +1,16 @@
+{
+  "book_id": "pg-36",
+  "entities": [
+    {
+      "aliases": [
+        "Narrator"
+      ],
+      "id": "pg-36:narrator",
+      "name": "Narrator",
+      "sprite": null,
+      "voice": null
+    }
+  ],
+  "revision": 1,
+  "schema_version": 1
+}

@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "task": "R17",
+  "status": "offline-execution-bound-provider-v2-ready",
+  "verified_at_utc": "2026-10-27T19:02:42.079508+00:00",
+  "brief": "docs/implementation/integration/server-provider-service-task.md",
+  "report": "docs/implementation/runtime/provider-service.md",
+  "examples": "docs/implementation/runtime/provider-service-examples.json",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.8.0",
+  "provider_service_version": 2,
+  "provider_metadata_version": 2,
+  "checker": {
+    "version": "pt-acceptance-bindings-v4",
+    "sha256": "ba96222b73e795a5e5dd5cfc80e3a4e653c2ec692d9c1a72ea1f39c4fb842ba5",
+    "report_version": 4,
+    "matrix_version": "pt-acceptance-required-v3"
+  },
+  "published_service_handoff": "pt-services-v1.5.0 compatible staged boundary",
+  "public_methods_implemented": [
+    "issue_provider_v2",
+    "execute_provider_v2",
+    "recover_provider_v2"
+  ],
+  "successful_constructor": "cfg(test) only: injected offline transport plus synthetic persistent broker",
+  "ordinary_runtime_adapter": null,
+  "production_construction_enabled": false,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "external_provider_calls": 0,
+  "ui_changes": false,
+  "browser_checks_run": false,
+  "git_operations": 0,
+  "publication_enabled": false,
+  "production_approved": false,
+  "mandatory_blocker": "production-verifier-pending",
+  "private_tables_added": [
+    "provider_v2_observers",
+    "provider_v2_query_scopes"
+  ],
+  "legacy_or_helper_fallback": false,
+  "limits": {
+    "record_bytes": 65536,
+    "payload_bytes": 1048576,
+    "input_reference_count": 64,
+    "timeout_ms": [
+      1,
+      300000
+    ],
+    "private_raw_receipt_bytes": 1048576
+  },
+  "rust_total": 165,
+  "r17_service_tests": 21,
+  "retained_regressions": {
+    "r11_runtime": 8,
+    "r13_private_broker": 21,
+    "r14_presentation": 8,
+    "r15_private_acceptance": 10,
+    "r16_chapter": 12
+  },
+  "all_three_public_method_examples_are_observed": true,
+  "asserted_negative_counters": {
+    "offline_and_replay": {
+      "poisoned_credential_trap_calls": 0,
+      "submission_calls": 0,
+      "query_calls": 0,
+      "new_reservations": 0
+    },
+    "forged_execution_scope": {
+      "submission_calls": 0,
+      "query_calls": 0,
+      "legacy_attempts": 0
+    },
+    "unconfigured_actual_runtime": {
+      "submission_calls": 0,
+      "query_calls": 0,
+      "new_provider_reservations": 0
+    },
+    "invalid_transport_result": {
+      "submission_calls": 1,
+      "fallback_calls": 0,
+      "repeated_submission_calls": 0
+    },
+    "ambiguous_query_and_restart": {
+      "submission_calls_total": 1,
+      "query_calls_total": 1,
+      "original_resubmissions": 0,
+      "query_repurchases": 0
+    }
+  },
+  "observed_fake_calls": {
+    "public_example_submissions": 1,
+    "public_example_queries": 1,
+    "cached_query_additional_calls": 0,
+    "authorized_original_repair_retry_submissions": 3,
+    "charged_repairs": 1
+  },
+  "real_chapter_restart": {
+    "schema_version": 1,
+    "test": "chapter_runtime_process",
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "real_server_processes": 2,
+    "forced_process_terminations": 1,
+    "original_inputs_removed": true,
+    "helper_attempts_before_restart": 4,
+    "helper_attempts_after_restart": 4,
+    "resumed_units": 4,
+    "unit_outputs_unchanged": true,
+    "checkpoint_events": 4,
+    "private_artifact_http_status": 404,
+    "external_provider_calls": 0,
+    "outcome": "needs_repair",
+    "run_state": "failed",
+    "production_approved": false,
+    "publication_enabled": false
+  },
+  "red_green": [
+    {
+      "test": "actual_service_issues_exact_persisted_descriptor_without_dispatch",
+      "red": "ProviderV2Unavailable",
+      "green": "passed"
+    },
+    {
+      "test": "exact_issued_execution_sends_original_bytes_once_and_returns_the_cached_receipt",
+      "red": "ProviderV2Unavailable",
+      "green": "passed"
+    },
+    {
+      "test": "offline_modes_and_absent_configuration_preserve_typed_errors_before_any_access",
+      "red": "recovery returned unavailable rather than OfflineDispatch",
+      "green": "passed"
+    },
+    {
+      "test": "current_run_and_lifetime_authorization_limits_are_rechecked_before_send",
+      "red": "changed authorization did not stop dispatch",
+      "green": "passed"
+    },
+    {
+      "test": "cancellation_returns_promptly_while_late_receipts_and_charges_remain_original",
+      "red": "cancellation awaited transport completion",
+      "green": "passed"
+    },
+    {
+      "test": "separately_bound_recovery_queries_once_and_caches_the_exact_private_wrapper",
+      "red": "ProviderV2Unavailable",
+      "green": "passed"
+    },
+    {
+      "test": "unknown_recovery_preserves_original_overages_and_cross_run_observer_identity",
+      "red": "original observed money overage refunded from 20 to 0",
+      "green": "passed"
+    },
+    {
+      "test": "obsolete_original_outputs_never_become_observer_artifacts_or_candidate_authority",
+      "red": "observer could read obsolete original output",
+      "green": "passed"
+    },
+    {
+      "test": "cached_query_wrapper_is_checked_against_durable_identity_accounting_and_raw_bytes",
+      "red": "forged cached query_id accepted",
+      "green": "passed"
+    },
+    {
+      "test": "persisted_issuance_cannot_override_a_changed_current_unit_grant",
+      "red": "issuance overrode changed active logical grant",
+      "green": "passed"
+    },
+    {
+      "test": "transport_retry_issuance_uses_only_the_persisted_runtime_predecessor_grant",
+      "red": "old epoch issuance returned instead of granted retry",
+      "green": "passed"
+    }
+  ],
+  "broker_error_precedence_regression": {
+    "test": "descriptor_conflicts_corrupt_payload_and_cancel_before_send_do_not_dispatch",
+    "red": "provider_binding replaced issued_descriptor_mismatch",
+    "green": "immutable issuance authenticates before current grant check; all 21 R13 cases pass"
+  },
+  "historical_concurrent_generation_failure": {
+    "owner": "generation",
+    "server_edits": false,
+    "aggregate_command": "cargo test -p pt-contracts -p pt-production -p pt-server --locked --offline",
+    "aggregate_attempts": [
+      {
+        "status": "failed",
+        "test": "generation::tests::pilot::adjacent_verbatim_narrator_auditions_remain_private_and_unaccepted"
+      },
+      {
+        "status": "failed",
+        "test": "generation::tests::pilot::duplicate_catalog_models_and_voices_are_ambiguous_not_first_match_wins"
+      }
+    ],
+    "latest_focused_pilot_tests": 15,
+    "latest_focused_pilot_status": "passed",
+    "runtime_server_contract_final_checks": "passed",
+    "full_aggregate_green_claim": false
+  },
+  "commands": [
+    {
+      "command": "cargo test -p pt-production --lib --locked --offline runtime::",
+      "status": "passed",
+      "tests": 104
+    },
+    {
+      "command": "cargo test -p pt-contracts -p pt-server --locked --offline",
+      "status": "passed",
+      "tests": 56
+    },
+    {
+      "command": "cargo test -p pt-production --test candidate_read_contract --test wav_conformance --locked --offline",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "command": "PT_PROVIDER_SERVICE_RECEIPT=/tmp/pt-r17-examples.json cargo test -p pt-production --locked --offline provider_ -- --nocapture",
+      "status": "passed",
+      "tests": 46
+    },
+    {
+      "command": "cargo test -p pt-production --locked --offline generation::tests::pilot:: -- --nocapture",
+      "status": "passed",
+      "tests": 15
+    },
+    {
+      "command": "cargo build -p pt-server --locked --offline",
+      "status": "passed"
+    },
+    {
+      "command": "python3 -B crates/pt-server/tests/chapter_runtime_process.py --receipt /tmp/pt-r17-chapter-process-final.json",
+      "status": "passed",
+      "local_loopback_sandbox_escalation": "approved"
+    },
+    {
+      "command": "python3 tools/check_product_identity.py . target/debug/pt-server",
+      "status": "passed"
+    },
+    {
+      "command": "rustfmt --check --edition 2024 --config skip_children=true crates/pt-production/src/runtime/provider_service.rs crates/pt-production/src/runtime/provider_service_tests.rs crates/pt-production/src/runtime/provider_v2.rs crates/pt-production/src/runtime/provider_v2/recovery.rs crates/pt-production/src/runtime/runner.rs crates/pt-production/src/runtime/mod.rs",
+      "status": "passed"
+    }
+  ],
+  "tests": [
+    "runtime::runner::provider_service_tests::actual_service_issues_exact_persisted_descriptor_without_dispatch",
+    "runtime::runner::provider_service_tests::ambiguous_queries_keep_separate_reservations_and_cannot_be_repurchased_after_restart",
+    "runtime::runner::provider_service_tests::cached_query_wrapper_is_checked_against_durable_identity_accounting_and_raw_bytes",
+    "runtime::runner::provider_service_tests::canceled_or_dropped_query_await_keeps_late_receipt_under_original_and_observer_scopes",
+    "runtime::runner::provider_service_tests::cancellation_returns_promptly_while_late_receipts_and_charges_remain_original",
+    "runtime::runner::provider_service_tests::changed_original_bytes_and_foreign_committed_artifacts_cannot_issue_send_or_redeem_cache",
+    "runtime::runner::provider_service_tests::current_run_and_lifetime_authorization_limits_are_rechecked_before_send",
+    "runtime::runner::provider_service_tests::exact_issued_execution_sends_original_bytes_once_and_returns_the_cached_receipt",
+    "runtime::runner::provider_service_tests::full_descriptor_and_execution_scope_reject_forged_authority_without_fallback",
+    "runtime::runner::provider_service_tests::invalid_transport_result_keeps_typed_error_and_reservation_without_any_fallback",
+    "runtime::runner::provider_service_tests::obsolete_original_outputs_never_become_observer_artifacts_or_candidate_authority",
+    "runtime::runner::provider_service_tests::offline_modes_and_absent_configuration_preserve_typed_errors_before_any_access",
+    "runtime::runner::provider_service_tests::ordinary_runtime_construction_has_no_provider_capability_even_with_valid_private_issuance",
+    "runtime::runner::provider_service_tests::persisted_issuance_cannot_override_a_changed_current_unit_grant",
+    "runtime::runner::provider_service_tests::public_repair_issuance_and_its_authorized_retry_charge_the_repair_only_once",
+    "runtime::runner::provider_service_tests::query_wrapper_commit_rolls_back_atomically_and_keeps_the_unresolved_reservation",
+    "runtime::runner::provider_service_tests::query_zero_money_still_charges_a_request_and_observed_overages_remain_charged",
+    "runtime::runner::provider_service_tests::recovery_requires_a_separate_observer_grant_and_latest_genuine_selector",
+    "runtime::runner::provider_service_tests::separately_bound_recovery_queries_once_and_caches_the_exact_private_wrapper",
+    "runtime::runner::provider_service_tests::transport_retry_issuance_uses_only_the_persisted_runtime_predecessor_grant",
+    "runtime::runner::provider_service_tests::unknown_recovery_preserves_original_overages_and_cross_run_observer_identity"
+  ],
+  "source_closure_unchanged_during_final_suite": true,
+  "source_pins": {
+    "Cargo.lock": "4cce5ea2066b544b50ef1df2be2ec173f0558eb60207a698a33c8d0a31d93c06",
+    "Cargo.toml": "434226931691a10c30b1f50142b6fcd08f2aa3a35b90d5e7eb238d807b764c77",
+    "crates/pt-contracts/src/acceptance.rs": "4a531d52bb667f66525c55d4bb76b5eb64d2d5ec7b686c6b2cff438f3d6bf0ad",
+    "crates/pt-contracts/src/acceptance_source.rs": "d29a2cb41bbf5132b1d8ccc4bd061a7ee1416a1d874d83ecd039efa318c47475",
+    "crates/pt-contracts/src/common.rs": "30bb0e158c0f8b962b00cdaf4da93d92a0434549888d677a513a8f71ba61063c",
+    "crates/pt-contracts/src/lib.rs": "49866b9a2dc6acece0520813204f071e563f6f2d17e4b68ecf27bf70183d98c6",
+    "crates/pt-contracts/src/playback.rs": "784d51b9d53e2ccea3e5675c7753828ed36f4b7e37c7a8a01698dc39490f89d0",
+    "crates/pt-contracts/src/provider_metadata.rs": "a97cbe85b1df16825bdfbb0f0d1d50d0cecd804355f24a5f93d4ffafa4a772f5",
+    "crates/pt-contracts/src/provider_service.rs": "2bc67cea6fc35eaf9e94720273d84b9cb95d97a0bf2c48a5766954370cfae868",
+    "crates/pt-contracts/src/services.rs": "84ad6bb37163173d92019535a2446805e0529adad39c2007f1f7e6a6b30e9b12",
+    "crates/pt-contracts/src/source_slice.rs": "e8c1610df2ce44dc2fd4864fee5772e68d29581d4eed0b266fb8405751597193",
+    "crates/pt-contracts/src/validate.rs": "791d4230755434e97c4ce47c52ee913f68317f7308a9fbe45e669323c3dcad3f",
+    "crates/pt-contracts/src/wav.rs": "e4af78a097ca2e49736e6b3cb4ae1a7e0a997a3867b4156108b837aefbd5219e",
+    "crates/pt-production/src/runtime/broker.rs": "1f2bfcf14918e79bb59b818a6beefb5e23260a2329acdfec6822e46832a640b7",
+    "crates/pt-production/src/runtime/chapter/mod.rs": "2de3d3671687c01aa6acc82a684563733cb5051e1a725062cd4bf04ded3027f8",
+    "crates/pt-production/src/runtime/chapter/services.rs": "8d2379dded3db3b89ad7e337804906e9ab6e70fc07d893d67e62bc9e18abd122",
+    "crates/pt-production/src/runtime/chapter/verify.rs": "b5bd364c6170039dd88cb0166a952220fdc94e37ff1126395dbb0924f7ef5ccb",
+    "crates/pt-production/src/runtime/chapter/worker.rs": "004e0dfaf6c6c869018782df5b554973ec2865ea71e6af7ac2d520d714657075",
+    "crates/pt-production/src/runtime/chapter_tests.rs": "8787caaa2891d27f8a7bd356ba3efdb8a9ba26a1b8abaf33a2ebadb330b2e8f7",
+    "crates/pt-production/src/runtime/helper.rs": "cf81d2b8816982764a02226d90674fd9511bf6e977be3a33980b71f578cfc8c6",
+    "crates/pt-production/src/runtime/mod.rs": "47b8a0570dcd4abe867ca8b04f218f0d09013b4aa9a4165bdddfa57316819ae6",
+    "crates/pt-production/src/runtime/provider_service.rs": "02338f2f3f5f9f9a5d7af4370d1f0edb3438b0d4f30c2f34a3dd1e04dfbfa6c6",
+    "crates/pt-production/src/runtime/provider_service_tests.rs": "19f772099ec9effb048c4d502b49b0c6e8a43817be40ddc8963c2b7d3b8a19a7",
+    "crates/pt-production/src/runtime/provider_v2.rs": "1c4605de3bd002b0c1e6fc4a8d2c1f76a577a5a14fe8678f049a76da11534534",
+    "crates/pt-production/src/runtime/provider_v2/legacy.rs": "730d0341b29f6773a4e7fda87b04cbc7e6e4980c6cf7076e48e6bb855209d176",
+    "crates/pt-production/src/runtime/provider_v2/recovery.rs": "8d6b0608f4ce86fa95d124e3cb2d94f5086c1c9ccba0fe62bc4c9e336956f22a",
+    "crates/pt-production/src/runtime/provider_v2_tests.rs": "936e2aa9436b220e7706fcbfec3b453613498fc0e3af9ca8d847dca664a1c22a",
+    "crates/pt-production/src/runtime/runner.rs": "6a2c444fb518b60c66510f3e65a2a7dae068f46079bdefe5419a62177d5cdb5e",
+    "crates/pt-production/src/runtime/schema.sql": "e313561f0222c8e308285d8388b9bc75adb69be2d43af6f14334d00866be5b73",
+    "crates/pt-production/src/runtime/store.rs": "e7c2341cc17baf0745f87a3d255a9d7a4bf007e1e76ce920603be3c51959c2a3",
+    "crates/pt-server/src/main.rs": "d79742577cfe679331c90bbeda7b26c40e5335ae9a2a466049a04605757b7fa1",
+    "crates/pt-server/tests/chapter_runtime_process.py": "d8cd9be315e59567c717aea926198eb65b5beb82346ce762ad7fb5a0debf591c",
+    "docs/implementation/integration/provider-service-v2.md": "ec3ed0af97a50a07c374d72d7005d9b1aafe1de8497ee615b5f09f53b814d9b1",
+    "docs/implementation/integration/server-provider-service-task.md": "6d98383b203bfafd5f4d566e8bffa910d5f870a2caa5a3f049e1d083600d8676",
+    "packages/contracts/src/acceptance-required-v1.json": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083",
+    "packages/contracts/src/acceptance-required-v2.json": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820",
+    "packages/contracts/src/acceptance-required-v3.json": "c2d0680ff121cdc419bf733e5a2628709d3b2a4c3684fdef7c86c246d994c9a0"
+  },
+  "built_server_sha256": "4b193729757c06aa691014fa47067d430db91c627b5dbc35cf4d9a76a20a0a6d",
+  "remaining_owner_work": [
+    "Production registry/grant construction and actual inherited accounting reconciliation remain unavailable.",
+    "Real credentials, transport construction and spending authorization remain disabled.",
+    "Complete book/source/evidence binding, independent semantic/player/device verification and publication remain gated.",
+    "Historical query rows lacking complete observer/timestamp metadata fail closed without guessed receipts or resets.",
+    "R12/UI evidence remains a separate owner task."
+  ],
+  "rust_total_scope": "Required runtime, contracts, server and contract-bridge checks; excludes separate focused/aggregate generation runs.",
+  "concurrent_generation_changes": [
+    "crates/pt-production/src/generation/pilot.rs",
+    "crates/pt-production/src/generation/pilot_evidence.rs",
+    "crates/pt-production/src/generation/pilot_provider.rs",
+    "crates/pt-production/src/generation/tests/pilot.rs"
+  ]
+}

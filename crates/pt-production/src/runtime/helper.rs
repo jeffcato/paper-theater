@@ -29,7 +29,20 @@ pub(crate) async fn execute(
     attempt_id: &str,
     input: &[u8],
     decoded_media: usize,
+    cancelled: impl FnMut() -> bool,
+) -> Result<HelperOutput> {
+    execute_observed(recipe, attempt_id, input, decoded_media, cancelled, |_| {
+        Ok(())
+    })
+    .await
+}
+pub(crate) async fn execute_observed(
+    recipe: &Recipe,
+    attempt_id: &str,
+    input: &[u8],
+    decoded_media: usize,
     mut cancelled: impl FnMut() -> bool,
+    mut spawned: impl FnMut(u32) -> Result<()>,
 ) -> Result<HelperOutput> {
     if recipe.name.is_empty()
         || !recipe.executable.is_absolute()
@@ -61,6 +74,20 @@ pub(crate) async fn execute(
     command.process_group(0);
     let mut child = command.spawn()?;
     let pid = child.id();
+    if let Some(pid) = pid {
+        if let Err(error) = spawned(pid) {
+            #[cfg(unix)]
+            let _ = Command::new("/bin/kill")
+                .args(["-KILL", "--", &format!("-{pid}")])
+                .stdout(Stdio::null())
+                .stderr(Stdio::null())
+                .status()
+                .await;
+            let _ = child.kill().await;
+            let _ = child.wait().await;
+            return Err(error);
+        }
+    }
     let mut stdin = child.stdin.take().unwrap();
     let stdout = child.stdout.take().unwrap();
     let stderr = child.stderr.take().unwrap();

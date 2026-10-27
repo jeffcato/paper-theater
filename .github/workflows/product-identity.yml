@@ -34,3 +34,7 @@ jobs:
         run: npm run check:contracts && npm run check:player && npm run check:studio && npm run build
       - name: Build and scan delivery outputs
         run: cargo build -p pt-server --locked && python3 tools/check_product_identity.py apps/studio/dist apps/audience/dist target/debug/pt-server
+      - name: Test complete offline generation helpers
+        run: env -u SOURCE_ROOT python3 -B -m unittest discover -s tools/generation -p 'test_*.py'
+      - name: Verify real backend process restart and private replay
+        run: env -u SOURCE_ROOT python3 -B crates/pt-server/tests/chapter_runtime_process.py --receipt "$RUNNER_TEMP/pt-backend-restart.json"

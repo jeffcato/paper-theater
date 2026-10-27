@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "run_id": "offline-run",
+  "stage": "direction",
+  "unit_id": "saved-excerpt",
+  "epoch": 1,
+  "revision": 1,
+  "inputs": [
+    {
+      "id": "committed:test:raw-source.txt",
+      "file": {
+        "path": "raw-source.txt",
+        "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+        "bytes": 47,
+        "media_type": "text/plain"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:clean-source.txt",
+      "file": {
+        "path": "clean-source.txt",
+        "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+        "bytes": 47,
+        "media_type": "text/plain"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:frozen-source.json",
+      "file": {
+        "path": "frozen-source.json",
+        "sha256": "dc5ee12ebf4a29e7e5516907d6bd1070eb5c0d2a92e0f56886772387b9d889a9",
+        "bytes": 2098,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:source.json",
+      "file": {
+        "path": "source.json",
+        "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9",
+        "bytes": 3725,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:private:direction-recipe.json",
+      "file": {
+        "path": "private/direction-recipe.json",
+        "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+        "bytes": 61,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:book-registry.json",
+      "file": {
+        "path": "private/book-registry.json",
+        "sha256": "2bf8566a832bdfa327ebc32d5e6ed3aa8b936675c499544184b4b108e6059610",
+        "bytes": 739,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:direction-context.json",
+      "file": {
+        "path": "private/direction-context.json",
+        "sha256": "a2fcf86fc581dd12676d33a5813bc15add984c94d78e6e96fd808227d54f93e5",
+        "bytes": 851,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:direction-request.json",
+      "file": {
+        "path": "private/direction-request.json",
+        "sha256": "12a229615acca944e5e12a9218d3191f319a80f38b41892f7957047624de5424",
+        "bytes": 14416,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:direction-response.json",
+      "file": {
+        "path": "private/direction-response.json",
+        "sha256": "b5192f46fb7302fd7b1e49db8c4834de693f2c8f011469e19d6ebe2c6ed38e4a",
+        "bytes": 2537,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:direction-observation.json",
+      "file": {
+        "path": "private/direction-observation.json",
+        "sha256": "656c4749b141023dbd6ad4b21dddafbe00b4b8bba0c56022b20ed3b95c43af3a",
+        "bytes": 982,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    }
+  ],
+  "pins": {
+    "recipe_sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+    "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+    "profile_id": "paper-player-r186-v1"
+  },
+  "mode": "replay",
+  "limits": {
+    "money_microusd": 0,
+    "requests": 0,
+    "tokens": 0,
+    "repairs": 0,
+    "wall_time_ms": 0
+  },
+  "library_revision": 1
+}

@@ -4,37 +4,23 @@ use pt_contracts::*;
 use serde::Serialize;
 use std::collections::BTreeMap;
 
+mod acceptance_proposals;
 mod acoustic;
+mod acoustic_bundle;
+mod acoustic_facts;
+mod chapter_import;
+mod direction;
+mod inputs;
+mod pilot;
+mod pilot_direction;
+mod pilot_evidence;
+mod pilot_provider;
+mod presentation;
+mod presentation_pcm;
 mod source;
 
 pub struct GenerationExecutor;
 const MAX_ARTIFACT_BYTES: u64 = 32 * 1024 * 1024;
-const REQUIRED_CHECKS: &[&str] = &[
-    "autonomous-provenance",
-    "complete-chapter",
-    "initial-reference-research",
-    "image-scope-review",
-    "image-style-review",
-    "image-reference-review",
-    "image-extraction-review",
-    "image-stage-readability",
-    "independent-acoustic-evidence",
-    "narrator-continuity",
-    "speech-joins",
-    "music-bible",
-    "mix-intelligibility",
-    "story-coverage",
-    "incoming-picture-readiness",
-    "required-action-accounting",
-    "rendered-creative-review",
-    "opening-action-capture-coverage",
-    "full-audio-review-coverage",
-    "font-bundle",
-    "profile-r186-browser",
-    "target-device-budget",
-    "publication-recovery",
-    "product-spend-authorization",
-];
 fn missing(id: &str, message: &str) -> Finding {
     Finding {
         id: id.into(),
@@ -100,45 +86,35 @@ impl StageExecutor for GenerationExecutor {
     ) -> Result<StageOutput, StageError> {
         input.validate()?;
         services.check_cancelled().await?;
-        let mut files = BTreeMap::new();
-        let mut total = 0u64;
-        require(
-            input.inputs.len() <= 64,
-            "generation_inputs",
-            "inputs",
-            "too many input artifacts",
-        )?;
-        for artifact in &input.inputs {
-            require(
-                artifact.file.bytes <= MAX_ARTIFACT_BYTES,
-                "generation_size",
-                &artifact.id,
-                "input exceeds bound",
-            )?;
-            total = total.saturating_add(artifact.file.bytes);
-            require(
-                total <= 64 * 1024 * 1024,
-                "generation_size",
-                "inputs",
-                "total input exceeds bound",
-            )?;
-            services.check_cancelled().await?;
-            let bytes = services.read_artifact(artifact).await?;
-            artifact.file.verify(&bytes)?;
-            if let Some((old, _)) =
-                files.insert(artifact.file.path.clone(), (artifact.file.clone(), bytes))
-            {
-                require(
-                    old == artifact.file,
-                    "generation_duplicate",
-                    &artifact.id,
-                    "conflicting artifact path",
-                )?;
-            }
+        if input.stage == Stage::Direction {
+            return direction::execute(&input, services).await;
         }
+        if input.stage == Stage::Pilot {
+            return pilot::execute(&input, services).await;
+        }
+        if input.stage == Stage::Acoustic
+            && input
+                .inputs
+                .iter()
+                .any(|a| a.file.path == "chapter-import-unit.json")
+        {
+            return chapter_import::execute(&input, services).await;
+        }
+        if input.stage == Stage::Acoustic
+            && input
+                .inputs
+                .iter()
+                .any(|a| a.file.path == "chapter-unit.json")
+        {
+            return acoustic_bundle::execute(&input, services).await;
+        }
+        let inputs::Loaded { files, package } = inputs::load(&input, services).await?;
         let cache_key = digest(&json(&input)?);
         if input.stage == Stage::Acoustic {
             return acoustic::execute(&input, services, &files, cache_key).await;
+        }
+        if input.stage == Stage::Presentation {
+            return presentation::execute(&input, services, &files, cache_key).await;
         }
         if input.stage == Stage::Source {
             let get = |path: &str| {
@@ -182,7 +158,7 @@ impl StageExecutor for GenerationExecutor {
                 .get(path)
                 .ok_or_else(|| StageError::Evidence(format!("missing package input: {path}")))
         };
-        let mut doc: PlaybackDocument = parse(&get("fixture.json")?.1)?;
+        let mut doc = package.expect("package stage metadata loaded above");
         validate_playback(&doc)?;
         let profile: RenderingProfile = parse(&get("profile.json")?.1)?;
         require(
@@ -198,6 +174,7 @@ impl StageExecutor for GenerationExecutor {
             "shell.profile",
             "profile differs from playback document",
         )?;
+        acceptance_proposals::public_assets(&mut doc, &input, &files)?;
         let mut inventory: Vec<FileRef> = doc
             .manifest
             .entries
@@ -237,26 +214,11 @@ impl StageExecutor for GenerationExecutor {
         verify_document!(&doc.manifest.entries.shell, doc.shell, Shell);
         verify_document!(&doc.manifest.entries.read_along, doc.read_along, ReadAlong);
         let inventory_file = write(services, &input, "inventory.json", &inventory).await?;
-        let mut findings = doc.acceptance.findings.clone();
-        let mut required = doc.acceptance.required_check_ids.clone();
-        required.extend(REQUIRED_CHECKS.iter().map(|s| (*s).to_owned()));
-        required.sort();
-        required.dedup();
-        // Retain failed/uncertain evidence; an imported pass cannot certify a new production candidate.
-        for id in &required {
-            if findings
-                .iter()
-                .any(|finding| finding.id == *id && finding.outcome != ReviewOutcome::Pass)
-            {
-                continue;
-            }
-            findings.retain(|finding| finding.id != *id);
-            findings.push(missing(
-                id,
-                "Required production evidence is unresolved for this diagnostic candidate.",
-            ));
-        }
-        findings.sort_by(|a, b| a.id.cmp(&b.id));
+        let prepared =
+            acceptance_proposals::prepare(&input, services, &files, &doc, &inventory_file.file)
+                .await?;
+        let findings = prepared.findings;
+        let required = prepared.required;
         let acceptance = Acceptance {
             schema_version: 1,
             provenance: Provenance::Diagnostic,
@@ -266,8 +228,17 @@ impl StageExecutor for GenerationExecutor {
             checker_version: CONTRACT_REVISION.into(),
             recipe_sha256: input.pins.recipe_sha256.clone(),
             required_check_ids: required,
-            findings: findings.clone(),
-            attestations: doc.acceptance.attestations.clone(),
+            findings: acceptance_proposals::public_findings(&findings),
+            attestations: doc
+                .acceptance
+                .attestations
+                .iter()
+                .cloned()
+                .map(|mut a| {
+                    a.raw_evidence = None;
+                    a
+                })
+                .collect(),
         };
         let acceptance_file = write(services, &input, "acceptance.json", &acceptance).await?;
         doc.acceptance = acceptance;
@@ -288,10 +259,12 @@ impl StageExecutor for GenerationExecutor {
             pins: input.pins.clone(),
         };
         services.check_cancelled().await?;
-        services.emit(JournalProposal{kind:EventKind::CheckCompleted,task_id:Some(input.unit_id.clone()),decision_id:None,
+        if input.mode == ExecutionMode::Fixture {
+            services.emit(JournalProposal{kind:EventKind::CheckCompleted,task_id:Some(input.unit_id.clone()),decision_id:None,
             artifact_ids:input.inputs.iter().map(|a|a.id.clone()).collect(),summary:"Diagnostic candidate assembled from verified saved payloads; production evidence remains unresolved.".into()}).await?;
+        }
         services.check_cancelled().await?;
-        Ok(StageOutput{outcome:StageOutcome::NeedsRepair,artifacts:vec![inventory_file,acceptance_file,manifest_file,document],
+        Ok(StageOutput{outcome:StageOutcome::NeedsRepair,artifacts:vec![inventory_file,acceptance_file,manifest_file,document].into_iter().chain(prepared.artifacts).collect(),
             decisions:vec![Decision{id:format!("{}:saved-reuse",input.unit_id),summary:"Reuse verified saved media and measured timing; retain every unresolved production gate.".into(),
                 inputs:input.inputs.clone(),selected_ids:vec![],rejected_ids:vec![],supersedes:None}],findings,cache_keys:vec![cache_key],library_updates:vec![],package_candidate:Some(package)})
     }

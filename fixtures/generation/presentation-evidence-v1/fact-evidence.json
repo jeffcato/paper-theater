@@ -1,0 +1,364 @@
+{
+  "acoustic_manifest_sha256": "f08b128a1f3418a6a8a2b498f6fa0e3880bd689ca04e66eb8ff95c2405605244",
+  "all_facts_matched": false,
+  "coordinate_system": "excerpt_unicode_scalars",
+  "facts": [
+    {
+      "id": "cellar-instruction",
+      "interval_ids": [
+        "cellar-turn"
+      ],
+      "not_before_sample": 546720,
+      "outcome": "pass",
+      "reason": "all_fact_spans_covered",
+      "source_spans": [
+        [
+          315,
+          336
+        ]
+      ]
+    },
+    {
+      "id": "Dorothy-urged",
+      "interval_ids": [
+        "quick-and-attribution"
+      ],
+      "not_before_sample": 506640,
+      "outcome": "pass",
+      "reason": "all_fact_spans_covered",
+      "source_spans": [
+        [
+          283,
+          300
+        ]
+      ]
+    },
+    {
+      "id": "screaming",
+      "interval_ids": [
+        "quick-and-attribution"
+      ],
+      "not_before_sample": 506640,
+      "outcome": "pass",
+      "reason": "all_fact_spans_covered",
+      "source_spans": [
+        [
+          301,
+          314
+        ]
+      ]
+    },
+    {
+      "id": "urged-cellar",
+      "interval_ids": [
+        "quick-and-attribution",
+        "cellar-turn"
+      ],
+      "not_before_sample": 546720,
+      "outcome": "pass",
+      "reason": "all_fact_spans_covered",
+      "source_spans": [
+        [
+          283,
+          300
+        ],
+        [
+          315,
+          336
+        ]
+      ]
+    },
+    {
+      "id": "strange-event",
+      "interval_ids": [
+        "strange-turn"
+      ],
+      "not_before_sample": null,
+      "outcome": "uncertain",
+      "reason": "supporting_interval_unverified",
+      "source_spans": [
+        [
+          779,
+          809
+        ]
+      ]
+    },
+    {
+      "id": "balloon-ascent",
+      "interval_ids": [
+        "balloon-turn"
+      ],
+      "not_before_sample": null,
+      "outcome": "uncertain",
+      "reason": "supporting_interval_unverified",
+      "source_spans": [
+        [
+          811,
+          938
+        ]
+      ]
+    },
+    {
+      "id": "unprovided-fact",
+      "interval_ids": [],
+      "not_before_sample": null,
+      "outcome": "missing",
+      "reason": "required_fact_missing",
+      "source_spans": []
+    }
+  ],
+  "intervals": [
+    {
+      "id": "balloon-turn",
+      "independent_end_sample": null,
+      "independent_evidence": null,
+      "independent_start_sample": null,
+      "not_before_sample": null,
+      "outcome": "uncertain",
+      "primary_end_sample": null,
+      "primary_evidence": [],
+      "primary_start_sample": null,
+      "primary_unit_ids": [
+        "turn-018"
+      ],
+      "reason": "independent_complete_interval_missing_or_ambiguous",
+      "source_span": [
+        811,
+        938
+      ]
+    },
+    {
+      "id": "cellar-turn",
+      "independent_end_sample": 546720,
+      "independent_evidence": {
+        "binding": {
+          "model": "muse-voice-transcribe-1.0",
+          "narration": {
+            "bytes": 2902604,
+            "media_type": "audio/wav",
+            "path": "excerpt.wav",
+            "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0"
+          },
+          "receipt": {
+            "bytes": 417,
+            "media_type": "application/json",
+            "path": "meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.receipt.json",
+            "sha256": "c4eabb83b8d63a4fd7175ab717bb9296f36741a21e41d896fd800be3440f64ea"
+          },
+          "request_sha256": "6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599",
+          "response": {
+            "bytes": 2717,
+            "media_type": "application/json",
+            "path": "meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.json",
+            "sha256": "057a44521f631af4da9cbd8b286d26da6892560d3ecbf5ae7da0a72aad679021"
+          }
+        },
+        "model": "muse-voice-transcribe-1.0",
+        "turn_index": 2
+      },
+      "independent_start_sample": 510240,
+      "not_before_sample": 546720,
+      "outcome": "pass",
+      "primary_end_sample": 545280,
+      "primary_evidence": [
+        {
+          "audio_placement": [
+            516480,
+            555840
+          ],
+          "model": "gemini-3.5-transcribe",
+          "provider_recipe_sha256": "013c65bacbe514650cae997c0391ba85207199b6c9b0aa2d56c47933a79dd9de",
+          "receipt": {
+            "bytes": 839,
+            "media_type": "application/json",
+            "path": "transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.receipt.json",
+            "sha256": "68e652205eee66a18db2d192bc8a9e2dc5e1d4cf5eeb4ba3e8fcdf9a78d48c15"
+          },
+          "request_sha256": "237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0",
+          "response": {
+            "bytes": 1388,
+            "media_type": "application/json",
+            "path": "transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.json",
+            "sha256": "dec9a270e7267c34ebeadfc8cc2e28c16f6bfa1ef0bac32518cb7670bcd3c363"
+          },
+          "source_span": [
+            315,
+            336
+          ],
+          "unit_audio": {
+            "bytes": 78764,
+            "media_type": "audio/wav",
+            "path": "units/turn-015.wav",
+            "sha256": "fd88943457e6a71527909d830f766cc15cf6fc7d3966c719de46525a25afa4ef"
+          },
+          "unit_id": "turn-015"
+        }
+      ],
+      "primary_start_sample": 521280,
+      "primary_unit_ids": [
+        "turn-015"
+      ],
+      "reason": "complete_unique_intervals_match",
+      "source_span": [
+        315,
+        336
+      ]
+    },
+    {
+      "id": "quick-and-attribution",
+      "independent_end_sample": 498720,
+      "independent_evidence": {
+        "binding": {
+          "model": "muse-voice-transcribe-1.0",
+          "narration": {
+            "bytes": 2902604,
+            "media_type": "audio/wav",
+            "path": "excerpt.wav",
+            "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0"
+          },
+          "receipt": {
+            "bytes": 417,
+            "media_type": "application/json",
+            "path": "meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.receipt.json",
+            "sha256": "c4eabb83b8d63a4fd7175ab717bb9296f36741a21e41d896fd800be3440f64ea"
+          },
+          "request_sha256": "6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599",
+          "response": {
+            "bytes": 2717,
+            "media_type": "application/json",
+            "path": "meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.json",
+            "sha256": "057a44521f631af4da9cbd8b286d26da6892560d3ecbf5ae7da0a72aad679021"
+          }
+        },
+        "model": "muse-voice-transcribe-1.0",
+        "turn_index": 1
+      },
+      "independent_start_sample": 443040,
+      "not_before_sample": 506640,
+      "outcome": "pass",
+      "primary_end_sample": 506640,
+      "primary_evidence": [
+        {
+          "audio_placement": [
+            438240,
+            471840
+          ],
+          "model": "gemini-3.5-transcribe",
+          "provider_recipe_sha256": "013c65bacbe514650cae997c0391ba85207199b6c9b0aa2d56c47933a79dd9de",
+          "receipt": {
+            "bytes": 839,
+            "media_type": "application/json",
+            "path": "transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.receipt.json",
+            "sha256": "7776b53238b2cf558042a03dc9b1b6e12d24915de2b5d300b71c8688c968b12f"
+          },
+          "request_sha256": "a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d",
+          "response": {
+            "bytes": 1077,
+            "media_type": "application/json",
+            "path": "transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.json",
+            "sha256": "e8c6664dc6b5b871f8cc2cc0d7c7220620378a62cb5a2b46d15431b0bb4ae64f"
+          },
+          "source_span": [
+            283,
+            300
+          ],
+          "unit_audio": {
+            "bytes": 67244,
+            "media_type": "audio/wav",
+            "path": "units/turn-013.wav",
+            "sha256": "01ca45ab173328267b8d251fc99430b17014d2bc8099f925d3426db69edd2a27"
+          },
+          "unit_id": "turn-013"
+        },
+        {
+          "audio_placement": [
+            477840,
+            510480
+          ],
+          "model": "gemini-3.5-transcribe",
+          "provider_recipe_sha256": "013c65bacbe514650cae997c0391ba85207199b6c9b0aa2d56c47933a79dd9de",
+          "receipt": {
+            "bytes": 839,
+            "media_type": "application/json",
+            "path": "transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.receipt.json",
+            "sha256": "afd89164389888382444f00047feee7add501ff4c85dd302c2dc07583a452e45"
+          },
+          "request_sha256": "de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775",
+          "response": {
+            "bytes": 1072,
+            "media_type": "application/json",
+            "path": "transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.json",
+            "sha256": "12f8518adab21afb240169407afdcf982ed1873110d4b717a634567a6149c731"
+          },
+          "source_span": [
+            301,
+            314
+          ],
+          "unit_audio": {
+            "bytes": 65324,
+            "media_type": "audio/wav",
+            "path": "units/turn-014.wav",
+            "sha256": "93365d5d528504d497001255373f8020d0f4b711ee1b0aaf8db5805330f2cd62"
+          },
+          "unit_id": "turn-014"
+        }
+      ],
+      "primary_start_sample": 443040,
+      "primary_unit_ids": [
+        "turn-013",
+        "turn-014"
+      ],
+      "reason": "complete_unique_intervals_match",
+      "source_span": [
+        283,
+        314
+      ]
+    },
+    {
+      "id": "strange-turn",
+      "independent_end_sample": null,
+      "independent_evidence": null,
+      "independent_start_sample": null,
+      "not_before_sample": null,
+      "outcome": "uncertain",
+      "primary_end_sample": null,
+      "primary_evidence": [],
+      "primary_start_sample": null,
+      "primary_unit_ids": [
+        "turn-017"
+      ],
+      "reason": "independent_complete_interval_missing_or_ambiguous",
+      "source_span": [
+        779,
+        809
+      ]
+    }
+  ],
+  "matching_recipe_sha256": "7d6f1985365ff0188efecb86790e2646bb3dab385152520b7b80648ccaa50e96",
+  "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "normalization_policy": "lowercase-and-apostrophe-v1; no spelling substitutions or repetition removal",
+  "normalized_report": {
+    "bytes": 82133,
+    "media_type": "application/json",
+    "path": "acoustic-replay.json",
+    "sha256": "30e4d6e6fbee8a244fb8e21b74beff2ff0a6350c4f67f318aa560b974fc1f2a5"
+  },
+  "normalized_report_sha256": "30e4d6e6fbee8a244fb8e21b74beff2ff0a6350c4f67f318aa560b974fc1f2a5",
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "provider_calls": 0,
+  "reveal_permissions": [],
+  "sample_rate": 24000,
+  "schema_version": 1,
+  "scope": "Source-fact acoustic observations only; final presentation mapping, image applicability and production acceptance remain separate.",
+  "source_facts": {
+    "bytes": 2729,
+    "media_type": "application/json",
+    "path": "source-facts.json",
+    "sha256": "e77c04d2448cb0b7095533d76108fd85115e4e7fdfba3db0cbfa90b23d683b3b"
+  },
+  "source_facts_sha256": "e77c04d2448cb0b7095533d76108fd85115e4e7fdfba3db0cbfa90b23d683b3b",
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "tolerance_samples_denominator": 4,
+  "tolerance_samples_numerator": 72000
+}

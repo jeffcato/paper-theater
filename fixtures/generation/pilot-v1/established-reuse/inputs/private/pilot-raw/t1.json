@@ -1,0 +1,38 @@
+{
+  "audio": {
+    "file": {
+      "bytes": 4846,
+      "media_type": "audio/wav",
+      "path": "private/pilot-audio/t1.wav",
+      "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+    },
+    "id": "committed:pilot:private:pilot-audio:t1.wav",
+    "provenance": "synthetic"
+  },
+  "catalog_sha256": "80b01aec509a14a255ace258990923295978e7a5c98601160eb25ca7da38cd3e",
+  "direction_sha256": "110612d8bb593b58c8a89eeea1e878fa2a8917ee238b110694ea38e7affd8595",
+  "format": {
+    "bits_per_sample": 16,
+    "channels": 1,
+    "frames": 2401,
+    "sample_rate": 24000
+  },
+  "model": "gemini-3.8-flash-lite-tts",
+  "passage": {
+    "acting": "",
+    "acting_support": null,
+    "span": [
+      25,
+      46
+    ],
+    "text": " The water was still.",
+    "turn_id": "t0"
+  },
+  "provenance": "synthetic",
+  "recipe_sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+  "request_sha256": "f111afb637e74eaeb7daefad2a3f43186cdb41fe7657f1d8e19a1d7c43a64c50",
+  "schema_version": 1,
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "speaker": "narrator",
+  "voice_id": "old-n"
+}

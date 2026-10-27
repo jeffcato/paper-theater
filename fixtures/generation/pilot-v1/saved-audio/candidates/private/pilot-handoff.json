@@ -1,0 +1,340 @@
+{
+  "caller_authority": false,
+  "jobs": [
+    {
+      "estimate": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      },
+      "inputs": [
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "source.json",
+            "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+          },
+          "id": "committed:test:source.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 9391,
+            "media_type": "application/json",
+            "path": "private/direction-plan.json",
+            "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+          },
+          "id": "committed:pilot:private:direction-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "private/pilot-direction-input.json",
+            "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+          },
+          "id": "committed:pilot:private:pilot-direction-input.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 400,
+            "media_type": "application/json",
+            "path": "private/book-registry.json",
+            "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+          },
+          "id": "committed:test:private:book-registry.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 320,
+            "media_type": "application/json",
+            "path": "private/voice-catalog.json",
+            "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+          },
+          "id": "committed:pilot:private:voice-catalog.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1076,
+            "media_type": "application/json",
+            "path": "private/pilot-selection.json",
+            "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+          },
+          "id": "committed:pilot:private:pilot-selection.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 48,
+            "media_type": "application/json",
+            "path": "private/pilot-recipe.json",
+            "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+          },
+          "id": "committed:pilot:private:pilot-recipe.json",
+          "provenance": "synthetic"
+        }
+      ],
+      "kind": "speech",
+      "model": "gemini-3.8-flash-tts",
+      "provider": "speech-double",
+      "recipe": {
+        "bytes": 48,
+        "media_type": "application/json",
+        "path": "private/pilot-recipe.json",
+        "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+      },
+      "request_path": "private/pilot/requests/p000-t00.json",
+      "timeout_ms": 30000
+    },
+    {
+      "estimate": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      },
+      "inputs": [
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "source.json",
+            "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+          },
+          "id": "committed:test:source.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 9391,
+            "media_type": "application/json",
+            "path": "private/direction-plan.json",
+            "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+          },
+          "id": "committed:pilot:private:direction-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "private/pilot-direction-input.json",
+            "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+          },
+          "id": "committed:pilot:private:pilot-direction-input.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 400,
+            "media_type": "application/json",
+            "path": "private/book-registry.json",
+            "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+          },
+          "id": "committed:test:private:book-registry.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 320,
+            "media_type": "application/json",
+            "path": "private/voice-catalog.json",
+            "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+          },
+          "id": "committed:pilot:private:voice-catalog.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1076,
+            "media_type": "application/json",
+            "path": "private/pilot-selection.json",
+            "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+          },
+          "id": "committed:pilot:private:pilot-selection.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 48,
+            "media_type": "application/json",
+            "path": "private/pilot-recipe.json",
+            "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+          },
+          "id": "committed:pilot:private:pilot-recipe.json",
+          "provenance": "synthetic"
+        }
+      ],
+      "kind": "speech",
+      "model": "gemini-3.8-flash-tts",
+      "provider": "speech-double",
+      "recipe": {
+        "bytes": 48,
+        "media_type": "application/json",
+        "path": "private/pilot-recipe.json",
+        "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+      },
+      "request_path": "private/pilot/requests/p000-t01.json",
+      "timeout_ms": 30000
+    },
+    {
+      "estimate": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      },
+      "inputs": [
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "source.json",
+            "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+          },
+          "id": "committed:test:source.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 9391,
+            "media_type": "application/json",
+            "path": "private/direction-plan.json",
+            "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+          },
+          "id": "committed:pilot:private:direction-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "private/pilot-direction-input.json",
+            "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+          },
+          "id": "committed:pilot:private:pilot-direction-input.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 400,
+            "media_type": "application/json",
+            "path": "private/book-registry.json",
+            "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+          },
+          "id": "committed:test:private:book-registry.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 320,
+            "media_type": "application/json",
+            "path": "private/voice-catalog.json",
+            "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+          },
+          "id": "committed:pilot:private:voice-catalog.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1076,
+            "media_type": "application/json",
+            "path": "private/pilot-selection.json",
+            "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+          },
+          "id": "committed:pilot:private:pilot-selection.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 48,
+            "media_type": "application/json",
+            "path": "private/pilot-recipe.json",
+            "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+          },
+          "id": "committed:pilot:private:pilot-recipe.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1606,
+            "media_type": "application/json",
+            "path": "private/pilot/requests/p000-t00.json",
+            "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3"
+          },
+          "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1162,
+            "media_type": "application/json",
+            "path": "private/pilot-raw/t0.json",
+            "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2"
+          },
+          "id": "committed:pilot:private:pilot-raw:t0.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 4844,
+            "media_type": "audio/wav",
+            "path": "private/pilot-audio/t0.wav",
+            "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+          },
+          "id": "committed:pilot:private:pilot-audio:t0.wav",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1597,
+            "media_type": "application/json",
+            "path": "private/pilot/requests/p000-t01.json",
+            "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9"
+          },
+          "id": "committed:pilot:private:pilot:requests:p000-t01.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1158,
+            "media_type": "application/json",
+            "path": "private/pilot-raw/t1.json",
+            "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291"
+          },
+          "id": "committed:pilot:private:pilot-raw:t1.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 4846,
+            "media_type": "audio/wav",
+            "path": "private/pilot-audio/t1.wav",
+            "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+          },
+          "id": "committed:pilot:private:pilot-audio:t1.wav",
+          "provenance": "synthetic"
+        }
+      ],
+      "kind": "review",
+      "model": "independent-review-double",
+      "provider": "review-double",
+      "recipe": {
+        "bytes": 48,
+        "media_type": "application/json",
+        "path": "private/pilot-recipe.json",
+        "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+      },
+      "request_path": "private/pilot/requests/p000-review.json",
+      "timeout_ms": 30000
+    }
+  ],
+  "runtime_committed_payload_required": true,
+  "schema_version": 1
+}

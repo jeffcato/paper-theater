@@ -1,0 +1,29 @@
+{
+  "models": [
+    {
+      "id": "gemini-3.8-flash-tts",
+      "voices": [
+        {
+          "accent": "catalog-default",
+          "id": "voice-n",
+          "language": "en",
+          "reference": null
+        }
+      ]
+    },
+    {
+      "id": "gemini-3.8-flash-lite-tts",
+      "voices": [
+        {
+          "accent": "catalog-default",
+          "id": "old-n",
+          "language": "en",
+          "reference": null
+        }
+      ]
+    }
+  ],
+  "provenance": "synthetic",
+  "provider": "speech-double",
+  "schema_version": 1
+}

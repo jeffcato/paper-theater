@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "task": "G17",
+  "status": "implemented-and-offline-verified",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.3.0",
+  "provider_calls": 0,
+  "production_approved": false,
+  "outcome": "needs_repair",
+  "limits_bytes": {
+    "selected_master": 268435456,
+    "non_master_file": 33554432,
+    "non_master_aggregate": 67108864,
+    "retained_unique_raw_inputs": 335544320,
+    "json_candidate": 33554432,
+    "acoustic_helper_input": 33554432,
+    "acoustic_helper_aggregate": 67108864,
+    "acoustic_helper_output": 16777216
+  },
+  "input_reference_count": 64,
+  "temporary_master": {
+    "provenance": "synthetic-capacity-only",
+    "bytes": 34560044,
+    "sample_rate": 48000,
+    "channels": 2,
+    "bits_per_sample": 16,
+    "frames": 8640000,
+    "duration_seconds": 180,
+    "sha256": "072e5bbd7ce988a0f7f638bf6618dd2ccdb0d412c5b69c28685767bd9540a529",
+    "stored_in_repository": false,
+    "reveal_bounds": null,
+    "presentation_mapping": "unverified; no replacement map manufactured",
+    "package_modes": [
+      "fixture",
+      "replay"
+    ],
+    "master_digest_unchanged": true,
+    "exported_package_verified": true,
+    "words_and_groups_byte_equivalent": true
+  },
+  "preserved_g16": {
+    "matched": 4,
+    "unresolved": [
+      "strange-event",
+      "balloon-ascent",
+      "unprovided-fact"
+    ],
+    "words": 176,
+    "groups": 170,
+    "points": 6,
+    "outcome": "needs_repair"
+  },
+  "commands": [
+    "cargo test -p pt-production generation:: --offline",
+    "cargo test -p pt-production --test candidate_read_contract --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "python3 tools/check_product_identity.py .",
+    "rustfmt --edition 2024 --check crates/pt-production/src/generation/{mod.rs,inputs.rs,tests.rs,tests/master_capacity.rs}"
+  ],
+  "checks": {
+    "generation_tests": 29,
+    "new_capacity_tests": 8,
+    "candidate_contract_tests": 4,
+    "python_tests": 17,
+    "identity": "pass",
+    "formatting": "pass",
+    "diff_whitespace": "pass"
+  },
+  "remaining": [
+    "Bounded chapter acoustic segmentation or a separately approved helper recipe",
+    "Exact independently verified narration-to-presentation mapping",
+    "Unresolved G16 facts and other production acceptance/reviews"
+  ],
+  "commit_owner": "Agent 1; no generation worker Git mutations",
+  "helper_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
+  "exact_cap_proof": {
+    "bytes": 268435456,
+    "physical_wav": "temporary sparse file verified through public R11 VerifiedArtifact API with 64 KiB hash buffers",
+    "generation": "exact selected-master budget admitted once with duplicate refs; service intentionally cancels before Vec allocation",
+    "over_cap": "268435457 bytes rejected before the master read",
+    "end_to_end_package_proof_bytes": 34560044
+  },
+  "aggregate_proof": {
+    "master_bytes": 268435456,
+    "other_bytes": 67108864,
+    "exact_budgets": "admitted before intentionally canceled read; no large allocation",
+    "one_byte_excess": "rejected before the master read in all tested orders"
+  },
+  "source_sha256": {
+    "fixtures/shared/two-scene-v1/manifest.json": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "fixtures/shared/two-scene-v1/fixture.json": "b91738c96f13f6c332d99fd3e22087de6dd14c556972687490e3900cbe57de85",
+    "fixtures/shared/two-scene-v1/audio/master.wav": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+    "fixtures/shared/two-scene-v1/read-along.json": "80e6882b1839c6c756718986a6066d8ad6b0614c94eaa99bc2ed99ac8dc2277f",
+    "fixtures/shared/two-scene-v1/presentation-map.json": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+    "fixtures/generation/acoustic/manifest.json": "f08b128a1f3418a6a8a2b498f6fa0e3880bd689ca04e66eb8ff95c2405605244",
+    "fixtures/generation/acoustic-facts-v1/source-facts.json": "e77c04d2448cb0b7095533d76108fd85115e4e7fdfba3db0cbfa90b23d683b3b",
+    "crates/pt-production/src/generation/acoustic_facts.rs": "7d6f1985365ff0188efecb86790e2646bb3dab385152520b7b80648ccaa50e96"
+  },
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "1bb40b1fd66c405af17d313868b3a426bbe1dc7dcec612db72d0ff4dd6f04591",
+    "crates/pt-production/src/generation/inputs.rs": "7026acf90cc7779adc09755f79581d8bf1f19c1f1336adbfe2446571c02973f3",
+    "crates/pt-production/src/generation/tests.rs": "69b3348405bdcd62af206c72eb414af76a6b2936199d0300a703ecc9ee8af623",
+    "crates/pt-production/src/generation/tests/master_capacity.rs": "9f811a46a3a1875facca631bf60fc9eab076d2b1cf063c8b9d142e3c47b1f163"
+  },
+  "consumed_public_api_sha256": {
+    "crates/pt-contracts/src/services.rs": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38",
+    "crates/pt-production/src/runtime/media.rs": "2bfe0b644c0559faaeebcbe9f72d303fe8a8438c579d87b879edad4e709b484f"
+  },
+  "allocation_notes": [
+    "At most 320 MiB unique raw input bytes retained by generation; selected master moved into the map without an additional PCM clone.",
+    "Existing JSON candidate serialization/write verification may hold two bounded candidate buffers.",
+    "Decoded metadata, service/runtime buffers and allocator overhead are additional; no process-RSS or streaming claim."
+  ]
+}

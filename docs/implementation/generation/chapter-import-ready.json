@@ -1,0 +1,413 @@
+{
+  "schema_version": 2,
+  "task": "G21",
+  "status": "offline-generic-chapter-import-and-recorded-unit-replay-complete",
+  "service_revision": "pt-services-v1.6.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "matrix_version": "pt-acceptance-required-v2",
+  "checker_version": "pt-acceptance-bindings-v2",
+  "outcome": "needs_repair",
+  "provenance": "diagnostic",
+  "production_approved": false,
+  "provider_calls": 0,
+  "stage_replay_helper_calls": 0,
+  "stage_replay_candidate_reads": 0,
+  "stage_replay_journal_proposals": 0,
+  "library_updates": 0,
+  "runtime_policy_authority": false,
+  "reveal_permissions": [],
+  "checks": {
+    "generation_suite": 70,
+    "new_g21_rust_tests": 8,
+    "final_g21_targeted_recheck": 8,
+    "python_suite": 37,
+    "new_g21_python_tests": 12,
+    "candidate_contract_tests": 4,
+    "shared_acceptance_tests": 10,
+    "shared_source_coverage_tests": 9,
+    "g20_current_version_adoption_tests": 16,
+    "formatting": "pass",
+    "identity": "pass",
+    "owned_whitespace": "pass",
+    "frozen_g18_g19_g20_identity_checks": "pass"
+  },
+  "commands": [
+    "PT_CHAPTER_IMPORT_EXPORT=fixtures/generation/chapter-import-v2 cargo test -p pt-production generation:: --offline",
+    "PT_CHAPTER_IMPORT_EXPORT=fixtures/generation/chapter-import-v2 cargo test -p pt-production generation::acoustic_tests::chapter_import:: --offline",
+    "PT_ACCEPTANCE_EXPORT=fixtures/generation/acceptance-proposals-v2 cargo test -p pt-production generation::tests::acceptance_proposals:: --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "cargo test -p pt-production --test candidate_read_contract --offline",
+    "cargo test -p pt-contracts --test acceptance_verification --locked --offline",
+    "cargo test -p pt-contracts --test acceptance_source_coverage --locked --offline",
+    "rustfmt --edition 2024 --config skip_children=true --check crates/pt-production/src/generation/mod.rs crates/pt-production/src/generation/chapter_import.rs crates/pt-production/src/generation/acoustic_tests.rs crates/pt-production/src/generation/acoustic_tests/chapter_import.rs crates/pt-production/src/generation/tests/acceptance_proposals.rs",
+    "python3 tools/check_product_identity.py ."
+  ],
+  "red_green": [
+    {
+      "command": "python3 -B -m unittest discover -s tools/generation -p test_chapter_import.py",
+      "red": "old path rejected the correctly bound different source with source identity mismatch; new path absent (ModuleNotFoundError)",
+      "green": "generic complete Unicode source/turn/PCM/raw import passes"
+    },
+    {
+      "command": "cargo test -p pt-production generation::acoustic_tests::chapter_import:: --offline",
+      "red": "missing acoustic input: manifest.json",
+      "green": "new bounded recorded unit route passes without helper dispatch"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tools/generation -p test_chapter_import.py",
+      "red": "inherited Fail became Pass; missing provider identity still yielded bound",
+      "green": "original adverse outcome retained and unknown identities keep null bounds"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tools/generation -p test_chapter_import.py -k extra_independent",
+      "red": "known independent duplicate became Missing instead of retained Uncertain",
+      "green": "global ambiguity retained across all complete saved text"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tools/generation -p test_chapter_import.py -k unsupported_global",
+      "red": "late helper-output rejection after expensive ambiguity work",
+      "green": "scan budget rejects before PCM/output, 0.038 seconds in targeted green"
+    },
+    {
+      "command": "cargo test -p pt-production generation::acoustic_tests::chapter_import::many_segments --offline",
+      "red": "producer did not reserve all replay slots",
+      "green": "all three private outputs replay in 64 references"
+    },
+    {
+      "command": "cargo test -p pt-production generation::acoustic_tests::chapter_import::imported_unit_rejects --offline",
+      "red": "unlisted input accepted",
+      "green": "exact private input allowlist enforced before candidate output"
+    },
+    {
+      "command": "cargo test -p pt-production generation::acoustic_tests::chapter_import::generic_limits_reject --offline",
+      "red": "oversized replay metadata with forged MIME performed payload read",
+      "green": "all fixed metadata roles reject before service reads"
+    },
+    {
+      "command": "cargo test -p pt-production generation::acoustic_tests::chapter_import::generic_replay_retains --offline",
+      "red": "distinct source/evidence identities shared recipe-only cache key",
+      "green": "cache content hash binds distinct evidence while deterministic replay remains stable"
+    },
+    {
+      "command": "cargo test -p pt-production generation::tests::acceptance_proposals::scoped_behavior_fixture --offline",
+      "red": "new v2 matrix metadata differed from frozen v1 fixture",
+      "green": "versioned v2 example; explicit v1 archived accessor and unchanged five scoped behavior rows"
+    }
+  ],
+  "registration": {
+    "path": "docs/implementation/generation/chapter-import-registration.json",
+    "sha256": "c156ecfc6292a74b25f8f425cbe205856cfc2d332b70e368d59c48c800784969",
+    "bytes": 4681,
+    "media_type": "application/json"
+  },
+  "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+  "recipe_source_closure": {
+    "tools/generation/chapter_import_helper.py": "1b78167cbc750dcc5fed1fa9808f1222d442d958f6e1f5dfd1c831242ce01672",
+    "tools/generation/chapter_import.py": "22b8e14901dbf216002237a6f710138b386c6fdf7c9a764033c9bcf00eadf405",
+    "tools/generation/chapter_acoustic.py": "ca84dfaafc15410759dc48277a4aa734019fc84422c1031422f5315b8b1cd7b7",
+    "tools/generation/adapters.py": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996"
+  },
+  "limits": {
+    "chapter_native_wav_bytes": 268435456,
+    "source_turn_chunk_file_bytes": 16777216,
+    "metadata_and_output_bytes": 1048576,
+    "original_raw_metadata_total_bytes": 524288,
+    "unit_aggregate_bytes": 67108864,
+    "references_including_replay": 64,
+    "reserved_replay_metadata_slots": 5,
+    "turns": 1024,
+    "facts": 1024,
+    "chunks": 1024,
+    "source_tokens_times_fact_spans": 2000000,
+    "helper_stdin_bytes": 65536,
+    "helper_timeout_ms": 30000,
+    "unsupported_size_policy": "explicit rejection; no evidence slicing, replacement receipts or dropped dependencies"
+  },
+  "example": {
+    "source": {
+      "bytes": 104,
+      "media_type": "text/plain",
+      "path": "source.txt",
+      "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e"
+    },
+    "source_origin": 700,
+    "source_scope_id": "synthetic-chapter-v2",
+    "source_scalar_count": 93,
+    "narration": {
+      "bytes": 48044,
+      "media_type": "audio/wav",
+      "path": "chapter.wav",
+      "sha256": "c497956a5270297a1b1bd2393d0f609c5804bd18019bab62450ac1525aa55aa7"
+    },
+    "turn_count": 3,
+    "speakers": [
+      "Élodie",
+      "李",
+      "Narrator"
+    ],
+    "word_count": 16,
+    "facts": [
+      {
+        "id": "gate",
+        "not_before_sample": 8000,
+        "outcome": "pass",
+        "present_chunks": [
+          "chunk-0000",
+          "chunk-0001"
+        ],
+        "reason": "complete_global_observations_and_pcm_dependencies",
+        "required_chunks": [
+          "chunk-0000",
+          "chunk-0001"
+        ],
+        "source_spans": [
+          [
+            719,
+            732
+          ]
+        ],
+        "turn_ids": [
+          "speech-0"
+        ]
+      },
+      {
+        "id": "cross-turn",
+        "not_before_sample": 16000,
+        "outcome": "pass",
+        "present_chunks": [
+          "chunk-0000",
+          "chunk-0001",
+          "chunk-0002"
+        ],
+        "reason": "complete_global_observations_and_pcm_dependencies",
+        "required_chunks": [
+          "chunk-0000",
+          "chunk-0001",
+          "chunk-0002"
+        ],
+        "source_spans": [
+          [
+            700,
+            767
+          ]
+        ],
+        "turn_ids": [
+          "speech-0",
+          "speech-1"
+        ]
+      }
+    ],
+    "unit_consumed_files": 7,
+    "initial_stage_references": 9,
+    "shared_context": {
+      "bytes": 22393,
+      "media_type": "application/json",
+      "path": "private/chapter-context.json",
+      "sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c"
+    },
+    "private_candidates": [
+      {
+        "path": "private/chapter-import-validation.json",
+        "sha256": "a1425fc7bbc0a20cc9ff0fc0ad1cb9ff6d613089f517cafa3e496ad945e01ad0",
+        "bytes": 9379,
+        "media_type": "application/json"
+      },
+      {
+        "path": "private/chapter-import-proposals.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2,
+        "media_type": "application/json"
+      },
+      {
+        "path": "private/chapter-import-evidence-inventory.json",
+        "sha256": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d",
+        "bytes": 44,
+        "media_type": "application/json"
+      }
+    ],
+    "g20_proposals": "typed empty Vec and schema-1 evidence inventory until real payload/presentation/player/checker/image-reveal bindings arrive"
+  },
+  "large_temporary_proof": {
+    "provenance": "synthetic source and sparse PCM with synthetic observations; no genuine provider execution or acoustic correctness inferred",
+    "duration_seconds": 1200,
+    "sample_rate": 8000,
+    "native_frames": 9600000,
+    "native_wav_bytes": 19200044,
+    "maximum_chunk_bytes": 16777216,
+    "original_turn_wav_bytes": 6400044,
+    "streamed_full_reconstruction": true,
+    "bounded_runservices_unit_replay": true,
+    "committed_large_media": false
+  },
+  "many_segment_proof": {
+    "chunks": 60,
+    "native_frames_per_chunk": 400,
+    "initial_stage_references": 61,
+    "all_private_outputs_replay_references": 64,
+    "retains_missing_cross_cut_dependencies": true
+  },
+  "private_public_boundary": {
+    "package_candidate": null,
+    "all_output_paths_private": true,
+    "independently_checked_public_export": "G20 acceptance proposal tests retained; no raw/private data added to payload inventory",
+    "missing_full_acceptance_bindings": "preserved; acoustic source facts do not infer image applicability or final presentation mapping"
+  },
+  "preserved": {
+    "g16_matched_facts": 4,
+    "g16_unresolved": [
+      {
+        "id": "strange-event",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "balloon-ascent",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "unprovided-fact",
+        "outcome": "missing"
+      }
+    ],
+    "g16_words": 176,
+    "g16_highlight_groups": 170,
+    "g16_measured_points": 6,
+    "g17_temporary_master_seconds": 180,
+    "g18_frozen_report_sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+    "g19_temporary_master_seconds": 600,
+    "g19_recipe_sha256": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+    "legacy_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
+    "g20_v1_scope_fixture_sha256": "7e8e3b400073a85760c81c828c42d9158d1da133cda429d5499d952d6318bcc9"
+  },
+  "compatibility_cleanup": {
+    "acknowledgement": {
+      "path": "docs/implementation/integration/g20-compatibility-ack.json",
+      "sha256": "15182563216a28d4c8de64fa8cf42cd908e9ae8253e4779db9dff5cd6f9ce017",
+      "bytes": 2587,
+      "media_type": "application/json"
+    },
+    "literal_removed": true,
+    "cleanup_handoff": "docs/implementation/generation/g20-literal-cleanup.md",
+    "v1_fixtures_unchanged": true,
+    "current_v2_examples": "fixtures/generation/acceptance-proposals-v2",
+    "shared_suite_after_cleanup": "10 passed",
+    "integration_staging": "stage only the acknowledged removal hunk separately from G21 module/route additions"
+  },
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "bddc6bc8083a10b6d29011b15ba0b960a08d457e9fc53ca827b347f1f274a29c",
+    "crates/pt-production/src/generation/chapter_import.rs": "c280f9e725b56aaf879ee84a2acec632d659de11d97997d7f9d3f6550a8d7573",
+    "crates/pt-production/src/generation/acoustic_tests.rs": "7307695b2b5151a37b5d74140cd61cf0759ff78d2de0f6b168d8c91c0daf23fd",
+    "crates/pt-production/src/generation/acoustic_tests/chapter_import.rs": "c8951688e7a38db02c4b4715436fd94b3200a797bd4bea67e7c50038f95e0f11",
+    "crates/pt-production/src/generation/tests/acceptance_proposals.rs": "faf0d5096e000e3ef9f3777e119a1681dce1c5639ac6116394f78282ca2fd3d1",
+    "tools/generation/chapter_import.py": "22b8e14901dbf216002237a6f710138b386c6fdf7c9a764033c9bcf00eadf405",
+    "tools/generation/chapter_import_helper.py": "1b78167cbc750dcc5fed1fa9808f1222d442d958f6e1f5dfd1c831242ce01672",
+    "tools/generation/test_chapter_import.py": "4be87df4b57d208a05075434733ccfca6314aecddd8cc303fdeb4dbddeedce42"
+  },
+  "fixture_sha256": {
+    "README.md": "90a7d71b5beeed3098214661c7d44463aab31efea253e6dcf1ad9141a3296430",
+    "producer-inputs/bundle/chapter-import-index.json": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+    "producer-inputs/bundle/private/chapter-context.json": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+    "producer-inputs/bundle/private/chapter-import-verification.json": "c4d035d107053db5e61a31d05efc5b1e1f0f5bef8015d1892cccf9ddb9840d53",
+    "producer-inputs/bundle/private/chunks/chunk-0000.wav": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+    "producer-inputs/bundle/private/chunks/chunk-0001.wav": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+    "producer-inputs/bundle/private/chunks/chunk-0002.wav": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+    "producer-inputs/bundle/private/chunks/chunk-0003.wav": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+    "producer-inputs/bundle/private/originals/chapter-evidence.json": "71994d1024dafb84207576a462e8ce9590a4dfef42d9ce3a354de3f444d582e7",
+    "producer-inputs/bundle/private/originals/raw/0-independent.receipt.json": "fb60e7d59f2b077ae7978b3fc350a0fdd0e0d62dc57fd8ff6ec25456289a03bd",
+    "producer-inputs/bundle/private/originals/raw/0-independent.recipe": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+    "producer-inputs/bundle/private/originals/raw/0-independent.request.json": "c08bd12de06ae3762536e8094308cc28e705014415f8acfd290390950df7c724",
+    "producer-inputs/bundle/private/originals/raw/0-independent.response.json": "c486143d010bd115812a580ace4d4c9f787e3827d2d099270959ef2044d216b5",
+    "producer-inputs/bundle/private/originals/raw/0-primary.receipt.json": "e8c2d8fe2bad2fbcb8f2d7bcaabd4bc83c2ed782e50723ee41897bf2ed3d0f94",
+    "producer-inputs/bundle/private/originals/raw/0-primary.recipe": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+    "producer-inputs/bundle/private/originals/raw/0-primary.request.json": "d6ba94c4232a521f443d66a7ea74c8c3c6f0b8b46e718de1664209cb93e9c3e1",
+    "producer-inputs/bundle/private/originals/raw/0-primary.response.json": "8a4d098a565a8b8eb868e53d2b1bc4a9fcc23871ce578b4cfea0ff1f56cd7bd9",
+    "producer-inputs/bundle/private/originals/raw/1-independent.receipt.json": "c684d494a3cfa48a5e09cef3e20876de5054bcf293516075d9c9df4b0612f681",
+    "producer-inputs/bundle/private/originals/raw/1-independent.recipe": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+    "producer-inputs/bundle/private/originals/raw/1-independent.request.json": "29c75df5bdac231f4b44c61d47b7ad5c4f64f9c011ba84693d266c6cb66a3655",
+    "producer-inputs/bundle/private/originals/raw/1-independent.response.json": "5683fdd79c1e19571f452dc4b56fb6ae462333436e46d4a57e7785b904ec6e39",
+    "producer-inputs/bundle/private/originals/raw/1-primary.receipt.json": "06fd34310d1af16609a1faccba5f714e11be78612613f913374e3ef1c73c8af3",
+    "producer-inputs/bundle/private/originals/raw/1-primary.recipe": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+    "producer-inputs/bundle/private/originals/raw/1-primary.request.json": "f8194d8a8e5682b20741967609e736034670721ac0d2fac54deeb3f340854384",
+    "producer-inputs/bundle/private/originals/raw/1-primary.response.json": "2957f5c0a4b486830fdfaf0f362e773a62aa3fc543cd2cb5ba835213cd96aebe",
+    "producer-inputs/bundle/private/originals/raw/2-independent.receipt.json": "7faae12130d498faf8d7d2b36da876c8c230055047ea0f972661db5b852c67b8",
+    "producer-inputs/bundle/private/originals/raw/2-independent.recipe": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+    "producer-inputs/bundle/private/originals/raw/2-independent.request.json": "a66ed434b0d96f3ad141117eb94f15747127593705420b3ad748d2283d42fc31",
+    "producer-inputs/bundle/private/originals/raw/2-independent.response.json": "6f93e537f420edd78166b4af7c553a6fe4061ec608e07c43ae18cdc40ecaf1d9",
+    "producer-inputs/bundle/private/originals/raw/2-primary.receipt.json": "2c7a650620715c364f0ea87105d95ab9db5d6d8562ef0d771d3bd32c83c30028",
+    "producer-inputs/bundle/private/originals/raw/2-primary.recipe": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+    "producer-inputs/bundle/private/originals/raw/2-primary.request.json": "3c4ec6bb097bf9fef2f007fe77db1aff9fc33e0be395fea60b381f7cdb2571c1",
+    "producer-inputs/bundle/private/originals/raw/2-primary.response.json": "7e44dd286068a8e990ac266760ae2883c54644a16005f5479146b60197ed2728",
+    "producer-inputs/bundle/private/source.txt": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+    "producer-inputs/bundle/records/chunk-0000.json": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6",
+    "producer-inputs/bundle/records/chunk-0001.json": "c95f1c21e824f106109fabe4bce3605bf32350f1a7bf4530580758da967a398a",
+    "producer-inputs/bundle/records/chunk-0002.json": "15fe1c917a7265cb3485f4603176e1d30d4ff657c0678991c9b627fac646bcb9",
+    "producer-inputs/bundle/records/chunk-0003.json": "dd72aff8678381d55a894b136ae111eedaf7a211599a46cbac2717cab3d43fba",
+    "producer-inputs/bundle/units/chunk-0000.json": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+    "producer-inputs/bundle/units/chunk-0001.json": "6fc7c99f3bab32cb4bad174d43255bfab4b44f5b02959443243226d8f9565262",
+    "producer-inputs/bundle/units/chunk-0002.json": "d169bbe1f7c33eed37ca107c7335439f9f50fba1b50b20f4fd8530ed02ffbe02",
+    "producer-inputs/bundle/units/chunk-0003.json": "cc79ad4e56c3417e6066a864afb59f8101f9327b9d2a404443bed1e06d0baade",
+    "producer-inputs/chapter-evidence.json": "71994d1024dafb84207576a462e8ce9590a4dfef42d9ce3a354de3f444d582e7",
+    "producer-inputs/chapter.wav": "c497956a5270297a1b1bd2393d0f609c5804bd18019bab62450ac1525aa55aa7",
+    "producer-inputs/raw/0-independent.receipt.json": "fb60e7d59f2b077ae7978b3fc350a0fdd0e0d62dc57fd8ff6ec25456289a03bd",
+    "producer-inputs/raw/0-independent.recipe": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+    "producer-inputs/raw/0-independent.request.json": "c08bd12de06ae3762536e8094308cc28e705014415f8acfd290390950df7c724",
+    "producer-inputs/raw/0-independent.response.json": "c486143d010bd115812a580ace4d4c9f787e3827d2d099270959ef2044d216b5",
+    "producer-inputs/raw/0-primary.receipt.json": "e8c2d8fe2bad2fbcb8f2d7bcaabd4bc83c2ed782e50723ee41897bf2ed3d0f94",
+    "producer-inputs/raw/0-primary.recipe": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+    "producer-inputs/raw/0-primary.request.json": "d6ba94c4232a521f443d66a7ea74c8c3c6f0b8b46e718de1664209cb93e9c3e1",
+    "producer-inputs/raw/0-primary.response.json": "8a4d098a565a8b8eb868e53d2b1bc4a9fcc23871ce578b4cfea0ff1f56cd7bd9",
+    "producer-inputs/raw/1-independent.receipt.json": "c684d494a3cfa48a5e09cef3e20876de5054bcf293516075d9c9df4b0612f681",
+    "producer-inputs/raw/1-independent.recipe": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+    "producer-inputs/raw/1-independent.request.json": "29c75df5bdac231f4b44c61d47b7ad5c4f64f9c011ba84693d266c6cb66a3655",
+    "producer-inputs/raw/1-independent.response.json": "5683fdd79c1e19571f452dc4b56fb6ae462333436e46d4a57e7785b904ec6e39",
+    "producer-inputs/raw/1-primary.receipt.json": "06fd34310d1af16609a1faccba5f714e11be78612613f913374e3ef1c73c8af3",
+    "producer-inputs/raw/1-primary.recipe": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+    "producer-inputs/raw/1-primary.request.json": "f8194d8a8e5682b20741967609e736034670721ac0d2fac54deeb3f340854384",
+    "producer-inputs/raw/1-primary.response.json": "2957f5c0a4b486830fdfaf0f362e773a62aa3fc543cd2cb5ba835213cd96aebe",
+    "producer-inputs/raw/2-independent.receipt.json": "7faae12130d498faf8d7d2b36da876c8c230055047ea0f972661db5b852c67b8",
+    "producer-inputs/raw/2-independent.recipe": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+    "producer-inputs/raw/2-independent.request.json": "a66ed434b0d96f3ad141117eb94f15747127593705420b3ad748d2283d42fc31",
+    "producer-inputs/raw/2-independent.response.json": "6f93e537f420edd78166b4af7c553a6fe4061ec608e07c43ae18cdc40ecaf1d9",
+    "producer-inputs/raw/2-primary.receipt.json": "2c7a650620715c364f0ea87105d95ab9db5d6d8562ef0d771d3bd32c83c30028",
+    "producer-inputs/raw/2-primary.recipe": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+    "producer-inputs/raw/2-primary.request.json": "3c4ec6bb097bf9fef2f007fe77db1aff9fc33e0be395fea60b381f7cdb2571c1",
+    "producer-inputs/raw/2-primary.response.json": "7e44dd286068a8e990ac266760ae2883c54644a16005f5479146b60197ed2728",
+    "producer-inputs/source.txt": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+    "producer-inputs/turns/speech-0.wav": "a4276dd31752f69968899a2ac95af10fb19ff37b1d2969eea9a0a6b8e2dfcd69",
+    "producer-inputs/turns/speech-1.wav": "eab62c5fee604b7c4d03bfa261c080c928691b5f80899b8a57c149565a0ae022",
+    "producer-inputs/turns/speech-2.wav": "e0638f7c1156a28afff4f187e3e89f7cbe46b2a1fbe2c9cff4be23390f7fc195",
+    "stage/chapter-import-helper-record.json": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6",
+    "stage/chapter-import-index.json": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+    "stage/chapter-import-unit.json": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+    "stage/private/chapter-context.json": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+    "stage/private/chapter-import-evidence-inventory.json": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d",
+    "stage/private/chapter-import-proposals.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stage/private/chapter-import-validation.json": "a1425fc7bbc0a20cc9ff0fc0ad1cb9ff6d613089f517cafa3e496ad945e01ad0",
+    "stage/private/chunks/chunk-0000.wav": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+    "stage/private/chunks/chunk-0001.wav": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+    "stage/private/chunks/chunk-0002.wav": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+    "stage/private/chunks/chunk-0003.wav": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+    "stage/private/source.txt": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+    "stage-input.json": "bfcb9f647cbb979e4daa177b08677a0514c43f40408d9ff0e74528c64a1a4461",
+    "stage-output.json": "43982d61cb3d7b0f05ebdf45b0bb1e8cb244aa2db040fcc847ec57081a797aea"
+  },
+  "acceptance_v2_fixture_sha256": {
+    "README.md": "08cd272ad48d8a8b27405f7eb3aad725e812c588ae6a2aebb411deb4c89f2f54",
+    "acceptance-context.json": "26349f87420d08a86215fe93d85db385b41e7956b19fb67b7b1cc489f3607afd",
+    "private/acceptance-evidence-inventory.json": "8219be685e075c54dc391dbdf0c92ac68fd164f666798b8383301e1fb08d72ea",
+    "private/acceptance-facts.json": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+    "private/acceptance-proposal-status.json": "4cf32e7c286b4d4a59ddc78e46d33295045b7266a84cc21abb6076df60e2ac27",
+    "private/acceptance-proposals.json": "4ea89099d6745cde6296b1c0c6ce73c87fce6cceef7743a1dda91517de2dbecb",
+    "private/authored-acceptance.json": "968a7b383ce2e73751024f7a54e3f953b3e4d8aab0f276782a61e5b858091444",
+    "public-allowlist.json": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+    "scopes.json": "d023b01cfc11fab00d52ce4f457d4a730b861b795722dab4c3186db373ccdc8e"
+  },
+  "remaining": [
+    "Runtime authoritative whole-bundle import, separate helper registration, epoch-bound fanout/commit/restart/cancellation and private persistence",
+    "Independently pinned source-slice/global-to-local relationship before accepting sliced nonzero-origin source coverage",
+    "Actual final presentation/master/image-reveal/player/checker bindings for shared proposals",
+    "Independent speech/listening/voice/creative/device verification and autonomous production publication"
+  ],
+  "git_operations": 0,
+  "ui_edits": 0,
+  "commit_owner": "integration"
+}

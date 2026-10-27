@@ -1,5 +1,5 @@
 {
-  "status": "server-chapter-wav-and-acoustic-browser-ready",
+  "status": "private-acceptance-backend-verified-publication-blocked",
   "contract_revision": "pt-contracts-v1.0.0",
   "service_revision": "pt-services-v1.2.0",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -31,7 +31,8 @@
     "R2-005-production",
     "R2-008",
     "R2-009",
-    "R2-010"
+    "R2-010",
+    "R12-player-title-rendering"
   ],
   "report": "docs/implementation/runtime/handoff.md",
   "commit_owner": "Agent 1",
@@ -99,5 +100,92 @@
     "player_capacity_commit": "5419a3f73b41b2a3c92e52a40a3092df732e6e52",
     "remaining_capacity_lane": "generation"
   },
-  "integration_addendum": "docs/implementation/integration/combined-ready.json"
+  "integration_addendum": "docs/implementation/integration/combined-ready.json",
+  "studio_player": {
+    "report": "docs/implementation/runtime/studio-player.md",
+    "receipt": "docs/implementation/runtime/studio-player/receipt.json",
+    "consumer_checks_passed": true,
+    "r12_complete": false,
+    "blocker": "preview-nonpositive-viewport-during-complete-check",
+    "chrome_exit_status": 1,
+    "viewports": 3,
+    "text_scales": 3,
+    "frames": 15,
+    "playback_frames": 219,
+    "highlight_mismatches": 0,
+    "cleanup_cases": 8,
+    "console_errors": 0,
+    "provider_calls": 0,
+    "p17_title_fix_present": true,
+    "p17_rerun": "docs/implementation/runtime/p17-studio-rerun.json"
+  },
+  "provider_v2": {
+    "report": "docs/implementation/runtime/provider-v2-adapter.md",
+    "ready_record": "docs/implementation/runtime/provider-v2-ready.json",
+    "private_offline_ready": true,
+    "public_method_available": false,
+    "live_dispatch_enabled": false,
+    "broker_tests": 21,
+    "provider_calls": 0
+  },
+  "presentation_integration": {
+    "report": "docs/implementation/runtime/presentation-integration.md",
+    "ready_record": "docs/implementation/runtime/presentation-runtime-ready.json",
+    "backend_only": true,
+    "stage": "presentation",
+    "outcome": "needs_repair",
+    "input_count": 56,
+    "replay_input_count": 57,
+    "r14_tests": 8,
+    "rust_total": 134,
+    "service_revision": "pt-services-v1.5.0",
+    "provider_calls": 0,
+    "publication_enabled": false
+  },
+  "private_acceptance": {
+    "status": "offline-backend-verified-publication-blocked",
+    "report": "docs/implementation/runtime/private-acceptance.md",
+    "receipt": "docs/implementation/runtime/private-acceptance-receipt.json",
+    "service_revision": "pt-services-v1.6.0",
+    "report_version": 2,
+    "matrix_version": "pt-acceptance-required-v2",
+    "outcome": "needs_repair",
+    "production_approved": false,
+    "publication_enabled": false,
+    "ready_record": "docs/implementation/runtime/private-acceptance-ready.json",
+    "rust_total": 184,
+    "r15_tests": 10
+  },
+  "chapter_runtime": {
+    "status": "offline-backend-verified-publication-blocked",
+    "report": "docs/implementation/runtime/chapter-runtime.md",
+    "ready_record": "docs/implementation/runtime/chapter-runtime-ready.json",
+    "receipt": "docs/implementation/runtime/chapter-runtime-receipt.json",
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "outcome": "needs_repair",
+    "r16_tests": 12,
+    "rust_total": 217,
+    "provider_calls": 0,
+    "publication_enabled": false
+  },
+  "provider_service": {
+    "status": "offline-execution-bound-provider-v2-ready",
+    "report": "docs/implementation/runtime/provider-service.md",
+    "examples": "docs/implementation/runtime/provider-service-examples.json",
+    "service_revision": "pt-services-v1.8.0",
+    "provider_service_version": 2,
+    "public_methods_implemented": [
+      "issue_provider_v2",
+      "execute_provider_v2",
+      "recover_provider_v2"
+    ],
+    "production_construction_enabled": false,
+    "external_provider_calls": 0,
+    "live_dispatch_enabled": false,
+    "publication_enabled": false,
+    "rust_total": 165,
+    "r17_service_tests": 21,
+    "ready_record": "docs/implementation/runtime/provider-service-ready.json",
+    "rust_total_scope": "Required runtime, contracts, server and contract-bridge checks; excludes separate focused/aggregate generation runs."
+  }
 }

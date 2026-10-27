@@ -1,0 +1,132 @@
+[
+  {
+    "artifact": {
+      "file": {
+        "bytes": 237232,
+        "media_type": "text/plain",
+        "path": "raw-source.txt",
+        "sha256": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75"
+      },
+      "id": "committed:test:raw-source.txt",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/source/pg55-raw.txt"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 212584,
+        "media_type": "text/plain",
+        "path": "clean-source.txt",
+        "sha256": "c9c44a8852872740f9bb8078479510687050e6d69446b0c5e765bdc2382df259"
+      },
+      "id": "committed:test:clean-source.txt",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/source/pg55-clean.txt"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 78159,
+        "media_type": "application/json",
+        "path": "frozen-source.json",
+        "sha256": "f85e6dcbd2d0d663647dc4aada2d5e9cb725da50d5d74556f64e74b38cef5a5a"
+      },
+      "id": "committed:test:frozen-source.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/source/pg55-frozen.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 270211,
+        "media_type": "application/json",
+        "path": "source.json",
+        "sha256": "71e8f7ba407cdedd8aec594e9973b10d864199f454d00a1d0a476ede8421cf92"
+      },
+      "id": "committed:test:source.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/oz-source/inputs/source.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 242,
+        "media_type": "application/json",
+        "path": "private/book-registry.json",
+        "sha256": "80985697c473a2449e718696017292dcd3ee174c04f79641824d3c979d464fb3"
+      },
+      "id": "committed:test:private:book-registry.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/oz-source/inputs/private/book-registry.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 107,
+        "media_type": "application/json",
+        "path": "private/direction-recipe.json",
+        "sha256": "7acfa6f64a11022327dd8bad3862fdfe58eb3024cee9cfec0ee57b9071f603d4"
+      },
+      "id": "committed:test:private:direction-recipe.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-recipe.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 850,
+        "media_type": "application/json",
+        "path": "private/direction-context.json",
+        "sha256": "7a7e546f9a89a31be44e86214d051d3b9805214cb93ca5f26998645ba647daa2"
+      },
+      "id": "committed:test:private:direction-context.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-context.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 19827,
+        "media_type": "application/json",
+        "path": "private/direction-request.json",
+        "sha256": "67fe6a03f3810edb50e3dff13def118d0a66b6f51818b1ae2c0f36af962080fe"
+      },
+      "id": "committed:test:private:direction-request.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-request.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 19332,
+        "media_type": "application/json",
+        "path": "private/direction-response.json",
+        "sha256": "18864852affad1368d85ba3655caffb3d3cc8fccf7652b36258bc2e833441ea6"
+      },
+      "id": "committed:test:private:direction-response.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-response.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 981,
+        "media_type": "application/json",
+        "path": "private/direction-observation.json",
+        "sha256": "85df569558fd7aa7b23698aed78a44c3ab4de9bdb8ee8eb02f330ded94fd6878"
+      },
+      "id": "committed:test:private:direction-observation.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-observation.json"
+  }
+]

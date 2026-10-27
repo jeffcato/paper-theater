@@ -1,0 +1,393 @@
+{
+  "actions": [],
+  "book_id": "test-book",
+  "cast": [
+    {
+      "binding_acceptance_verified": false,
+      "proposal": {
+        "canonical_id": "test-book:narrator",
+        "id": "narrator",
+        "kind": "narrator",
+        "mentions": [],
+        "name": "Narrator"
+      },
+      "retained_registry_identity": {
+        "aliases": [
+          "Narrator"
+        ],
+        "id": "test-book:narrator",
+        "name": "Narrator",
+        "sprite": null,
+        "voice": {
+          "file": {
+            "bytes": 918,
+            "media_type": "application/json",
+            "path": "private/established-voice.json",
+            "sha256": "9536b3f042dfea7e0f4aa48e422a0e976445a91940558a870bca65a7c95e5d57"
+          },
+          "id": "committed:pilot:private:established-voice.json",
+          "provenance": "synthetic"
+        }
+      },
+      "source_citation_valid": true
+    },
+    {
+      "binding_acceptance_verified": false,
+      "proposal": {
+        "canonical_id": "test-book:mira",
+        "id": "mira",
+        "kind": "character",
+        "mentions": [
+          {
+            "quote": "Mira",
+            "span": [
+              0,
+              4
+            ]
+          }
+        ],
+        "name": "Mira"
+      },
+      "retained_registry_identity": {
+        "aliases": [
+          "Mira"
+        ],
+        "id": "test-book:mira",
+        "name": "Mira",
+        "sprite": null,
+        "voice": null
+      },
+      "source_citation_valid": true
+    }
+  ],
+  "chapter_id": "chapter-1",
+  "compiler_sha256": "0d3b1d2d78939563bca1c4d926d30ef91f7601fbde270289b008e20cd7d7e9b7",
+  "coverage": {
+    "beats": {
+      "missing_source_spans": [],
+      "ordered_verbatim_complete": true,
+      "proposed_spans": [
+        [
+          0,
+          46
+        ]
+      ]
+    },
+    "scenes": {
+      "missing_source_spans": [],
+      "ordered_verbatim_complete": true,
+      "proposed_spans": [
+        [
+          0,
+          46
+        ]
+      ]
+    },
+    "turns": {
+      "missing_source_spans": [],
+      "ordered_verbatim_complete": true,
+      "proposed_spans": [
+        [
+          0,
+          46
+        ]
+      ]
+    }
+  },
+  "facts": [
+    {
+      "literal_source_support": true,
+      "proposal": {
+        "assertion": "Mira watched the rivière. The water was still.",
+        "entity_ids": [
+          "mira"
+        ],
+        "id": "f0",
+        "support": {
+          "quote": "Mira watched the rivière. The water was still.",
+          "span": [
+            0,
+            46
+          ]
+        }
+      },
+      "reveal_permission": false,
+      "semantic_review": "missing"
+    }
+  ],
+  "final_master": null,
+  "findings": [
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "initial-reference-research",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "canonical-reference-applicability",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "direction-semantic-review",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "rendered-stage-clarity",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    }
+  ],
+  "observation": {
+    "bytes": 982,
+    "media_type": "application/json",
+    "path": "private/direction-observation.json",
+    "sha256": "656c4749b141023dbd6ad4b21dddafbe00b4b8bba0c56022b20ed3b95c43af3a"
+  },
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "raw_direction": {
+    "actions": [],
+    "beats": [
+      {
+        "action_ids": [],
+        "depiction": "picture",
+        "description": "Recognizable Mira beside the source-backed setting.",
+        "fact_ids": [
+          "f0"
+        ],
+        "id": "b0",
+        "span": [
+          0,
+          46
+        ],
+        "subjects": [
+          "mira"
+        ],
+        "text": "Mira watched the rivière. The water was still."
+      }
+    ],
+    "book_id": "test-book",
+    "cast": [
+      {
+        "canonical_id": "test-book:narrator",
+        "id": "narrator",
+        "kind": "narrator",
+        "mentions": [],
+        "name": "Narrator"
+      },
+      {
+        "canonical_id": "test-book:mira",
+        "id": "mira",
+        "kind": "character",
+        "mentions": [
+          {
+            "quote": "Mira",
+            "span": [
+              0,
+              4
+            ]
+          }
+        ],
+        "name": "Mira"
+      }
+    ],
+    "chapter_id": "chapter-1",
+    "facts": [
+      {
+        "assertion": "Mira watched the rivière. The water was still.",
+        "entity_ids": [
+          "mira"
+        ],
+        "id": "f0",
+        "support": {
+          "quote": "Mira watched the rivière. The water was still.",
+          "span": [
+            0,
+            46
+          ]
+        }
+      }
+    ],
+    "questions": [
+      "Initial reference research and voice pilot remain unavailable."
+    ],
+    "references": [
+      {
+        "entity_ids": [
+          "mira"
+        ],
+        "features": [
+          "recognizable subject"
+        ],
+        "id": "r0",
+        "subject_type_id": "test-book:mira",
+        "support": {
+          "quote": "Mira",
+          "span": [
+            0,
+            4
+          ]
+        },
+        "usage": "subject"
+      }
+    ],
+    "request_sha256": "12a229615acca944e5e12a9218d3191f319a80f38b41892f7957047624de5424",
+    "scenes": [
+      {
+        "id": "s0",
+        "pictures": [
+          {
+            "beat_ids": [
+              "b0"
+            ],
+            "description": "Mira remains clearly visible in a concrete setting.",
+            "id": "p0",
+            "span": [
+              0,
+              46
+            ],
+            "subjects": [
+              "mira"
+            ]
+          }
+        ],
+        "span": [
+          0,
+          46
+        ],
+        "text": "Mira watched the rivière. The water was still."
+      }
+    ],
+    "schema_version": 1,
+    "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+    "turns": [
+      {
+        "attribution": null,
+        "id": "t0",
+        "kind": "narration",
+        "span": [
+          0,
+          46
+        ],
+        "speaker": "narrator",
+        "text": "Mira watched the rivière. The water was still."
+      }
+    ]
+  },
+  "reference_requirements": [
+    {
+      "approved_for_asset_request": false,
+      "canonical_image": null,
+      "feature_applicability_review": "missing",
+      "proposal": {
+        "entity_ids": [
+          "mira"
+        ],
+        "features": [
+          "recognizable subject"
+        ],
+        "id": "r0",
+        "subject_type_id": "test-book:mira",
+        "support": {
+          "quote": "Mira",
+          "span": [
+            0,
+            4
+          ]
+        },
+        "usage": "subject"
+      },
+      "research_outcome": "missing",
+      "source_citation_valid": true
+    }
+  ],
+  "request": {
+    "bytes": 14416,
+    "media_type": "application/json",
+    "path": "private/direction-request.json",
+    "sha256": "12a229615acca944e5e12a9218d3191f319a80f38b41892f7957047624de5424"
+  },
+  "response": {
+    "file": {
+      "bytes": 2537,
+      "media_type": "application/json",
+      "path": "private/direction-response.json",
+      "sha256": "b5192f46fb7302fd7b1e49db8c4834de693f2c8f011469e19d6ebe2c6ed38e4a"
+    },
+    "id": "committed:pilot:private:direction-response.json",
+    "provenance": "synthetic"
+  },
+  "reveal_permissions": [],
+  "runtime_policy_authority": false,
+  "schema_version": 1,
+  "script_candidate": [
+    {
+      "clean_spoken_text": "Mira watched the rivière. The water was still.",
+      "source_span": [
+        0,
+        46
+      ],
+      "speaker": "Narrator",
+      "turn_index": 0
+    }
+  ],
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "source_span": [
+    0,
+    46
+  ],
+  "source_text": "Mira watched the rivière. The water was still.",
+  "speakers": [
+    "narrator"
+  ],
+  "turns": [
+    {
+      "proposal": {
+        "attribution": null,
+        "id": "t0",
+        "kind": "narration",
+        "span": [
+          0,
+          46
+        ],
+        "speaker": "narrator",
+        "text": "Mira watched the rivière. The water was still."
+      },
+      "source_text": "Mira watched the rivière. The water was still.",
+      "speaker_source_supported": true,
+      "speech_candidate": {
+        "clean_spoken_text": "Mira watched the rivière. The water was still.",
+        "source_span": [
+          0,
+          46
+        ],
+        "speaker": "Narrator",
+        "turn_index": 0
+      },
+      "voice_pilot_approved": false
+    }
+  ]
+}

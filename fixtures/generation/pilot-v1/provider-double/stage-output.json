@@ -1,0 +1,208 @@
+{
+  "outcome": "needs_repair",
+  "artifacts": [
+    {
+      "candidate_id": "f54c8e04bb9daaa505470dde6b94f33917e8f8bd9f05903b2716a1d629a2e0ab",
+      "file": {
+        "path": "private/pilot/requests/p000-t00.json",
+        "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+        "bytes": 1606,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "6ca2d156880f529cd09b6ed6f22e0be92931387ece8071cdcdeb511bfbde38a7",
+      "file": {
+        "path": "private/pilot/proposals/p000-t00.json",
+        "sha256": "d370fcedcacdf23a43e46218750e7da0be5bc312dc475c1e1ab28a1d9307cbe6",
+        "bytes": 2940,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "140c1b4e42227372cc72adedb3882bf750fd6768cca184691355f4ef21dd314b",
+      "file": {
+        "path": "private/pilot/observations/p000-t00.json",
+        "sha256": "720cfede21162b65cb3e827d1a5c6d24fdc9379d1949f65b269080722bd1f033",
+        "bytes": 7798,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "06d29d765a607a034c35ac53867e803abd59a6ddc9d5297c4e06886c5941ddd6",
+      "file": {
+        "path": "private/pilot/requests/p000-t01.json",
+        "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+        "bytes": 1597,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "243c34a93d3c40d399f4f3ba962d4d8499a55f8ff0f0ef9287d658ea3f967ba9",
+      "file": {
+        "path": "private/pilot/proposals/p000-t01.json",
+        "sha256": "414653b72f613c5433cdd02de697d2e9f01aeb29c8a6e1abb9139b2658c29ccc",
+        "bytes": 2940,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "c0c2c14a80c4869d7063d3610b55166398b9b148e7a3f058209693ace38a483e",
+      "file": {
+        "path": "private/pilot/observations/p000-t01.json",
+        "sha256": "37ca137f53b82d9354fea0c12309bbb35bcb24b58fac266bc941c937ae268458",
+        "bytes": 7798,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "bc0fdc608ed2035644b1c9e4d96a78da854d697288813896cb5d462c0707ac05",
+      "file": {
+        "path": "private/pilot/requests/p000-review.json",
+        "sha256": "d65710a030441d1293a447e01e016ef10c65aa26fbf67ada20f65f1e919d6079",
+        "bytes": 6265,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "196b5379f88c5cb83cef2b26cf8b7cc8aa2cfcd4ca05c671442cccef182f488b",
+      "file": {
+        "path": "private/pilot-handoff.json",
+        "sha256": "8f10c6dee9addf46a65119bad713096ee02bfaceb0f7694678b430cb52246728",
+        "bytes": 11675,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "f307910ad6239e43eaa930425acbbc2d9c0447ab9fb52a58038b2691f43d2a8a",
+      "file": {
+        "path": "private/pilot-plan.json",
+        "sha256": "b7d91f7dc705cf348f613f892317061f3b59fdea9da1a4a7939b4f9f165c8075",
+        "bytes": 30402,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    }
+  ],
+  "decisions": [],
+  "findings": [
+    {
+      "id": "initial-reference-research",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "canonical-reference-applicability",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "direction-semantic-review",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "rendered-stage-clarity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-request-commit-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-listening",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-continuity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-joins",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-intelligibility",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-speech-fidelity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-music-context",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    }
+  ],
+  "cache_keys": [
+    "bf03c1c46a1d8d001222ad44b5c7e710d9b36a98a17303e6767c4727af066305"
+  ],
+  "library_updates": [],
+  "package_candidate": null
+}

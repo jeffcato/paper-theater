@@ -1,0 +1,31 @@
+{
+  "findings": [],
+  "issued": null,
+  "model": "model-a",
+  "provenance": "synthetic",
+  "provider": "provider-a",
+  "recipe_sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+  "request": {
+    "file": {
+      "bytes": 14041,
+      "media_type": "application/json",
+      "path": "private/direction-request.json",
+      "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef"
+    },
+    "id": "committed:test:private:direction-request.json",
+    "provenance": "synthetic"
+  },
+  "response": {
+    "file": {
+      "bytes": 2537,
+      "media_type": "application/json",
+      "path": "private/direction-response.json",
+      "sha256": "ffc1e3e8ff25a2d4c98d4a6ded4b72812cdfc66421dd9b061e135b067e6eefe0"
+    },
+    "id": "committed:test:private:direction-response.json",
+    "provenance": "synthetic"
+  },
+  "result": null,
+  "schema_version": 1,
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+}

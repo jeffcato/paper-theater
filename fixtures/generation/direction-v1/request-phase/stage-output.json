@@ -1,0 +1,99 @@
+{
+  "outcome": "needs_repair",
+  "artifacts": [
+    {
+      "candidate_id": "26ed384a160b603b77e2367193db150ad546dedb6a551fd44d828f105b51a1b4",
+      "file": {
+        "path": "private/direction-request.json",
+        "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+        "bytes": 14049,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "46636e7121ea188662568afe309e7dab310351a0d3856651a970158be48a524b",
+      "file": {
+        "path": "private/direction-request-handoff.json",
+        "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+        "bytes": 2625,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "f7c80686139ac36af0c802b709f82410be95600f240c2730813e01807ffd9941",
+      "file": {
+        "path": "private/direction-status.json",
+        "sha256": "5673f64b7bfd877807d8322637d0c423a2cbe9b8b093ce805f5afc1b8c3596e2",
+        "bytes": 3138,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    }
+  ],
+  "decisions": [],
+  "findings": [
+    {
+      "id": "direction-request-commit-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Runtime must commit the proposed request before a ProviderProposalV2 can name its genuine ArtifactRef.",
+      "evidence": []
+    },
+    {
+      "id": "direction-response-missing",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "No saved direction observation is available; fixture/replay never redispatch.",
+      "evidence": []
+    },
+    {
+      "id": "initial-reference-research",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "canonical-reference-applicability",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "direction-semantic-review",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "rendered-stage-clarity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    }
+  ],
+  "cache_keys": [
+    "e493cdcc5313fdfbd9b83e6db1577e3007f8e83be9ad17ef487a5cd5df1dd333"
+  ],
+  "library_updates": [],
+  "package_candidate": null
+}

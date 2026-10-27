@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "coordinate_system": "excerpt_unicode_scalars",
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "acoustic_manifest_sha256": "f08b128a1f3418a6a8a2b498f6fa0e3880bd689ca04e66eb8ff95c2405605244",
+  "sample_rate": 24000,
+  "primary_recipe_sha256": "013c65bacbe514650cae997c0391ba85207199b6c9b0aa2d56c47933a79dd9de",
+  "independent_receipts": [
+    {
+      "path": "meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.receipt.json",
+      "sha256": "c4eabb83b8d63a4fd7175ab717bb9296f36741a21e41d896fd800be3440f64ea"
+    }
+  ],
+  "required_fact_ids": [
+    "cellar-instruction",
+    "Dorothy-urged",
+    "screaming",
+    "urged-cellar",
+    "strange-event",
+    "balloon-ascent",
+    "unprovided-fact"
+  ],
+  "intervals": [
+    {
+      "id": "cellar-turn",
+      "source_span": [
+        315,
+        336
+      ],
+      "primary_unit_ids": [
+        "turn-015"
+      ]
+    },
+    {
+      "id": "quick-and-attribution",
+      "source_span": [
+        283,
+        314
+      ],
+      "primary_unit_ids": [
+        "turn-013",
+        "turn-014"
+      ]
+    },
+    {
+      "id": "strange-turn",
+      "source_span": [
+        779,
+        809
+      ],
+      "primary_unit_ids": [
+        "turn-017"
+      ]
+    },
+    {
+      "id": "balloon-turn",
+      "source_span": [
+        811,
+        938
+      ],
+      "primary_unit_ids": [
+        "turn-018"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "id": "cellar-instruction",
+      "source_spans": [
+        [
+          315,
+          336
+        ]
+      ],
+      "interval_ids": [
+        "cellar-turn"
+      ]
+    },
+    {
+      "id": "Dorothy-urged",
+      "source_spans": [
+        [
+          283,
+          300
+        ]
+      ],
+      "interval_ids": [
+        "quick-and-attribution"
+      ]
+    },
+    {
+      "id": "screaming",
+      "source_spans": [
+        [
+          301,
+          314
+        ]
+      ],
+      "interval_ids": [
+        "quick-and-attribution"
+      ]
+    },
+    {
+      "id": "urged-cellar",
+      "source_spans": [
+        [
+          283,
+          300
+        ],
+        [
+          315,
+          336
+        ]
+      ],
+      "interval_ids": [
+        "quick-and-attribution",
+        "cellar-turn"
+      ]
+    },
+    {
+      "id": "strange-event",
+      "source_spans": [
+        [
+          779,
+          809
+        ]
+      ],
+      "interval_ids": [
+        "strange-turn"
+      ]
+    },
+    {
+      "id": "balloon-ascent",
+      "source_spans": [
+        [
+          811,
+          938
+        ]
+      ],
+      "interval_ids": [
+        "balloon-turn"
+      ]
+    }
+  ]
+}

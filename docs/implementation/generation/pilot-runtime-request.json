@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "task": "G23",
+  "status": "offline-generation-complete-runtime-orchestration-and-real-evidence-pending",
+  "entrypoint": "pt_production::generation::GenerationExecutor / Stage::Pilot",
+  "services": "pt-services-v1.8.0",
+  "playback": "pt-contracts-v1.0.0",
+  "provider_envelope_version": 2,
+  "shared_changes_required": false,
+  "helper_recipe_changes": false,
+  "context_example": {
+    "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-context.json",
+    "sha256": "948d5939a62729eb0573fb683496a614060de1655909e6659f9ae7561b25466e",
+    "bytes": 2685,
+    "media_type": "application/json"
+  },
+  "selection_example": {
+    "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-selection.json",
+    "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a",
+    "bytes": 1076,
+    "media_type": "application/json"
+  },
+  "catalog_example": {
+    "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/voice-catalog.json",
+    "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+    "bytes": 320,
+    "media_type": "application/json"
+  },
+  "take_request_example": {
+    "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot/requests/p000-t00.json",
+    "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+    "bytes": 1606,
+    "media_type": "application/json"
+  },
+  "review_request_example": {
+    "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot/requests/p000-review.json",
+    "sha256": "34c17d3a5086ecb8055a65b4b002297f5ea962409b833c8e1e9f982f6f9146ba",
+    "bytes": 6237,
+    "media_type": "application/json"
+  },
+  "saved_observation_example": {
+    "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-saved/t0.json",
+    "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8",
+    "bytes": 949,
+    "media_type": "application/json"
+  },
+  "issued_observation_example": {
+    "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/observations/p000-t00.json",
+    "sha256": "720cfede21162b65cb3e827d1a5c6d24fdc9379d1949f65b269080722bd1f033",
+    "bytes": 7798,
+    "media_type": "application/json"
+  },
+  "established_binding_example": {
+    "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/established-voice.json",
+    "sha256": "9536b3f042dfea7e0f4aa48e422a0e976445a91940558a870bca65a7c95e5d57",
+    "bytes": 918,
+    "media_type": "application/json"
+  },
+  "protocol": "docs/implementation/generation/pilot.md",
+  "phases": [
+    {
+      "owner": "runtime",
+      "phase": "freeze-inputs",
+      "work": "Freeze original Direction StageInput/plan and all original Source/request/raw/observation/registry identities; supply exact pilot catalog, director selection, recipe, original voice metadata and reference/recording identities. Legacy voice metadata needs an explicit truthful schema-1 adapter; a lone audio/preset name is not a complete established identity."
+    },
+    {
+      "owner": "generation",
+      "phase": "propose-requests",
+      "work": "Return private cast/reuse plan, exact request CandidateFiles and handoff; coordination remains NeedsRepair, not a purchased creative repair."
+    },
+    {
+      "owner": "runtime",
+      "phase": "commit-register",
+      "work": "Commit desired request bytes; supply genuine ArtifactRefs and exact FileRefs in context.request_payloads. Merely recording a candidate must never register new work or advance replay phases."
+    },
+    {
+      "owner": "runtime",
+      "phase": "issue-and-capture",
+      "work": "Use bound v2 services and existing durable authorization/idempotence/reservations. Persist original issuance/result/raw/audio/usage even if generation validation fails. No legacy/helper fallback; resolve existing incomplete attempts without repurchase."
+    },
+    {
+      "owner": "generation",
+      "phase": "validate-takes",
+      "work": "Validate original operation/result/request/raw/output identities and actual PCM16 WAV/frame domain. Preserve declared source mapping while leaving audible fidelity/listening/continuity Missing. Established speech jobs are reuse-only."
+    },
+    {
+      "owner": "runtime",
+      "phase": "review-request-commit",
+      "work": "Once both takes are available, commit/register the separate independent neighbor/reference review request. Preserve all original audio; actual joined/score context and acceptance remain pending."
+    },
+    {
+      "owner": "runtime",
+      "phase": "recorded-replay",
+      "work": "Freeze observation derivatives and original results/raw/audio. Retain the same request_payloads phase and original issued observer scope; audited cross-epoch mapping is separate. Reconstruct unchanged outputs/cache keys with no redispatch, journal, library, account or catalog effects."
+    }
+  ],
+  "missing": [
+    "Real autonomous catalog/director selection provenance and established registry ownership",
+    "Real provider transport/decoding and live product authorization; saved/fake direct envelopes are not vendor wire responses",
+    "Initial reference research and real auditions/reference listening",
+    "Independent multi-take listening, identity, continuity, intelligibility, fidelity, room-tone, measured safe joins and actual music-context review",
+    "Full speech/acoustic/presentation production and independent acceptance/publication"
+  ],
+  "private_only": true,
+  "production_approved": false,
+  "bulk_speech_approved": false,
+  "caller_authority": false,
+  "runtime_policy_authority": false,
+  "reveal_permissions": [],
+  "real_provider_transport_calls": 0,
+  "ui_edits": 0,
+  "git_operations": 0
+}

@@ -1,0 +1,98 @@
+{
+  "caller_authority": false,
+  "jobs": [
+    {
+      "estimate": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      },
+      "inputs": [
+        {
+          "file": {
+            "bytes": 3949,
+            "media_type": "application/json",
+            "path": "source.json",
+            "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893"
+          },
+          "id": "committed:test:source.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 12149,
+            "media_type": "application/json",
+            "path": "private/direction-plan.json",
+            "sha256": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42"
+          },
+          "id": "committed:pilot:private:direction-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "private/pilot-direction-input.json",
+            "sha256": "ad6eca4177a4796d02c95f3d0171a11b367ec53a15a50227d1d721f03a0587fa"
+          },
+          "id": "committed:pilot:private:pilot-direction-input.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 400,
+            "media_type": "application/json",
+            "path": "private/book-registry.json",
+            "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+          },
+          "id": "committed:test:private:book-registry.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 320,
+            "media_type": "application/json",
+            "path": "private/voice-catalog.json",
+            "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+          },
+          "id": "committed:pilot:private:voice-catalog.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1067,
+            "media_type": "application/json",
+            "path": "private/pilot-selection.json",
+            "sha256": "721c46deabc1987da3b324c0e05d014747428f74b57c1e469d2c7ee38ea8590a"
+          },
+          "id": "committed:pilot:private:pilot-selection.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 48,
+            "media_type": "application/json",
+            "path": "private/pilot-recipe.json",
+            "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+          },
+          "id": "committed:pilot:private:pilot-recipe.json",
+          "provenance": "synthetic"
+        }
+      ],
+      "kind": "speech",
+      "model": "gemini-3.8-flash-tts",
+      "provider": "speech-double",
+      "recipe": {
+        "bytes": 48,
+        "media_type": "application/json",
+        "path": "private/pilot-recipe.json",
+        "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+      },
+      "request_path": "private/pilot/requests/p000-t00.json",
+      "timeout_ms": 30000
+    }
+  ],
+  "runtime_committed_payload_required": true,
+  "schema_version": 1
+}

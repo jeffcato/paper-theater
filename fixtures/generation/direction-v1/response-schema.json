@@ -1,0 +1,532 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "book_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "chapter_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "request_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Optional collector-provided echo. Models may omit it; actual binding is checked through committed request/observation/provider-v2 records."
+    },
+    "cast": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cast"
+      },
+      "maxItems": 1024
+    },
+    "turns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/turn"
+      },
+      "maxItems": 1024
+    },
+    "beats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/beat"
+      },
+      "maxItems": 1024
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/scene"
+      },
+      "maxItems": 1024
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/fact"
+      },
+      "maxItems": 1024
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "maxItems": 1024
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reference"
+      },
+      "maxItems": 1024
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 1024
+    }
+  },
+  "required": [
+    "schema_version",
+    "book_id",
+    "chapter_id",
+    "source_sha256",
+    "cast",
+    "turns",
+    "beats",
+    "scenes",
+    "facts",
+    "actions",
+    "references",
+    "questions"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Private source-backed direction response v1",
+  "$defs": {
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Half-open Unicode scalar indices in the exact source file."
+        },
+        "quote": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "span",
+        "quote"
+      ]
+    },
+    "cast": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "name": {
+          "type": "string"
+        },
+        "canonical_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "kind": {
+          "enum": [
+            "narrator",
+            "character",
+            "subject",
+            "location"
+          ]
+        },
+        "mentions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/citation"
+          },
+          "maxItems": 1024
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "canonical_id",
+        "kind",
+        "mentions"
+      ]
+    },
+    "turn": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Half-open Unicode scalar indices in the exact source file."
+        },
+        "text": {
+          "type": "string"
+        },
+        "speaker": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "kind": {
+          "enum": [
+            "narration",
+            "dialogue"
+          ]
+        },
+        "attribution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/citation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "span",
+        "text",
+        "speaker",
+        "kind",
+        "attribution"
+      ]
+    },
+    "beat": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Half-open Unicode scalar indices in the exact source file."
+        },
+        "text": {
+          "type": "string"
+        },
+        "depiction": {
+          "enum": [
+            "picture",
+            "continuation",
+            "omission"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "maxItems": 1024
+        },
+        "fact_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "maxItems": 1024
+        },
+        "action_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "maxItems": 1024
+        }
+      },
+      "required": [
+        "id",
+        "span",
+        "text",
+        "depiction",
+        "description",
+        "subjects",
+        "fact_ids",
+        "action_ids"
+      ]
+    },
+    "picture": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Half-open Unicode scalar indices in the exact source file."
+        },
+        "beat_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "maxItems": 1024
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "maxItems": 1024
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "span",
+        "beat_ids",
+        "subjects",
+        "description"
+      ]
+    },
+    "scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Half-open Unicode scalar indices in the exact source file."
+        },
+        "text": {
+          "type": "string"
+        },
+        "pictures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/picture"
+          },
+          "maxItems": 1024
+        }
+      },
+      "required": [
+        "id",
+        "span",
+        "text",
+        "pictures"
+      ]
+    },
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "maxItems": 1024
+        },
+        "assertion": {
+          "type": "string"
+        },
+        "support": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/citation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_ids",
+        "assertion",
+        "support"
+      ]
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "kind": {
+          "enum": [
+            "enter",
+            "exit",
+            "move",
+            "facing",
+            "nod",
+            "shrug",
+            "recoil",
+            "bow",
+            "wobble"
+          ]
+        },
+        "assertion": {
+          "type": "string"
+        },
+        "support": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/citation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "actor_id",
+        "kind",
+        "assertion",
+        "support"
+      ]
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "subject_type_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "entity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "maxItems": 1024
+        },
+        "support": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/citation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 1024
+        },
+        "usage": {
+          "enum": [
+            "subject",
+            "style_only"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "subject_type_id",
+        "entity_ids",
+        "support",
+        "features",
+        "usage"
+      ]
+    }
+  }
+}

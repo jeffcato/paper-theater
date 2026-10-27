@@ -1,0 +1,345 @@
+{
+  "bindings": {
+    "chapter-import-helper-record.json": {
+      "bytes": 4110,
+      "media_type": "application/json",
+      "path": "chapter-import-helper-record.json",
+      "sha256": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6"
+    },
+    "chapter-import-index.json": {
+      "bytes": 2631,
+      "media_type": "application/json",
+      "path": "chapter-import-index.json",
+      "sha256": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506"
+    },
+    "chapter-import-unit.json": {
+      "bytes": 1466,
+      "media_type": "application/json",
+      "path": "chapter-import-unit.json",
+      "sha256": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a"
+    },
+    "private/chapter-context.json": {
+      "bytes": 22393,
+      "media_type": "application/json",
+      "path": "private/chapter-context.json",
+      "sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c"
+    },
+    "private/chunks/chunk-0000.wav": {
+      "bytes": 12044,
+      "media_type": "audio/wav",
+      "path": "private/chunks/chunk-0000.wav",
+      "sha256": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7"
+    },
+    "private/chunks/chunk-0001.wav": {
+      "bytes": 12044,
+      "media_type": "audio/wav",
+      "path": "private/chunks/chunk-0001.wav",
+      "sha256": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9"
+    },
+    "private/chunks/chunk-0002.wav": {
+      "bytes": 12044,
+      "media_type": "audio/wav",
+      "path": "private/chunks/chunk-0002.wav",
+      "sha256": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be"
+    },
+    "private/chunks/chunk-0003.wav": {
+      "bytes": 12044,
+      "media_type": "audio/wav",
+      "path": "private/chunks/chunk-0003.wav",
+      "sha256": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395"
+    },
+    "private/source.txt": {
+      "bytes": 104,
+      "media_type": "text/plain",
+      "path": "private/source.txt",
+      "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e"
+    }
+  },
+  "helper_calls": 0,
+  "implementation_sha256": "c280f9e725b56aaf879ee84a2acec632d659de11d97997d7f9d3f6550a8d7573",
+  "inherited_findings": [],
+  "outcome": "needs_repair",
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "provider_calls": 0,
+  "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+  "reveal_permissions": [],
+  "runtime_policy_authority": false,
+  "schema_version": 2,
+  "verified_import": {
+    "acceptance_policy_authority": false,
+    "base_chunk": "chunk-0000",
+    "chapter_sha256": "c497956a5270297a1b1bd2393d0f609c5804bd18019bab62450ac1525aa55aa7",
+    "checked_files": {
+      "chapter-import-index.json": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+      "private/chapter-context.json": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+      "private/chunks/chunk-0000.wav": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+      "private/chunks/chunk-0001.wav": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+      "private/chunks/chunk-0002.wav": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+      "private/chunks/chunk-0003.wav": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+      "private/source.txt": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e"
+    },
+    "complete_source_coverage": true,
+    "context_sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+    "facts": [
+      {
+        "id": "gate",
+        "not_before_sample": 8000,
+        "outcome": "pass",
+        "present_chunks": [
+          "chunk-0000",
+          "chunk-0001"
+        ],
+        "reason": "complete_global_observations_and_pcm_dependencies",
+        "required_chunks": [
+          "chunk-0000",
+          "chunk-0001"
+        ],
+        "source_spans": [
+          [
+            719,
+            732
+          ]
+        ],
+        "turn_ids": [
+          "speech-0"
+        ]
+      },
+      {
+        "id": "cross-turn",
+        "not_before_sample": 16000,
+        "outcome": "pass",
+        "present_chunks": [
+          "chunk-0000",
+          "chunk-0001",
+          "chunk-0002"
+        ],
+        "reason": "complete_global_observations_and_pcm_dependencies",
+        "required_chunks": [
+          "chunk-0000",
+          "chunk-0001",
+          "chunk-0002"
+        ],
+        "source_spans": [
+          [
+            700,
+            767
+          ]
+        ],
+        "turn_ids": [
+          "speech-0",
+          "speech-1"
+        ]
+      }
+    ],
+    "global_frames": [
+      0,
+      6000
+    ],
+    "global_observation_coverage": true,
+    "groups": [
+      {
+        "complete": true,
+        "global_samples": [
+          0,
+          1600
+        ],
+        "local_samples": [
+          0,
+          1600
+        ],
+        "original": {
+          "end_sample": 1600,
+          "id": "highlight:source:700:706",
+          "interval_word_id": "source:700:706",
+          "start_sample": 0,
+          "word": "Élodie",
+          "word_ids": [
+            "source:700:706"
+          ],
+          "words": [
+            "Élodie"
+          ]
+        }
+      },
+      {
+        "complete": true,
+        "global_samples": [
+          1600,
+          3200
+        ],
+        "local_samples": [
+          1600,
+          3200
+        ],
+        "original": {
+          "end_sample": 3200,
+          "id": "highlight:source:707:716",
+          "interval_word_id": "source:707:716",
+          "start_sample": 1600,
+          "word": "whispered",
+          "word_ids": [
+            "source:707:716"
+          ],
+          "words": [
+            "whispered"
+          ]
+        }
+      },
+      {
+        "complete": true,
+        "global_samples": [
+          3200,
+          4800
+        ],
+        "local_samples": [
+          3200,
+          4800
+        ],
+        "original": {
+          "end_sample": 4800,
+          "id": "highlight:source:719:723",
+          "interval_word_id": "source:719:723",
+          "start_sample": 3200,
+          "word": "Open",
+          "word_ids": [
+            "source:719:723"
+          ],
+          "words": [
+            "Open"
+          ]
+        }
+      },
+      {
+        "complete": false,
+        "global_samples": [
+          4800,
+          6400
+        ],
+        "local_samples": [
+          4800,
+          6000
+        ],
+        "original": {
+          "end_sample": 6400,
+          "id": "highlight:source:724:727",
+          "interval_word_id": "source:724:727",
+          "start_sample": 4800,
+          "word": "the",
+          "word_ids": [
+            "source:724:727"
+          ],
+          "words": [
+            "the"
+          ]
+        }
+      }
+    ],
+    "highlight_group_count": 16,
+    "index_sha256": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+    "observation_provenance": "synthetic",
+    "outcome": "needs_repair",
+    "point_word_count": 0,
+    "production_approved": false,
+    "provenance": "diagnostic",
+    "provider_calls": 0,
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "reveal_permissions": [],
+    "schema_version": 2,
+    "source_scalar_count": 93,
+    "source_sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+    "unit_sha256": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+    "unresolved_point_ids": [],
+    "word_count": 16,
+    "words": [
+      {
+        "complete": true,
+        "global_samples": [
+          0,
+          1600
+        ],
+        "local_samples": [
+          0,
+          1600
+        ],
+        "original": {
+          "end_sample": 1600,
+          "id": "source:700:706",
+          "recognized_word": "Élodie",
+          "source_span": [
+            700,
+            706
+          ],
+          "start_sample": 0,
+          "word": "Élodie"
+        }
+      },
+      {
+        "complete": true,
+        "global_samples": [
+          1600,
+          3200
+        ],
+        "local_samples": [
+          1600,
+          3200
+        ],
+        "original": {
+          "end_sample": 3200,
+          "id": "source:707:716",
+          "recognized_word": "whispered",
+          "source_span": [
+            707,
+            716
+          ],
+          "start_sample": 1600,
+          "word": "whispered"
+        }
+      },
+      {
+        "complete": true,
+        "global_samples": [
+          3200,
+          4800
+        ],
+        "local_samples": [
+          3200,
+          4800
+        ],
+        "original": {
+          "end_sample": 4800,
+          "id": "source:719:723",
+          "recognized_word": "Open",
+          "source_span": [
+            719,
+            723
+          ],
+          "start_sample": 3200,
+          "word": "Open"
+        }
+      },
+      {
+        "complete": false,
+        "global_samples": [
+          4800,
+          6400
+        ],
+        "local_samples": [
+          4800,
+          6000
+        ],
+        "original": {
+          "end_sample": 6400,
+          "id": "source:724:727",
+          "recognized_word": "the",
+          "source_span": [
+            724,
+            727
+          ],
+          "start_sample": 4800,
+          "word": "the"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "accent": "catalog-default",
+  "baseline": "steady",
+  "book_id": "test-book",
+  "canonical_id": "test-book:narrator",
+  "catalog": {
+    "file": {
+      "bytes": 540,
+      "media_type": "application/json",
+      "path": "private/voice-catalog.json",
+      "sha256": "80b01aec509a14a255ace258990923295978e7a5c98601160eb25ca7da38cd3e"
+    },
+    "id": "committed:pilot:private:voice-catalog.json",
+    "provenance": "synthetic"
+  },
+  "language": "en",
+  "model": "gemini-3.8-flash-lite-tts",
+  "provider": "speech-double",
+  "recordings": [],
+  "reference": {
+    "file": {
+      "bytes": 4844,
+      "media_type": "audio/wav",
+      "path": "private/established-reference.wav",
+      "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+    },
+    "id": "committed:pilot:private:established-reference.wav",
+    "provenance": "synthetic"
+  },
+  "schema_version": 1,
+  "voice_id": "old-n"
+}

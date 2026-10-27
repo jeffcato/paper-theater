@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "task": "G18",
+  "status": "offline-verified-delivery-fact-bounds",
+  "stage": "presentation",
+  "outcome": "needs_repair",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.3.0",
+  "production_approved": false,
+  "provider_calls": 0,
+  "helper_calls": 0,
+  "reveal_permissions": [],
+  "derived_bundle": "fixtures/generation/presentation-evidence-v1",
+  "derived_report_sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+  "reconstruction_recipe_sha256": "cdc3a38da2115ba1405feb7b097fd5913fcde3fb85037330e3a5e4796899fe4c",
+  "mapping_implementation_sha256": "0b40b9a7cbd3f10cf6d6d5f0154976ebc46e70d21b9f0036eca6efe1fc98c297",
+  "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+  "delivery_sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+  "map_sha256": "5d128e029f8b458b4a5bc4c9e23633d02663267dbbc9e3e43e96879672938280",
+  "source_fact_inventory_sha256": "e77c04d2448cb0b7095533d76108fd85115e4e7fdfba3db0cbfa90b23d683b3b",
+  "g16_fact_report_sha256": "ff01a265036e0c0f55a997f485568ccdb7970f4396aeab76bff033c3c15c1096",
+  "edit_implementation_sha256": "c5c61e9131a9af15287537028577e6408b9bdd05a42ea5ee4088a46813cb1f98",
+  "input_reference_count": 56,
+  "input_bytes": 19590848,
+  "placement": {
+    "outcome": "pass",
+    "reason": "all_pcm_frames_and_declared_silence_match"
+  },
+  "narration_frames": 1451280,
+  "narration_sample_rate": 24000,
+  "delivery_frames": 3262560,
+  "delivery_sample_rate": 48000,
+  "silence_frames": 360000,
+  "word_count": 176,
+  "highlight_group_count": 170,
+  "point_word_count": 6,
+  "source_agreement_rule": "4 * abs(primary_end - independent_end) <= 3 * narration_rate; unchanged 0.75 seconds",
+  "endpoint_policy": "integer ceiling; interval ends own the preceding segment at a cut; points/starts own the following segment",
+  "facts": [
+    {
+      "id": "cellar-instruction",
+      "outcome": "pass",
+      "narration_bound": 546720,
+      "delivery_bound": 1189440
+    },
+    {
+      "id": "Dorothy-urged",
+      "outcome": "pass",
+      "narration_bound": 506640,
+      "delivery_bound": 1109280
+    },
+    {
+      "id": "screaming",
+      "outcome": "pass",
+      "narration_bound": 506640,
+      "delivery_bound": 1109280
+    },
+    {
+      "id": "urged-cellar",
+      "outcome": "pass",
+      "narration_bound": 546720,
+      "delivery_bound": 1189440
+    },
+    {
+      "id": "strange-event",
+      "outcome": "uncertain",
+      "narration_bound": null,
+      "delivery_bound": null
+    },
+    {
+      "id": "balloon-ascent",
+      "outcome": "uncertain",
+      "narration_bound": null,
+      "delivery_bound": null
+    },
+    {
+      "id": "unprovided-fact",
+      "outcome": "missing",
+      "narration_bound": null,
+      "delivery_bound": null
+    }
+  ],
+  "entry_comparisons": [
+    {
+      "delivery_not_before_sample": 1189440,
+      "entry_sample": 168000,
+      "fact_id": "cellar-instruction",
+      "scene_id": "scene-1",
+      "scope": "Source-scope timing comparison only; no image/fact requirement or reveal permission is inferred.",
+      "timing": "would_be_late"
+    },
+    {
+      "delivery_not_before_sample": 1109280,
+      "entry_sample": 168000,
+      "fact_id": "Dorothy-urged",
+      "scene_id": "scene-1",
+      "scope": "Source-scope timing comparison only; no image/fact requirement or reveal permission is inferred.",
+      "timing": "would_be_late"
+    },
+    {
+      "delivery_not_before_sample": 1109280,
+      "entry_sample": 168000,
+      "fact_id": "screaming",
+      "scene_id": "scene-1",
+      "scope": "Source-scope timing comparison only; no image/fact requirement or reveal permission is inferred.",
+      "timing": "would_be_late"
+    },
+    {
+      "delivery_not_before_sample": 1189440,
+      "entry_sample": 168000,
+      "fact_id": "urged-cellar",
+      "scene_id": "scene-1",
+      "scope": "Source-scope timing comparison only; no image/fact requirement or reveal permission is inferred.",
+      "timing": "would_be_late"
+    },
+    {
+      "delivery_not_before_sample": null,
+      "entry_sample": 1843698,
+      "fact_id": "strange-event",
+      "scene_id": "scene-2",
+      "scope": "Source-scope timing comparison only; no image/fact requirement or reveal permission is inferred.",
+      "timing": "unresolved"
+    },
+    {
+      "delivery_not_before_sample": null,
+      "entry_sample": 1843698,
+      "fact_id": "balloon-ascent",
+      "scene_id": "scene-2",
+      "scope": "Source-scope timing comparison only; no image/fact requirement or reveal permission is inferred.",
+      "timing": "unresolved"
+    }
+  ],
+  "missing_evidence": [
+    "acoustic-fact:balloon-ascent",
+    "acoustic-fact:strange-event",
+    "acoustic-fact:unprovided-fact",
+    "complete-fact-interval-verification",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "original-resampling-execution-receipt",
+    "presentation-fact:balloon-ascent",
+    "presentation-fact:strange-event",
+    "presentation-fact:unprovided-fact",
+    "presentation-production-review",
+    "rendered-creative-review",
+    "rendered-review",
+    "speech-fidelity",
+    "voice-continuity"
+  ],
+  "replay": {
+    "byte_identical": true,
+    "helper_calls": 0,
+    "provider_calls": 0,
+    "candidate_reads": 0,
+    "journal_proposals": 0,
+    "runtime_snapshot_unchanged": true,
+    "runtime_journal_unchanged": true,
+    "catalog_unchanged": true,
+    "stale_dependency_rejected_before_candidate_write": true
+  },
+  "checks": {
+    "generation_tests": 40,
+    "new_presentation_tests": 11,
+    "candidate_contract_tests": 4,
+    "python_tests": 17,
+    "identity": "pass",
+    "formatting": "pass",
+    "diff_whitespace": "pass",
+    "derived_input_index": "56 exact content/length bindings pass"
+  },
+  "commands": [
+    "cargo test -p pt-production generation:: --offline",
+    "cargo test -p pt-production --test candidate_read_contract --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "python3 tools/check_product_identity.py .",
+    "rustfmt --edition 2024 --check crates/pt-production/src/generation/{mod.rs,acoustic.rs,presentation.rs,presentation_pcm.rs,acoustic_tests.rs,acoustic_tests/presentation.rs,acoustic_tests/presentation_math.rs}",
+    "PT_PRESENTATION_EXPORT=fixtures/generation/presentation-evidence-v1 cargo test -p pt-production generation::acoustic_tests::presentation::saved_v2 --offline"
+  ],
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "4e179e81e7ee705ddb324c9f41806a6947ff3c7adbeb1bf9eca1d32ff3ccad5d",
+    "crates/pt-production/src/generation/acoustic.rs": "4649ad3da1516e6abde68b7503fba7114eb0a1199977857454512fca16708a1a",
+    "crates/pt-production/src/generation/presentation.rs": "8415f8da7052484598b7949b6da82281c97c827ffed9e1d2dea3535c7e778b30",
+    "crates/pt-production/src/generation/presentation_pcm.rs": "d65a9f996bec571ad7be8b55e94bea34338016141d979cc9a048aa7366d8736b",
+    "crates/pt-production/src/generation/acoustic_tests.rs": "fd0ac13fd20d43285faedbc7857ce386e3a6dc3f9d87de12812bc288f7d8de38",
+    "crates/pt-production/src/generation/acoustic_tests/presentation.rs": "5ad1937afdce7d674cf1f71d72a772d417c0b343bfe6a435b889588aae362ea8",
+    "crates/pt-production/src/generation/acoustic_tests/presentation_math.rs": "d0741a04e7ca0c297d4dc0a709b19fd9cae6db081657482734d3f6319a0ca66f"
+  },
+  "bundle_sha256": {
+    "input-index.json": "a5d09229736963529f1f060451f43a9ef89cb511e496707abdf10a8ad4c60faf",
+    "fact-evidence.json": "ff01a265036e0c0f55a997f485568ccdb7970f4396aeab76bff033c3c15c1096",
+    "presentation-fact-evidence.json": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+    "presentation-recipe.json": "cdc3a38da2115ba1405feb7b097fd5913fcde3fb85037330e3a5e4796899fe4c",
+    "acoustic-validation.json": "66a5c2d5ce145e85de6cb2aaadeecb5683521fbe4215c33e2e16d5aa4cbbc3cc"
+  },
+  "consumed_public_api_sha256": {
+    "crates/pt-contracts/src/services.rs": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38",
+    "crates/pt-production/src/runtime/media.rs": "2bfe0b644c0559faaeebcbe9f72d303fe8a8438c579d87b879edad4e709b484f"
+  },
+  "helper_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
+  "remaining": [
+    "Runtime owner routes Stage::Presentation with the namespaced 56-input bundle; optional prior report makes 57.",
+    "Original independent resampler execution receipt and production reviews remain missing.",
+    "G19 bounded chapter acoustic segmentation requires a separate recipe/registration handoff when helper behavior changes.",
+    "Full chapters, creative evidence, acceptance and publication remain pending."
+  ],
+  "commit_owner": "integration; no generation Git mutations"
+}

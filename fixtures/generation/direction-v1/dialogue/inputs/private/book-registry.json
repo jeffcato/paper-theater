@@ -1,0 +1,25 @@
+{
+  "book_id": "test-book",
+  "entities": [
+    {
+      "aliases": [
+        "Narrator"
+      ],
+      "id": "test-book:narrator",
+      "name": "Narrator",
+      "sprite": null,
+      "voice": null
+    },
+    {
+      "aliases": [
+        "Mira"
+      ],
+      "id": "test-book:mira",
+      "name": "Mira",
+      "sprite": null,
+      "voice": null
+    }
+  ],
+  "revision": 1,
+  "schema_version": 1
+}

@@ -34,6 +34,7 @@ fn runtime(store: Store, executor: Arc<dyn c::StageExecutor>) -> Runtime {
             root().join("fixtures/generation/source"),
         )
         .with_acoustic_inputs(root().join("fixtures/generation/acoustic"))
+        .with_presentation_inputs(root())
         .with_offline_acoustic(root().join("tools/generation"))
         .unwrap()
 }
@@ -100,7 +101,7 @@ async fn saved_pipeline_runs_real_acoustic_bundle_and_retains_missing_evidence()
     );
     assert!(store.catalog("pg-55").unwrap().is_none());
     let seen = seen.lock().unwrap();
-    assert_eq!(seen.len(), 3);
+    assert_eq!(seen.len(), 4);
     for input in seen.iter() {
         let paths = input
             .inputs
@@ -109,6 +110,11 @@ async fn saved_pipeline_runs_real_acoustic_bundle_and_retains_missing_evidence()
             .collect::<Vec<_>>();
         assert_eq!(paths.iter().filter(|p| **p == "manifest.json").count(), 1);
         match input.stage {
+            c::Stage::Presentation => {
+                assert!(paths.contains(&"delivery/fixture.json"));
+                assert!(paths.contains(&"source-facts.json"));
+                assert!(!paths.contains(&"fixture.json"));
+            }
             c::Stage::Acoustic => {
                 assert!(paths.contains(&"segmented-acoustic-report.json"));
                 assert!(!paths.contains(&"fixture.json"));

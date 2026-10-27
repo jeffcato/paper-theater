@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "task": "G20",
+  "status": "offline-scoped-requirements-and-private-proposals-complete",
+  "service_revision": "pt-services-v1.5.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "matrix_version": "pt-acceptance-required-v1",
+  "outcome": "needs_repair",
+  "provenance": "diagnostic",
+  "production_approved": false,
+  "provider_calls": 0,
+  "g20_helper_calls": 0,
+  "replay_journal_proposals": 0,
+  "replay_library_updates": 0,
+  "runtime_policy_authority": false,
+  "reveal_permissions": [],
+  "checks": {
+    "generation_tests": 62,
+    "new_g20_rust_tests": 16,
+    "candidate_contract_tests": 4,
+    "shared_acceptance_tests": 9,
+    "runtime_package_integration_tests": 1,
+    "python_tests": 25,
+    "formatting": "pass",
+    "owned_whitespace": "pass",
+    "identity": "pass"
+  },
+  "commands": [
+    "PT_ACCEPTANCE_EXPORT=fixtures/generation/acceptance-proposals-v1 cargo test -p pt-production generation:: --offline",
+    "cargo test -p pt-production --test candidate_read_contract --offline",
+    "cargo test -p pt-contracts --test acceptance_verification --offline",
+    "cargo test -p pt-production runtime::tests::real_generation_candidate_keeps_saved_media_and_missing_acceptance_private --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "rustfmt --edition 2024 --config skip_children=true --check crates/pt-production/src/generation/mod.rs crates/pt-production/src/generation/acceptance_proposals.rs crates/pt-production/src/generation/tests.rs crates/pt-production/src/generation/tests/acceptance_proposals.rs crates/pt-production/src/generation/tests/master_capacity.rs",
+    "python3 tools/check_product_identity.py ."
+  ],
+  "red_green": [
+    {
+      "command": "cargo test -p pt-production generation::tests::acceptance_proposals::invalid_scope_retains --offline",
+      "red": "lost retain-custom requirement after invalid scope binding",
+      "green": "1 passed; raw inherited adverse inventory preserved, complete binding null"
+    },
+    {
+      "command": "cargo test -p pt-production generation::tests::acceptance_proposals::unbound_adverse --offline",
+      "red": "original Fail observation was reduced to Missing when checker identity was absent",
+      "green": "1 passed over Fail/Uncertain/Missing cases; no complete proposal emitted"
+    },
+    {
+      "command": "cargo test -p pt-production generation::tests::master_capacity::temporary_180_second_master_survives_generation_package_and_recorded_replay --offline",
+      "red": "old exporter copied every candidate, including private artifact paths",
+      "green": "passes in the 62-test generation suite; only explicit public payload/metadata exported"
+    }
+  ],
+  "scope_examples": [
+    {
+      "case": "diagnostic",
+      "selected_scope": "diagnostic",
+      "shared_count": 3,
+      "effective_count": 8,
+      "scope_rejected": false,
+      "outcome": "needs_repair"
+    },
+    {
+      "case": "excerpt",
+      "selected_scope": "autonomous_excerpt",
+      "shared_count": 37,
+      "effective_count": 42,
+      "scope_rejected": false,
+      "outcome": "needs_repair"
+    },
+    {
+      "case": "chapter",
+      "selected_scope": "production_chapter",
+      "shared_count": 37,
+      "effective_count": 42,
+      "scope_rejected": false,
+      "outcome": "needs_repair"
+    },
+    {
+      "case": "excerpt-inherited-chapter",
+      "selected_scope": "autonomous_excerpt",
+      "shared_count": 37,
+      "effective_count": 43,
+      "scope_rejected": false,
+      "outcome": "needs_repair"
+    },
+    {
+      "case": "rejected-downgrade",
+      "selected_scope": "production_chapter",
+      "shared_count": 37,
+      "effective_count": 43,
+      "scope_rejected": true,
+      "outcome": "needs_repair"
+    }
+  ],
+  "example": {
+    "source_scope_id": "pg-55-chapter-1-diagnostic",
+    "source_span": [
+      0,
+      938
+    ],
+    "fact_count": 2,
+    "required_cue_ids": [
+      "nod-em"
+    ],
+    "new_proposal_count": 1,
+    "new_proposal_outcome": "uncertain",
+    "binding": {
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "asset_sha256s": [
+        "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+        "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+        "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127"
+      ],
+      "candidate_checker_version": "pt-contracts-v1.0.0",
+      "checker_sha256": "484a2083c9018b35fed44348d2ad1175b5d5bbdbaafdbf002687823263b9052b",
+      "delivery_sample_count": 3262560,
+      "delivery_sample_rate": 48000,
+      "device_id": null,
+      "fact_inventory_sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+      "inventory_sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+      "master_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "narration_sample_count": 1451280,
+      "narration_sample_rate": 24000,
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "player_sha256": "eece3b570634816b6c4322ff18a734868190f68812891380cd3154a8f839be69",
+      "player_version": "synthetic-player-v1",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "recipe_sha256": "3cd07876ccacd86966123c2793b5e6e9e0f95688976a3e38be8894b78db487e6",
+      "source_scope_id": "pg-55-chapter-1-diagnostic",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "source_span": [
+        0,
+        938
+      ]
+    },
+    "artifacts": [
+      {
+        "path": "private/acceptance-evidence-inventory.json",
+        "sha256": "80e57e0bfcffe25d8090c1694b4f390c6ac3f99eb08ae334e5ef366be625d7b8",
+        "bytes": 2563,
+        "media_type": "application/json"
+      },
+      {
+        "path": "private/acceptance-facts.json",
+        "sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+        "bytes": 701,
+        "media_type": "application/json"
+      },
+      {
+        "path": "private/acceptance-proposal-status.json",
+        "sha256": "ce5e4577e3dec87c8d9cb7beb8787c82ae99d3603aed6e27fd8438b417538c89",
+        "bytes": 5392,
+        "media_type": "application/json"
+      },
+      {
+        "path": "private/acceptance-proposals.json",
+        "sha256": "724d65e0dd7eec80f401508f9fe4fb52244cbc886288028e9210c4e2ee8d1357",
+        "bytes": 2407,
+        "media_type": "application/json"
+      },
+      {
+        "path": "private/authored-acceptance.json",
+        "sha256": "968a7b383ce2e73751024f7a54e3f953b3e4d8aab0f276782a61e5b858091444",
+        "bytes": 9807,
+        "media_type": "application/json"
+      }
+    ],
+    "context": {
+      "path": "acceptance-context.json",
+      "sha256": "d23d3c6840a83cdcf76ab4ca66b509cbc08ad2d4a51de3dcd8fbeaf7d765e2af",
+      "bytes": 3184,
+      "media_type": "application/json"
+    },
+    "public_inventory": {
+      "path": "inventory.json",
+      "sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+      "bytes": 2314,
+      "media_type": "application/json"
+    }
+  },
+  "public_export": {
+    "verified_with": "verify_package_files, then independent verify_acceptance from a separate private root",
+    "payload_paths": [
+      "actors.json",
+      "assets/figure.png",
+      "audio/master.wav",
+      "bible.json",
+      "captions.vtt",
+      "credits.json",
+      "poster.svg",
+      "presentation-map.json",
+      "profile.json",
+      "read-along.json",
+      "shell.json",
+      "stages.json",
+      "timeline.json"
+    ],
+    "additional_public_metadata": [
+      "inventory.json",
+      "acceptance.json",
+      "manifest.json"
+    ],
+    "excluded": [
+      "raw source",
+      "alignment",
+      "native narration",
+      "recipes",
+      "player/checker inputs",
+      "context",
+      "private facts/evidence/raw reports",
+      "diagnostic-document.json"
+    ],
+    "private_hash_aliases": "excluded; aliases of required public entries rejected",
+    "finding_evidence_refs": 0,
+    "attestation_raw_evidence_refs": 0,
+    "forged_passing_proposal": "semantic image checker remains unexecuted; production-verifier-pending retained"
+  },
+  "preserved": {
+    "word_count": 176,
+    "highlight_group_count": 170,
+    "point_word_count": 6,
+    "matched_facts": 4,
+    "unresolved_facts": [
+      {
+        "id": "strange-event",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "balloon-ascent",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "unprovided-fact",
+        "outcome": "missing"
+      }
+    ],
+    "original_reports": [
+      {
+        "path": "fixtures/generation/presentation-evidence-v1/fact-evidence.json",
+        "sha256": "ff01a265036e0c0f55a997f485568ccdb7970f4396aeab76bff033c3c15c1096",
+        "bytes": 11657,
+        "media_type": "application/json"
+      },
+      {
+        "path": "fixtures/generation/presentation-evidence-v1/presentation-fact-evidence.json",
+        "sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+        "bytes": 46161,
+        "media_type": "application/json"
+      },
+      {
+        "path": "fixtures/generation/chapter-acoustic-v1/chapter-acoustic-validation.json",
+        "sha256": "6359e979b80872c3a4544d337a5841e4931c1b83f80f037b68011ce494954a6e",
+        "bytes": 79816,
+        "media_type": "application/json"
+      }
+    ],
+    "g18_frozen_report_sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+    "legacy_helper_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
+    "chapter_helper_recipe_sha256": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+    "g17_temporary_master_seconds": 180,
+    "g19_temporary_chapter_seconds": 600
+  },
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "32ab33a47ea3c57f6e1997961c235663b9bf4b4d9d9f17d8e417c51bc897cf7d",
+    "crates/pt-production/src/generation/acceptance_proposals.rs": "45e3d36c1e2dbb0a5e0472b6de5555b537182286dd8acfc413ccb1fbb418d5fa",
+    "crates/pt-production/src/generation/tests.rs": "6e3064a70cf0e1c31752a54fa217ba5c8f40466d4ea25473272212c1d408c47a",
+    "crates/pt-production/src/generation/tests/acceptance_proposals.rs": "88a0821d1d1a55c5d948f3fb23abdc9b1824341666c3f3c960a394cff479154d",
+    "crates/pt-production/src/generation/tests/master_capacity.rs": "d41ff543b211005d701d7d5020afe6b6fa43887e83559f21f8b6050eda57021f"
+  },
+  "fixture_sha256": {
+    "acceptance-context.json": "d23d3c6840a83cdcf76ab4ca66b509cbc08ad2d4a51de3dcd8fbeaf7d765e2af",
+    "private/acceptance-evidence-inventory.json": "80e57e0bfcffe25d8090c1694b4f390c6ac3f99eb08ae334e5ef366be625d7b8",
+    "private/acceptance-facts.json": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+    "private/acceptance-proposal-status.json": "ce5e4577e3dec87c8d9cb7beb8787c82ae99d3603aed6e27fd8438b417538c89",
+    "private/acceptance-proposals.json": "724d65e0dd7eec80f401508f9fe4fb52244cbc886288028e9210c4e2ee8d1357",
+    "private/authored-acceptance.json": "968a7b383ce2e73751024f7a54e3f953b3e4d8aab0f276782a61e5b858091444",
+    "public-allowlist.json": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+    "scopes.json": "7e8e3b400073a85760c81c828c42d9158d1da133cda429d5499d952d6318bcc9"
+  },
+  "compatibility": {
+    "authoritative_accessor": "pt_contracts::required_acceptance_checks(AcceptanceScope)",
+    "legacy_literal": "retained, non-authoritative",
+    "owner": "integration",
+    "request": "docs/implementation/generation/acceptance-compatibility-request.md",
+    "behavior_fixture": "fixtures/generation/acceptance-proposals-v1/scopes.json",
+    "shared_suite": "9 passed",
+    "acknowledgement": "pending; no live integration agent available",
+    "cleanup": "remove literal only after integration replaces its source-text assertion and acknowledges passing compatibility tests"
+  },
+  "remaining": [
+    "Runtime independently pins scope/purpose and expected seven input roles plus checker identity; freezes generated fact/evidence refs as its two remaining policy roles; executes/rechecks/persists verifier privately",
+    "General chapter evidence importer and G19 runtime registration/fanout",
+    "Semantic/device/creative reviews and autonomous production acceptance"
+  ],
+  "git_operations": 0,
+  "ui_edits": 0,
+  "commit_owner": "integration"
+}

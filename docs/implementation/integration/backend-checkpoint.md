@@ -1,0 +1,36 @@
+# I20: coherent offline backend checkpoint
+
+This checkpoint freezes completed R13–R17 runtime and G16–G23 generation dependencies on the published I19 services v1.8.0 boundary. It adds no provider transport or activation authority. Exact source inventories, inherited receipt pins and excluded working paths are in [backend-checkpoint-source.json](backend-checkpoint-source.json); exact implementation-head results and CI will be recorded in `backend-checkpoint-ready.json` and `pr-ci-results.json`.
+
+## Frozen boundary and review
+
+The source handoffs are R17's completed runtime inventory and G23's final 103-test generation implementation, captured against integration baseline `4ffc5c1ab7e926b1d49406af89bfda15bbccda61`. Every R17 source pin and G23 implementation pin matches the frozen snapshot. Earlier receipts remain unchanged, including source hashes superseded by later owned work; they do not certify this newer aggregate. The backend patch has a separately recorded hash. No moving worker file is substituted after capture.
+
+| Boundary | Reviewed behavior and executable evidence |
+| --- | --- |
+| Runtime-issued v2 service | Actual Services run/epoch/unit/input bindings; durable registry/grants/issued-descriptor equality; current budgets/windows, repair/retry lineage and immutable request bytes checked before once-only dispatch. R13 broker and 21 R17 service regressions exercise forged/current/obsolete scopes. |
+| Existing-job recovery | Separate observer grant, latest genuine selector, query-only reservation and atomic private receipt/accounting. Unknown attempts and charges persist through cancellation, restart and failed receipt commits; cached wrappers reverify identity and original bytes. |
+| Construction/offline boundary | Successful adapter injection is test-only. Ordinary Runtime construction retains None/unavailable, with Fixture/Replay refusal before credentials or transport, no legacy/helper fallback and no production dispatch. Synthetic transport tests make zero external provider calls. |
+| Bounded helper | Administrative executable/arguments, environment clearing, stdin/output/stderr/media bounds, deadline/cancellation and process-group termination. Chapter helpers persist spawn/attempt/checkpoint state and preserve uncertain work; exact allowlists and source/recipe/compiler/revision/epoch bindings are rechecked. |
+| Private acceptance | Runtime selects trusted compilation and player, freezes original roles, executes the independent checker, rechecks bytes/evidence/context under the commit transaction and stores the report privately. Serialized reports/proposals confer no authority. Only registered diagnostic excerpt compilation is supported; missing trusted registration remains unresolved. |
+| Source/Direction/Pilot | Exact Unicode source and registry/recipe inputs; committed requests precede v2 issuance; original issued/results/raw/audio are bound without fabricated ArtifactRefs. Pilot reconstructs saved Direction in Replay, rejects ambiguous catalog IDs and stale/partial review targets, preserves phase and adverse evidence, and keeps all pilot records out of audience exports. |
+
+The reviewed contract identities are `pt-contracts-v1.0.0`, `pt-services-v1.8.0`, provider envelopes/service v2, checker `pt-acceptance-bindings-v4`, report v4 and matrix `pt-acceptance-required-v3`. Checker SHA-256 is `ba96222b73e795a5e5dd5cfc80e3a4e653c2ec692d9c1a72ea1f39c4fb842ba5`. Historical handoffs keep their original versions. New owner-facing adoption summaries are [runtime](../runtime/backend-checkpoint.md) and [generation](../generation/backend-checkpoint.md). R18/G24 implementation is excluded.
+
+## Aggregate failure reconciliation
+
+R17 reported two failed concurrent aggregates, not a green backend. Their exact raw outputs are preserved in [the first run](backend-checkpoint-history/pt-r17-full.txt.gz) and [the later run](backend-checkpoint-history/pt-r17-full-final.txt.gz), with original hashes in the source inventory. Lossless gzip archives preserve every original byte, including terminal blank lines. The former lacked `private/pilot-plan.json` in `adjacent_verbatim_narrator_auditions_remain_private_and_unaccepted` (188 passed/1 failed). The latter accepted duplicate catalog IDs in `duplicate_catalog_models_and_voices_are_ambiguous_not_first_match_wins` (193 passed/1 failed). The precise old concurrent generation tree is unavailable; these receipts are retained as failures, never assigned a fabricated commit.
+
+G23's owned red/green evidence introduces the real Pilot plan and validates unique model/voice IDs before candidate writes. Both regression tests remain unchanged in the final frozen G23 implementation. Its earlier focused 15-test pass is archived separately and supplies no aggregate-green claim. This checkpoint requires the full combined backend aggregate plus complete generation/Python/contracts suites over the same frozen source.
+
+The first isolated Python run preserved four capture-inventory setup errors because player dist had not yet been built. Building the unchanged baseline player satisfies that documented prerequisite; all 37 tests are rerun without excluding capture checks. An offline npm cache miss is also recorded as setup, followed by a pinned install only in the isolated worktree. Shared UI dependencies and lockfiles are untouched.
+
+## Verification scope and exclusions
+
+The full commands and actual counts are in `backend-checkpoint-ready.json`. CI runs the full Rust workspace, contracts including strict/native/packed consumers, baseline web checks/builds, complete generation Python discovery after the player build, and the real two-process server chapter restart probe after a full server build. SOURCE_ROOT is unset throughout local checks; no external source workspace is needed. Exact original logs are retained for substantive aggregate/setup failures.
+
+The real server probe verifies four exact helper checkpoints survive forced process termination and removal of original inputs, four units are reused without redispatch, private artifact HTTP access returns 404, provider attempts/catalog stay empty and NeedsRepair/production-verifier-pending remain. It exercises actual durable helper/replay behavior; it does not implement the pending R18 Direction/Pilot runtime registration pipeline.
+
+Player, Audience and Studio layout/source/manifests use only committed baseline `4ffc5c1`. Their local repairs/redesign, all new immersive house/art work, R12's red `Nonpositive viewport` browser receipt and the I14 root player/lockfile gate are explicitly excluded. Baseline tests/builds establish build/capture prerequisites only; no new browser, redesign, profile, device, voice, speech or creative-readiness claim follows. There is no broad install or lockfile change in the shared working tree.
+
+Five independent acceptance implementations and 32 missing production verifiers remain. Format validity proves neither spoken prose nor mix/listening quality. Live dispatch, actual inherited accounting reconciliation, credentials, provider implementation, production acceptance and catalog activation remain disabled/pending. R11's exact shared-inspector wrapper adoption remains a separate server-owned follow-up; native/shared conformance is retained. Zero external provider calls.

@@ -1,0 +1,117 @@
+{
+  "additional_required_check_ids": [],
+  "candidate_checker_version": "pt-contracts-v1.0.0",
+  "checker_identity": {
+    "bytes": 124,
+    "media_type": "application/json",
+    "path": "private/checker.json",
+    "sha256": "d0ae01d5047729f579d7d6cac86eabb216fd0e18ae7c0ee7e140381a705331dc"
+  },
+  "device_id": null,
+  "inherited_inventory": null,
+  "inputs": [
+    {
+      "file": {
+        "bytes": 960,
+        "media_type": "text/plain",
+        "path": "source.txt",
+        "sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5"
+      },
+      "role": "source"
+    },
+    {
+      "file": {
+        "bytes": 65183,
+        "media_type": "application/json",
+        "path": "evidence/alignment.json",
+        "sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd"
+      },
+      "role": "alignment"
+    },
+    {
+      "file": {
+        "bytes": 601,
+        "media_type": "application/json",
+        "path": "presentation-map.json",
+        "sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127"
+      },
+      "role": "presentation_map"
+    },
+    {
+      "file": {
+        "bytes": 1180,
+        "media_type": "application/json",
+        "path": "profile.json",
+        "sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec"
+      },
+      "role": "profile"
+    },
+    {
+      "file": {
+        "bytes": 2902604,
+        "media_type": "audio/wav",
+        "path": "private/narration.wav",
+        "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0"
+      },
+      "role": "narration"
+    },
+    {
+      "file": {
+        "bytes": 42,
+        "media_type": "text/plain",
+        "path": "private/recipe.txt",
+        "sha256": "3cd07876ccacd86966123c2793b5e6e9e0f95688976a3e38be8894b78db487e6"
+      },
+      "role": "recipe"
+    },
+    {
+      "file": {
+        "bytes": 49,
+        "media_type": "application/octet-stream",
+        "path": "private/player.bin",
+        "sha256": "eece3b570634816b6c4322ff18a734868190f68812891380cd3154a8f839be69"
+      },
+      "role": "player"
+    }
+  ],
+  "minimum_scope": "diagnostic",
+  "narration_sample_count": 1451280,
+  "narration_sample_rate": 24000,
+  "observations": [
+    {
+      "check_id": "image-scope-review",
+      "id": "synthetic-image-observation",
+      "outcome": "uncertain",
+      "provenance": "diagnostic",
+      "raw_evidence": {
+        "bytes": 76,
+        "media_type": "application/json",
+        "path": "private/review.json",
+        "sha256": "61eef85d39ce5ed0e6f15a93359e3be742bceb86df51fe60f75fb4047ae46f13"
+      },
+      "target": {
+        "domain": "source",
+        "fact": {
+          "asset_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+          "id": "reveal-1-fact-0",
+          "reveal_id": "reveal-1",
+          "source_span": [
+            15,
+            20
+          ]
+        },
+        "kind": "fact"
+      }
+    }
+  ],
+  "player_version": "synthetic-player-v1",
+  "purpose": "diagnostic",
+  "reports": [],
+  "schema_version": 1,
+  "scope": "diagnostic",
+  "source_scope_id": "pg-55-chapter-1-diagnostic",
+  "source_span": [
+    0,
+    938
+  ]
+}

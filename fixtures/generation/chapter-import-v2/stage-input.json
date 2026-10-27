@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "run_id": "acoustic-protocol",
+  "stage": "acoustic",
+  "unit_id": "saved-turns",
+  "epoch": 1,
+  "revision": 1,
+  "inputs": [
+    {
+      "id": "import:chapter-import-index.json",
+      "file": {
+        "path": "chapter-import-index.json",
+        "sha256": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+        "bytes": 2631,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "import:private/chapter-context.json",
+      "file": {
+        "path": "private/chapter-context.json",
+        "sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+        "bytes": 22393,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "import:private/chunks/chunk-0000.wav",
+      "file": {
+        "path": "private/chunks/chunk-0000.wav",
+        "sha256": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+        "bytes": 12044,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "import:private/chunks/chunk-0001.wav",
+      "file": {
+        "path": "private/chunks/chunk-0001.wav",
+        "sha256": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+        "bytes": 12044,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "import:private/chunks/chunk-0002.wav",
+      "file": {
+        "path": "private/chunks/chunk-0002.wav",
+        "sha256": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+        "bytes": 12044,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "import:private/chunks/chunk-0003.wav",
+      "file": {
+        "path": "private/chunks/chunk-0003.wav",
+        "sha256": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+        "bytes": 12044,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "import:private/source.txt",
+      "file": {
+        "path": "private/source.txt",
+        "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+        "bytes": 104,
+        "media_type": "text/plain"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "import:chapter-import-unit.json",
+      "file": {
+        "path": "chapter-import-unit.json",
+        "sha256": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+        "bytes": 1466,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "id": "import:chapter-import-helper-record.json",
+      "file": {
+        "path": "chapter-import-helper-record.json",
+        "sha256": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6",
+        "bytes": 4110,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    }
+  ],
+  "pins": {
+    "recipe_sha256": "e2a25a4b2162d775c2f7aaeb021ba983dbe3ef6525230ba67f45357ce0d02b15",
+    "profile_sha256": "1900eab6c028483d7126599ee6f50de0d27907b5c65fa90524580b4b0f9852b0",
+    "profile_id": "paper-player-r186-v1"
+  },
+  "mode": "replay",
+  "limits": {
+    "money_microusd": 0,
+    "requests": 0,
+    "tokens": 0,
+    "repairs": 0,
+    "wall_time_ms": 30000
+  },
+  "library_revision": 0
+}

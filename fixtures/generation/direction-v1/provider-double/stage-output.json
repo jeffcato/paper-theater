@@ -1,0 +1,115 @@
+{
+  "outcome": "needs_repair",
+  "artifacts": [
+    {
+      "candidate_id": "26ed384a160b603b77e2367193db150ad546dedb6a551fd44d828f105b51a1b4",
+      "file": {
+        "path": "private/direction-request.json",
+        "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+        "bytes": 14049,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "74038775d9d470206f9048ff0b2c65a3bfd8e0781d0a87fb67b1031de97ecc28",
+      "file": {
+        "path": "private/direction-provider-proposal.json",
+        "sha256": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+        "bytes": 2498,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "8e2908ec40057e3d369951b6b1e0a5cabc7a3d0dfb8864caf9ce380121745d58",
+      "file": {
+        "path": "private/direction-observation.json",
+        "sha256": "67c09bb702f5c9debe8be5a61a2d3a48029d1fbc9efa759d631d67a713c69aca",
+        "bytes": 7144,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "caadb3cb08d89926552704f9f33d7dcc3e7bb822fe4fc6f2bf9c6cc007d65984",
+      "file": {
+        "path": "private/direction-plan.json",
+        "sha256": "f692c285835d15f696a3c0bacf5ff48d1b77d0424f8047a19943683529399bbe",
+        "bytes": 12150,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "46636e7121ea188662568afe309e7dab310351a0d3856651a970158be48a524b",
+      "file": {
+        "path": "private/direction-request-handoff.json",
+        "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+        "bytes": 2625,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "5477c8482ed790e88cd8a62c11086870f6cf4cb28827392a4f231931557ff2b6",
+      "file": {
+        "path": "private/direction-status.json",
+        "sha256": "b2a5f4e5eafd55887d79b55a849311baff7d7090a1afad37c2bc7b29bec7c674",
+        "bytes": 2837,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    }
+  ],
+  "decisions": [],
+  "findings": [
+    {
+      "id": "initial-reference-research",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "canonical-reference-applicability",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "direction-semantic-review",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "rendered-stage-clarity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    }
+  ],
+  "cache_keys": [
+    "dacf2282477ab7822a212c1929c414c8259215d2434a96b72ec9989e32fc81ce"
+  ],
+  "library_updates": [],
+  "package_candidate": null
+}

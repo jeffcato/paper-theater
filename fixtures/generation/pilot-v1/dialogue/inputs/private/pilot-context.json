@@ -1,0 +1,60 @@
+{
+  "book_id": "test-book",
+  "catalog": {
+    "bytes": 320,
+    "media_type": "application/json",
+    "path": "private/voice-catalog.json",
+    "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+  },
+  "chapter_id": "chapter-1",
+  "direction": {
+    "bytes": 12149,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42"
+  },
+  "direction_input": {
+    "bytes": 3725,
+    "media_type": "application/json",
+    "path": "private/pilot-direction-input.json",
+    "sha256": "ad6eca4177a4796d02c95f3d0171a11b367ec53a15a50227d1d721f03a0587fa"
+  },
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "first_audition_model": "gemini-3.8-flash-tts",
+  "observations": [],
+  "recipe": {
+    "bytes": 48,
+    "media_type": "application/json",
+    "path": "private/pilot-recipe.json",
+    "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+  },
+  "registry": {
+    "bytes": 400,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+  },
+  "review_model": "independent-review-double",
+  "review_provider": "review-double",
+  "reviews": [],
+  "schema_version": 1,
+  "selection": {
+    "bytes": 1067,
+    "media_type": "application/json",
+    "path": "private/pilot-selection.json",
+    "sha256": "721c46deabc1987da3b324c0e05d014747428f74b57c1e469d2c7ee38ea8590a"
+  },
+  "source": {
+    "bytes": 3949,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893"
+  },
+  "speech_provider": "speech-double",
+  "timeout_ms": 30000
+}

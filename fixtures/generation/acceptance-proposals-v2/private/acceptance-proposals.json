@@ -1,0 +1,58 @@
+[
+  {
+    "schema_version": 1,
+    "id": "synthetic-image-observation",
+    "check_id": "image-scope-review",
+    "target": {
+      "kind": "fact",
+      "fact": {
+        "id": "reveal-1-fact-0",
+        "reveal_id": "reveal-1",
+        "source_span": [
+          15,
+          20
+        ],
+        "asset_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73"
+      },
+      "domain": "source"
+    },
+    "binding": {
+      "inventory_sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+      "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "master_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "recipe_sha256": "3cd07876ccacd86966123c2793b5e6e9e0f95688976a3e38be8894b78db487e6",
+      "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "player_sha256": "eece3b570634816b6c4322ff18a734868190f68812891380cd3154a8f839be69",
+      "checker_sha256": "68e209243eaa0e75ee1a98e89515da7cdb5e7afbe166463f901a88c0066dca00",
+      "fact_inventory_sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+      "asset_sha256s": [
+        "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+        "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+        "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127"
+      ],
+      "source_span": [
+        0,
+        938
+      ],
+      "source_scope_id": "pg-55-chapter-1-diagnostic",
+      "player_version": "synthetic-player-v1",
+      "candidate_checker_version": "pt-contracts-v1.0.0",
+      "device_id": null,
+      "narration_sample_rate": 24000,
+      "narration_sample_count": 1451280,
+      "delivery_sample_rate": 48000,
+      "delivery_sample_count": 3262560
+    },
+    "outcome": "uncertain",
+    "provenance": "diagnostic",
+    "raw_evidence": {
+      "path": "private/review.json",
+      "sha256": "61eef85d39ce5ed0e6f15a93359e3be742bceb86df51fe60f75fb4047ae46f13",
+      "bytes": 76,
+      "media_type": "application/json"
+    }
+  }
+]

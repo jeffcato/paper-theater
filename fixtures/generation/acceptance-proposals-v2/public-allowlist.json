@@ -1,0 +1,84 @@
+[
+  {
+    "path": "actors.json",
+    "sha256": "f12d379de7b2686ffb77c40cde0ad3d5792e16ab4f382c35173ac073c66cc398",
+    "bytes": 714,
+    "media_type": "application/json"
+  },
+  {
+    "path": "assets/figure.png",
+    "sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+    "bytes": 815524,
+    "media_type": "image/png",
+    "dimensions": [
+      404,
+      1287
+    ]
+  },
+  {
+    "path": "audio/master.wav",
+    "sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+    "bytes": 13050284,
+    "media_type": "audio/wav"
+  },
+  {
+    "path": "bible.json",
+    "sha256": "a4326cf7d9b609d264683751896f71dccf6fb8b56d41ce1777424ad931b96aca",
+    "bytes": 120,
+    "media_type": "application/json"
+  },
+  {
+    "path": "captions.vtt",
+    "sha256": "31392bb749d5ecdd7f76cfb2b0fabe62b58a01df39390fda74822137373d20db",
+    "bytes": 67,
+    "media_type": "text/vtt"
+  },
+  {
+    "path": "credits.json",
+    "sha256": "08025c30ce2789e0a18d748152855e1d2d04161b9e472c8d3926ffab4bf20946",
+    "bytes": 647,
+    "media_type": "application/json"
+  },
+  {
+    "path": "poster.svg",
+    "sha256": "73f19185bb534dfe74dbec4eef3537df475ece269c8aa5e4e77d1af914dc9f4d",
+    "bytes": 109,
+    "media_type": "image/svg+xml"
+  },
+  {
+    "path": "presentation-map.json",
+    "sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+    "bytes": 601,
+    "media_type": "application/json"
+  },
+  {
+    "path": "profile.json",
+    "sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+    "bytes": 1180,
+    "media_type": "application/json"
+  },
+  {
+    "path": "read-along.json",
+    "sha256": "80e6882b1839c6c756718986a6066d8ad6b0614c94eaa99bc2ed99ac8dc2277f",
+    "bytes": 75457,
+    "media_type": "application/json"
+  },
+  {
+    "path": "shell.json",
+    "sha256": "80c3b0c61f67fa9bc62f84efe2830b5ff74f0686cc5f9772732543a17baccf4b",
+    "bytes": 5000,
+    "media_type": "application/json"
+  },
+  {
+    "path": "stages.json",
+    "sha256": "838a22f52b049055223762d49a91cf7a0d47785cd7a5fd349c26cd6f9b66296e",
+    "bytes": 192,
+    "media_type": "application/json"
+  },
+  {
+    "path": "timeline.json",
+    "sha256": "60f8e8d78768aad014b38e13cdc3a6e36674cac52b6f56b880e8800dde0a0f1a",
+    "bytes": 6513,
+    "media_type": "application/json"
+  }
+]

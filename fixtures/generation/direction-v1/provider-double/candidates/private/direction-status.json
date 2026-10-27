@@ -1,0 +1,82 @@
+{
+  "findings": [
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "initial-reference-research",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "canonical-reference-applicability",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "direction-semantic-review",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "rendered-stage-clarity",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    }
+  ],
+  "observation": {
+    "bytes": 7144,
+    "media_type": "application/json",
+    "path": "private/direction-observation.json",
+    "sha256": "67c09bb702f5c9debe8be5a61a2d3a48029d1fbc9efa759d631d67a713c69aca"
+  },
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "provider_calls": null,
+  "recipe": {
+    "bytes": 61,
+    "media_type": "application/json",
+    "path": "private/direction-recipe.json",
+    "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4"
+  },
+  "registry": {
+    "bytes": 400,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+  },
+  "request": {
+    "bytes": 14049,
+    "media_type": "application/json",
+    "path": "private/direction-request.json",
+    "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203"
+  },
+  "reveal_permissions": [],
+  "runtime_policy_authority": false,
+  "schema_version": 1,
+  "source": {
+    "bytes": 3949,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893"
+  }
+}

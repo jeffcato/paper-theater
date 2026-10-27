@@ -1,0 +1,65 @@
+{
+  "accent": "catalog-default",
+  "baseline": "steady",
+  "canonical_id": "test-book:narrator",
+  "catalog": {
+    "bytes": 540,
+    "media_type": "application/json",
+    "path": "private/voice-catalog.json",
+    "sha256": "80b01aec509a14a255ace258990923295978e7a5c98601160eb25ca7da38cd3e"
+  },
+  "direction": {
+    "bytes": 9749,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "110612d8bb593b58c8a89eeea1e878fa2a8917ee238b110694ea38e7affd8595"
+  },
+  "established_binding": {
+    "file": {
+      "bytes": 918,
+      "media_type": "application/json",
+      "path": "private/established-voice.json",
+      "sha256": "9536b3f042dfea7e0f4aa48e422a0e976445a91940558a870bca65a7c95e5d57"
+    },
+    "id": "committed:pilot:private:established-voice.json",
+    "provenance": "synthetic"
+  },
+  "language": "en",
+  "model": "gemini-3.8-flash-lite-tts",
+  "passage": {
+    "acting": "",
+    "acting_support": null,
+    "span": [
+      25,
+      46
+    ],
+    "text": " The water was still.",
+    "turn_id": "t0"
+  },
+  "production_approved": false,
+  "recipe": {
+    "bytes": 48,
+    "media_type": "application/json",
+    "path": "private/pilot-recipe.json",
+    "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+  },
+  "registry": {
+    "bytes": 739,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "2bf8566a832bdfa327ebc32d5e6ed3aa8b936675c499544184b4b108e6059610"
+  },
+  "schema_version": 1,
+  "source": {
+    "bytes": 3725,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+  },
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "speaker": "narrator",
+  "style": "steady",
+  "task": "voice-pilot-take-v1",
+  "text": " The water was still.",
+  "voice_id": "old-n"
+}

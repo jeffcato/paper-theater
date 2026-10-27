@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "status": "offline-acoustic-stage-implemented",
+  "status": "offline-acoustic-source-fact-matching-implemented",
   "stage": "acoustic",
   "outcome": "needs_repair",
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.2.0",
+  "service_revision": "pt-services-v1.3.0",
   "provider_calls": 0,
   "production_approved": false,
   "source_fixture": "fixtures/generation/acoustic",
@@ -14,9 +14,9 @@
   "helper_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
   "fixture_outputs": [
     "acoustic-replay.json",
+    "fact-evidence.json",
     "acoustic-validation.json"
   ],
-  "recorded_replay_output": "acoustic-validation.json",
   "recorded_replay_helper_calls": 0,
   "recorded_replay_journal_proposals": 0,
   "live_adapter": "unavailable; no dispatch fallback",
@@ -25,6 +25,7 @@
   "point_word_count": 6,
   "reveal_permissions": [],
   "required_missing_evidence": [
+    "final-presentation-mapping",
     "independent-acoustic-evidence",
     "complete-fact-interval-verification",
     "speech-fidelity",
@@ -32,28 +33,94 @@
     "rendered-creative-review"
   ],
   "checks": {
-    "generation_tests": 12,
+    "generation_tests": 21,
     "candidate_api_tests": 4,
     "python_tests": 17,
-    "identity": "pass"
+    "identity": "pass",
+    "formatting": "pass",
+    "production_unit_tests": 53,
+    "runtime_tests": 32
   },
   "commands": [
+    "cargo test -p pt-production --locked --offline",
     "cargo test -p pt-production generation:: --offline",
     "cargo test -p pt-production --test candidate_read_contract --offline",
     "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
-    "python3 tools/check_product_identity.py ."
+    "python3 tools/check_product_identity.py .",
+    "rustfmt --edition 2024 --check crates/pt-production/src/generation/{acoustic.rs,acoustic_facts.rs,acoustic_tests.rs,mod.rs}"
   ],
   "implementation_sha256": {
-    "crates/pt-production/src/generation/mod.rs": "c9f95115a52b773d6ea420d0472e65d90836eb71587de207e264ffee1526cf61",
-    "crates/pt-production/src/generation/acoustic.rs": "d4337687267e0afc8e522d5cceaaa7ff67dfeecba38fb9b7654223eb79f10d63",
-    "crates/pt-production/src/generation/acoustic_tests.rs": "06008f00a66798d93125965890a4875f99c2f3c50fb0bc65f8bb11675562c156"
+    "crates/pt-production/src/generation/mod.rs": "23ab88281c3ad292c75030214ffb834dc186ba74faa552318051581da3e30b1c",
+    "crates/pt-production/src/generation/acoustic.rs": "01494ee738525a6014fb0fdad883fb8359cd58b69fd02c25201f7b93123f97dd",
+    "crates/pt-production/src/generation/acoustic_tests.rs": "d75daf56f3972ddd380aeaf729f7a512e57fb339acb030e457b8526d9c0cc45a",
+    "crates/pt-production/src/generation/acoustic_facts.rs": "7d6f1985365ff0188efecb86790e2646bb3dab385152520b7b80648ccaa50e96"
   },
   "consumed_runtime_sha256": {
     "crates/pt-contracts/src/services.rs": "0045532e10af5d4660bdd46334ed783d55047226dc0d3992b5509388c820ef38",
-    "crates/pt-production/src/runtime/helper.rs": "f32e91e4c6e73bd8d8a27d9c66a9fa260ad03d85b82efbf1e15af704d4a02c41",
-    "crates/pt-production/src/runtime/runner.rs": "d185341611cb2416fd45d0cc9bd4e1c2e43d7ec10dbfbe9ef25bae8bee5515fb",
-    "crates/pt-production/src/runtime/fixture.rs": "2da57e946039beef17d9e34ba05162ac8384878c708a71aa5d2cb558a23c24bc"
+    "crates/pt-production/src/runtime/helper.rs": "a9d0e243193c046fd0578b48e4312d849bebf9169a633a202a3600c773d2a69d",
+    "crates/pt-production/src/runtime/runner.rs": "8143fa6438bfad10164b3e613519fac95b9ca38e9a041e03315d2d72104ed74a",
+    "crates/pt-production/src/runtime/fixture.rs": "a50575249774949484a2eeeb863f83d1f98c405b496a7b8569d37f21927f0f94"
   },
-  "next_step": "Agent 2 supplies stage-specific acoustic inputs and routes the saved-fixture composition; generation then adds explicit fact inventory matching without granting ambiguous reveals.",
-  "commit_owner": "Agent 1; integrate completed runtime helper working-tree changes with the generation consumer."
+  "next_step": "Compose the explicit facts into the initial acoustic input bundle; supply actual authored scopes and a pinned narration-to-presentation mapping without promoting ambiguous cached intervals.",
+  "commit_owner": "Agent 1; generation worker preserves the shared index and other lanes.",
+  "source_fact_fixture": "fixtures/generation/acoustic-facts-v1/source-facts.json",
+  "source_facts_sha256": "e77c04d2448cb0b7095533d76108fd85115e4e7fdfba3db0cbfa90b23d683b3b",
+  "matching_recipe_sha256": "7d6f1985365ff0188efecb86790e2646bb3dab385152520b7b80648ccaa50e96",
+  "recorded_replay_outputs": [
+    "fact-evidence.json",
+    "acoustic-validation.json"
+  ],
+  "recorded_replay_candidate_reads": 0,
+  "recorded_replay_provider_calls": 0,
+  "recorded_replay_fact_bytes_identical": true,
+  "recorded_replay_runtime_snapshot_and_journal_unchanged": true,
+  "coordinate_system": "excerpt_unicode_scalars",
+  "sample_rate": 24000,
+  "final_presentation_bound_emitted": false,
+  "tolerance_seconds": "0.75",
+  "endpoint_policy": "later measured end; maximum over complete supporting intervals",
+  "fact_results": [
+    {
+      "id": "cellar-instruction",
+      "outcome": "pass",
+      "not_before_sample": 546720,
+      "reason": "all_fact_spans_covered"
+    },
+    {
+      "id": "Dorothy-urged",
+      "outcome": "pass",
+      "not_before_sample": 506640,
+      "reason": "all_fact_spans_covered"
+    },
+    {
+      "id": "screaming",
+      "outcome": "pass",
+      "not_before_sample": 506640,
+      "reason": "all_fact_spans_covered"
+    },
+    {
+      "id": "urged-cellar",
+      "outcome": "pass",
+      "not_before_sample": 546720,
+      "reason": "all_fact_spans_covered"
+    },
+    {
+      "id": "strange-event",
+      "outcome": "uncertain",
+      "not_before_sample": null,
+      "reason": "independent_complete_interval_missing_or_ambiguous"
+    },
+    {
+      "id": "balloon-ascent",
+      "outcome": "uncertain",
+      "not_before_sample": null,
+      "reason": "independent_complete_interval_missing_or_ambiguous"
+    },
+    {
+      "id": "unprovided-fact",
+      "outcome": "missing",
+      "not_before_sample": null,
+      "reason": "required_fact_missing"
+    }
+  ]
 }

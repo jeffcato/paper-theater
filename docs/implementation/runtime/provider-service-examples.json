@@ -1,0 +1,458 @@
+{
+  "cached_query_receipt_identical": true,
+  "execute_provider_v2": {
+    "issued": {
+      "context": {
+        "credential_context_id": "slot-a",
+        "project_id": "project",
+        "provider": "fake"
+      },
+      "identity": {
+        "epoch": 0,
+        "operation_id": "logical",
+        "repair": null,
+        "run_id": "0fcac5b8e6cae164332b8d3dafaac91407dea2a2eb86eedde832834876fd907c",
+        "transport_retry": null
+      },
+      "operation": {
+        "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+        "estimate": {
+          "input_tokens": 2,
+          "money_microusd": 0,
+          "output_tokens": 3,
+          "requests": 1
+        },
+        "inputs": [],
+        "kind": "direction",
+        "model": "model",
+        "payload": {
+          "file": {
+            "bytes": 20,
+            "media_type": "application/json",
+            "path": "request.json",
+            "sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6"
+          },
+          "id": "96231ecb5ef1da6cfac9cd88befea38b0f9a4a0e67fcf3536af3a78928d2478e",
+          "provenance": "synthetic"
+        },
+        "provider": "fake",
+        "recipe_sha256": "5c6d5ce479295d7fbea5d5a272abda13f0bfc74cd967a2b212a7e274cd25fd56",
+        "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+        "timeout_ms": 1000,
+        "unit_id": "unit"
+      },
+      "quota_windows": [
+        {
+          "accounted": {
+            "money_microusd": 0,
+            "repairs": 0,
+            "requests": 1,
+            "tokens": 5
+          },
+          "capacity": {
+            "money_microusd": 1000,
+            "repairs": 10,
+            "requests": 100,
+            "tokens": 1000
+          },
+          "reset_at_ms": 1793213801987,
+          "retry_at_ms": null,
+          "scope": {
+            "kind": "project",
+            "project_id": "project",
+            "provider": "fake"
+          },
+          "start_at_ms": 1793127400987,
+          "window_id": "project-day"
+        }
+      ],
+      "recovery": null,
+      "schema_version": 2
+    },
+    "result": {
+      "accounted_usage": {
+        "money_microusd": 0,
+        "repairs": 0,
+        "requests": 1,
+        "tokens": 5
+      },
+      "context": {
+        "credential_context_id": "slot-a",
+        "project_id": "project",
+        "provider": "fake"
+      },
+      "epoch_disposition": "current",
+      "identity": {
+        "epoch": 0,
+        "operation_id": "logical",
+        "repair": null,
+        "run_id": "0fcac5b8e6cae164332b8d3dafaac91407dea2a2eb86eedde832834876fd907c",
+        "transport_retry": null
+      },
+      "observed_usage": {
+        "input_tokens": null,
+        "money_microusd": null,
+        "output_tokens": null,
+        "requests": null,
+        "tokens": null
+      },
+      "quota_windows": [
+        {
+          "accounted": {
+            "money_microusd": 0,
+            "repairs": 0,
+            "requests": 1,
+            "tokens": 5
+          },
+          "capacity": {
+            "money_microusd": 1000,
+            "repairs": 10,
+            "requests": 100,
+            "tokens": 1000
+          },
+          "reset_at_ms": 1793213801987,
+          "retry_at_ms": null,
+          "scope": {
+            "kind": "project",
+            "project_id": "project",
+            "provider": "fake"
+          },
+          "start_at_ms": 1793127400987,
+          "window_id": "project-day"
+        }
+      ],
+      "recorded_at_ms": 1793127401994,
+      "recovery": {
+        "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+        "observed_at_ms": 1793127401994,
+        "provider_job_id": "job-1",
+        "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+        "status": "unknown"
+      },
+      "result": {
+        "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+        "completion": "ambiguous",
+        "diagnostic": "Offline injected transport observation; no product dispatch authorization.",
+        "elapsed_ms": 0,
+        "outputs": [],
+        "raw_response": {
+          "file": {
+            "bytes": 26,
+            "media_type": "application/octet-stream",
+            "path": "provider/receipts/64c948f053f6bd4dd9a9a6916512fd9a2ba74f46b119c2cf97ebc2fe9e965d1a.bin",
+            "sha256": "64c948f053f6bd4dd9a9a6916512fd9a2ba74f46b119c2cf97ebc2fe9e965d1a"
+          },
+          "id": "50129b34bafa8303a6e744c5d7055df61347663171ee62320ad2371dc94d36d5",
+          "provenance": "synthetic"
+        },
+        "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+        "response_sha256": "64c948f053f6bd4dd9a9a6916512fd9a2ba74f46b119c2cf97ebc2fe9e965d1a",
+        "started_at": "1793127401987",
+        "usage": null
+      },
+      "retry": null,
+      "schema_version": 2,
+      "started_at_ms": 1793127401987
+    }
+  },
+  "external_provider_calls": 0,
+  "fake_query_calls": 1,
+  "fake_submission_calls": 1,
+  "issue_provider_v2": {
+    "issued": {
+      "context": {
+        "credential_context_id": "slot-a",
+        "project_id": "project",
+        "provider": "fake"
+      },
+      "identity": {
+        "epoch": 0,
+        "operation_id": "logical",
+        "repair": null,
+        "run_id": "0fcac5b8e6cae164332b8d3dafaac91407dea2a2eb86eedde832834876fd907c",
+        "transport_retry": null
+      },
+      "operation": {
+        "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+        "estimate": {
+          "input_tokens": 2,
+          "money_microusd": 0,
+          "output_tokens": 3,
+          "requests": 1
+        },
+        "inputs": [],
+        "kind": "direction",
+        "model": "model",
+        "payload": {
+          "file": {
+            "bytes": 20,
+            "media_type": "application/json",
+            "path": "request.json",
+            "sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6"
+          },
+          "id": "96231ecb5ef1da6cfac9cd88befea38b0f9a4a0e67fcf3536af3a78928d2478e",
+          "provenance": "synthetic"
+        },
+        "provider": "fake",
+        "recipe_sha256": "5c6d5ce479295d7fbea5d5a272abda13f0bfc74cd967a2b212a7e274cd25fd56",
+        "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+        "timeout_ms": 1000,
+        "unit_id": "unit"
+      },
+      "quota_windows": [
+        {
+          "accounted": {
+            "money_microusd": 0,
+            "repairs": 0,
+            "requests": 1,
+            "tokens": 5
+          },
+          "capacity": {
+            "money_microusd": 1000,
+            "repairs": 10,
+            "requests": 100,
+            "tokens": 1000
+          },
+          "reset_at_ms": 1793213801987,
+          "retry_at_ms": null,
+          "scope": {
+            "kind": "project",
+            "project_id": "project",
+            "provider": "fake"
+          },
+          "start_at_ms": 1793127400987,
+          "window_id": "project-day"
+        }
+      ],
+      "recovery": null,
+      "schema_version": 2
+    },
+    "proposal": {
+      "estimate": {
+        "input_tokens": 2,
+        "money_microusd": 0,
+        "output_tokens": 3,
+        "requests": 1
+      },
+      "inputs": [],
+      "kind": "direction",
+      "model": "model",
+      "payload": {
+        "file": {
+          "bytes": 20,
+          "media_type": "application/json",
+          "path": "request.json",
+          "sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6"
+        },
+        "id": "96231ecb5ef1da6cfac9cd88befea38b0f9a4a0e67fcf3536af3a78928d2478e",
+        "provenance": "synthetic"
+      },
+      "provider": "fake",
+      "recipe_sha256": "5c6d5ce479295d7fbea5d5a272abda13f0bfc74cd967a2b212a7e274cd25fd56",
+      "schema_version": 2,
+      "timeout_ms": 1000
+    }
+  },
+  "production_approved": false,
+  "provenance": "synthetic",
+  "publication_enabled": false,
+  "recover_provider_v2": {
+    "request": {
+      "original": {
+        "context": {
+          "credential_context_id": "slot-a",
+          "project_id": "project",
+          "provider": "fake"
+        },
+        "identity": {
+          "epoch": 0,
+          "operation_id": "logical",
+          "repair": null,
+          "run_id": "0fcac5b8e6cae164332b8d3dafaac91407dea2a2eb86eedde832834876fd907c",
+          "transport_retry": null
+        },
+        "operation": {
+          "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+          "estimate": {
+            "input_tokens": 2,
+            "money_microusd": 0,
+            "output_tokens": 3,
+            "requests": 1
+          },
+          "inputs": [],
+          "kind": "direction",
+          "model": "model",
+          "payload": {
+            "file": {
+              "bytes": 20,
+              "media_type": "application/json",
+              "path": "request.json",
+              "sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6"
+            },
+            "id": "96231ecb5ef1da6cfac9cd88befea38b0f9a4a0e67fcf3536af3a78928d2478e",
+            "provenance": "synthetic"
+          },
+          "provider": "fake",
+          "recipe_sha256": "5c6d5ce479295d7fbea5d5a272abda13f0bfc74cd967a2b212a7e274cd25fd56",
+          "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+          "timeout_ms": 1000,
+          "unit_id": "unit"
+        },
+        "quota_windows": [
+          {
+            "accounted": {
+              "money_microusd": 0,
+              "repairs": 0,
+              "requests": 1,
+              "tokens": 5
+            },
+            "capacity": {
+              "money_microusd": 1000,
+              "repairs": 10,
+              "requests": 100,
+              "tokens": 1000
+            },
+            "reset_at_ms": 1793213801987,
+            "retry_at_ms": null,
+            "scope": {
+              "kind": "project",
+              "project_id": "project",
+              "provider": "fake"
+            },
+            "start_at_ms": 1793127400987,
+            "window_id": "project-day"
+          }
+        ],
+        "recovery": {
+          "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+          "observed_at_ms": 1793127401994,
+          "provider_job_id": "job-1",
+          "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+          "status": "unknown"
+        },
+        "schema_version": 2
+      },
+      "schema_version": 2
+    },
+    "result": {
+      "observer": {
+        "epoch": 0,
+        "run_id": "0fcac5b8e6cae164332b8d3dafaac91407dea2a2eb86eedde832834876fd907c",
+        "schema_version": 2,
+        "unit_id": "observer"
+      },
+      "original": {
+        "accounted_usage": {
+          "money_microusd": 0,
+          "repairs": 0,
+          "requests": 1,
+          "tokens": 5
+        },
+        "context": {
+          "credential_context_id": "slot-a",
+          "project_id": "project",
+          "provider": "fake"
+        },
+        "epoch_disposition": "current",
+        "identity": {
+          "epoch": 0,
+          "operation_id": "logical",
+          "repair": null,
+          "run_id": "0fcac5b8e6cae164332b8d3dafaac91407dea2a2eb86eedde832834876fd907c",
+          "transport_retry": null
+        },
+        "observed_usage": {
+          "input_tokens": null,
+          "money_microusd": null,
+          "output_tokens": null,
+          "requests": null,
+          "tokens": null
+        },
+        "quota_windows": [
+          {
+            "accounted": {
+              "money_microusd": 4,
+              "repairs": 0,
+              "requests": 2,
+              "tokens": 8
+            },
+            "capacity": {
+              "money_microusd": 1000,
+              "repairs": 10,
+              "requests": 100,
+              "tokens": 1000
+            },
+            "reset_at_ms": 1793213801987,
+            "retry_at_ms": null,
+            "scope": {
+              "kind": "project",
+              "project_id": "project",
+              "provider": "fake"
+            },
+            "start_at_ms": 1793127400987,
+            "window_id": "project-day"
+          }
+        ],
+        "recorded_at_ms": 1793127402003,
+        "recovery": {
+          "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+          "observed_at_ms": 1793127402003,
+          "provider_job_id": "job-1",
+          "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+          "status": "unknown"
+        },
+        "result": {
+          "attempt_id": "196b6b660239a52945485c354270571d541349c1df9295d5b0a9fb5d05a69872",
+          "completion": "ambiguous",
+          "diagnostic": "Offline injected transport observation; no product dispatch authorization.",
+          "elapsed_ms": 0,
+          "outputs": [],
+          "raw_response": {
+            "file": {
+              "bytes": 18,
+              "media_type": "application/octet-stream",
+              "path": "provider/receipts/ffb44e14483fe3d97071a6d00c1b63f34cd01b2b3a1328772044c3c0d7a99167.bin",
+              "sha256": "ffb44e14483fe3d97071a6d00c1b63f34cd01b2b3a1328772044c3c0d7a99167"
+            },
+            "id": "35957ada0ad78d97959b2e2f7998ac2251deae5d314f7ad0e784e729e14ad659",
+            "provenance": "synthetic"
+          },
+          "request_sha256": "52300f6fb1cf5cd4ccd7c2e80951c5107f4ff42aa34c3a850e5654a3c28924f6",
+          "response_sha256": "ffb44e14483fe3d97071a6d00c1b63f34cd01b2b3a1328772044c3c0d7a99167",
+          "started_at": "1793127401987",
+          "usage": null
+        },
+        "retry": null,
+        "schema_version": 2,
+        "started_at_ms": 1793127401987
+      },
+      "query_accounted_usage": {
+        "money_microusd": 4,
+        "repairs": 0,
+        "requests": 1,
+        "tokens": 3
+      },
+      "query_completion": "completed",
+      "query_id": "01b3274d1a490ad777f9d738e2f77539f04986e84c7c94a5319fa39817f41a70",
+      "query_observed_usage": {
+        "input_tokens": null,
+        "money_microusd": null,
+        "output_tokens": null,
+        "requests": null,
+        "tokens": null
+      },
+      "query_recorded_at_ms": 1793127402003,
+      "query_reserved_usage": {
+        "money_microusd": 4,
+        "repairs": 0,
+        "requests": 1,
+        "tokens": 3
+      },
+      "query_started_at_ms": 1793127401994,
+      "schema_version": 2
+    }
+  },
+  "schema_version": 1,
+  "task": "R17",
+  "test": "separately_bound_recovery_queries_once_and_caches_the_exact_private_wrapper"
+}

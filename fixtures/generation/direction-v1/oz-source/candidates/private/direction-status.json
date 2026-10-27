@@ -1,0 +1,124 @@
+{
+  "findings": [
+    {
+      "evidence": [],
+      "field": "direction",
+      "id": "unattributed-quoted-prose",
+      "message": "Quoted prose is not automatically a character performance; attribution remains unresolved.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "direction",
+      "id": "unattributed-quoted-prose",
+      "message": "Quoted prose is not automatically a character performance; attribution remains unresolved.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "direction",
+      "id": "unattributed-quoted-prose",
+      "message": "Quoted prose is not automatically a character performance; attribution remains unresolved.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "direction",
+      "id": "unattributed-quoted-prose",
+      "message": "Quoted prose is not automatically a character performance; attribution remains unresolved.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "direction",
+      "id": "picture:s0-coverage",
+      "message": "Complete source coverage is unresolved.",
+      "outcome": "fail"
+    },
+    {
+      "evidence": [],
+      "field": "direction",
+      "id": "beat-omission:b0",
+      "message": "An explicit omission remains a source-coverage review question; no accepted coverage is inferred.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "initial-reference-research",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "canonical-reference-applicability",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "direction-semantic-review",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "rendered-stage-clarity",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    }
+  ],
+  "observation": {
+    "bytes": 981,
+    "media_type": "application/json",
+    "path": "private/direction-observation.json",
+    "sha256": "85df569558fd7aa7b23698aed78a44c3ab4de9bdb8ee8eb02f330ded94fd6878"
+  },
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "provider_calls": 0,
+  "recipe": {
+    "bytes": 107,
+    "media_type": "application/json",
+    "path": "private/direction-recipe.json",
+    "sha256": "7acfa6f64a11022327dd8bad3862fdfe58eb3024cee9cfec0ee57b9071f603d4"
+  },
+  "registry": {
+    "bytes": 242,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "80985697c473a2449e718696017292dcd3ee174c04f79641824d3c979d464fb3"
+  },
+  "request": {
+    "bytes": 19827,
+    "media_type": "application/json",
+    "path": "private/direction-request.json",
+    "sha256": "67fe6a03f3810edb50e3dff13def118d0a66b6f51818b1ae2c0f36af962080fe"
+  },
+  "reveal_permissions": [],
+  "runtime_policy_authority": false,
+  "schema_version": 1,
+  "source": {
+    "bytes": 270211,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "71e8f7ba407cdedd8aec594e9973b10d864199f454d00a1d0a476ede8421cf92"
+  }
+}

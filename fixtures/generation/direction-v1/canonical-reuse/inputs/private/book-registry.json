@@ -1,0 +1,34 @@
+{
+  "book_id": "test-book",
+  "entities": [
+    {
+      "aliases": [
+        "Narrator"
+      ],
+      "id": "test-book:narrator",
+      "name": "Narrator",
+      "sprite": null,
+      "voice": null
+    },
+    {
+      "aliases": [
+        "Mira"
+      ],
+      "id": "test-book:mira",
+      "name": "Mira",
+      "sprite": null,
+      "voice": {
+        "file": {
+          "bytes": 57,
+          "media_type": "application/json",
+          "path": "private/canonical-voice.json",
+          "sha256": "d833436de924e8b7c8ea39c5b49ad7aed8692d0ca68716073eade011cb875a1a"
+        },
+        "id": "committed:test:private:canonical-voice.json",
+        "provenance": "synthetic"
+      }
+    }
+  ],
+  "revision": 1,
+  "schema_version": 1
+}

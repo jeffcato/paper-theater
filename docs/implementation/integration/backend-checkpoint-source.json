@@ -1,0 +1,4935 @@
+{
+  "schema_version": 1,
+  "task": "I20",
+  "captured_at": "2026-10-27T19:28:02.935272+00:00",
+  "baseline_commit": "4ffc5c1ab7e926b1d49406af89bfda15bbccda61",
+  "frozen_source_manifest_sha256": "82f1f74b2480292b87ac85155925e4ee53174b94965dc1fcb5144f472e950ab7",
+  "frozen_backend_patch_sha256": "c14907d487d889bbc335caf6bb4df649cd1762de442a52dc8cbc36ccc30b6cf5",
+  "handoff_policy": "Latest R17/G23 source pins match; older source pins remain historical and superseded where listed. No older test result is relabeled.",
+  "ui_player_baseline": {
+    "commit": "4ffc5c1ab7e926b1d49406af89bfda15bbccda61",
+    "player_revision": "committed baseline only; active player repairs/redesign excluded",
+    "root_lockfiles_changed": false,
+    "r12_browser_gate": "historically red: Nonpositive viewport; not rerun or cleared"
+  },
+  "versions": {
+    "service": "pt-services-v1.8.0",
+    "checker": "pt-acceptance-bindings-v4",
+    "checker_sha256": "ba96222b73e795a5e5dd5cfc80e3a4e653c2ec692d9c1a72ea1f39c4fb842ba5",
+    "report": 4,
+    "matrix": "pt-acceptance-required-v3"
+  },
+  "handoffs": [
+    {
+      "path": "docs/implementation/runtime/chapter-runtime-ready.json",
+      "task": "R16",
+      "sha256": "87f7a7f4caa0fd284159d4d0ff88cecc56296a29253455cf3574ec9b5829ce10",
+      "historical_revision": "pt-services-v1.7.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-contracts/src/acceptance.rs",
+          "historical_sha256": "487ed86f9cce5f553f7ae17f35f51232fb6a4afd1c5b5ac45c9cf783e67ac24b",
+          "frozen_sha256": "4a531d52bb667f66525c55d4bb76b5eb64d2d5ec7b686c6b2cff438f3d6bf0ad"
+        },
+        {
+          "path": "crates/pt-contracts/src/lib.rs",
+          "historical_sha256": "241f3d83675c6d5b68b7132c2732e86dda3654850b8136ad67efc87561c685f3",
+          "frozen_sha256": "49866b9a2dc6acece0520813204f071e563f6f2d17e4b68ecf27bf70183d98c6"
+        },
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "caaf30b2f009134e8e1f34e5ddbe7b45173f67e63c0d81f269a8cd5afc21a92e",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/mod.rs",
+          "historical_sha256": "5aeda115fafbfbed976ec3eafe790fca1e236e8c3709e34d59fa15f533f34833",
+          "frozen_sha256": "47b8a0570dcd4abe867ca8b04f218f0d09013b4aa9a4165bdddfa57316819ae6"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/runner.rs",
+          "historical_sha256": "b155dfeb43a98bb2482be68471cf9028155e36609b42feb282eed57f260c5b4b",
+          "frozen_sha256": "6a2c444fb518b60c66510f3e65a2a7dae068f46079bdefe5419a62177d5cdb5e"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/schema.sql",
+          "historical_sha256": "e6fd73e047417c64f99b747bf3c1ddc973094f7fad1894b4a2df557e897c06eb",
+          "frozen_sha256": "e313561f0222c8e308285d8388b9bc75adb69be2d43af6f14334d00866be5b73"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/runtime/presentation-runtime-ready.json",
+      "task": "R14",
+      "sha256": "df0fa75342fdb571e9ec93d859dc07ec5b0e58580fb4e4ca94616263051e1fb1",
+      "historical_revision": "pt-services-v1.5.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/runtime/runner.rs",
+          "historical_sha256": "634eca024f988aca6d083c9914ea658e6199871cfc516907e0ec0e932ec6a399",
+          "frozen_sha256": "6a2c444fb518b60c66510f3e65a2a7dae068f46079bdefe5419a62177d5cdb5e"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/mod.rs",
+          "historical_sha256": "717cdf2f0b8b1487bed1af783c763d71407b17834b86c19641f510a19878b8e7",
+          "frozen_sha256": "47b8a0570dcd4abe867ca8b04f218f0d09013b4aa9a4165bdddfa57316819ae6"
+        },
+        {
+          "path": "crates/pt-server/src/main.rs",
+          "historical_sha256": "d9498572f8ecac2957941b146f50b64f9f5b4649227ac296554ff648e9e7d098",
+          "frozen_sha256": "d79742577cfe679331c90bbeda7b26c40e5335ae9a2a466049a04605757b7fa1"
+        },
+        {
+          "path": "crates/pt-contracts/src/lib.rs",
+          "historical_sha256": "465192c99527882d83338427974f04f35e7ae2cfdc317c3dd55ae2d80c666fbc",
+          "frozen_sha256": "49866b9a2dc6acece0520813204f071e563f6f2d17e4b68ecf27bf70183d98c6"
+        },
+        {
+          "path": "crates/pt-contracts/src/services.rs",
+          "historical_sha256": "37d2876909b6a2fae91e05617757d4a0e7d8e2a0ecc5e61bd0f6c1944b49dd8d",
+          "frozen_sha256": "84ad6bb37163173d92019535a2446805e0529adad39c2007f1f7e6a6b30e9b12"
+        },
+        {
+          "path": "crates/pt-contracts/src/acceptance.rs",
+          "historical_sha256": "5fdeae08d2acae1bc5bee2cc0cab36f4548b0667b46adfff8d576be2f7248ae4",
+          "frozen_sha256": "4a531d52bb667f66525c55d4bb76b5eb64d2d5ec7b686c6b2cff438f3d6bf0ad"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/helper.rs",
+          "historical_sha256": "a9d0e243193c046fd0578b48e4312d849bebf9169a633a202a3600c773d2a69d",
+          "frozen_sha256": "cf81d2b8816982764a02226d90674fd9511bf6e977be3a33980b71f578cfc8c6"
+        },
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "b95a42b92f4e9da661a95dd8b9be2c20bdbaf93d2ed2d6f7f986d337c5346935",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/runtime/private-acceptance-ready.json",
+      "task": "R15",
+      "sha256": "7399cf950e2368a1e82828b5697890920f27087b469b80c6ec8fff16eaaaa6c0",
+      "historical_revision": "pt-services-v1.6.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/runtime/schema.sql",
+          "historical_sha256": "a0e47a80942dbb54662528cfe6166000a3b966806b42f832fcf66cc8bd447b73",
+          "frozen_sha256": "e313561f0222c8e308285d8388b9bc75adb69be2d43af6f14334d00866be5b73"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/runner.rs",
+          "historical_sha256": "2f21143b5506d45491383490824bd6e6f68e00e75047a13be6a67202124a8a6f",
+          "frozen_sha256": "6a2c444fb518b60c66510f3e65a2a7dae068f46079bdefe5419a62177d5cdb5e"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/mod.rs",
+          "historical_sha256": "b622c99bf2771e7188547903a8e565c5d54443f7fee62666a2bef8c54b253021",
+          "frozen_sha256": "47b8a0570dcd4abe867ca8b04f218f0d09013b4aa9a4165bdddfa57316819ae6"
+        },
+        {
+          "path": "crates/pt-server/src/main.rs",
+          "historical_sha256": "6057f49274f58c2ff62221f5ff7de8781e5ec70b647675c8143b9b012a492e4c",
+          "frozen_sha256": "d79742577cfe679331c90bbeda7b26c40e5335ae9a2a466049a04605757b7fa1"
+        },
+        {
+          "path": "crates/pt-contracts/src/acceptance.rs",
+          "historical_sha256": "4f8deed432dae8ae56b20c40eb43f51173bd85dea7d3b202987a79c18697ccd8",
+          "frozen_sha256": "4a531d52bb667f66525c55d4bb76b5eb64d2d5ec7b686c6b2cff438f3d6bf0ad"
+        },
+        {
+          "path": "crates/pt-contracts/src/lib.rs",
+          "historical_sha256": "7ea4bd29dc8376a988347f64c25a7e37d988ce78ad85a16d594c31c34cca1f62",
+          "frozen_sha256": "49866b9a2dc6acece0520813204f071e563f6f2d17e4b68ecf27bf70183d98c6"
+        },
+        {
+          "path": "crates/pt-production/src/runtime/helper.rs",
+          "historical_sha256": "a9d0e243193c046fd0578b48e4312d849bebf9169a633a202a3600c773d2a69d",
+          "frozen_sha256": "cf81d2b8816982764a02226d90674fd9511bf6e977be3a33980b71f578cfc8c6"
+        },
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "bddc6bc8083a10b6d29011b15ba0b960a08d457e9fc53ca827b347f1f274a29c",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/runtime/provider-service-ready.json",
+      "task": "R17",
+      "sha256": "ccd918b269d015b4d3b96ddab651d1c79eda7120f97e91a28cd04ef60d8fd7fd",
+      "historical_revision": "pt-services-v1.8.0",
+      "superseded_source_pins": []
+    },
+    {
+      "path": "docs/implementation/runtime/provider-v2-ready.json",
+      "task": null,
+      "sha256": "4d8cf821ba748ad6bdd5c978927335a62f804ada8632304ad6b07c2e302c576c",
+      "historical_revision": "pt-services-v1.3.0",
+      "superseded_source_pins": []
+    },
+    {
+      "path": "docs/implementation/runtime/runtime-ready.json",
+      "task": null,
+      "sha256": "8fc3c078ae9becf97e264863b8ea44c9d4a7327f26f0a3279d0d3d205c64650d",
+      "historical_revision": "pt-services-v1.2.0",
+      "superseded_source_pins": []
+    },
+    {
+      "path": "docs/implementation/generation/acceptance-proposals-ready.json",
+      "task": "G20",
+      "sha256": "c2eac4a2ca194fda0aa8542eb153b01e17f071cee0d068f430ed9c210368f787",
+      "historical_revision": "pt-services-v1.5.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "32ab33a47ea3c57f6e1997961c235663b9bf4b4d9d9f17d8e417c51bc897cf7d",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/generation/tests.rs",
+          "historical_sha256": "6e3064a70cf0e1c31752a54fa217ba5c8f40466d4ea25473272212c1d408c47a",
+          "frozen_sha256": "deba6455f1d50da38f4b3080b99447a0b825772195a0aca026da887487d7e694"
+        },
+        {
+          "path": "crates/pt-production/src/generation/tests/acceptance_proposals.rs",
+          "historical_sha256": "88a0821d1d1a55c5d948f3fb23abdc9b1824341666c3f3c960a394cff479154d",
+          "frozen_sha256": "9b4fca2b1452d716c969699727ddf5ebc473a9822d5cbfc8167502c7bfac4b44"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/generation/acoustic-stage-ready.json",
+      "task": null,
+      "sha256": "2d1f91422ef9a60d6a9ed068b56a5271a546e1168b354f00d6c7d3b73d9e89e5",
+      "historical_revision": "pt-services-v1.3.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "23ab88281c3ad292c75030214ffb834dc186ba74faa552318051581da3e30b1c",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/generation/acoustic.rs",
+          "historical_sha256": "01494ee738525a6014fb0fdad883fb8359cd58b69fd02c25201f7b93123f97dd",
+          "frozen_sha256": "4649ad3da1516e6abde68b7503fba7114eb0a1199977857454512fca16708a1a"
+        },
+        {
+          "path": "crates/pt-production/src/generation/acoustic_tests.rs",
+          "historical_sha256": "d75daf56f3972ddd380aeaf729f7a512e57fb339acb030e457b8526d9c0cc45a",
+          "frozen_sha256": "7307695b2b5151a37b5d74140cd61cf0759ff78d2de0f6b168d8c91c0daf23fd"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/generation/chapter-acoustic-ready.json",
+      "task": "G19",
+      "sha256": "c25523f961a432911310371fb16bd28bfb1f72ba7ff1d114194bf6f94a7da03a",
+      "historical_revision": "pt-services-v1.5.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "b95a42b92f4e9da661a95dd8b9be2c20bdbaf93d2ed2d6f7f986d337c5346935",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/generation/acoustic_tests.rs",
+          "historical_sha256": "f175a9afffb6a0491533b884f0ebe9dfd134e7aceb73a7f79f0555f903d3ba34",
+          "frozen_sha256": "7307695b2b5151a37b5d74140cd61cf0759ff78d2de0f6b168d8c91c0daf23fd"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/generation/chapter-import-ready.json",
+      "task": "G21",
+      "sha256": "d3565537bb22c13a824ca03f74e1f2bb135d67cb5f242e591625cdcfdb14f465",
+      "historical_revision": "pt-services-v1.6.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "bddc6bc8083a10b6d29011b15ba0b960a08d457e9fc53ca827b347f1f274a29c",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/generation/tests/acceptance_proposals.rs",
+          "historical_sha256": "faf0d5096e000e3ef9f3777e119a1681dce1c5639ac6116394f78282ca2fd3d1",
+          "frozen_sha256": "9b4fca2b1452d716c969699727ddf5ebc473a9822d5cbfc8167502c7bfac4b44"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/generation/direction-ready.json",
+      "task": "G22",
+      "sha256": "0006824fd810f655453a664e8e81dbda734af23ac58f0ec8b366311ad728610b",
+      "historical_revision": "pt-services-v1.8.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "caaf30b2f009134e8e1f34e5ddbe7b45173f67e63c0d81f269a8cd5afc21a92e",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/generation/tests.rs",
+          "historical_sha256": "dc1e4b822efda6b9e16e57490a9ab120be9af0062530ac92020b1e615048a0ca",
+          "frozen_sha256": "deba6455f1d50da38f4b3080b99447a0b825772195a0aca026da887487d7e694"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/generation/master-capacity-ready.json",
+      "task": "G17",
+      "sha256": "73c635706822a4da90160ca9877ceead5115d6221e7494dba2097590957ca48f",
+      "historical_revision": "pt-services-v1.3.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "1bb40b1fd66c405af17d313868b3a426bbe1dc7dcec612db72d0ff4dd6f04591",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/generation/tests.rs",
+          "historical_sha256": "69b3348405bdcd62af206c72eb414af76a6b2936199d0300a703ecc9ee8af623",
+          "frozen_sha256": "deba6455f1d50da38f4b3080b99447a0b825772195a0aca026da887487d7e694"
+        },
+        {
+          "path": "crates/pt-production/src/generation/tests/master_capacity.rs",
+          "historical_sha256": "9f811a46a3a1875facca631bf60fc9eab076d2b1cf063c8b9d142e3c47b1f163",
+          "frozen_sha256": "d41ff543b211005d701d7d5020afe6b6fa43887e83559f21f8b6050eda57021f"
+        }
+      ]
+    },
+    {
+      "path": "docs/implementation/generation/pilot-ready.json",
+      "task": "G23",
+      "sha256": "2de976e6c5e2f22ec2a7c05f8060b3fe1c5ad3909c3873a39c54331fc0dc27a0",
+      "historical_revision": "pt-services-v1.8.0",
+      "superseded_source_pins": []
+    },
+    {
+      "path": "docs/implementation/generation/presentation-evidence-ready.json",
+      "task": "G18",
+      "sha256": "a9652c9ad889c0f957f55ee23066b4dde4d66009f203836d1154e3a9ef253428",
+      "historical_revision": "pt-services-v1.3.0",
+      "superseded_source_pins": [
+        {
+          "path": "crates/pt-production/src/generation/mod.rs",
+          "historical_sha256": "4e179e81e7ee705ddb324c9f41806a6947ff3c7adbeb1bf9eca1d32ff3ccad5d",
+          "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4"
+        },
+        {
+          "path": "crates/pt-production/src/generation/acoustic_tests.rs",
+          "historical_sha256": "fd0ac13fd20d43285faedbc7857ce386e3a6dc3f9d87de12812bc288f7d8de38",
+          "frozen_sha256": "7307695b2b5151a37b5d74140cd61cf0759ff78d2de0f6b168d8c91c0daf23fd"
+        }
+      ]
+    }
+  ],
+  "frozen_backend_files": [
+    {
+      "path": "crates/pt-production/src/runtime/acceptance/compilation.rs",
+      "sha256": "e288afe6c2608532ea6faee0337272a1f0d44155d9e03cfca3bed53bc536dab3",
+      "bytes": 16155
+    },
+    {
+      "path": "crates/pt-production/src/runtime/acceptance.rs",
+      "sha256": "bc4b2e037bf8f41d30fb5a36c74e5f8b5a28962fb05bdbafc46d02b21dbe1e7f",
+      "bytes": 20161
+    },
+    {
+      "path": "crates/pt-production/src/runtime/acceptance_tests.rs",
+      "sha256": "a1f93f6567dce36077d0ca9d664a30ab0ff8a47729e3cb1655f1c36f520f0eda",
+      "bytes": 27567
+    },
+    {
+      "path": "crates/pt-production/src/runtime/acoustic_pipeline_tests.rs",
+      "sha256": "527c81e59ee6953fd65cd6073e25b7e317b0c55888b8c3c08a194c2beb3af857",
+      "bytes": 12136
+    },
+    {
+      "path": "crates/pt-production/src/runtime/broker.rs",
+      "sha256": "1f2bfcf14918e79bb59b818a6beefb5e23260a2329acdfec6822e46832a640b7",
+      "bytes": 19015
+    },
+    {
+      "path": "crates/pt-production/src/runtime/chapter/mod.rs",
+      "sha256": "2de3d3671687c01aa6acc82a684563733cb5051e1a725062cd4bf04ded3027f8",
+      "bytes": 23719
+    },
+    {
+      "path": "crates/pt-production/src/runtime/chapter/services.rs",
+      "sha256": "8d2379dded3db3b89ad7e337804906e9ab6e70fc07d893d67e62bc9e18abd122",
+      "bytes": 14251
+    },
+    {
+      "path": "crates/pt-production/src/runtime/chapter/verify.rs",
+      "sha256": "b5bd364c6170039dd88cb0166a952220fdc94e37ff1126395dbb0924f7ef5ccb",
+      "bytes": 24210
+    },
+    {
+      "path": "crates/pt-production/src/runtime/chapter/worker.rs",
+      "sha256": "004e0dfaf6c6c869018782df5b554973ec2865ea71e6af7ac2d520d714657075",
+      "bytes": 7005
+    },
+    {
+      "path": "crates/pt-production/src/runtime/chapter_tests.rs",
+      "sha256": "8787caaa2891d27f8a7bd356ba3efdb8a9ba26a1b8abaf33a2ebadb330b2e8f7",
+      "bytes": 39169
+    },
+    {
+      "path": "crates/pt-production/src/runtime/fixture.rs",
+      "sha256": "ac78ad3b68dc3ac5704849fbc37df7325fa3d892f63b24e5b73be6cdf7848f10",
+      "bytes": 18433
+    },
+    {
+      "path": "crates/pt-production/src/runtime/helper.rs",
+      "sha256": "cf81d2b8816982764a02226d90674fd9511bf6e977be3a33980b71f578cfc8c6",
+      "bytes": 12274
+    },
+    {
+      "path": "crates/pt-production/src/runtime/master_wav_tests.rs",
+      "sha256": "92f03e206fed05fa8a4584aea73e415238afcc05201a2e9f442cb1bc989bd982",
+      "bytes": 20813
+    },
+    {
+      "path": "crates/pt-production/src/runtime/media.rs",
+      "sha256": "2bfe0b644c0559faaeebcbe9f72d303fe8a8438c579d87b879edad4e709b484f",
+      "bytes": 6702
+    },
+    {
+      "path": "crates/pt-production/src/runtime/mod.rs",
+      "sha256": "47b8a0570dcd4abe867ca8b04f218f0d09013b4aa9a4165bdddfa57316819ae6",
+      "bytes": 1098
+    },
+    {
+      "path": "crates/pt-production/src/runtime/presentation.rs",
+      "sha256": "5abcc87170a4b019ae8ee9ed8860c5708786a8a47ef633ea38ee89b3868412c1",
+      "bytes": 11432
+    },
+    {
+      "path": "crates/pt-production/src/runtime/presentation_pipeline_tests.rs",
+      "sha256": "17cc22911a133f39901fb275706985bc9b92c282d464c0ba2e6af71ebaa6430b",
+      "bytes": 21033
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_service.rs",
+      "sha256": "02338f2f3f5f9f9a5d7af4370d1f0edb3438b0d4f30c2f34a3dd1e04dfbfa6c6",
+      "bytes": 6660
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_service_tests.rs",
+      "sha256": "19f772099ec9effb048c4d502b49b0c6e8a43817be40ddc8963c2b7d3b8a19a7",
+      "bytes": 62774
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2/legacy.rs",
+      "sha256": "730d0341b29f6773a4e7fda87b04cbc7e6e4980c6cf7076e48e6bb855209d176",
+      "bytes": 7757
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2/recovery.rs",
+      "sha256": "8d6b0608f4ce86fa95d124e3cb2d94f5086c1c9ccba0fe62bc4c9e336956f22a",
+      "bytes": 16912
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2.rs",
+      "sha256": "1c4605de3bd002b0c1e6fc4a8d2c1f76a577a5a14fe8678f049a76da11534534",
+      "bytes": 50953
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2_tests.rs",
+      "sha256": "936e2aa9436b220e7706fcbfec3b453613498fc0e3af9ca8d847dca664a1c22a",
+      "bytes": 57645
+    },
+    {
+      "path": "crates/pt-production/src/runtime/publication.rs",
+      "sha256": "dc6cab301cf2e8f1fa0d4f7c5169a3b8dd3e512961a7c7eaf9c2ee540a9ec856",
+      "bytes": 13385
+    },
+    {
+      "path": "crates/pt-production/src/runtime/runner.rs",
+      "sha256": "6a2c444fb518b60c66510f3e65a2a7dae068f46079bdefe5419a62177d5cdb5e",
+      "bytes": 38485
+    },
+    {
+      "path": "crates/pt-production/src/runtime/schema.sql",
+      "sha256": "e313561f0222c8e308285d8388b9bc75adb69be2d43af6f14334d00866be5b73",
+      "bytes": 6443
+    },
+    {
+      "path": "crates/pt-production/src/runtime/store.rs",
+      "sha256": "e7c2341cc17baf0745f87a3d255a9d7a4bf007e1e76ce920603be3c51959c2a3",
+      "bytes": 26063
+    },
+    {
+      "path": "crates/pt-production/src/runtime/tests.rs",
+      "sha256": "bc5e2525d114376c924f39d255c2fd5ef71da7fafbdd75bf36502e351f5f4c99",
+      "bytes": 32900
+    },
+    {
+      "path": "crates/pt-production/src/generation/acceptance_proposals.rs",
+      "sha256": "45e3d36c1e2dbb0a5e0472b6de5555b537182286dd8acfc413ccb1fbb418d5fa",
+      "bytes": 30081
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic.rs",
+      "sha256": "4649ad3da1516e6abde68b7503fba7114eb0a1199977857454512fca16708a1a",
+      "bytes": 22153
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_bundle.rs",
+      "sha256": "695da1d767f6ea3ba7c60b68b26034189c909c310c7de756c7e33ff72633c10f",
+      "bytes": 20753
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_facts.rs",
+      "sha256": "7d6f1985365ff0188efecb86790e2646bb3dab385152520b7b80648ccaa50e96",
+      "bytes": 32277
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_tests/chapter_bundle.rs",
+      "sha256": "ec3aa869e15e2b9ac6aeebe0769f9d23e2bd0f09e90d9b61093124ac3b977965",
+      "bytes": 17004
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_tests/chapter_import.rs",
+      "sha256": "c8951688e7a38db02c4b4715436fd94b3200a797bd4bea67e7c50038f95e0f11",
+      "bytes": 17922
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_tests/presentation.rs",
+      "sha256": "5ad1937afdce7d674cf1f71d72a772d417c0b343bfe6a435b889588aae362ea8",
+      "bytes": 23894
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_tests/presentation_math.rs",
+      "sha256": "d0741a04e7ca0c297d4dc0a709b19fd9cae6db081657482734d3f6319a0ca66f",
+      "bytes": 6867
+    },
+    {
+      "path": "crates/pt-production/src/generation/acoustic_tests.rs",
+      "sha256": "7307695b2b5151a37b5d74140cd61cf0759ff78d2de0f6b168d8c91c0daf23fd",
+      "bytes": 47498
+    },
+    {
+      "path": "crates/pt-production/src/generation/chapter_import.rs",
+      "sha256": "c280f9e725b56aaf879ee84a2acec632d659de11d97997d7f9d3f6550a8d7573",
+      "bytes": 37044
+    },
+    {
+      "path": "crates/pt-production/src/generation/direction.rs",
+      "sha256": "0d3b1d2d78939563bca1c4d926d30ef91f7601fbde270289b008e20cd7d7e9b7",
+      "bytes": 38446
+    },
+    {
+      "path": "crates/pt-production/src/generation/inputs.rs",
+      "sha256": "7026acf90cc7779adc09755f79581d8bf1f19c1f1336adbfe2446571c02973f3",
+      "bytes": 5898
+    },
+    {
+      "path": "crates/pt-production/src/generation/mod.rs",
+      "sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4",
+      "bytes": 10913
+    },
+    {
+      "path": "crates/pt-production/src/generation/pilot.rs",
+      "sha256": "905f1cc3accb77449a0885879fdd7740909b2742dab02312abff3c74349060fb",
+      "bytes": 25986
+    },
+    {
+      "path": "crates/pt-production/src/generation/pilot_direction.rs",
+      "sha256": "91cc144f68dba5a2479bdb8e5ec43a3c48d342d9e5e82be6b21c232fcfd689a8",
+      "bytes": 4215
+    },
+    {
+      "path": "crates/pt-production/src/generation/pilot_evidence.rs",
+      "sha256": "2d9f48db1c279396ae9c2026e0cb48e9c5ae926e292e9b645cacd28a3342b2b7",
+      "bytes": 7271
+    },
+    {
+      "path": "crates/pt-production/src/generation/pilot_provider.rs",
+      "sha256": "f12f42ac1a88d7ca4bdd6cfee5c53f1e84be4548eee3089c4b9d7b0422953148",
+      "bytes": 9893
+    },
+    {
+      "path": "crates/pt-production/src/generation/presentation.rs",
+      "sha256": "8415f8da7052484598b7949b6da82281c97c827ffed9e1d2dea3535c7e778b30",
+      "bytes": 18026
+    },
+    {
+      "path": "crates/pt-production/src/generation/presentation_pcm.rs",
+      "sha256": "d65a9f996bec571ad7be8b55e94bea34338016141d979cc9a048aa7366d8736b",
+      "bytes": 10795
+    },
+    {
+      "path": "crates/pt-production/src/generation/source.rs",
+      "sha256": "291f63044de741a4c9e4afb1bf7539ea7a60675b7072599770f08411c9303100",
+      "bytes": 3203
+    },
+    {
+      "path": "crates/pt-production/src/generation/tests/acceptance_proposals.rs",
+      "sha256": "9b4fca2b1452d716c969699727ddf5ebc473a9822d5cbfc8167502c7bfac4b44",
+      "bytes": 38281
+    },
+    {
+      "path": "crates/pt-production/src/generation/tests/direction.rs",
+      "sha256": "5cd1025ba4997e00bc61667b786be6e89ed062e695dae9025e55781781047766",
+      "bytes": 47321
+    },
+    {
+      "path": "crates/pt-production/src/generation/tests/master_capacity.rs",
+      "sha256": "d41ff543b211005d701d7d5020afe6b6fa43887e83559f21f8b6050eda57021f",
+      "bytes": 24938
+    },
+    {
+      "path": "crates/pt-production/src/generation/tests/pilot.rs",
+      "sha256": "89f86f974c6836f62a94af493a9cc392f53a19d62e7c5ff2978692cd2ee42799",
+      "bytes": 49795
+    },
+    {
+      "path": "crates/pt-production/src/generation/tests.rs",
+      "sha256": "deba6455f1d50da38f4b3080b99447a0b825772195a0aca026da887487d7e694",
+      "bytes": 12913
+    },
+    {
+      "path": "crates/pt-server/Cargo.toml",
+      "sha256": "420c29a0ee9fd2efda9a51b2cd7a811fc92144c6e0ec2d2e0404c504d7383afe",
+      "bytes": 508
+    },
+    {
+      "path": "crates/pt-server/src/lib.rs",
+      "sha256": "0f5dc509f8c22825e08a87b167af4d97b98a7d55b97135f78a8629124f6efb0e",
+      "bytes": 16235
+    },
+    {
+      "path": "crates/pt-server/src/main.rs",
+      "sha256": "d79742577cfe679331c90bbeda7b26c40e5335ae9a2a466049a04605757b7fa1",
+      "bytes": 4496
+    },
+    {
+      "path": "crates/pt-server/src/master_wav_tests.rs",
+      "sha256": "03be378007df99e949e2b50567a0ec0cb927049a5f552376ceb93657d7a106b6",
+      "bytes": 8469
+    },
+    {
+      "path": "crates/pt-server/src/tests.rs",
+      "sha256": "63fbd75695165186ce5d9a67d7772d6a1ba13501e9bd60dd11d44306eede0d1c",
+      "bytes": 8462
+    },
+    {
+      "path": "crates/pt-server/tests/chapter_runtime_process.py",
+      "sha256": "d8cd9be315e59567c717aea926198eb65b5beb82346ce762ad7fb5a0debf591c",
+      "bytes": 6088
+    },
+    {
+      "path": "fixtures/runtime/chapter_wav.rs",
+      "sha256": "dcc9c9be106b8e471bec9f3d6d57eeaf195ba13a85e27d77c62d6c6a4d991895",
+      "bytes": 955
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/README.md",
+      "sha256": "97259654d6204b78fbea986ec898ab564f49e9ad7dda7f77b54a7f526f617450",
+      "bytes": 1610
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/acceptance-context.json",
+      "sha256": "d23d3c6840a83cdcf76ab4ca66b509cbc08ad2d4a51de3dcd8fbeaf7d765e2af",
+      "bytes": 3184
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/private/acceptance-evidence-inventory.json",
+      "sha256": "80e57e0bfcffe25d8090c1694b4f390c6ac3f99eb08ae334e5ef366be625d7b8",
+      "bytes": 2563
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/private/acceptance-facts.json",
+      "sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+      "bytes": 701
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/private/acceptance-proposal-status.json",
+      "sha256": "ce5e4577e3dec87c8d9cb7beb8787c82ae99d3603aed6e27fd8438b417538c89",
+      "bytes": 5392
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/private/acceptance-proposals.json",
+      "sha256": "724d65e0dd7eec80f401508f9fe4fb52244cbc886288028e9210c4e2ee8d1357",
+      "bytes": 2407
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/private/authored-acceptance.json",
+      "sha256": "968a7b383ce2e73751024f7a54e3f953b3e4d8aab0f276782a61e5b858091444",
+      "bytes": 9807
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/public-allowlist.json",
+      "sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+      "bytes": 2314
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v1/scopes.json",
+      "sha256": "7e8e3b400073a85760c81c828c42d9158d1da133cda429d5499d952d6318bcc9",
+      "bytes": 13821
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/README.md",
+      "sha256": "08cd272ad48d8a8b27405f7eb3aad725e812c588ae6a2aebb411deb4c89f2f54",
+      "bytes": 1032
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/acceptance-context.json",
+      "sha256": "26349f87420d08a86215fe93d85db385b41e7956b19fb67b7b1cc489f3607afd",
+      "bytes": 3184
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/private/acceptance-evidence-inventory.json",
+      "sha256": "8219be685e075c54dc391dbdf0c92ac68fd164f666798b8383301e1fb08d72ea",
+      "bytes": 2563
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/private/acceptance-facts.json",
+      "sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+      "bytes": 701
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/private/acceptance-proposal-status.json",
+      "sha256": "4cf32e7c286b4d4a59ddc78e46d33295045b7266a84cc21abb6076df60e2ac27",
+      "bytes": 5392
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/private/acceptance-proposals.json",
+      "sha256": "4ea89099d6745cde6296b1c0c6ce73c87fce6cceef7743a1dda91517de2dbecb",
+      "bytes": 2407
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/private/authored-acceptance.json",
+      "sha256": "968a7b383ce2e73751024f7a54e3f953b3e4d8aab0f276782a61e5b858091444",
+      "bytes": 9807
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/public-allowlist.json",
+      "sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+      "bytes": 2314
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v2/scopes.json",
+      "sha256": "d023b01cfc11fab00d52ce4f457d4a730b861b795722dab4c3186db373ccdc8e",
+      "bytes": 13821
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/README.md",
+      "sha256": "0ebe02f55bde7fb7ecb5419acfa1a2c252ad113754d26b5a79643cae46247f43",
+      "bytes": 739
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/acceptance-context.json",
+      "sha256": "bba8b90405fedf1de2e2284f028d894d14acc54e56f5fe4d1abda5a2fe89d0f0",
+      "bytes": 3184
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/private/acceptance-evidence-inventory.json",
+      "sha256": "5fa2e9309c517debfc1ead72f253471302f65464453579da2be07bf0361d4a59",
+      "bytes": 2563
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/private/acceptance-facts.json",
+      "sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+      "bytes": 701
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/private/acceptance-proposal-status.json",
+      "sha256": "476f4081aed83b64c64d15b787071022cd7b7dcbac1aa3989775749431d45e98",
+      "bytes": 5392
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/private/acceptance-proposals.json",
+      "sha256": "9b1aaeb931d4ff5a89f08478900d6a8833470585ebae840d5c653ac8c235b237",
+      "bytes": 2407
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/private/authored-acceptance.json",
+      "sha256": "968a7b383ce2e73751024f7a54e3f953b3e4d8aab0f276782a61e5b858091444",
+      "bytes": 9807
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/public-allowlist.json",
+      "sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+      "bytes": 2314
+    },
+    {
+      "path": "fixtures/generation/acceptance-proposals-v3/scopes.json",
+      "sha256": "f0a676bef6705b60ccbb899bf4d195687bab5acdef5acd072c60f36eaaddf934",
+      "bytes": 13821
+    },
+    {
+      "path": "fixtures/generation/acoustic/excerpt.wav",
+      "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "bytes": 2902604
+    },
+    {
+      "path": "fixtures/generation/acoustic/manifest.json",
+      "sha256": "f08b128a1f3418a6a8a2b498f6fa0e3880bd689ca04e66eb8ff95c2405605244",
+      "bytes": 8541
+    },
+    {
+      "path": "fixtures/generation/acoustic/meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.json",
+      "sha256": "057a44521f631af4da9cbd8b286d26da6892560d3ecbf5ae7da0a72aad679021",
+      "bytes": 2717
+    },
+    {
+      "path": "fixtures/generation/acoustic/meta/6126383911bd148299580f11c7e61fc6cd29f4a2f4097c6c04015900e886c599.receipt.json",
+      "sha256": "c4eabb83b8d63a4fd7175ab717bb9296f36741a21e41d896fd800be3440f64ea",
+      "bytes": 417
+    },
+    {
+      "path": "fixtures/generation/acoustic/replay.json",
+      "sha256": "30e4d6e6fbee8a244fb8e21b74beff2ff0a6350c4f67f318aa560b974fc1f2a5",
+      "bytes": 82133
+    },
+    {
+      "path": "fixtures/generation/acoustic/segmented-acoustic-report.json",
+      "sha256": "a691296eb3561e8c826a43e541c34f175e98170164e0563d65e98f3ef1f0f10f",
+      "bytes": 147112
+    },
+    {
+      "path": "fixtures/generation/acoustic/source.txt",
+      "sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "bytes": 960
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/0663273f73f0a3003dd6d374766954c22dc7cbd3d2dd5e79db87dc83fb303c2b.json",
+      "sha256": "3b676e9cedeb5bc892d40954ec4fffeee6f0863e4886d4ddc62395ab669391fb",
+      "bytes": 1565
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/0663273f73f0a3003dd6d374766954c22dc7cbd3d2dd5e79db87dc83fb303c2b.receipt.json",
+      "sha256": "c281b6b93f79db0024dbdfdcc16241a6dd871bd4415eda2f86e74e2c702df96a",
+      "bytes": 838
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.json",
+      "sha256": "dec9a270e7267c34ebeadfc8cc2e28c16f6bfa1ef0bac32518cb7670bcd3c363",
+      "bytes": 1388
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/237343d44781b1492e64119f07d488e43eef958e60f90b29819484db44009dd0.receipt.json",
+      "sha256": "68e652205eee66a18db2d192bc8a9e2dc5e1d4cf5eeb4ba3e8fcdf9a78d48c15",
+      "bytes": 839
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/3b4d0e81677368117239350e3db95a56e4e9b2802369f88ce4b45cd858337d47.json",
+      "sha256": "343bc6935feccd66ac8db80e86e0a735b8dc3bb1d73340dea5d249bca623ff4d",
+      "bytes": 1546
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/3b4d0e81677368117239350e3db95a56e4e9b2802369f88ce4b45cd858337d47.receipt.json",
+      "sha256": "3a71b76012b948a3ef2346d35a618d0546cfe6059e2830cca6762bcdc716c7dd",
+      "bytes": 839
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/5642160d7f739b0b8def60a7be69604b01971058878a1cf5a2dac0c20fd6b903.json",
+      "sha256": "c26ce0ce44d7d014edbe2cb3de9fe542cc0282ec901003c5419ef957d0571605",
+      "bytes": 1576
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/5642160d7f739b0b8def60a7be69604b01971058878a1cf5a2dac0c20fd6b903.receipt.json",
+      "sha256": "75ba3a676ccc5e3832ae8a53c84762dba69064dc30f34b085711acb8cbc4f2a1",
+      "bytes": 841
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/8ea3c4763e090159e1878b9adea1b8e7ef09149486d1aab99a7ac1049943af76.json",
+      "sha256": "78ca45c98635ff3746ffd345a2f5cc0f2b73b6c6fc6e9336027f1bffe07326d3",
+      "bytes": 2856
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/8ea3c4763e090159e1878b9adea1b8e7ef09149486d1aab99a7ac1049943af76.receipt.json",
+      "sha256": "d0f8f3f25c1d3d49b308252787892cbb424e68f898a570753078ee5fbf0beec3",
+      "bytes": 840
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.json",
+      "sha256": "e8c6664dc6b5b871f8cc2cc0d7c7220620378a62cb5a2b46d15431b0bb4ae64f",
+      "bytes": 1077
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/a383270e732ce14382e2fbbd09f6e4ed0ff295e8cc5dad5753f85e604ef5fb2d.receipt.json",
+      "sha256": "7776b53238b2cf558042a03dc9b1b6e12d24915de2b5d300b71c8688c968b12f",
+      "bytes": 839
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/bd57f9a164eedf7bdb7d8f02c7b3c68abaa31b7e8afce3324aa98ec2bdec2b5c.json",
+      "sha256": "8798c03fd1fe46d702f5b05c34d61d3def82992762aff866ad04b10efbaac871",
+      "bytes": 14580
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/bd57f9a164eedf7bdb7d8f02c7b3c68abaa31b7e8afce3324aa98ec2bdec2b5c.receipt.json",
+      "sha256": "77cfbb34422db4394d41807efc53ead1b79c1c1db1c672b82fa7be768e1ef723",
+      "bytes": 842
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/bd655bd8ae23383981c56e7fbe5e602d7304862df4b5aa26f2b95fe30522dc98.json",
+      "sha256": "c11c0a3869fe3f72443fe4f2304eac615080bb3b4c75262b1a1f25ddd72d36de",
+      "bytes": 4838
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/bd655bd8ae23383981c56e7fbe5e602d7304862df4b5aa26f2b95fe30522dc98.receipt.json",
+      "sha256": "9e3b1f3b3ce6f7df8622f2d457757e48d66c0711ba7068d865cf8560b9b73503",
+      "bytes": 843
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/c432b25e0e92b9f7b5899b774b8f66c40ce652c3fd2d6fa821b501e21fdf4df6.json",
+      "sha256": "49f2b010419ca2b29e8e9b10b205eee67ea0a67f68c9be4a5cf4c6addfd8e12b",
+      "bytes": 1708
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/c432b25e0e92b9f7b5899b774b8f66c40ce652c3fd2d6fa821b501e21fdf4df6.receipt.json",
+      "sha256": "a7d441dc03cc8a6e8727218e21cc465cb4c56db4252255f2017636945348286a",
+      "bytes": 839
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/d081645107f6707cff2efc0d327d890401613786be5f434ab183e63cf4bd5eae.json",
+      "sha256": "d107c4e6e36c19cbc02f289ad606aa03bddb28d79c0032496223f3a189f7ddb4",
+      "bytes": 3984
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/d081645107f6707cff2efc0d327d890401613786be5f434ab183e63cf4bd5eae.receipt.json",
+      "sha256": "e60adf2bf5b7006a5663a4ccc0f1f360da9789294c5504c43c177a4170a36184",
+      "bytes": 843
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/d0cbed6de55eebc871d91c0b99dfd5f6a87989c4f267c505d33f678a832e2c66.json",
+      "sha256": "6cf2ae838ae0416a2ffee44940b1ede6ee692899124bff50cd02929d75741fdd",
+      "bytes": 1564
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/d0cbed6de55eebc871d91c0b99dfd5f6a87989c4f267c505d33f678a832e2c66.receipt.json",
+      "sha256": "10f8fceedb99aecb98b166be385fcec486122019016f3f42b42238f6c51f1df7",
+      "bytes": 838
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.json",
+      "sha256": "12f8518adab21afb240169407afdcf982ed1873110d4b717a634567a6149c731",
+      "bytes": 1072
+    },
+    {
+      "path": "fixtures/generation/acoustic/transcribe/de715e94e7aadd052e6b0cd2c788d73bb28057b21efd68a0f8837d221e1da775.receipt.json",
+      "sha256": "afd89164389888382444f00047feee7add501ff4c85dd302c2dc07583a452e45",
+      "bytes": 839
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-007.wav",
+      "sha256": "93bf9a7c439c2123b60c0fdb2e1a47ba9fe8b7bdeea17199aea9d7a7749fb2d4",
+      "bytes": 111404
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-008.wav",
+      "sha256": "31f256e0b73b4df8b4e606f78758d1bbc86831987fb1613f729bfb1f33e15134",
+      "bytes": 107564
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-009.wav",
+      "sha256": "8c9bb9a0430ce0625e27bea441f0b199a7310afe81522e9478ceaccf10ca3d02",
+      "bytes": 76844
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-010.wav",
+      "sha256": "996631581f40e2e5c4a2777597fe66f861eead4177bb5b84aab1563c87f68fbd",
+      "bytes": 82604
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-011.wav",
+      "sha256": "e6da65ac9e4e903dd4fdb30fec887ae1abd9064b8fbadc797cc32c77f2b60801",
+      "bytes": 157484
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-012.wav",
+      "sha256": "e797efc5725cf6737c6a6be6083bde6e817c7abcabaf6cd54597c5549cc05190",
+      "bytes": 268844
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-013.wav",
+      "sha256": "01ca45ab173328267b8d251fc99430b17014d2bc8099f925d3426db69edd2a27",
+      "bytes": 67244
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-014.wav",
+      "sha256": "93365d5d528504d497001255373f8020d0f4b711ee1b0aaf8db5805330f2cd62",
+      "bytes": 65324
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-015.wav",
+      "sha256": "fd88943457e6a71527909d830f766cc15cf6fc7d3966c719de46525a25afa4ef",
+      "bytes": 78764
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-016.wav",
+      "sha256": "0303858dfbeec3305affd5f791d94e1a74c8a4d59083abf62f410478bcb7cbff",
+      "bytes": 1057964
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-017.wav",
+      "sha256": "83a057099f3d4b74bd71bf22eb92a589231517acdc5f1146a910704272406a36",
+      "bytes": 195884
+    },
+    {
+      "path": "fixtures/generation/acoustic/units/turn-018.wav",
+      "sha256": "07c56fb769d4ec02b42133d03bba4b7435df1c44a2832af3ee950d5936b30035",
+      "bytes": 501164
+    },
+    {
+      "path": "fixtures/generation/acoustic-facts-v1/source-facts.json",
+      "sha256": "e77c04d2448cb0b7095533d76108fd85115e4e7fdfba3db0cbfa90b23d683b3b",
+      "bytes": 2729
+    },
+    {
+      "path": "fixtures/generation/capture/inventory.json",
+      "sha256": "687f9b32cdc1aed98a9946f2f22abc50d6eb02f3b6e3cb850a3adaac18bbfa03",
+      "bytes": 126521
+    },
+    {
+      "path": "fixtures/generation/capture/state-probe.json",
+      "sha256": "a36d530fd44ab89af91983a243d522658f9991e0b1e1fcc759ff446426aaddf1",
+      "bytes": 131269
+    },
+    {
+      "path": "fixtures/generation/capture-readiness-v2/inventory.json",
+      "sha256": "e832c55134446372bd132f2cef796d01b14d711e2201fcdba26c2eccb5916cd2",
+      "bytes": 126712
+    },
+    {
+      "path": "fixtures/generation/capture-readiness-v2/state-probe.json",
+      "sha256": "ff1e20fcacf0cbd4c86c42b4b80168ccef98fe06405ead4d31cd570f496e7735",
+      "bytes": 131893
+    },
+    {
+      "path": "fixtures/generation/chapter-acoustic-v1/bundle-verification.json",
+      "sha256": "6e95d5629044a46f68f5d94a0d4803d0c9c9a125e4630a1813cd7c914d32fe15",
+      "bytes": 3082
+    },
+    {
+      "path": "fixtures/generation/chapter-acoustic-v1/chapter-acoustic-validation.json",
+      "sha256": "6359e979b80872c3a4544d337a5841e4931c1b83f80f037b68011ce494954a6e",
+      "bytes": 79816
+    },
+    {
+      "path": "fixtures/generation/chapter-acoustic-v1/chapter-helper-record.json",
+      "sha256": "4a7fcbe847d6a6fa306f60862782d64336408bfc4e365ac53e717bd530519119",
+      "bytes": 43357
+    },
+    {
+      "path": "fixtures/generation/chapter-acoustic-v1/chapter-index.json",
+      "sha256": "068d47a0f7400859de904c13a4ee9699af966c8d67d34279f3e11bdff98d002b",
+      "bytes": 21074
+    },
+    {
+      "path": "fixtures/generation/chapter-acoustic-v1/chapter-unit.json",
+      "sha256": "6a3f92b3265115bf8e7884ddfd32105139a2f1f85c22c3e1f47a248940c04f2d",
+      "bytes": 9536
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/README.md",
+      "sha256": "90a7d71b5beeed3098214661c7d44463aab31efea253e6dcf1ad9141a3296430",
+      "bytes": 1670
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/chapter-import-index.json",
+      "sha256": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+      "bytes": 2631
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/chapter-context.json",
+      "sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+      "bytes": 22393
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/chapter-import-verification.json",
+      "sha256": "c4d035d107053db5e61a31d05efc5b1e1f0f5bef8015d1892cccf9ddb9840d53",
+      "bytes": 1050
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/chunks/chunk-0000.wav",
+      "sha256": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/chunks/chunk-0001.wav",
+      "sha256": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/chunks/chunk-0002.wav",
+      "sha256": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/chunks/chunk-0003.wav",
+      "sha256": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/chapter-evidence.json",
+      "sha256": "71994d1024dafb84207576a462e8ce9590a4dfef42d9ce3a354de3f444d582e7",
+      "bytes": 5900
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-independent.receipt.json",
+      "sha256": "fb60e7d59f2b077ae7978b3fc350a0fdd0e0d62dc57fd8ff6ec25456289a03bd",
+      "bytes": 432
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-independent.recipe",
+      "sha256": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+      "bytes": 31
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-independent.request.json",
+      "sha256": "c08bd12de06ae3762536e8094308cc28e705014415f8acfd290390950df7c724",
+      "bytes": 171
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-independent.response.json",
+      "sha256": "c486143d010bd115812a580ace4d4c9f787e3827d2d099270959ef2044d216b5",
+      "bytes": 153
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-primary.receipt.json",
+      "sha256": "e8c2d8fe2bad2fbcb8f2d7bcaabd4bc83c2ed782e50723ee41897bf2ed3d0f94",
+      "bytes": 424
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-primary.recipe",
+      "sha256": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+      "bytes": 27
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-primary.request.json",
+      "sha256": "d6ba94c4232a521f443d66a7ea74c8c3c6f0b8b46e718de1664209cb93e9c3e1",
+      "bytes": 163
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/0-primary.response.json",
+      "sha256": "8a4d098a565a8b8eb868e53d2b1bc4a9fcc23871ce578b4cfea0ff1f56cd7bd9",
+      "bytes": 465
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-independent.receipt.json",
+      "sha256": "c684d494a3cfa48a5e09cef3e20876de5054bcf293516075d9c9df4b0612f681",
+      "bytes": 432
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-independent.recipe",
+      "sha256": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+      "bytes": 31
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-independent.request.json",
+      "sha256": "29c75df5bdac231f4b44c61d47b7ad5c4f64f9c011ba84693d266c6cb66a3655",
+      "bytes": 171
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-independent.response.json",
+      "sha256": "5683fdd79c1e19571f452dc4b56fb6ae462333436e46d4a57e7785b904ec6e39",
+      "bytes": 149
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-primary.receipt.json",
+      "sha256": "06fd34310d1af16609a1faccba5f714e11be78612613f913374e3ef1c73c8af3",
+      "bytes": 424
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-primary.recipe",
+      "sha256": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+      "bytes": 27
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-primary.request.json",
+      "sha256": "f8194d8a8e5682b20741967609e736034670721ac0d2fac54deeb3f340854384",
+      "bytes": 163
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/1-primary.response.json",
+      "sha256": "2957f5c0a4b486830fdfaf0f362e773a62aa3fc543cd2cb5ba835213cd96aebe",
+      "bytes": 530
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-independent.receipt.json",
+      "sha256": "7faae12130d498faf8d7d2b36da876c8c230055047ea0f972661db5b852c67b8",
+      "bytes": 432
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-independent.recipe",
+      "sha256": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+      "bytes": 31
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-independent.request.json",
+      "sha256": "a66ed434b0d96f3ad141117eb94f15747127593705420b3ad748d2283d42fc31",
+      "bytes": 171
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-independent.response.json",
+      "sha256": "6f93e537f420edd78166b4af7c553a6fe4061ec608e07c43ae18cdc40ecaf1d9",
+      "bytes": 123
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-primary.receipt.json",
+      "sha256": "2c7a650620715c364f0ea87105d95ab9db5d6d8562ef0d771d3bd32c83c30028",
+      "bytes": 424
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-primary.recipe",
+      "sha256": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+      "bytes": 27
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-primary.request.json",
+      "sha256": "3c4ec6bb097bf9fef2f007fe77db1aff9fc33e0be395fea60b381f7cdb2571c1",
+      "bytes": 163
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/originals/raw/2-primary.response.json",
+      "sha256": "7e44dd286068a8e990ac266760ae2883c54644a16005f5479146b60197ed2728",
+      "bytes": 459
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/private/source.txt",
+      "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+      "bytes": 104
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/records/chunk-0000.json",
+      "sha256": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6",
+      "bytes": 4110
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/records/chunk-0001.json",
+      "sha256": "c95f1c21e824f106109fabe4bce3605bf32350f1a7bf4530580758da967a398a",
+      "bytes": 4576
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/records/chunk-0002.json",
+      "sha256": "15fe1c917a7265cb3485f4603176e1d30d4ff657c0678991c9b627fac646bcb9",
+      "bytes": 4593
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/records/chunk-0003.json",
+      "sha256": "dd72aff8678381d55a894b136ae111eedaf7a211599a46cbac2717cab3d43fba",
+      "bytes": 4135
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/units/chunk-0000.json",
+      "sha256": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+      "bytes": 1466
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/units/chunk-0001.json",
+      "sha256": "6fc7c99f3bab32cb4bad174d43255bfab4b44f5b02959443243226d8f9565262",
+      "bytes": 1466
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/units/chunk-0002.json",
+      "sha256": "d169bbe1f7c33eed37ca107c7335439f9f50fba1b50b20f4fd8530ed02ffbe02",
+      "bytes": 1466
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/bundle/units/chunk-0003.json",
+      "sha256": "cc79ad4e56c3417e6066a864afb59f8101f9327b9d2a404443bed1e06d0baade",
+      "bytes": 1466
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/chapter-evidence.json",
+      "sha256": "71994d1024dafb84207576a462e8ce9590a4dfef42d9ce3a354de3f444d582e7",
+      "bytes": 5900
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/chapter.wav",
+      "sha256": "c497956a5270297a1b1bd2393d0f609c5804bd18019bab62450ac1525aa55aa7",
+      "bytes": 48044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-independent.receipt.json",
+      "sha256": "fb60e7d59f2b077ae7978b3fc350a0fdd0e0d62dc57fd8ff6ec25456289a03bd",
+      "bytes": 432
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-independent.recipe",
+      "sha256": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+      "bytes": 31
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-independent.request.json",
+      "sha256": "c08bd12de06ae3762536e8094308cc28e705014415f8acfd290390950df7c724",
+      "bytes": 171
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-independent.response.json",
+      "sha256": "c486143d010bd115812a580ace4d4c9f787e3827d2d099270959ef2044d216b5",
+      "bytes": 153
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-primary.receipt.json",
+      "sha256": "e8c2d8fe2bad2fbcb8f2d7bcaabd4bc83c2ed782e50723ee41897bf2ed3d0f94",
+      "bytes": 424
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-primary.recipe",
+      "sha256": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+      "bytes": 27
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-primary.request.json",
+      "sha256": "d6ba94c4232a521f443d66a7ea74c8c3c6f0b8b46e718de1664209cb93e9c3e1",
+      "bytes": 163
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/0-primary.response.json",
+      "sha256": "8a4d098a565a8b8eb868e53d2b1bc4a9fcc23871ce578b4cfea0ff1f56cd7bd9",
+      "bytes": 465
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-independent.receipt.json",
+      "sha256": "c684d494a3cfa48a5e09cef3e20876de5054bcf293516075d9c9df4b0612f681",
+      "bytes": 432
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-independent.recipe",
+      "sha256": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+      "bytes": 31
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-independent.request.json",
+      "sha256": "29c75df5bdac231f4b44c61d47b7ad5c4f64f9c011ba84693d266c6cb66a3655",
+      "bytes": 171
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-independent.response.json",
+      "sha256": "5683fdd79c1e19571f452dc4b56fb6ae462333436e46d4a57e7785b904ec6e39",
+      "bytes": 149
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-primary.receipt.json",
+      "sha256": "06fd34310d1af16609a1faccba5f714e11be78612613f913374e3ef1c73c8af3",
+      "bytes": 424
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-primary.recipe",
+      "sha256": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+      "bytes": 27
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-primary.request.json",
+      "sha256": "f8194d8a8e5682b20741967609e736034670721ac0d2fac54deeb3f340854384",
+      "bytes": 163
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/1-primary.response.json",
+      "sha256": "2957f5c0a4b486830fdfaf0f362e773a62aa3fc543cd2cb5ba835213cd96aebe",
+      "bytes": 530
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-independent.receipt.json",
+      "sha256": "7faae12130d498faf8d7d2b36da876c8c230055047ea0f972661db5b852c67b8",
+      "bytes": 432
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-independent.recipe",
+      "sha256": "48c38f235ce2fa4c95d730faae4a6827381499924d4d199edb4c4b91e497e357",
+      "bytes": 31
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-independent.request.json",
+      "sha256": "a66ed434b0d96f3ad141117eb94f15747127593705420b3ad748d2283d42fc31",
+      "bytes": 171
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-independent.response.json",
+      "sha256": "6f93e537f420edd78166b4af7c553a6fe4061ec608e07c43ae18cdc40ecaf1d9",
+      "bytes": 123
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-primary.receipt.json",
+      "sha256": "2c7a650620715c364f0ea87105d95ab9db5d6d8562ef0d771d3bd32c83c30028",
+      "bytes": 424
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-primary.recipe",
+      "sha256": "e15954b9473298db0750662ba734cc3dee4504afda19839a43b40e3b22e55889",
+      "bytes": 27
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-primary.request.json",
+      "sha256": "3c4ec6bb097bf9fef2f007fe77db1aff9fc33e0be395fea60b381f7cdb2571c1",
+      "bytes": 163
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/raw/2-primary.response.json",
+      "sha256": "7e44dd286068a8e990ac266760ae2883c54644a16005f5479146b60197ed2728",
+      "bytes": 459
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/source.txt",
+      "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+      "bytes": 104
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/turns/speech-0.wav",
+      "sha256": "a4276dd31752f69968899a2ac95af10fb19ff37b1d2969eea9a0a6b8e2dfcd69",
+      "bytes": 16044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/turns/speech-1.wav",
+      "sha256": "eab62c5fee604b7c4d03bfa261c080c928691b5f80899b8a57c149565a0ae022",
+      "bytes": 16044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/producer-inputs/turns/speech-2.wav",
+      "sha256": "e0638f7c1156a28afff4f187e3e89f7cbe46b2a1fbe2c9cff4be23390f7fc195",
+      "bytes": 16044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/chapter-import-helper-record.json",
+      "sha256": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6",
+      "bytes": 4110
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/chapter-import-index.json",
+      "sha256": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+      "bytes": 2631
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/chapter-import-unit.json",
+      "sha256": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+      "bytes": 1466
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chapter-context.json",
+      "sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+      "bytes": 22393
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chapter-import-evidence-inventory.json",
+      "sha256": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d",
+      "bytes": 44
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chapter-import-proposals.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chapter-import-validation.json",
+      "sha256": "a1425fc7bbc0a20cc9ff0fc0ad1cb9ff6d613089f517cafa3e496ad945e01ad0",
+      "bytes": 9379
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chunks/chunk-0000.wav",
+      "sha256": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chunks/chunk-0001.wav",
+      "sha256": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chunks/chunk-0002.wav",
+      "sha256": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/chunks/chunk-0003.wav",
+      "sha256": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+      "bytes": 12044
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage/private/source.txt",
+      "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+      "bytes": 104
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage-input.json",
+      "sha256": "bfcb9f647cbb979e4daa177b08677a0514c43f40408d9ff0e74528c64a1a4461",
+      "bytes": 3391
+    },
+    {
+      "path": "fixtures/generation/chapter-import-v2/stage-output.json",
+      "sha256": "43982d61cb3d7b0f05ebdf45b0bb1e8cb244aa2db040fcc847ec57081a797aea",
+      "bytes": 8959
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/acceptance.json",
+      "sha256": "11da7c3b91a7864f83e881986b3713c8b9e233b2fac72bdfd0973ae15429ae40",
+      "bytes": 12573
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/actors.json",
+      "sha256": "f12d379de7b2686ffb77c40cde0ad3d5792e16ab4f382c35173ac073c66cc398",
+      "bytes": 714
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/assets/figure.png",
+      "sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "bytes": 815524
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/audio/master.wav",
+      "sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+      "bytes": 13050284
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/bible.json",
+      "sha256": "a4326cf7d9b609d264683751896f71dccf6fb8b56d41ce1777424ad931b96aca",
+      "bytes": 120
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/captions.vtt",
+      "sha256": "31392bb749d5ecdd7f76cfb2b0fabe62b58a01df39390fda74822137373d20db",
+      "bytes": 67
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/credits.json",
+      "sha256": "08025c30ce2789e0a18d748152855e1d2d04161b9e472c8d3926ffab4bf20946",
+      "bytes": 647
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/diagnostic-document.json",
+      "sha256": "61c35f88695a6ce4412385997a1490c31dc4b464d2ee2b5650e074ebe1890a41",
+      "bytes": 116218
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/evidence/alignment.json",
+      "sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "bytes": 65183
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/inventory.json",
+      "sha256": "94316f801ba86d1b1fe5620d70f20d00dcbcbba3e4b8bc18fcf9f905dde6bd85",
+      "bytes": 2667
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/manifest.json",
+      "sha256": "43d2ef3351715980c66ad2cbe0c502c1ba4ff9792b00ca0bcf3e60b42aa3a78a",
+      "bytes": 4399
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/package-candidate.json",
+      "sha256": "db227573eb7e4e237bdfb0ea58b21d224dd4571f8a9e62b6aeabf412ceaab6ff",
+      "bytes": 14059
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/poster.svg",
+      "sha256": "73f19185bb534dfe74dbec4eef3537df475ece269c8aa5e4e77d1af914dc9f4d",
+      "bytes": 109
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/presentation-map.json",
+      "sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+      "bytes": 601
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/profile.json",
+      "sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "bytes": 1180
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/read-along.json",
+      "sha256": "80e6882b1839c6c756718986a6066d8ad6b0614c94eaa99bc2ed99ac8dc2277f",
+      "bytes": 75457
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/shell.json",
+      "sha256": "80c3b0c61f67fa9bc62f84efe2830b5ff74f0686cc5f9772732543a17baccf4b",
+      "bytes": 5000
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/source.txt",
+      "sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "bytes": 960
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/stages.json",
+      "sha256": "838a22f52b049055223762d49a91cf7a0d47785cd7a5fd349c26cd6f9b66296e",
+      "bytes": 192
+    },
+    {
+      "path": "fixtures/generation/diagnostic-candidate/timeline.json",
+      "sha256": "60f8e8d78768aad014b38e13cdc3a6e36674cac52b6f56b880e8800dde0a0f1a",
+      "bytes": 6513
+    },
+    {
+      "path": "fixtures/generation/direction-v1/README.md",
+      "sha256": "66395eb429dc760cf84b3776fa3c794829ea8968015ba595ec24dfabe35edc29",
+      "bytes": 1874
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/candidates/private/direction-plan.json",
+      "sha256": "563cf639f2f0d9c3e0028f5cef604630c8535624b8ac251fa9fd83afd82cb77e",
+      "bytes": 12689
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/candidates/private/direction-provider-proposal.json",
+      "sha256": "43150350cdca6cc84d288dc793c0c936bca0993b45ce355f5bad2b61d4c9046d",
+      "bytes": 2498
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/candidates/private/direction-request-handoff.json",
+      "sha256": "7e356956daec50b44405a66fc640c4a8ec18a87ef720725b397d843d1d0e3c35",
+      "bytes": 2625
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/candidates/private/direction-request.json",
+      "sha256": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638",
+      "bytes": 14418
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/candidates/private/direction-status.json",
+      "sha256": "16b9e0d316776af0a3aa660f1d7276f1b4832c2a6a015f42dfd08f55293532d0",
+      "bytes": 3022
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/input-index.json",
+      "sha256": "8b9a0844bae820dd2dd6c2183284def0d408833fe4b0d0b33ba1ac51f0a23de9",
+      "bytes": 4797
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/clean-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/frozen-source.json",
+      "sha256": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+      "bytes": 2282
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/private/book-registry.json",
+      "sha256": "f59ee4d2d9bc4b206692795da0c59e1bf5bbbe84d5dfa5eb9ff8d9ef04ad7ef9",
+      "bytes": 733
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/private/canonical-voice.json",
+      "sha256": "d833436de924e8b7c8ea39c5b49ad7aed8692d0ca68716073eade011cb875a1a",
+      "bytes": 57
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/private/direction-context.json",
+      "sha256": "4fbde386952c739fd354b3b248b0a1f174c8141a05e76b374294bc96553a1f08",
+      "bytes": 851
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/private/direction-observation.json",
+      "sha256": "6f3b0e4d1aa411deaff171dc0be4dd7b75fcbd59a8d9b8f0c4b08a16b0e98de7",
+      "bytes": 1170
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/private/direction-recipe.json",
+      "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+      "bytes": 61
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/private/direction-request.json",
+      "sha256": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638",
+      "bytes": 14418
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/private/direction-response.json",
+      "sha256": "d46e6fbe980711d5db6d2b182c88dff052921a172a93deeeb34a7820584edd50",
+      "bytes": 3251
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/raw-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/inputs/source.json",
+      "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+      "bytes": 3949
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/stage-input.json",
+      "sha256": "f8a304e0b08db21c04ac3bcf6d8f33dad34b1fc9c75cc26acc0c21f9ab7bcd6d",
+      "bytes": 4051
+    },
+    {
+      "path": "fixtures/generation/direction-v1/canonical-reuse/stage-output.json",
+      "sha256": "e8033ce35cdbf35fa25c5d4590c55d747fc14937965ec19113d86bdc56161737",
+      "bytes": 3886
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/candidates/private/direction-plan.json",
+      "sha256": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42",
+      "bytes": 12149
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/candidates/private/direction-provider-proposal.json",
+      "sha256": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+      "bytes": 2498
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/candidates/private/direction-request-handoff.json",
+      "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+      "bytes": 2625
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/candidates/private/direction-request.json",
+      "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+      "bytes": 14049
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/candidates/private/direction-status.json",
+      "sha256": "06d97191393c66d408a1828d44ac5251d6e780a8fe89454e4f89ea9f5b6bc568",
+      "bytes": 2833
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/input-index.json",
+      "sha256": "314c53745d17c2a27188149b7b6ba15afdac1c075c9293052ea750dc3793a7ec",
+      "bytes": 4279
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/clean-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/frozen-source.json",
+      "sha256": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+      "bytes": 2282
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/book-registry.json",
+      "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+      "bytes": 400
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-context.json",
+      "sha256": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d",
+      "bytes": 851
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-observation.json",
+      "sha256": "e5ac2537dd5b3b7a348a2b8a434117a0cfc3ff6d21b9509ea85a714d9fb1270e",
+      "bytes": 980
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-recipe.json",
+      "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+      "bytes": 61
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-request.json",
+      "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+      "bytes": 14049
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-response.json",
+      "sha256": "abe575162b96adf765ee6f9c2eb6d8417d6114e8e1a5064e0af20d6868ffd37d",
+      "bytes": 3251
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/raw-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/inputs/source.json",
+      "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+      "bytes": 3949
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/stage-input.json",
+      "sha256": "ad6eca4177a4796d02c95f3d0171a11b367ec53a15a50227d1d721f03a0587fa",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/direction-v1/dialogue/stage-output.json",
+      "sha256": "2ff9881acd2c4f5ea83946f23cfb48154a29d0bdc89feddd207a560426c3a78a",
+      "bytes": 3698
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/candidates/private/direction-plan.json",
+      "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2",
+      "bytes": 9391
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/candidates/private/direction-provider-proposal.json",
+      "sha256": "acc32a14bb6e39f5f142c666273e43076fe2a38260e2e9075c681894e52e5315",
+      "bytes": 2498
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/candidates/private/direction-request-handoff.json",
+      "sha256": "9c1cfbd536a208b4dfca0e99ae1160afe38b6134fd5b3f8f9315040ca9bfc340",
+      "bytes": 2625
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/candidates/private/direction-request.json",
+      "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef",
+      "bytes": 14041
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/candidates/private/direction-status.json",
+      "sha256": "db728d4b81ed52ec18da7ef3cbfd8614a23779f8286d35453cdec863fe2d8854",
+      "bytes": 2833
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/input-index.json",
+      "sha256": "8f9234cbe88b0b178a05e671552cbdebf4d56531dd9417b364d6289c896de2db",
+      "bytes": 4339
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/clean-source.txt",
+      "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+      "bytes": 47
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/frozen-source.json",
+      "sha256": "dc5ee12ebf4a29e7e5516907d6bd1070eb5c0d2a92e0f56886772387b9d889a9",
+      "bytes": 2098
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/private/book-registry.json",
+      "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+      "bytes": 400
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/private/direction-context.json",
+      "sha256": "e755225a78516d516f1e647ac868577760ca9c2cc7c8bf39683e23bc20772988",
+      "bytes": 851
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/private/direction-observation.json",
+      "sha256": "72918eb8cacb1308d3f76b33833fe0154c9dbc9d3bd204c0a16bcc3270d5cecd",
+      "bytes": 980
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/private/direction-recipe.json",
+      "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+      "bytes": 61
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/private/direction-request.json",
+      "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef",
+      "bytes": 14041
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/private/direction-response.json",
+      "sha256": "ffc1e3e8ff25a2d4c98d4a6ded4b72812cdfc66421dd9b061e135b067e6eefe0",
+      "bytes": 2537
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/raw-source.txt",
+      "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+      "bytes": 47
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/inputs/source.json",
+      "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/stage-input.json",
+      "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/direction-v1/narration-only/stage-output.json",
+      "sha256": "c087bd9f24a81715429a4342ecab4e5eefbb9b864f26004d6e65a851886183e0",
+      "bytes": 3697
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/candidates/private/direction-plan.json",
+      "sha256": "08d5ff58be99cc3060a1a4b894e1f9d2e3830590db07ae085ec375202350cff2",
+      "bytes": 55729
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/candidates/private/direction-provider-proposal.json",
+      "sha256": "7ddd82a559b396b76698119535585135ac1595f6cdafb2507f2274ced5659cc9",
+      "bytes": 2510
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/candidates/private/direction-request-handoff.json",
+      "sha256": "36e6307617d10a9905915cd2913bd87d4510c2ed79f423fc2b4c1f1cb731a533",
+      "bytes": 2637
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/candidates/private/direction-request.json",
+      "sha256": "67fe6a03f3810edb50e3dff13def118d0a66b6f51818b1ae2c0f36af962080fe",
+      "bytes": 19827
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/candidates/private/direction-status.json",
+      "sha256": "19aee47a0bea0ae90dc86bc3fe98ad7c73ba6e1a52505c61fe8289c1c73116cd",
+      "bytes": 4236
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/input-index.json",
+      "sha256": "c90c7c748796a1a5655ab61ca2193e19ea4c701650aef6bfce6967479a2aac04",
+      "bytes": 4227
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/inputs/private/book-registry.json",
+      "sha256": "80985697c473a2449e718696017292dcd3ee174c04f79641824d3c979d464fb3",
+      "bytes": 242
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-context.json",
+      "sha256": "7a7e546f9a89a31be44e86214d051d3b9805214cb93ca5f26998645ba647daa2",
+      "bytes": 850
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-observation.json",
+      "sha256": "85df569558fd7aa7b23698aed78a44c3ab4de9bdb8ee8eb02f330ded94fd6878",
+      "bytes": 981
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-recipe.json",
+      "sha256": "7acfa6f64a11022327dd8bad3862fdfe58eb3024cee9cfec0ee57b9071f603d4",
+      "bytes": 107
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-request.json",
+      "sha256": "67fe6a03f3810edb50e3dff13def118d0a66b6f51818b1ae2c0f36af962080fe",
+      "bytes": 19827
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/inputs/private/direction-response.json",
+      "sha256": "18864852affad1368d85ba3655caffb3d3cc8fccf7652b36258bc2e833441ea6",
+      "bytes": 19332
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/inputs/source.json",
+      "sha256": "71e8f7ba407cdedd8aec594e9973b10d864199f454d00a1d0a476ede8421cf92",
+      "bytes": 270211
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/stage-input.json",
+      "sha256": "a871ae6f519c381a95847d7bc3c557823481ac5e35faf462e6394eeef1c10085",
+      "bytes": 3738
+    },
+    {
+      "path": "fixtures/generation/direction-v1/oz-source/stage-output.json",
+      "sha256": "7c152c7348570956d2b137e7153a89d74948b12dd193e8ba73d416dcb63712d7",
+      "bytes": 5098
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-observation.json",
+      "sha256": "67c09bb702f5c9debe8be5a61a2d3a48029d1fbc9efa759d631d67a713c69aca",
+      "bytes": 7144
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-plan.json",
+      "sha256": "f692c285835d15f696a3c0bacf5ff48d1b77d0424f8047a19943683529399bbe",
+      "bytes": 12150
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-provider-proposal.json",
+      "sha256": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+      "bytes": 2498
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-request-handoff.json",
+      "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+      "bytes": 2625
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-request.json",
+      "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+      "bytes": 14049
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/candidates/private/direction-status.json",
+      "sha256": "b2a5f4e5eafd55887d79b55a849311baff7d7090a1afad37c2bc7b29bec7c674",
+      "bytes": 2837
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/input-index.json",
+      "sha256": "3958d95d3b78c36d99c5b1cdf1bda9f3c021ebab0eb4a90e4da5affaf764d04b",
+      "bytes": 3883
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/clean-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/frozen-source.json",
+      "sha256": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+      "bytes": 2282
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/private/book-registry.json",
+      "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+      "bytes": 400
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/private/direction-context.json",
+      "sha256": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d",
+      "bytes": 851
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/private/direction-recipe.json",
+      "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+      "bytes": 61
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/private/direction-request.json",
+      "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+      "bytes": 14049
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/private/direction-response.json",
+      "sha256": "abe575162b96adf765ee6f9c2eb6d8417d6114e8e1a5064e0af20d6868ffd37d",
+      "bytes": 3251
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/raw-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/inputs/source.json",
+      "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+      "bytes": 3949
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/stage-input.json",
+      "sha256": "33ac9aad67d36123c4540af98f42bfcc140c769524f0ef693d35d363629f3564",
+      "bytes": 3385
+    },
+    {
+      "path": "fixtures/generation/direction-v1/provider-double/stage-output.json",
+      "sha256": "eacc0190f1a4868a3fb9354807e6ded7f16cc8f0085625c618efbfde1e996c97",
+      "bytes": 4063
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/candidates/private/direction-request-handoff.json",
+      "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+      "bytes": 2625
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/candidates/private/direction-request.json",
+      "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+      "bytes": 14049
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/candidates/private/direction-status.json",
+      "sha256": "5673f64b7bfd877807d8322637d0c423a2cbe9b8b093ce805f5afc1b8c3596e2",
+      "bytes": 3138
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/input-index.json",
+      "sha256": "691c0f08ed62ed8249aedeade9fbf20f6ad564686d9ba5331b2cf7fc89bc3562",
+      "bytes": 3411
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/clean-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/frozen-source.json",
+      "sha256": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04",
+      "bytes": 2282
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/private/book-registry.json",
+      "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+      "bytes": 400
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/private/direction-context.json",
+      "sha256": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d",
+      "bytes": 851
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/private/direction-recipe.json",
+      "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+      "bytes": 61
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/private/direction-response.json",
+      "sha256": "abe575162b96adf765ee6f9c2eb6d8417d6114e8e1a5064e0af20d6868ffd37d",
+      "bytes": 3251
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/raw-source.txt",
+      "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+      "bytes": 55
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/inputs/source.json",
+      "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893",
+      "bytes": 3949
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/stage-input.json",
+      "sha256": "cfc2a1433b0e6b9184196c7e71dbe8a7a1b1f6f670fec43a0f9802e1f583af6c",
+      "bytes": 3055
+    },
+    {
+      "path": "fixtures/generation/direction-v1/request-phase/stage-output.json",
+      "sha256": "90e92ef1bed5865fb6ffb6f19d167ca4e3d24d84734d4376fa187a97ca5acf8b",
+      "bytes": 3461
+    },
+    {
+      "path": "fixtures/generation/direction-v1/response-schema.json",
+      "sha256": "d9e78068ba7717691307250707c50855a59b1ea8f4f58b58b2258f099bb4da8a",
+      "bytes": 11141
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/candidates/private/direction-plan.json",
+      "sha256": "99d8949a68dc79786239b134d8df7e906122748e4dfbbb3395476405dab79def",
+      "bytes": 83319
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/candidates/private/direction-provider-proposal.json",
+      "sha256": "79cf79d9ef5b372ac84b947ae143e7dcb0a0a372c56be3082d4f78f3242ef1e7",
+      "bytes": 2511
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/candidates/private/direction-request-handoff.json",
+      "sha256": "ba36645292189fef1f01f6ac5e68d1955db6ce702657dca4445ae20a7c9ce868",
+      "bytes": 2638
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/candidates/private/direction-request.json",
+      "sha256": "8727f8a7670ca9ced897afef7ff4a74be033ab91ce6c740acde00ff70ab83c5e",
+      "bytes": 26533
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/candidates/private/direction-status.json",
+      "sha256": "8ccfef1d4755e7f1b36794b15ddd2830b94410351da96affdc2fff92c31de22f",
+      "bytes": 3986
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/input-index.json",
+      "sha256": "a2633237952921af14035a8bda944779ffa533a9fa60524bc15ce894abb10bc6",
+      "bytes": 4249
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/inputs/private/book-registry.json",
+      "sha256": "9163ef94222ab95b77a9911f2ad34678d7818f128d1d7fe147841e5ff9a7d84c",
+      "bytes": 242
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/inputs/private/direction-context.json",
+      "sha256": "a52cc866a7dca50b592cb1364722397d2b548cabcd207ca057fb286955a176e6",
+      "bytes": 859
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/inputs/private/direction-observation.json",
+      "sha256": "63736ea55771598ccdb45ced8527054c43e03bb0a465d4fc4af758283345ae59",
+      "bytes": 981
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/inputs/private/direction-recipe.json",
+      "sha256": "7acfa6f64a11022327dd8bad3862fdfe58eb3024cee9cfec0ee57b9071f603d4",
+      "bytes": 107
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/inputs/private/direction-request.json",
+      "sha256": "8727f8a7670ca9ced897afef7ff4a74be033ab91ce6c740acde00ff70ab83c5e",
+      "bytes": 26533
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/inputs/private/direction-response.json",
+      "sha256": "3e8b2e67aee7d25f725813ebd612d94ff0ab5d7c8cb6f351bc203a4f53167fa1",
+      "bytes": 39432
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/inputs/source.json",
+      "sha256": "9008afa3353ef301222057eac4bb775e04da7abdb4bd92e09145d9e96a6bd197",
+      "bytes": 581224
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/stage-input.json",
+      "sha256": "f07f720da4dcee8eaeec2c42965d2ae79f8cc96b61b4a2b7ca4f05e366bfcdec",
+      "bytes": 3739
+    },
+    {
+      "path": "fixtures/generation/direction-v1/wells-source/stage-output.json",
+      "sha256": "af2796c4ec807cf924ac750582a975beb299ed0a3d6cb29fc122e6213aa1ffcd",
+      "bytes": 4848
+    },
+    {
+      "path": "fixtures/generation/geometry/registration.json",
+      "sha256": "2aa1a7bd9e7d88fa7939e825e0472c4eb383ec51dcdf22afe384814484cd7a82",
+      "bytes": 3349
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/README.md",
+      "sha256": "c6766295b5dfb19ee241aa0cda91ca671982a9bdaddcceb84caec7aea6548ce3",
+      "bytes": 1258
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/candidates/private/pilot/requests/p000-t00.json",
+      "sha256": "634a1e8142161799d549c02e7a2574cbfc6202f01843f4b7d6b45789e55b5fb0",
+      "bytes": 1588
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/candidates/private/pilot-handoff.json",
+      "sha256": "e1e8a183db69fa985d0aff8e05f05c227aacdc5b96cfcb3b92eb7eb071431f13",
+      "bytes": 3232
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/candidates/private/pilot-plan.json",
+      "sha256": "b20d3bb85d300e26864b3e0ff05c1a0df496f693746dad3f72d3dcce173f1ad1",
+      "bytes": 7637
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/input-index.json",
+      "sha256": "25aaee21f48c2cf1c5188a303f1e0908ced2fc64ed56e0e13df2cc23fe4a8ba3",
+      "bytes": 6927
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/inputs/private/pilot-context.json",
+      "sha256": "26d52084e14fd5807f5c59c83ce35852706f872a837dbb7cb664b0a260b7381d",
+      "bytes": 1832
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/inputs/private/pilot-direction-input.json",
+      "sha256": "ad6eca4177a4796d02c95f3d0171a11b367ec53a15a50227d1d721f03a0587fa",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/inputs/private/pilot-recipe.json",
+      "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+      "bytes": 48
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/inputs/private/pilot-selection.json",
+      "sha256": "721c46deabc1987da3b324c0e05d014747428f74b57c1e469d2c7ee38ea8590a",
+      "bytes": 1067
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/inputs/private/voice-catalog.json",
+      "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+      "bytes": 320
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/stage-input.json",
+      "sha256": "6808dba64e346c1042bb4377e35896a10020b24275183fb463a1a5ddbc721a5a",
+      "bytes": 5684
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/dialogue/stage-output.json",
+      "sha256": "caa977e0184ddb1bafb859697a7dc19926bfa3e774fc4717ff2b417d4aea4e57",
+      "bytes": 5948
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/candidates/private/pilot/proposals/p000-t00.json",
+      "sha256": "355274084cf2208fc25fef17cdbec24ef985930bc7264fa491c6efbbe3d96817",
+      "bytes": 3608
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/candidates/private/pilot/proposals/p000-t01.json",
+      "sha256": "0ef8b1cd266b79d1fdaec619675edae550a8dcf95807b07e0fd9684ff4dfc5c0",
+      "bytes": 3608
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/candidates/private/pilot/requests/p000-review.json",
+      "sha256": "cddc76188f26e07fae383c63ab7e35aa4397021b6c57deb71ef80f62360e99ed",
+      "bytes": 6555
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/candidates/private/pilot/requests/p000-t00.json",
+      "sha256": "a28ec23176efeda8a79925b596d66350b0c4c8547d1580bd081ed52375fda99f",
+      "bytes": 1924
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/candidates/private/pilot/requests/p000-t01.json",
+      "sha256": "f111afb637e74eaeb7daefad2a3f43186cdb41fe7657f1d8e19a1d7c43a64c50",
+      "bytes": 1915
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/candidates/private/pilot-handoff.json",
+      "sha256": "b9ec3734b06b61a612a86ac64002011f500e30bc4a20378072f527c358a2cbec",
+      "bytes": 13543
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/candidates/private/pilot-plan.json",
+      "sha256": "9165e7960235037c486717848166559b67ac0122111575e3b042c22ccb298447",
+      "bytes": 16262
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/input-index.json",
+      "sha256": "9db449949a418dfe4dcf731cfe257e29c736115c3c2737b904b80b666439bdc8",
+      "bytes": 11509
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/book-registry.json",
+      "sha256": "2bf8566a832bdfa327ebc32d5e6ed3aa8b936675c499544184b4b108e6059610",
+      "bytes": 739
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/direction-context.json",
+      "sha256": "a2fcf86fc581dd12676d33a5813bc15add984c94d78e6e96fd808227d54f93e5",
+      "bytes": 851
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/direction-observation.json",
+      "sha256": "656c4749b141023dbd6ad4b21dddafbe00b4b8bba0c56022b20ed3b95c43af3a",
+      "bytes": 982
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/direction-plan.json",
+      "sha256": "110612d8bb593b58c8a89eeea1e878fa2a8917ee238b110694ea38e7affd8595",
+      "bytes": 9749
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/direction-request.json",
+      "sha256": "12a229615acca944e5e12a9218d3191f319a80f38b41892f7957047624de5424",
+      "bytes": 14416
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/direction-response.json",
+      "sha256": "b5192f46fb7302fd7b1e49db8c4834de693f2c8f011469e19d6ebe2c6ed38e4a",
+      "bytes": 2537
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/established-reference.wav",
+      "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4",
+      "bytes": 4844
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/established-voice.json",
+      "sha256": "9536b3f042dfea7e0f4aa48e422a0e976445a91940558a870bca65a7c95e5d57",
+      "bytes": 918
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot/requests/p000-t00.json",
+      "sha256": "a28ec23176efeda8a79925b596d66350b0c4c8547d1580bd081ed52375fda99f",
+      "bytes": 1924
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot/requests/p000-t01.json",
+      "sha256": "f111afb637e74eaeb7daefad2a3f43186cdb41fe7657f1d8e19a1d7c43a64c50",
+      "bytes": 1915
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-audio/t0.wav",
+      "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4",
+      "bytes": 4844
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-audio/t1.wav",
+      "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558",
+      "bytes": 4846
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-context.json",
+      "sha256": "91a596d59d8723bde867fee266d0dc25421f8432a5497627a12332ecbdd4d6fb",
+      "bytes": 2685
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-direction-input.json",
+      "sha256": "f9633f39265fe97d118f3cae2a601ae37e840853e5b1d92be9e1f29fd0821df2",
+      "bytes": 3730
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-raw/t0.json",
+      "sha256": "8ecabf7dca078cc53ea441df6100d1baf259617881d7672141e3e90a2f2a392d",
+      "bytes": 1165
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-raw/t1.json",
+      "sha256": "9261ea7ea131bf20e4e3891bf1e39d90bf4f2550eaa63f734b0e0cad37d6d5b0",
+      "bytes": 1161
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-recipe.json",
+      "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+      "bytes": 48
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-saved/t0.json",
+      "sha256": "99545f957975330a12113b1e1ef65cad008a052992096f2fc2520b381b11b1fb",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-saved/t1.json",
+      "sha256": "30811153a58cf26ed001305c0c6c9c3efb469dc284448b7a86be36bbeb4b4d8e",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/pilot-selection.json",
+      "sha256": "ad442f959371f6f60bb7b947dc20535eb03034b7e6be692e8eeb084a86addfd8",
+      "bytes": 1085
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/inputs/private/voice-catalog.json",
+      "sha256": "80b01aec509a14a255ace258990923295978e7a5c98601160eb25ca7da38cd3e",
+      "bytes": 540
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/stage-input.json",
+      "sha256": "f5fc7c6fabad5209ce402f2c945ff463443512ed56a680a49eb27adb6f4a2fef",
+      "bytes": 8963
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/established-reuse/stage-output.json",
+      "sha256": "863b32115bd566154d08784318405eeb8ea3161246a86daa3b933e42ed5cc017",
+      "bytes": 7329
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/observations/p000-t00.json",
+      "sha256": "720cfede21162b65cb3e827d1a5c6d24fdc9379d1949f65b269080722bd1f033",
+      "bytes": 7798
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/observations/p000-t01.json",
+      "sha256": "37ca137f53b82d9354fea0c12309bbb35bcb24b58fac266bc941c937ae268458",
+      "bytes": 7798
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/proposals/p000-t00.json",
+      "sha256": "d370fcedcacdf23a43e46218750e7da0be5bc312dc475c1e1ab28a1d9307cbe6",
+      "bytes": 2940
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/proposals/p000-t01.json",
+      "sha256": "414653b72f613c5433cdd02de697d2e9f01aeb29c8a6e1abb9139b2658c29ccc",
+      "bytes": 2940
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/requests/p000-review.json",
+      "sha256": "d65710a030441d1293a447e01e016ef10c65aa26fbf67ada20f65f1e919d6079",
+      "bytes": 6265
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "bytes": 1606
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+      "bytes": 1597
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot-handoff.json",
+      "sha256": "8f10c6dee9addf46a65119bad713096ee02bfaceb0f7694678b430cb52246728",
+      "bytes": 11675
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/candidates/private/pilot-plan.json",
+      "sha256": "b7d91f7dc705cf348f613f892317061f3b59fdea9da1a4a7939b4f9f165c8075",
+      "bytes": 30402
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/input-index.json",
+      "sha256": "df2c2e0c06cfa15331d6b6a2e7ac1d9cb309a6296a5c640d735cd2dc8e64b265",
+      "bytes": 10579
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "bytes": 1606
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+      "bytes": 1597
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-audio/t0.wav",
+      "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4",
+      "bytes": 4844
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-audio/t1.wav",
+      "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558",
+      "bytes": 4846
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-context.json",
+      "sha256": "9e63e452c8328b94dfb348d041bffc3cd951661e80bd40d04ed45022fa0033a0",
+      "bytes": 2281
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-direction-input.json",
+      "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-raw/t0.json",
+      "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2",
+      "bytes": 1162
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-raw/t1.json",
+      "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291",
+      "bytes": 1158
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-recipe.json",
+      "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+      "bytes": 48
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-saved/t0.json",
+      "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-saved/t1.json",
+      "sha256": "b6a07d34f25c08b42cf456b6676d7c1ca8c89e06f708c99326a150dfb2ed0280",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/pilot-selection.json",
+      "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a",
+      "bytes": 1076
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/inputs/private/voice-catalog.json",
+      "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+      "bytes": 320
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/stage-input.json",
+      "sha256": "c8487bec0dfd464ea5665ae48e56a6afd56fb497ec3ff1cac3c5ccfca6d29c8b",
+      "bytes": 8296
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/provider-double/stage-output.json",
+      "sha256": "dff48c466d590a0c1ebf02c0678271721b927aaffa8820506bb5157a5f38caaa",
+      "bytes": 7691
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/candidates/private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "bytes": 1606
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/candidates/private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+      "bytes": 1597
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/candidates/private/pilot-handoff.json",
+      "sha256": "1f828e274814c99a61ea908e5293aa04261ff5b2879f53d0487397919809705c",
+      "bytes": 6346
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/candidates/private/pilot-plan.json",
+      "sha256": "1faa62359e8bf16b255d2fea78b7a17eb9b2cfbe0b069e85c718936617489c83",
+      "bytes": 7066
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/input-index.json",
+      "sha256": "6115b9a22580a63f4547c7e6ee27c25d568865e61ed7decdc75601aa3877a4bc",
+      "bytes": 7005
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/inputs/private/pilot-context.json",
+      "sha256": "11bd09ff382d53c22e14a44e2c0d226cdf0ed82f66051446bb61c6aac5f9931e",
+      "bytes": 1831
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/inputs/private/pilot-direction-input.json",
+      "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/inputs/private/pilot-recipe.json",
+      "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+      "bytes": 48
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/inputs/private/pilot-selection.json",
+      "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a",
+      "bytes": 1076
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/inputs/private/voice-catalog.json",
+      "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+      "bytes": 320
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/stage-input.json",
+      "sha256": "3c65d3b2c3353e221770aec86dd5f7402cd40ae200d6cfed2e02daa769b93397",
+      "bytes": 5683
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/request-phase/stage-output.json",
+      "sha256": "35cc74c9bcf0a17db35c3e8a980d0366cb5f207105c6aa5cba7a699ac83a8e3f",
+      "bytes": 6099
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot/proposals/p000-review.json",
+      "sha256": "a52641b3da07b09f031d8e92a94563bd0d5fef51e0f084d539fd8c8818cd5f39",
+      "bytes": 4917
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot/proposals/p000-t00.json",
+      "sha256": "d370fcedcacdf23a43e46218750e7da0be5bc312dc475c1e1ab28a1d9307cbe6",
+      "bytes": 2940
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot/proposals/p000-t01.json",
+      "sha256": "414653b72f613c5433cdd02de697d2e9f01aeb29c8a6e1abb9139b2658c29ccc",
+      "bytes": 2940
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot/requests/p000-review.json",
+      "sha256": "34c17d3a5086ecb8055a65b4b002297f5ea962409b833c8e1e9f982f6f9146ba",
+      "bytes": 6237
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "bytes": 1606
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+      "bytes": 1597
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot-handoff.json",
+      "sha256": "8f10c6dee9addf46a65119bad713096ee02bfaceb0f7694678b430cb52246728",
+      "bytes": 11675
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/candidates/private/pilot-plan.json",
+      "sha256": "04d3fadae4084d2a029ccb8f72941a249fd76c39a7f2d5cf01fec56520a05abf",
+      "bytes": 18693
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/input-index.json",
+      "sha256": "b5a981f0e9555020c2ee8157784e3f8c3e8012ff8ec553430a7ad6ad65e1777c",
+      "bytes": 11817
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot/requests/p000-review.json",
+      "sha256": "34c17d3a5086ecb8055a65b4b002297f5ea962409b833c8e1e9f982f6f9146ba",
+      "bytes": 6237
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "bytes": 1606
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+      "bytes": 1597
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-audio/t0.wav",
+      "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4",
+      "bytes": 4844
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-audio/t1.wav",
+      "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558",
+      "bytes": 4846
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-context.json",
+      "sha256": "030ac5cdc170a5083bd0188509fdeabdd16ff3ef4a21ea93d3ad77b7b22b0a19",
+      "bytes": 3106
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-direction-input.json",
+      "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-raw/review.json",
+      "sha256": "c2e4335f396cfb4b71e4354f6aae09e78637c7b0d4cad9ccb4f8a5db3dba5077",
+      "bytes": 1204
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-raw/t0.json",
+      "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2",
+      "bytes": 1162
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-raw/t1.json",
+      "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291",
+      "bytes": 1158
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-recipe.json",
+      "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+      "bytes": 48
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-saved/review.json",
+      "sha256": "b9c88bf7053233fd3d857ac711f5b21814b3ab5e0ed4c0a9f32bc80e63ed8c20",
+      "bytes": 771
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-saved/t0.json",
+      "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-saved/t1.json",
+      "sha256": "b6a07d34f25c08b42cf456b6676d7c1ca8c89e06f708c99326a150dfb2ed0280",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/pilot-selection.json",
+      "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a",
+      "bytes": 1076
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/inputs/private/voice-catalog.json",
+      "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+      "bytes": 320
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/stage-input.json",
+      "sha256": "01705f82a4d62e9e88814f6d2fff3aa8e42e34f916c629e54167f37fdb93b825",
+      "bytes": 9312
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/review/stage-output.json",
+      "sha256": "5daffab401fcd2afe97c5516d3084cefd71e5a3140193ceaf9e97e9af6df274c",
+      "bytes": 8585
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot/proposals/p000-t00.json",
+      "sha256": "d370fcedcacdf23a43e46218750e7da0be5bc312dc475c1e1ab28a1d9307cbe6",
+      "bytes": 2940
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot/proposals/p000-t01.json",
+      "sha256": "414653b72f613c5433cdd02de697d2e9f01aeb29c8a6e1abb9139b2658c29ccc",
+      "bytes": 2940
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot/requests/p000-review.json",
+      "sha256": "34c17d3a5086ecb8055a65b4b002297f5ea962409b833c8e1e9f982f6f9146ba",
+      "bytes": 6237
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "bytes": 1606
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+      "bytes": 1597
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot-handoff.json",
+      "sha256": "8f10c6dee9addf46a65119bad713096ee02bfaceb0f7694678b430cb52246728",
+      "bytes": 11675
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/candidates/private/pilot-plan.json",
+      "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2",
+      "bytes": 14340
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/input-index.json",
+      "sha256": "11831caa2ea9873a957746701e1d3707277c46abcd572c1e7a58e1ed7134bb77",
+      "bytes": 10527
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "bytes": 1606
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+      "bytes": 1597
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-audio/t0.wav",
+      "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4",
+      "bytes": 4844
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-audio/t1.wav",
+      "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558",
+      "bytes": 4846
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-context.json",
+      "sha256": "948d5939a62729eb0573fb683496a614060de1655909e6659f9ae7561b25466e",
+      "bytes": 2685
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-direction-input.json",
+      "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+      "bytes": 3725
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-raw/t0.json",
+      "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2",
+      "bytes": 1162
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-raw/t1.json",
+      "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291",
+      "bytes": 1158
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-recipe.json",
+      "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+      "bytes": 48
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-saved/t0.json",
+      "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-saved/t1.json",
+      "sha256": "b6a07d34f25c08b42cf456b6676d7c1ca8c89e06f708c99326a150dfb2ed0280",
+      "bytes": 949
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/pilot-selection.json",
+      "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a",
+      "bytes": 1076
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/inputs/private/voice-catalog.json",
+      "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+      "bytes": 320
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/stage-input.json",
+      "sha256": "50d4c049b00e4d842620e8ac5c186c8dd0f9a075e3013a3b1ffe46109aa05a0c",
+      "bytes": 8299
+    },
+    {
+      "path": "fixtures/generation/pilot-v1/saved-audio/stage-output.json",
+      "sha256": "0cd39168b2d88690a9d9375aa485a129472f63a75a3c26f4a985a8b15972b4fc",
+      "bytes": 7329
+    },
+    {
+      "path": "fixtures/generation/preflight-valid.json",
+      "sha256": "f1c8e4d61de64aac0dc0db74c0cb2faabe08d72fa9864575ce6e42fe7ee2ac31",
+      "bytes": 1277
+    },
+    {
+      "path": "fixtures/generation/presentation-evidence-v1/acoustic-validation.json",
+      "sha256": "66a5c2d5ce145e85de6cb2aaadeecb5683521fbe4215c33e2e16d5aa4cbbc3cc",
+      "bytes": 281958
+    },
+    {
+      "path": "fixtures/generation/presentation-evidence-v1/fact-evidence.json",
+      "sha256": "ff01a265036e0c0f55a997f485568ccdb7970f4396aeab76bff033c3c15c1096",
+      "bytes": 11657
+    },
+    {
+      "path": "fixtures/generation/presentation-evidence-v1/input-index.json",
+      "sha256": "a5d09229736963529f1f060451f43a9ef89cb511e496707abdf10a8ad4c60faf",
+      "bytes": 26784
+    },
+    {
+      "path": "fixtures/generation/presentation-evidence-v1/presentation-fact-evidence.json",
+      "sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+      "bytes": 46161
+    },
+    {
+      "path": "fixtures/generation/presentation-evidence-v1/presentation-recipe.json",
+      "sha256": "cdc3a38da2115ba1405feb7b097fd5913fcde3fb85037330e3a5e4796899fe4c",
+      "bytes": 1577
+    },
+    {
+      "path": "fixtures/generation/source/pg36-clean.txt",
+      "sha256": "33e728402e6728e39d5374eff41d2739c032f85bfb12b2954d124682e99e021f",
+      "bytes": 340291
+    },
+    {
+      "path": "fixtures/generation/source/pg36-frozen.json",
+      "sha256": "7fd9ef36e25f709c76f465b8ef5a91d980dd4e8275a1cdb5ba5b2001e6d1d7ad",
+      "bytes": 174899
+    },
+    {
+      "path": "fixtures/generation/source/pg36-raw.txt",
+      "sha256": "8417469e3ab664749f7b36ebb85799075818207b0380b54c27d07d592a44117d",
+      "bytes": 366624
+    },
+    {
+      "path": "fixtures/generation/source/pg55-clean.txt",
+      "sha256": "c9c44a8852872740f9bb8078479510687050e6d69446b0c5e765bdc2382df259",
+      "bytes": 212584
+    },
+    {
+      "path": "fixtures/generation/source/pg55-expected.txt",
+      "sha256": "1d8c591969dd338fd8f251e3b83d991a76b5a7e5c715b503953c5ce4775ec320",
+      "bytes": 5988
+    },
+    {
+      "path": "fixtures/generation/source/pg55-frozen.json",
+      "sha256": "f85e6dcbd2d0d663647dc4aada2d5e9cb725da50d5d74556f64e74b38cef5a5a",
+      "bytes": 78159
+    },
+    {
+      "path": "fixtures/generation/source/pg55-raw.txt",
+      "sha256": "969bffab7740d4d8a0bac332d78bd0152ad4a40a2efc52f06c74a9bb6120be75",
+      "bytes": 237232
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/acceptance.json",
+      "sha256": "dc1cfa3414f3716028470f21c5f66fe4631fd483f8b0bde1c60df0f34dc5f3dc",
+      "bytes": 10325
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/actors.json",
+      "sha256": "f12d379de7b2686ffb77c40cde0ad3d5792e16ab4f382c35173ac073c66cc398",
+      "bytes": 714
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/assets/figure.png",
+      "sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "bytes": 815524
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/audio/master.wav",
+      "sha256": "3d2ca213cf76882d89241ab19e25ef2c7663fdc64b315be416d5f565a15f1e37",
+      "bytes": 13050284
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/bible.json",
+      "sha256": "a4326cf7d9b609d264683751896f71dccf6fb8b56d41ce1777424ad931b96aca",
+      "bytes": 120
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/captions.vtt",
+      "sha256": "31392bb749d5ecdd7f76cfb2b0fabe62b58a01df39390fda74822137373d20db",
+      "bytes": 67
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/correction.json",
+      "sha256": "e014d7b876c64bd7f0ec4fe02f1ecf39fc8652fca83a252139a126187fb2bb84",
+      "bytes": 2904
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/credits.json",
+      "sha256": "89b8b8a8675b0bfdded29b9089657882eea40aefa2aa43e2e5a9b49378633f95",
+      "bytes": 859
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/evidence/alignment.json",
+      "sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+      "bytes": 65183
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/evidence/narration.wav",
+      "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+      "bytes": 2902604
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/file-index.json",
+      "sha256": "40dde4e6f8bd36bd2db478c6a6ea8449372a7577cff5407dccb732807cde992c",
+      "bytes": 2422
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/fixture.json",
+      "sha256": "0e1fb1dda79ec77ce5e3071f663c873779eec9896573e1a0c1d93586afc37594",
+      "bytes": 113888
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/inventory.json",
+      "sha256": "1ff44f31750d10b4c901b53c7cb239da522cbe798c58ee3705b29d42775d33e5",
+      "bytes": 3027
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/manifest.json",
+      "sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+      "bytes": 4798
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/poster.svg",
+      "sha256": "73f19185bb534dfe74dbec4eef3537df475ece269c8aa5e4e77d1af914dc9f4d",
+      "bytes": 109
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/presentation-map.json",
+      "sha256": "5d128e029f8b458b4a5bc4c9e23633d02663267dbbc9e3e43e96879672938280",
+      "bytes": 601
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/profile.json",
+      "sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "bytes": 1180
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/read-along.json",
+      "sha256": "3668ccc97432c0cd72d284deaddf2e8aab3cd866ee2e6dabf06b6c53696e949b",
+      "bytes": 75457
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/revision.json",
+      "sha256": "a8ae1ae08c973adfdc9b545b553922ee832c143ed1dfb25b1f6e913e20f359ce",
+      "bytes": 991
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/shell.json",
+      "sha256": "80c3b0c61f67fa9bc62f84efe2830b5ff74f0686cc5f9772732543a17baccf4b",
+      "bytes": 5000
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/source.txt",
+      "sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+      "bytes": 960
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/stages.json",
+      "sha256": "838a22f52b049055223762d49a91cf7a0d47785cd7a5fd349c26cd6f9b66296e",
+      "bytes": 192
+    },
+    {
+      "path": "fixtures/generation/two-scene-readiness-v2/timeline.json",
+      "sha256": "62b2d2f6aa7e45cb8b73c65476b947dccd26cbda465281cef30c67d468389d6f",
+      "bytes": 6513
+    },
+    {
+      "path": "tools/generation/adapters.py",
+      "sha256": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996",
+      "bytes": 9859
+    },
+    {
+      "path": "tools/generation/capture_inventory.py",
+      "sha256": "601c9c95e0fad58853c0ed1febdd022d61391e4c4b577ffeaba093e3475e43cb",
+      "bytes": 13215
+    },
+    {
+      "path": "tools/generation/chapter_acoustic.py",
+      "sha256": "ca84dfaafc15410759dc48277a4aa734019fc84422c1031422f5315b8b1cd7b7",
+      "bytes": 21784
+    },
+    {
+      "path": "tools/generation/chapter_helper.py",
+      "sha256": "cac2f2260117874ecccfd3ca24c0a80516b0552bedbc1aa6d7fbc76e06edb5ea",
+      "bytes": 772
+    },
+    {
+      "path": "tools/generation/chapter_import.py",
+      "sha256": "22b8e14901dbf216002237a6f710138b386c6fdf7c9a764033c9bcf00eadf405",
+      "bytes": 24578
+    },
+    {
+      "path": "tools/generation/chapter_import_helper.py",
+      "sha256": "1b78167cbc750dcc5fed1fa9808f1222d442d958f6e1f5dfd1c831242ce01672",
+      "bytes": 846
+    },
+    {
+      "path": "tools/generation/evidence.py",
+      "sha256": "f3d97078b429a537de033028c077abf1c10f7486210b81faae8ec77a02e3d6a7",
+      "bytes": 3144
+    },
+    {
+      "path": "tools/generation/geometry.py",
+      "sha256": "6d72b94f28fb140cc7e62b91774cc6a0b151e11f1a30036bffe2292d46ff54a9",
+      "bytes": 1631
+    },
+    {
+      "path": "tools/generation/helper.py",
+      "sha256": "485bf9a3c1ad6d429f29e77d888d781ca2f2852ed74c17c89f6703d28651e601",
+      "bytes": 5419
+    },
+    {
+      "path": "tools/generation/preflight.py",
+      "sha256": "4139aef30584446e42188f774fca40c124d98947c6028bd2bd9c6bb97cca4427",
+      "bytes": 3195
+    },
+    {
+      "path": "tools/generation/readiness_correction.py",
+      "sha256": "c5c61e9131a9af15287537028577e6408b9bdd05a42ea5ee4088a46813cb1f98",
+      "bytes": 13832
+    },
+    {
+      "path": "tools/generation/run_direction_tests.py",
+      "sha256": "dbc4b59013e52040fe99eae93660c35d9945647d71623e27662c6a8729f996be",
+      "bytes": 3012
+    },
+    {
+      "path": "tools/generation/source.py",
+      "sha256": "cf1abec23a4c0a3819012d7be664a2e5a94fb5f48e665d97691109ca9c57d268",
+      "bytes": 3480
+    },
+    {
+      "path": "tools/generation/test_acoustic.py",
+      "sha256": "01c759a7b045f69ed3bf1cbe6968b89be74c59dcfb615e49b934f10578babdef",
+      "bytes": 1488
+    },
+    {
+      "path": "tools/generation/test_capture_inventory.py",
+      "sha256": "fa1eea7b45f0230c580babf69b66b92c6a3de1f81e209612c92711ad1cf7756c",
+      "bytes": 5432
+    },
+    {
+      "path": "tools/generation/test_chapter_acoustic.py",
+      "sha256": "4a6026ff3a326a01a883b96d4a3add977340084eb8be1d621c35623c707eac60",
+      "bytes": 9122
+    },
+    {
+      "path": "tools/generation/test_chapter_import.py",
+      "sha256": "4be87df4b57d208a05075434733ccfca6314aecddd8cc303fdeb4dbddeedce42",
+      "bytes": 20348
+    },
+    {
+      "path": "tools/generation/test_evidence.py",
+      "sha256": "5c3008a6f1a6a57176012c5f9b542f111d450508f92e665e8fae1732e2c5358e",
+      "bytes": 3589
+    },
+    {
+      "path": "tools/generation/test_geometry.py",
+      "sha256": "1f89d09be58a148580d7559e0c780bb0fe08e707d29891a21ee1b6b3258acb00",
+      "bytes": 2052
+    },
+    {
+      "path": "tools/generation/test_preflight.py",
+      "sha256": "feb2fd5d69dfaae8735dd1b4803eab4fb250593993f77657703dc62a5bf48fe6",
+      "bytes": 2665
+    },
+    {
+      "path": "tools/generation/test_readiness_correction.py",
+      "sha256": "ee6f7ad50e86ef1d5d6b4256887e65da0d5c2b339cd7a33e9ed8cfd7b091b471",
+      "bytes": 4357
+    },
+    {
+      "path": "tools/generation/test_source.py",
+      "sha256": "3cf7539cf25928673deec6eb8a10a4101165eee302f5d79316a5a97302323af8",
+      "bytes": 3039
+    },
+    {
+      "path": "docs/implementation/runtime/acoustic-integration.md",
+      "sha256": "4856d95ae27302dd1dddbe489ce5ba874355a8e44b4afe13131bb6db64a5ff23",
+      "bytes": 4635
+    },
+    {
+      "path": "docs/implementation/runtime/chapter-runtime-ready.json",
+      "sha256": "87f7a7f4caa0fd284159d4d0ff88cecc56296a29253455cf3574ec9b5829ce10",
+      "bytes": 11180
+    },
+    {
+      "path": "docs/implementation/runtime/chapter-runtime-receipt.json",
+      "sha256": "5e942f13cca73fca62c6016080b699b89737d7faaad5befcfea9fdc98d297934",
+      "bytes": 10007
+    },
+    {
+      "path": "docs/implementation/runtime/chapter-runtime.md",
+      "sha256": "9283cb170d2276afadf6cf0c3ac98e9c62d8c1e8898cdfd575eb78536fa7e553",
+      "bytes": 8483
+    },
+    {
+      "path": "docs/implementation/runtime/combined-acoustic-readiness-v2/browser-probe.json",
+      "sha256": "45cb0628db0b7f81dc69b4cb05789e3569da6f38173d397a3cb8aa0f66e10c1f",
+      "bytes": 11096
+    },
+    {
+      "path": "docs/implementation/runtime/combined-acoustic-readiness-v2/receipt.json",
+      "sha256": "da47053061568a675d5f188beaa8480cac8d66d6d1577a053ca44c83666f755a",
+      "bytes": 11953
+    },
+    {
+      "path": "docs/implementation/runtime/combined-acoustic-readiness-v2/verification.json",
+      "sha256": "6882dcd5cc5990476049b65470d9ffb94eb24ebfedea7a7941ff08cb08ff72b5",
+      "bytes": 261
+    },
+    {
+      "path": "docs/implementation/runtime/combined-master-wav-readiness-v2/browser-probe.json",
+      "sha256": "a1e122d7582307533a902b51f01081c45343afe1cbbf9f617095ca38c4f26837",
+      "bytes": 11096
+    },
+    {
+      "path": "docs/implementation/runtime/combined-master-wav-readiness-v2/receipt.json",
+      "sha256": "dce6e9b1eb10c8b1e27914026a1aaf2fac9ea2b5247b2f0811f585827c8df088",
+      "bytes": 11953
+    },
+    {
+      "path": "docs/implementation/runtime/combined-master-wav-readiness-v2/verification.json",
+      "sha256": "1e0aaca3e3f83a50db0f5ff9855d8e9582de236898456da029203fe92a27a1d6",
+      "bytes": 595
+    },
+    {
+      "path": "docs/implementation/runtime/handoff.md",
+      "sha256": "9b8c9ea26caabc2c6fc285be315a402afcd73bfbb416aa158bc345d40026bb55",
+      "bytes": 9086
+    },
+    {
+      "path": "docs/implementation/runtime/integration-requests.md",
+      "sha256": "db982c6b0c91de775f3bd941f60c6182d02af14cd83e2f1b432c1668f4a30ca9",
+      "bytes": 10448
+    },
+    {
+      "path": "docs/implementation/runtime/master-wav-support.md",
+      "sha256": "0129883b3e212300cf86eee6305bda9b5a94ce97ba55e44bb3db3978df02d770",
+      "bytes": 5483
+    },
+    {
+      "path": "docs/implementation/runtime/presentation-integration.md",
+      "sha256": "c735ea3d306fb6160c31c827785c740ede4aca01910175d3f3079923a0c6e754",
+      "bytes": 5187
+    },
+    {
+      "path": "docs/implementation/runtime/presentation-runtime-ready.json",
+      "sha256": "df0fa75342fdb571e9ec93d859dc07ec5b0e58580fb4e4ca94616263051e1fb1",
+      "bytes": 10578
+    },
+    {
+      "path": "docs/implementation/runtime/private-acceptance-ready.json",
+      "sha256": "7399cf950e2368a1e82828b5697890920f27087b469b80c6ec8fff16eaaaa6c0",
+      "bytes": 13237
+    },
+    {
+      "path": "docs/implementation/runtime/private-acceptance-receipt.json",
+      "sha256": "aabc0d193f968e50238afae882575ce2a7f02ab496f25e770d0003095a9d1ae1",
+      "bytes": 2793
+    },
+    {
+      "path": "docs/implementation/runtime/private-acceptance.md",
+      "sha256": "0bc042d53a057cd8ac10c660cd1eece74fc73a1c916952fb8dedf4ca57613bea",
+      "bytes": 6750
+    },
+    {
+      "path": "docs/implementation/runtime/provider-service-examples.json",
+      "sha256": "33980869255b70d7c4c7e34f8a445f13b9a86467000e09df0a7c08b5c9dc51e5",
+      "bytes": 14620
+    },
+    {
+      "path": "docs/implementation/runtime/provider-service-ready.json",
+      "sha256": "ccd918b269d015b4d3b96ddab651d1c79eda7120f97e91a28cd04ef60d8fd7fd",
+      "bytes": 16672
+    },
+    {
+      "path": "docs/implementation/runtime/provider-service.md",
+      "sha256": "590df6f10e17e03d19bc5c839059080fd86f6978267dbc86dbefd351365e97f2",
+      "bytes": 9702
+    },
+    {
+      "path": "docs/implementation/runtime/provider-v2-adapter.md",
+      "sha256": "42d5f6ef1acea6777bc9285b376b2210cada4a45a59c2ad5d8d45c0ee0f3bfdd",
+      "bytes": 8260
+    },
+    {
+      "path": "docs/implementation/runtime/provider-v2-ready.json",
+      "sha256": "4d8cf821ba748ad6bdd5c978927335a62f804ada8632304ad6b07c2e302c576c",
+      "bytes": 2730
+    },
+    {
+      "path": "docs/implementation/runtime/reuse-provenance.json",
+      "sha256": "f52b7aa3bab82c1341de83ef850e341d6648f511664c6a2d2b1023fc856d3d02",
+      "bytes": 3689
+    },
+    {
+      "path": "docs/implementation/runtime/runtime-ready.json",
+      "sha256": "8fc3c078ae9becf97e264863b8ea44c9d4a7327f26f0a3279d0d3d205c64650d",
+      "bytes": 7321
+    },
+    {
+      "path": "docs/implementation/generation/README.md",
+      "sha256": "fd1478af194e9bb668689dcd9c0550985ff03cc2a5dfad737ff82736b332c037",
+      "bytes": 10105
+    },
+    {
+      "path": "docs/implementation/generation/acceptance-compatibility-request.md",
+      "sha256": "a118ead594091e3b26547ad52e22485eb68b1f2303dfc7cef707e164dc32c39e",
+      "bytes": 1603
+    },
+    {
+      "path": "docs/implementation/generation/acceptance-proposals-ready.json",
+      "sha256": "c2eac4a2ca194fda0aa8542eb153b01e17f071cee0d068f430ed9c210368f787",
+      "bytes": 12597
+    },
+    {
+      "path": "docs/implementation/generation/acceptance-proposals.md",
+      "sha256": "c7e8d3ff701c06594b1a702176493bf22a535bb7bf25e1fbfe367e26b174a7db",
+      "bytes": 9726
+    },
+    {
+      "path": "docs/implementation/generation/acoustic-facts.md",
+      "sha256": "9ce0d0f2b10dcdfa3031eaa665e44679d187e9fdd2551cdb37d97a660aeb0761",
+      "bytes": 6051
+    },
+    {
+      "path": "docs/implementation/generation/acoustic-stage-ready.json",
+      "sha256": "2d1f91422ef9a60d6a9ed068b56a5271a546e1168b354f00d6c7d3b73d9e89e5",
+      "bytes": 5175
+    },
+    {
+      "path": "docs/implementation/generation/acoustic-stage.md",
+      "sha256": "feab57b0775a7a32da52d94e0a80aa24cba2c3ac795d3b18e025b6633ce6b88a",
+      "bytes": 4745
+    },
+    {
+      "path": "docs/implementation/generation/capture-inventory.md",
+      "sha256": "52a9ef19c1b7633c6f6fc05ee4d682681deadb6727b341e6be9bd4b0a6578f91",
+      "bytes": 5597
+    },
+    {
+      "path": "docs/implementation/generation/chapter-acoustic-ready.json",
+      "sha256": "c25523f961a432911310371fb16bd28bfb1f72ba7ff1d114194bf6f94a7da03a",
+      "bytes": 6142
+    },
+    {
+      "path": "docs/implementation/generation/chapter-acoustic-registration.json",
+      "sha256": "589da55ddeb9eeea5e6bc821d90dc962a3a784c3a3c0079a68b69cddc2c684b2",
+      "bytes": 3078
+    },
+    {
+      "path": "docs/implementation/generation/chapter-acoustic.md",
+      "sha256": "108f643c707cfca038dd571bb8c7b1c51e0d5ce3c7bc33688b2b2b4b93e7541b",
+      "bytes": 7562
+    },
+    {
+      "path": "docs/implementation/generation/chapter-import-ready.json",
+      "sha256": "d3565537bb22c13a824ca03f74e1f2bb135d67cb5f242e591625cdcfdb14f465",
+      "bytes": 25353
+    },
+    {
+      "path": "docs/implementation/generation/chapter-import-registration.json",
+      "sha256": "c156ecfc6292a74b25f8f425cbe205856cfc2d332b70e368d59c48c800784969",
+      "bytes": 4681
+    },
+    {
+      "path": "docs/implementation/generation/chapter-import.md",
+      "sha256": "541c1e1631411407401fcbc0d23f0582c9831e30328945f1d38942a0364f3d9c",
+      "bytes": 12699
+    },
+    {
+      "path": "docs/implementation/generation/direction-ready.json",
+      "sha256": "0006824fd810f655453a664e8e81dbda734af23ac58f0ec8b366311ad728610b",
+      "bytes": 55473
+    },
+    {
+      "path": "docs/implementation/generation/direction-runtime-request.json",
+      "sha256": "c5c32a24a99bf21001e66899fb5c54195c609ec09ca5233201e28488499c7494",
+      "bytes": 4702
+    },
+    {
+      "path": "docs/implementation/generation/direction.md",
+      "sha256": "b6146ebf4f6cf81a32d97253728179cbac1046bb776d6f3e26c9be82ccc1bd89",
+      "bytes": 12539
+    },
+    {
+      "path": "docs/implementation/generation/g20-literal-cleanup.md",
+      "sha256": "45d3d948439f91dd955afb835ddb390268e61cadc02a6b6e948d014b68303386",
+      "bytes": 1519
+    },
+    {
+      "path": "docs/implementation/generation/handoff.json",
+      "sha256": "c58db55419b22483f39895e79209e886df11199fba0d2e5d8601a227f0574803",
+      "bytes": 6709
+    },
+    {
+      "path": "docs/implementation/generation/integration-requests.md",
+      "sha256": "ec8be5775f1b5ac673de1320e10bbc398ce0cc067836ac4956133d20339622e8",
+      "bytes": 7742
+    },
+    {
+      "path": "docs/implementation/generation/master-capacity-ready.json",
+      "sha256": "73c635706822a4da90160ca9877ceead5115d6221e7494dba2097590957ca48f",
+      "bytes": 5363
+    },
+    {
+      "path": "docs/implementation/generation/master-capacity.md",
+      "sha256": "1222f3e41e28f31875fee8e31bceb123b568d5b918a5087f79e164817daa7c7d",
+      "bytes": 6075
+    },
+    {
+      "path": "docs/implementation/generation/pilot-ready.json",
+      "sha256": "2de976e6c5e2f22ec2a7c05f8060b3fe1c5ad3909c3873a39c54331fc0dc27a0",
+      "bytes": 50414
+    },
+    {
+      "path": "docs/implementation/generation/pilot-runtime-request.json",
+      "sha256": "08a4bfd944b53be01014fd8788964af430a62e435d06bd3f437b89023d1abcf8",
+      "bytes": 5735
+    },
+    {
+      "path": "docs/implementation/generation/pilot.md",
+      "sha256": "ee1d3f1abff69a6b11d2edcd2e49cbb7c760090f8fb5ba568aafc25f0a172974",
+      "bytes": 10883
+    },
+    {
+      "path": "docs/implementation/generation/presentation-evidence-ready.json",
+      "sha256": "a9652c9ad889c0f957f55ee23066b4dde4d66009f203836d1154e3a9ef253428",
+      "bytes": 8813
+    },
+    {
+      "path": "docs/implementation/generation/presentation-evidence.md",
+      "sha256": "83d99ee3b59c240c98153d48cd01a2668b9d0e99891caeb4e6cb8dacbfa64660",
+      "bytes": 6733
+    },
+    {
+      "path": "docs/implementation/generation/readiness-v2-provenance.json",
+      "sha256": "38727c163aaa96d463ef1781cf92f70ba03653ffc9dffda6c42293466d4114bd",
+      "bytes": 5101
+    },
+    {
+      "path": "docs/implementation/generation/readiness-v2.md",
+      "sha256": "66e3a8c7833512f3f83a44836381c207a45cfb1a03c13d4f468de7e02ccf045d",
+      "bytes": 5821
+    },
+    {
+      "path": "docs/implementation/generation/reuse-provenance.json",
+      "sha256": "504b3f8f1bbeb1a2451e41b42e513d85f1e4ed996f0415277c1427bbc0d26eff",
+      "bytes": 36428
+    }
+  ],
+  "excluded_worktree_paths": [
+    {
+      "status": " M",
+      "path": "AGENTS.md"
+    },
+    {
+      "status": " M",
+      "path": "README.md"
+    },
+    {
+      "status": " M",
+      "path": "TODO.md"
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/package.json"
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/src/main.tsx"
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/src/styles.css"
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/src/tickets.ts"
+    },
+    {
+      "status": " M",
+      "path": "apps/audience/tests/tickets.test.ts"
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/package.json"
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/scripts/browser-check.mjs"
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/src/main.tsx"
+    },
+    {
+      "status": " M",
+      "path": "apps/studio/src/style.css"
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/03-generation.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/04-player-and-audience.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/COMMON.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/INTERFACES.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/agent-handoffs/README.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/integration/acceptance-evidence-task.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/chapter.json"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/checks.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/integration-request.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-1280x720.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-1920x1080.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-960x540.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-capture-v2.json"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/inventory-capture.json"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/lifecycle.json"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/mount.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/recovery.json"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/shell-brief.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-opening-title.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-restarted.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-restarted2.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-sign-mid.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-sign-settled.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging-sign-settled2.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/staging.json"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater-1280x720-blackout-paused.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater-1920x1080-blackout-paused.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater-960x540-blackout-paused.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/player/theater.json"
+    },
+    {
+      "status": " M",
+      "path": "docs/implementation/runtime/studio-browser.png"
+    },
+    {
+      "status": " M",
+      "path": "docs/spec/playback.md"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/package.json"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/scripts/check-player.mjs"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/scripts/chrome-recovery.mjs"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/evaluate.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/index.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/loader.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/mount.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/shared.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/shell.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/src/types.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/tests/mount.test.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/tests/shared-contracts.test.ts"
+    },
+    {
+      "status": " M",
+      "path": "packages/player/tests/timeline.test.ts"
+    },
+    {
+      "status": "??",
+      "path": "apps/audience/scripts/chrome-audience.mjs"
+    },
+    {
+      "status": "??",
+      "path": "apps/audience/src/dev-art.ts"
+    },
+    {
+      "status": "??",
+      "path": "apps/studio/scripts/preview-browser-check.mjs"
+    },
+    {
+      "status": "??",
+      "path": "apps/studio/scripts/studio-player-check.mjs"
+    },
+    {
+      "status": "??",
+      "path": "apps/studio/src/Preview.tsx"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/README.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-aisle-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-aisle-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-aisle-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-booth-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-booth-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-booth-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-inspect-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-inspect-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-inspect-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-deeplink-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-deeplink-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience-seat-deeplink-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/audience/audience.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/immersive-house-test-v1.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/immersive-house-test-v2.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/player-sha-refresh-request.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/generation/scene-art-style.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/acceptance-audio-format-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/acceptance-source-coverage-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/backend-checkpoint-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/backend-next-tasks.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-acceptance-proposals-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-chapter-import-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-direction-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-fact-evidence-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-master-capacity-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-pilot-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-presentation-evidence-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/generation-speech-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-authored-rendering-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-geometry-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-graphics-recovery-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-public-types-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/player-recovery-repair-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-chapter-runtime-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-direction-pilot-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-private-acceptance-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-provider-adapter-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-provider-service-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/server-studio-player-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/source-slice-mapping-task.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/integration/two-agent-next-tasks.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720-blackout.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720-nod.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720@15-blackout.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720@15-nod.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1280x720@15.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1920x1080-blackout.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1920x1080-nod.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-960x540-blackout.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-960x540-nod.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/geometry.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/house-art-manifest.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-aisle-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-aisle-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-aisle-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-art-brief.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-art-brief.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-hover-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-hover-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-hover-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-inspect-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-inspect-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-inspect-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-intermission-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-intermission-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-intermission-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-lobby-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-lobby-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-lobby-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive-stage-resized-1600x1200.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/immersive.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/recovery-repair.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/shared-types.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title-1280x720.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title-1920x1080.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title-960x540.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/player/title.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/p17-studio-rerun.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-blackout-paused.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.25.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.5.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-nod-0.75.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1280x720-title.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-blackout-paused.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.25.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.5.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-nod-0.75.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/1920x1080-title.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-blackout-paused.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.25.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.5.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-nod-0.75.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/960x540-title.png"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/receipt.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/implementation/runtime/studio-player/verification.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/checks-a.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/checks-b.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade-b.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade-b.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/house.facade.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/manifest-b.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v1/manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-a.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-a.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-a.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-b.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-b.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/aisle-row-b.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-carpet.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-carpet.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-carpet.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-runner.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-runner.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/floor-runner.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/full-set-batch.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-apron.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-apron.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-apron.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-ceiling.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-ceiling.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-ceiling.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-curtain.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-curtain.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-curtain.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights-error.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-footlights.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-lectern.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-left.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-patrons-right.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-pit-rail.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-rope.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-rope.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-rope.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-sign-board.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-sign-board.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-sign-board.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-title-board.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-title-board.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-title-board.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-wall.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-wall.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house-wall.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-empty.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-mask.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-masked.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-stream.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2-r1.sam-text.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.checks.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.flood-cut.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.flood-manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.flood-stats.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.pre-flood.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-mask.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-masked.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-stream.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/house.facade-v2.sam-text.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-archway.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-archway.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-archway.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-booth-surround.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-booth-surround.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-booth-surround.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-counter.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-doors.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-left.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-left.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-left.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-error.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-drape-right.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-mask.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-masked.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-stream.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille-r1.sam-text.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.flood-cut.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.flood-manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.flood-stats.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.pre-flood.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-mask.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-masked.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-stream.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-grille.sam-text.txt"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-inspect-card.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-inspect-card.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-inspect-card.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-a.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-a.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-a.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-b.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-b.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-playbill-b.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-sconce.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-sconce.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-sconce.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-ticket.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-ticket.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-ticket.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-wallpaper.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-wallpaper.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/lobby-wallpaper.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-gauge.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-gauge.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-gauge.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-lever.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-lever.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-lever.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-needle.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-needle.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-needle.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/rail-plate.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate-r1.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate-r1.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate-r1.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate.manifest.json"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate.png"
+    },
+    {
+      "status": "??",
+      "path": "fixtures/generation/immersive-house-test-v2/shared-brass-plate.raw.png"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/chrome-geometry.mjs"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/chrome-immersive.mjs"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/chrome-title.mjs"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/scripts/immersive-art-brief.mjs"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/house-art.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/house-brief.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/house.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/immersive.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/src/multiplane.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/contract-adoption.test.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/geometry.test.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/house-art.test.ts"
+    },
+    {
+      "status": "??",
+      "path": "packages/player/tests/multiplane.test.ts"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/check_house_art.py"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-mask.mjs"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-mask.test.mjs"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave1.mjs"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave1.test.mjs"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave2.mjs"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/house-art-wave2.test.mjs"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/sam_mask_apply.py"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/test_art_style.mjs"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/LICENSE"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/PROVENANCE.md"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/coco-rle.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/errors.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/index.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/mask-codec.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/mask-conversion.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/object-prompt.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/segmentation.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/stream.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/svg-path.js"
+    },
+    {
+      "status": "??",
+      "path": "tools/generation/vendor-meta-sam/types.js"
+    }
+  ],
+  "historical_raw_logs": [
+    {
+      "name": "pt-r17-full.log",
+      "sha256": "dd9a38b74df43b39b4dc33110cbe5a57c98ffa7595f2f75191c91c5584e63d6a",
+      "bytes": 30822,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-full.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    },
+    {
+      "name": "pt-r17-full-final.log",
+      "sha256": "e447c785382135a20d74fa70f6c1678c290952bf955b3537b37237609d8933cf",
+      "bytes": 30811,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-full-final.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    },
+    {
+      "name": "pt-r17-pilot-repro.log",
+      "sha256": "c8e4fb1386c8f86f1a3f3a7a9c9477291a2d179be8c32f4dd8aa78eccc6c968f",
+      "bytes": 1257,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-pilot-repro.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    },
+    {
+      "name": "pt-r17-pilot-final.log",
+      "sha256": "ea162a2874b3877c531addb1c514c187122f5b79616415f1473de7e5e30ed979",
+      "bytes": 2420,
+      "archived_path": "docs/implementation/integration/backend-checkpoint-history/pt-r17-pilot-final.txt.gz",
+      "hash_scope": "uncompressed original bytes"
+    }
+  ],
+  "provider_calls": 0,
+  "production_approved": false,
+  "post_freeze_changes_excluded": [
+    {
+      "path": "crates/pt-production/src/runtime/media.rs",
+      "frozen_sha256": "2bfe0b644c0559faaeebcbe9f72d303fe8a8438c579d87b879edad4e709b484f",
+      "current_sha256": "4023bcac739595e7f060b3559a755888a9a734f7e04e3d650b37e5f5e436cd76",
+      "frozen_equals_baseline": true
+    },
+    {
+      "path": "crates/pt-production/src/generation/mod.rs",
+      "frozen_sha256": "fc3aa5f89d724733d30b70e506bd62d6ca85940a954577e21b46beaffe61ace4",
+      "current_sha256": "c403a6259a099a0b4323f72d35f8c3a200a3baa09e23ffb901842d955124aa2a",
+      "frozen_equals_baseline": false
+    },
+    {
+      "path": "crates/pt-production/src/generation/tests.rs",
+      "frozen_sha256": "deba6455f1d50da38f4b3080b99447a0b825772195a0aca026da887487d7e694",
+      "current_sha256": "538cf120a8ff106c0007feb375cd04021382d649e70cb616a5dad485013f8ea0",
+      "frozen_equals_baseline": false
+    },
+    {
+      "path": "docs/implementation/runtime/integration-requests.md",
+      "frozen_sha256": "db982c6b0c91de775f3bd941f60c6182d02af14cd83e2f1b432c1668f4a30ca9",
+      "current_sha256": "88dbd77a1bcb6a7d8b79e27920574c96ad198bb2987ff54aa15225cd0cbee4e2",
+      "frozen_equals_baseline": false
+    }
+  ],
+  "commit_method": "Explicit pathspec commit reads the frozen isolated worktree via git --work-tree; shared worker files are never overwritten or read as checkpoint source."
+}

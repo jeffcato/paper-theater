@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "pending-runtime-owner-registration",
+  "helper_name": "offline-chapter-unit-verification-v1",
+  "kind": "align_audio",
+  "recipe_sha256": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+  "recipe_algorithm": "SHA-256 of chapter_helper.py bytes followed by chapter_acoustic.py bytes",
+  "code_files": {
+    "tools/generation/chapter_helper.py": "cac2f2260117874ecccfd3ca24c0a80516b0552bedbc1aa6d7fbc76e06edb5ea",
+    "tools/generation/chapter_acoustic.py": "ca84dfaafc15410759dc48277a4aa734019fc84422c1031422f5315b8b1cd7b7"
+  },
+  "operation": "verify_chapter_unit",
+  "stdin": {
+    "operation": "verify_chapter_unit",
+    "root": "runtime-owned scratch root",
+    "unit": "chapter-unit.json"
+  },
+  "executable": "/usr/bin/python3",
+  "python_flags": [
+    "-E",
+    "-s",
+    "-S"
+  ],
+  "entrypoint": "tools/generation/chapter_helper.py",
+  "import_allowlist": [
+    "tools/generation/chapter_acoustic.py",
+    "Python standard library"
+  ],
+  "input_allowlist": "Exact immutable unit.files FileRefs plus chapter-unit.json; preserve their relative paths. No full chapter.wav, credentials, implicit files, glob expansion or provider calls. The chapter.wav FileRef in the index describes the producer input, not an imported runtime object.",
+  "limits": {
+    "per_file_bytes": 16777216,
+    "aggregate_input_bytes": 67108864,
+    "metadata_file_bytes": 1048576,
+    "output_bytes": 1048576,
+    "stdin_bytes": 65536,
+    "timeout_ms": 30000,
+    "input_reference_count_with_replay_slots": 64,
+    "maximum_chunks": 1024
+  },
+  "resource_requirements": "Retain runtime helper CPU/deadline/cancellation, bounded sanitized stderr, 256 MiB non-Darwin address-space limit, file-output limit and no credential environment. No measured RSS claim.",
+  "example_unit": "fixtures/generation/chapter-acoustic-v1/chapter-unit.json",
+  "runtime_work": [
+    "Freeze/import the complete verified chapter chunk inventory and original global evidence; independently bind the whole-bundle verification receipt to those immutable artifacts.",
+    "Issue a distinct epoch/unit/revision/recipe-bound helper operation per planned unit; inputs are the exact bounded allowlist. Preserve authorization/late results and charges; no provider dispatch or automatic retries.",
+    "Register the two-file recipe separately; existing OfflineAcoustic hardcodes replay_acoustic and must not be silently repointed.",
+    "Capture chapter-helper-record.json through verified candidate reads; feed the bounded saved record, unit metadata and original evidence to the existing StageExecutor chapter path.",
+    "Fanout/commit/cache/restart/cancellation remains runtime-owned; incomplete dependencies retain NeedsRepair and all adverse findings.",
+    "Replay requires saved records/artifacts only, with zero redispatch/journal/accounting/catalog mutation."
+  ],
+  "dispatch_in_this_increment": false,
+  "provider_calls": 0,
+  "legacy_helper_unchanged": true,
+  "legacy_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4"
+}

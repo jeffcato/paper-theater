@@ -184,3 +184,49 @@ async fn diagnostic_endpoint_distinguishes_missing_candidate_from_unknown_run() 
         b"null"
     );
 }
+
+#[tokio::test]
+async fn provider_v2_metadata_does_not_enable_http_live_dispatch() {
+    let temp = tempfile::tempdir().unwrap();
+    let store = Store::open(temp.path()).unwrap();
+    let app = router(App::new(store.clone(), 8787, None, None));
+    let mut request = body();
+    request["mode"] = json!("live");
+    let response = app
+        .clone()
+        .oneshot(
+            Request::builder()
+                .method("POST")
+                .uri("/api/v1/runs")
+                .header("host", "127.0.0.1:8787")
+                .header("origin", "http://127.0.0.1:8787")
+                .header("content-type", "application/json")
+                .header("idempotency-key", "no-live-adapter")
+                .body(Body::from(request.to_string()))
+                .unwrap(),
+        )
+        .await
+        .unwrap();
+    assert_eq!(response.status(), StatusCode::FORBIDDEN);
+    let value: Value =
+        serde_json::from_slice(&to_bytes(response.into_body(), 1024).await.unwrap()).unwrap();
+    assert_eq!(value["code"], "live_disabled");
+    assert_eq!(
+        store.api_history(i64::MAX, 10).unwrap()["runs"]
+            .as_array()
+            .unwrap()
+            .len(),
+        0
+    );
+    let response = app
+        .oneshot(
+            Request::builder()
+                .uri("/api/v1/provider-v2")
+                .header("host", "127.0.0.1:8787")
+                .body(Body::empty())
+                .unwrap(),
+        )
+        .await
+        .unwrap();
+    assert_eq!(response.status(), StatusCode::NOT_FOUND);
+}

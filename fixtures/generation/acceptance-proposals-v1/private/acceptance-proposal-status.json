@@ -1,0 +1,181 @@
+{
+  "binding": {
+    "alignment_sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd",
+    "asset_sha256s": [
+      "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73",
+      "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127"
+    ],
+    "candidate_checker_version": "pt-contracts-v1.0.0",
+    "checker_sha256": "484a2083c9018b35fed44348d2ad1175b5d5bbdbaafdbf002687823263b9052b",
+    "delivery_sample_count": 3262560,
+    "delivery_sample_rate": 48000,
+    "device_id": null,
+    "fact_inventory_sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63",
+    "inventory_sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0",
+    "master_sha256": "2ab938aff7626cb9667e29930fd4966b89da6b0e76614c7b8fa1e08b40b0c11b",
+    "narration_sample_count": 1451280,
+    "narration_sample_rate": 24000,
+    "narration_sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0",
+    "player_sha256": "eece3b570634816b6c4322ff18a734868190f68812891380cd3154a8f839be69",
+    "player_version": "synthetic-player-v1",
+    "presentation_map_sha256": "5398288ba3e793b1dbcbc4cbf15296546084537262e581b21262d38c73924127",
+    "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+    "recipe_sha256": "3cd07876ccacd86966123c2793b5e6e9e0f95688976a3e38be8894b78db487e6",
+    "source_scope_id": "pg-55-chapter-1-diagnostic",
+    "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+    "source_span": [
+      0,
+      938
+    ]
+  },
+  "context": {
+    "bytes": 3184,
+    "media_type": "application/json",
+    "path": "acceptance-context.json",
+    "sha256": "d23d3c6840a83cdcf76ab4ca66b509cbc08ad2d4a51de3dcd8fbeaf7d765e2af"
+  },
+  "evidence_inventory": {
+    "bytes": 2563,
+    "media_type": "application/json",
+    "path": "private/acceptance-evidence-inventory.json",
+    "sha256": "80e57e0bfcffe25d8090c1694b4f390c6ac3f99eb08ae334e5ef366be625d7b8"
+  },
+  "fact_inventory": {
+    "bytes": 701,
+    "media_type": "application/json",
+    "path": "private/acceptance-facts.json",
+    "sha256": "1316ce7cba4a45f08d8145c0d93cf500b60a3745e36764e6e0e068e57710ab63"
+  },
+  "observations": [
+    {
+      "field": "acceptance",
+      "id": "autonomous-provenance",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "complete-chapter",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "image-scope-review",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "independent-acoustic-evidence",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "narrator-continuity",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "story-coverage",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "incoming-picture-readiness",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "rendered-creative-review",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "font-bundle",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "profile-r186-browser",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "target-device-budget",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "publication-recovery",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "product-spend-authorization",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance.proposals",
+      "id": "image-scope-review",
+      "outcome": "uncertain"
+    },
+    {
+      "field": "acceptance",
+      "id": "evidence-binding-integrity",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "package-byte-integrity",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "required-check-coverage",
+      "outcome": "missing"
+    },
+    {
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "outcome": "missing"
+    }
+  ],
+  "original_reports": [],
+  "payload_inventory": {
+    "bytes": 2314,
+    "media_type": "application/json",
+    "path": "inventory.json",
+    "sha256": "b8bffe88a63ee85775aa8cf0969390f7ba02d71025947ac45bb746330fa9bfd0"
+  },
+  "production_approved": false,
+  "proposals": {
+    "bytes": 2407,
+    "media_type": "application/json",
+    "path": "private/acceptance-proposals.json",
+    "sha256": "724d65e0dd7eec80f401508f9fe4fb52244cbc886288028e9210c4e2ee8d1357"
+  },
+  "provenance": "diagnostic",
+  "provider_calls": 0,
+  "required_check_ids": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "evidence-binding-integrity",
+    "font-bundle",
+    "image-scope-review",
+    "incoming-picture-readiness",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "package-byte-integrity",
+    "product-spend-authorization",
+    "production-verifier-pending",
+    "profile-r186-browser",
+    "publication-recovery",
+    "rendered-creative-review",
+    "required-check-coverage",
+    "story-coverage",
+    "target-device-budget"
+  ],
+  "reveal_permissions": [],
+  "runtime_policy_authority": false,
+  "schema_version": 1,
+  "scope": "diagnostic"
+}

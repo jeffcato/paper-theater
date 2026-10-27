@@ -1,0 +1,129 @@
+{
+  "actions": [],
+  "beats": [
+    {
+      "action_ids": [],
+      "depiction": "picture",
+      "description": "Recognizable Mira beside the source-backed setting.",
+      "fact_ids": [
+        "f0"
+      ],
+      "id": "b0",
+      "span": [
+        0,
+        46
+      ],
+      "subjects": [
+        "mira"
+      ],
+      "text": "Mira watched the rivière. The water was still."
+    }
+  ],
+  "book_id": "test-book",
+  "cast": [
+    {
+      "canonical_id": "test-book:narrator",
+      "id": "narrator",
+      "kind": "narrator",
+      "mentions": [],
+      "name": "Narrator"
+    },
+    {
+      "canonical_id": "test-book:mira",
+      "id": "mira",
+      "kind": "character",
+      "mentions": [
+        {
+          "quote": "Mira",
+          "span": [
+            0,
+            4
+          ]
+        }
+      ],
+      "name": "Mira"
+    }
+  ],
+  "chapter_id": "chapter-1",
+  "facts": [
+    {
+      "assertion": "Mira watched the rivière. The water was still.",
+      "entity_ids": [
+        "mira"
+      ],
+      "id": "f0",
+      "support": {
+        "quote": "Mira watched the rivière. The water was still.",
+        "span": [
+          0,
+          46
+        ]
+      }
+    }
+  ],
+  "questions": [
+    "Initial reference research and voice pilot remain unavailable."
+  ],
+  "references": [
+    {
+      "entity_ids": [
+        "mira"
+      ],
+      "features": [
+        "recognizable subject"
+      ],
+      "id": "r0",
+      "subject_type_id": "test-book:mira",
+      "support": {
+        "quote": "Mira",
+        "span": [
+          0,
+          4
+        ]
+      },
+      "usage": "subject"
+    }
+  ],
+  "request_sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef",
+  "scenes": [
+    {
+      "id": "s0",
+      "pictures": [
+        {
+          "beat_ids": [
+            "b0"
+          ],
+          "description": "Mira remains clearly visible in a concrete setting.",
+          "id": "p0",
+          "span": [
+            0,
+            46
+          ],
+          "subjects": [
+            "mira"
+          ]
+        }
+      ],
+      "span": [
+        0,
+        46
+      ],
+      "text": "Mira watched the rivière. The water was still."
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "turns": [
+    {
+      "attribution": null,
+      "id": "t0",
+      "kind": "narration",
+      "span": [
+        0,
+        46
+      ],
+      "speaker": "narrator",
+      "text": "Mira watched the rivière. The water was still."
+    }
+  ]
+}

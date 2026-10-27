@@ -1,0 +1,7 @@
+# Separate generation-owned G20 compatibility cleanup
+
+Integration published [g20-compatibility-ack.json](../integration/g20-compatibility-ack.json), status `acknowledged-generation-owned-literal-cleanup-permitted`, `generation_may_remove_dead_literal: true`, with `cargo test -p pt-contracts --test acceptance_verification --locked --offline`: 10 passed. Its documentation identifies acknowledgement commit `9b2e5b6`. No Git operation was used to apply or inspect this cleanup.
+
+Generation removed only the inert comment/allow(dead_code)/`const REQUIRED_CHECKS` declaration block from `generation/mod.rs`. Actual package behavior already uses the shared accessor and is unchanged. Integration must stage that removal hunk separately from G21's new module/Acoustic route in the same file; do not absorb a moving worker tree or old G16–G20 work with a broad commit. Integration alone owns Git operations.
+
+I17 subsequently published services v1.6.0, matrix `pt-acceptance-required-v2` and checker `pt-acceptance-bindings-v2`. The unchanged required IDs preserve the original five-row G20 v1 fixture. Generation tests now validate that archive via its explicit v1 accessor and compare current behavior to `fixtures/generation/acceptance-proposals-v2/scopes.json`. New v2 private examples use current checker identity bytes; original v1 fixtures/receipts/readiness remain unchanged historical records. Current shared compatibility results and exact source/fixture pins are in [G21 readiness](chapter-import-ready.json).

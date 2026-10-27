@@ -1,0 +1,87 @@
+{
+  "book_id": "test-book",
+  "catalog": {
+    "bytes": 540,
+    "media_type": "application/json",
+    "path": "private/voice-catalog.json",
+    "sha256": "80b01aec509a14a255ace258990923295978e7a5c98601160eb25ca7da38cd3e"
+  },
+  "chapter_id": "chapter-1",
+  "direction": {
+    "bytes": 9749,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "110612d8bb593b58c8a89eeea1e878fa2a8917ee238b110694ea38e7affd8595"
+  },
+  "direction_input": {
+    "bytes": 3730,
+    "media_type": "application/json",
+    "path": "private/pilot-direction-input.json",
+    "sha256": "f9633f39265fe97d118f3cae2a601ae37e840853e5b1d92be9e1f29fd0821df2"
+  },
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "first_audition_model": "gemini-3.8-flash-tts",
+  "observations": [
+    {
+      "bytes": 949,
+      "media_type": "application/json",
+      "path": "private/pilot-saved/t0.json",
+      "sha256": "99545f957975330a12113b1e1ef65cad008a052992096f2fc2520b381b11b1fb"
+    },
+    {
+      "bytes": 949,
+      "media_type": "application/json",
+      "path": "private/pilot-saved/t1.json",
+      "sha256": "30811153a58cf26ed001305c0c6c9c3efb469dc284448b7a86be36bbeb4b4d8e"
+    }
+  ],
+  "recipe": {
+    "bytes": 48,
+    "media_type": "application/json",
+    "path": "private/pilot-recipe.json",
+    "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+  },
+  "registry": {
+    "bytes": 739,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "2bf8566a832bdfa327ebc32d5e6ed3aa8b936675c499544184b4b108e6059610"
+  },
+  "request_payloads": [
+    {
+      "bytes": 1924,
+      "media_type": "application/json",
+      "path": "private/pilot/requests/p000-t00.json",
+      "sha256": "a28ec23176efeda8a79925b596d66350b0c4c8547d1580bd081ed52375fda99f"
+    },
+    {
+      "bytes": 1915,
+      "media_type": "application/json",
+      "path": "private/pilot/requests/p000-t01.json",
+      "sha256": "f111afb637e74eaeb7daefad2a3f43186cdb41fe7657f1d8e19a1d7c43a64c50"
+    }
+  ],
+  "review_model": "independent-review-double",
+  "review_provider": "review-double",
+  "reviews": [],
+  "schema_version": 1,
+  "selection": {
+    "bytes": 1085,
+    "media_type": "application/json",
+    "path": "private/pilot-selection.json",
+    "sha256": "ad442f959371f6f60bb7b947dc20535eb03034b7e6be692e8eeb084a86addfd8"
+  },
+  "source": {
+    "bytes": 3725,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+  },
+  "speech_provider": "speech-double",
+  "timeout_ms": 30000
+}

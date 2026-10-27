@@ -1,0 +1,105 @@
+{
+  "outcome": "needs_repair",
+  "artifacts": [
+    {
+      "candidate_id": "26ed384a160b603b77e2367193db150ad546dedb6a551fd44d828f105b51a1b4",
+      "file": {
+        "path": "private/direction-request.json",
+        "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203",
+        "bytes": 14049,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "74038775d9d470206f9048ff0b2c65a3bfd8e0781d0a87fb67b1031de97ecc28",
+      "file": {
+        "path": "private/direction-provider-proposal.json",
+        "sha256": "9b6ba37e4d05562893248d345d9dc50a1c587a0c8a0f8298332ca42bd9976021",
+        "bytes": 2498,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "85482cd8e8f7cf42adc431dcc4bc530f24a478812847e168f006eefae4b6a8a8",
+      "file": {
+        "path": "private/direction-plan.json",
+        "sha256": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42",
+        "bytes": 12149,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "46636e7121ea188662568afe309e7dab310351a0d3856651a970158be48a524b",
+      "file": {
+        "path": "private/direction-request-handoff.json",
+        "sha256": "c3a3a0292ae30813b4240b42ded362460120e1f5f43c4b5193bfda212836f9c3",
+        "bytes": 2625,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "20402b984d6665db3255d548965c05e84ef7c68d17abd6d91ba86fd294a1eb95",
+      "file": {
+        "path": "private/direction-status.json",
+        "sha256": "06d97191393c66d408a1828d44ac5251d6e780a8fe89454e4f89ea9f5b6bc568",
+        "bytes": 2833,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    }
+  ],
+  "decisions": [],
+  "findings": [
+    {
+      "id": "initial-reference-research",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "canonical-reference-applicability",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "direction-semantic-review",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "rendered-stage-clarity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    }
+  ],
+  "cache_keys": [
+    "dcfdaa7117fb083325535fbeaedbb16339e10c32cf0e5252d2e5d1f4219f4d71"
+  ],
+  "library_updates": [],
+  "package_candidate": null
+}

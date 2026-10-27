@@ -1,0 +1,132 @@
+[
+  {
+    "artifact": {
+      "file": {
+        "bytes": 55,
+        "media_type": "text/plain",
+        "path": "raw-source.txt",
+        "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68"
+      },
+      "id": "committed:test:raw-source.txt",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/raw-source.txt"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 55,
+        "media_type": "text/plain",
+        "path": "clean-source.txt",
+        "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68"
+      },
+      "id": "committed:test:clean-source.txt",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/clean-source.txt"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 2282,
+        "media_type": "application/json",
+        "path": "frozen-source.json",
+        "sha256": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04"
+      },
+      "id": "committed:test:frozen-source.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/frozen-source.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 3949,
+        "media_type": "application/json",
+        "path": "source.json",
+        "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893"
+      },
+      "id": "committed:test:source.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/source.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 400,
+        "media_type": "application/json",
+        "path": "private/book-registry.json",
+        "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+      },
+      "id": "committed:test:private:book-registry.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/private/book-registry.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 61,
+        "media_type": "application/json",
+        "path": "private/direction-recipe.json",
+        "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4"
+      },
+      "id": "committed:test:private:direction-recipe.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-recipe.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 851,
+        "media_type": "application/json",
+        "path": "private/direction-context.json",
+        "sha256": "79af4ace7dba4d43a0a9078d6352c56bf618367d64503a7c40d4e832b6164b7d"
+      },
+      "id": "committed:test:private:direction-context.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-context.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 14049,
+        "media_type": "application/json",
+        "path": "private/direction-request.json",
+        "sha256": "d971cf3d51f707b015696e1061ab011ce9624fe21a139aa16d8b94cca1ca7203"
+      },
+      "id": "committed:test:private:direction-request.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-request.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 3251,
+        "media_type": "application/json",
+        "path": "private/direction-response.json",
+        "sha256": "abe575162b96adf765ee6f9c2eb6d8417d6114e8e1a5064e0af20d6868ffd37d"
+      },
+      "id": "committed:test:private:direction-response.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-response.json"
+  },
+  {
+    "artifact": {
+      "file": {
+        "bytes": 980,
+        "media_type": "application/json",
+        "path": "private/direction-observation.json",
+        "sha256": "e5ac2537dd5b3b7a348a2b8a434117a0cfc3ff6d21b9509ea85a714d9fb1270e"
+      },
+      "id": "committed:test:private:direction-observation.json",
+      "provenance": "synthetic"
+    },
+    "source": "fixtures/generation/direction-v1/dialogue/inputs/private/direction-observation.json"
+  }
+]

@@ -1,3 +1,15 @@
+R17 execution-bound provider service: [provider-service.md](provider-service.md), [checks/pins](provider-service-ready.json), [public-method examples](provider-service-examples.json). All three methods use R13 persistence with scoped issuance, exact once-only execution and separately authorized query-only recovery. Successful construction is test-only; credentials, live dispatch and publication remain disabled. Backend only; zero actual provider calls or UI/Git operations.
+
+R16 bounded chapter execution: [chapter-runtime.md](chapter-runtime.md), [registration/checks](chapter-runtime-ready.json), [observed receipt](chapter-runtime-receipt.json). G21 runs through its separately pinned helper and real StageExecutor with immutable original/bundle inputs, private atomic checkpoints, conservative recovery and read-only replay. All results remain NeedsRepair; publication is blocked. Backend only; zero provider calls or UI/Git operations.
+
+R15 trusted private acceptance: [private-acceptance.md](private-acceptance.md), [readiness](private-acceptance-ready.json). Actual independent execution, consumed-byte/context rechecks and atomic private persistence are implemented. Missing registry inputs fail closed; production verification and publication remain blocked. Backend only; no UI/Git operations.
+
+R14 durable G18 Presentation integration: [presentation-integration.md](presentation-integration.md), [receipt](presentation-runtime-ready.json). Backend only; private NeedsRepair evidence persists, replay is read-only, publication remains blocked. R12 stays open.
+
+R13 private offline provider-v2 adapter: [provider-v2-adapter.md](provider-v2-adapter.md). R12 remains open; see the linked unchanged-check rerun.
+
+R12 studio consumer implementation and title-rendering blocker: [studio-player.md](studio-player.md).
+
 Latest R11/R2-010 server capacity and compatibility handoff: [master-wav-support.md](master-wav-support.md).
 
 Current acoustic/runtime integration and combined readiness-v2/P12 completion: [acoustic-integration.md](acoustic-integration.md).

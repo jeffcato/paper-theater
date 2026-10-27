@@ -1,0 +1,173 @@
+{
+  "actions": [
+    {
+      "actor_id": "mira",
+      "assertion": "Mira moved to the gate.",
+      "id": "a0",
+      "kind": "move",
+      "support": {
+        "quote": "Mira moved to the gate.",
+        "span": [
+          28,
+          51
+        ]
+      }
+    }
+  ],
+  "beats": [
+    {
+      "action_ids": [
+        "a0"
+      ],
+      "depiction": "picture",
+      "description": "Recognizable Mira beside the source-backed setting.",
+      "fact_ids": [
+        "f0"
+      ],
+      "id": "b0",
+      "span": [
+        0,
+        51
+      ],
+      "subjects": [
+        "mira"
+      ],
+      "text": "Mira said, “Open the gate.” Mira moved to the gate."
+    }
+  ],
+  "book_id": "test-book",
+  "cast": [
+    {
+      "canonical_id": "test-book:narrator",
+      "id": "narrator",
+      "kind": "narrator",
+      "mentions": [],
+      "name": "Narrator"
+    },
+    {
+      "canonical_id": "test-book:mira",
+      "id": "mira",
+      "kind": "character",
+      "mentions": [
+        {
+          "quote": "Mira",
+          "span": [
+            0,
+            4
+          ]
+        }
+      ],
+      "name": "Mira"
+    }
+  ],
+  "chapter_id": "chapter-1",
+  "facts": [
+    {
+      "assertion": "Mira moved to the gate.",
+      "entity_ids": [
+        "mira"
+      ],
+      "id": "f0",
+      "support": {
+        "quote": "Mira moved to the gate.",
+        "span": [
+          28,
+          51
+        ]
+      }
+    }
+  ],
+  "questions": [
+    "Initial reference research and voice pilot remain unavailable."
+  ],
+  "references": [
+    {
+      "entity_ids": [
+        "mira"
+      ],
+      "features": [
+        "recognizable subject"
+      ],
+      "id": "r0",
+      "subject_type_id": "test-book:mira",
+      "support": {
+        "quote": "Mira",
+        "span": [
+          0,
+          4
+        ]
+      },
+      "usage": "subject"
+    }
+  ],
+  "request_sha256": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638",
+  "scenes": [
+    {
+      "id": "s0",
+      "pictures": [
+        {
+          "beat_ids": [
+            "b0"
+          ],
+          "description": "Mira remains clearly visible in a concrete setting.",
+          "id": "p0",
+          "span": [
+            0,
+            51
+          ],
+          "subjects": [
+            "mira"
+          ]
+        }
+      ],
+      "span": [
+        0,
+        51
+      ],
+      "text": "Mira said, “Open the gate.” Mira moved to the gate."
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+  "turns": [
+    {
+      "attribution": null,
+      "id": "t0",
+      "kind": "narration",
+      "span": [
+        0,
+        11
+      ],
+      "speaker": "narrator",
+      "text": "Mira said, "
+    },
+    {
+      "attribution": {
+        "quote": "Mira said, “Open the gate.”",
+        "span": [
+          0,
+          27
+        ]
+      },
+      "id": "t1",
+      "kind": "dialogue",
+      "span": [
+        11,
+        27
+      ],
+      "speaker": "mira",
+      "text": "“Open the gate.”"
+    },
+    {
+      "attribution": null,
+      "id": "t2",
+      "kind": "narration",
+      "span": [
+        27,
+        51
+      ],
+      "speaker": "narrator",
+      "text": " Mira moved to the gate."
+    }
+  ]
+}

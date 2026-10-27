@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "task": "G22",
+  "status": "generation-offline-increment-complete-runtime-orchestration-pending",
+  "entrypoint": "pt_production::generation::GenerationExecutor / Stage::Direction",
+  "contracts": {
+    "services": "pt-services-v1.8.0",
+    "playback": "pt-contracts-v1.0.0",
+    "provider_envelope": 2,
+    "shared_changes_required": false
+  },
+  "input_schema": "private/direction-context.json: schema_version, book_id, chapter_id, source FileRef, registry FileRef, recipe FileRef, provider, model, estimate Usage, timeout_ms; unknown authority fields rejected",
+  "required_source_inputs": [
+    "raw-source.txt",
+    "clean-source.txt",
+    "frozen-source.json",
+    "Source-stage receipt referenced by context.source"
+  ],
+  "registry_schema": "schema_version=1, book_id, revision, entities[{id,name,aliases,sprite?:ArtifactRef,voice?:ArtifactRef}]; snapshot from authoritative book registry, preserving prior bindings",
+  "response_schema": {
+    "path": "fixtures/generation/direction-v1/response-schema.json",
+    "sha256": "d9e78068ba7717691307250707c50855a59b1ea8f4f58b58b2258f099bb4da8a",
+    "bytes": 11141,
+    "media_type": "application/json"
+  },
+  "phases": [
+    {
+      "phase": "source-and-context",
+      "owner": "runtime",
+      "work": "Commit verified Source output and originals, exact book-registry snapshot and recipe. Supply actual immutable ArtifactRefs and explicit book/chapter context."
+    },
+    {
+      "phase": "request-candidate",
+      "owner": "generation",
+      "work": "Propose exact private request FileRef/CandidateFile and content-only handoff. NeedsRepair coordination state; no fabricated committed ArtifactRef, no issuance."
+    },
+    {
+      "phase": "request-commit",
+      "owner": "runtime",
+      "work": "Verify and commit request, then supply genuine ArtifactRef at private/direction-request.json. Do not treat request-commit-pending as purchased creative repair."
+    },
+    {
+      "phase": "proposal-and-issued-operation",
+      "owner": "runtime + generation",
+      "work": "Generation compiles shared ProviderProposalV2; runtime alone supplies authorization/registry/lineage/quotas and persists issuance. Generation checks exact proposal and runtime-bound StageInput observer; fixture/replay never issue."
+    },
+    {
+      "phase": "result-and-observation",
+      "owner": "runtime",
+      "work": "Persist actual original result/raw bytes and charges independently of compilation success. Capture private observation derivative, retaining original issued/result metadata. Uncertain/incomplete attempts require existing-attempt resolution, never generation repurchase."
+    },
+    {
+      "phase": "replay",
+      "owner": "runtime",
+      "work": "Supply pinned original observation, request, raw response, source/registry/recipe. Same original issued scope is required; cross-run/epoch cache mapping must be independently audited. Reconstruct plan/request/proposal/status without rewriting observation originals or redispatch."
+    }
+  ],
+  "private_outputs": [
+    "private/direction-request.json",
+    "private/direction-request-handoff.json",
+    "private/direction-provider-proposal.json (committed payload only)",
+    "private/direction-observation.json (new received metadata only)",
+    "private/direction-plan.json (usable saved direct JSON only)",
+    "private/direction-status.json"
+  ],
+  "provider_adapter_gap": "Current saved/double format is direct direction-plan JSON. Real provider transport/envelope decoding remains owner work. Never replace raw_response with parsed text: retain original raw transport bytes, and add an independently pinned decoded ArtifactRef/decoder recipe boundary before enabling a different envelope.",
+  "canonical_gap": "Registry references are retained, not approved. Runtime owns book/revision/provenance and accepted canonical bindings; generation allocates no new voice/image/sprite or library update.",
+  "acceptance_gap": "Initial reference research, one canonical external image per researched type, art profile/applicability, voice pilot, semantic planning and actual rendered clarity remain unresolved. Source citations do not establish semantic entailment/enactment. No final master/reveal/publication permission.",
+  "limits": {
+    "raw_or_clean_source_file_bytes": 16777216,
+    "other_metadata_request_response_candidate_bytes": 1048576,
+    "aggregate_input_bytes": 67108864,
+    "input_references": 64,
+    "top_level_response_inventory_count": 1024,
+    "maximum_proposal_timeout_ms": 300000
+  },
+  "caller_authority": false,
+  "fixture_replay_dispatch": false,
+  "provider_transport_calls_in_increment": 0,
+  "ui_edits": 0,
+  "git_operations": 0
+}

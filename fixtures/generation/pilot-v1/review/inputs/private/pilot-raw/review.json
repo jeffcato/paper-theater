@@ -1,0 +1,42 @@
+{
+  "criteria": [
+    {
+      "id": "continuity",
+      "message": "Original adverse voice drift observation.",
+      "outcome": "fail"
+    },
+    {
+      "id": "listening",
+      "message": "A fake claim cannot authorize bulk speech.",
+      "outcome": "pass"
+    }
+  ],
+  "provenance": "synthetic",
+  "recipe_sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+  "reference_audio": null,
+  "request_sha256": "34c17d3a5086ecb8055a65b4b002297f5ea962409b833c8e1e9f982f6f9146ba",
+  "schema_version": 1,
+  "speaker": "narrator",
+  "targets": [
+    {
+      "file": {
+        "bytes": 4844,
+        "media_type": "audio/wav",
+        "path": "private/pilot-audio/t0.wav",
+        "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+      },
+      "id": "committed:pilot:private:pilot-audio:t0.wav",
+      "provenance": "synthetic"
+    },
+    {
+      "file": {
+        "bytes": 4846,
+        "media_type": "audio/wav",
+        "path": "private/pilot-audio/t1.wav",
+        "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+      },
+      "id": "committed:pilot:private:pilot-audio:t1.wav",
+      "provenance": "synthetic"
+    }
+  ]
+}

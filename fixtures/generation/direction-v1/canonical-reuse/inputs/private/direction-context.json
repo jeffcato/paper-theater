@@ -1,0 +1,32 @@
+{
+  "book_id": "test-book",
+  "chapter_id": "chapter-1",
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "model": "model-a",
+  "provider": "provider-a",
+  "recipe": {
+    "bytes": 61,
+    "media_type": "application/json",
+    "path": "private/direction-recipe.json",
+    "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4"
+  },
+  "registry": {
+    "bytes": 733,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "f59ee4d2d9bc4b206692795da0c59e1bf5bbbe84d5dfa5eb9ff8d9ef04ad7ef9"
+  },
+  "schema_version": 1,
+  "source": {
+    "bytes": 3949,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "5971ca095e7ded653908c2e4ef5024684845b01c67677285239714168a3eb893"
+  },
+  "timeout_ms": 30000
+}

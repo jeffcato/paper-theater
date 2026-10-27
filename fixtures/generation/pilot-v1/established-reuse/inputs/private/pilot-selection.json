@@ -1,0 +1,40 @@
+{
+  "catalog_sha256": "80b01aec509a14a255ace258990923295978e7a5c98601160eb25ca7da38cd3e",
+  "direction_sha256": "110612d8bb593b58c8a89eeea1e878fa2a8917ee238b110694ea38e7affd8595",
+  "performers": [
+    {
+      "accent": "catalog-default",
+      "baseline": "steady",
+      "language": "en",
+      "model": "gemini-3.8-flash-lite-tts",
+      "passages": [
+        {
+          "acting": "",
+          "acting_support": null,
+          "span": [
+            0,
+            25
+          ],
+          "text": "Mira watched the rivière.",
+          "turn_id": "t0"
+        },
+        {
+          "acting": "",
+          "acting_support": null,
+          "span": [
+            25,
+            46
+          ],
+          "text": " The water was still.",
+          "turn_id": "t0"
+        }
+      ],
+      "speaker": "narrator",
+      "voice_id": "old-n"
+    }
+  ],
+  "provenance": "synthetic",
+  "registry_sha256": "2bf8566a832bdfa327ebc32d5e6ed3aa8b936675c499544184b4b108e6059610",
+  "schema_version": 1,
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+}

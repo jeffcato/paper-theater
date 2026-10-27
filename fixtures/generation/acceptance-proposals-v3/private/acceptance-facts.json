@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source_scope_id": "pg-55-chapter-1-diagnostic",
+  "source_sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5",
+  "source_span": [
+    0,
+    938
+  ],
+  "facts": [
+    {
+      "id": "reveal-1-fact-0",
+      "reveal_id": "reveal-1",
+      "source_span": [
+        15,
+        20
+      ],
+      "asset_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73"
+    },
+    {
+      "id": "reveal-2-fact-0",
+      "reveal_id": "reveal-2",
+      "source_span": [
+        437,
+        442
+      ],
+      "asset_sha256": "0b3f4ab7ba3f6c7e8f7753127d4f613656cb2d9a72f22cd3dc2c3c15e56a7f73"
+    }
+  ],
+  "required_cue_ids": [
+    "nod-em"
+  ]
+}

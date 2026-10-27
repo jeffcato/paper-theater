@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "task": "G21",
+  "status": "pending-runtime-owner-registration",
+  "helper_name": "offline-chapter-import-unit-verification-v2",
+  "kind": "align_audio",
+  "operation": "verify_imported_chapter_unit_v2",
+  "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+  "recipe_algorithm": "SHA-256 of raw source bytes concatenated in recipe_files order; full local import closure",
+  "recipe_files": [
+    "tools/generation/chapter_import_helper.py",
+    "tools/generation/chapter_import.py",
+    "tools/generation/chapter_acoustic.py",
+    "tools/generation/adapters.py"
+  ],
+  "code_files": {
+    "tools/generation/chapter_import_helper.py": "1b78167cbc750dcc5fed1fa9808f1222d442d958f6e1f5dfd1c831242ce01672",
+    "tools/generation/chapter_import.py": "22b8e14901dbf216002237a6f710138b386c6fdf7c9a764033c9bcf00eadf405",
+    "tools/generation/chapter_acoustic.py": "ca84dfaafc15410759dc48277a4aa734019fc84422c1031422f5315b8b1cd7b7",
+    "tools/generation/adapters.py": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996"
+  },
+  "executable": "/usr/bin/python3",
+  "python_flags": [
+    "-E",
+    "-s",
+    "-S"
+  ],
+  "entrypoint": "tools/generation/chapter_import_helper.py",
+  "stdin": {
+    "operation": "verify_imported_chapter_unit_v2",
+    "root": "runtime-owned bounded scratch root",
+    "unit": "chapter-import-unit.json"
+  },
+  "import_allowlist": [
+    "tools/generation/chapter_import.py",
+    "tools/generation/chapter_acoustic.py",
+    "tools/generation/adapters.py",
+    "Python standard library"
+  ],
+  "input_allowlist": "Exact immutable unit.files FileRefs plus chapter-import-unit.json, preserving relative paths. Complete original raw bytes are inside the pinned private context; no implicit source directory, chapter.wav, receipts, credentials or glob expansion.",
+  "output": "Bounded stdout JSON; capture as private chapter-import-helper-record.json via verified candidate reads. Generation independently reconstructs it; JSON is not an execution capability.",
+  "limits": {
+    "per_file_bytes": 16777216,
+    "aggregate_input_bytes": 67108864,
+    "metadata_file_bytes": 1048576,
+    "output_bytes": 1048576,
+    "stdin_bytes": 65536,
+    "timeout_ms": 30000,
+    "input_reference_count_with_replay_slots": 64,
+    "reserved_replay_metadata_slots": 5,
+    "original_raw_metadata_bytes": 524288,
+    "maximum_turns": 1024,
+    "maximum_facts": 1024,
+    "maximum_chunks": 1024,
+    "global_ambiguity_token_span_budget": 2000000
+  },
+  "resource_requirements": "Retain existing runtime CPU/deadline/cancellation, bounded sanitized stderr, no credential environment, 256 MiB non-Darwin address-space and file-output caps. No measured RSS or live capability claim.",
+  "examples": {
+    "importer_inventory": "fixtures/generation/chapter-import-v2/producer-inputs/chapter-evidence.json",
+    "unit": "fixtures/generation/chapter-import-v2/stage/chapter-import-unit.json",
+    "consumed_stage_inputs": "fixtures/generation/chapter-import-v2/stage-input.json"
+  },
+  "runtime_work": [
+    "Independently verify and freeze the complete source/narration/ordered turn PCM/raw inventory and streamed reconstruction before authoritative import. Reject unsupported context sizes; retain original receipts and adverse findings.",
+    "Register this four-file closure separately. Do not alter G19 registration or the legacy acoustic helper. No unregistered dispatch, provider call, scheduler or authorization is supplied.",
+    "Own epoch/unit/revision/input/recipe pins, bounded helper envelope, verified candidate reads, fanout/commits/restart/cancellation and immutable private persistence.",
+    "Route saved records through Stage::Acoustic using chapter-import-unit.json, chapter-import-helper-record.json and exact unit.files; optional replay inputs are all three private StageOutput candidates. Reserve all five metadata slots before selection.",
+    "Keep missing cross-unit/global/independent evidence unresolved. Preserve G20 private proposal/public payload boundaries. Runtime independently pins all acceptance identities and executes/rechecks the checker; no report or candidate activates a catalog.",
+    "Nonzero-origin source slices require an independently pinned full-source/slice/scalar mapping before playback-v1 source acceptance; retain missing_source_mapping until that contract exists."
+  ],
+  "dispatch_in_this_increment": false,
+  "stage_replay_helper_calls": 0,
+  "provider_calls": 0,
+  "g19_recipe_unchanged": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+  "legacy_recipe_unchanged": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4"
+}

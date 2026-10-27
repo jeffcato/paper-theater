@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "task": "G19",
+  "status": "offline-bounded-bundles-and-recorded-unit-verification-complete",
+  "service_revision": "pt-services-v1.5.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "outcome": "needs_repair",
+  "production_approved": false,
+  "provider_calls": 0,
+  "runtime_helper_dispatches": 0,
+  "registration": "pending-runtime-owner",
+  "new_recipe_sha256": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+  "legacy_recipe_sha256": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
+  "source": {
+    "bytes": 960,
+    "media_type": "text/plain",
+    "path": "chapter-source.txt",
+    "sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5"
+  },
+  "narration": {
+    "bytes": 2902604,
+    "media_type": "audio/wav",
+    "path": "chapter.wav",
+    "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0"
+  },
+  "source_origin": 3158,
+  "source_units": 12,
+  "original_receipt_count": 13,
+  "original_receipts_unchanged": true,
+  "limits": {
+    "aggregate": 67108864,
+    "context_bytes": 6260710,
+    "file": 16777216,
+    "maximum_segment_frames": 8388586,
+    "metadata": 1048576,
+    "output": 1048576
+  },
+  "example_unit_files": 50,
+  "example_unit_bytes": 8401872,
+  "example_stage_inputs": 52,
+  "word_count": 176,
+  "highlight_group_count": 170,
+  "point_word_count": 6,
+  "facts": [
+    {
+      "id": "cellar-instruction",
+      "outcome": "pass",
+      "required_chunks": [
+        "chunk-0000",
+        "chunk-0001"
+      ],
+      "chapter_not_before_sample": 546720
+    },
+    {
+      "id": "Dorothy-urged",
+      "outcome": "pass",
+      "required_chunks": [
+        "chunk-0000"
+      ],
+      "chapter_not_before_sample": 506640
+    },
+    {
+      "id": "screaming",
+      "outcome": "pass",
+      "required_chunks": [
+        "chunk-0000"
+      ],
+      "chapter_not_before_sample": 506640
+    },
+    {
+      "id": "urged-cellar",
+      "outcome": "pass",
+      "required_chunks": [
+        "chunk-0000",
+        "chunk-0001"
+      ],
+      "chapter_not_before_sample": 546720
+    },
+    {
+      "id": "strange-event",
+      "outcome": "uncertain",
+      "required_chunks": [],
+      "chapter_not_before_sample": null
+    },
+    {
+      "id": "balloon-ascent",
+      "outcome": "uncertain",
+      "required_chunks": [],
+      "chapter_not_before_sample": null
+    },
+    {
+      "id": "unprovided-fact",
+      "outcome": "missing",
+      "required_chunks": [],
+      "chapter_not_before_sample": null
+    }
+  ],
+  "chapter_proof": {
+    "provenance": "temporary synthetic capacity media with original narration embedded; no new provider observations",
+    "duration_seconds": 600,
+    "sample_rate": 24000,
+    "frames": 14400000,
+    "bytes": 28800044,
+    "evidence_offset_frames": 1000000,
+    "chunks": 2,
+    "first_chunk_bytes": 16777216,
+    "full_pcm_reconstruction_verified": true,
+    "runservices_unit_verified": true,
+    "original_matched_facts": 4,
+    "chapter_global_bounds": "all null; independent full-chapter observations unavailable",
+    "committed_large_media": false
+  },
+  "replay": {
+    "bytes_identical": true,
+    "helper_calls": 0,
+    "candidate_reads": 0,
+    "journal_proposals": 0,
+    "stale_implementation_report_rejected": true
+  },
+  "checks": {
+    "generation_tests": 46,
+    "new_chapter_rust_tests": 6,
+    "python_tests": 25,
+    "new_chapter_python_tests": 8,
+    "candidate_contract_tests": 4,
+    "identity": "pass",
+    "formatting": "pass",
+    "diff_whitespace": "pass"
+  },
+  "commands": [
+    "cargo test -p pt-production generation:: --offline",
+    "cargo test -p pt-production --test candidate_read_contract --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "python3 tools/check_product_identity.py .",
+    "rustfmt --edition 2024 --check crates/pt-production/src/generation/{mod.rs,acoustic_bundle.rs,acoustic_tests.rs,acoustic_tests/chapter_bundle.rs}",
+    "PT_CHAPTER_EXPORT=fixtures/generation/chapter-acoustic-v1 cargo test -p pt-production generation::acoustic_tests::chapter_bundle:: --offline"
+  ],
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "b95a42b92f4e9da661a95dd8b9be2c20bdbaf93d2ed2d6f7f986d337c5346935",
+    "crates/pt-production/src/generation/acoustic_bundle.rs": "695da1d767f6ea3ba7c60b68b26034189c909c310c7de756c7e33ff72633c10f",
+    "crates/pt-production/src/generation/acoustic_tests.rs": "f175a9afffb6a0491533b884f0ebe9dfd134e7aceb73a7f79f0555f903d3ba34",
+    "crates/pt-production/src/generation/acoustic_tests/chapter_bundle.rs": "ec3aa869e15e2b9ac6aeebe0769f9d23e2bd0f09e90d9b61093124ac3b977965",
+    "tools/generation/chapter_acoustic.py": "ca84dfaafc15410759dc48277a4aa734019fc84422c1031422f5315b8b1cd7b7",
+    "tools/generation/chapter_helper.py": "cac2f2260117874ecccfd3ca24c0a80516b0552bedbc1aa6d7fbc76e06edb5ea",
+    "tools/generation/test_chapter_acoustic.py": "4a6026ff3a326a01a883b96d4a3add977340084eb8be1d621c35623c707eac60"
+  },
+  "metadata_example_sha256": {
+    "chapter-acoustic-validation.json": "6359e979b80872c3a4544d337a5841e4931c1b83f80f037b68011ce494954a6e",
+    "chapter-index.json": "068d47a0f7400859de904c13a4ee9699af966c8d67d34279f3e11bdff98d002b",
+    "bundle-verification.json": "6e95d5629044a46f68f5d94a0d4803d0c9c9a125e4630a1813cd7c914d32fe15",
+    "chapter-helper-record.json": "4a7fcbe847d6a6fa306f60862782d64336408bfc4e365ac53e717bd530519119",
+    "chapter-unit.json": "6a3f92b3265115bf8e7884ddfd32105139a2f1f85c22c3e1f47a248940c04f2d"
+  },
+  "preserved_g18_report_sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+  "required_checks_literal": "unchanged; shared adoption belongs to G20",
+  "remaining": [
+    "Runtime registration, authoritative whole-bundle import, bounded fanout/commit/restart/cancellation",
+    "General chapter transcript/evidence importer when full global context does not fit",
+    "Unknown full-chapter independent observations/recipes, provider pilots, voice/creative reviews and production acceptance"
+  ],
+  "commit_owner": "integration; no generation Git mutations"
+}

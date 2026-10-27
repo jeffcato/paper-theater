@@ -1,0 +1,35 @@
+{
+  "findings": [
+    {
+      "evidence": [],
+      "field": "pilot",
+      "id": "retained-pilot-adverse",
+      "message": "Synthetic takes are not listening evidence.",
+      "outcome": "uncertain"
+    }
+  ],
+  "issued": null,
+  "provenance": "synthetic",
+  "request": {
+    "file": {
+      "bytes": 1924,
+      "media_type": "application/json",
+      "path": "private/pilot/requests/p000-t00.json",
+      "sha256": "a28ec23176efeda8a79925b596d66350b0c4c8547d1580bd081ed52375fda99f"
+    },
+    "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+    "provenance": "synthetic"
+  },
+  "response": {
+    "file": {
+      "bytes": 1165,
+      "media_type": "application/json",
+      "path": "private/pilot-raw/t0.json",
+      "sha256": "8ecabf7dca078cc53ea441df6100d1baf259617881d7672141e3e90a2f2a392d"
+    },
+    "id": "committed:pilot:private:pilot-raw:t0.json",
+    "provenance": "synthetic"
+  },
+  "result": null,
+  "schema_version": 1
+}

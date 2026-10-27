@@ -1,0 +1,261 @@
+{
+  "outcome": "needs_repair",
+  "artifacts": [
+    {
+      "candidate_id": "431947c027bdd88ae38225e1e04a3cf9ca0e1002343978fb80a9fd02cdbb6ad5",
+      "file": {
+        "path": "private/chapter-import-validation.json",
+        "sha256": "a1425fc7bbc0a20cc9ff0fc0ad1cb9ff6d613089f517cafa3e496ad945e01ad0",
+        "bytes": 9379,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "740acb58634bbb0f4c1fd158ef07131b3f4ed23e6b4075790429a76e55bd9c9c",
+      "file": {
+        "path": "private/chapter-import-proposals.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "c1c8cda768f6df87125f118d9476e7693e0aa36fd19be24bac5cf8fec982d6ff",
+      "file": {
+        "path": "private/chapter-import-evidence-inventory.json",
+        "sha256": "703b6f107f6f28f276d42dd8f10e664467e12c7fca1129dad5093791a6ace07d",
+        "bytes": 44,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    }
+  ],
+  "decisions": [],
+  "findings": [
+    {
+      "id": "chapter-import-registration-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Runtime owns whole-bundle import, v2 registration and bounded fanout.",
+      "evidence": []
+    },
+    {
+      "id": "acceptance-input-bindings",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "No delivered presentation/player/checker/fact association bindings; acoustic observations cannot authorize public evidence or reveals.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent semantic verification remains required.",
+      "evidence": []
+    },
+    {
+      "id": "chapter-import-fact:gate",
+      "field": "acoustic.chapter.import",
+      "outcome": "pass",
+      "message": "complete_global_observations_and_pcm_dependencies",
+      "evidence": [
+        {
+          "id": "import:chapter-import-index.json",
+          "file": {
+            "path": "chapter-import-index.json",
+            "sha256": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+            "bytes": 2631,
+            "media_type": "application/json"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chapter-context.json",
+          "file": {
+            "path": "private/chapter-context.json",
+            "sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+            "bytes": 22393,
+            "media_type": "application/json"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0000.wav",
+          "file": {
+            "path": "private/chunks/chunk-0000.wav",
+            "sha256": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0001.wav",
+          "file": {
+            "path": "private/chunks/chunk-0001.wav",
+            "sha256": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0002.wav",
+          "file": {
+            "path": "private/chunks/chunk-0002.wav",
+            "sha256": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0003.wav",
+          "file": {
+            "path": "private/chunks/chunk-0003.wav",
+            "sha256": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/source.txt",
+          "file": {
+            "path": "private/source.txt",
+            "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+            "bytes": 104,
+            "media_type": "text/plain"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:chapter-import-unit.json",
+          "file": {
+            "path": "chapter-import-unit.json",
+            "sha256": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+            "bytes": 1466,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "id": "import:chapter-import-helper-record.json",
+          "file": {
+            "path": "chapter-import-helper-record.json",
+            "sha256": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6",
+            "bytes": 4110,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "id": "chapter-import-fact:cross-turn",
+      "field": "acoustic.chapter.import",
+      "outcome": "pass",
+      "message": "complete_global_observations_and_pcm_dependencies",
+      "evidence": [
+        {
+          "id": "import:chapter-import-index.json",
+          "file": {
+            "path": "chapter-import-index.json",
+            "sha256": "f519a837cde3f86cb9b7dd30e9393a873f1879a437c2bca16338ef45212f2506",
+            "bytes": 2631,
+            "media_type": "application/json"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chapter-context.json",
+          "file": {
+            "path": "private/chapter-context.json",
+            "sha256": "5bd338c75d161457eb8cf1680d2919eda4115b34c247365f77cf4c556bc30f1c",
+            "bytes": 22393,
+            "media_type": "application/json"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0000.wav",
+          "file": {
+            "path": "private/chunks/chunk-0000.wav",
+            "sha256": "9430f1cf410782b69a8ce100d1b6b7f855d8f1e3285862d7736cd9b7aba0cac7",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0001.wav",
+          "file": {
+            "path": "private/chunks/chunk-0001.wav",
+            "sha256": "4735d5ab6864538fd906ab0abcfa8f9234ccd2c03413fab980a0de452e784ac9",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0002.wav",
+          "file": {
+            "path": "private/chunks/chunk-0002.wav",
+            "sha256": "7fc529db5e0ad8c9f874fba637d22c583c57eb605e84ab6c113137dc23a157be",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/chunks/chunk-0003.wav",
+          "file": {
+            "path": "private/chunks/chunk-0003.wav",
+            "sha256": "ff9a5dd7576d5ff4eaca26617def8f8099c67c80e5a77a02c3a5f663bf84f395",
+            "bytes": 12044,
+            "media_type": "audio/wav"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:private/source.txt",
+          "file": {
+            "path": "private/source.txt",
+            "sha256": "966c0bf1e1378d8ae56000f3c00051c418cfe57845ae395bf8cf866e95fd465e",
+            "bytes": 104,
+            "media_type": "text/plain"
+          },
+          "provenance": "synthetic"
+        },
+        {
+          "id": "import:chapter-import-unit.json",
+          "file": {
+            "path": "chapter-import-unit.json",
+            "sha256": "ac6371ffa6e6b2c5e35873e5d9dc44d9c69ca84b03f5a762ae18c87ff27a988a",
+            "bytes": 1466,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "id": "import:chapter-import-helper-record.json",
+          "file": {
+            "path": "chapter-import-helper-record.json",
+            "sha256": "ba0dcd62fb1bdfc7e94606e6dfe7df7193318f77f4f7ac80f15950ce7ca973d6",
+            "bytes": 4110,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    }
+  ],
+  "cache_keys": [
+    "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "a1425fc7bbc0a20cc9ff0fc0ad1cb9ff6d613089f517cafa3e496ad945e01ad0"
+  ],
+  "library_updates": [],
+  "package_candidate": null
+}

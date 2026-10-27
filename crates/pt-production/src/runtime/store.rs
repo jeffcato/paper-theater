@@ -208,6 +208,8 @@ impl Store {
     /// Called once by the server process, before starting its worker.
     pub fn recover(&self) -> Result<()> {
         self.transaction(|tx| {
+            tx.execute("UPDATE provider_v2_attempts SET state='uncertain' WHERE state IN ('reserved','dispatched')",[])?;
+            tx.execute("UPDATE provider_v2_queries SET state='uncertain' WHERE state IN ('reserved','dispatched')",[])?;
             tx.execute(
                 "UPDATE attempts SET state='uncertain' WHERE state IN ('reserved','dispatched')",
                 [],
@@ -341,7 +343,13 @@ impl Store {
             .collect::<std::result::Result<Vec<_>, _>>()?;
         for record in records {
             if let Ok(finding) = serde_json::from_str::<pt_contracts::Finding>(&record) {
-                findings.insert((finding.field.clone(), finding.id.clone()), finding);
+                // Several stages can observe the same check with different evidence.
+                // Preserve each observation; only byte-equivalent records deduplicate.
+                let identity = serde_json::to_string(&finding)?;
+                findings.insert(
+                    (finding.field.clone(), finding.id.clone(), identity),
+                    finding,
+                );
             }
         }
         let findings = findings.into_values().collect::<Vec<_>>();

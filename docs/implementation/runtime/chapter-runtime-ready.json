@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "task": "R16",
+  "status": "offline-backend-verified-publication-blocked",
+  "verified_at_utc": "2026-10-27T17:50:20.415862+00:00",
+  "brief": "docs/implementation/integration/server-chapter-runtime-task.md",
+  "report": "docs/implementation/runtime/chapter-runtime.md",
+  "receipt": "docs/implementation/runtime/chapter-runtime-receipt.json",
+  "backend_only": true,
+  "external_provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "git_operations": 0,
+  "ui_changes": false,
+  "browser_checks_run": false,
+  "production_approved": false,
+  "publication_enabled": false,
+  "outcome": "needs_repair",
+  "service_revision": "pt-services-v1.7.0",
+  "checker": {
+    "version": "pt-acceptance-bindings-v3",
+    "sha256": "3e6df586488f461e6aaece5c823a91265a0c80f5e45b2c8021259d4081829c1d",
+    "report_version": 3
+  },
+  "registration": {
+    "helper_name": "offline-chapter-import-unit-verification-v2",
+    "kind": "align_audio",
+    "operation": "verify_imported_chapter_unit_v2",
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "recipe_files": [
+      "tools/generation/chapter_import_helper.py",
+      "tools/generation/chapter_import.py",
+      "tools/generation/chapter_acoustic.py",
+      "tools/generation/adapters.py"
+    ],
+    "code_files": {
+      "tools/generation/chapter_import_helper.py": "1b78167cbc750dcc5fed1fa9808f1222d442d958f6e1f5dfd1c831242ce01672",
+      "tools/generation/chapter_import.py": "22b8e14901dbf216002237a6f710138b386c6fdf7c9a764033c9bcf00eadf405",
+      "tools/generation/chapter_acoustic.py": "ca84dfaafc15410759dc48277a4aa734019fc84422c1031422f5315b8b1cd7b7",
+      "tools/generation/adapters.py": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996"
+    },
+    "legacy_recipe_unchanged": "e21cd180f26d19b5669c97c8fe25f0b59a4266c781167161257f62ca1932dff4",
+    "g19_recipe_unchanged": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+    "executable": "/usr/bin/python3",
+    "flags": [
+      "-E",
+      "-s",
+      "-S"
+    ],
+    "registered_only_for": "fixture",
+    "stage": "acoustic"
+  },
+  "compiled_stage_revision": "5a94d355d1f9715920a5fb5a29b5ddee242616ff2815889777769d515be7521a",
+  "compiled_runtime_revision": "b3b1fb5bdba2c2adb14179cd7ba824188006c9c8969a77d147257cb2aa9e8c15",
+  "source_closure_unchanged_during_final_suite": true,
+  "limits": {
+    "per_file_bytes": 16777216,
+    "aggregate_input_bytes": 67108864,
+    "metadata_file_bytes": 1048576,
+    "output_bytes": 1048576,
+    "stdin_bytes": 65536,
+    "timeout_ms": 30000,
+    "input_reference_count_with_replay_slots": 64,
+    "reserved_replay_metadata_slots": 5,
+    "original_raw_metadata_bytes": 524288,
+    "maximum_turns": 1024,
+    "maximum_facts": 1024,
+    "maximum_chunks": 1024,
+    "global_ambiguity_token_span_budget": 2000000,
+    "whole_native_wav_bytes": 268435456,
+    "frozen_plan_json_bytes": 33554432,
+    "whole_snapshot_disk_bytes": 2147483648,
+    "whole_snapshot_reference_count": 16384,
+    "stderr_bytes": 8192,
+    "file_output_bytes": 1048576,
+    "file_descriptors": 64,
+    "non_darwin_address_space_bytes": 268435456,
+    "measured_rss_claim": false
+  },
+  "private_tables": [
+    "chapter_plans",
+    "chapter_units"
+  ],
+  "attempt_scope": "offline/product/chapter-import-v2",
+  "rust_total": 217,
+  "r16_tests": 12,
+  "retained_regression_tests": {
+    "r11_runtime": 8,
+    "r13_private_broker": 21,
+    "r14_presentation": 8,
+    "r15_private_acceptance": 10
+  },
+  "helper_attempts": {
+    "four_unit_restart_and_replay": 4,
+    "two_unit_1200_second_chapter": 2,
+    "replay_dispatches": 0,
+    "real_process_restart_before": 4,
+    "real_process_restart_after": 4
+  },
+  "red_green": [
+    {
+      "test": "verified_bundle_runs_real_registered_helper_and_checkpoints_private_needs_repair",
+      "red": "missing runtime chapter APIs/registration",
+      "green": "real helper plus three private NeedsRepair outputs"
+    },
+    {
+      "test": "cancellation_after_helper_and_generation_unwinds_without_a_checkpoint",
+      "red": "generation await did not observe cancellation",
+      "green": "stale epoch returns promptly with no checkpoint"
+    },
+    {
+      "test": "cancellation_during_registered_subprocess_kills_its_group_and_preserves_the_attempt",
+      "red": "subprocess dispatch lacked durable start observability",
+      "green": "recorded pid/group killed; attempt retained"
+    },
+    {
+      "test": "corrupt_inputs_records_outputs_and_cross_unit_checkpoint_substitution_never_redispatch",
+      "red": "plan-row hash mismatch did not reject replay",
+      "green": "plan row/reference agreement required"
+    },
+    {
+      "test": "exact_grants_reject_bad_envelopes_and_cross_unit_substitution_without_fallback",
+      "red": "missing completed response fell through to redispatch",
+      "green": "corrupt completed response fails closed without a new start"
+    }
+  ],
+  "commands": [
+    {
+      "command": "PT_CHAPTER_RUNTIME_RECEIPT=/tmp/pt-r16-unit-receipt.json PT_CHAPTER_CAPACITY_RECEIPT=/tmp/pt-r16-capacity-receipt.json cargo test -p pt-contracts -p pt-production -p pt-server --locked --offline",
+      "status": "passed",
+      "rust_tests": 217
+    },
+    {
+      "command": "cargo build -p pt-server --locked --offline",
+      "status": "passed"
+    },
+    {
+      "command": "python3 -B crates/pt-server/tests/chapter_runtime_process.py",
+      "status": "passed",
+      "loopback_sandbox_escalation": "approved"
+    },
+    {
+      "command": "python3 tools/check_product_identity.py . target/debug/pt-server",
+      "status": "passed"
+    },
+    {
+      "command": "rustfmt --check --edition 2024 --config skip_children=true crates/pt-production/src/runtime/chapter/mod.rs crates/pt-production/src/runtime/chapter/verify.rs crates/pt-production/src/runtime/chapter/services.rs crates/pt-production/src/runtime/chapter/worker.rs crates/pt-production/src/runtime/mod.rs crates/pt-production/src/runtime/runner.rs crates/pt-production/src/runtime/helper.rs crates/pt-production/src/runtime/chapter_tests.rs crates/pt-server/src/main.rs",
+      "status": "passed"
+    },
+    {
+      "command": "cargo test -p pt-production --locked --offline generation::tests::direction",
+      "status": "passed",
+      "tests": 13
+    }
+  ],
+  "source_pins": {
+    "Cargo.lock": "4cce5ea2066b544b50ef1df2be2ec173f0558eb60207a698a33c8d0a31d93c06",
+    "Cargo.toml": "434226931691a10c30b1f50142b6fcd08f2aa3a35b90d5e7eb238d807b764c77",
+    "crates/pt-contracts/src/acceptance.rs": "487ed86f9cce5f553f7ae17f35f51232fb6a4afd1c5b5ac45c9cf783e67ac24b",
+    "crates/pt-contracts/src/acceptance_source.rs": "d29a2cb41bbf5132b1d8ccc4bd061a7ee1416a1d874d83ecd039efa318c47475",
+    "crates/pt-contracts/src/common.rs": "30bb0e158c0f8b962b00cdaf4da93d92a0434549888d677a513a8f71ba61063c",
+    "crates/pt-contracts/src/lib.rs": "241f3d83675c6d5b68b7132c2732e86dda3654850b8136ad67efc87561c685f3",
+    "crates/pt-contracts/src/playback.rs": "784d51b9d53e2ccea3e5675c7753828ed36f4b7e37c7a8a01698dc39490f89d0",
+    "crates/pt-contracts/src/services.rs": "84ad6bb37163173d92019535a2446805e0529adad39c2007f1f7e6a6b30e9b12",
+    "crates/pt-contracts/src/source_slice.rs": "e8c1610df2ce44dc2fd4864fee5772e68d29581d4eed0b266fb8405751597193",
+    "crates/pt-contracts/src/validate.rs": "791d4230755434e97c4ce47c52ee913f68317f7308a9fbe45e669323c3dcad3f",
+    "crates/pt-production/src/generation/chapter_import.rs": "c280f9e725b56aaf879ee84a2acec632d659de11d97997d7f9d3f6550a8d7573",
+    "crates/pt-production/src/generation/inputs.rs": "7026acf90cc7779adc09755f79581d8bf1f19c1f1336adbfe2446571c02973f3",
+    "crates/pt-production/src/generation/mod.rs": "caaf30b2f009134e8e1f34e5ddbe7b45173f67e63c0d81f269a8cd5afc21a92e",
+    "crates/pt-production/src/runtime/chapter/mod.rs": "2de3d3671687c01aa6acc82a684563733cb5051e1a725062cd4bf04ded3027f8",
+    "crates/pt-production/src/runtime/chapter/services.rs": "8d2379dded3db3b89ad7e337804906e9ab6e70fc07d893d67e62bc9e18abd122",
+    "crates/pt-production/src/runtime/chapter/verify.rs": "b5bd364c6170039dd88cb0166a952220fdc94e37ff1126395dbb0924f7ef5ccb",
+    "crates/pt-production/src/runtime/chapter/worker.rs": "004e0dfaf6c6c869018782df5b554973ec2865ea71e6af7ac2d520d714657075",
+    "crates/pt-production/src/runtime/chapter_tests.rs": "8787caaa2891d27f8a7bd356ba3efdb8a9ba26a1b8abaf33a2ebadb330b2e8f7",
+    "crates/pt-production/src/runtime/helper.rs": "cf81d2b8816982764a02226d90674fd9511bf6e977be3a33980b71f578cfc8c6",
+    "crates/pt-production/src/runtime/mod.rs": "5aeda115fafbfbed976ec3eafe790fca1e236e8c3709e34d59fa15f533f34833",
+    "crates/pt-production/src/runtime/runner.rs": "b155dfeb43a98bb2482be68471cf9028155e36609b42feb282eed57f260c5b4b",
+    "crates/pt-production/src/runtime/schema.sql": "e6fd73e047417c64f99b747bf3c1ddc973094f7fad1894b4a2df557e897c06eb",
+    "crates/pt-server/src/main.rs": "d79742577cfe679331c90bbeda7b26c40e5335ae9a2a466049a04605757b7fa1",
+    "crates/pt-server/tests/chapter_runtime_process.py": "d8cd9be315e59567c717aea926198eb65b5beb82346ce762ad7fb5a0debf591c",
+    "packages/contracts/src/acceptance-required-v1.json": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083",
+    "packages/contracts/src/acceptance-required-v2.json": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820",
+    "tools/generation/adapters.py": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996",
+    "tools/generation/chapter_acoustic.py": "ca84dfaafc15410759dc48277a4aa734019fc84422c1031422f5315b8b1cd7b7",
+    "tools/generation/chapter_helper.py": "cac2f2260117874ecccfd3ca24c0a80516b0552bedbc1aa6d7fbc76e06edb5ea",
+    "tools/generation/chapter_import.py": "22b8e14901dbf216002237a6f710138b386c6fdf7c9a764033c9bcf00eadf405",
+    "tools/generation/chapter_import_helper.py": "1b78167cbc750dcc5fed1fa9808f1222d442d958f6e1f5dfd1c831242ce01672",
+    "tools/generation/helper.py": "485bf9a3c1ad6d429f29e77d888d781ca2f2852ed74c17c89f6703d28651e601"
+  },
+  "built_server_sha256": "eb452d0faa6134b01aadb9c7d93f7389c110d84b490a6754df62c28ed2b46d4c",
+  "remaining_owner_work": [
+    "Generation retains its chapter-import-registration-pending finding until it consumes this receipt; runtime preserves it verbatim.",
+    "No source-slice or full-chapter semantic acceptance: global uncertainty, missing cross-cut observations and original adverse findings remain.",
+    "Nonzero-origin source requires an independently registered source-to-presentation mapping.",
+    "Eligible evidence proposals, real frozen player/device verifiers and publication remain gated.",
+    "R17 public provider wiring/live authorization and R12 UI evidence remain separate."
+  ],
+  "concurrent_test_change": {
+    "path": "crates/pt-production/src/generation/tests/direction.rs",
+    "before_sha256": "ec3e32a0ac4adca6b1dd066ad78ce625005d682eae7cf07041299eda237643ae",
+    "after_sha256": "31a11fc85c63ad760567905c82aba82f8be418e27f69b86eaa925ec66e5a9110",
+    "scope": "generation-owned test only; production/helper/checker closure unchanged",
+    "focused_rerun_tests": 13,
+    "focused_rerun_status": "passed"
+  }
+}

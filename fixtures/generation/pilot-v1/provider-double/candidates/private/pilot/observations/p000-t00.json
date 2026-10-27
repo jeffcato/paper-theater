@@ -1,0 +1,259 @@
+{
+  "findings": [],
+  "issued": {
+    "context": {
+      "credential_context_id": "credential-slot-a",
+      "project_id": "project-a",
+      "provider": "speech-double"
+    },
+    "identity": {
+      "epoch": 1,
+      "operation_id": "pilot-operation-1",
+      "repair": null,
+      "run_id": "offline-run",
+      "transport_retry": null
+    },
+    "operation": {
+      "attempt_id": "pilot-attempt-1",
+      "estimate": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      },
+      "inputs": [
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "source.json",
+            "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+          },
+          "id": "committed:test:source.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 9391,
+            "media_type": "application/json",
+            "path": "private/direction-plan.json",
+            "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+          },
+          "id": "committed:pilot:private:direction-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "private/pilot-direction-input.json",
+            "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+          },
+          "id": "committed:pilot:private:pilot-direction-input.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 400,
+            "media_type": "application/json",
+            "path": "private/book-registry.json",
+            "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+          },
+          "id": "committed:test:private:book-registry.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 320,
+            "media_type": "application/json",
+            "path": "private/voice-catalog.json",
+            "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+          },
+          "id": "committed:pilot:private:voice-catalog.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 1076,
+            "media_type": "application/json",
+            "path": "private/pilot-selection.json",
+            "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+          },
+          "id": "committed:pilot:private:pilot-selection.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 48,
+            "media_type": "application/json",
+            "path": "private/pilot-recipe.json",
+            "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+          },
+          "id": "committed:pilot:private:pilot-recipe.json",
+          "provenance": "synthetic"
+        }
+      ],
+      "kind": "speech",
+      "model": "gemini-3.8-flash-tts",
+      "payload": {
+        "file": {
+          "bytes": 1606,
+          "media_type": "application/json",
+          "path": "private/pilot/requests/p000-t00.json",
+          "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3"
+        },
+        "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+        "provenance": "synthetic"
+      },
+      "provider": "speech-double",
+      "recipe_sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+      "request_sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "timeout_ms": 30000,
+      "unit_id": "saved-excerpt"
+    },
+    "quota_windows": [
+      {
+        "accounted": {
+          "money_microusd": 0,
+          "repairs": 0,
+          "requests": 0,
+          "tokens": 0
+        },
+        "capacity": {
+          "money_microusd": 0,
+          "repairs": 2,
+          "requests": 100,
+          "tokens": 10000
+        },
+        "reset_at_ms": 61000,
+        "retry_at_ms": null,
+        "scope": {
+          "kind": "project",
+          "project_id": "project-a",
+          "provider": "speech-double"
+        },
+        "start_at_ms": 1000,
+        "window_id": "project-minute"
+      }
+    ],
+    "recovery": null,
+    "schema_version": 2
+  },
+  "provenance": "diagnostic",
+  "request": {
+    "file": {
+      "bytes": 1606,
+      "media_type": "application/json",
+      "path": "private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3"
+    },
+    "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+    "provenance": "synthetic"
+  },
+  "response": {
+    "file": {
+      "bytes": 1162,
+      "media_type": "application/json",
+      "path": "private/pilot-raw/t0.json",
+      "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2"
+    },
+    "id": "committed:pilot:private:pilot-raw:t0.json",
+    "provenance": "synthetic"
+  },
+  "result": {
+    "accounted_usage": {
+      "money_microusd": 0,
+      "repairs": 0,
+      "requests": 1,
+      "tokens": 120
+    },
+    "context": {
+      "credential_context_id": "credential-slot-a",
+      "project_id": "project-a",
+      "provider": "speech-double"
+    },
+    "epoch_disposition": "current",
+    "identity": {
+      "epoch": 1,
+      "operation_id": "pilot-operation-1",
+      "repair": null,
+      "run_id": "offline-run",
+      "transport_retry": null
+    },
+    "observed_usage": {
+      "input_tokens": 100,
+      "money_microusd": 0,
+      "output_tokens": 20,
+      "requests": 1,
+      "tokens": 120
+    },
+    "quota_windows": [
+      {
+        "accounted": {
+          "money_microusd": 0,
+          "repairs": 0,
+          "requests": 1,
+          "tokens": 120
+        },
+        "capacity": {
+          "money_microusd": 0,
+          "repairs": 2,
+          "requests": 100,
+          "tokens": 10000
+        },
+        "reset_at_ms": 61000,
+        "retry_at_ms": null,
+        "scope": {
+          "kind": "project",
+          "project_id": "project-a",
+          "provider": "speech-double"
+        },
+        "start_at_ms": 1000,
+        "window_id": "project-minute"
+      }
+    ],
+    "recorded_at_ms": 1001,
+    "recovery": null,
+    "result": {
+      "attempt_id": "pilot-attempt-1",
+      "completion": "completed",
+      "diagnostic": "Injected fake PCM; no real provider transport.",
+      "elapsed_ms": 1,
+      "outputs": [
+        {
+          "file": {
+            "bytes": 4844,
+            "media_type": "audio/wav",
+            "path": "private/pilot-audio/t0.wav",
+            "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+          },
+          "id": "committed:pilot:private:pilot-audio:t0.wav",
+          "provenance": "synthetic"
+        }
+      ],
+      "raw_response": {
+        "file": {
+          "bytes": 1162,
+          "media_type": "application/json",
+          "path": "private/pilot-raw/t0.json",
+          "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2"
+        },
+        "id": "committed:pilot:private:pilot-raw:t0.json",
+        "provenance": "synthetic"
+      },
+      "request_sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+      "response_sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2",
+      "started_at": "synthetic-pilot-start",
+      "usage": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      }
+    },
+    "retry": null,
+    "schema_version": 2,
+    "started_at_ms": 1000
+  },
+  "schema_version": 1
+}

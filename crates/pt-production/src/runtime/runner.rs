@@ -7,6 +7,9 @@ use std::{
     collections::HashMap,
     sync::{Arc, Mutex},
 };
+#[cfg(test)]
+#[path = "provider_service_tests.rs"]
+mod provider_service_tests;
 
 #[derive(Clone)]
 pub struct Services {
@@ -14,6 +17,9 @@ pub struct Services {
     run: String,
     epoch: i64,
     mode: c::ExecutionMode,
+    unit: String,
+    inputs: Arc<Vec<c::ArtifactRef>>,
+    provider_v2: Option<super::provider_service::Adapter>,
     candidates: Arc<Mutex<HashMap<String, (c::CandidateFile, Vec<u8>)>>>,
     proposals: Arc<Mutex<Vec<c::JournalProposal>>>,
     offline_acoustic: Option<super::helper::OfflineAcoustic>,
@@ -26,6 +32,27 @@ fn service(e: Error) -> c::ServiceError {
     }
 }
 impl Services {
+    async fn await_provider<T>(
+        &self,
+        future: impl std::future::Future<Output = std::result::Result<T, c::ServiceError>>,
+    ) -> std::result::Result<T, c::ServiceError> {
+        tokio::pin!(future);
+        loop {
+            tokio::select! {
+                result=&mut future=>{self.active()?;return result;},
+                _=tokio::time::sleep(std::time::Duration::from_millis(25))=>self.active()?,
+            }
+        }
+    }
+    fn provider_adapter(
+        &self,
+    ) -> std::result::Result<&super::provider_service::Adapter, c::ServiceError> {
+        c::require_live(self.mode)?;
+        self.active()?;
+        self.provider_v2
+            .as_ref()
+            .ok_or(c::ServiceError::ProviderV2Unavailable)
+    }
     fn active(&self) -> std::result::Result<(), c::ServiceError> {
         Store::active(&self.store.db().map_err(service)?, &self.run, self.epoch).map_err(service)
     }
@@ -40,8 +67,19 @@ impl c::RunServices for Services {
         a: &c::ArtifactRef,
     ) -> std::result::Result<Vec<u8>, c::ServiceError> {
         self.active()?;
+        if self.provider_v2.is_some()
+            && !self
+                .inputs
+                .iter()
+                .any(|old| old.id == a.id && old.file == a.file && old.provenance == a.provenance)
+        {
+            return Err(c::ServiceError::Unauthorized(
+                "provider observation does not grant this execution artifact access".into(),
+            ));
+        }
         let bytes = self.store.artifact(&a.id).map_err(service)?.0;
         a.file.verify(&bytes)?;
+        self.active()?;
         Ok(bytes)
     }
     async fn read_candidate(
@@ -166,6 +204,37 @@ impl c::RunServices for Services {
             "live transport integration/accounting pending".into(),
         ))
     }
+    async fn issue_provider_v2(
+        &self,
+        proposal: c::ProviderProposalV2,
+    ) -> std::result::Result<c::ProviderOperationV2, c::ServiceError> {
+        let adapter = self.provider_adapter()?;
+        let issued = adapter.issue(&self.run, self.epoch, &self.unit, &self.inputs, &proposal)?;
+        self.active()?;
+        Ok(issued)
+    }
+    async fn execute_provider_v2(
+        &self,
+        issued: &c::ProviderOperationV2,
+    ) -> std::result::Result<c::ProviderResultV2, c::ServiceError> {
+        let adapter = self.provider_adapter()?;
+        self.await_provider(adapter.execute(
+            &self.run,
+            self.epoch,
+            &self.unit,
+            &self.inputs,
+            issued,
+        ))
+        .await
+    }
+    async fn recover_provider_v2(
+        &self,
+        request: c::ProviderRecoveryRequestV2,
+    ) -> std::result::Result<c::ProviderRecoveryResultV2, c::ServiceError> {
+        let adapter = self.provider_adapter()?;
+        self.await_provider(adapter.recover(&self.run, self.epoch, &self.unit, request))
+            .await
+    }
     async fn helper(
         &self,
         operation: c::HelperOperation,
@@ -262,6 +331,10 @@ pub struct Runtime {
     pub fixture_delay_ms: u64,
     saved_inputs: Option<(std::path::PathBuf, std::path::PathBuf)>,
     acoustic_inputs: Option<std::path::PathBuf>,
+    presentation_inputs: Option<std::path::PathBuf>,
+    acceptance_player: Option<(std::path::PathBuf, c::FileRef, String)>,
+    chapter_helper: Option<super::chapter::ChapterHelper>,
+    chapter_inputs: Option<std::path::PathBuf>,
     offline_acoustic: Option<super::helper::OfflineAcoustic>,
 }
 impl Runtime {
@@ -272,6 +345,10 @@ impl Runtime {
             fixture_delay_ms: 0,
             saved_inputs: None,
             acoustic_inputs: None,
+            presentation_inputs: None,
+            acceptance_player: None,
+            chapter_helper: None,
+            chapter_inputs: None,
             offline_acoustic: None,
         }
     }
@@ -279,9 +356,96 @@ impl Runtime {
         self.offline_acoustic = Some(super::helper::OfflineAcoustic::new(directory)?);
         Ok(self)
     }
+    pub fn with_chapter_helper(mut self, config: super::chapter::ChapterHelper) -> Self {
+        self.chapter_helper = Some(config);
+        self
+    }
+    /// Trusted producer root containing chapter-evidence.json and bundle/.
+    pub fn with_chapter_inputs(mut self, root: std::path::PathBuf) -> Self {
+        self.chapter_inputs = Some(root);
+        self
+    }
+    pub async fn import_chapter_bundle(
+        &self,
+        run: &str,
+        epoch: i64,
+        original: &std::path::Path,
+        evidence: &str,
+        bundle: &std::path::Path,
+    ) -> Result<()> {
+        let config = self.chapter_helper.as_ref().ok_or_else(|| {
+            Error::new(
+                "chapter_unregistered",
+                "G21 helper registration is unavailable",
+            )
+        })?;
+        super::chapter::import(
+            &self.store,
+            self.executor.as_ref(),
+            config,
+            run,
+            epoch,
+            original,
+            evidence,
+            bundle,
+        )
+        .await
+    }
+    pub async fn execute_chapter_unit(
+        &self,
+        run: &str,
+        epoch: i64,
+        label: &str,
+    ) -> Result<c::StageOutcome> {
+        let config = self.chapter_helper.as_ref().ok_or_else(|| {
+            Error::new(
+                "chapter_unregistered",
+                "G21 helper registration is unavailable",
+            )
+        })?;
+        super::chapter::execute_unit(
+            &self.store,
+            self.executor.as_ref(),
+            config,
+            run,
+            epoch,
+            label,
+        )
+        .await
+    }
+    pub async fn replay_chapter_unit(
+        &self,
+        run: &str,
+        label: &str,
+    ) -> Result<Vec<(c::FileRef, Vec<u8>)>> {
+        let config = self
+            .chapter_helper
+            .as_ref()
+            .ok_or_else(|| Error::new("chapter_unregistered", "G21 registration is unavailable"))?;
+        super::chapter::replay(&self.store, self.executor.as_ref(), config, run, label).await
+    }
     pub fn with_acoustic_inputs(mut self, root: std::path::PathBuf) -> Self {
         self.acoustic_inputs = Some(root);
         self
+    }
+    /// Trusted product root containing the frozen G18 input index's sources.
+    pub fn with_presentation_inputs(mut self, root: std::path::PathBuf) -> Self {
+        self.presentation_inputs = Some(root);
+        self
+    }
+    /// Trusted startup registry only; no generation/request-supplied expected identities.
+    pub fn with_acceptance_player(
+        mut self,
+        root: std::path::PathBuf,
+        file: c::FileRef,
+        version: String,
+    ) -> Self {
+        self.acceptance_player = Some((root, file, version));
+        self
+    }
+    /// Recomputes private evidence against its recorded bytes, without durable writes.
+    pub async fn replay_presentation(&self, run: &str) -> Result<Vec<u8>> {
+        super::presentation::replay(&self.store, self.executor.as_ref(), run).await
     }
     pub fn with_saved_inputs(
         mut self,
@@ -296,6 +460,38 @@ impl Runtime {
         let Some((run, epoch)) = self.store.claim()? else {
             return Ok(false);
         };
+        if self.store.snapshot(&run)?["request"]["pins"]["recipe_sha256"] == super::chapter::RECIPE
+        {
+            let exists: bool = self.store.db()?.query_row(
+                "SELECT EXISTS(SELECT 1 FROM chapter_plans WHERE run=?1)",
+                [&run],
+                |r| r.get(0),
+            )?;
+            if !exists {
+                let imported = match &self.chapter_inputs {
+                    Some(root) => {
+                        self.import_chapter_bundle(
+                            &run,
+                            epoch,
+                            root,
+                            "chapter-evidence.json",
+                            &root.join("bundle"),
+                        )
+                        .await
+                    }
+                    None => fail(
+                        "chapter_inputs_unavailable",
+                        "trusted original chapter/bundle inputs are not configured",
+                    ),
+                };
+                if let Err(e) = imported {
+                    if self.store.is_active(&run, epoch)? {
+                        self.store.finish(&run, epoch, "failed", Some(e.code))?;
+                    }
+                    return Err(e);
+                }
+            }
+        }
         if self.store.snapshot(&run)?["request"]["pins"]["recipe_sha256"]
             == digest(b"saved-diagnostic-v1")
         {
@@ -309,6 +505,13 @@ impl Runtime {
                             "fixture_unavailable",
                             "stage-specific acoustic inputs are not configured",
                         ),
+                    })
+                    .and_then(|_| match &self.presentation_inputs {
+                        Some(root) => self.store.seed_presentation_fixture(&run, epoch, root),
+                        None => fail(
+                            "fixture_unavailable",
+                            "Presentation inputs are not configured",
+                        ),
                     }),
                 None => fail(
                     "fixture_unavailable",
@@ -316,6 +519,15 @@ impl Runtime {
                 ),
             };
             if let Err(e) = prepared {
+                self.store.finish(&run, epoch, "failed", Some(e.code))?;
+                return Err(e);
+            }
+        }
+        if let Some((root, file, version)) = &self.acceptance_player {
+            if let Err(e) = self
+                .store
+                .register_acceptance_player(&run, epoch, root, file, version)
+            {
                 self.store.finish(&run, epoch, "failed", Some(e.code))?;
                 return Err(e);
             }
@@ -329,9 +541,16 @@ impl Runtime {
             && request["pins"]["recipe_sha256"] == digest(b"saved-diagnostic-v1");
         let mut needs_repair = false;
         let mut result = Ok(());
+        let mut package_visited = false;
         for stage in c::STAGES {
+            if stage == c::Stage::Package {
+                package_visited = true;
+            }
             if let Err(e) = self.execute_stage(run, epoch, stage).await {
-                if diagnostic && stage == c::Stage::Acoustic && e.code == "stage_needs_repair" {
+                if diagnostic
+                    && matches!(stage, c::Stage::Acoustic | c::Stage::Presentation)
+                    && e.code == "stage_needs_repair"
+                {
                     needs_repair = true;
                     continue;
                 }
@@ -339,8 +558,29 @@ impl Runtime {
                 break;
             }
         }
+        if diagnostic
+            && package_visited
+            && (result.is_ok()
+                || result
+                    .as_ref()
+                    .is_err_and(|e| e.code == "stage_needs_repair"))
+            && self.store.diagnostic_ref(run)?.is_some()
+        {
+            match self.store.verify_private_acceptance(run, epoch, &[]) {
+                Ok(_) => needs_repair = true,
+                Err(e) if e.code == "acceptance_registry_missing" => {
+                    self.store
+                        .private_acceptance_unavailable(run, epoch, e.code)?;
+                    needs_repair = true;
+                }
+                Err(e) => result = Err(e),
+            }
+        }
         if needs_repair && result.is_ok() {
-            result = fail("stage_needs_repair", "acoustic evidence remains unresolved");
+            result = fail(
+                "stage_needs_repair",
+                "required diagnostic evidence remains unresolved",
+            );
         }
         if self.store.snapshot(run)?["state"] == "waiting_provider" {
             return Ok(());
@@ -365,11 +605,21 @@ impl Runtime {
         Store::active(&self.store.db()?, run, epoch)?;
         let snapshot = self.store.snapshot(run)?;
         let request: c::RunRequest = serde_json::from_value(snapshot["request"].clone())?;
+        if stage == c::Stage::Acoustic && request.pins.recipe_sha256 == super::chapter::RECIPE {
+            let units = self.store.chapter_units(run)?;
+            for unit in units {
+                self.execute_chapter_unit(run, epoch, &unit.label).await?;
+            }
+            return fail(
+                "stage_needs_repair",
+                "bounded private chapter units retain missing semantic/source-mapping evidence",
+            );
+        }
         let stage_name = serde_json::to_value(stage)?.as_str().unwrap().to_owned();
         let mut inputs = self.store.seed_inputs_for_stage(run, stage)?;
         let db = self.store.db()?;
         for prior in c::STAGES {
-            if stage == c::Stage::Acoustic {
+            if matches!(stage, c::Stage::Acoustic | c::Stage::Presentation) {
                 break;
             }
             if prior == stage {
@@ -380,6 +630,12 @@ impl Runtime {
             if let Some(saved) = saved {
                 inputs.extend(serde_json::from_str::<Vec<c::ArtifactRef>>(&saved)?);
             }
+        }
+        if stage == c::Stage::Presentation
+            && request.pins.recipe_sha256 == digest(b"saved-diagnostic-v1")
+        {
+            // Cache reuse must verify dependencies as well as the saved report.
+            self.store.verify_presentation_inputs(&inputs)?;
         }
         let mut identity = json!({"request":snapshot["request"],"inputs":inputs,"stage":stage,"contracts":c::CONTRACT_REVISION,"services":c::SERVICE_REVISION});
         if stage == c::Stage::Acoustic {
@@ -433,6 +689,9 @@ impl Runtime {
             run: run.into(),
             epoch,
             mode: request.mode,
+            unit: input.unit_id.clone(),
+            inputs: Arc::new(input.inputs.clone()),
+            provider_v2: None,
             candidates: Arc::new(Mutex::new(HashMap::new())),
             proposals: Arc::new(Mutex::new(Vec::new())),
             offline_acoustic: self.offline_acoustic.clone(),
@@ -657,11 +916,15 @@ impl c::StageExecutor for FixturePipeline {
         input: c::StageInput,
         services: &dyn c::RunServices,
     ) -> std::result::Result<c::StageOutput, c::StageError> {
-        if input.pins.recipe_sha256 == digest(b"saved-diagnostic-v1")
-            && matches!(
-                input.stage,
-                c::Stage::Source | c::Stage::Acoustic | c::Stage::Package
-            )
+        if (input.stage == c::Stage::Acoustic && input.pins.recipe_sha256 == super::chapter::RECIPE)
+            || input.pins.recipe_sha256 == digest(b"saved-diagnostic-v1")
+                && matches!(
+                    input.stage,
+                    c::Stage::Source
+                        | c::Stage::Acoustic
+                        | c::Stage::Presentation
+                        | c::Stage::Package
+                )
         {
             self.generation.execute(input, services).await
         } else {

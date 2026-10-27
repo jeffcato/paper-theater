@@ -1,0 +1,97 @@
+{
+  "report_sha256": "e342b73637c4d751ea13c46663f9106e56e92d5621ac54cd9355917c8f397b7b",
+  "report_bytes": 124592,
+  "compilation_sha256": "f56c9ae6f26b30db2c3b0eabf8a2cd9a99e0cdac1b35895508531c9ce4ceee58",
+  "checker": {
+    "sha256": "68e209243eaa0e75ee1a98e89515da7cdb5e7afbe166463f901a88c0066dca00",
+    "version": "pt-acceptance-bindings-v2"
+  },
+  "manifest_sha256": "494715304e925aca8bbdf52c8b0c7ebc4409a7fea791e59e157a6bcc28b34ce1",
+  "acceptance_sha256": "0d9296299f9f3790f55048e464e6a10e04408283a9c38b772a4679238bb7f279",
+  "role_to_cas": [
+    {
+      "bytes": 960,
+      "role": "source",
+      "sha256": "eb47bbf70088370d251253b707ab24b96212e9b8b1b035d94ec3c40e096327d5"
+    },
+    {
+      "bytes": 2902604,
+      "role": "narration",
+      "sha256": "8d1c8add6feb57d77dd0a31cd6ab223459c6cc15888f3dc55f383889ae8f45a0"
+    },
+    {
+      "bytes": 65183,
+      "role": "alignment",
+      "sha256": "520a96d8f8c57175df05cafa6e8f58ff3b152b80850b8453bed217e40fab03bd"
+    },
+    {
+      "bytes": 601,
+      "role": "presentation_map",
+      "sha256": "5d128e029f8b458b4a5bc4c9e23633d02663267dbbc9e3e43e96879672938280"
+    },
+    {
+      "bytes": 1180,
+      "role": "profile",
+      "sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec"
+    },
+    {
+      "bytes": 19,
+      "role": "recipe",
+      "sha256": "7a3c12f04e3be57bf0e0b8ac1cfba7085b27a30dece197206f29a8184cabc1a3"
+    },
+    {
+      "bytes": 77,
+      "role": "player",
+      "sha256": "867cd727dbc3b0fa0b6b04e3071f8b2bb055d0394d7f5bbcb112ff222ae43b69"
+    },
+    {
+      "bytes": 534,
+      "role": "fact_inventory",
+      "sha256": "38e6c116d4ca510a489ad44128c3ec29618de38e0b5e8b498caebe196a9f6f27"
+    },
+    {
+      "bytes": 123473,
+      "role": "evidence_inventory",
+      "sha256": "7169778b35d1438b6ac37f79b5e15262ad00f9aecdf4fa20dd7d9e0c6db23026"
+    }
+  ],
+  "consumed_hash_count": 155,
+  "production_approved": false,
+  "provider_calls": 0,
+  "presentation_helper_calls": 0,
+  "synthetic_test_player": true,
+  "schema_version": 1,
+  "task": "R15",
+  "metadata_only": true,
+  "full_report_remains_in_private_CAS": true,
+  "report_version": 2,
+  "matrix_version": "pt-acceptance-required-v2",
+  "executed_checks": [
+    {
+      "executed": true,
+      "id": "complete-source-coverage",
+      "outcome": "fail"
+    },
+    {
+      "executed": true,
+      "id": "evidence-binding-integrity",
+      "outcome": "fail"
+    },
+    {
+      "executed": true,
+      "id": "package-byte-integrity",
+      "outcome": "fail"
+    },
+    {
+      "executed": true,
+      "id": "required-check-coverage",
+      "outcome": "fail"
+    }
+  ],
+  "blocker_count": 54,
+  "mandatory_blockers": [
+    "production-verifier-pending"
+  ],
+  "public_report_exported": false,
+  "raw_source_or_receipts_exported": false
+}

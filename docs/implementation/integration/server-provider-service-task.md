@@ -1,0 +1,21 @@
+# R17: execution-bound provider-v2 service adapter
+
+Prepared October 27, 2026. **R17 locally implemented:** [handoff](../runtime/provider-service.md), 165 scoped/restart checks reported; aggregate Pilot failures/green focused rerun remain separate until I20 freezes/verifies the combined backend. Next server task is [R18](server-direction-pilot-task.md). Owner: `server`. R16 chapter execution is complete with 217 reported tests and real server restart/checkpoint replay. Preserve R11–R16 storage, helper, broker, presentation and private-acceptance guarantees. Work in runtime/server code, owned tests/fixtures/docs only. No UI, credentials, real provider calls or shared Git operations.
+
+Use the exact [published v1.5 service handoff](provider-service-v2.md) and current compatible contracts. The runtime `Services` implementation still inherits default-unavailable `issue_provider_v2`, `execute_provider_v2` and `recover_provider_v2`. Implement those methods against the R13 private broker; its passing private tests do not themselves prove the public service boundary.
+
+## Required increment
+
+1. Bind each method to the service's actual run/epoch/unit/mode and immutable runtime registry/grant context. Validate the untrusted proposal/selector, original committed payload/input ArtifactRefs and exact request bytes. Caller fields/JSON cannot create context, issuance, retry/repair or spending authority. Preserve original whitespace/hash and scoped artifact ownership.
+2. Issuance calls the private atomic broker and returns its exact persisted descriptor. Execution compares the complete issued descriptor, active binding, current limits/authorization/cancellation, recipe and payload; recovery descriptors cannot submit. Retain once-only send/cache/uncertainty and never fall back to legacy provider, helper or another method on any error.
+3. Recovery binds a separately authorized current observer to immutable original work and its latest genuine existing-job observation. It invokes only the private recovery/query path, with durable query identity and separate request reservation/accounting. Return the published recovery wrapper with original result identity intact; unknown status/usage stays unknown and a canceled/older original cannot create current stage artifacts or be relabeled as observer work.
+4. Preserve typed unavailable/offline/cancel/authorization/limit/result errors. Fixture/replay refuse before credential, reservation or transport access. Keep production construction and real transport/registry/authorization unavailable; only explicitly injected offline test configuration may exercise a successful method path. Add no HTTP provider endpoint or enable flag and do not import/reset actual accounting.
+5. Preserve broker windows/lineage/once-per-repair charging, raw/late receipt storage, restart safety and private/public evidence boundaries. The shared record validators check shape/bindings, not actual issuance; actual persisted equality and runtime authority checks must execute here.
+
+## Test-first proof and completion
+
+Start with a failing test invoking an actual `RunServices` method on runtime Services, then implement its minimum path. Cover old implementor defaults, exact issue/execute/cached result, cross-run/unit/epoch forged issuance, changed original bytes, offline mode with poisoned credential access, cancellation/late results, stale job selectors and observer grants, query-only recovery, separate conservative query charges/cache and no resubmission after ambiguous status.
+
+Use injected fake transports and real SQLite/CAS state; assert submission/query counters and original/observer identities. Keep existing R13 broker tests and R16 real helper restart/replay checks. Run affected offline runtime/server/contracts checks, server build, formatting and source/binary identity scans. No UI/browser run is required for this backend increment.
+
+Return exact red/green results, all three public-method examples, private broker mapping, negative dispatch/credential counters and source/version handoffs for generation's Direction stage. Integration reviews/commits exact owned snapshots. A working offline adapter does not authorize actual product spending, lift missing acceptance/player/device gates or activate publication.

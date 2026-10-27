@@ -1,0 +1,268 @@
+{
+  "inputs": [
+    {
+      "file": {
+        "bytes": 55,
+        "media_type": "text/plain",
+        "path": "raw-source.txt",
+        "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68"
+      },
+      "id": "committed:test:raw-source.txt",
+      "provenance": "synthetic"
+    },
+    {
+      "file": {
+        "bytes": 55,
+        "media_type": "text/plain",
+        "path": "clean-source.txt",
+        "sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68"
+      },
+      "id": "committed:test:clean-source.txt",
+      "provenance": "synthetic"
+    },
+    {
+      "file": {
+        "bytes": 2282,
+        "media_type": "application/json",
+        "path": "frozen-source.json",
+        "sha256": "b47b94973bf6caddc7e29d010a6ff7423c29e8ea6bef9ec41059de5cbbf3eb04"
+      },
+      "id": "committed:test:frozen-source.json",
+      "provenance": "synthetic"
+    }
+  ],
+  "pins": {
+    "profile_id": "paper-player-r186-v1",
+    "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+    "recipe_sha256": "8b626e55693d774361f507bc2c45f40054e6855d71fbec78ad9072d8812f14b4"
+  },
+  "provenance": "imported",
+  "schema_version": 1,
+  "source": {
+    "book_id": "test-book",
+    "clean_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "clean_span": [
+      0,
+      51
+    ],
+    "raw_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "raw_span": [
+      0,
+      51
+    ],
+    "scalar_to_raw": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        12,
+        13
+      ],
+      [
+        13,
+        14
+      ],
+      [
+        14,
+        15
+      ],
+      [
+        15,
+        16
+      ],
+      [
+        16,
+        17
+      ],
+      [
+        17,
+        18
+      ],
+      [
+        18,
+        19
+      ],
+      [
+        19,
+        20
+      ],
+      [
+        20,
+        21
+      ],
+      [
+        21,
+        22
+      ],
+      [
+        22,
+        23
+      ],
+      [
+        23,
+        24
+      ],
+      [
+        24,
+        25
+      ],
+      [
+        25,
+        26
+      ],
+      [
+        26,
+        27
+      ],
+      [
+        27,
+        28
+      ],
+      [
+        28,
+        29
+      ],
+      [
+        29,
+        30
+      ],
+      [
+        30,
+        31
+      ],
+      [
+        31,
+        32
+      ],
+      [
+        32,
+        33
+      ],
+      [
+        33,
+        34
+      ],
+      [
+        34,
+        35
+      ],
+      [
+        35,
+        36
+      ],
+      [
+        36,
+        37
+      ],
+      [
+        37,
+        38
+      ],
+      [
+        38,
+        39
+      ],
+      [
+        39,
+        40
+      ],
+      [
+        40,
+        41
+      ],
+      [
+        41,
+        42
+      ],
+      [
+        42,
+        43
+      ],
+      [
+        43,
+        44
+      ],
+      [
+        44,
+        45
+      ],
+      [
+        45,
+        46
+      ],
+      [
+        46,
+        47
+      ],
+      [
+        47,
+        48
+      ],
+      [
+        48,
+        49
+      ],
+      [
+        49,
+        50
+      ],
+      [
+        50,
+        51
+      ]
+    ],
+    "schema_version": 1,
+    "selector": {
+      "book_id": "test-book",
+      "ending": "Mira said, “Open the gate.” Mira moved to the gate.",
+      "opening": "Mira said, “Open the gate.” Mira moved to the gate."
+    },
+    "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "text": "Mira said, “Open the gate.” Mira moved to the gate."
+  }
+}

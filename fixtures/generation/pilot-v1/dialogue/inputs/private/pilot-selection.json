@@ -1,0 +1,39 @@
+{
+  "catalog_sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+  "direction_sha256": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42",
+  "performers": [
+    {
+      "accent": "catalog-default",
+      "baseline": "",
+      "language": "en",
+      "model": "gemini-3.8-flash-tts",
+      "passages": [],
+      "speaker": "narrator",
+      "voice_id": "voice-n"
+    },
+    {
+      "accent": "catalog-default",
+      "baseline": "",
+      "language": "en",
+      "model": "gemini-3.8-flash-tts",
+      "passages": [
+        {
+          "acting": "",
+          "acting_support": null,
+          "span": [
+            11,
+            27
+          ],
+          "text": "“Open the gate.”",
+          "turn_id": "t1"
+        }
+      ],
+      "speaker": "mira",
+      "voice_id": "voice-n"
+    }
+  ],
+  "provenance": "synthetic",
+  "registry_sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+  "schema_version": 1,
+  "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68"
+}

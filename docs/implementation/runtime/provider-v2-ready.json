@@ -1,0 +1,80 @@
+{
+  "status": "private-offline-provider-v2-adapter-ready",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.3.0",
+  "provider_metadata_version": 2,
+  "report": "docs/implementation/runtime/provider-v2-adapter.md",
+  "public_v2_method_available": false,
+  "legacy_provider_changed": false,
+  "live_dispatch_enabled": false,
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "actual_inherited_accounting_reconciled": false,
+  "product_authorization_granted": false,
+  "audience_publication_enabled": false,
+  "checks": {
+    "broker": 21,
+    "contracts": 15,
+    "production_total": 93,
+    "candidate_boundary": 4,
+    "server": 8,
+    "rust_total": 120,
+    "typescript_playback_cases": 14,
+    "typescript_provider_cases": 80,
+    "packed_exports": "pass",
+    "studio_check": "pass",
+    "studio_build": "pass",
+    "server_build": "pass"
+  },
+  "recovery_counters": {
+    "historical_seed_fake_send": 1,
+    "recovery_transport_send": 0,
+    "recovery_transport_query": 2,
+    "cached_query_additional_calls": 0,
+    "combined_accounted_requests": 3,
+    "original_retained_money_microusd": 10
+  },
+  "r12": {
+    "complete": false,
+    "assertion_unchanged": true,
+    "p17_player_title_receipt_present": true,
+    "complete_chrome_exit": 1,
+    "remaining_failure": "Nonpositive viewport",
+    "rerun": "docs/implementation/runtime/p17-studio-rerun.json"
+  },
+  "sources": [
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2.rs",
+      "sha256": "97f7729278c3d8198ea3f7c6c16dc23a1560e12553d268fe7b488c3faf136532"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2/legacy.rs",
+      "sha256": "730d0341b29f6773a4e7fda87b04cbc7e6e4980c6cf7076e48e6bb855209d176"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2/recovery.rs",
+      "sha256": "a133ae0f7ff0484786df256a942e3fb44350ab8751479f5b7d9bf25e74dcc607"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/provider_v2_tests.rs",
+      "sha256": "936e2aa9436b220e7706fcbfec3b453613498fc0e3af9ca8d847dca664a1c22a"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/mod.rs",
+      "sha256": "79eaa01167f5eb2d3b3199b77831d083e5761e2176d0a4d1d6527a606be54cf7"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/schema.sql",
+      "sha256": "c9533a44e7afa7526940dd73d5895f83796bb76bf79bf86aa145361a660f0c77"
+    },
+    {
+      "path": "crates/pt-production/src/runtime/store.rs",
+      "sha256": "acabec7c60cacaec66ba37ec584351a725d754b310b1fc1e87fb74d5cf3c9937"
+    },
+    {
+      "path": "crates/pt-server/src/tests.rs",
+      "sha256": "63fbd75695165186ce5d9a67d7772d6a1ba13501e9bd60dd11d44306eede0d1c"
+    }
+  ],
+  "commit_owner": "Agent 1"
+}

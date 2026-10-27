@@ -1,0 +1,546 @@
+{
+  "actions": [
+    {
+      "literal_narrated_support": true,
+      "proposal": {
+        "actor_id": "mira",
+        "assertion": "Mira moved to the gate.",
+        "id": "a0",
+        "kind": "move",
+        "support": {
+          "quote": "Mira moved to the gate.",
+          "span": [
+            28,
+            51
+          ]
+        }
+      },
+      "ready_for_execution": false,
+      "semantic_review": "missing"
+    }
+  ],
+  "book_id": "test-book",
+  "cast": [
+    {
+      "binding_acceptance_verified": false,
+      "proposal": {
+        "canonical_id": "test-book:narrator",
+        "id": "narrator",
+        "kind": "narrator",
+        "mentions": [],
+        "name": "Narrator"
+      },
+      "retained_registry_identity": {
+        "aliases": [
+          "Narrator"
+        ],
+        "id": "test-book:narrator",
+        "name": "Narrator",
+        "sprite": null,
+        "voice": null
+      },
+      "source_citation_valid": true
+    },
+    {
+      "binding_acceptance_verified": false,
+      "proposal": {
+        "canonical_id": "test-book:mira",
+        "id": "mira",
+        "kind": "character",
+        "mentions": [
+          {
+            "quote": "Mira",
+            "span": [
+              0,
+              4
+            ]
+          }
+        ],
+        "name": "Mira"
+      },
+      "retained_registry_identity": {
+        "aliases": [
+          "Mira"
+        ],
+        "id": "test-book:mira",
+        "name": "Mira",
+        "sprite": null,
+        "voice": {
+          "file": {
+            "bytes": 57,
+            "media_type": "application/json",
+            "path": "private/canonical-voice.json",
+            "sha256": "d833436de924e8b7c8ea39c5b49ad7aed8692d0ca68716073eade011cb875a1a"
+          },
+          "id": "committed:test:private:canonical-voice.json",
+          "provenance": "synthetic"
+        }
+      },
+      "source_citation_valid": true
+    }
+  ],
+  "chapter_id": "chapter-1",
+  "compiler_sha256": "0d3b1d2d78939563bca1c4d926d30ef91f7601fbde270289b008e20cd7d7e9b7",
+  "coverage": {
+    "beats": {
+      "missing_source_spans": [],
+      "ordered_verbatim_complete": true,
+      "proposed_spans": [
+        [
+          0,
+          51
+        ]
+      ]
+    },
+    "scenes": {
+      "missing_source_spans": [],
+      "ordered_verbatim_complete": true,
+      "proposed_spans": [
+        [
+          0,
+          51
+        ]
+      ]
+    },
+    "turns": {
+      "missing_source_spans": [],
+      "ordered_verbatim_complete": true,
+      "proposed_spans": [
+        [
+          0,
+          11
+        ],
+        [
+          11,
+          27
+        ],
+        [
+          27,
+          51
+        ]
+      ]
+    }
+  },
+  "facts": [
+    {
+      "literal_source_support": true,
+      "proposal": {
+        "assertion": "Mira moved to the gate.",
+        "entity_ids": [
+          "mira"
+        ],
+        "id": "f0",
+        "support": {
+          "quote": "Mira moved to the gate.",
+          "span": [
+            28,
+            51
+          ]
+        }
+      },
+      "reveal_permission": false,
+      "semantic_review": "missing"
+    }
+  ],
+  "final_master": null,
+  "findings": [
+    {
+      "evidence": [],
+      "field": "private.review",
+      "id": "older-direction-failure",
+      "message": "original unresolved direction defect",
+      "outcome": "fail"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "initial-reference-research",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "canonical-reference-applicability",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "direction-semantic-review",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "rendered-stage-clarity",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    }
+  ],
+  "observation": {
+    "bytes": 1170,
+    "media_type": "application/json",
+    "path": "private/direction-observation.json",
+    "sha256": "6f3b0e4d1aa411deaff171dc0be4dd7b75fcbd59a8d9b8f0c4b08a16b0e98de7"
+  },
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "raw_direction": {
+    "actions": [
+      {
+        "actor_id": "mira",
+        "assertion": "Mira moved to the gate.",
+        "id": "a0",
+        "kind": "move",
+        "support": {
+          "quote": "Mira moved to the gate.",
+          "span": [
+            28,
+            51
+          ]
+        }
+      }
+    ],
+    "beats": [
+      {
+        "action_ids": [
+          "a0"
+        ],
+        "depiction": "picture",
+        "description": "Recognizable Mira beside the source-backed setting.",
+        "fact_ids": [
+          "f0"
+        ],
+        "id": "b0",
+        "span": [
+          0,
+          51
+        ],
+        "subjects": [
+          "mira"
+        ],
+        "text": "Mira said, “Open the gate.” Mira moved to the gate."
+      }
+    ],
+    "book_id": "test-book",
+    "cast": [
+      {
+        "canonical_id": "test-book:narrator",
+        "id": "narrator",
+        "kind": "narrator",
+        "mentions": [],
+        "name": "Narrator"
+      },
+      {
+        "canonical_id": "test-book:mira",
+        "id": "mira",
+        "kind": "character",
+        "mentions": [
+          {
+            "quote": "Mira",
+            "span": [
+              0,
+              4
+            ]
+          }
+        ],
+        "name": "Mira"
+      }
+    ],
+    "chapter_id": "chapter-1",
+    "facts": [
+      {
+        "assertion": "Mira moved to the gate.",
+        "entity_ids": [
+          "mira"
+        ],
+        "id": "f0",
+        "support": {
+          "quote": "Mira moved to the gate.",
+          "span": [
+            28,
+            51
+          ]
+        }
+      }
+    ],
+    "questions": [
+      "Initial reference research and voice pilot remain unavailable."
+    ],
+    "references": [
+      {
+        "entity_ids": [
+          "mira"
+        ],
+        "features": [
+          "recognizable subject"
+        ],
+        "id": "r0",
+        "subject_type_id": "test-book:mira",
+        "support": {
+          "quote": "Mira",
+          "span": [
+            0,
+            4
+          ]
+        },
+        "usage": "subject"
+      }
+    ],
+    "request_sha256": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638",
+    "scenes": [
+      {
+        "id": "s0",
+        "pictures": [
+          {
+            "beat_ids": [
+              "b0"
+            ],
+            "description": "Mira remains clearly visible in a concrete setting.",
+            "id": "p0",
+            "span": [
+              0,
+              51
+            ],
+            "subjects": [
+              "mira"
+            ]
+          }
+        ],
+        "span": [
+          0,
+          51
+        ],
+        "text": "Mira said, “Open the gate.” Mira moved to the gate."
+      }
+    ],
+    "schema_version": 1,
+    "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+    "turns": [
+      {
+        "attribution": null,
+        "id": "t0",
+        "kind": "narration",
+        "span": [
+          0,
+          11
+        ],
+        "speaker": "narrator",
+        "text": "Mira said, "
+      },
+      {
+        "attribution": {
+          "quote": "Mira said, “Open the gate.”",
+          "span": [
+            0,
+            27
+          ]
+        },
+        "id": "t1",
+        "kind": "dialogue",
+        "span": [
+          11,
+          27
+        ],
+        "speaker": "mira",
+        "text": "“Open the gate.”"
+      },
+      {
+        "attribution": null,
+        "id": "t2",
+        "kind": "narration",
+        "span": [
+          27,
+          51
+        ],
+        "speaker": "narrator",
+        "text": " Mira moved to the gate."
+      }
+    ]
+  },
+  "reference_requirements": [
+    {
+      "approved_for_asset_request": false,
+      "canonical_image": null,
+      "feature_applicability_review": "missing",
+      "proposal": {
+        "entity_ids": [
+          "mira"
+        ],
+        "features": [
+          "recognizable subject"
+        ],
+        "id": "r0",
+        "subject_type_id": "test-book:mira",
+        "support": {
+          "quote": "Mira",
+          "span": [
+            0,
+            4
+          ]
+        },
+        "usage": "subject"
+      },
+      "research_outcome": "missing",
+      "source_citation_valid": true
+    }
+  ],
+  "request": {
+    "bytes": 14418,
+    "media_type": "application/json",
+    "path": "private/direction-request.json",
+    "sha256": "3dbeab3ba31d1b6105ce00dfe51f3163f81a433671e15826169b99dc370d2638"
+  },
+  "response": {
+    "file": {
+      "bytes": 3251,
+      "media_type": "application/json",
+      "path": "private/direction-response.json",
+      "sha256": "d46e6fbe980711d5db6d2b182c88dff052921a172a93deeeb34a7820584edd50"
+    },
+    "id": "committed:test:private:direction-response.json",
+    "provenance": "synthetic"
+  },
+  "reveal_permissions": [],
+  "runtime_policy_authority": false,
+  "schema_version": 1,
+  "script_candidate": [
+    {
+      "clean_spoken_text": "Mira said, ",
+      "source_span": [
+        0,
+        11
+      ],
+      "speaker": "Narrator",
+      "turn_index": 0
+    },
+    {
+      "clean_spoken_text": "“Open the gate.”",
+      "source_span": [
+        11,
+        27
+      ],
+      "speaker": "Mira",
+      "turn_index": 1
+    },
+    {
+      "clean_spoken_text": " Mira moved to the gate.",
+      "source_span": [
+        27,
+        51
+      ],
+      "speaker": "Narrator",
+      "turn_index": 2
+    }
+  ],
+  "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+  "source_span": [
+    0,
+    51
+  ],
+  "source_text": "Mira said, “Open the gate.” Mira moved to the gate.",
+  "speakers": [
+    "mira",
+    "narrator"
+  ],
+  "turns": [
+    {
+      "proposal": {
+        "attribution": null,
+        "id": "t0",
+        "kind": "narration",
+        "span": [
+          0,
+          11
+        ],
+        "speaker": "narrator",
+        "text": "Mira said, "
+      },
+      "source_text": "Mira said, ",
+      "speaker_source_supported": true,
+      "speech_candidate": {
+        "clean_spoken_text": "Mira said, ",
+        "source_span": [
+          0,
+          11
+        ],
+        "speaker": "Narrator",
+        "turn_index": 0
+      },
+      "voice_pilot_approved": false
+    },
+    {
+      "proposal": {
+        "attribution": {
+          "quote": "Mira said, “Open the gate.”",
+          "span": [
+            0,
+            27
+          ]
+        },
+        "id": "t1",
+        "kind": "dialogue",
+        "span": [
+          11,
+          27
+        ],
+        "speaker": "mira",
+        "text": "“Open the gate.”"
+      },
+      "source_text": "“Open the gate.”",
+      "speaker_source_supported": true,
+      "speech_candidate": {
+        "clean_spoken_text": "“Open the gate.”",
+        "source_span": [
+          11,
+          27
+        ],
+        "speaker": "Mira",
+        "turn_index": 1
+      },
+      "voice_pilot_approved": false
+    },
+    {
+      "proposal": {
+        "attribution": null,
+        "id": "t2",
+        "kind": "narration",
+        "span": [
+          27,
+          51
+        ],
+        "speaker": "narrator",
+        "text": " Mira moved to the gate."
+      },
+      "source_text": " Mira moved to the gate.",
+      "speaker_source_supported": true,
+      "speech_candidate": {
+        "clean_spoken_text": " Mira moved to the gate.",
+        "source_span": [
+          27,
+          51
+        ],
+        "speaker": "Narrator",
+        "turn_index": 2
+      },
+      "voice_pilot_approved": false
+    }
+  ]
+}

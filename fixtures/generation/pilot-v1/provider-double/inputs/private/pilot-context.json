@@ -1,0 +1,74 @@
+{
+  "book_id": "test-book",
+  "catalog": {
+    "bytes": 320,
+    "media_type": "application/json",
+    "path": "private/voice-catalog.json",
+    "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+  },
+  "chapter_id": "chapter-1",
+  "direction": {
+    "bytes": 9391,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+  },
+  "direction_input": {
+    "bytes": 3725,
+    "media_type": "application/json",
+    "path": "private/pilot-direction-input.json",
+    "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+  },
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "first_audition_model": "gemini-3.8-flash-tts",
+  "observations": [],
+  "recipe": {
+    "bytes": 48,
+    "media_type": "application/json",
+    "path": "private/pilot-recipe.json",
+    "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+  },
+  "registry": {
+    "bytes": 400,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+  },
+  "request_payloads": [
+    {
+      "bytes": 1606,
+      "media_type": "application/json",
+      "path": "private/pilot/requests/p000-t00.json",
+      "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3"
+    },
+    {
+      "bytes": 1597,
+      "media_type": "application/json",
+      "path": "private/pilot/requests/p000-t01.json",
+      "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9"
+    }
+  ],
+  "review_model": "independent-review-double",
+  "review_provider": "review-double",
+  "reviews": [],
+  "schema_version": 1,
+  "selection": {
+    "bytes": 1076,
+    "media_type": "application/json",
+    "path": "private/pilot-selection.json",
+    "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+  },
+  "source": {
+    "bytes": 3725,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+  },
+  "speech_provider": "speech-double",
+  "timeout_ms": 30000
+}
