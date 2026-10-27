@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "status": "shared-service-contract-ready-runtime-adapter-pending",
+  "task": "I15",
+  "recorded_at": "2026-10-27T03:33:39.220273+00:00",
+  "candidate_commit": "7d507035485ab898234df032d0486968854e051a",
+  "candidate_tree": "f61a6588f46120bbe8890edef88fd4045ae6cbf4",
+  "service_revision": "pt-services-v1.5.0",
+  "playback_revision": "pt-contracts-v1.0.0",
+  "provider_metadata_version": 2,
+  "provider_service_version": 2,
+  "api": {
+    "issue": "RunServices::issue_provider_v2(ProviderProposalV2) -> ProviderOperationV2",
+    "execute": "RunServices::execute_provider_v2(&ProviderOperationV2) -> ProviderResultV2",
+    "recover": "RunServices::recover_provider_v2(ProviderRecoveryRequestV2) -> ProviderRecoveryResultV2",
+    "typescript": "optional RunServices methods + providerServicesV2(services): ProviderServicesV2",
+    "rust_default": "ServiceError::ProviderV2Unavailable",
+    "typescript_default": "ProviderV2Unavailable; code provider_v2_unavailable",
+    "legacy_fallback": false
+  },
+  "proposal_fields": [
+    "schema_version",
+    "kind",
+    "provider",
+    "model",
+    "recipe_sha256",
+    "payload",
+    "inputs",
+    "estimate",
+    "timeout_ms"
+  ],
+  "authority": "Runtime-bound run/epoch/unit, registry context, grants, attempts, repair/retry lineage and conservative reservations; descriptors and observer JSON confer no authority.",
+  "recovery": "Persisted original descriptor and latest job selector; separately authorized active observer/query reservation; original result identity and accounting retained; status transport only.",
+  "compatibility": {
+    "old_rust_implementors_compile": true,
+    "old_typescript_implementors_compile": true,
+    "legacy_provider_helper_candidate_methods_unchanged": true,
+    "provider_v2_metadata_wire_unchanged": true,
+    "missing_or_failing_capability_falls_back": false
+  },
+  "test_first": {
+    "initial_command": "cargo test -p pt-contracts --test provider_service --locked --offline",
+    "initial_red": "new proposal/observer/recovery types and trait methods unavailable",
+    "typescript_red": "old implementor adapter/default export absent",
+    "behavior_red": {
+      "test": "query-cannot-reuse-original-attempt-identity",
+      "observed": "well-formed query using the original attempt ID was accepted",
+      "minimal_fix": "reject query_id equal to original.result.attempt_id in Rust and TypeScript",
+      "green_command": "cargo test -p pt-contracts --test provider_service --locked --offline; npm run check:contracts"
+    },
+    "log_identities": [
+      {
+        "phase": "api-absent",
+        "sha256": "307b2f6c652840d9363412285662c8058ade62753ab7399163195cd1f77056f4"
+      },
+      {
+        "phase": "typescript-default-absent",
+        "sha256": "48f45bb7d059eaf63697c8fa57948b6e6a031bb99bdc220825f545ddde7f54b1"
+      },
+      {
+        "phase": "query-identity-collision",
+        "sha256": "aabf5aa63a35acdb0799376dc1943c9d81e66bfba2c61a4c5c7b4e93add39e3b"
+      },
+      {
+        "phase": "green-behavior",
+        "sha256": "1b07c210ff9ed1b5d660b22ce12f3764f361e82016273bb78aa9cd51f60473b3"
+      }
+    ]
+  },
+  "tests": {
+    "source_root": "unset",
+    "rust_workspace_tests": 151,
+    "provider_service_tests": 3,
+    "new_rust_typescript_records": 67,
+    "retained_provider_metadata_records": 80,
+    "retained_playback_records": 14,
+    "retained_private_acceptance_reports": 10,
+    "native_exports": "pass",
+    "isolated_packed_exports": "pass",
+    "strict_workspace_and_packed_consumers": "pass",
+    "player_tests": 115,
+    "studio_check": "pass",
+    "web_builds": "pass",
+    "server_build": "pass",
+    "source_web_server_identity": "pass"
+  },
+  "double_scope": "Synthetic service and adapter data flow only; actual runtime public adapter/authorization/quota behavior is not implemented or certified by I15.",
+  "synthetic_counts": {
+    "old_implementor_legacy_calls": 0,
+    "fixture_replay_fake_credential_lookups": 0,
+    "fixture_replay_fake_sends": 0,
+    "issued_example_fake_sends": 1,
+    "recovery_example_fake_submissions": 0,
+    "recovery_example_fake_status_queries": 1,
+    "real_provider_calls": 0
+  },
+  "canonical_fixture_manifests": {
+    "v1": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "readiness_v2": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+    "bytes_unchanged": true
+  },
+  "source_files": [
+    {
+      "path": "crates/pt-contracts/examples/provider-service-fixtures.rs",
+      "sha256": "37d2a9da12ed27060bc63f5fc61daa00ab2911e5ce34d3a85d3675350ba6c18f"
+    },
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "sha256": "465192c99527882d83338427974f04f35e7ae2cfdc317c3dd55ae2d80c666fbc"
+    },
+    {
+      "path": "crates/pt-contracts/src/provider_metadata.rs",
+      "sha256": "a97cbe85b1df16825bdfbb0f0d1d50d0cecd804355f24a5f93d4ffafa4a772f5"
+    },
+    {
+      "path": "crates/pt-contracts/src/provider_service.rs",
+      "sha256": "2bc67cea6fc35eaf9e94720273d84b9cb95d97a0bf2c48a5766954370cfae868"
+    },
+    {
+      "path": "crates/pt-contracts/src/services.rs",
+      "sha256": "84ad6bb37163173d92019535a2446805e0529adad39c2007f1f7e6a6b30e9b12"
+    },
+    {
+      "path": "crates/pt-contracts/tests/provider_service.rs",
+      "sha256": "e7cc2497c89bbbb8e4aedf021b4506b0a4a845f84ba8cd6fffe0d8efffe3b658"
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/provider_service_cases.rs",
+      "sha256": "72f5ec89698ff0ef19c6e808f340abc4c6021517a0c17e2c2aca0bdf8d1b8af5"
+    },
+    {
+      "path": "docs/implementation/integration/provider-service-v2.md",
+      "sha256": "ec3ed0af97a50a07c374d72d7005d9b1aafe1de8497ee615b5f09f53b814d9b1"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "7cab049202dab1489c1ece9fd177f26e83984c14e390ba1bc0d960eed91cad6b"
+    },
+    {
+      "path": "packages/contracts/src/provider-metadata.ts",
+      "sha256": "ee0975b15f5750e3adaefed2af7e0e5a430ce483ef8bba0c83dab4ac218d2a80"
+    },
+    {
+      "path": "packages/contracts/src/services.ts",
+      "sha256": "fb0df31bb092f4d8b1744d8fbf2d8c98cdba6340042c661cd33bb8a452de6db4"
+    },
+    {
+      "path": "packages/contracts/tests/check.mjs",
+      "sha256": "fa3479a400dde6a56d5e747479dd6de61e08cab818bcc03f8a3d8ed3824f9398"
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "sha256": "acaf4d36bce4eac493b61b2e5ed5de7fc710e244395ad0220e269ea741925ac4"
+    },
+    {
+      "path": "packages/contracts/tests/provider-service.mjs",
+      "sha256": "fceecaeea3a8c1f05c31fc465eaf1610b4c2a59609643fe8c49ca87aaf4f91d2"
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "sha256": "ad6b2f6321a0e5645041ba0330b3f553b3bfecfed3e65c7f23b6fea803da34af"
+    }
+  ],
+  "r13_supplied_context": {
+    "scope": "Uncommitted server-owned proposal/private broker source; excluded from I15 candidate and its CI. Reported private tests are not I15 verification.",
+    "files": [
+      {
+        "path": "docs/implementation/runtime/provider-v2-adapter.md",
+        "sha256": "42d5f6ef1acea6777bc9285b376b2210cada4a45a59c2ad5d8d45c0ee0f3bfdd"
+      },
+      {
+        "path": "docs/implementation/runtime/provider-v2-ready.json",
+        "sha256": "4d8cf821ba748ad6bdd5c978927335a62f804ada8632304ad6b07c2e302c576c"
+      },
+      {
+        "path": "crates/pt-production/src/runtime/provider_v2.rs",
+        "sha256": "97f7729278c3d8198ea3f7c6c16dc23a1560e12553d268fe7b488c3faf136532"
+      },
+      {
+        "path": "crates/pt-production/src/runtime/provider_v2/recovery.rs",
+        "sha256": "a133ae0f7ff0484786df256a942e3fb44350ab8751479f5b7d9bf25e74dcc607"
+      }
+    ]
+  },
+  "remaining_server_work": [
+    "wire new methods to the execution-bound service without legacy fallback",
+    "add service-instance scope recheck before private execute",
+    "persist full observer unit/query completion/recorded timestamp and expose a private immutable query receipt wrapper",
+    "verify actual adapter with injected offline transports; preserve R13 transaction and conservative accounting tests"
+  ],
+  "pending": [
+    "actual runtime public adapter and query receipt persistence",
+    "production registry/credentials/live authorization/transports",
+    "actual inherited accounting reconciliation",
+    "book/source/evidence bindings",
+    "all 34 missing independent acceptance verifiers; accepted generation/device evidence/catalog activation",
+    "separate I13 recovery repair integration and failed R12 Studio gate"
+  ],
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "real_live_dispatch_enabled": false,
+  "actual_accounting_reconciled": false,
+  "production_approved": false,
+  "production_verifier_pending_retained": true,
+  "active_worker_source_changes_integrated": false,
+  "handoff": "provider-service-v2.md",
+  "ci_record": "pr-ci-results.json",
+  "ci_status": "completed_success",
+  "ci": {
+    "head_sha": "7d507035485ab898234df032d0486968854e051a",
+    "run_ids": [
+      40444475008,
+      40444478747
+    ],
+    "events": [
+      "push",
+      "pull_request"
+    ],
+    "conclusion": "success",
+    "urls": [
+      "https://github.com/jeffcato/paper-theater/actions/runs/40444475008",
+      "https://github.com/jeffcato/paper-theater/actions/runs/40444478747"
+    ],
+    "job_and_step_record": "pr-ci-results.json",
+    "scope": "Exact code candidate; later receipt-only publication does not inherit or relabel these runs. Runtime public adapter and active lane/UI source remain excluded."
+  }
+}
