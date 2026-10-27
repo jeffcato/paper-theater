@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "rail.needle",
+  "mode": "pilot:rail.needle",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "64x384",
+  "returned_px": [
+    640,
+    3840
+  ],
+  "deliver_px": [
+    64,
+    384
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "0ef929feb028d915984f78d0448ac216929cd8ca15571b8ffb8ebc31d2ee5e04",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:46:31.941Z",
+  "raw_file": "rail-needle.raw.png",
+  "raw_sha256": "fe82acc2183cae411960942f5041ca7b36d63f9765049ef605e40db1cc845b09",
+  "file": "rail-needle.png",
+  "file_sha256": "62fee76295501fa92f6f6679d31724c409071ee3f7b028b02e2fb3db07575e6c"
+}

@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "lobby.sconce",
+  "mode": "pilot:lobby.sconce",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "384x384",
+  "returned_px": [
+    1600,
+    1600
+  ],
+  "deliver_px": [
+    384,
+    384
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "8b10ac82269579976350160c49c32f1a2a2e193429b9ddeac926ad7afbdd6121",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:05:07.292Z",
+  "raw_file": "lobby-sconce.raw.png",
+  "raw_sha256": "314700581c693967f162037a0730a6d42bf621b31e11dc5e729f5f44041532b8",
+  "file": "lobby-sconce.png",
+  "file_sha256": "fa5c038c9538866434d7540b017bb3ca201eb67b59ba1037f7b6deb389517773"
+}

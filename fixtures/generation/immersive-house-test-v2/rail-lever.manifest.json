@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "rail.lever",
+  "mode": "pilot:rail.lever",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "256x512",
+  "returned_px": [
+    1120,
+    2240
+  ],
+  "deliver_px": [
+    256,
+    512
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "15dc8e519d6b9d61637b1ed4bef6b582271a44811b1660bdc5c8d888c9cf6282",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:41:39.622Z",
+  "raw_file": "rail-lever.raw.png",
+  "raw_sha256": "cb66428bccb1a113bc8fceaf410c85df282a10c459068dd43985c48a98a67993",
+  "file": "rail-lever.png",
+  "file_sha256": "c0487755ec9fe69aca65007d2552f5e5cc9792bc9e4770b6e9f9c18d0851257a"
+}

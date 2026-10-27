@@ -1,0 +1,37 @@
+{
+  "batch": "immersive-house-test-v1",
+  "wave": 1,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.facade",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/generations",
+  "requested_size": "2048x1245",
+  "returned_px": [
+    2000,
+    1216
+  ],
+  "deliver_px": [
+    2048,
+    1245
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "26a804de231b6c5defcfa183581f56f7b72578959a6cc24b8c432ddebceb9a5a",
+  "brief_prompt_sha256_note": "brief prompt verbatim plus an appended GEOMETRY LOCK suffix (see tool source)",
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "references_attached": [],
+  "calls": 1,
+  "candidate": "B (geometry-lock repair)",
+  "max_calls": 2,
+  "started_at": "2026-10-27T01:57:00.026Z",
+  "raw_file": "house.facade-b.raw.png",
+  "raw_sha256": "bf50c7f3d85a22ac6778da79e9e083cfa7673bf94afd5d86345081a49c94ad4f",
+  "file": "house.facade-b.png",
+  "file_sha256": "2207f140ce6f59df239d0c824bef16d1836941b2116d883ccc887bc3ec3e64cb"
+}

@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.footlights",
+  "mode": "pilot:house.footlights",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "2048x128",
+  "returned_px": [
+    6400,
+    400
+  ],
+  "deliver_px": [
+    2048,
+    77
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "2c46593adaf5678a9ef9a1f5639ab441b094e26f75f1e1c0d8a1a74d6ff246ff",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:22:32.743Z",
+  "raw_file": "house-footlights.raw.png",
+  "raw_sha256": "4039d8d257464fb4ee6ad332e2cf9b7804bd767c97c91357aed137603b293e86",
+  "file": "house-footlights.png",
+  "file_sha256": "7c0357dd38af91303b967578c9084ddad831d5e13db5f540d28a0e2e02557911"
+}

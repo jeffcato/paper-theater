@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.curtain",
+  "mode": "pilot:house.curtain",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "768x864",
+  "returned_px": [
+    1408,
+    1584
+  ],
+  "deliver_px": [
+    768,
+    864
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "3eeeb9e95629af28b7c62df3413debe77e9f891d962e3c8a509208d436e8d450",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:13:16.001Z",
+  "raw_file": "house-curtain.raw.png",
+  "raw_sha256": "aede5b2078c06749c3d1ffed3812124da7dce92ba86e6254bfeaecba215e9e23",
+  "file": "house-curtain.png",
+  "file_sha256": "a848c2fe2e11063e1254c8587d825d4044146a2c3a5ac0ac8fb33ceb803cb58b"
+}

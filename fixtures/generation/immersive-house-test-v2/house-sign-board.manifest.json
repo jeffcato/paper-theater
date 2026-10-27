@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.sign-board",
+  "mode": "pilot:house.sign-board",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "1024x256",
+  "returned_px": [
+    3200,
+    800
+  ],
+  "deliver_px": [
+    1024,
+    256
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "12536a96da5c89db4c4db5ec978be4bae967093adff65ca1ba82686b4377e72e",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:15:37.812Z",
+  "raw_file": "house-sign-board.raw.png",
+  "raw_sha256": "dedbc18a4749e4cfa59a0b6537e40ec2e1620cbb1519954e4d4a245dd1429303",
+  "file": "house-sign-board.png",
+  "file_sha256": "6ac4176d1c4fc900c4e9be988971dfe18fa41cc06d7a043532661806113d851b"
+}

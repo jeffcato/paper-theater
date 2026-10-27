@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.ceiling",
+  "mode": "pilot:house.ceiling",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "512x512",
+  "returned_px": [
+    1600,
+    1600
+  ],
+  "deliver_px": [
+    512,
+    512
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "67dbcf77b09db9ada0013cbeb0bc144ad48514435248074ce0e1423bde00c6d8",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:11:47.943Z",
+  "raw_file": "house-ceiling.raw.png",
+  "raw_sha256": "2b7ce2a157aa116bdb8ba3207d30352299a29ba3eb79cc7f43828a029fd4b5da",
+  "file": "house-ceiling.png",
+  "file_sha256": "f0c19fc0b650a492c4f062b860fb825ff6eb0bb782effa3dd5a1573321c9ece7"
+}

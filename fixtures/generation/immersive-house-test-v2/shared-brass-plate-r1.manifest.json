@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "shared.brass-plate",
+  "mode": "pilot:shared.brass-plate",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "1024x209",
+  "returned_px": [
+    3216,
+    656
+  ],
+  "deliver_px": [
+    1024,
+    209
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "81606e296daa7b72d391f8463fd426781188efe970103323cc220804f1dea3a0",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T03:55:21.662Z",
+  "raw_file": "shared-brass-plate-r1.raw.png",
+  "raw_sha256": "58ef41ec764021ec72bcd8ef6b4818a1b56ae57c84c9459e76357a4b86543c97",
+  "file": "shared-brass-plate-r1.png",
+  "file_sha256": "92761c6fe5c9e195e21fa05a8065fd433a320c06637f84f5d2d973f91ceabee8"
+}

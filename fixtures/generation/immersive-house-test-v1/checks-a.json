@@ -1,0 +1,21 @@
+{
+  "file": "fixtures/generation/immersive-house-test-v1/house.facade.png",
+  "size": [
+    2048,
+    1245
+  ],
+  "size_ok": true,
+  "aperture_sampled_region": [
+    400,
+    404,
+    1569,
+    1207
+  ],
+  "aperture_mean_rgb": [
+    122,
+    117,
+    112
+  ],
+  "aperture_flat_grey_fraction": 0.7802,
+  "aperture_top_band_nongrey_fraction": 0.8934
+}

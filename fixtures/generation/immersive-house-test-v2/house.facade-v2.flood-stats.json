@@ -1,0 +1,13 @@
+{
+  "method": "border-flood",
+  "threshold": 250,
+  "size": [
+    2048,
+    1245
+  ],
+  "coverage_frac": 0.1184,
+  "grey_total": 768124,
+  "grey_kept_frac": 1.0,
+  "white_total": 301931,
+  "white_removed_frac": 1.0
+}

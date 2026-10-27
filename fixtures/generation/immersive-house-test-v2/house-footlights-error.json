@@ -1,0 +1,5 @@
+{
+  "at": "2026-10-27T04:18:04.207Z",
+  "status": 400,
+  "body": "{\"error\":{\"code\":null,\"message\":\"size aspect ratio must be at most 16:1, got 2048x77\",\"param\":\"size\",\"type\":\"invalid_request_error\"}}"
+}

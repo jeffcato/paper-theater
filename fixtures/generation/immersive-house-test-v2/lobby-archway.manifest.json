@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "lobby.archway",
+  "mode": "pilot:lobby.archway",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "768x1220",
+  "returned_px": [
+    1168,
+    1856
+  ],
+  "deliver_px": [
+    768,
+    1220
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "77d9dd8da14355ce83cd397bb53bf7d761fb65ebf919118be7432c6dd483306d",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:03:08.096Z",
+  "raw_file": "lobby-archway.raw.png",
+  "raw_sha256": "d55379d456ce7ba12f7853e888a6796ae52c003d8bad12893fe9b73d312889a6",
+  "file": "lobby-archway.png",
+  "file_sha256": "8470ee112dbfdb49a14da0d5962ac4cf730a4db7212841ce38ccfd50aa2f5b4e"
+}

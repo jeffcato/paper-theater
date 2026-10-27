@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.title-board",
+  "mode": "pilot:house.title-board",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "1024x319",
+  "returned_px": [
+    2672,
+    832
+  ],
+  "deliver_px": [
+    1024,
+    319
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "0ccc84198db173402eefd9e04f2faf92a58823479b50ff75418ab3ed4ad48936",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:14:26.715Z",
+  "raw_file": "house-title-board.raw.png",
+  "raw_sha256": "aa725a83f4cc0a30164ef25c676b9c708fb08af08458d2714fbe242dfddd9788",
+  "file": "house-title-board.png",
+  "file_sha256": "05db70e2deca3929530650eb52006189a9efa8ba5cdba74d020877755c037448"
+}

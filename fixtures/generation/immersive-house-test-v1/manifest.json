@@ -1,0 +1,36 @@
+{
+  "batch": "immersive-house-test-v1",
+  "wave": 1,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.facade",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/generations",
+  "requested_size": "2048x1245",
+  "returned_px": [
+    2000,
+    1216
+  ],
+  "deliver_px": [
+    2048,
+    1245
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "e9511fc9287270c5753485f65b2111e2a87e805974c04b4dbe76cbe663344f99",
+  "brief_prompt_sha256_note": "prompt is brief.assets[house.facade].prompt verbatim",
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "references_attached": [],
+  "calls": 1,
+  "max_calls": 2,
+  "started_at": "2026-10-27T01:54:54.714Z",
+  "raw_file": "house.facade.raw.png",
+  "raw_sha256": "33227041d515390ffbf6255ad302b24b002738234bf03dea426be3e956e2c5a4",
+  "file": "house.facade.png",
+  "file_sha256": "c3cc4ea6e96f4c85adcf8fb7738192f554ff59747580f3466c3ea9309fe0bb35"
+}

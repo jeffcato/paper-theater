@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.patrons-left",
+  "mode": "pilot:house.patrons-left",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "1024x372",
+  "returned_px": [
+    2512,
+    912
+  ],
+  "deliver_px": [
+    1024,
+    372
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "5ca9027b70a317539c41c5c1da1f2757bfb535f649d452f0f2b46d0a2d68a656",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:32:39.295Z",
+  "raw_file": "house-patrons-left.raw.png",
+  "raw_sha256": "e9b7d345f3e4009f7bb0dbfcc85afe5f3dba4a57a88359a0b2ba8ce49f6cd22b",
+  "file": "house-patrons-left.png",
+  "file_sha256": "bae26dadfe5c0ce9b10ea510722190184e72b79732bd7659432303ca341a7b76"
+}

@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.lectern",
+  "mode": "pilot:house.lectern",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "1536x340",
+  "returned_px": [
+    3328,
+    736
+  ],
+  "deliver_px": [
+    1536,
+    340
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "b6f58fb0b0b4dbd246546127e0f81b3a1064dc9144a27480c3a2cbb098adca11",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:29:36.930Z",
+  "raw_file": "house-lectern.raw.png",
+  "raw_sha256": "4da4420941c5d1a64e460c41f608246b82dcf55ec5101dd05914f537e0917270",
+  "file": "house-lectern.png",
+  "file_sha256": "e390e2872762f79941e1ee456db93125e3f139fd213bab31d31261e1cd80f8e1"
+}

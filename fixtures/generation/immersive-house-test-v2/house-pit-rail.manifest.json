@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "house.pit-rail",
+  "mode": "pilot:house.pit-rail",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "512x192",
+  "returned_px": [
+    2560,
+    960
+  ],
+  "deliver_px": [
+    512,
+    192
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "a601d96ca86d25126628e07763ea9a52135f6f801d3a9e6bfaa99877e01915de",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:26:42.044Z",
+  "raw_file": "house-pit-rail.raw.png",
+  "raw_sha256": "b139ebe45f566a27488dcd735f530f30241c2db021a703e8bd9bbf45b2f37786",
+  "file": "house-pit-rail.png",
+  "file_sha256": "0fd1fb65812221bf3c8bf90236a25f34b23e604f2ded82c8ec26ad3c4f704efb"
+}

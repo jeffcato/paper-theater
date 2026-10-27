@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "rail.plate",
+  "mode": "pilot:rail.plate",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "2048x128",
+  "returned_px": [
+    6400,
+    400
+  ],
+  "deliver_px": [
+    2048,
+    128
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "ccf25876816d0470fce40dc873d776c807507853b507af2f19becd1a80d9f549",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:38:33.578Z",
+  "raw_file": "rail-plate.raw.png",
+  "raw_sha256": "587da9e1ee8aab3f52e307ce053b7cf816dc0527336b72cdd37d2f0baa4d2467",
+  "file": "rail-plate.png",
+  "file_sha256": "986e05f0d6c2e54e05ddcf055c7ce96e3339a0329e993acb456ecb810a504872"
+}

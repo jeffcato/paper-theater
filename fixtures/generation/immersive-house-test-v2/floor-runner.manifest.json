@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "floor.runner",
+  "mode": "pilot:floor.runner",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "256x512",
+  "returned_px": [
+    1120,
+    2240
+  ],
+  "deliver_px": [
+    256,
+    512
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "f24b9b0f20367955e4b279b2193f1fcae87c40ead556aee6cd178e03078c9864",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:09:48.720Z",
+  "raw_file": "floor-runner.raw.png",
+  "raw_sha256": "316a77c692b867b6bd822b9698e9e38569b3114b21225063e1b0e63a9c0c1739",
+  "file": "floor-runner.png",
+  "file_sha256": "74c88f300dc253ae990622f09e5c1e66a8fbd5e9b2d8130518b34964e47de323"
+}

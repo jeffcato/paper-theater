@@ -1,0 +1,42 @@
+{
+  "task": "flood-cut",
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "image": "lobby-grille.png",
+  "image_sha256": "32f399b930dc7df30686d6dcc566535fa8a12d1786475ff616d586c0f10b218e",
+  "size": [
+    2560,
+    1792
+  ],
+  "method": "border-flood-8conn",
+  "threshold_min_channel": 250,
+  "file": "lobby-grille.flood-cut.png",
+  "file_sha256": "a5d5bb94987279281844be9346e0292681ab2593e5a78d879f34d4c8c8b1a578",
+  "stats": {
+    "method": "border-flood",
+    "threshold": 250,
+    "size": [
+      2560,
+      1792
+    ],
+    "coverage_frac": 0.3256,
+    "grey_total": 5934,
+    "grey_kept_frac": 1.0,
+    "white_total": 1493648,
+    "white_removed_frac": 1.0
+  },
+  "gates": {
+    "grey_kept_frac": 1.0,
+    "white_removed_frac": 1.0,
+    "rgb_passthrough_mismatches": 0,
+    "residual_white_kept": 0
+  },
+  "provider_calls": 0,
+  "promotion": {
+    "action": "flood-cut output promoted to canonical fixture name (operator-approved 2026-10-27)",
+    "canonical_file": "lobby-grille.png",
+    "previous_sha256": "32f399b930dc7df30686d6dcc566535fa8a12d1786475ff616d586c0f10b218e",
+    "preserved_original": "lobby-grille.pre-flood.png"
+  }
+}

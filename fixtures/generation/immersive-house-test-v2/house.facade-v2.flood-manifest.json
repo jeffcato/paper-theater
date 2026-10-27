@@ -1,0 +1,42 @@
+{
+  "task": "flood-cut",
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "image": "house.facade-v2.png",
+  "image_sha256": "4c4e5599220c3854666ebb08ecebfeb310d593f2e1286cc3646d95ef7a9f9c2d",
+  "size": [
+    2048,
+    1245
+  ],
+  "method": "border-flood-8conn",
+  "threshold_min_channel": 250,
+  "file": "house.facade-v2.flood-cut.png",
+  "file_sha256": "247fba44cfd088e1b6d8272ca272e335e38bbbea85566ba1554365147490b40c",
+  "stats": {
+    "method": "border-flood",
+    "threshold": 250,
+    "size": [
+      2048,
+      1245
+    ],
+    "coverage_frac": 0.1184,
+    "grey_total": 768124,
+    "grey_kept_frac": 1.0,
+    "white_total": 301931,
+    "white_removed_frac": 1.0
+  },
+  "gates": {
+    "grey_kept_frac": 1.0,
+    "white_removed_frac": 1.0,
+    "rgb_passthrough_mismatches": 0,
+    "residual_white_kept": 0
+  },
+  "provider_calls": 0,
+  "promotion": {
+    "action": "flood-cut output promoted to canonical fixture name (operator-approved 2026-10-27)",
+    "canonical_file": "house.facade-v2.png",
+    "previous_sha256": "4c4e5599220c3854666ebb08ecebfeb310d593f2e1286cc3646d95ef7a9f9c2d",
+    "preserved_original": "house.facade-v2.pre-flood.png"
+  }
+}

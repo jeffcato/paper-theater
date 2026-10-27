@@ -1,0 +1,51 @@
+{
+  "task": "sam-mask",
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "image": "fixtures/generation/immersive-house-test-v2/house.facade-v2.png",
+  "image_sha256": "4c4e5599220c3854666ebb08ecebfeb310d593f2e1286cc3646d95ef7a9f9c2d",
+  "size": [
+    2048,
+    1245
+  ],
+  "model": "sam-3.1",
+  "endpoint": "https://api.meta.ai/v1/responses",
+  "mode": "box",
+  "objectId": 1,
+  "prompt_sha256": "372460ba6f1b6394c1e0d18305cc11b65b9e26f56b9529de4bf26778c26d512a",
+  "request_sha256": "a6a22d9f742056380b53b05ae66e338b1963eeb67704fd4a6bb49c983df04b87",
+  "stream_sha256": "2401b7668c880eff877eaa98320d7f2837d74fd373e2cff5ec5377706b87eb52",
+  "mask_records": 1,
+  "mask_hw": [
+    620,
+    1024
+  ],
+  "mask_sha256": "e8bd939cdea57558fe621a9f456e2d04fd6720366bb07e8b0bc3176eb6daf12d",
+  "file": "house.facade-v2.sam-masked.png",
+  "file_sha256": "e36f7fede906efa2131d5f7e4a206374221c5cb49b70ff3ef05209bf240cecec",
+  "stats": {
+    "size": [
+      2048,
+      1245
+    ],
+    "mask_hw": [
+      620,
+      1024
+    ],
+    "coverage_frac": 0.0552,
+    "grey_total": 768124,
+    "grey_kept_frac": 0.0035,
+    "white_total": 306719,
+    "white_removed_frac": 0.8998,
+    "notwhite_agreement_frac": 0.1514
+  },
+  "gates": {
+    "grey_kept": false,
+    "white_removed": false,
+    "mask_agreement": false
+  },
+  "gates_pass": false,
+  "calls": 1,
+  "started_at": "2026-10-27T16:35:42.259Z"
+}

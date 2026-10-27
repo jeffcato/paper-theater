@@ -1,0 +1,51 @@
+{
+  "task": "sam-mask",
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "image": "fixtures/generation/immersive-house-test-v2/lobby-grille.png",
+  "image_sha256": "32f399b930dc7df30686d6dcc566535fa8a12d1786475ff616d586c0f10b218e",
+  "size": [
+    2560,
+    1792
+  ],
+  "model": "sam-3.1",
+  "endpoint": "https://api.meta.ai/v1/responses",
+  "mode": "box",
+  "objectId": 1,
+  "prompt_sha256": "ffab330dbc0fbeed070141508417d4c87f72264bd398caa284b98ad8b9c890a7",
+  "request_sha256": "a1e9a9b09460fd7b71c75fd8ea24329e33e43ea3fbd51c1bbdb6d9e076898101",
+  "stream_sha256": "5f3a149267be3117a95af099de7415b38cfa4f7bf6d6af659bd934a0f8450258",
+  "mask_records": 1,
+  "mask_hw": [
+    738,
+    1024
+  ],
+  "mask_sha256": "a6f9db860a936ec3f18ac4f93e38c538c84a81650770dcf20c118b4b3bd8e7ab",
+  "file": "lobby-grille.sam-masked.png",
+  "file_sha256": "dcfb41a8e7eedaded1642fbe52c2cc1d31f6619f4f7e5319897d7dd452d3ac69",
+  "stats": {
+    "size": [
+      2560,
+      1792
+    ],
+    "mask_hw": [
+      738,
+      1024
+    ],
+    "coverage_frac": 0.56,
+    "grey_total": 5934,
+    "grey_kept_frac": 0.3431,
+    "white_total": 1500815,
+    "white_removed_frac": 0.9333,
+    "notwhite_agreement_frac": 0.8435
+  },
+  "gates": {
+    "grey_kept": false,
+    "white_removed": false,
+    "mask_agreement": false
+  },
+  "gates_pass": false,
+  "calls": 1,
+  "started_at": "2026-10-27T16:42:18.772Z"
+}

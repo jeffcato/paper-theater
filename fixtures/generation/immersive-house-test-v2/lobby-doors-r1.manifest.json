@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "lobby.doors",
+  "mode": "pilot:lobby.doors",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "1024x1516",
+  "returned_px": [
+    1232,
+    1824
+  ],
+  "deliver_px": [
+    1024,
+    1516
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "13fce7dcfb3f02f2fd2bfe1ca44108f06c43f98bade19f7eea6e48ab230e374f",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T03:57:59.661Z",
+  "raw_file": "lobby-doors-r1.raw.png",
+  "raw_sha256": "92c60107e92ca41ed75d06e7d641547bf7862a38739f46de60b381701ea12cd9",
+  "file": "lobby-doors-r1.png",
+  "file_sha256": "2f0159818c984eb995537f3ab35664dcf02e2cfc028d819a24f71b07133217fe"
+}

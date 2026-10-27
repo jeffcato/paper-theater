@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "floor.carpet",
+  "mode": "pilot:floor.carpet",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "512x512",
+  "returned_px": [
+    1600,
+    1600
+  ],
+  "deliver_px": [
+    512,
+    512
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "979d33c3f9cf30eedb5345d767c814f47d92c302b0611eaf22ee58162c80203f",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T04:08:13.839Z",
+  "raw_file": "floor-carpet.raw.png",
+  "raw_sha256": "7b1dc5858277bc24477f5c04ec97d63e5d7555271434125f4501aefcb4acb131",
+  "file": "floor-carpet.png",
+  "file_sha256": "7d1122e0caa4daa459544cb7b118c8e0ce8d579cc83ed40c9189f8c9e4ba71ba"
+}

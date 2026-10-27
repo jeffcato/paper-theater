@@ -1,0 +1,38 @@
+{
+  "batch": "immersive-house-test-v2",
+  "wave": 2,
+  "diagnostic": true,
+  "accepted": false,
+  "registered": false,
+  "dispatch": "diagnostic-exception-direct (operator approved; runtime broker has no live image dispatch)",
+  "asset": "lobby.counter",
+  "mode": "pilot:lobby.counter",
+  "model": "muse-image-1.0",
+  "endpoint": "https://api.meta.ai/v1/images/edits",
+  "requested_size": "1280x672",
+  "returned_px": [
+    2192,
+    1152
+  ],
+  "deliver_px": [
+    1280,
+    672
+  ],
+  "transform": "sips stretch-resize of returned image to exact deliver size",
+  "prompt_sha256": "97b8d2958371d9f94a25e76c83713a1b78e8e6101f7b10415b965bdf80d97a57",
+  "anchor": {
+    "file": "v1:fixtures/generation/immersive-house-test-v1/house.facade-b.png",
+    "role": "style reference only"
+  },
+  "tools_disabled": [
+    "image_search",
+    "web_search",
+    "shell"
+  ],
+  "calls": 1,
+  "started_at": "2026-10-27T03:51:46.609Z",
+  "raw_file": "lobby-counter.raw.png",
+  "raw_sha256": "de0e68d4f53b1ea0e77015738ac99f61e7e814cce28652bc624e68feb440830b",
+  "file": "lobby-counter.png",
+  "file_sha256": "afdbaddcde4fcf4b0c8339df7834703ee521344d4b28396c02786436e384ef5e"
+}
