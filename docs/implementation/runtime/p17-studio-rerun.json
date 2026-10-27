@@ -1,0 +1,22 @@
+{
+  "command": "npm run check:preview --workspace @paper-theater/studio",
+  "exit_status": 1,
+  "r12_complete": false,
+  "provider_calls": 0,
+  "assertion_harness_unchanged": true,
+  "assertion_harness_sha256": "7b614c261912e99fffd1762120e97e88a466a3b506c360fedda0c1dd3fd36ce4",
+  "p17_receipt": "docs/implementation/player/title.json",
+  "p17_receipt_sha256": "2ea28e34a39d1364605cd290aeb8ff817b179ebb7444eb707e149ded4d3baa39",
+  "p17_reported_failures": [],
+  "error": "Seek 115200 failed: media time 0, readyState 0, networkState 0; Diagnostic preview unavailable: Error: Nonpositive viewport",
+  "historical_r12_receipt_sha256": "3090121f803f2a8b8f649f75750fd5bdb52c3aabb384a17a136cbf8ed0e70b8d",
+  "historical_pngs_still_matching": 14,
+  "historical_pngs_replaced_by_rerun": [
+    {
+      "path": "docs/implementation/runtime/studio-player/960x540-title.png",
+      "previous_sha256": "5c891665b5e893a3829f8c62ae18898d64d59580471adce3ce1d767716aa4a42",
+      "current_sha256": "459180d361c9459ef5417a6bcfbf0525a35130296ded3fdd2adf312bc93b80e8"
+    }
+  ],
+  "note": "The failed complete rerun does not certify R12. Prior verification is historical; replaced captures no longer match its old PNG digests."
+}

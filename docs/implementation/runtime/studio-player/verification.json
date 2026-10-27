@@ -1,0 +1,44 @@
+{
+  "command": "npm run check:preview --workspace @paper-theater/studio",
+  "exit_status": 1,
+  "blocker": "Shared-player narrative title is occluded by the later house curtain pass.",
+  "receipt_sha256": "3090121f803f2a8b8f649f75750fd5bdb52c3aabb384a17a136cbf8ed0e70b8d",
+  "verified_pngs": 15,
+  "verified_bundle_files": 4,
+  "layout_cases": 9,
+  "cleanup_cases": 8,
+  "highlight_mismatches": 0,
+  "playback_frames": 219,
+  "title_text_pixels": [
+    0,
+    0,
+    0
+  ],
+  "selected_fixture_profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+  "production_rejected": true,
+  "accepted": false,
+  "provider_calls": 0,
+  "consumer_checks_passed": true,
+  "r12_complete": false,
+  "base_flow_passed": [
+    "start",
+    "cancel",
+    "reload",
+    "reconnect",
+    "read_only_replay",
+    "server_restart_reuse",
+    "real_acoustic_helper",
+    "acoustic_cancel",
+    "acoustic_read_only_replay",
+    "source_inspection",
+    "shared_media_playback"
+  ],
+  "source_hashes": {
+    "apps/studio/src/Preview.tsx": "63d292e6a42d477276a995dd8877aa4715c50fc6faed7c99b9f655ec06db76c9",
+    "apps/studio/src/main.tsx": "4f444567febd61358449e77bfe86f0884ab9d2f59b80964e98c5d14ed170e311",
+    "apps/studio/src/style.css": "87bd9dbdc22e2db9c2e69726ae69f39f4a610056f8a8b900c05af81087644ff3",
+    "apps/studio/scripts/browser-check.mjs": "196a7e4ea732db8fc6987bdce0db59a33c177fc3c19c8edf3142a9fc90eabc61",
+    "apps/studio/scripts/preview-browser-check.mjs": "eaeef8ccb1531e2ecc854c9773a9111415d478265360a475655081bc5de04fe5",
+    "apps/studio/scripts/studio-player-check.mjs": "7b614c261912e99fffd1762120e97e88a466a3b506c360fedda0c1dd3fd36ce4"
+  }
+}

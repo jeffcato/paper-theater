@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "checkpoint": "R17-completed-handoff-before-R18",
+  "archive": "docs/implementation/runtime/checkpoints/r17/r17-ce25b9a72c4dedf0eaec3797270b26d3d2198e07a7200bd6efb38bcaa3c7c3f4.tar",
+  "archive_sha256": "ce25b9a72c4dedf0eaec3797270b26d3d2198e07a7200bd6efb38bcaa3c7c3f4",
+  "archive_bytes": 870400,
+  "manifest_sha256": "cac40d5828abea22d141e74446d2d9c47115a9191b8b7f570be8141886f9e0b1",
+  "source_files": 51,
+  "historical_dependencies_not_substituted": [
+    {
+      "path": "docs/implementation/integration/server-provider-service-task.md",
+      "recorded_sha256": "6d98383b203bfafd5f4d566e8bffa910d5f870a2caa5a3f049e1d083600d8676",
+      "current_sha256": "5a207bf03e2ec88520dee9b5ec78792d621d5457c3d6e53d6b416ff37cdc0916",
+      "included": false
+    }
+  ],
+  "current_binary_matches_recorded": true,
+  "aggregate_green_claim": false
+}

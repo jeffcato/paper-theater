@@ -1,0 +1,1632 @@
+{
+  "complete": false,
+  "provider_calls": 0,
+  "accepted": false,
+  "viewports": [
+    {
+      "width": 960,
+      "height": 540,
+      "matrix": [
+        {
+          "scale": 1,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 321.96875,
+              "right": 612.375,
+              "y": 365.515625,
+              "height": 30
+            },
+            {
+              "left": 321.96875,
+              "right": 631.75,
+              "y": 394.109375,
+              "height": 30
+            },
+            {
+              "left": 321.96875,
+              "right": 552.296875,
+              "y": 422.703125,
+              "height": 30
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "22px",
+          "font_ready": true,
+          "canvas": {
+            "width": 878,
+            "height": 493.875,
+            "left": 41,
+            "top": 23.4375
+          },
+          "growth": 8,
+          "camera_pose": {
+            "position": [
+              0,
+              2.675,
+              28.414166129955255
+            ],
+            "target": [
+              0,
+              2.675,
+              0
+            ]
+          },
+          "viewport_height": 540,
+          "surface": {
+            "left": 41,
+            "top": 23.4375,
+            "width": 878,
+            "height": 493.875
+          },
+          "overlay": {
+            "left": 307.78125,
+            "top": 358.515625,
+            "bottom": 460.3125
+          },
+          "inset": {
+            "left": 319.78125,
+            "right": 640.203125
+          },
+          "projected": {
+            "left": 266.7876791087205,
+            "top": 335.09322568669296,
+            "width": 344.4246417825589,
+            "height": 50.338986106681716,
+            "floorY": 317.87199359756505
+          },
+          "clearance": 24.20613140243495,
+          "text": "Em, badly frightened, threw open the trap door in the floor and climbed down the "
+        },
+        {
+          "scale": 1.5,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 345.40625,
+              "right": 519.125,
+              "y": 324.28125,
+              "height": 45
+            },
+            {
+              "left": 345.40625,
+              "right": 581.296875,
+              "y": 367.171875,
+              "height": 45
+            },
+            {
+              "left": 345.40625,
+              "right": 529.6875,
+              "y": 410.0625,
+              "height": 45
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "33px",
+          "font_ready": true,
+          "canvas": {
+            "width": 878,
+            "height": 493.875,
+            "left": 41,
+            "top": 23.4375
+          },
+          "growth": 18,
+          "camera_pose": {
+            "position": [
+              0,
+              1.4249999999999998,
+              32.2301069903089
+            ],
+            "target": [
+              0,
+              1.4249999999999998,
+              0
+            ]
+          },
+          "viewport_height": 540,
+          "surface": {
+            "left": 41,
+            "top": 23.4375,
+            "width": 878,
+            "height": 493.875
+          },
+          "overlay": {
+            "left": 330.109375,
+            "top": 318.28125,
+            "bottom": 462.96875
+          },
+          "inset": {
+            "left": 342.109375,
+            "right": 617.875
+          },
+          "projected": {
+            "left": 289.11692283732003,
+            "top": 294.84729001731705,
+            "width": 299.76615432536,
+            "height": 43.811976401398795,
+            "floorY": 279.8589823010491
+          },
+          "clearance": 20.984767698950918,
+          "text": "frightened, threw open the trap door in "
+        },
+        {
+          "scale": 2,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 368.125,
+              "right": 548.203125,
+              "y": 285.3125,
+              "height": 60
+            },
+            {
+              "left": 368.125,
+              "right": 562.5625,
+              "y": 342.5,
+              "height": 60
+            },
+            {
+              "left": 368.125,
+              "right": 486.34375,
+              "y": 399.6875,
+              "height": 60
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "44px",
+          "font_ready": true,
+          "canvas": {
+            "width": 878,
+            "height": 493.875,
+            "left": 41,
+            "top": 23.4375
+          },
+          "growth": 31,
+          "camera_pose": {
+            "position": [
+              0,
+              -0.20000000000000018,
+              37.19083010876863
+            ],
+            "target": [
+              0,
+              -0.20000000000000018,
+              0
+            ]
+          },
+          "viewport_height": 540,
+          "surface": {
+            "left": 41,
+            "top": 23.4375,
+            "width": 878,
+            "height": 493.875
+          },
+          "overlay": {
+            "left": 351.734375,
+            "top": 279.3125,
+            "bottom": 466.90625
+          },
+          "inset": {
+            "left": 363.734375,
+            "right": 596.25
+          },
+          "projected": {
+            "left": 310.73688500732925,
+            "top": 255.87975411487722,
+            "width": 256.52622998534156,
+            "height": 37.49229515170376,
+            "floorY": 243.05344261561012
+          },
+          "clearance": 18.821557384389877,
+          "text": "open the trap door in the "
+        }
+      ],
+      "playback_frames": 73,
+      "playback_mismatches": 0,
+      "paused_blackout": {
+        "sample": 1779209,
+        "audio_sample": 1779209,
+        "active": null,
+        "expected": null,
+        "chunks": 1,
+        "highlights": 0,
+        "lines": 2,
+        "rows": [
+          {
+            "left": 368.125,
+            "right": 576.6875,
+            "y": 285.3125,
+            "height": 60
+          },
+          {
+            "left": 368.125,
+            "right": 539.03125,
+            "y": 342.5,
+            "height": 60
+          }
+        ],
+        "font": "\"Noto Serif\", Georgia, serif",
+        "font_size": "44px",
+        "font_ready": true,
+        "canvas": {
+          "width": 878,
+          "height": 493.875,
+          "left": 41,
+          "top": 23.4375
+        },
+        "growth": 31,
+        "camera_pose": {
+          "position": [
+            0,
+            -0.20000000000000018,
+            37.19083010876863
+          ],
+          "target": [
+            0,
+            -0.20000000000000018,
+            0
+          ]
+        },
+        "viewport_height": 540,
+        "surface": {
+          "left": 41,
+          "top": 23.4375,
+          "width": 878,
+          "height": 493.875
+        },
+        "overlay": {
+          "left": 351.734375,
+          "top": 279.3125,
+          "bottom": 466.90625
+        },
+        "inset": {
+          "left": 363.734375,
+          "right": 596.25
+        },
+        "projected": {
+          "left": 310.73688500732925,
+          "top": 255.87975411487722,
+          "width": 256.52622998534156,
+          "height": 37.49229515170376,
+          "floorY": 243.05344261561012
+        },
+        "clearance": 18.821557384389877,
+        "text": "dark hole. Dorothy "
+      }
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "matrix": [
+        {
+          "scale": 1,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 411,
+              "right": 832.4375,
+              "y": 510.53125,
+              "height": 30
+            },
+            {
+              "left": 411,
+              "right": 820.125,
+              "y": 539.125,
+              "height": 30
+            },
+            {
+              "left": 411,
+              "right": 754.640625,
+              "y": 567.71875,
+              "height": 30
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "22px",
+          "font_ready": true,
+          "canvas": {
+            "width": 1166,
+            "height": 655.875,
+            "left": 57,
+            "top": 32.4375
+          },
+          "growth": 4,
+          "camera_pose": {
+            "position": [
+              0,
+              3.175,
+              26.887789785813798
+            ],
+            "target": [
+              0,
+              3.175,
+              0
+            ]
+          },
+          "viewport_height": 720,
+          "surface": {
+            "left": 57,
+            "top": 32.4375,
+            "width": 1166,
+            "height": 655.875
+          },
+          "overlay": {
+            "left": 396.8125,
+            "top": 503.53125,
+            "bottom": 605.328125
+          },
+          "inset": {
+            "left": 408.8125,
+            "right": 871.15625
+          },
+          "projected": {
+            "left": 339.82194546022527,
+            "top": 471.1009320945597,
+            "width": 486.35610907954947,
+            "height": 71.0828159423956,
+            "floorY": 446.7831266405822
+          },
+          "clearance": 31.310623359417775,
+          "text": "threw open the trap door in the floor and climbed down the ladder into the small, dark hole. Dorothy caught Toto at "
+        },
+        {
+          "scale": 1.5,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 433.21875,
+              "right": 813.234375,
+              "y": 471.484375,
+              "height": 45
+            },
+            {
+              "left": 433.21875,
+              "right": 778.8125,
+              "y": 514.375,
+              "height": 45
+            },
+            {
+              "left": 433.21875,
+              "right": 661.6875,
+              "y": 557.265625,
+              "height": 45
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "33px",
+          "font_ready": true,
+          "canvas": {
+            "width": 1166,
+            "height": 655.875,
+            "left": 57,
+            "top": 32.4375
+          },
+          "growth": 10,
+          "camera_pose": {
+            "position": [
+              0,
+              2.425,
+              29.177354302025982
+            ],
+            "target": [
+              0,
+              2.425,
+              0
+            ]
+          },
+          "viewport_height": 720,
+          "surface": {
+            "left": 57,
+            "top": 32.4375,
+            "width": 1166,
+            "height": 655.875
+          },
+          "overlay": {
+            "left": 417.921875,
+            "top": 465.484375,
+            "bottom": 610.171875
+          },
+          "inset": {
+            "left": 429.921875,
+            "right": 850.046875
+          },
+          "projected": {
+            "left": 360.9298942871103,
+            "top": 433.05624231802085,
+            "width": 444.1402114257794,
+            "height": 64.91280013146007,
+            "floorY": 410.8492317467319
+          },
+          "clearance": 28.197643253268097,
+          "text": "the trap door in the floor and climbed down the ladder into the "
+        },
+        {
+          "scale": 2,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 454.734375,
+              "right": 820.765625,
+              "y": 434.6875,
+              "height": 60
+            },
+            {
+              "left": 454.734375,
+              "right": 730.71875,
+              "y": 491.875,
+              "height": 60
+            },
+            {
+              "left": 454.734375,
+              "right": 680.265625,
+              "y": 549.0625,
+              "height": 60
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "44px",
+          "font_ready": true,
+          "canvas": {
+            "width": 1166,
+            "height": 655.875,
+            "left": 57,
+            "top": 32.4375
+          },
+          "growth": 17,
+          "camera_pose": {
+            "position": [
+              0,
+              1.5499999999999998,
+              31.84851290427353
+            ],
+            "target": [
+              0,
+              1.5499999999999998,
+              0
+            ]
+          },
+          "viewport_height": 720,
+          "surface": {
+            "left": 57,
+            "top": 32.4375,
+            "width": 1166,
+            "height": 655.875
+          },
+          "overlay": {
+            "left": 438.34375,
+            "top": 428.6875,
+            "bottom": 616.28125
+          },
+          "inset": {
+            "left": 450.34375,
+            "right": 829.640625
+          },
+          "projected": {
+            "left": 381.3503707201652,
+            "top": 396.25064375625175,
+            "width": 403.2992585596695,
+            "height": 58.94373778949023,
+            "floorY": 376.08568082826827
+          },
+          "clearance": 26.164319171731734,
+          "text": "frightened, threw open the trap door in the "
+        }
+      ],
+      "playback_frames": 73,
+      "playback_mismatches": 0,
+      "paused_blackout": {
+        "sample": 1778808,
+        "audio_sample": 1778808,
+        "active": null,
+        "expected": null,
+        "chunks": 1,
+        "highlights": 0,
+        "lines": 3,
+        "rows": [
+          {
+            "left": 454.734375,
+            "right": 762.015625,
+            "y": 434.6875,
+            "height": 60
+          },
+          {
+            "left": 454.734375,
+            "right": 735.9375,
+            "y": 491.875,
+            "height": 60
+          },
+          {
+            "left": 454.734375,
+            "right": 745.078125,
+            "y": 549.0625,
+            "height": 60
+          }
+        ],
+        "font": "\"Noto Serif\", Georgia, serif",
+        "font_size": "44px",
+        "font_ready": true,
+        "canvas": {
+          "width": 1166,
+          "height": 655.875,
+          "left": 57,
+          "top": 32.4375
+        },
+        "growth": 17,
+        "camera_pose": {
+          "position": [
+            0,
+            1.5499999999999998,
+            31.84851290427353
+          ],
+          "target": [
+            0,
+            1.5499999999999998,
+            0
+          ]
+        },
+        "viewport_height": 720,
+        "surface": {
+          "left": 57,
+          "top": 32.4375,
+          "width": 1166,
+          "height": 655.875
+        },
+        "overlay": {
+          "left": 438.34375,
+          "top": 428.6875,
+          "bottom": 616.28125
+        },
+        "inset": {
+          "left": 450.34375,
+          "right": 829.640625
+        },
+        "projected": {
+          "left": 381.3503707201652,
+          "top": 396.25064375625175,
+          "width": 403.2992585596695,
+          "height": 58.94373778949023,
+          "floorY": 376.08568082826827
+        },
+        "clearance": 26.164319171731734,
+        "text": "the small, dark hole. Dorothy caught Toto at "
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "matrix": [
+        {
+          "scale": 1,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 648.8125,
+              "right": 1250.28125,
+              "y": 757.453125,
+              "height": 30
+            },
+            {
+              "left": 648.8125,
+              "right": 1251.96875,
+              "y": 786.046875,
+              "height": 30
+            },
+            {
+              "left": 648.8125,
+              "right": 1090.828125,
+              "y": 814.640625,
+              "height": 30
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "22px",
+          "font_ready": true,
+          "canvas": {
+            "width": 1486,
+            "height": 835.875,
+            "left": 217,
+            "top": 122.21875
+          },
+          "growth": 1,
+          "camera_pose": {
+            "position": [
+              0,
+              3.55,
+              25.743007527707707
+            ],
+            "target": [
+              0,
+              3.55,
+              0
+            ]
+          },
+          "viewport_height": 1080,
+          "surface": {
+            "left": 217,
+            "top": 122.21875,
+            "width": 1486,
+            "height": 835.875
+          },
+          "overlay": {
+            "left": 634.625,
+            "top": 750.453125,
+            "bottom": 852.25
+          },
+          "inset": {
+            "left": 646.625,
+            "right": 1273.34375
+          },
+          "projected": {
+            "left": 417.63306021919584,
+            "top": 628.2370995506734,
+            "width": 650.7338795616083,
+            "height": 95.10725932054277,
+            "floorY": 595.700405572593
+          },
+          "clearance": 39.53396942740699,
+          "text": "Run for the cellar!”\n\nToto jumped out of Dorothy’s arms and hid under the bed, and the girl started to get him. Aunt Em, badly frightened, threw open the trap door "
+        },
+        {
+          "scale": 1.5,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 670.21875,
+              "right": 1187.359375,
+              "y": 719.859375,
+              "height": 45
+            },
+            {
+              "left": 670.21875,
+              "right": 1165.71875,
+              "y": 762.75,
+              "height": 45
+            },
+            {
+              "left": 670.21875,
+              "right": 978.046875,
+              "y": 805.640625,
+              "height": 45
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "33px",
+          "font_ready": true,
+          "canvas": {
+            "width": 1486,
+            "height": 835.875,
+            "left": 217,
+            "top": 122.21875
+          },
+          "growth": 5,
+          "camera_pose": {
+            "position": [
+              0,
+              3.05,
+              27.269383871849165
+            ],
+            "target": [
+              0,
+              3.05,
+              0
+            ]
+          },
+          "viewport_height": 1080,
+          "surface": {
+            "left": 217,
+            "top": 122.21875,
+            "width": 1486,
+            "height": 835.875
+          },
+          "overlay": {
+            "left": 654.921875,
+            "top": 713.859375,
+            "bottom": 858.546875
+          },
+          "inset": {
+            "left": 666.921875,
+            "right": 1253.0625
+          },
+          "projected": {
+            "left": 437.92913316684644,
+            "top": 591.6557241973335,
+            "width": 610.1417336663071,
+            "height": 89.17456107430633,
+            "floorY": 561.1486375140181
+          },
+          "clearance": 36.491987485981895,
+          "text": "the bed, and the girl started to get him. Aunt Em, badly frightened, threw open the trap "
+        },
+        {
+          "scale": 2,
+          "sample": 1522080,
+          "audio_sample": 1522080,
+          "active": "highlight:source:3628:3632",
+          "expected": "highlight:source:3628:3632",
+          "chunks": 1,
+          "highlights": 1,
+          "lines": 3,
+          "rows": [
+            {
+              "left": 693.375,
+              "right": 1203.671875,
+              "y": 680.09375,
+              "height": 60
+            },
+            {
+              "left": 693.375,
+              "right": 1187.78125,
+              "y": 737.28125,
+              "height": 60
+            },
+            {
+              "left": 693.375,
+              "right": 997.96875,
+              "y": 794.46875,
+              "height": 60
+            }
+          ],
+          "font": "\"Noto Serif\", Georgia, serif",
+          "font_size": "44px",
+          "font_ready": true,
+          "canvas": {
+            "width": 1486,
+            "height": 835.875,
+            "left": 217,
+            "top": 122.21875
+          },
+          "growth": 10,
+          "camera_pose": {
+            "position": [
+              0,
+              2.425,
+              29.177354302025982
+            ],
+            "target": [
+              0,
+              2.425,
+              0
+            ]
+          },
+          "viewport_height": 1080,
+          "surface": {
+            "left": 217,
+            "top": 122.21875,
+            "width": 1486,
+            "height": 835.875
+          },
+          "overlay": {
+            "left": 676.984375,
+            "top": 674.09375,
+            "bottom": 861.6875
+          },
+          "inset": {
+            "left": 688.984375,
+            "right": 1230.984375
+          },
+          "projected": {
+            "left": 459.99602381711003,
+            "top": 551.8826502711364,
+            "width": 566.00795236578,
+            "height": 82.72423919192158,
+            "floorY": 523.5822526528474
+          },
+          "clearance": 34.29274734715261,
+          "text": "open the trap door in the floor and climbed down the ladder into "
+        }
+      ],
+      "playback_frames": 73,
+      "playback_mismatches": 0,
+      "paused_blackout": {
+        "sample": 1778881,
+        "audio_sample": 1778881,
+        "active": null,
+        "expected": null,
+        "chunks": 1,
+        "highlights": 0,
+        "lines": 3,
+        "rows": [
+          {
+            "left": 693.375,
+            "right": 1110.953125,
+            "y": 680.09375,
+            "height": 60
+          },
+          {
+            "left": 693.375,
+            "right": 1163.40625,
+            "y": 737.28125,
+            "height": 60
+          },
+          {
+            "left": 693.375,
+            "right": 1011.734375,
+            "y": 794.46875,
+            "height": 60
+          }
+        ],
+        "font": "\"Noto Serif\", Georgia, serif",
+        "font_size": "44px",
+        "font_ready": true,
+        "canvas": {
+          "width": 1486,
+          "height": 835.875,
+          "left": 217,
+          "top": 122.21875
+        },
+        "growth": 10,
+        "camera_pose": {
+          "position": [
+            0,
+            2.425,
+            29.177354302025982
+          ],
+          "target": [
+            0,
+            2.425,
+            0
+          ]
+        },
+        "viewport_height": 1080,
+        "surface": {
+          "left": 217,
+          "top": 122.21875,
+          "width": 1486,
+          "height": 835.875
+        },
+        "overlay": {
+          "left": 676.984375,
+          "top": 674.09375,
+          "bottom": 861.6875
+        },
+        "inset": {
+          "left": 688.984375,
+          "right": 1230.984375
+        },
+        "projected": {
+          "left": 459.99602381711003,
+          "top": 551.8826502711364,
+          "width": 566.00795236578,
+          "height": 82.72423919192158,
+          "floorY": 523.5822526528474
+        },
+        "clearance": 34.29274734715261,
+        "text": "the small, dark hole. Dorothy caught Toto at last and started "
+      }
+    }
+  ],
+  "frames": [
+    {
+      "title_text_pixels": 0,
+      "sample": 0,
+      "stage_gain": 1,
+      "curtain_open": 0,
+      "title_visible": true,
+      "sign": "hidden",
+      "sign_progress": 0,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          2.675,
+          28.414166129955255
+        ],
+        "target": [
+          0,
+          2.675,
+          0
+        ]
+      },
+      "gesture": null,
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "8dcfde25e6fcb715d9fb46300182666972e96fa6ecb968e3e76e17a322a998fc",
+      "aperture_max": 0.3686274509803922,
+      "house_max": 0.13725490196078433,
+      "sign_max": 0.4470588235294118,
+      "path": "960x540-title.png",
+      "png_sha256": "5c891665b5e893a3829f8c62ae18898d64d59580471adce3ce1d767716aa4a42"
+    },
+    {
+      "title_text_pixels": 722,
+      "sample": 1897698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          2.675,
+          28.414166129955255
+        ],
+        "target": [
+          0,
+          2.675,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "f2c23054f7f449cf3fd4d39f67eb55d55f9d69a12a742592ae52ea352f24bbba",
+      "aperture_max": 0.9333333333333333,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "960x540-nod-0.25.png",
+      "png_sha256": "e71ec1a895cb9b936bea82f3d10d70cac6fcfef15d41122838d87afcee319955"
+    },
+    {
+      "title_text_pixels": 722,
+      "sample": 1903698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          2.675,
+          28.414166129955255
+        ],
+        "target": [
+          0,
+          2.675,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "5ee9ad88582054810b9a5c86b6519b8c2c42bfbcb7f4b3c2cbd3f821f71f3910",
+      "aperture_max": 0.8588235294117647,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "960x540-nod-0.5.png",
+      "png_sha256": "085ea7584f61bcb8d483be8fab1b3c0a6276a110cd09eccd19d5cee7d3a54de1"
+    },
+    {
+      "title_text_pixels": 722,
+      "sample": 1909698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          2.675,
+          28.414166129955255
+        ],
+        "target": [
+          0,
+          2.675,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "f2c23054f7f449cf3fd4d39f67eb55d55f9d69a12a742592ae52ea352f24bbba",
+      "aperture_max": 0.9333333333333333,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "960x540-nod-0.75.png",
+      "png_sha256": "e71ec1a895cb9b936bea82f3d10d70cac6fcfef15d41122838d87afcee319955"
+    },
+    {
+      "title_text_pixels": 327,
+      "sample": 1779209,
+      "stage_gain": 0,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          -0.20000000000000018,
+          37.19083010876863
+        ],
+        "target": [
+          0,
+          -0.20000000000000018,
+          0
+        ]
+      },
+      "gesture": null,
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "cd527195a54b1df5e4dc725e2decb0d3727df9089e64904a3ebd929867f0f260",
+      "aperture_max": 0,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "960x540-blackout-paused.png",
+      "png_sha256": "ebe5005106199ab6ef0ab68dece441dec8b94ca3b1d29fd7b4751f8af1204795"
+    },
+    {
+      "title_text_pixels": 0,
+      "sample": 0,
+      "stage_gain": 1,
+      "curtain_open": 0,
+      "title_visible": true,
+      "sign": "hidden",
+      "sign_progress": 0,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.175,
+          26.887789785813798
+        ],
+        "target": [
+          0,
+          3.175,
+          0
+        ]
+      },
+      "gesture": null,
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "8a78e7dc2409c36a3281708eff9ba411b3b94d299ff6bdf7f69f4a0f45eb53b6",
+      "aperture_max": 0.3686274509803922,
+      "house_max": 0.13725490196078433,
+      "sign_max": 0.4470588235294118,
+      "path": "1280x720-title.png",
+      "png_sha256": "84aa9c09fcedfdad6208f8d45cde2e5fdfa36d953d9cbbbad782f2b8f0c3fcd1"
+    },
+    {
+      "title_text_pixels": 667,
+      "sample": 1897698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.175,
+          26.887789785813798
+        ],
+        "target": [
+          0,
+          3.175,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "1a4ef1ea61c6feddfffd829a878ee45fd2f5efb87bee8585f56071a4cf02dd30",
+      "aperture_max": 0.00392156862745098,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1280x720-nod-0.25.png",
+      "png_sha256": "8ba3bc8719b4622cc6b4ea6d764f891fb7c260d0336941c7e0f93ad3470abde6"
+    },
+    {
+      "title_text_pixels": 667,
+      "sample": 1903698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.175,
+          26.887789785813798
+        ],
+        "target": [
+          0,
+          3.175,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "7f16ab58e3513d44983f17beed8539dc6f7e6938b72e2a9018806794127e6a83",
+      "aperture_max": 0.00392156862745098,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1280x720-nod-0.5.png",
+      "png_sha256": "a4178530831dde5740c6ecf8a641b1d220ea62d7dac732d8bb0c52ec9b4cd7af"
+    },
+    {
+      "title_text_pixels": 667,
+      "sample": 1909698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.175,
+          26.887789785813798
+        ],
+        "target": [
+          0,
+          3.175,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "1a4ef1ea61c6feddfffd829a878ee45fd2f5efb87bee8585f56071a4cf02dd30",
+      "aperture_max": 0.00392156862745098,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1280x720-nod-0.75.png",
+      "png_sha256": "8ba3bc8719b4622cc6b4ea6d764f891fb7c260d0336941c7e0f93ad3470abde6"
+    },
+    {
+      "title_text_pixels": 466,
+      "sample": 1778808,
+      "stage_gain": 0,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          1.5499999999999998,
+          31.84851290427353
+        ],
+        "target": [
+          0,
+          1.5499999999999998,
+          0
+        ]
+      },
+      "gesture": null,
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "a5357b81287fb0ab97f4ff7f46653db90f438efb1d4f8c8634978aa9ea91ff06",
+      "aperture_max": 0,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1280x720-blackout-paused.png",
+      "png_sha256": "efe138d4a28a7dfee3979a9797b1d68d639ead1e9dc81bb6202b00f01a2633dd"
+    },
+    {
+      "title_text_pixels": 0,
+      "sample": 0,
+      "stage_gain": 1,
+      "curtain_open": 0,
+      "title_visible": true,
+      "sign": "hidden",
+      "sign_progress": 0,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.55,
+          25.743007527707707
+        ],
+        "target": [
+          0,
+          3.55,
+          0
+        ]
+      },
+      "gesture": null,
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "3c70f6b2bd0f271c9b6ce20adfb2220a3f00d48e25925746d7cb29cd85054711",
+      "aperture_max": 0.3686274509803922,
+      "house_max": 0.13725490196078433,
+      "sign_max": 0.4470588235294118,
+      "path": "1920x1080-title.png",
+      "png_sha256": "38b5acdf738570b60c8e93436fc49c9a0f349fc027f1e41b18d2fa1083672d47"
+    },
+    {
+      "title_text_pixels": 903,
+      "sample": 1897698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.55,
+          25.743007527707707
+        ],
+        "target": [
+          0,
+          3.55,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "2883f7c03bff14e151c58b079f59844bb875f1a7ccc57c6d5d580ebe92d9af4e",
+      "aperture_max": 0.00392156862745098,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1920x1080-nod-0.25.png",
+      "png_sha256": "8ad86fb10a973f29f93bf777b256bb2f2f4ba5d38e4cec9d9ad1cd8385d427b9"
+    },
+    {
+      "title_text_pixels": 903,
+      "sample": 1903698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.55,
+          25.743007527707707
+        ],
+        "target": [
+          0,
+          3.55,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "e2ffd9060df456dc7926f58e717eaeb1b1e8a5984a3422ea8ade3690769b2913",
+      "aperture_max": 0.00392156862745098,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1920x1080-nod-0.5.png",
+      "png_sha256": "7c5b28fc3d136d6106d47822f211766a373dad17046da34570da3907ea7070f1"
+    },
+    {
+      "title_text_pixels": 903,
+      "sample": 1909698,
+      "stage_gain": 1,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          3.55,
+          25.743007527707707
+        ],
+        "target": [
+          0,
+          3.55,
+          0
+        ]
+      },
+      "gesture": "nod",
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "2883f7c03bff14e151c58b079f59844bb875f1a7ccc57c6d5d580ebe92d9af4e",
+      "aperture_max": 0.00392156862745098,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1920x1080-nod-0.75.png",
+      "png_sha256": "8ad86fb10a973f29f93bf777b256bb2f2f4ba5d38e4cec9d9ad1cd8385d427b9"
+    },
+    {
+      "title_text_pixels": 602,
+      "sample": 1778881,
+      "stage_gain": 0,
+      "curtain_open": 1,
+      "title_visible": false,
+      "sign": "visible",
+      "sign_progress": 1,
+      "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+      "camera_pose": {
+        "position": [
+          0,
+          2.425,
+          29.177354302025982
+        ],
+        "target": [
+          0,
+          2.425,
+          0
+        ]
+      },
+      "gesture": null,
+      "profile_id": "paper-player-r186-v1",
+      "accepted": false,
+      "rgba_sha256": "2125f0bed887d2c1c5ad06453aeee6a907ac5dc6198dadec0a05b5f59cf70965",
+      "aperture_max": 0,
+      "house_max": 0.4470588235294118,
+      "sign_max": 0.9254901960784314,
+      "path": "1920x1080-blackout-paused.png",
+      "png_sha256": "4066beea85d9c742f31089bd3f9d3fc00c9422c327621c595ccf085b2ddcfb55"
+    }
+  ],
+  "cleanup": [
+    {
+      "label": "close",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 86,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    },
+    {
+      "label": "queued resize after close",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 86,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    },
+    {
+      "label": "superseded async load",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 86,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    },
+    {
+      "label": "missing verified track",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 86,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    },
+    {
+      "label": "missing bundled font",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 153,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    },
+    {
+      "label": "late font completion after close",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 220,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    },
+    {
+      "label": "saved-run navigation",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 354,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    },
+    {
+      "label": "reopened different run",
+      "urls": 0,
+      "observers": 0,
+      "frames": 0,
+      "deletions": 421,
+      "canvases": 0,
+      "chunks": 0,
+      "paused": true,
+      "src": null,
+      "errors": [],
+      "notices": []
+    }
+  ],
+  "console_errors": [],
+  "browser_notices": [
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "timestamp": 1793055432762.146,
+      "url": "http://127.0.0.1:55835/favicon.ico",
+      "networkRequestId": "68663.9",
+      "scenario": "startup"
+    },
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "timestamp": 1793055433619.251,
+      "url": "http://127.0.0.1:55835/api/v1/runs/ee59ab536abec44f0531f040892fcd0babc2a6bfed7b6151140dcbabc6b73f8b",
+      "networkRequestId": "68663.38",
+      "scenario": "intentional-disconnect"
+    },
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "timestamp": 1793055433758.38,
+      "url": "http://127.0.0.1:55835/api/v1/runs/ee59ab536abec44f0531f040892fcd0babc2a6bfed7b6151140dcbabc6b73f8b",
+      "networkRequestId": "68663.39",
+      "scenario": "intentional-disconnect"
+    },
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "timestamp": 1793055433899.489,
+      "url": "http://127.0.0.1:55835/api/v1/runs/ee59ab536abec44f0531f040892fcd0babc2a6bfed7b6151140dcbabc6b73f8b",
+      "networkRequestId": "68663.40",
+      "scenario": "intentional-disconnect"
+    },
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: net::ERR_INCOMPLETE_CHUNKED_ENCODING",
+      "timestamp": 1793055435336.91,
+      "url": "http://127.0.0.1:55835/api/v1/runs/e5e980aa8b7ae5024b5772ad5973bfc58cafacbfea25fe700531b000e1603cc0/events?after=1",
+      "networkRequestId": "68663.56",
+      "scenario": "intentional-server-restart"
+    },
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "timestamp": 1793055468730.023,
+      "url": "http://127.0.0.1:55835/favicon.ico",
+      "networkRequestId": "68663.128",
+      "scenario": "running"
+    }
+  ],
+  "manifest_sha256": "49bce84ec683479c8321a878633b2342d7ae1b881442d04e35e5b672f82755a4",
+  "read_along_sha256": "3668ccc97432c0cd72d284deaddf2e8aab3cd866ee2e6dabf06b6c53696e949b",
+  "profile_id": "paper-player-r186-v1",
+  "title": "Paper Theater diagnostic",
+  "chapter_label": "Saved excerpt",
+  "words": 176,
+  "groups": 170,
+  "first": 115200,
+  "mid": 1522080,
+  "blackout": 1771698,
+  "nod": {
+    "id": "nod-em",
+    "scene_id": "scene-2",
+    "target_id": "em-2",
+    "action": "gesture",
+    "start_sample": 1891698,
+    "end_sample": 1915698,
+    "easing": "ease_in_out",
+    "reveal_group_ids": [
+      "reveal-2"
+    ],
+    "params": {
+      "gesture": "nod",
+      "intensity": 0.25
+    }
+  },
+  "production_rejected": true,
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.85",
+    "revision": "@0e66b94549a8bd85f03fbdf189b752d6e7b63c32",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.25"
+  },
+  "bundles": [
+    {
+      "path": "/assets/index-DzN9Koyn.js",
+      "sha256": "41c34ea04f13409601519841c212e08b89270e1afe0e805d28c6bbbb23f047c1"
+    },
+    {
+      "path": "/assets/src-CP2q6Kt3.js",
+      "sha256": "c751424ed7119287a1031749a9b7d606dc80cdd6595e6c206e69a517f7130405"
+    },
+    {
+      "path": "/assets/three.module-CDJkRhUe.js",
+      "sha256": "c6fdd1cc24057930d6c66210c2c560ecbf0852a36a9142f9f3cc9a2c73019935"
+    },
+    {
+      "path": "/assets/noto-serif-latin-400-normal-BV_iYGc9.woff2",
+      "sha256": "4c0cbe3eec50d260754d681c17ee2af49a43d7fd93ce42877f665fcb1a889b87"
+    }
+  ],
+  "fixture_path": "fixtures/generation/two-scene-readiness-v2",
+  "fixture_manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+  "harness_sha256": "7b614c261912e99fffd1762120e97e88a466a3b506c360fedda0c1dd3fd36ce4",
+  "title_rendered": false
+}
