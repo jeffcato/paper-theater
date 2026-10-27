@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "task": "I18",
+  "status": "independently-pinned-source-slice-ready-runtime-adoption-pending",
+  "recorded_at": "2026-10-27T17:14:30.576140+00:00",
+  "candidate_commit": "ace1dc9fd3889e4a12e6586647b8cb5ace7d49e3",
+  "candidate_tree": "3f8cdcc1d1868d524308fa9d771d57575dcb6ddc",
+  "service_revision": "pt-services-v1.7.0",
+  "playback_revision": "pt-contracts-v1.0.0",
+  "policy_version": 2,
+  "relationship_version": 1,
+  "report_version": 3,
+  "matrix_version": "pt-acceptance-required-v2",
+  "matrix_unchanged": true,
+  "checker": {
+    "version": "pt-acceptance-bindings-v3",
+    "sha256": "3e6df586488f461e6aaece5c823a91265a0c80f5e45b2c8021259d4081829c1d"
+  },
+  "api": {
+    "mapped": "verify_acceptance_v2(document, package_root, policy_v2, proposals, private_root) -> PrivateAcceptanceVerification",
+    "legacy": "verify_acceptance and schema-1 policy unchanged; unsupported nonzero local spans remain Missing",
+    "typescript": [
+      "validateAcceptanceVerificationPolicyV2",
+      "validateSourceSliceRelationshipV1",
+      "validateSourceSliceBindingV1"
+    ],
+    "cli": "verify-acceptance explicitly selects schema-1 or schema-2 policy; unknown policy versions fail without fallback"
+  },
+  "records": {
+    "FullSourcePinV1": [
+      "file",
+      "scope_id",
+      "scalar_count",
+      "origin"
+    ],
+    "AcceptanceVerificationPolicyV2": [
+      "schema_version",
+      "base",
+      "full_source",
+      "full_source_span",
+      "relationship"
+    ],
+    "SourceSliceRelationshipV1": [
+      "schema_version",
+      "full_source",
+      "slice",
+      "slice_scope_id",
+      "slice_scalar_count",
+      "full_source_span",
+      "local_span",
+      "local_origin",
+      "global_origin"
+    ],
+    "SourceSliceBindingV1": "Path-free hashes/counts/scope IDs/origins/spans and optional relationship hash, privately reported only"
+  },
+  "coordinates": {
+    "unit": "half-open Unicode scalar indices",
+    "full_file_domain": "[full_source.origin, full_source.origin + scalar_count)",
+    "slice_domain": "[0, slice_scalar_count)",
+    "global_origin": "selected full_source_span start",
+    "full_file_index": "global - full_source.origin",
+    "private_local_conversion": "local = global - global_origin; local_origin remains zero",
+    "supported_relationships": "exactly one complete contiguous selected slice; no list, overlap, stitching or inferred offset",
+    "actual_byte_proof": "verified full/slice hashes, exact UTF-8/scalar counts and substring equality; no normalization"
+  },
+  "authority": "Runtime independently pins full source identity/scope/count/origin, selected global span, local Source role and exact relationship bytes. Candidate descriptors/reports confer no authority.",
+  "remaining_production_verifier_count": 33,
+  "unimplemented_production_checks": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "initial-reference-research",
+    "image-scope-review",
+    "image-style-review",
+    "image-reference-review",
+    "image-extraction-review",
+    "image-stage-readability",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "speech-joins",
+    "music-bible",
+    "mix-intelligibility",
+    "story-coverage",
+    "incoming-picture-readiness",
+    "required-action-accounting",
+    "rendered-creative-review",
+    "opening-action-capture-coverage",
+    "full-audio-review-coverage",
+    "font-bundle",
+    "profile-r186-browser",
+    "target-device-budget",
+    "publication-recovery",
+    "product-spend-authorization",
+    "speech-fidelity",
+    "pilot-recording-review",
+    "primary-acoustic-evidence",
+    "delivery-fact-mapping",
+    "graphics-recovery-review",
+    "control-lifecycle-review",
+    "title-visibility-review",
+    "audio-format-review",
+    "public-export-boundary"
+  ],
+  "semantic_checks_added": 0,
+  "implemented_check_count": 4,
+  "test_first": {
+    "command": "cargo test -p pt-contracts --test source_slice --locked --offline",
+    "red": "desired verified-slice tests could not compile because the policy/relationship/API boundary was absent",
+    "retained_missing_case": "legacy nonzero local span and missing/unsupported v2 relationship still return Missing",
+    "green": "8 slice tests plus retained 9 source and 10 acceptance/behavior tests; full isolated workspace and cross-language checks pass",
+    "red_log_sha256": "9c27442e36e56bb659cac8804195a0590bf1fce581cda40dd4b295e39568fbd9",
+    "green_slice_log_sha256": "2fd51edb67868cc42e0085ff41a7ffe14e50c54a3c116340ba8105b443d05052",
+    "no_fallback_log_sha256": "32c309386581353a7219944ae6504d7492c09efa4049816209e833f4bf85c630"
+  },
+  "case_coverage": [
+    "zero/nonzero full and selected origins",
+    "astral/multibyte/combining Unicode",
+    "byte/UTF-16 offsets rejected",
+    "exact endpoints and whole-source identity",
+    "punctuation replacement rejected",
+    "wrong full/slice/map hashes, counts, origins, scopes",
+    "truncation, partial/gap/overlap/empty/duplicate relationships",
+    "local source/fact scope consistency",
+    "repeated equal text cannot change selected origin",
+    "changed bytes and post-receipt recheck for all three files",
+    "safe paths/symlinks and bounded inputs",
+    "known full-source/mapping exports fail binding",
+    "mandatory source coverage despite omitted candidate declaration",
+    "archived v1/v2 validation without execution relabeling"
+  ],
+  "tests": {
+    "source_root": "unset",
+    "rust_workspace_tests": 169,
+    "new_slice_tests": 8,
+    "retained_source_tests": 9,
+    "retained_acceptance_behavior_tests": 10,
+    "rust_slice_report_cases": 8,
+    "rust_policy_relationship_records": 8,
+    "retained_private_report_cases": 14,
+    "retained_provider_records": 80,
+    "retained_provider_service_records": 67,
+    "retained_playback_records": 14,
+    "native_packed_exports_strict_consumers": "pass",
+    "player_tests": 115,
+    "studio_check": "pass",
+    "web_server_builds": "pass",
+    "source_web_server_identity": "pass"
+  },
+  "cli": {
+    "exit": 2,
+    "source_executed": true,
+    "source_outcome": "pass",
+    "full_source_origin": 600,
+    "local_origin": 0,
+    "global_origin": 608,
+    "local_span": [
+      0,
+      938
+    ],
+    "selected_global_span": [
+      608,
+      1546
+    ],
+    "report_sha256": "90b4fa9937bdedce36d216b086de28c20d9b95c419bf024436ee3cde64f76257",
+    "required_rows": 21,
+    "missing_mapping_exit": 2,
+    "missing_mapping_outcome": "missing",
+    "unsupported_policy_exit": 1,
+    "production_approved": false,
+    "private_report_published": false
+  },
+  "privacy": {
+    "raw_source_or_file_refs_in_report_summary": false,
+    "source_relationship_report_is_private": true,
+    "verifier_writes_audience_payloads": false,
+    "known_full_source_mapping_hashes_in_non_diagnostic_payload": "rejected with private_evidence_exported",
+    "full_public_export_review": "still unimplemented"
+  },
+  "archives": [
+    {
+      "path": "packages/contracts/src/acceptance-required-v1.json",
+      "sha256": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-required-v2.json",
+      "sha256": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v1.json",
+      "sha256": "c86cae3390b7daea5226146a4d2ed8a0913f337c3dde41be4f45380e4c4b8b73"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v2.json",
+      "sha256": "243a52bb9592a2f2224162b9beff4f25bb470ed5e2e8d52179695620cfb9cdd8"
+    },
+    {
+      "path": "docs/implementation/integration/g20-compatibility-ack.json",
+      "sha256": "15182563216a28d4c8de64fa8cf42cd908e9ae8253e4779db9dff5cd6f9ce017"
+    }
+  ],
+  "canonical_fixture_manifests": {
+    "v1": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "readiness_v2": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+    "bytes_unchanged": true
+  },
+  "source_files": [
+    {
+      "path": "crates/pt-contracts/examples/source-slice-fixtures.rs",
+      "sha256": "6cfcb456730b53a48f6419a33041f5eb1549dedc9061b98cdf377be4f51bc613"
+    },
+    {
+      "path": "crates/pt-contracts/examples/verify-acceptance.rs",
+      "sha256": "0d5a1ac56929b8caf958f40e8a175d55d38031379c98657f6f893ea629ad034b"
+    },
+    {
+      "path": "crates/pt-contracts/src/acceptance.rs",
+      "sha256": "487ed86f9cce5f553f7ae17f35f51232fb6a4afd1c5b5ac45c9cf783e67ac24b"
+    },
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "sha256": "241f3d83675c6d5b68b7132c2732e86dda3654850b8136ad67efc87561c685f3"
+    },
+    {
+      "path": "crates/pt-contracts/src/source_slice.rs",
+      "sha256": "e8c1610df2ce44dc2fd4864fee5772e68d29581d4eed0b266fb8405751597193"
+    },
+    {
+      "path": "crates/pt-contracts/tests/source_slice.rs",
+      "sha256": "c27bbc1b9f5f95aa336be3699591c0724c40fddd16ef5f4f4ce967225fc15ef6"
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/source_slice_fixture.rs",
+      "sha256": "77352d1633d27b1af2a7622ccb9840de4c786d3295baba7cb2feed99eea5dcf6"
+    },
+    {
+      "path": "docs/implementation/integration/source-slice-mapping.md",
+      "sha256": "df5ffb999a23514c89ee7414abb6a3a159a696fa16c052a06719eb2db85814d3"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v2.json",
+      "sha256": "243a52bb9592a2f2224162b9beff4f25bb470ed5e2e8d52179695620cfb9cdd8"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-report.ts",
+      "sha256": "0041e8dcafbed5e51a7278f8df1eac1cd6173cb3cc932ea7f5f393d6b549c1ba"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "eb75a92f220fd9ba68bd99ffe5d3a58d620c7f18f14ccd98fd0cee7df29faa03"
+    },
+    {
+      "path": "packages/contracts/src/source-slice.ts",
+      "sha256": "b8aa42037b1c9d111ee02a44242696bb492001140d4a0d32a018b960a664ec15"
+    },
+    {
+      "path": "packages/contracts/tests/check.mjs",
+      "sha256": "9744eae0d9b6577753cc07b4c119f23115eb2c4c7e30509de95bb8383beb2590"
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "sha256": "1cd2540c70adf6cc2750de4825ca2467980d81cb04d467e4e9d7c012e0c07390"
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "sha256": "357bd6369f5aa003c986b43df84a6038a92455d527ae24c1276281ba87885555"
+    },
+    {
+      "path": "packages/contracts/tests/source-slice.mjs",
+      "sha256": "c60437925abd78df824d6a00fba4232a2c44896357fb24c913a50bdb1a31a627"
+    }
+  ],
+  "ci": {
+    "head_sha": "ace1dc9fd3889e4a12e6586647b8cb5ace7d49e3",
+    "run_ids": [
+      40547356710,
+      40547365503
+    ],
+    "events": [
+      "push",
+      "pull_request"
+    ],
+    "conclusion": "success",
+    "urls": [
+      "https://github.com/jeffcato/paper-theater/actions/runs/40547356710",
+      "https://github.com/jeffcato/paper-theater/actions/runs/40547365503"
+    ],
+    "job_and_step_record": "pr-ci-results.json",
+    "scope": "Exact implementation candidate; subsequent receipt-only publication does not inherit/relabel these runs."
+  },
+  "pending": [
+    "R15 trusted policy-v2 full-source/mapping pin construction, private persistence and epoch/recheck adoption",
+    "generation G21 private global-to-local proposal conversion and checker-v3 adoption",
+    "all 33 independent semantic/creative/provider/device/publication verifiers",
+    "actual inherited accounting and live authorization",
+    "accepted chapters, actual profile/device evidence and catalog activation; historical worker/UI gates unchanged"
+  ],
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "actual_accounting_reconciled": false,
+  "production_approved": false,
+  "production_verifier_pending_retained": true,
+  "active_worker_ui_implementation_integrated": false,
+  "handoff": "source-slice-mapping.md",
+  "ci_status": "completed_success"
+}
