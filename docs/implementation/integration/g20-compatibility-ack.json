@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "task": "I17-G20-compatibility",
+  "status": "acknowledged-generation-owned-literal-cleanup-permitted",
+  "recorded_at": "2026-10-27T04:01:07.899722+00:00",
+  "generation_may_remove_dead_literal": true,
+  "cleanup_owner": "generation",
+  "permission_scope": "Remove the dead REQUIRED_CHECKS compatibility literal in a separate generation-owned cleanup. Do not change required behavior, fixtures, private exports or production gates. Integration does not absorb the cleanup.",
+  "test": "crates/pt-contracts/tests/acceptance_verification.rs",
+  "command": "cargo test -p pt-contracts --test acceptance_verification --locked --offline",
+  "result": "10 passed; 0 failed",
+  "test_source_sha256": "f89ff95c8d6ec305d5880e9ab6a957164d8827b06d658ae823ef6798d565f845",
+  "passing_log_sha256": "c556870e34cd699bc2cc232df5280f151d8bc09bb56b8fc90edf6bb6e246c226",
+  "owner_fixture": "fixtures/generation/acceptance-proposals-v1/scopes.json",
+  "owner_fixture_sha256": "7e8e3b400073a85760c81c828c42d9158d1da133cda429d5499d952d6318bcc9",
+  "shared_snapshot": "fixtures/contracts/generation-acceptance-scopes-v1.json",
+  "snapshot_scope": "Exact five-row supplied G20 behavior, copied to integration-owned fixtures so isolated CI does not depend on uncommitted worker files. Tests also compare the owner fixture when present; drift requires explicit versioned adoption.",
+  "legacy_requirement_count": 24,
+  "assertions": [
+    "shared scoped IDs match accessor",
+    "effective IDs retain inherited/custom/adverse and binding gates",
+    "excerpt/chapter source requirements remain distinct",
+    "inherited chapter requirement survives excerpt",
+    "diagnostic downgrade is rejected and chapter scope retained",
+    "all five rows remain NeedsRepair with unchanged retained-failure"
+  ],
+  "g20_boundary_review": "Shared policy/proposal/fact/evidence types and owner handoff agree on seven proposed private inputs plus two generated inventories. Runtime independently pins all nine roles, scope, identities and checker; generated passes are proposals. Public export remains an explicit payload allowlist, never all StageOutput/private artifacts. Active generation implementation is not integrated or certified by these shared tests.",
+  "current_matrix_version": "pt-acceptance-required-v1",
+  "subsequent_source_verifier_adoption": "A later versioned matrix/checker increment is separate from this literal cleanup; preserve these v1 fixture/receipt identities.",
+  "provider_calls": 0,
+  "live_dispatch_enabled": false,
+  "production_verifier_pending_retained": true
+}

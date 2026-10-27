@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "legacy_required_check_ids": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "initial-reference-research",
+    "image-scope-review",
+    "image-style-review",
+    "image-reference-review",
+    "image-extraction-review",
+    "image-stage-readability",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "speech-joins",
+    "music-bible",
+    "mix-intelligibility",
+    "story-coverage",
+    "incoming-picture-readiness",
+    "required-action-accounting",
+    "rendered-creative-review",
+    "opening-action-capture-coverage",
+    "full-audio-review-coverage",
+    "font-bundle",
+    "profile-r186-browser",
+    "target-device-budget",
+    "publication-recovery",
+    "product-spend-authorization"
+  ]
+}

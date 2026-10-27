@@ -358,20 +358,16 @@ fn the_authoritative_matrix_retains_all_legacy_production_requirements() {
         .into_iter()
         .map(|c| c.id)
         .collect::<std::collections::BTreeSet<_>>();
-    let generation = include_str!("../../pt-production/src/generation/mod.rs");
-    let begin = generation.find("const REQUIRED_CHECKS:").unwrap();
-    let end = generation[begin..]
-        .find("]; ")
-        .map(|n| n + begin)
-        .or_else(|| generation[begin..].find("];\n").map(|n| n + begin))
-        .unwrap();
-    for line in generation[begin..end]
-        .lines()
-        .filter_map(|s| s.trim().strip_prefix('"').and_then(|s| s.split('"').next()))
-    {
+    let legacy: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../fixtures/contracts/acceptance-legacy-requirements-v1.json"
+    ))
+    .unwrap();
+    let legacy = legacy["legacy_required_check_ids"].as_array().unwrap();
+    assert_eq!(legacy.len(), 24);
+    for id in legacy {
         assert!(
-            ids.contains(line),
-            "dropped legacy production requirement: {line}"
+            ids.contains(id.as_str().unwrap()),
+            "dropped legacy production requirement: {id}"
         );
     }
     let excerpt = required_acceptance_checks(AcceptanceScope::AutonomousExcerpt);
@@ -396,5 +392,112 @@ fn removing_required_checks_is_an_explicit_blocker_even_with_forged_labels() {
         blockers
             .iter()
             .any(|id| id == "production-verifier-pending")
+    );
+}
+
+#[test]
+fn generation_scoped_behavior_preserves_shared_custom_inherited_and_adverse_requirements() {
+    use std::collections::BTreeSet;
+    let frozen = include_str!("../../../fixtures/contracts/generation-acceptance-scopes-v1.json");
+    let supplied = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../fixtures/generation/acceptance-proposals-v1/scopes.json");
+    // The owner fixture is not yet integrated. Freeze its exact supplied behavior
+    // in a shared-owned snapshot; reject drift whenever the owner fixture exists.
+    if supplied.exists() {
+        assert_eq!(
+            std::fs::read_to_string(&supplied).unwrap(),
+            frozen,
+            "owner fixture changed; request a versioned integration snapshot update"
+        );
+    }
+    let fixture: serde_json::Value = serde_json::from_str(frozen).unwrap();
+    assert_eq!(fixture["schema_version"], 1);
+    assert_eq!(fixture["matrix_version"], acceptance_check_matrix().version);
+    let rows = fixture["scopes"].as_array().unwrap();
+    assert_eq!(rows.len(), 5);
+    let ids = |v: &serde_json::Value| {
+        v.as_array()
+            .unwrap()
+            .iter()
+            .map(|v| v.as_str().unwrap().to_owned())
+            .collect::<BTreeSet<_>>()
+    };
+    let mut names = BTreeSet::new();
+    for row in rows {
+        names.insert(row["case"].as_str().unwrap());
+        let scope: AcceptanceScope = serde_json::from_value(row["selected_scope"].clone()).unwrap();
+        let shared = required_acceptance_checks(scope)
+            .into_iter()
+            .map(|c| c.id)
+            .collect::<BTreeSet<_>>();
+        let listed = row["shared_required_check_ids"].as_array().unwrap();
+        assert_eq!(listed.len(), shared.len());
+        assert_eq!(ids(&row["shared_required_check_ids"]), shared);
+        let mut expected = shared.clone();
+        expected.extend(ids(&row["inherited_required_check_ids"]));
+        expected.extend(ids(&row["custom_required_check_ids"]));
+        for f in row["adverse_findings"].as_array().unwrap() {
+            assert_eq!(
+                f,
+                &serde_json::json!({"id":"retained-failure","outcome":"fail"})
+            );
+            expected.insert(f["id"].as_str().unwrap().to_owned());
+        }
+        if row["case"] == "rejected-downgrade" {
+            expected.extend([
+                "acceptance-context-binding".to_owned(),
+                "acceptance-scope".to_owned(),
+            ]);
+        } else {
+            expected.insert("acceptance-input-bindings".to_owned());
+        }
+        expected.insert("production-verifier-pending".to_owned());
+        let effective = ids(&row["effective_required_check_ids"]);
+        assert_eq!(effective, expected);
+        assert_eq!(
+            effective.len(),
+            row["effective_required_check_ids"]
+                .as_array()
+                .unwrap()
+                .len()
+        );
+        assert_eq!(row["outcome"], "needs_repair");
+        if scope == AcceptanceScope::AutonomousExcerpt {
+            assert!(
+                shared.contains("complete-excerpt")
+                    && shared.contains("complete-source-coverage")
+                    && !shared.contains("complete-chapter")
+            );
+        }
+        if scope == AcceptanceScope::ProductionChapter {
+            assert!(
+                shared.contains("complete-chapter")
+                    && shared.contains("complete-source-coverage")
+                    && !shared.contains("complete-excerpt")
+            );
+        }
+        if row["case"] == "excerpt-inherited-chapter" {
+            assert!(
+                effective.contains("complete-chapter") && effective.contains("complete-excerpt")
+            );
+        }
+        if row["case"] == "rejected-downgrade" {
+            assert_eq!(row["requested_scope"], "diagnostic");
+            assert_eq!(row["selected_scope"], "production_chapter");
+            assert_eq!(row["scope_rejected"], true);
+        } else {
+            assert_eq!(row["scope_rejected"], false);
+            assert_eq!(row["requested_scope"], row["selected_scope"]);
+        }
+    }
+    assert_eq!(
+        names,
+        BTreeSet::from([
+            "diagnostic",
+            "excerpt",
+            "chapter",
+            "excerpt-inherited-chapter",
+            "rejected-downgrade"
+        ])
     );
 }
