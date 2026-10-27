@@ -1,6 +1,6 @@
 {
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.3.1",
+  "service_revision": "pt-services-v1.4.0",
   "status": "frozen-diagnostic-boundary",
   "fixture_path": "fixtures/shared/two-scene-v1",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -67,12 +67,12 @@
     "production acceptance verifier and catalog activation",
     "server simultaneous quota/retry/recovery enforcement and versioned adapter",
     "actual inherited accounting reconciliation and separate live authorization",
-    "P16 pending-Play/context-loss race and automatic recovery rejection",
-    "active R12 title-rendering blocker and future graphics recovery consumer binding",
+    "independent integration of supplied P16 recovery repair; original I13 failures preserved",
+    "server strict R12 rerun after supplied P17 title fix and future graphics recovery consumer binding",
     "target-device profile/resource validation",
     "one autonomous excerpt and both complete accepted chapters"
   ],
-  "next_integration_action": "Player resolves the I13 recovery findings. Server/generation continue their owned adapters/evidence work; live dispatch and production publication remain disabled.",
+  "next_integration_action": "Generation adopts the shared scoped acceptance matrix and private proposals; runtime supplies trusted policy/ledger and independently invokes the verifier. Integrate the supplied player recovery repair and server strict R12 rerun separately. Live dispatch and production publication remain disabled.",
   "verification": {
     "clean_checkout_commit": "41061a6",
     "source_root": "unset",
@@ -99,11 +99,13 @@
     "candidate-read-ready.json",
     "candidate-write-ready.json",
     "provider-metadata-ready.json",
-    "provider-metadata-i13-ready.json"
+    "provider-metadata-i13-ready.json",
+    "acceptance-evidence-ready.json"
   ],
   "pr_ci_results": "pr-ci-results.json",
   "combined_handoff": "combined-ready.json",
   "provider_metadata_handoff": "provider-metadata-i13-ready.json",
-  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes.",
-  "reconciliation_handoff": "shared-index-reconciliation.json"
+  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes. I4 independently verifies c965855 with services v1.4.0; see acceptance-evidence-ready.json. Earlier receipts retain their exact versions and heads; no active worker edits are absorbed.",
+  "reconciliation_handoff": "shared-index-reconciliation.json",
+  "acceptance_handoff": "acceptance-evidence-ready.json"
 }

@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "status": "first-increment-verified-full-acceptance-pending",
+  "task": "I4-first-increment",
+  "recorded_at": "2026-10-27T00:31:32.630679+00:00",
+  "candidate_commit": "c96585537ea25d59acc39a0f44f837629e87eae2",
+  "candidate_tree": "eaf91a3f3da5606a4ec00c9cb0d4bbe8e6491a8e",
+  "service_revision": "pt-services-v1.4.0",
+  "playback_revision": "pt-contracts-v1.0.0",
+  "matrix_version": "pt-acceptance-required-v1",
+  "report_version": 1,
+  "matrix_file": "packages/contracts/src/acceptance-required-v1.json",
+  "matrix_sha256": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083",
+  "required_counts": {
+    "diagnostic": 3,
+    "autonomous_excerpt": 37,
+    "production_chapter": 37
+  },
+  "implemented_checks": [
+    "package-byte-integrity",
+    "evidence-binding-integrity",
+    "required-check-coverage"
+  ],
+  "unimplemented_production_checks": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "initial-reference-research",
+    "image-scope-review",
+    "image-style-review",
+    "image-reference-review",
+    "image-extraction-review",
+    "image-stage-readability",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "speech-joins",
+    "music-bible",
+    "mix-intelligibility",
+    "story-coverage",
+    "incoming-picture-readiness",
+    "required-action-accounting",
+    "rendered-creative-review",
+    "opening-action-capture-coverage",
+    "full-audio-review-coverage",
+    "font-bundle",
+    "profile-r186-browser",
+    "target-device-budget",
+    "publication-recovery",
+    "product-spend-authorization",
+    "complete-source-coverage",
+    "speech-fidelity",
+    "pilot-recording-review",
+    "primary-acoustic-evidence",
+    "delivery-fact-mapping",
+    "graphics-recovery-review",
+    "control-lifecycle-review",
+    "title-visibility-review",
+    "audio-format-review",
+    "public-export-boundary"
+  ],
+  "api": {
+    "rust": "verify_acceptance -> PrivateAcceptanceVerification; report(); recheck_inputs(); report.validate(expected_checker)",
+    "typescript": "validateAcceptanceVerificationReport(report, expectedChecker); acceptanceCheckMatrix(); requiredAcceptanceChecks(scope)",
+    "cli": "cargo run -p pt-contracts --example verify-acceptance --offline -- PACKAGE_ROOT PRIVATE_DOCUMENT_JSON PRIVATE_POLICY_JSON PRIVATE_ADDITIONAL_PROPOSALS_JSON PRIVATE_INPUTS_ROOT"
+  },
+  "executed_checker": {
+    "version": "pt-acceptance-bindings-v1",
+    "sha256": "c543ae3ba4ca6bcd5b932384cdda63135e1f9323ad1059ec3ea39e491ba1c0f2"
+  },
+  "cli": {
+    "expected_exit": 2,
+    "actual_exit": 2,
+    "private": true,
+    "production_approved": false,
+    "required_rows": 20,
+    "report_sha256": "9bd9e076dffe253e2c94da078fff0c8923d31037e8c55093c60ed289e7a89de8",
+    "report_not_published": "Private synthetic test report remains outside audience payloads; regenerate with the acceptance-fixtures helper."
+  },
+  "tests": {
+    "source_root": "unset",
+    "first_red": {
+      "command": "cargo test -p pt-contracts --test acceptance_verification --locked --offline",
+      "test": "removing_required_checks_is_an_explicit_blocker_even_with_forged_labels",
+      "observed": "removed inventory produced only production-verifier-pending; explicit coverage diagnosis absent"
+    },
+    "green_minimal_fix": "authoritative versioned matrix and required-check-coverage blocker",
+    "acceptance_behavior_tests": 9,
+    "cross_language_private_reports": 10,
+    "cross_language_provider_records": 80,
+    "cross_language_playback_records": 14,
+    "native_exports": "pass",
+    "packed_exports": "pass",
+    "strict_consumers": "pass",
+    "rust_workspace": "pass",
+    "player_tests": 115,
+    "studio_check": "pass",
+    "web_builds": "pass",
+    "server_build": "pass",
+    "python_tests": 17,
+    "source_and_delivery_identity": "pass",
+    "cli_exit_2": "pass"
+  },
+  "case_coverage": [
+    "omitted requirements",
+    "forged execution/pass/approval",
+    "duplicate/conflicting declarations and coverage",
+    "source/narration/master/alignment/map/asset hashes",
+    "recipe/profile/player/checker/version bindings",
+    "source scope/span and sample domain",
+    "adverse and uncertain observations",
+    "runtime-pinned adverse receipt omission",
+    "missing and changed bytes after receipt",
+    "diagnostic/imported/synthetic/forged autonomous labels",
+    "unknown private report fields"
+  ],
+  "i13_findings": {
+    "preserved": true,
+    "probe_exit": 1,
+    "findings": [
+      {
+        "id": "p16-unhandled-restore-rejection",
+        "severity": "medium"
+      },
+      {
+        "id": "p16-pending-play-resumes-during-loss",
+        "severity": "high"
+      }
+    ],
+    "not_in_existing_ci_aggregate": true
+  },
+  "readiness_fixtures": {
+    "v1_manifest_sha256": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "v1_incoming_eligible": false,
+    "v2_manifest_sha256": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+    "v2_incoming_eligible": true
+  },
+  "privacy": {
+    "private_report": true,
+    "raw_source_receipts_journal_in_report": false,
+    "new_public_manifest_fields": false,
+    "private_known_inputs_rejected_in_production_payload": true,
+    "full_export_review_unimplemented": true
+  },
+  "actual_accounting_reconciled": false,
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "production_approved": false,
+  "production_verifier_pending_retained": true,
+  "active_worker_changes_integrated": false,
+  "source_files": [
+    {
+      "path": "crates/pt-contracts/src/acceptance.rs",
+      "sha256": "5fdeae08d2acae1bc5bee2cc0cab36f4548b0667b46adfff8d576be2f7248ae4"
+    },
+    {
+      "path": "crates/pt-contracts/src/validate.rs",
+      "sha256": "791d4230755434e97c4ce47c52ee913f68317f7308a9fbe45e669323c3dcad3f"
+    },
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "sha256": "296ba22a54352e86f680b133e97b0f272e36dc3c691f2f8e7e6ae91a05afa40a"
+    },
+    {
+      "path": "crates/pt-contracts/examples/verify-acceptance.rs",
+      "sha256": "eda9830b3bfe8fc84dceaad6530002697b6840708862469a1ce862804933b474"
+    },
+    {
+      "path": "crates/pt-contracts/examples/acceptance-fixtures.rs",
+      "sha256": "5ea0d9f8fd2bc3e285ba69355ab1b12bfdc4ab0d58be664e8a658fa7c4ce6667"
+    },
+    {
+      "path": "crates/pt-contracts/tests/acceptance_verification.rs",
+      "sha256": "6eb5bee7db5d698b72fe85f436d870999fe15571a7dbd47e1546095f8ba673e4"
+    },
+    {
+      "path": "crates/pt-contracts/tests/support/acceptance_fixture.rs",
+      "sha256": "80eff68138bf9d4e091e9b928245fb09325251a705a876d50d4b4b8f68256d30"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-required-v1.json",
+      "sha256": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-matrix.ts",
+      "sha256": "f545726cc76fd7872bdd95343c37dc70cb7d4fc915100967c0ff69426f4439f5"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-report.ts",
+      "sha256": "f9b39d3ae8a3a107cf7a30d86964726176b0682a3773bf2f17ad382a10abec06"
+    },
+    {
+      "path": "packages/contracts/src/validate.ts",
+      "sha256": "a774cf97b8a3f796e3e0acabc30eb374d965cc5150f95f4fb6972cfd3492fd4c"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "0ad18b7002d09d5d3d98aa9a7ac49f5bec099a37d1d7c5bfc39091a784b4f5cd"
+    },
+    {
+      "path": "packages/contracts/tsconfig.json",
+      "sha256": "1a1660a058db3502a98aed2300651996fbc900204931568a2515b99900b128ec"
+    },
+    {
+      "path": "packages/contracts/tests/acceptance.mjs",
+      "sha256": "a1b9900f901af43b20def9dd16f69118ca4a9fd80ea3679cb9b92518e77ab6db"
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "sha256": "37c94785c5453593bd7bed7f97c55b89a1ba0770e3907678913d68eb3d1dfafd"
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "sha256": "83378c959bd7bdded442a385b6f39c945b4eecb26b8005101be754082c24d2f1"
+    }
+  ],
+  "pending": [
+    "all listed unimplemented semantic/device/provider verifiers",
+    "generation adoption of shared matrix and private evidence proposals",
+    "runtime trusted-policy/ledger and private-result adapter; no JSON redemption",
+    "independent integration of supplied P16 recovery repair; server strict R12 rerun after supplied P17 title fix",
+    "actual accounting/live authorization/accepted generation/production verifier/catalog activation"
+  ],
+  "handoff": "acceptance-evidence.md",
+  "ci_record": "pr-ci-results.json",
+  "ci_status": "completed_success",
+  "test_first_log_identities": [
+    {
+      "phase": "first_red",
+      "sha256": "a843f03ef6fa0dd2e9d4ca16373640261ea73ce0c5d0903a13806cb4dd74e133"
+    },
+    {
+      "phase": "minimal_green",
+      "sha256": "97203f67419f7aa3e50064fc72b72ecbabab3447c4941338d75220176e629d51"
+    },
+    {
+      "phase": "independent_api_red",
+      "sha256": "d2c1652d9a19b9728e06821c15ac2f4afbb915f9f2e8d1975a20c6256553df3f"
+    },
+    {
+      "phase": "ledger_omission_red",
+      "sha256": "7c0a821dcbf5b52fdaad1ad5979c2d13732d21d4d3349f86b2443e4e48f3b11b"
+    },
+    {
+      "phase": "report_unknown_field_red",
+      "sha256": "c313cf9c07c2652391d586b925e5272c3c3228b2c2b98e641603d8e7e7e907ad"
+    }
+  ],
+  "ci": {
+    "head_sha": "c96585537ea25d59acc39a0f44f837629e87eae2",
+    "run_ids": [
+      40426578336,
+      40426585727
+    ],
+    "events": [
+      "push",
+      "pull_request"
+    ],
+    "conclusion": "success",
+    "urls": [
+      "https://github.com/jeffcato/paper-theater/actions/runs/40426578336",
+      "https://github.com/jeffcato/paper-theater/actions/runs/40426585727"
+    ],
+    "job_and_step_record": "pr-ci-results.json",
+    "scope": "Exact implementation candidate; later receipt-only commits do not inherit or relabel these runs. Known I13 edge probes remain outside aggregate CI."
+  }
+}
