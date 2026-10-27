@@ -4,6 +4,13 @@ use pt_contracts::*;
 use serde_json::{Value, json};
 fn main() {
     let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("complete-source-coverage".into());
+    f.doc.acceptance.required_check_ids.sort();
+    f.doc.acceptance.required_check_ids.dedup();
+    f.save();
     let args = std::env::args().skip(1).collect::<Vec<_>>();
     if args.len() == 2 && args[0] == "--write-cli-fixture" {
         let out = std::path::Path::new(&args[1]);
@@ -89,10 +96,55 @@ fn main() {
         .unwrap();
     cases
         .push(json!({"id":"excerpt-distinct-from-chapter","valid":true,"report":excerpt.report()}));
+    let legacy: Value = serde_json::from_str(include_str!(
+        "../../../fixtures/contracts/acceptance-report-v1.json"
+    ))
+    .unwrap();
+    cases.push(json!({"id":"archived-v1-receipt-retains-identity","valid":true,"report":legacy["report"],"checker":legacy["checker"]}));
+    let mut forged = serde_json::to_value(first.report()).unwrap();
+    forged["schema_version"] = json!(1);
+    forged["matrix_version"] = json!("pt-acceptance-required-v1");
+    forged["checker"] = legacy["checker"].clone();
+    forged["binding"]["checker_sha256"] = legacy["checker"]["sha256"].clone();
+    for row in forged["checks"].as_array_mut().unwrap() {
+        if row["executed"] == true {
+            row["executed_checker"] = legacy["checker"].clone();
+        }
+    }
+    cases.push(json!({"id":"v1-cannot-claim-source-execution","valid":false,"report":forged,"checker":legacy["checker"]}));
+    let mut wrong_pair = serde_json::to_value(first.report()).unwrap();
+    wrong_pair["matrix_version"] = json!("pt-acceptance-required-v1");
+    cases.push(json!({"id":"mixed-report-matrix-versions","valid":false,"report":wrong_pair}));
+    f.doc.timeline.scenes[0].source_span[1] -= 1;
+    let file = acceptance_fixture::put(
+        &f.root,
+        &f.doc.manifest.entries.timeline.path,
+        &serde_json::to_vec(&f.doc.timeline).unwrap(),
+        "application/json",
+    );
+    f.doc.manifest.entries.timeline = file;
+    f.save();
+    let gap = verify_acceptance(&f.doc, &f.root, &f.policy, &[], &f.private).unwrap();
+    assert!(
+        gap.report()
+            .checks
+            .iter()
+            .any(|c| c.check_id == "complete-source-coverage"
+                && c.executed
+                && c.outcome == ReviewOutcome::Fail
+                && c.reasons.contains(&AcceptanceReason::SourceCoverageGap))
+    );
+    cases.push(json!({"id":"independent-scene-gap-retained","valid":true,"report":gap.report()}));
     for c in &cases {
+        let checker: AcceptanceCheckerIdentity = serde_json::from_value(
+            c.get("checker")
+                .cloned()
+                .unwrap_or_else(|| serde_json::to_value(acceptance_binding_checker()).unwrap()),
+        )
+        .unwrap();
         let valid = serde_json::from_value::<AcceptanceVerificationReport>(c["report"].clone())
             .ok()
-            .is_some_and(|r| r.validate(&acceptance_binding_checker()).is_ok());
+            .is_some_and(|r| r.validate(&checker).is_ok());
         assert_eq!(valid, c["valid"] == Value::Bool(true), "{}", c["id"]);
     }
     println!(

@@ -55,3 +55,6 @@ export async function recoverV2(services:RunServices,request:ProviderRecoveryReq
 }
 // Existing implementations do not acquire three new required methods.
 export function preserveOldImplementor(s:Omit<RunServices,'issue_provider_v2'|'execute_provider_v2'|'recover_provider_v2'>):RunServices{return s;}
+
+// Archive validation and scoped accessors retain explicit matrix identities.
+export const legacyChapterRequirements=requiredAcceptanceChecks('production_chapter','pt-acceptance-required-v1');

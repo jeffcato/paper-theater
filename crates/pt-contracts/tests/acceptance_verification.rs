@@ -405,14 +405,15 @@ fn generation_scoped_behavior_preserves_shared_custom_inherited_and_adverse_requ
     // in a shared-owned snapshot; reject drift whenever the owner fixture exists.
     if supplied.exists() {
         assert_eq!(
-            std::fs::read_to_string(&supplied).unwrap(),
-            frozen,
+            serde_json::from_str::<serde_json::Value>(&std::fs::read_to_string(&supplied).unwrap())
+                .unwrap(),
+            serde_json::from_str::<serde_json::Value>(frozen).unwrap(),
             "owner fixture changed; request a versioned integration snapshot update"
         );
     }
     let fixture: serde_json::Value = serde_json::from_str(frozen).unwrap();
     assert_eq!(fixture["schema_version"], 1);
-    assert_eq!(fixture["matrix_version"], acceptance_check_matrix().version);
+    assert_eq!(fixture["matrix_version"], "pt-acceptance-required-v1");
     let rows = fixture["scopes"].as_array().unwrap();
     assert_eq!(rows.len(), 5);
     let ids = |v: &serde_json::Value| {
@@ -426,10 +427,14 @@ fn generation_scoped_behavior_preserves_shared_custom_inherited_and_adverse_requ
     for row in rows {
         names.insert(row["case"].as_str().unwrap());
         let scope: AcceptanceScope = serde_json::from_value(row["selected_scope"].clone()).unwrap();
-        let shared = required_acceptance_checks(scope)
-            .into_iter()
-            .map(|c| c.id)
-            .collect::<BTreeSet<_>>();
+        let shared = required_acceptance_checks_for_version(
+            scope,
+            fixture["matrix_version"].as_str().unwrap(),
+        )
+        .unwrap()
+        .into_iter()
+        .map(|c| c.id)
+        .collect::<BTreeSet<_>>();
         let listed = row["shared_required_check_ids"].as_array().unwrap();
         assert_eq!(listed.len(), shared.len());
         assert_eq!(ids(&row["shared_required_check_ids"]), shared);

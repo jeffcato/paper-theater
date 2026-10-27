@@ -2,9 +2,11 @@
 use crate::*;
 use serde::{Deserialize, Serialize};
 
-pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v1";
-pub const ACCEPTANCE_REPORT_VERSION: u32 = 1;
+pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v2";
+pub const ACCEPTANCE_REPORT_VERSION: u32 = 2;
 const MATRIX_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v2.json");
+const MATRIX_V1_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v1.json");
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
@@ -28,14 +30,36 @@ pub struct AcceptanceCheckMatrix {
     pub checks: Vec<RequiredAcceptanceCheck>,
 }
 pub fn acceptance_check_matrix() -> AcceptanceCheckMatrix {
-    serde_json::from_slice(MATRIX_BYTES).expect("compiled acceptance matrix")
+    acceptance_check_matrix_for_version(ACCEPTANCE_MATRIX_VERSION)
+        .expect("compiled acceptance matrix")
 }
-pub fn required_acceptance_checks(scope: AcceptanceScope) -> Vec<RequiredAcceptanceCheck> {
-    acceptance_check_matrix()
+pub fn acceptance_check_matrix_for_version(version: &str) -> ContractResult<AcceptanceCheckMatrix> {
+    let bytes = match version {
+        "pt-acceptance-required-v1" => MATRIX_V1_BYTES,
+        "pt-acceptance-required-v2" => MATRIX_BYTES,
+        _ => {
+            return invalid(
+                "acceptance_report",
+                "matrix_version",
+                "unsupported required matrix version",
+            );
+        }
+    };
+    Ok(serde_json::from_slice(bytes).expect("compiled acceptance matrix"))
+}
+pub fn required_acceptance_checks_for_version(
+    scope: AcceptanceScope,
+    version: &str,
+) -> ContractResult<Vec<RequiredAcceptanceCheck>> {
+    Ok(acceptance_check_matrix_for_version(version)?
         .checks
         .into_iter()
         .filter(|c| c.scopes.contains(&scope))
-        .collect()
+        .collect())
+}
+pub fn required_acceptance_checks(scope: AcceptanceScope) -> Vec<RequiredAcceptanceCheck> {
+    required_acceptance_checks_for_version(scope, ACCEPTANCE_MATRIX_VERSION)
+        .expect("compiled acceptance matrix")
 }
 
 pub fn declared_production_coverage_complete(d: &PlaybackDocument) -> bool {
@@ -181,10 +205,11 @@ pub struct AcceptanceCheckerIdentity {
 }
 pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
     AcceptanceCheckerIdentity {
-        version: "pt-acceptance-bindings-v1".into(),
+        version: "pt-acceptance-bindings-v2".into(),
         sha256: digest(
             &[
                 include_bytes!("acceptance.rs").as_slice(),
+                include_bytes!("acceptance_source.rs").as_slice(),
                 include_bytes!("validate.rs").as_slice(),
                 include_bytes!("common.rs").as_slice(),
                 include_bytes!("playback.rs").as_slice(),
@@ -193,6 +218,7 @@ pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
                 include_bytes!("../../../Cargo.toml").as_slice(),
                 include_bytes!("../../../Cargo.lock").as_slice(),
                 MATRIX_BYTES,
+                MATRIX_V1_BYTES,
             ]
             .concat(),
         ),
@@ -214,6 +240,12 @@ pub enum AcceptanceReason {
     IneligibleProvenance,
     UnsupportedRequirement,
     PrivateEvidenceExported,
+    MissingSourceMapping,
+    SourceCoverageGap,
+    SourceCoverageOverlap,
+    SourceCoverageOrder,
+    SourceCoverageOutsideScope,
+    SourceContentMismatch,
 }
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(deny_unknown_fields)]
@@ -296,12 +328,10 @@ const ROLES: [AcceptanceInputRole; 9] = [
 fn key(target: &AcceptanceTarget) -> String {
     serde_json::to_string(target).expect("target")
 }
-fn implemented(id: &str) -> bool {
-    matches!(
-        id,
-        "package-byte-integrity" | "evidence-binding-integrity" | "required-check-coverage"
-    )
+fn implemented(id: &str, matrix: &AcceptanceCheckMatrix) -> bool {
+    matrix.checks.iter().any(|c| c.id == id && c.implemented)
 }
+
 fn worse(a: ReviewOutcome, b: ReviewOutcome) -> ReviewOutcome {
     let rank = |x| match x {
         ReviewOutcome::Pass => 0,
@@ -478,6 +508,7 @@ impl AcceptanceVerificationPolicy {
     }
 }
 fn requirements(
+    matrix: &AcceptanceCheckMatrix,
     scope: AcceptanceScope,
     declared: &[Id],
     extra: &[Id],
@@ -486,10 +517,11 @@ fn requirements(
     binding: &AcceptanceBinding,
     observations: &[AcceptanceObservation],
 ) -> Vec<AcceptanceRequirement> {
-    let matrix = acceptance_check_matrix();
-    let mut ids = required_acceptance_checks(scope)
-        .into_iter()
-        .map(|c| c.id)
+    let mut ids = matrix
+        .checks
+        .iter()
+        .filter(|c| c.scopes.contains(&scope))
+        .map(|c| c.id.clone())
         .chain(declared.iter().cloned())
         .chain(extra.iter().cloned())
         .collect::<BTreeSet<_>>();
@@ -585,6 +617,7 @@ pub fn verify_acceptance(
     let mut reads = Reads::default();
     let mut package_reasons = Vec::new();
     let mut binding_reasons = Vec::new();
+    let mut source_read_error = AcceptanceReason::MissingBytes;
     let payload = doc
         .manifest
         .entries
@@ -686,7 +719,12 @@ pub fn verify_acceptance(
             Ok(b) => {
                 private_bytes.insert(input.role, b);
             }
-            Err(r) => binding_reasons.push(r),
+            Err(r) => {
+                if input.role == AcceptanceInputRole::Source {
+                    source_read_error = r;
+                }
+                binding_reasons.push(r);
+            }
         };
     }
     let file = |role| &policy.inputs.iter().find(|i| i.role == role).unwrap().file;
@@ -1013,7 +1051,9 @@ pub fn verify_acceptance(
         .collect::<BTreeSet<_>>()
         .into_iter()
         .collect::<Vec<_>>();
+    let matrix = acceptance_check_matrix();
     let required = requirements(
+        &matrix,
         policy.scope,
         &doc.acceptance.required_check_ids,
         &policy.additional_required_check_ids,
@@ -1072,6 +1112,76 @@ pub fn verify_acceptance(
     if required.iter().any(|r| !declared.contains(&r.check_id)) {
         coverage_reasons.push(AcceptanceReason::MissingDeclaration);
     }
+    let source_result = if required
+        .iter()
+        .any(|r| r.check_id == "complete-source-coverage")
+    {
+        (|| {
+            if policy.checker_sha256 != checker.sha256
+                || manifest_bytes
+                    .as_ref()
+                    .and_then(|b| serde_json::from_slice::<Manifest>(b).ok())
+                    .and_then(|m| serde_json::to_value(m).ok())
+                    != serde_json::to_value(&doc.manifest).ok()
+            {
+                return Err(AcceptanceReason::InvalidBinding);
+            }
+            fn bound<T: serde::de::DeserializeOwned + Serialize>(
+                reads: &mut Reads,
+                root: &Path,
+                file: &FileRef,
+                value: &T,
+                role: &str,
+            ) -> Result<(), AcceptanceReason> {
+                let b = reads.read(root, file, role, 32 * 1024 * 1024)?;
+                let disk: T =
+                    serde_json::from_slice(&b).map_err(|_| AcceptanceReason::InvalidBinding)?;
+                if serde_json::to_value(disk).ok() != serde_json::to_value(value).ok() {
+                    return Err(AcceptanceReason::InvalidBinding);
+                }
+                Ok(())
+            }
+            bound(
+                &mut reads,
+                package_root,
+                &doc.manifest.entries.timeline,
+                &doc.timeline,
+                "source_coverage_timeline",
+            )?;
+            bound(
+                &mut reads,
+                package_root,
+                &doc.manifest.entries.read_along,
+                &doc.read_along,
+                "source_coverage_read_along",
+            )?;
+            let source = private_bytes
+                .get(&AcceptanceInputRole::Source)
+                .ok_or(source_read_error)?;
+            crate::acceptance_source::verify(
+                doc,
+                source,
+                policy.source_span,
+                &file(AcceptanceInputRole::Source).sha256,
+            )?;
+            let inventory: AcceptanceFactInventory = serde_json::from_slice(
+                private_bytes
+                    .get(&AcceptanceInputRole::FactInventory)
+                    .ok_or(AcceptanceReason::MissingSourceMapping)?,
+            )
+            .map_err(|_| AcceptanceReason::InvalidBinding)?;
+            if inventory.schema_version != 1
+                || inventory.source_scope_id != policy.source_scope_id
+                || inventory.source_span != policy.source_span
+                || inventory.source_sha256 != file(AcceptanceInputRole::Source).sha256
+            {
+                return Err(AcceptanceReason::InvalidBinding);
+            }
+            Ok(())
+        })()
+    } else {
+        Ok(())
+    };
     let consumed = reads
         .consumed
         .iter()
@@ -1081,11 +1191,12 @@ pub fn verify_acceptance(
         .collect::<Vec<_>>();
     let mut checks = Vec::new();
     for r in &required {
-        let executed = implemented(&r.check_id);
+        let executed = implemented(&r.check_id, &matrix);
         let mut reasons = if executed {
             match r.check_id.as_str() {
                 "package-byte-integrity" => package_reasons.clone(),
                 "required-check-coverage" => coverage_reasons.clone(),
+                "complete-source-coverage" => source_result.err().into_iter().collect(),
                 _ => binding_reasons.clone(),
             }
         } else {
@@ -1103,6 +1214,13 @@ pub fn verify_acceptance(
                         ReviewOutcome::Fail
                     }
                 }
+                "complete-source-coverage" => match source_result {
+                    Ok(()) => ReviewOutcome::Pass,
+                    Err(
+                        AcceptanceReason::MissingSourceMapping | AcceptanceReason::MissingBytes,
+                    ) => ReviewOutcome::Missing,
+                    Err(_) => ReviewOutcome::Fail,
+                },
                 _ => binding_status,
             }
         } else {
@@ -1189,7 +1307,7 @@ pub fn verify_acceptance(
         .map(|c| c.sha256.clone());
     Ok(PrivateAcceptanceVerification {
         report: AcceptanceVerificationReport {
-            schema_version: 1,
+            schema_version: ACCEPTANCE_REPORT_VERSION,
             matrix_version: ACCEPTANCE_MATRIX_VERSION.into(),
             private: true,
             scope: policy.scope,
@@ -1216,7 +1334,10 @@ impl AcceptanceVerificationReport {
     /// Wire consistency only. JSON validation is not an execution capability.
     pub fn validate(&self, expected_checker: &AcceptanceCheckerIdentity) -> ContractResult<()> {
         require(
-            self.schema_version == 1 && self.matrix_version == ACCEPTANCE_MATRIX_VERSION,
+            matches!(
+                (self.schema_version, self.matrix_version.as_str()),
+                (1, "pt-acceptance-required-v1") | (2, "pt-acceptance-required-v2")
+            ),
             "acceptance_report",
             "version",
             "unsupported report/matrix version",
@@ -1282,7 +1403,9 @@ impl AcceptanceVerificationReport {
             "sample_domain",
             "invalid sample domain",
         )?;
+        let matrix = acceptance_check_matrix_for_version(&self.matrix_version)?;
         let expected = requirements(
+            &matrix,
             self.scope,
             &self.declared_check_ids,
             &self.additional_check_ids,
@@ -1317,7 +1440,7 @@ impl AcceptanceVerificationReport {
                 "checks",
                 "coverage must preserve canonical order/target",
             )?;
-            let runs = implemented(&c.check_id);
+            let runs = implemented(&c.check_id, &matrix);
             require(
                 c.executed == runs
                     && c.executed_checker.as_ref() == runs.then_some(expected_checker),
