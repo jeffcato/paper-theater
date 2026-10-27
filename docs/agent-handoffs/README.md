@@ -2,7 +2,7 @@
 
 Prepared October 26, 2026. These are implementation instructions; all new acceptance gates start pending. Product root: `~/Projects/paper-theater`.
 
-Use four agents. Agent 1 owns shared contracts and integration; Agents 2–4 own disjoint implementation areas. All four can begin inspection and extraction immediately. Shared integration waits for Agent 1's small contracts handoff. The first joint milestone is a saved-media fixture traveling through browser → server → journal → package → shared player.
+Use the four named agents: `integration` (Agent 1), `server` (Agent 2), `generation` (Agent 3), and `player` (Agent 4). Agent numbers elsewhere in these handoffs refer to those names. Agent 1 owns shared contracts and integration; Agents 2–4 own disjoint implementation areas. All four can begin inspection and extraction immediately. Shared integration waits for Agent 1's small contracts handoff. The first joint milestone is a saved-media fixture traveling through browser → server → journal → package → shared player.
 
 ## Launch
 
@@ -10,10 +10,12 @@ Give each agent [COMMON.md](COMMON.md), [INTERFACES.md](INTERFACES.md), and its 
 
 | Agent | Prompt | Exclusive implementation area |
 |---|---|---|
-| 1 | [Contracts and integration](01-contracts-and-integration.md) | Workspace, shared Rust/TypeScript contracts, reusable core crates, canonical fixtures, integration checks |
-| 2 | [Server and studio](02-server-and-studio.md) | Durable runner/storage/budget/publication, HTTP/SSE, studio |
-| 3 | [Generation](03-generation.md) | Source/direction/research, speech/evidence, visuals, presentation/music/cues, automated review and candidate assembly |
-| 4 | [Player and audience](04-player-and-audience.md) | Shared player, Three.js migration, shell/rendering/read-along, audience app, browser checks |
+| `integration` (1) | [Contracts and integration](01-contracts-and-integration.md) | Workspace, shared Rust/TypeScript contracts, reusable core crates, canonical fixtures, integration checks |
+| `server` (2) | [Server and studio](02-server-and-studio.md) | Durable runner/storage/budget/publication, HTTP/SSE, studio |
+| `generation` (3) | [Generation](03-generation.md) | Source/direction/research, speech/evidence, visuals, presentation/music/cues, automated review and candidate assembly |
+| `player` (4) | [Player and audience](04-player-and-audience.md) | Shared player, Three.js migration, shell/rendering/read-along, audience app, browser checks |
+
+Current completion reports, named owners, and dependency status are tracked in [TODO.md](../../TODO.md). The current boundary is `pt-contracts-v1.0.0` / `pt-services-v1.2.0`, published in [contracts-ready.json](../implementation/integration/contracts-ready.json). Verified candidate reads and built Node exports are in [candidate-read-ready.json](../implementation/integration/candidate-read-ready.json); optional PNG dimensions preserved through writes/reads/commits are in [candidate-write-ready.json](../implementation/integration/candidate-write-ready.json). Legacy JSON remains compatible; non-image Rust writes use `dimensions: None`. Older missing-freeze/candidate-read/PNG-metadata blockers are resolved. `generation` can implement the acoustic stage; the final runtime slice also needs remaining offline-helper integration. `player` has passing neutral browser capture and instance-targeted cue checks; authored pixel/motion evidence and studio verification continue. The original frozen fixture digest remains unchanged. [CI observations](../implementation/integration/pr-ci-results.json) are scoped to exact commits: both runs at `2ee2a8f` passed; dimensions-head checks were still running when recorded.
 
 Agents need read access to the experiment workspace and write access to the product workspace. Supply the source location only as the transient `SOURCE_ROOT` environment variable or session context. If starting in that source workspace, capture its current directory before changing directories. Never persist the expanded source path in the product. Agent 1 copies this neutral handoff directory into the product at `docs/agent-handoffs/` and installs [the identity checker](check_product_identity.py) at `tools/check_product_identity.py`.
 

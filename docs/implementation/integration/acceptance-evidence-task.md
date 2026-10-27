@@ -1,6 +1,6 @@
 # I4: independent acceptance evidence, first increment
 
-Prepared October 26, 2026. Owner: `integration`. I13 reconciliation is complete in publication `f585fb5`, CI receipt `6698b20`; source/browser checks are pinned separately to `23f8f7a`. Shared services are `pt-services-v1.3.1`, playback remains `pt-contracts-v1.0.0`. Preserve all historical heads and immutable evidence. Zero provider calls; no credentials or live authorization.
+Prepared October 26, 2026. **First increment complete:** [handoff](acceptance-evidence.md), services v1.4.0 and CI c965855. Three checks execute; 34 production verifiers remain missing. Next backend assignment is [I15](backend-next-tasks.md). Owner: `integration`. I13 reconciliation is complete in publication `f585fb5`, CI receipt `6698b20`; source/browser checks are pinned separately to `23f8f7a`. Shared services are `pt-services-v1.3.1`, playback remains `pt-contracts-v1.0.0`. Preserve all historical heads and immutable evidence. Zero provider calls; no credentials or live authorization.
 
 ## Bounded objective
 
