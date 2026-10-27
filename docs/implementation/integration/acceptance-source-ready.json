@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "task": "I17",
+  "status": "independent-scoped-source-coverage-ready-production-blocked",
+  "recorded_at": "2026-10-27T04:21:43.496611+00:00",
+  "candidate_commit": "4fa698c1f874326703957911719ce5289b218c5b",
+  "candidate_tree": "a5cd65fa546cfbe9dedcc876ad6d87c66d587192",
+  "service_revision": "pt-services-v1.6.0",
+  "playback_revision": "pt-contracts-v1.0.0",
+  "matrix_version": "pt-acceptance-required-v2",
+  "report_version": 2,
+  "policy_proposal_inventory_schema_versions": 1,
+  "checker": {
+    "version": "pt-acceptance-bindings-v2",
+    "sha256": "68e209243eaa0e75ee1a98e89515da7cdb5e7afbe166463f901a88c0066dca00"
+  },
+  "g20_acknowledgement": {
+    "commit": "9b2e5b6e4e6365132b56c9663b497adc5b475c84",
+    "record": "g20-compatibility-ack.json",
+    "generation_may_remove_dead_literal": true,
+    "cleanup_owner": "generation",
+    "behavior_rows": 5,
+    "retained_legacy_requirements": 24,
+    "test_result": "10 acceptance tests passed before acknowledgement publication",
+    "ci_run_ids": [
+      40447399832,
+      40447401814
+    ],
+    "ci_conclusion": "success",
+    "scope": "Only the dead literal cleanup is acknowledged; new matrix/checker fixture adoption is a separate generation-owned change."
+  },
+  "api": "verify_acceptance -> PrivateAcceptanceVerification; report(); recheck_inputs(); report.validate(expected_checker)",
+  "versioned_accessors": {
+    "rust": [
+      "acceptance_check_matrix_for_version",
+      "required_acceptance_checks_for_version"
+    ],
+    "typescript": "acceptanceCheckMatrix(version?); requiredAcceptanceChecks(scope, version?)",
+    "default": "v2",
+    "archive": "immutable v1"
+  },
+  "implemented_checks": [
+    "package-byte-integrity",
+    "evidence-binding-integrity",
+    "required-check-coverage",
+    "complete-source-coverage"
+  ],
+  "remaining_production_verifier_count": 33,
+  "unimplemented_production_checks": [
+    "autonomous-provenance",
+    "complete-chapter",
+    "initial-reference-research",
+    "image-scope-review",
+    "image-style-review",
+    "image-reference-review",
+    "image-extraction-review",
+    "image-stage-readability",
+    "independent-acoustic-evidence",
+    "narrator-continuity",
+    "speech-joins",
+    "music-bible",
+    "mix-intelligibility",
+    "story-coverage",
+    "incoming-picture-readiness",
+    "required-action-accounting",
+    "rendered-creative-review",
+    "opening-action-capture-coverage",
+    "full-audio-review-coverage",
+    "font-bundle",
+    "profile-r186-browser",
+    "target-device-budget",
+    "publication-recovery",
+    "product-spend-authorization",
+    "speech-fidelity",
+    "pilot-recording-review",
+    "primary-acoustic-evidence",
+    "delivery-fact-mapping",
+    "graphics-recovery-review",
+    "control-lifecycle-review",
+    "title-visibility-review",
+    "audio-format-review",
+    "public-export-boundary"
+  ],
+  "source_coverage": {
+    "coordinates": "half-open Unicode scalars in the exact runtime-pinned source file",
+    "supported_span": "[0, source_file.chars().count()]",
+    "required_binding": "exact source bytes/hash; source-scope ID/span/hash in pinned fact inventory; actual manifest/read-along/timeline FileRefs; checker identity",
+    "word_proof": "existing validate_read_along reconstructs exact ordered text and punctuation and covers every word once",
+    "scene_proof": "positive unique ordered scene intervals form an exact contiguous source partition",
+    "unsupported_subspan": "missing_source_mapping; no global/local offset inferred",
+    "not_proven": [
+      "complete chapter/excerpt selection",
+      "speech fidelity",
+      "semantic fact/visual/story coverage",
+      "autonomous provenance",
+      "creative/audio/device/publication reviews"
+    ]
+  },
+  "legacy_preservation": {
+    "v1_matrix_sha256": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083",
+    "v2_matrix_sha256": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820",
+    "v1_report_fixture_sha256": "c86cae3390b7daea5226146a4d2ed8a0913f337c3dde41be4f45380e4c4b8b73",
+    "v1_expected_checker": {
+      "sha256": "484a2083c9018b35fed44348d2ad1175b5d5bbdbaafdbf002687823263b9052b",
+      "version": "pt-acceptance-bindings-v1"
+    },
+    "v1_receipt_validates_only_with_original_expected_checker": true,
+    "v1_cannot_claim_source_execution": true,
+    "required_ids_targets_scopes_unchanged": true
+  },
+  "test_first": {
+    "scene_gap_red": {
+      "command": "cargo test -p pt-contracts --test acceptance_source_coverage a_scene_gap_is_independently_diagnosed --locked --offline",
+      "observed": "source row was unimplemented instead of independently executed and failed",
+      "minimal_fix": "actual-byte-bound read-along reconstruction and ordered scene partition verifier"
+    },
+    "scope_identity_red": {
+      "test": "runtime_source_scope_identity_must_match_the_pinned_inventory",
+      "observed": "unrelated source scope ID still had a passing source row",
+      "minimal_fix": "compare source-scope ID/span/hash with pinned inventory metadata"
+    },
+    "green_command": "cargo test -p pt-contracts --test acceptance_source_coverage --test acceptance_verification --locked --offline",
+    "logs": [
+      {
+        "phase": "gap-red",
+        "sha256": "39e02c26a10f25714da090ea69ff6bc5f911cd401b6f67a46347892a87da564f"
+      },
+      {
+        "phase": "scope-red",
+        "sha256": "fe2a9bdccc396a5aabdb03fabed48c52302081f0765aa017be71d3dba32dbbac"
+      },
+      {
+        "phase": "acceptance-green",
+        "sha256": "d034d60ddd96b49eaf72c560edba4014529914a45f87fbeebf52e4434fbd162d"
+      },
+      {
+        "phase": "source-final-green",
+        "sha256": "ce92a3a8634bc4645f1826ca1813903cfbce787321bef2155441521142295c97"
+      }
+    ]
+  },
+  "tests": {
+    "source_root": "unset",
+    "rust_workspace_tests": 161,
+    "independent_source_tests": 9,
+    "acceptance_and_behavior_tests": 10,
+    "rust_typescript_private_reports": 14,
+    "retained_provider_metadata_records": 80,
+    "retained_provider_service_records": 67,
+    "retained_playback_records": 14,
+    "native_packed_exports_strict_consumers": "pass",
+    "player_tests": 115,
+    "studio_check": "pass",
+    "web_server_builds": "pass",
+    "source_web_server_identity": "pass"
+  },
+  "cli": {
+    "exit": 2,
+    "source_check_executed": true,
+    "source_outcome": "pass",
+    "target": {
+      "kind": "source",
+      "span": [
+        0,
+        938
+      ]
+    },
+    "required_rows": 21,
+    "production_approved": false,
+    "report_sha256": "2558e484e5f0f3f5ebec175a59772303ded1379d6c154fd09ec222d2757674d5",
+    "private_report_published": false
+  },
+  "privacy": {
+    "report_contains_raw_source_or_private_paths": false,
+    "verifier_writes_payload_files": false,
+    "canonical_diagnostic_source_asset": "preserved unchanged; privacy tests use a temporary derivative excluding it from the public allowlist",
+    "non_diagnostic_private_input_export_blocker_retained": true,
+    "full_public_export_review": "unimplemented"
+  },
+  "canonical_fixture_manifests": {
+    "v1": "04f11a892cb775590120c371c7b8effbf6ea6460ca2d800e5f159d7ed46c1f1d",
+    "readiness_v2": "2070bb5f88d5d68fe6156aa4df17673634fc110584ec5f7c03d82bf5bddc502b",
+    "bytes_unchanged": true
+  },
+  "source_files": [
+    {
+      "path": "crates/pt-contracts/examples/acceptance-fixtures.rs",
+      "sha256": "eedf34041f06059ecedb1a81c9d1d0dcbeb0429c628574df525be9d53707d3b8"
+    },
+    {
+      "path": "crates/pt-contracts/src/acceptance.rs",
+      "sha256": "4f8deed432dae8ae56b20c40eb43f51173bd85dea7d3b202987a79c18697ccd8"
+    },
+    {
+      "path": "crates/pt-contracts/src/acceptance_source.rs",
+      "sha256": "d29a2cb41bbf5132b1d8ccc4bd061a7ee1416a1d874d83ecd039efa318c47475"
+    },
+    {
+      "path": "crates/pt-contracts/src/lib.rs",
+      "sha256": "7ea4bd29dc8376a988347f64c25a7e37d988ce78ad85a16d594c31c34cca1f62"
+    },
+    {
+      "path": "crates/pt-contracts/tests/acceptance_source_coverage.rs",
+      "sha256": "62e0768fdfcc9bf61b6b5cb7e2ca86efb9376c1338ba976481d27da068562640"
+    },
+    {
+      "path": "crates/pt-contracts/tests/acceptance_verification.rs",
+      "sha256": "1ac9e44848d2381b4a1c7e2dedbd1ac7384c1000b64768e1c2533ff9abd079f9"
+    },
+    {
+      "path": "docs/implementation/integration/acceptance-source-coverage.md",
+      "sha256": "2401a6df040ef8e973ffcf7944d892673d1d763087bdf9f17d4d0068e2a03973"
+    },
+    {
+      "path": "fixtures/contracts/acceptance-report-v1.json",
+      "sha256": "c86cae3390b7daea5226146a4d2ed8a0913f337c3dde41be4f45380e4c4b8b73"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-matrix.ts",
+      "sha256": "d2d01b9da60300f48a91b2b60371f9886b1fff694da3f30fdf4e1d0e66acbd6e"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-report.ts",
+      "sha256": "852196092a5c0c8362ef0a4ca0436b6bcc8eff7e473b3d93694f735bfc4c3a24"
+    },
+    {
+      "path": "packages/contracts/src/acceptance-required-v2.json",
+      "sha256": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "5d5a1cbb718fac453e82b906261a98958e42432577127f0685d36e08f4890042"
+    },
+    {
+      "path": "packages/contracts/tests/acceptance.mjs",
+      "sha256": "f32e2b0aaf217fc752a3d3cb9899e9aab4d3031de2e98762395eb603d93ae76e"
+    },
+    {
+      "path": "packages/contracts/tests/packed.mjs",
+      "sha256": "e245656c4b198c9a964698fdd7511fd0478e3feaa6a06ecd1b8521ea84cfad83"
+    },
+    {
+      "path": "packages/contracts/tests/service-api.ts",
+      "sha256": "fd28841a36196cd30e99f06eb22d032b3b364e8d4ee93cf961a5008008015b03"
+    }
+  ],
+  "ci": {
+    "head_sha": "4fa698c1f874326703957911719ce5289b218c5b",
+    "run_ids": [
+      40448746075,
+      40448750849
+    ],
+    "events": [
+      "push",
+      "pull_request"
+    ],
+    "conclusion": "success",
+    "urls": [
+      "https://github.com/jeffcato/paper-theater/actions/runs/40448746075",
+      "https://github.com/jeffcato/paper-theater/actions/runs/40448750849"
+    ],
+    "job_and_step_record": "pr-ci-results.json",
+    "scope": "Exact source-verifier code; later receipt-only commits do not inherit or relabel CI."
+  },
+  "pending": [
+    "R15 trusted source/policy/checker-v2 adoption and private report persistence",
+    "generation v2 checker/context/fixture adoption; dead-literal cleanup remains generation-owned",
+    "explicit full-source/slice/offset mapping contract for nonzero subspans",
+    "all 33 missing excerpt/chapter verifiers, accepted generation/device evidence and catalog activation",
+    "actual inherited accounting/live authorization; historical player/Studio gates"
+  ],
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "actual_accounting_reconciled": false,
+  "production_approved": false,
+  "production_verifier_pending_retained": true,
+  "active_worker_ui_implementation_integrated": false,
+  "handoff": "acceptance-source-coverage.md",
+  "ci_status": "completed_success"
+}

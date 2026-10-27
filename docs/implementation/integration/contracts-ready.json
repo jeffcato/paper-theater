@@ -1,6 +1,6 @@
 {
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.5.0",
+  "service_revision": "pt-services-v1.6.0",
   "status": "frozen-diagnostic-boundary",
   "fixture_path": "fixtures/shared/two-scene-v1",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -72,7 +72,7 @@
     "target-device profile/resource validation",
     "one autonomous excerpt and both complete accepted chapters"
   ],
-  "next_integration_action": "Server separately implements the execution-bound provider-v2 API and persisted query receipt wrapper from provider-service-v2.md; generation waits for verified runtime adoption. Existing acceptance/repair/UI owner tasks continue independently. Live dispatch and production publication remain disabled.",
+  "next_integration_action": "R15/runtime and generation adopt the v2 acceptance checker/matrix and schema-2 private reports from acceptance-source-coverage.md. G20 may remove its dead literal in its owned cleanup per the published acknowledgement. Nonzero subspan mapping and 33 production verifiers remain pending; all live/publication/UI owner gates remain closed.",
   "verification": {
     "clean_checkout_commit": "41061a6",
     "source_root": "unset",
@@ -101,13 +101,15 @@
     "provider-metadata-ready.json",
     "provider-metadata-i13-ready.json",
     "acceptance-evidence-ready.json",
-    "provider-service-ready.json"
+    "provider-service-ready.json",
+    "acceptance-source-ready.json"
   ],
   "pr_ci_results": "pr-ci-results.json",
   "combined_handoff": "combined-ready.json",
   "provider_metadata_handoff": "provider-metadata-i13-ready.json",
-  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes. I4 independently verifies c965855 with services v1.4.0; see acceptance-evidence-ready.json. Earlier receipts retain their exact versions and heads; no active worker edits are absorbed. I15 service API candidate 7d50703 is independently verified in provider-service-ready.json; R13 supplied private source and all active worker/UI edits remain excluded.",
+  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes. I4 independently verifies c965855 with services v1.4.0; see acceptance-evidence-ready.json. Earlier receipts retain their exact versions and heads; no active worker edits are absorbed. I15 service API candidate 7d50703 is independently verified in provider-service-ready.json; R13 supplied private source and all active worker/UI edits remain excluded. I17 source-verifier candidate 4fa698c and prior G20 acknowledgement 9b2e5b6 have separate successful exact-head CI, recorded in acceptance-source-ready.json. Historical v1 matrices/receipts and canonical diagnostics stay immutable.",
   "reconciliation_handoff": "shared-index-reconciliation.json",
   "acceptance_handoff": "acceptance-evidence-ready.json",
-  "provider_service_handoff": "provider-service-ready.json"
+  "provider_service_handoff": "provider-service-ready.json",
+  "source_coverage_handoff": "acceptance-source-ready.json"
 }
