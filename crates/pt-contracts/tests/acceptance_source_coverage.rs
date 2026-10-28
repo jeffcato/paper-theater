@@ -358,7 +358,7 @@ fn legacy_matrix_and_receipt_identities_are_preserved() {
         4
     );
     assert_eq!(old.checks.iter().filter(|c| c.implemented).count(), 3);
-    assert_eq!(current.checks.iter().filter(|c| c.implemented).count(), 5);
+    assert_eq!(current.checks.iter().filter(|c| c.implemented).count(), 6);
     for scope in [
         AcceptanceScope::Diagnostic,
         AcceptanceScope::AutonomousExcerpt,

@@ -506,3 +506,100 @@ fn generation_scoped_behavior_preserves_shared_custom_inherited_and_adverse_requ
         ])
     );
 }
+
+#[test]
+fn pilot_recording_review_executes_and_reports_missing_without_pilot_evidence() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.policy.scope = AcceptanceScope::AutonomousExcerpt;
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[], &f.private).unwrap();
+    let report = verified.report();
+    let check = report
+        .checks
+        .iter()
+        .find(|c| c.check_id == "pilot-recording-review")
+        .unwrap();
+    assert!(check.executed);
+    assert_eq!(check.outcome, ReviewOutcome::Missing);
+}
+
+fn pilot_plan_json(bulk_speech_approved: bool) -> serde_json::Value {
+    let sha = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    serde_json::json!({
+        "schema_version": 1,
+        "takes": [{
+            "request": {"file": {"sha256": sha}},
+            "audio": {"file": {"sha256": sha}},
+            "production_approved": false
+        }],
+        "reviews": [],
+        "bulk_speech_approved": bulk_speech_approved,
+        "production_approved": false
+    })
+}
+
+fn pilot_proposal(
+    f: &acceptance_fixture::Fixture,
+    plan: &serde_json::Value,
+) -> AcceptanceEvidenceProposal {
+    let first = verify_acceptance(&f.doc, &f.root, &f.policy, &[], &f.private).unwrap();
+    let binding = first.report().binding.clone();
+    let target = AcceptanceTarget::Audio {
+        domain: AcceptanceSampleDomain::Narration,
+        span: [0, binding.narration_sample_count],
+    };
+    let raw = acceptance_fixture::put(
+        &f.private,
+        "pilot-plan.json",
+        &serde_json::to_vec(plan).unwrap(),
+        "application/json",
+    );
+    AcceptanceEvidenceProposal {
+        schema_version: 1,
+        id: "pilot-plan".into(),
+        check_id: "pilot-recording-review".into(),
+        target,
+        binding,
+        outcome: ReviewOutcome::Pass,
+        provenance: Provenance::Diagnostic,
+        raw_evidence: raw,
+    }
+}
+
+#[test]
+fn pilot_recording_review_passes_on_bound_plan_without_grants() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("pilot-recording-review".into());
+    let e = pilot_proposal(&f, &pilot_plan_json(false));
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[e], &f.private).unwrap();
+    let report = verified.report();
+    let check = report
+        .checks
+        .iter()
+        .find(|c| c.check_id == "pilot-recording-review")
+        .unwrap();
+    assert!(check.executed);
+    assert_eq!(check.outcome, ReviewOutcome::Pass);
+}
+
+#[test]
+fn pilot_recording_review_fails_when_plan_grants_bulk_speech() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("pilot-recording-review".into());
+    let e = pilot_proposal(&f, &pilot_plan_json(true));
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[e], &f.private).unwrap();
+    let report = verified.report();
+    let check = report
+        .checks
+        .iter()
+        .find(|c| c.check_id == "pilot-recording-review")
+        .unwrap();
+    assert!(check.executed);
+    assert_eq!(check.outcome, ReviewOutcome::Fail);
+    assert!(check.reasons.contains(&AcceptanceReason::InvalidBinding));
+}
