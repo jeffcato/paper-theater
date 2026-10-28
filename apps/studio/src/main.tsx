@@ -1,6 +1,7 @@
-import React,{useEffect,useRef,useState} from 'react';
+import React,{useEffect,useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import type {RunSnapshot,RunEvent,RunRequest,ArtifactRef,ReleaseRef,Pins,RegisteredCard} from '@paper-theater/contracts';
+import type {RunSnapshot,RunEvent,RunRequest,ArtifactRef,ReleaseRef,Pins} from '@paper-theater/contracts';
+import {Preview} from './Preview';
 import {EventCursor,eventRecord,terminal} from './state';
 import './style.css';
 async function api<T>(path:string,options?:RequestInit):Promise<T>{const r=await fetch(`/api/v1/${path}`,options);if(!r.ok){const e=await r.json().catch(()=>({code:`http_${r.status}`}));throw new Error(e.code);}return r.json();}
@@ -15,7 +16,7 @@ function Studio(){
  const [runReference,setRunReference]=useState<ReleaseRef|null>(null);const [artifact,setArtifact]=useState<ArtifactRef>();const [error,setError]=useState('');const [connection,setConnection]=useState('');const [reload,setReload]=useState(0);const [busy,setBusy]=useState(false);
  const refreshRuns=()=>api<{runs:RunSnapshot[]}>('runs').then(v=>setRuns(v.runs));
  useEffect(()=>{api<Books>('books').then(setBooks).catch(e=>setError(String(e)));refreshRuns().catch(e=>setError(String(e)));},[]);
- function selectRun(id:string,recorded:boolean){setRun(id);setReplay(recorded);setSelected(0);setArtifact(undefined);setError('');history.replaceState(null,'',`?run=${encodeURIComponent(id)}${recorded?'&replay=1':''}`);}
+ function selectRun(id:string,recorded:boolean){setRunReference(null);setRun(id);setReplay(recorded);setSelected(0);setArtifact(undefined);setError('');history.replaceState(null,'',`?run=${encodeURIComponent(id)}${recorded?'&replay=1':''}`);}
  useEffect(()=>{
   if(!run)return;let stopped=false;let stream:EventSource|undefined;let timer:ReturnType<typeof setTimeout>|undefined;const controller=new AbortController();
   setSnapshot(undefined);setEvents([]);setConnection(replay?'Recorded replay':'Loading snapshot');
@@ -33,7 +34,8 @@ function Studio(){
   })().catch(e=>{if(!stopped)setError(String(e));});
   return()=>{stopped=true;controller.abort();stream?.close();if(timer)clearTimeout(timer);};
  },[run,replay,reload]);
- useEffect(()=>{setRunReference(null);if(run&&snapshot?.stages.some(s=>s.stage==='package'&&s.artifacts.length)){api<ReleaseRef|null>(`runs/${run}/diagnostic`).then(setRunReference).catch(()=>{});}},[run,snapshot?.last_event_seq]);
+ const packageAvailable=snapshot?.run_id===run&&snapshot.stages.some(s=>s.stage==='package'&&s.artifacts.length);
+ useEffect(()=>{const abort=new AbortController();let stopped=false;setRunReference(null);if(run&&packageAvailable)api<ReleaseRef|null>(`runs/${run}/diagnostic`,{signal:abort.signal}).then(value=>{if(!stopped)setRunReference(value);}).catch(()=>{});return()=>{stopped=true;abort.abort();};},[run,packageAvailable]);
  async function start(saved=false){setBusy(true);setError('');try{
   const chosen=books.books.find(b=>b.id===(saved?'pg-55':book));if(!chosen)throw new Error('source_unavailable');
   const request:RunRequest={schema_version:1,source_id:chosen.source_id,book_id:chosen.id,mode:'fixture',pins:saved&&books.diagnostic_pins?books.diagnostic_pins:{recipe_sha256:await hash('fixture-v1'),profile_sha256:await hash('diagnostic-v1'),profile_id:'diagnostic-v1'},limits:{money_microusd:0,requests:0,tokens:0,repairs:0,wall_time_ms:60000}};
@@ -53,45 +55,10 @@ function Studio(){
  {snapshot.findings.length>0&&<p className="error">Needs repair: {snapshot.findings.filter(f=>f.outcome!=='pass').length} unresolved recorded findings. This diagnostic package cannot publish.</p>}<ol className="events">{events.map(e=>{const d=eventRecord(e);return <li key={`${e.run_id}:${e.seq}`} data-event-seq={e.seq}><button className={selected===e.seq?'selected':''} onClick={()=>navigateEvent(e)}><span className="seq">{e.seq}</span><div><strong>{d.type.replaceAll('_',' ')}</strong><span>{typeof d.record.stage==='string'?d.record.stage:typeof d.record.summary==='string'?d.record.summary:''}</span></div><time>{new Date(Number(e.timestamp)).toLocaleTimeString()}</time></button></li>;})}</ol></>:<p className="empty">Start a fixture or open a saved run to inspect its journal.</p>}</section>
  <aside className="inspector"><h2>Inspector</h2>{chosenEvent?<><p>Saved event {chosenEvent.seq}</p><pre>{JSON.stringify(record?.record,null,2)}</pre>{chosenEvent.artifact_ids.map(id=><button className="artifact-link" key={id} onClick={()=>setArtifact(artifacts.find(a=>a.id===id))}>Inspect {artifacts.find(a=>a.id===id)?.file.path||id.slice(0,8)}</button>)}</>:<p className="muted">Choose a recorded event. Missing decisions remain unavailable.</p>}
  {artifacts.length>0&&<><h3>Persisted artifacts</h3><ul className="artifact-list">{artifacts.map(a=><li key={a.id}><button onClick={()=>setArtifact(a)}>{a.file.path}<small>{a.provenance}</small></button></li>)}</ul></>}{artifact&&<ArtifactInspector artifact={artifact}/>}</aside></div>
- <Preview reference={runReference||books.diagnostic}/><footer>Recorded replay reads saved journal and artifact bytes. It makes no provider requests and cannot publish.</footer></main>;
+ <Preview key={run} reference={runReference||books.diagnostic}/><footer>Recorded replay reads saved journal and artifact bytes. It makes no provider requests and cannot publish.</footer></main>;
 }
 function ArtifactInspector({artifact}:{artifact:ArtifactRef}){
  const [text,setText]=useState('');useEffect(()=>{const abort=new AbortController();setText('');if(['application/json','text/plain'].includes(artifact.file.media_type)&&artifact.file.bytes<1024*1024)fetch(`/api/v1/artifacts/${artifact.id}`,{signal:abort.signal}).then(r=>r.text()).then(setText).catch(()=>{});return()=>abort.abort();},[artifact.id]);
  const url=`/api/v1/artifacts/${artifact.id}`;return <section className="artifact"><h3>{artifact.file.path}</h3><p>{artifact.provenance} · {artifact.file.bytes.toLocaleString()} bytes</p><code>{artifact.file.sha256}</code>{artifact.file.media_type.startsWith('image/')&&<img alt={artifact.file.path} src={url}/ >}{artifact.file.media_type.startsWith('audio/')&&<audio controls src={url}/ >}{text&&<pre>{text}</pre>}<a href={url} target="_blank" rel="noreferrer">Open exact stored bytes</a></section>;
-}
-function Preview({reference}:{reference:ReleaseRef|null}) {
- const container=useRef<HTMLDivElement>(null);const audio=useRef<HTMLAudioElement>(null);
- const instance=useRef<import('@paper-theater/player').PlayerMount|null>(null);
- const frame=useRef(0);const generation=useRef(0);const objectUrl=useRef('');const imageUrls=useRef<string[]>([]);
- const [status,setStatus]=useState('Open a saved diagnostic package. Production acceptance remains unresolved.');
- const [sample,setSample]=useState(0);const [total,setTotal]=useState(0);const [phase,setPhase]=useState('');const [loaded,setLoaded]=useState(false);
- function dispose(){generation.current++;cancelAnimationFrame(frame.current);instance.current?.dispose();instance.current=null;audio.current?.pause();if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current='';}for(const url of imageUrls.current)URL.revokeObjectURL(url);imageUrls.current=[];container.current?.replaceChildren();}
- useEffect(()=>{dispose();setLoaded(false);setSample(0);setTotal(0);setStatus('Open a saved diagnostic package. Production acceptance remains unresolved.');return dispose;},[reference?.manifest_sha256]);
- async function load(){if(!reference||!container.current||!audio.current)return;dispose();const version=generation.current;setLoaded(false);setStatus('Verifying saved diagnostic media…');
-  try {
-   const player=await import('@paper-theater/player');const files=new Map<string,Uint8Array>();
-   const bounded=async(path:string,max:number)=>{const response=await fetch(path);if(!response.ok)throw new Error('fixture_unavailable');if(Number(response.headers.get('content-length'))>max)throw new Error('fixture_size');const reader=response.body!.getReader();const pieces:Uint8Array[]=[];let size=0;while(true){const {value,done}=await reader.read();if(done)break;size+=value.length;if(size>max){await reader.cancel();throw new Error('fixture_size');}pieces.push(value);}const result=new Uint8Array(size);let offset=0;for(const piece of pieces){result.set(piece,offset);offset+=piece.length;}return result;};
-   const read=async(path:string,max:number)=>{player.safePackagePath(path);const bytes=await bounded(new URL(path,new URL(reference.manifest_path,location.href)).pathname,max);files.set(path,bytes);return bytes;};
-   const bytes=await bounded(reference.manifest_path,1024*1024);
-   // Empty identity pins are explicitly unknown in this diagnostic-only call.
-   const handle=await player.loadDiagnostic(bytes,reference.manifest_sha256,read,{player_sha256:'',checker_sha256:'',recipe_sha256:'',allow_diagnostic:true});
-   const timelineBytes=files.get(handle.manifest.entries.timeline.path);const audioBytes=files.get(handle.manifest.entries.audio.path);if(!timelineBytes||!audioBytes)throw new Error('verified_media_missing');
-   const timeline=JSON.parse(new TextDecoder().decode(timelineBytes)) as Parameters<typeof player.mountPlayer>[1]['timeline'];
-   if(generation.current!==version)return;
-   const actorBytes=files.get(handle.manifest.entries.actors.path);if(!actorBytes)throw new Error('verified_actor_records_missing');
-   const cards=JSON.parse(new TextDecoder().decode(actorBytes)) as RegisteredCard[];
-   const figures=cards.map(card=>{const bytes=files.get(card.image.path);if(!bytes)throw new Error('verified_figure_missing');const url=URL.createObjectURL(new Blob([new Uint8Array(bytes)],{type:card.image.media_type}));imageUrls.current.push(url);return{asset_id:card.id,url,pixel_size:card.pixel_size,pivot_top_left:card.pivot_top_left,stage_size:card.stage_size,allow_mirror:card.allow_mirror};});
-   let sink:import('@paper-theater/player').FrameSink|null=null;let renderStatus='';
-   try{sink=await player.createThreeSink(960,540,{figures,calibration:false});}catch(error){renderStatus=` Rendering unavailable: ${String(error)}`;}
-   if(generation.current!==version){sink?.dispose?.();return;}
-   objectUrl.current=URL.createObjectURL(new Blob([new Uint8Array(audioBytes)],{type:'audio/wav'}));audio.current.src=objectUrl.current;audio.current.load();
-   if(sink&&'canvas' in sink&&sink.canvas instanceof HTMLCanvasElement)container.current.replaceChildren(sink.canvas);
-   else if(sink)renderStatus=' Shared renderer surface pending; geometry is diagnostic.';
-   instance.current=player.mountPlayer(container.current,{handle,timeline},{clock:audio.current,sink,events:{onState:state=>{setSample(state.sample);setPhase(state.phase);}}});
-   setTotal(handle.manifest.sample_count);setLoaded(true);setStatus(`Diagnostic mount · accepted: false · ${handle.missing_acceptance_ids.length} unresolved acceptance references.${renderStatus}`);
-   const tick=()=>{if(generation.current!==version)return;instance.current?.tick(performance.now());frame.current=requestAnimationFrame(tick);};frame.current=requestAnimationFrame(tick);
-  }catch(error){if(generation.current===version){dispose();setStatus(`Diagnostic preview unavailable: ${String(error)}`);}}
- }
- return <section className="preview"><div className="section-head"><h2>Shared player rehearsal</h2><button data-testid="preview-load" disabled={!reference} onClick={load}>Open diagnostic fixture</button></div><p data-testid="player-status">{status}</p><div className="player-surface" ref={container}/><audio ref={audio} controls aria-label="Verified diagnostic audio"/><div className="run-controls"><button data-testid="player-play" disabled={!loaded} onClick={()=>instance.current?.play().catch(error=>setStatus(String(error)))}>Play</button><button data-testid="player-pause" disabled={!loaded} onClick={()=>instance.current?.pause()}>Pause</button><button disabled={!loaded} onClick={()=>instance.current?.restart()}>Restart</button><label>Sample <input data-testid="player-seek" type="range" min={0} max={Math.max(1,total)} step={4800} value={sample} disabled={!loaded} onChange={event=>instance.current?.seek(Number(event.target.value))}/></label><output data-testid="player-sample">{sample}</output><span>{phase.replaceAll('_',' ')}</span></div><p className="muted">Imported partial media and diagnostic geometry. Automated production acceptance and target-device validation remain pending.</p></section>;
 }
 createRoot(document.getElementById('root')!).render(<Studio/>);
