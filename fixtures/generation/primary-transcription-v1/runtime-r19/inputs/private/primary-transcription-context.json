@@ -1,0 +1,74 @@
+{
+  "batch_audio": {
+    "file": {
+      "bytes": 9646,
+      "media_type": "audio/wav",
+      "path": "private/speech-batches/b0000.wav",
+      "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+    },
+    "id": "41b0cf314133cbc4d6f060025e6a987158eba775456f05f9bc05fb320da1bc63",
+    "provenance": "diagnostic"
+  },
+  "batch_id": "b0000",
+  "copy_plan": {
+    "bytes": 2619,
+    "media_type": "application/json",
+    "path": "private/speech-transcription-plan.json",
+    "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0"
+  },
+  "copy_receipt": {
+    "bytes": 3256,
+    "media_type": "application/json",
+    "path": "private/speech-batches/b0000.json",
+    "sha256": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364"
+  },
+  "copy_recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "limits": {
+    "max_candidate_edges": 16384,
+    "max_match_cells": 2000000,
+    "max_source_tokens": 8192,
+    "max_words": 2048
+  },
+  "model": "primary-transcription-double",
+  "observation": null,
+  "provider": "transcription-double",
+  "recipe": {
+    "bytes": 59,
+    "media_type": "application/json",
+    "path": "private/primary-recipe.json",
+    "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915"
+  },
+  "request_payload": null,
+  "schema_version": 1,
+  "speech_context": {
+    "bytes": 2254,
+    "media_type": "application/json",
+    "path": "private/speech-context.json",
+    "sha256": "eddf0bc8697c8e24ee993c7fa5a735fd71a834049ca2d9b8d649e7c1775d4357"
+  },
+  "speech_input": {
+    "bytes": 12646,
+    "media_type": "application/json",
+    "path": "private/primary-speech-input.json",
+    "sha256": "48286f95aee915104d214f8a373bfd2cad5261aa98f19daa32e6925d97e6c523"
+  },
+  "speech_plan": {
+    "bytes": 8964,
+    "media_type": "application/json",
+    "path": "private/speech-plan.json",
+    "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd"
+  },
+  "take_manifest": {
+    "bytes": 17136,
+    "media_type": "application/json",
+    "path": "private/speech-takes.json",
+    "sha256": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5"
+  },
+  "timeout_ms": 30000
+}

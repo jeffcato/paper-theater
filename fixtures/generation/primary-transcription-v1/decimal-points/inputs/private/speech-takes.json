@@ -1,0 +1,264 @@
+{
+  "bindings": {
+    "bytes": 762,
+    "media_type": "application/json",
+    "path": "private/speech-bindings.json",
+    "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+  },
+  "delivery_master": null,
+  "narration_assembly": null,
+  "observations": [
+    {
+      "file": {
+        "bytes": 964,
+        "media_type": "application/json",
+        "path": "private/speech-observations/u0000.json",
+        "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf"
+      },
+      "record": {
+        "findings": [
+          {
+            "evidence": [],
+            "field": "speech",
+            "id": "retained-speech-adverse",
+            "message": "Synthetic silence does not prove speech fidelity.",
+            "outcome": "uncertain"
+          }
+        ],
+        "issued": null,
+        "provenance": "synthetic",
+        "request": {
+          "file": {
+            "bytes": 1815,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+          },
+          "id": "committed:speech:private:speech:requests:u0000.json",
+          "provenance": "synthetic"
+        },
+        "response": {
+          "file": {
+            "bytes": 1073,
+            "media_type": "application/json",
+            "path": "private/speech-raw/u0000.json",
+            "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2"
+          },
+          "id": "committed:primary:private:speech-raw:u0000.json",
+          "provenance": "synthetic"
+        },
+        "result": null,
+        "schema_version": 1
+      }
+    },
+    {
+      "file": {
+        "bytes": 964,
+        "media_type": "application/json",
+        "path": "private/speech-observations/u0001.json",
+        "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8"
+      },
+      "record": {
+        "findings": [
+          {
+            "evidence": [],
+            "field": "speech",
+            "id": "retained-speech-adverse",
+            "message": "Synthetic silence does not prove speech fidelity.",
+            "outcome": "uncertain"
+          }
+        ],
+        "issued": null,
+        "provenance": "synthetic",
+        "request": {
+          "file": {
+            "bytes": 1806,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+          },
+          "id": "committed:speech:private:speech:requests:u0001.json",
+          "provenance": "synthetic"
+        },
+        "response": {
+          "file": {
+            "bytes": 1074,
+            "media_type": "application/json",
+            "path": "private/speech-raw/u0001.json",
+            "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f"
+          },
+          "id": "committed:primary:private:speech-raw:u0001.json",
+          "provenance": "synthetic"
+        },
+        "result": null,
+        "schema_version": 1
+      }
+    }
+  ],
+  "pilot": {
+    "bytes": 14340,
+    "media_type": "application/json",
+    "path": "private/pilot-plan.json",
+    "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2"
+  },
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "recipe": {
+    "bytes": 49,
+    "media_type": "application/json",
+    "path": "private/speech-recipe.json",
+    "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+  },
+  "schema_version": 1,
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "takes": [
+    {
+      "audio": {
+        "file": {
+          "bytes": 4844,
+          "media_type": "audio/wav",
+          "path": "private/speech-audio/u0000.wav",
+          "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf"
+        },
+        "id": "committed:primary:private:speech-audio:u0000.wav",
+        "provenance": "synthetic"
+      },
+      "bindings": {
+        "bytes": 762,
+        "media_type": "application/json",
+        "path": "private/speech-bindings.json",
+        "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+      },
+      "cache_key": "4e43f428269709b92de7cb0e86422b6061f71b7bd1c2d9f6f0d4e0d8d265d5ba",
+      "global_narration_span": null,
+      "model": "gemini-3.8-flash-tts",
+      "native": {
+        "bits_per_sample": 16,
+        "channels": 1,
+        "frames": 2400,
+        "sample_rate": 24000
+      },
+      "native_span": [
+        0,
+        2400
+      ],
+      "observation": {
+        "bytes": 964,
+        "media_type": "application/json",
+        "path": "private/speech-observations/u0000.json",
+        "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf"
+      },
+      "production_approved": false,
+      "raw_response": {
+        "file": {
+          "bytes": 1073,
+          "media_type": "application/json",
+          "path": "private/speech-raw/u0000.json",
+          "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2"
+        },
+        "id": "committed:primary:private:speech-raw:u0000.json",
+        "provenance": "synthetic"
+      },
+      "recipe": {
+        "bytes": 49,
+        "media_type": "application/json",
+        "path": "private/speech-recipe.json",
+        "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+      },
+      "request": {
+        "file": {
+          "bytes": 1815,
+          "media_type": "application/json",
+          "path": "private/speech/requests/u0000.json",
+          "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+        },
+        "id": "committed:speech:private:speech:requests:u0000.json",
+        "provenance": "synthetic"
+      },
+      "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+      "source_span": [
+        0,
+        25
+      ],
+      "speaker": "narrator",
+      "speech_fidelity": "missing",
+      "turn_id": "t0",
+      "unit_id": "u0000",
+      "voice_id": "voice-n"
+    },
+    {
+      "audio": {
+        "file": {
+          "bytes": 4846,
+          "media_type": "audio/wav",
+          "path": "private/speech-audio/u0001.wav",
+          "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e"
+        },
+        "id": "committed:primary:private:speech-audio:u0001.wav",
+        "provenance": "synthetic"
+      },
+      "bindings": {
+        "bytes": 762,
+        "media_type": "application/json",
+        "path": "private/speech-bindings.json",
+        "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+      },
+      "cache_key": "ad0ce4ed699cc44537689293c6338955ac2d146e4500b101c8e8e80b299b30b9",
+      "global_narration_span": null,
+      "model": "gemini-3.8-flash-tts",
+      "native": {
+        "bits_per_sample": 16,
+        "channels": 1,
+        "frames": 2401,
+        "sample_rate": 24000
+      },
+      "native_span": [
+        0,
+        2401
+      ],
+      "observation": {
+        "bytes": 964,
+        "media_type": "application/json",
+        "path": "private/speech-observations/u0001.json",
+        "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8"
+      },
+      "production_approved": false,
+      "raw_response": {
+        "file": {
+          "bytes": 1074,
+          "media_type": "application/json",
+          "path": "private/speech-raw/u0001.json",
+          "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f"
+        },
+        "id": "committed:primary:private:speech-raw:u0001.json",
+        "provenance": "synthetic"
+      },
+      "recipe": {
+        "bytes": 49,
+        "media_type": "application/json",
+        "path": "private/speech-recipe.json",
+        "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+      },
+      "request": {
+        "file": {
+          "bytes": 1806,
+          "media_type": "application/json",
+          "path": "private/speech/requests/u0001.json",
+          "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+        },
+        "id": "committed:speech:private:speech:requests:u0001.json",
+        "provenance": "synthetic"
+      },
+      "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+      "source_span": [
+        25,
+        46
+      ],
+      "speaker": "narrator",
+      "speech_fidelity": "missing",
+      "turn_id": "t0",
+      "unit_id": "u0001",
+      "voice_id": "voice-n"
+    }
+  ]
+}

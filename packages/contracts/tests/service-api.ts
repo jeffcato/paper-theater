@@ -67,3 +67,30 @@ export function mappedSourceSummary(report:AcceptanceVerificationReport):SourceS
 import type {DeliveryAudioObservationV1,Pcm16WavInfo} from '@paper-theater/contracts';
 import {validateDeliveryAudioObservationV1} from '@paper-theater/contracts';
 export function deliveryObservation(raw:unknown):Pcm16WavInfo{validateDeliveryAudioObservationV1(raw);const audio:DeliveryAudioObservationV1=raw;return audio.format;}
+
+import {type PilotReviewPolicyV1,type PilotReviewObservationV1,type PilotPlanStructureV1,validatePilotReviewPolicyV1,validatePilotReviewObservationV1,validatePilotPlanStructureV1} from '@paper-theater/contracts';
+declare const pilotPolicy:PilotReviewPolicyV1;
+declare const pilotObservation:PilotReviewObservationV1;
+declare const pilotStructure:PilotPlanStructureV1;
+validatePilotReviewPolicyV1(pilotPolicy);validatePilotReviewObservationV1(pilotObservation);validatePilotPlanStructureV1(pilotStructure);
+
+import {type ProductionConfigurationV1,type ProductionOperationScopeV1,type StageInput,validateProductionConfigurationV1,validateConfiguredProviderProposalV1} from '@paper-theater/contracts';
+export function configuredRequest(raw:unknown,scope:string,input:StageInput,proposal:unknown):ProductionOperationScopeV1 {
+ validateProductionConfigurationV1(raw);
+ const config:ProductionConfigurationV1=raw;
+ validateConfiguredProviderProposalV1(config,scope,input,proposal);
+ return config.operations.find(o=>o.id===scope)!;
+}
+
+import {type AcceptanceCoverageLedgerV1,validateAcceptanceCoverageLedgerV1} from '@paper-theater/contracts';
+export async function readCoverage(raw:unknown,report:Uint8Array,expected:AcceptanceCheckerIdentity):Promise<AcceptanceCoverageLedgerV1> {
+ return validateAcceptanceCoverageLedgerV1(raw,report,expected);
+}
+
+import {type ProviderNativeExchangeV1,type ProviderNativeExchangePolicyV1,type ProviderNativeExchangeBytesV1,validateProviderNativeExchangeV1} from '@paper-theater/contracts';
+export async function nativeExchange(raw:unknown,policy:ProviderNativeExchangePolicyV1,operation:ProviderOperationV2,result:ProviderResultV2,bytes:ProviderNativeExchangeBytesV1):Promise<ProviderNativeExchangeV1> {
+ return validateProviderNativeExchangeV1(raw,policy,operation,result,bytes);
+}
+
+import {type RegisteredSourceCatalogV1,registeredSourceCatalogV1} from '@paper-theater/contracts';
+export const knownSourceScopes:RegisteredSourceCatalogV1=registeredSourceCatalogV1();

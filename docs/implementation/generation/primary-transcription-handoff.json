@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "task": "G25",
+  "recipient": "server R19",
+  "status": "implemented-and-actual-R19-private-copy-receipt-consumed",
+  "route": "Stage::Acoustic with private/primary-transcription-context.json",
+  "predecessor_freeze": "docs/implementation/generation/speech-g24-freeze.json",
+  "context": {
+    "schema_version": "1",
+    "speech_input": "FileRef: original committed G24 StageInput",
+    "speech_context": "FileRef: exact original private/speech-context.json",
+    "speech_plan": "FileRef: committed private/speech-plan.json",
+    "take_manifest": "FileRef: committed private/speech-takes.json",
+    "copy_plan": "FileRef: committed private/speech-transcription-plan.json",
+    "batch_id": "opaque planned batch ID",
+    "batch_audio": "genuine committed ArtifactRef: actual materialized WAV",
+    "copy_receipt": "FileRef: exact R19 schema-1 native-pcm16-frame-copy-v1 receipt",
+    "copy_recipe_sha256": "runtime-pinned R19 recipe digest; actual PCM correspondence independently verified",
+    "recipe": "FileRef: immutable unhinted request/parser/mapping recipe; StageInput.pins.recipe_sha256 matches",
+    "provider": "must match G24 primary provider",
+    "model": "must match G24 primary model",
+    "estimate": "Usage; request accounting is not waived by zero money",
+    "timeout_ms": "shared proposal bounds",
+    "request_payload": "FileRef|null: runtime explicitly committed exact request bytes",
+    "observation": "FileRef|null: original registered observation",
+    "limits": "max_words<=2048, max_source_tokens<=8192, max_match_cells<=2000000, max_candidate_edges<=16384"
+  },
+  "observation": "schema_version=1, provenance, provider, model, request ArtifactRef, audio ArtifactRef, copy_recipe_sha256, recipe_sha256, response ArtifactRef|null, issued ProviderOperationV2|null, result ProviderResultV2|null, findings[]",
+  "model_payload": "Exactly schema_version=1, mode=VERBATIM, word_timestamps=true, audio=actual verified ArtifactRef; no expected prose, source/turn/speaker/lexicon hints",
+  "provider_proposal": "Shared v2 kind Transcription; payload must be a genuine committed request ArtifactRef; provider inputs contain only the verified batch audio",
+  "supported_saved_raw": "Original Gemini candidates[0] finishReason STOP, content.parts[].audioTranscription.words[] word/startOffset/endOffset; exact decimal seconds strings",
+  "runtime_owns": [
+    "materialization",
+    "registration",
+    "request and raw/audio commits",
+    "issuance and immutable accounting",
+    "durable checkpoint/replay mapping"
+  ],
+  "generation_owns": [
+    "revalidation",
+    "request candidates",
+    "saved raw parsing",
+    "global local-only source matching",
+    "measured native/sample mappings",
+    "private normalized candidates"
+  ],
+  "dispatch_permitted": false,
+  "reveal_permissions": [],
+  "production_approved": false,
+  "ui_edits": 0,
+  "git_operations": 0,
+  "ready": "docs/implementation/generation/primary-transcription-ready.json",
+  "protocol": "docs/implementation/generation/primary-transcription.md",
+  "new_private_registration_required": true,
+  "existing_R19_recipe_still_stops_before_acoustic": true,
+  "provider_helper_dispatch_enabled": false,
+  "examples": {
+    "context": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-transcription-context.json",
+      "sha256": "52c62fdac29f543901c2d888e1c50b0a1bf4c63aa2399b344ada29a021ca569f",
+      "bytes": 2679,
+      "media_type": "application/json"
+    },
+    "request": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/request.json",
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "bytes": 380,
+      "media_type": "application/json"
+    },
+    "proposal": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/proposal.json",
+      "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+      "bytes": 1012,
+      "media_type": "application/json"
+    },
+    "raw": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/raw.json",
+      "sha256": "792e63ae7380fc64219a42461074c1f28cfbed6be9cf7424a31499c658e23d3d",
+      "bytes": 1595,
+      "media_type": "application/json"
+    },
+    "observation": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/observation.json",
+      "sha256": "8d8aa9359d670a27ea731ef165f599da047e8e02bee24ccad0b896202a12a88c",
+      "bytes": 1513,
+      "media_type": "application/json"
+    },
+    "normalized": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/normalized.json",
+      "sha256": "70f1991bb8d40fc08bdcd0b25e15bc6468f386202e5d460c4182ae9267ee50a8",
+      "bytes": 24959,
+      "media_type": "application/json"
+    },
+    "actual_r19_context": {
+      "path": "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/primary-transcription-context.json",
+      "sha256": "1fd84e086a21d33e6e5dbaa91a5b70eab2e9048266df8e45d372155d57f8a568",
+      "bytes": 2340,
+      "media_type": "application/json"
+    }
+  },
+  "adopted_R19": {
+    "ready": {
+      "path": "docs/implementation/runtime/speech-runtime-ready.json",
+      "sha256": "aaeb6f6ff8f4f1947f9a07827c1e33fa87a7c2ff79387a28aee139dd1f6030b1",
+      "bytes": 103059,
+      "media_type": "application/json"
+    },
+    "published_copy_recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+    "consumed_copy_recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+    "audio": {
+      "file": {
+        "bytes": 9646,
+        "media_type": "audio/wav",
+        "path": "private/speech-batches/b0000.wav",
+        "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+      },
+      "id": "41b0cf314133cbc4d6f060025e6a987158eba775456f05f9bc05fb320da1bc63",
+      "provenance": "diagnostic"
+    },
+    "receipt": {
+      "bytes": 3256,
+      "media_type": "application/json",
+      "path": "private/speech-batches/b0000.json",
+      "sha256": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364"
+    },
+    "private_receipt_example": {
+      "path": "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-batches/b0000.json",
+      "sha256": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364",
+      "bytes": 3256,
+      "media_type": "application/json"
+    },
+    "compatibility": "Real R19 public backend API produced/committed this audio and receipt in an isolated test; generation independently compared all PCM. Fixture adapter/request metadata is synthetic and grants no authority. Existing R19/I21 CI claims are not extended."
+  }
+}

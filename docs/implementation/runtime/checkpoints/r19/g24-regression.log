@@ -1,0 +1,29 @@
+    Blocking waiting for file lock on build directory
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.95s
+     Running unittests src/lib.rs (target/debug/deps/pt_production-b33c80a359461c86)
+
+running 21 tests
+test generation::tests::speech::committed_speech_payloads_propose_v2_content_but_live_mode_cannot_synthesize ... ok
+test generation::tests::speech::fixture_replay_and_live_speech_never_dispatch_even_with_runtime_methods_available ... ok
+test generation::tests::speech::forged_pilot_approval_and_caller_authority_are_rejected ... ok
+test generation::tests::speech::genuine_dialogue_and_narrator_attribution_remain_in_exact_source_order ... ok
+test generation::tests::speech::incompatible_native_formats_never_share_offsets_or_get_silently_resampled ... ok
+test generation::tests::speech::malformed_native_audio_and_missing_context_never_gain_execution_support ... ok
+test generation::tests::speech::ordered_speech_units_reconstruct_all_narrator_prose_without_pilot_authorization ... ok
+test generation::tests::speech::oversized_metadata_wav_and_input_envelopes_fail_before_service_reads ... ok
+test generation::tests::speech::exact_raw_source_turn_voice_recipe_request_and_native_frames_fail_closed ... ok
+test generation::tests::speech::recorded_replay_preserves_all_compiled_bytes_raw_receipts_and_cache_keys ... ok
+test generation::tests::speech::saved_native_takes_preserve_original_wavs_and_local_frame_domains ... ok
+test generation::tests::speech::private_speech_records_and_transcription_plans_cannot_alias_audience_assets ... ok
+test generation::tests::speech::source_scoped_acting_splits_units_and_stays_outside_verbatim_payload_text ... ok
+test generation::tests::speech::saved_v2_result_identities_and_epoch_are_checked_without_submission ... ok
+test generation::tests::speech::transcription_fanout_limits_keep_remaining_native_ranges_explicitly_unplanned ... ok
+test generation::tests::speech::stale_source_catalog_recipe_and_committed_request_reject_without_repair_calls ... ok
+test generation::tests::speech::transcription_plans_use_actual_native_frames_without_expected_prose_hints ... ok
+test generation::tests::speech::transcription_slices_respect_actual_pcm_budgets_and_preserve_cross_cut_uncertainty ... ok
+test generation::tests::speech::unsupported_byte_or_unit_limits_keep_every_source_character_unresolved ... ok
+test generation::tests::speech::uncertain_saved_attempts_keep_original_charges_and_do_not_become_usable_takes ... ok
+test generation::tests::speech::unverified_or_mentioned_only_performers_cannot_be_recast_into_speech ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 235 filtered out; finished in 4.25s
+

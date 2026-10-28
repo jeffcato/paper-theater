@@ -1,0 +1,19 @@
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.47s
+     Running unittests src/lib.rs (target/debug/deps/pt_production-b33c80a359461c86)
+
+running 1 test
+
+thread 'runtime::speech::pcm::tests::malformed_batch_offsets_fail_without_overflow_or_partial_output' (24015667) panicked at crates/pt-production/src/runtime/speech/pcm.rs:48:239:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test runtime::speech::pcm::tests::malformed_batch_offsets_fail_without_overflow_or_partial_output ... FAILED
+
+failures:
+
+failures:
+    runtime::speech::pcm::tests::malformed_batch_offsets_fail_without_overflow_or_partial_output
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 243 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p pt-production --lib`

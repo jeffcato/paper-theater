@@ -1,0 +1,84 @@
+{
+  "batch_audio": {
+    "file": {
+      "bytes": 9646,
+      "media_type": "audio/wav",
+      "path": "private/primary-batch.wav",
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785"
+    },
+    "id": "committed:primary:private:primary-batch.wav",
+    "provenance": "synthetic"
+  },
+  "batch_id": "b0000",
+  "copy_plan": {
+    "bytes": 2621,
+    "media_type": "application/json",
+    "path": "private/speech-transcription-plan.json",
+    "sha256": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9"
+  },
+  "copy_receipt": {
+    "bytes": 3167,
+    "media_type": "application/json",
+    "path": "private/primary-copy-receipt.json",
+    "sha256": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758"
+  },
+  "copy_recipe_sha256": "36f4c2746d3b87bb7c197fdbda8989b89eb5274fc447d845e89f810c43ea3530",
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "limits": {
+    "max_candidate_edges": 16384,
+    "max_match_cells": 2000000,
+    "max_source_tokens": 8192,
+    "max_words": 2048
+  },
+  "model": "primary-transcription-double",
+  "observation": {
+    "bytes": 1512,
+    "media_type": "application/json",
+    "path": "private/primary/observation.json",
+    "sha256": "790bc28e8ae2bc7084adaf27497e73de76d75da6c2d8602fc988fc68f6dc5fa9"
+  },
+  "provider": "transcription-double",
+  "recipe": {
+    "bytes": 59,
+    "media_type": "application/json",
+    "path": "private/primary-recipe.json",
+    "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915"
+  },
+  "request_payload": {
+    "bytes": 380,
+    "media_type": "application/json",
+    "path": "private/primary/request.json",
+    "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038"
+  },
+  "schema_version": 1,
+  "speech_context": {
+    "bytes": 2253,
+    "media_type": "application/json",
+    "path": "private/speech-context.json",
+    "sha256": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109"
+  },
+  "speech_input": {
+    "bytes": 12632,
+    "media_type": "application/json",
+    "path": "private/primary-speech-input.json",
+    "sha256": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50"
+  },
+  "speech_plan": {
+    "bytes": 8964,
+    "media_type": "application/json",
+    "path": "private/speech-plan.json",
+    "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd"
+  },
+  "take_manifest": {
+    "bytes": 8670,
+    "media_type": "application/json",
+    "path": "private/speech-takes.json",
+    "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b"
+  },
+  "timeout_ms": 30000
+}

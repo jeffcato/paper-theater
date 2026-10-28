@@ -1,0 +1,433 @@
+{
+  "batch_audio": {
+    "file": {
+      "bytes": 9646,
+      "media_type": "audio/wav",
+      "path": "private/speech-batches/b0000.wav",
+      "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+    },
+    "id": "41b0cf314133cbc4d6f060025e6a987158eba775456f05f9bc05fb320da1bc63",
+    "provenance": "diagnostic"
+  },
+  "batch_format": {
+    "channels": 1,
+    "frames": 4801,
+    "sample_rate": 24000
+  },
+  "batch_id": "b0000",
+  "compiler_sha256": "5899f744dad1622dd9448ebf70268a2a83d623f685e902cbaa8aa4c65975d90a",
+  "copy_plan": {
+    "bytes": 2619,
+    "media_type": "application/json",
+    "path": "private/speech-transcription-plan.json",
+    "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0"
+  },
+  "copy_receipt": {
+    "bytes": 3256,
+    "media_type": "application/json",
+    "path": "private/speech-batches/b0000.json",
+    "sha256": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364"
+  },
+  "copy_recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+  "copy_verified": true,
+  "delivery": null,
+  "fact_bounds": null,
+  "findings": [
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "initial-reference-research",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "canonical-reference-applicability",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "direction-semantic-review",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "rendered-stage-clarity",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "pilot",
+      "id": "retained-pilot-adverse",
+      "message": "Synthetic takes are not listening evidence.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "pilot",
+      "id": "retained-pilot-adverse",
+      "message": "Synthetic takes are not listening evidence.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-request-commit-pending",
+      "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-listening",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-continuity",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-joins",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-intelligibility",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-speech-fidelity",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-music-context",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "speech",
+      "id": "retained-speech-adverse",
+      "message": "Synthetic silence does not prove speech fidelity.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "speech",
+      "id": "retained-speech-adverse",
+      "message": "Synthetic silence does not prove speech fidelity.",
+      "outcome": "uncertain"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "speech-bulk-authorization",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "speech-runtime-execution-unavailable",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "speech-listening-continuity",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "speech-joins-assembly",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "speech-measured-acoustic-evidence",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "speech-primary-transcription-sizing-pilot",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "primary-request-commit-pending",
+      "message": "Runtime must commit/register exact unhinted request bytes before any content-only v2 proposal can name its ArtifactRef.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "primary-response-unresolved",
+      "message": "Original measured response remains unresolved: observation-missing",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "primary-source-coverage",
+      "message": "Complete global source coverage is not established by these measured observations.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "primary-execution-unavailable",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "primary-independent-acoustic-evidence",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "speech-fidelity",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "outcome": "missing"
+    }
+  ],
+  "global_narration": null,
+  "grouping_policy": "point-following-same-boundary-v1",
+  "highlight_groups": [],
+  "independent_evidence": null,
+  "invalid_word_index": null,
+  "matching_policy": "global-optimal-monotonic-occurrences-v1/monotonic-exact-v1-tokenization",
+  "native_domains_preserved": true,
+  "native_segments": [
+    {
+      "audio": {
+        "file": {
+          "bytes": 4844,
+          "media_type": "audio/wav",
+          "path": "private/speech-audio/u0000.wav",
+          "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+        },
+        "id": "committed:speech:private:speech-audio:u0000.wav",
+        "provenance": "synthetic"
+      },
+      "batch_span": [
+        0,
+        2400
+      ],
+      "cross_cut_uncertainty": false,
+      "native_span": [
+        0,
+        2400
+      ],
+      "unit_id": "u0000"
+    },
+    {
+      "audio": {
+        "file": {
+          "bytes": 4846,
+          "media_type": "audio/wav",
+          "path": "private/speech-audio/u0001.wav",
+          "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+        },
+        "id": "committed:speech:private:speech-audio:u0001.wav",
+        "provenance": "synthetic"
+      },
+      "batch_span": [
+        2400,
+        4801
+      ],
+      "cross_cut_uncertainty": false,
+      "native_span": [
+        0,
+        2401
+      ],
+      "unit_id": "u0001"
+    }
+  ],
+  "observation": null,
+  "observation_file": null,
+  "parser_status": "observation-missing",
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "recipe": {
+    "bytes": 59,
+    "media_type": "application/json",
+    "path": "private/primary-recipe.json",
+    "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915"
+  },
+  "request": {
+    "bytes": 409,
+    "media_type": "application/json",
+    "path": "private/primary/request.json",
+    "sha256": "339ac3b51cd26a8083922829c3437564636a73ae6c78212fe6be23baff26092f"
+  },
+  "reveal_permissions": [],
+  "rounding": "exact-decimal-ceiling-v1",
+  "schema_version": 1,
+  "source_plan": {
+    "bytes": 8964,
+    "media_type": "application/json",
+    "path": "private/speech-plan.json",
+    "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd"
+  },
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "stage_helper_dispatch_calls": 0,
+  "stage_provider_dispatch_calls": 0,
+  "take_manifest": {
+    "bytes": 17136,
+    "media_type": "application/json",
+    "path": "private/speech-takes.json",
+    "sha256": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5"
+  },
+  "unmatched_source": [
+    {
+      "outcome": "missing",
+      "source_span": [
+        0,
+        4
+      ],
+      "word": "Mira"
+    },
+    {
+      "outcome": "missing",
+      "source_span": [
+        5,
+        12
+      ],
+      "word": "watched"
+    },
+    {
+      "outcome": "missing",
+      "source_span": [
+        13,
+        16
+      ],
+      "word": "the"
+    },
+    {
+      "outcome": "missing",
+      "source_span": [
+        17,
+        24
+      ],
+      "word": "rivière"
+    },
+    {
+      "outcome": "missing",
+      "source_span": [
+        26,
+        29
+      ],
+      "word": "The"
+    },
+    {
+      "outcome": "missing",
+      "source_span": [
+        30,
+        35
+      ],
+      "word": "water"
+    },
+    {
+      "outcome": "missing",
+      "source_span": [
+        36,
+        39
+      ],
+      "word": "was"
+    },
+    {
+      "outcome": "missing",
+      "source_span": [
+        40,
+        45
+      ],
+      "word": "still"
+    }
+  ],
+  "unobserved_planned_batches": [],
+  "unplanned_audio": [],
+  "unresolved_points": [],
+  "words": []
+}

@@ -1,0 +1,19 @@
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.13s
+     Running unittests src/lib.rs (target/debug/deps/pt_production-b33c80a359461c86)
+
+running 1 test
+
+thread 'runtime::speech_tests::changed_prepared_scope_cannot_be_hidden_by_a_completed_speech_checkpoint' (24029224) panicked at crates/pt-production/src/runtime/speech_tests.rs:36:518:
+assertion failed: rt.replay_saved_speech(&run).await.is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test runtime::speech_tests::changed_prepared_scope_cannot_be_hidden_by_a_completed_speech_checkpoint ... FAILED
+
+failures:
+
+failures:
+    runtime::speech_tests::changed_prepared_scope_cannot_be_hidden_by_a_completed_speech_checkpoint
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 245 filtered out; finished in 3.87s
+
+error: test failed, to rerun pass `-p pt-production --lib`

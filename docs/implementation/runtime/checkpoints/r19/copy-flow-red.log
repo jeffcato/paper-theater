@@ -1,0 +1,46 @@
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+error[E0599]: no method named `with_saved_speech_inputs` found for struct `runner::Runtime` in the current scope
+   --> crates/pt-production/src/runtime/speech_tests.rs:33:238
+    |
+ 33 | ...ned();let rt=Runtime::new(store.clone(),pipeline()).with_saved_speech_inputs(root());assert_eq!(rt.work_once().await.unwrap_err(...
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+   ::: crates/pt-production/src/runtime/runner.rs:350:1
+    |
+350 | pub struct Runtime {
+    | ------------------ method `with_saved_speech_inputs` not found for this struct
+    |
+help: there is a method `with_saved_inputs` with a similar name, but with different arguments
+   --> crates/pt-production/src/runtime/runner.rs:474:5
+    |
+474 | /     pub fn with_saved_inputs(
+475 | |         mut self,
+476 | |         fixture: std::path::PathBuf,
+477 | |         sources: std::path::PathBuf,
+478 | |     ) -> Self {
+    | |_____________^
+
+error[E0599]: no method named `speech_batches` found for struct `store::Store` in the current scope
+  --> crates/pt-production/src/runtime/speech_tests.rs:33:416
+   |
+33 | ...un).unwrap().len(),3);let batches=store.speech_batches(&run).unwrap();assert_eq!(batches.len(),1);let bytes=store.speech_batch_au...
+   |                                            ^^^^^^^^^^^^^^ method not found in `store::Store`
+   |
+  ::: crates/pt-production/src/runtime/store.rs:75:1
+   |
+75 | pub struct Store {
+   | ---------------- method `speech_batches` not found for this struct
+
+error[E0599]: no method named `speech_batch_audio` found for struct `store::Store` in the current scope
+  --> crates/pt-production/src/runtime/speech_tests.rs:33:490
+   |
+33 | ..._eq!(batches.len(),1);let bytes=store.speech_batch_audio(&run,"b0000").unwrap();let info=c::inspect_pcm16_wav(&mut std::io::Curso...
+   |                                          ^^^^^^^^^^^^^^^^^^ method not found in `store::Store`
+   |
+  ::: crates/pt-production/src/runtime/store.rs:75:1
+   |
+75 | pub struct Store {
+   | ---------------- method `speech_batch_audio` not found for this struct
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `pt-production` (lib test) due to 3 previous errors

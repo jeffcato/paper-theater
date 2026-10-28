@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "shared-native-byte-boundary-ready-runtime-transport-and-full-goal-pending",
+  "service_revision": "pt-services-v1.10.0",
+  "native_exchange_schema_version": 1,
+  "provider_envelope_version": 2,
+  "source_sha256": {
+    "crates/pt-contracts/src/lib.rs": "5f343aa83430f8a0491444525a66b9aed25cbc4ad8eba4df6c6a63b24dfb9ad4",
+    "crates/pt-contracts/src/acceptance.rs": "374616f953c71ec59abbf153546cd6411d19b5ef0a09f16308f5cc06c90260bf",
+    "crates/pt-contracts/src/provider_native_exchange.rs": "81026a1d87f227052c3ccfb891a896451495cdbaa13d83297ba6974491c1800b",
+    "packages/contracts/src/index.ts": "3103f86246e61b0fdc645e0283da80c38b794ce18fdaf9f7786a151af7e6aa23",
+    "packages/contracts/src/json-bytes.ts": "a7fd055d73012b67d6bc09c89a620f88e08ed6a66b8a0fa17ce4a7b3372c3ce4",
+    "packages/contracts/src/acceptance-coverage.ts": "f3ae6f365560a462086971f32984bfa0916f9730794109b6035aeb6cff46ce67",
+    "packages/contracts/src/provider-native-exchange.ts": "ddcab7ddae51f4bb10b7b73188aed6f40b7cfe2f16fb4a40dfde9b01ff94a987"
+  },
+  "tests": {
+    "rust_public": 4,
+    "cross_language_cases": 39,
+    "full_contracts_strict_native_packed": "pass"
+  },
+  "evidence": {
+    "pt-int02-native-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-red.log.gz",
+      "raw_sha256": "1f55407b6b5428285319c802b7434c18aff73d5bdb58523de6a3d840310fed65"
+    },
+    "pt-int02-native-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-green.log.gz",
+      "raw_sha256": "6478fbd1922989d497a8839f863175d10be78ae4ac9a037f88cea19a790173d8"
+    },
+    "pt-int02-native-bounds-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-bounds-red.log.gz",
+      "raw_sha256": "27b3cc19cd95dec88b385c082213cd96917a0a6b465a53206be898b26d5eb340"
+    },
+    "pt-int02-native-bounds-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-bounds-green.log.gz",
+      "raw_sha256": "cdffea22c98136bc973d74fe408a12ab75cb820a2cf94ce7aaecc9a207f17fa8"
+    },
+    "pt-int02-native-route-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-route-red.log.gz",
+      "raw_sha256": "80f7aec4a4b57d7efcee29a5cf3fadbe40fdbe24b1a6692bf25497e4bddb237c"
+    },
+    "pt-int02-native-route-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-route-green.log.gz",
+      "raw_sha256": "d7d3dc5a19086f1fa8ae56e63e8d1f57fe9de3918425b57bbc0ea4fe0a0f164f"
+    },
+    "pt-int02-native-recovery-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-recovery-red.log.gz",
+      "raw_sha256": "e97c2db5ca77d0e66fc0855e2f7bd52c15b143607f316392264d4fe0c6b6d3f8"
+    },
+    "pt-int02-native-final": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-final.log.gz",
+      "raw_sha256": "c4e297585c9202a9e778bc9d0657ce62fe8a892dcdd1837af71fff78edb67848"
+    },
+    "pt-int02-native-metadata-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-metadata-red.log.gz",
+      "raw_sha256": "cab2081fde6992c82f97e097f7500bbb513d03c346ec0bbb805d6acb5fff0a78"
+    },
+    "pt-int02-native-metadata-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-metadata-green.log.gz",
+      "raw_sha256": "939fcd349579d0bfc76de25b88aa85a8f37b896aeb84ce98d4b15acdc49d8b5c"
+    },
+    "pt-int02-native-ts-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-ts-red.log.gz",
+      "raw_sha256": "d00e6d6f103505e362ff3283084e9e3a4a5d179d428c9d5b719ba49e86cd317f"
+    },
+    "pt-int02-native-ts-final": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-ts-final.log.gz",
+      "raw_sha256": "8b1e7a1c36a70c1aa4ed1751b9d19a7dc21ce42e246eacd65dadfc18b44b9cd3"
+    },
+    "pt-int02-native-error-codes-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-error-codes-red.log.gz",
+      "raw_sha256": "13f2587201403731c541e349e79f92866a163ed2ec21b6b008acf17072cec612"
+    },
+    "pt-int02-native-error-codes-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-error-codes-green.log.gz",
+      "raw_sha256": "938799897e469be233bb918c4a97712d399f9369fc1e8fe24aa8c37cfa2d6880"
+    },
+    "pt-int02-native-legacy-error-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-native-legacy-error-red.log.gz",
+      "raw_sha256": "2ea19f031780c8b16a5ef1343c86362870e3301b52f1e77b8ba5b977a4bed8d6"
+    },
+    "pt-int-native-contracts-final": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-native-contracts-final.log.gz",
+      "raw_sha256": "18e003205d799d6ce208018ed9f7504fe4c42bd6bf352bd0c2c12d6479c30212"
+    }
+  },
+  "combined_workspace_ci": {
+    "tests": 447,
+    "ci": "both exact-head runs passed",
+    "receipt": "provider-native-checkpoint-ready.json"
+  },
+  "matrix_version": "pt-acceptance-required-v3",
+  "implemented_verifiers": 5,
+  "pending_verifiers": 32,
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "production_approved": false,
+  "publication_enabled": false,
+  "handoff": "provider-native-exchange.md",
+  "implementation_head": "2ec692416638a4ba973355b9ad37ea4959f96db2"
+}

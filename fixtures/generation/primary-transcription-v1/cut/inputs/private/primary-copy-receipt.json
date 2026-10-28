@@ -1,0 +1,91 @@
+{
+  "audio": {
+    "file": {
+      "bytes": 1000,
+      "media_type": "audio/wav",
+      "path": "private/primary-batch.wav",
+      "sha256": "8ed242fb064589cf99c9228a5d9bc02f3f17f6d1ad244120339dc9d58f4f9cbc"
+    },
+    "id": "committed:primary:private:primary-batch.wav",
+    "provenance": "synthetic"
+  },
+  "batch_id": "b0000",
+  "bulk_speech_approved": false,
+  "copy_plan": {
+    "file": {
+      "bytes": 14279,
+      "media_type": "application/json",
+      "path": "private/speech-transcription-plan.json",
+      "sha256": "6b35717c3db6d3c88e8fb3e024476e8a493930348fb5cc38c02f9217f6967e2d"
+    },
+    "id": "committed:primary:private:speech-transcription-plan.json",
+    "provenance": "synthetic"
+  },
+  "dispatch_permitted": false,
+  "fact_bounds": null,
+  "format": {
+    "bits_per_sample": 16,
+    "channels": 1,
+    "frames": 478,
+    "sample_rate": 24000
+  },
+  "measured_word_intervals": null,
+  "model_payload": {
+    "audio": {
+      "file": {
+        "bytes": 1000,
+        "media_type": "audio/wav",
+        "path": "private/primary-batch.wav",
+        "sha256": "8ed242fb064589cf99c9228a5d9bc02f3f17f6d1ad244120339dc9d58f4f9cbc"
+      },
+      "id": "committed:primary:private:primary-batch.wav",
+      "provenance": "synthetic"
+    },
+    "mode": "VERBATIM",
+    "schema_version": 1,
+    "word_timestamps": true
+  },
+  "narration_assembly": null,
+  "production_approved": false,
+  "provenance": "synthetic",
+  "recipe": "native-pcm16-frame-copy-v1",
+  "recipe_sha256": "36f4c2746d3b87bb7c197fdbda8989b89eb5274fc447d845e89f810c43ea3530",
+  "sample_origin": "materialized-batch-local",
+  "schema_version": 1,
+  "segments": [
+    {
+      "audio": {
+        "file": {
+          "bytes": 4844,
+          "media_type": "audio/wav",
+          "path": "private/speech-audio/u0000.wav",
+          "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf"
+        },
+        "id": "committed:primary:private:speech-audio:u0000.wav",
+        "provenance": "synthetic"
+      },
+      "batch_span": [
+        0,
+        478
+      ],
+      "cross_cut_uncertainty": true,
+      "native_span": [
+        0,
+        478
+      ],
+      "unit_id": "u0000"
+    }
+  ],
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "take_manifest": {
+    "file": {
+      "bytes": 8670,
+      "media_type": "application/json",
+      "path": "private/speech-takes.json",
+      "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b"
+    },
+    "id": "committed:primary:private:speech-takes.json",
+    "provenance": "synthetic"
+  },
+  "unplanned_audio": []
+}

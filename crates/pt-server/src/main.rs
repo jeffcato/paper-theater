@@ -9,6 +9,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut acceptance_player_registry: Option<PathBuf> = None;
     let mut chapter_inputs: Option<PathBuf> = None;
     let mut direction_pilot_inputs: Option<PathBuf> = None;
+    let mut speech_inputs: Option<PathBuf> = None;
     let mut args = std::env::args().skip(1);
     while let Some(arg) = args.next() {
         let value = args.next().ok_or("option value required")?;
@@ -20,6 +21,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "--acceptance-player-registry" => acceptance_player_registry = Some(value.into()),
             "--chapter-inputs" => chapter_inputs = Some(value.into()),
             "--direction-pilot-inputs" => direction_pilot_inputs = Some(value.into()),
+            "--speech-inputs" => speech_inputs = Some(value.into()),
             _ => return Err("unknown option".into()),
         }
     }
@@ -74,6 +76,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     runtime.fixture_delay_ms = 120;
     if let Some(root) = direction_pilot_inputs {
         runtime = runtime.with_saved_direction_pilot(root);
+    }
+    if let Some(root) = speech_inputs {
+        runtime = runtime.with_saved_speech_inputs(root);
     }
     if let Some(root) = chapter_inputs {
         let stage_revision = pt_production::runtime::digest(
