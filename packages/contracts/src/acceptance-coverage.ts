@@ -2,6 +2,7 @@ import type {AcceptanceScope} from './acceptance-matrix.js';
 import type {AcceptanceBinding,AcceptanceCheckerIdentity,AcceptanceCheckResult,AcceptanceVerificationReport} from './acceptance-report.js';
 import {validateAcceptanceVerificationReport} from './acceptance-report.js';
 import {ContractError,sha256} from './validate.js';
+import {parseStrictJsonBytes} from './json-bytes.js';
 
 export type AcceptanceEvidenceOwnerV1='integration'|'generation'|'runtime'|'player'|'unassigned';
 export interface AcceptanceCoverageRowV1 {evidence_owners:AcceptanceEvidenceOwnerV1[];result:AcceptanceCheckResult}
@@ -25,35 +26,13 @@ function canonical(v:unknown):string {
  if(v!==null&&typeof v==='object')return '{'+Object.entries(v).sort(([a],[b])=>a<b?-1:a>b?1:0).map(([k,v])=>JSON.stringify(k)+':'+canonical(v)).join(',')+'}';
  return JSON.stringify(v);
 }
-// JSON.parse collapses duplicate keys; Rust's strict records reject them.
-// Scan the already syntax-checked text so escaped aliases cannot hide a duplicate.
-function strictReport(text:string):unknown {
- const value:unknown=JSON.parse(text);let i=0;
- const space=()=>{while(/\s/.test(text[i]??'' )&&i<text.length)i++;};
- const fail=()=>{throw new ContractError('acceptance_coverage','report','duplicate key or invalid JSON string');};
- const string=():string=>{
-  const start=i++;
-  while(i<text.length){if(text[i]==='\\'){i+=2;continue;}if(text[i++]==='"')break;}
-  const s=JSON.parse(text.slice(start,i)) as string;
-  if(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/.test(s))fail();
-  return s;
- };
- const walk=(depth:number):void=>{
-  if(depth>128)fail();space();
-  if(text[i]==='{'){
-   i++;space();const seen=new Set<string>();if(text[i]==='}'){i++;return;}
-   while(true){const key=string();if(seen.has(key))fail();seen.add(key);space();i++;walk(depth+1);space();if(text[i++]==='}')return;space();}
-  }
-  if(text[i]==='['){i++;space();if(text[i]===']'){i++;return;}while(true){walk(depth+1);space();if(text[i++]===']')return;}}
-  if(text[i]==='"'){string();return;}
-  while(i<text.length&&!/[\s,}\]]/.test(text[i]!))i++;
- };
- walk(0);return value;
-}
 /** Caller supplies independently selected exact report bytes and expected checker.
  * Validation cannot authenticate execution or reconstruct the Rust capability. */
 export async function validateAcceptanceCoverageLedgerV1(value:unknown,reportBytes:Uint8Array,expectedChecker:AcceptanceCheckerIdentity):Promise<AcceptanceCoverageLedgerV1> {
- const report:unknown=strictReport(new TextDecoder('utf-8',{fatal:true}).decode(reportBytes));
+ let report:unknown;try{report=parseStrictJsonBytes(reportBytes);}catch(error){
+  if(error instanceof ContractError&&error.code==='json_bytes')throw new ContractError('acceptance_coverage','report',error.message);
+  throw error;
+ }
  validateAcceptanceVerificationReport(report,expectedChecker);
  const r=report as AcceptanceVerificationReport;
  const expected:AcceptanceCoverageLedgerV1={schema_version:1,scope:r.scope,matrix_version:r.matrix_version,

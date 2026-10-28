@@ -86,3 +86,8 @@ import {type AcceptanceCoverageLedgerV1,validateAcceptanceCoverageLedgerV1} from
 export async function readCoverage(raw:unknown,report:Uint8Array,expected:AcceptanceCheckerIdentity):Promise<AcceptanceCoverageLedgerV1> {
  return validateAcceptanceCoverageLedgerV1(raw,report,expected);
 }
+
+import {type ProviderNativeExchangeV1,type ProviderNativeExchangePolicyV1,type ProviderNativeExchangeBytesV1,validateProviderNativeExchangeV1} from '@paper-theater/contracts';
+export async function nativeExchange(raw:unknown,policy:ProviderNativeExchangePolicyV1,operation:ProviderOperationV2,result:ProviderResultV2,bytes:ProviderNativeExchangeBytesV1):Promise<ProviderNativeExchangeV1> {
+ return validateProviderNativeExchangeV1(raw,policy,operation,result,bytes);
+}
