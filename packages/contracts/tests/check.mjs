@@ -36,3 +36,4 @@ assert.equal(providerService.status,0,providerService.stdout+providerService.std
 const sourceSlice=spawnSync(process.execPath,['packages/contracts/tests/source-slice.mjs'],{cwd:root,encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(sourceSlice.status,0,sourceSlice.stdout+sourceSlice.stderr);process.stdout.write(sourceSlice.stdout);
 
 const audioFormat=spawnSync(process.execPath,['packages/contracts/tests/audio-format.mjs'],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});assert.equal(audioFormat.status,0,audioFormat.stdout+audioFormat.stderr);process.stdout.write(audioFormat.stdout);
+const pilotReview=spawnSync(process.execPath,['packages/contracts/tests/pilot-review.mjs'],{cwd:root,encoding:'utf8',maxBuffer:16*1024*1024});assert.equal(pilotReview.status,0,pilotReview.stdout+pilotReview.stderr);process.stdout.write(pilotReview.stdout);

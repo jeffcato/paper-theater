@@ -1,6 +1,6 @@
 {
   "contract_revision": "pt-contracts-v1.0.0",
-  "service_revision": "pt-services-v1.8.0",
+  "service_revision": "pt-services-v1.9.0",
   "status": "frozen-diagnostic-boundary",
   "fixture_path": "fixtures/shared/two-scene-v1",
   "fixture_sha256": "5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c",
@@ -72,7 +72,7 @@
     "target-device profile/resource validation",
     "one autonomous excerpt and both complete accepted chapters"
   ],
-  "next_integration_action": "Use the frozen I20 backend snapshot (d56eb71) as the reviewed services-v1.8/checker-v4/report-v4/matrix-v3 base. R18 Direction/Pilot runtime wiring, G24 speech and post-freeze R11 adoption require separate owner handoffs; stable UI/I14, all 32 missing verifiers, accounting/live/profile/device/publication gates remain closed.",
+  "next_integration_action": "Adopt I21 independently selected Pilot policy inputs through verify_acceptance_with_pilot / verify_acceptance_v2_with_pilot only from authoritative committed runtime records. Plan structure and recorded mechanics cannot authenticate listening; Pilot remains pending among 32 production verifiers. Missing declarations, source/recording/review evidence and all adverse outcomes remain blockers; no bulk Speech, live or publication authority is added.",
   "verification": {
     "clean_checkout_commit": "41061a6",
     "source_root": "unset",
@@ -105,17 +105,19 @@
     "acceptance-source-ready.json",
     "source-slice-ready.json",
     "acceptance-audio-ready.json",
-    "backend-checkpoint-ready.json"
+    "backend-checkpoint-ready.json",
+    "acceptance-pilot-review-ready.json"
   ],
   "pr_ci_results": "pr-ci-results.json",
   "combined_handoff": "combined-ready.json",
   "provider_metadata_handoff": "provider-metadata-i13-ready.json",
-  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes. I4 independently verifies c965855 with services v1.4.0; see acceptance-evidence-ready.json. Earlier receipts retain their exact versions and heads; no active worker edits are absorbed. I15 service API candidate 7d50703 is independently verified in provider-service-ready.json; R13 supplied private source and all active worker/UI edits remain excluded. I17 source-verifier candidate 4fa698c and prior G20 acknowledgement 9b2e5b6 have separate successful exact-head CI, recorded in acceptance-source-ready.json. Historical v1 matrices/receipts and canonical diagnostics stay immutable. I18 candidate ace1dc9 has successful exact-head push/PR CI and isolated/CLI proof in source-slice-ready.json. Matrix-v2 and prior v1/v2 receipts/G20 acknowledgement stay immutable; relationship/report data remains private. I19 candidate 24f74e5 has successful exact-head CI and actual WAV/frame evidence in acceptance-audio-ready.json. Native R11 behavior and archived v1/v2/v3 receipts remain immutable; runtime wrapper adoption is separate. I20 d56eb71 freezes completed R13\u2013R17/G16\u2013G23 with successful full scoped local aggregate and exact-head workspace/Python/real-restart CI; backend-checkpoint-ready.json records current bindings, excluded moving worker/UI paths and preserved raw failures.",
+  "verification_scope_note": "Historical combined/candidate/I2 receipts retain their original commits and revisions. I13 candidate 23f8f7a and its successful aggregate CI are recorded in shared-index-reconciliation.json, alongside the separate failing edge probes. I4 independently verifies c965855 with services v1.4.0; see acceptance-evidence-ready.json. Earlier receipts retain their exact versions and heads; no active worker edits are absorbed. I15 service API candidate 7d50703 is independently verified in provider-service-ready.json; R13 supplied private source and all active worker/UI edits remain excluded. I17 source-verifier candidate 4fa698c and prior G20 acknowledgement 9b2e5b6 have separate successful exact-head CI, recorded in acceptance-source-ready.json. Historical v1 matrices/receipts and canonical diagnostics stay immutable. I18 candidate ace1dc9 has successful exact-head push/PR CI and isolated/CLI proof in source-slice-ready.json. Matrix-v2 and prior v1/v2 receipts/G20 acknowledgement stay immutable; relationship/report data remains private. I19 candidate 24f74e5 has successful exact-head CI and actual WAV/frame evidence in acceptance-audio-ready.json. Native R11 behavior and archived v1/v2/v3 receipts remain immutable; runtime wrapper adoption is separate. I20 d56eb71 freezes completed R13\u2013R17/G16\u2013G23 with successful full scoped local aggregate and exact-head workspace/Python/real-restart CI; backend-checkpoint-ready.json records current bindings, excluded moving worker/UI paths and preserved raw failures. I21 correction 10736ea0c0fddab48a923f803f26bf8d3584de4d publishes services v1.9.0 and checker/report-v5 with unchanged matrix-v3/5 implemented/32 pending. Full scoped tests and exact-head CI are in acceptance-pilot-review-ready.json; original local Pilot/delivery drafts and all UI/worker files remain preserved outside the correction.",
   "reconciliation_handoff": "shared-index-reconciliation.json",
   "acceptance_handoff": "acceptance-evidence-ready.json",
   "provider_service_handoff": "provider-service-ready.json",
   "source_coverage_handoff": "acceptance-source-ready.json",
   "source_slice_handoff": "source-slice-ready.json",
   "audio_format_handoff": "acceptance-audio-ready.json",
-  "backend_checkpoint_handoff": "backend-checkpoint-ready.json"
+  "backend_checkpoint_handoff": "backend-checkpoint-ready.json",
+  "pilot_review_handoff": "acceptance-pilot-review-ready.json"
 }

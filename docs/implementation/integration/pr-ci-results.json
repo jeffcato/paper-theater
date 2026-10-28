@@ -1,8 +1,8 @@
 {
-  "pr": 1,
-  "pr_url": "https://github.com/jeffcato/paper-theater/pull/1",
-  "recorded_at": "2026-10-27T19:50:04.895975+00:00",
-  "scope": "I20 coherent frozen R13\u2013R17/G16\u2013G23 backend at d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c. Both exact-head runs pass full workspace (343 tests), contracts/strict/native/packed/baseline web checks, complete Python suite (37), built-server identity and real restart/private replay. Local full scoped aggregate passes 268 including 103 generation/104 runtime; complete generation rerun passes 103. Original aggregate failures and historical receipts remain unchanged. Later R18/G24/R11/UI/PM files are excluded. Production blocks persist; later receipt-only publication does not inherit/relabel CI.",
+  "pr": 2,
+  "pr_url": "https://github.com/jeffcato/paper-theater/pull/2",
+  "recorded_at": "2026-10-28T17:46:56.375420+00:00",
+  "scope": "I21 final correction 10736ea0c0fddab48a923f803f26bf8d3584de4d: exact checkout verified; both final runs pass 398 workspace tests, full contracts/strict/native/packed, baseline applications/builds, 37 Python tests and real restart/private replay. Local full scoped aggregate passes 323, with 18 Pilot regressions and 29 cross-language cases. Earlier heads 3644f55 and 0679c39 have separately preserved green runs and do not certify this head. Matrix v3 remains unchanged: five implemented production checks, 32 pending including authenticated Pilot listening. Unrelated draft/delivery/UI/runtime/generation/lock changes remain excluded; zero provider calls. Receipt-only publication does not inherit these results.",
   "runs": [
     {
       "conclusion": "success",
@@ -3248,20 +3248,830 @@
       "status": "completed",
       "updatedAt": "2026-10-27T19:48:17Z",
       "url": "https://github.com/jeffcato/paper-theater/actions/runs/40570998700"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T16:58:23Z",
+      "databaseId": 40731180261,
+      "event": "push",
+      "headSha": "3644f5595446fc8c3e2e315650717ad6e35d11fa",
+      "jobs": [
+        {
+          "completedAt": "2026-10-28T17:04:09Z",
+          "conclusion": "success",
+          "databaseId": 122967609746,
+          "name": "Check product identity",
+          "startedAt": "2026-10-28T16:58:26Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-28T16:58:27Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-28T16:58:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:58:33Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-28T16:58:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:58:33Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-28T16:58:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:58:38Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-28T16:58:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:58:46Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-28T16:58:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:03:25Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-28T16:58:46Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:03:26Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-28T17:03:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:03:56Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-28T17:03:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:03:57Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-28T17:03:56Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:04:04Z",
+              "conclusion": "success",
+              "name": "Test complete offline generation helpers",
+              "number": 10,
+              "startedAt": "2026-10-28T17:03:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:04:06Z",
+              "conclusion": "success",
+              "name": "Verify real backend process restart and private replay",
+              "number": 11,
+              "startedAt": "2026-10-28T17:04:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:04:06Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 21,
+              "startedAt": "2026-10-28T17:04:06Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:04:07Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 22,
+              "startedAt": "2026-10-28T17:04:06Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:04:07Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 23,
+              "startedAt": "2026-10-28T17:04:07Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40731180261/job/122967609746"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-28T17:04:10Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40731180261"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T16:58:36Z",
+      "databaseId": 40731212084,
+      "event": "pull_request",
+      "headSha": "3644f5595446fc8c3e2e315650717ad6e35d11fa",
+      "jobs": [
+        {
+          "completedAt": "2026-10-28T17:05:38Z",
+          "conclusion": "success",
+          "databaseId": 122967721967,
+          "name": "Check product identity",
+          "startedAt": "2026-10-28T16:58:38Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-28T16:58:39Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-28T16:58:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:59:38Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-28T16:58:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:59:38Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-28T16:59:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:59:43Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-28T16:59:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T16:59:50Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-28T16:59:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:04:52Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-28T16:59:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:04:54Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-28T17:04:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:05:24Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-28T17:04:54Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:05:26Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-28T17:05:24Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:05:33Z",
+              "conclusion": "success",
+              "name": "Test complete offline generation helpers",
+              "number": 10,
+              "startedAt": "2026-10-28T17:05:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:05:35Z",
+              "conclusion": "success",
+              "name": "Verify real backend process restart and private replay",
+              "number": 11,
+              "startedAt": "2026-10-28T17:05:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:05:35Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 21,
+              "startedAt": "2026-10-28T17:05:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:05:35Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 22,
+              "startedAt": "2026-10-28T17:05:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:05:35Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 23,
+              "startedAt": "2026-10-28T17:05:35Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40731212084/job/122967721967"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-28T17:05:38Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40731212084"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T17:20:46Z",
+      "databaseId": 40734814810,
+      "event": "push",
+      "headSha": "0679c396232015b8f4108c79bc5bb9573f7d3aa8",
+      "jobs": [
+        {
+          "completedAt": "2026-10-28T17:28:34Z",
+          "conclusion": "success",
+          "databaseId": 122980386139,
+          "name": "Check product identity",
+          "startedAt": "2026-10-28T17:20:48Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-28T17:20:50Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-28T17:20:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:20:57Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-28T17:20:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:20:58Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-28T17:20:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:21:03Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-28T17:20:58Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:21:13Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-28T17:21:03Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:27:38Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-28T17:21:13Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:27:40Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-28T17:27:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:28:19Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-28T17:27:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:28:20Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-28T17:28:19Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:28:30Z",
+              "conclusion": "success",
+              "name": "Test complete offline generation helpers",
+              "number": 10,
+              "startedAt": "2026-10-28T17:28:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:28:32Z",
+              "conclusion": "success",
+              "name": "Verify real backend process restart and private replay",
+              "number": 11,
+              "startedAt": "2026-10-28T17:28:30Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:28:32Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 21,
+              "startedAt": "2026-10-28T17:28:32Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:28:32Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 22,
+              "startedAt": "2026-10-28T17:28:32Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:28:32Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 23,
+              "startedAt": "2026-10-28T17:28:32Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40734814810/job/122980386139"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-28T17:28:35Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40734814810"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T17:20:51Z",
+      "databaseId": 40734827626,
+      "event": "pull_request",
+      "headSha": "0679c396232015b8f4108c79bc5bb9573f7d3aa8",
+      "jobs": [
+        {
+          "completedAt": "2026-10-28T17:31:25Z",
+          "conclusion": "success",
+          "databaseId": 122980431758,
+          "name": "Check product identity",
+          "startedAt": "2026-10-28T17:20:53Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-28T17:20:55Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-28T17:20:54Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:21:46Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-28T17:20:55Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:21:47Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-28T17:21:46Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:21:52Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-28T17:21:47Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:22:01Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-28T17:21:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:30:20Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-28T17:22:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:30:22Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-28T17:30:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:31:09Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-28T17:30:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:31:10Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-28T17:31:09Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:31:20Z",
+              "conclusion": "success",
+              "name": "Test complete offline generation helpers",
+              "number": 10,
+              "startedAt": "2026-10-28T17:31:10Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:31:22Z",
+              "conclusion": "success",
+              "name": "Verify real backend process restart and private replay",
+              "number": 11,
+              "startedAt": "2026-10-28T17:31:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:31:22Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 21,
+              "startedAt": "2026-10-28T17:31:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:31:23Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 22,
+              "startedAt": "2026-10-28T17:31:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:31:23Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 23,
+              "startedAt": "2026-10-28T17:31:23Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40734827626/job/122980431758"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-28T17:31:25Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40734827626"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T17:31:33Z",
+      "databaseId": 40736541613,
+      "event": "push",
+      "headSha": "10736ea0c0fddab48a923f803f26bf8d3584de4d",
+      "jobs": [
+        {
+          "completedAt": "2026-10-28T17:42:31Z",
+          "conclusion": "success",
+          "databaseId": 122986506826,
+          "name": "Check product identity",
+          "startedAt": "2026-10-28T17:31:35Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-28T17:31:37Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-28T17:31:36Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:32:58Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-28T17:31:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:33:00Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-28T17:32:59Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:33:04Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-28T17:33:00Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:33:12Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-28T17:33:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:41:27Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-28T17:33:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:41:28Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-28T17:41:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:42:15Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-28T17:41:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:42:16Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-28T17:42:15Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:42:26Z",
+              "conclusion": "success",
+              "name": "Test complete offline generation helpers",
+              "number": 10,
+              "startedAt": "2026-10-28T17:42:16Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:42:29Z",
+              "conclusion": "success",
+              "name": "Verify real backend process restart and private replay",
+              "number": 11,
+              "startedAt": "2026-10-28T17:42:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:42:29Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 21,
+              "startedAt": "2026-10-28T17:42:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:42:29Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 22,
+              "startedAt": "2026-10-28T17:42:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:42:29Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 23,
+              "startedAt": "2026-10-28T17:42:29Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40736541613/job/122986506826"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-28T17:42:31Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40736541613"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-28T17:31:37Z",
+      "databaseId": 40736550855,
+      "event": "pull_request",
+      "headSha": "10736ea0c0fddab48a923f803f26bf8d3584de4d",
+      "jobs": [
+        {
+          "completedAt": "2026-10-28T17:39:17Z",
+          "conclusion": "success",
+          "databaseId": 122986539284,
+          "name": "Check product identity",
+          "startedAt": "2026-10-28T17:31:39Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-28T17:31:41Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-28T17:31:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:32:10Z",
+              "conclusion": "success",
+              "name": "Check out repository",
+              "number": 2,
+              "startedAt": "2026-10-28T17:31:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:32:11Z",
+              "conclusion": "success",
+              "name": "Check product names and content",
+              "number": 3,
+              "startedAt": "2026-10-28T17:32:10Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:32:16Z",
+              "conclusion": "success",
+              "name": "Set up Node",
+              "number": 4,
+              "startedAt": "2026-10-28T17:32:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:32:25Z",
+              "conclusion": "success",
+              "name": "Set up tested Rust toolchain",
+              "number": 5,
+              "startedAt": "2026-10-28T17:32:16Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:38:20Z",
+              "conclusion": "success",
+              "name": "Test Rust workspace",
+              "number": 6,
+              "startedAt": "2026-10-28T17:32:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:38:22Z",
+              "conclusion": "success",
+              "name": "Install pinned web dependencies",
+              "number": 7,
+              "startedAt": "2026-10-28T17:38:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:39:01Z",
+              "conclusion": "success",
+              "name": "Check shared contracts and applications",
+              "number": 8,
+              "startedAt": "2026-10-28T17:38:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:39:02Z",
+              "conclusion": "success",
+              "name": "Build and scan delivery outputs",
+              "number": 9,
+              "startedAt": "2026-10-28T17:39:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:39:12Z",
+              "conclusion": "success",
+              "name": "Test complete offline generation helpers",
+              "number": 10,
+              "startedAt": "2026-10-28T17:39:02Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:39:14Z",
+              "conclusion": "success",
+              "name": "Verify real backend process restart and private replay",
+              "number": 11,
+              "startedAt": "2026-10-28T17:39:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:39:15Z",
+              "conclusion": "success",
+              "name": "Post Set up Node",
+              "number": 21,
+              "startedAt": "2026-10-28T17:39:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:39:15Z",
+              "conclusion": "success",
+              "name": "Post Check out repository",
+              "number": 22,
+              "startedAt": "2026-10-28T17:39:15Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-28T17:39:15Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 23,
+              "startedAt": "2026-10-28T17:39:15Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/jeffcato/paper-theater/actions/runs/40736550855/job/122986539284"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-28T17:39:18Z",
+      "url": "https://github.com/jeffcato/paper-theater/actions/runs/40736550855"
     }
   ],
   "completed_runs_conclusion": "success",
-  "completed_head_sha": "d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c",
+  "completed_head_sha": "10736ea0c0fddab48a923f803f26bf8d3584de4d",
   "latest_code_head_observation": {
-    "recorded_at": "2026-10-27T19:50:04.895975+00:00",
-    "headRefOid": "d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c",
+    "recorded_at": "2026-10-28T17:46:56.375420+00:00",
+    "headRefOid": "10736ea0c0fddab48a923f803f26bf8d3584de4d",
     "status": "completed",
     "conclusion": "success",
     "run_ids": [
-      40570985878,
-      40570998700
+      40736541613,
+      40736550855
     ],
-    "url": "https://github.com/jeffcato/paper-theater/pull/1"
+    "url": "https://github.com/jeffcato/paper-theater/pull/2"
   },
   "current_code_head_state": "completed_success",
   "historical_observations": [
@@ -3404,6 +4214,25 @@
         "run_ids": [
           40562954963,
           40562969039
+        ],
+        "url": "https://github.com/jeffcato/paper-theater/pull/1"
+      },
+      "current_code_head_state": "completed_success"
+    },
+    {
+      "pr": 1,
+      "pr_url": "https://github.com/jeffcato/paper-theater/pull/1",
+      "recorded_at": "2026-10-27T19:50:04.895975+00:00",
+      "scope": "I20 coherent frozen R13\u2013R17/G16\u2013G23 backend at d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c. Both exact-head runs pass full workspace (343 tests), contracts/strict/native/packed/baseline web checks, complete Python suite (37), built-server identity and real restart/private replay. Local full scoped aggregate passes 268 including 103 generation/104 runtime; complete generation rerun passes 103. Original aggregate failures and historical receipts remain unchanged. Later R18/G24/R11/UI/PM files are excluded. Production blocks persist; later receipt-only publication does not inherit/relabel CI.",
+      "completed_head_sha": "d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c",
+      "latest_code_head_observation": {
+        "recorded_at": "2026-10-27T19:50:04.895975+00:00",
+        "headRefOid": "d56eb71d20ce5b97b07aad1bf8cf18ea22e1e25c",
+        "status": "completed",
+        "conclusion": "success",
+        "run_ids": [
+          40570985878,
+          40570998700
         ],
         "url": "https://github.com/jeffcato/paper-theater/pull/1"
       },
