@@ -1,0 +1,63 @@
+{
+  "accent": "catalog-default",
+  "acting": "",
+  "acting_intents": [],
+  "baseline": "",
+  "bindings": {
+    "bytes": 1429,
+    "media_type": "application/json",
+    "path": "private/speech-bindings.json",
+    "sha256": "75e57f9c9c25640995efd900c451bd9379befae0c5dc089749635de555a7d2e0"
+  },
+  "bulk_speech_approved": false,
+  "canonical_id": "test-book:mira",
+  "catalog": {
+    "file": {
+      "bytes": 320,
+      "media_type": "application/json",
+      "path": "private/voice-catalog.json",
+      "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+    },
+    "id": "committed:pilot:private:voice-catalog.json",
+    "provenance": "synthetic"
+  },
+  "direction": {
+    "bytes": 12149,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "92d69ad63341eb4893e138de2d7ce9c74c0bf370148136237f43d7a776f6ca42"
+  },
+  "language": "en",
+  "model": "gemini-3.8-flash-tts",
+  "pilot": {
+    "bytes": 7637,
+    "media_type": "application/json",
+    "path": "private/pilot-plan.json",
+    "sha256": "b20d3bb85d300e26864b3e0ff05c1a0df496f693746dad3f72d3dcce173f1ad1"
+  },
+  "provider": "speech-double",
+  "recipe": {
+    "bytes": 49,
+    "media_type": "application/json",
+    "path": "private/speech-recipe.json",
+    "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+  },
+  "schema_version": 1,
+  "source_sha256": "0a1226c200add190b8dbba4abfb5f8231ddb5f72e1ed40283e532d5b48a36c68",
+  "speaker": "mira",
+  "task": "verbatim-speech-unit-v1",
+  "text": "“Open the gate.”",
+  "unit": {
+    "id": "u0001",
+    "kind": "dialogue",
+    "request_ready": true,
+    "span": [
+      11,
+      27
+    ],
+    "speaker": "mira",
+    "text": "“Open the gate.”",
+    "turn_id": "t1"
+  },
+  "voice_id": "voice-n"
+}

@@ -1,0 +1,1198 @@
+{
+  "schema_version": 1,
+  "task": "G24",
+  "status": "offline-source-complete-speech-compiler-and-saved-ingestion-complete",
+  "service_revision": "pt-services-v1.8.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "matrix_version": "pt-acceptance-required-v3",
+  "checker_version": "pt-acceptance-bindings-v4",
+  "private_schema_version": 1,
+  "provider_envelope_version": 2,
+  "compiler_sha256": "2759c1e74ed72923c5c6ec9f7166a29fca7edb1f36a646647e477cbd39621a35",
+  "outcome": "needs_repair",
+  "provenance": "diagnostic",
+  "bulk_speech_approved": false,
+  "production_approved": false,
+  "runtime_policy_authority": false,
+  "reveal_permissions": [],
+  "real_provider_transport_calls": 0,
+  "speech_issuance_execution_recovery_calls": 0,
+  "speech_helper_dispatch_calls": 0,
+  "speech_journal_emissions": 0,
+  "library_updates": 0,
+  "generation_accounting_catalog_mutations": 0,
+  "checks": {
+    "speech_real_library_tests": "21 passed; 0 failed",
+    "owned_generation_regressions": "124 passed; 0 failed",
+    "native_generation_suite": "124 passed; 0 failed",
+    "python_suite": "37 passed",
+    "provider_metadata": "2 passed",
+    "provider_service": "3 passed",
+    "candidate_read_contract": "4 passed",
+    "wav_conformance": "1 passed",
+    "unique_suite_test_count": 171,
+    "library_check": "pass",
+    "formatting": "pass",
+    "identity": "pass",
+    "frozen_fixture_pins_verified": 366,
+    "g23_snapshot_files_verified": 7,
+    "g23_patch_apply": "pass; reconstructs all 7 completed G23 source hashes",
+    "speech_input_identities_verified": 264,
+    "speech_private_candidate_identities_verified": 59,
+    "owned_whitespace_and_links": "pass",
+    "example_file_refs_verified": 47
+  },
+  "commands": [
+    "PT_SPEECH_EXPORT=fixtures/generation/speech-v1 python3 -B tools/generation/run_speech_tests.py",
+    "python3 -B tools/generation/run_speech_tests.py --all-generation",
+    "cargo test -p pt-production generation:: --locked --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "cargo test -p pt-contracts --test provider_metadata --test provider_service --locked --offline",
+    "cargo test -p pt-production --test candidate_read_contract --test wav_conformance --locked --offline",
+    "cargo check -p pt-production --lib --locked --offline",
+    "rustfmt --edition 2024 --config skip_children=true --check crates/pt-production/src/generation/mod.rs crates/pt-production/src/generation/tests.rs crates/pt-production/src/generation/speech.rs crates/pt-production/src/generation/speech_verify.rs crates/pt-production/src/generation/speech_units.rs crates/pt-production/src/generation/speech_takes.rs crates/pt-production/src/generation/speech_transcription.rs crates/pt-production/src/generation/tests/speech.rs",
+    "python3 tools/check_product_identity.py ."
+  ],
+  "red_green": [
+    {
+      "command": "cargo test -p pt-production generation::tests::speech::ordered_speech --locked --offline",
+      "red": "adapter-pending emitted no private/speech-plan.json",
+      "green": "two source-backed narrator units reconstruct exact prose; no Pilot/bulk approval"
+    },
+    {
+      "test": "committed_speech_payloads_propose_v2_content_but_live_mode_cannot_synthesize",
+      "red": "no private/speech/proposals/u0000.json",
+      "green": "genuine committed registered payload required; bounded shared v2 proposal remains content-only/dispatch false"
+    },
+    {
+      "test": "saved_native_takes_preserve_original_wavs_and_local_frame_domains",
+      "red": "no private/speech-takes.json",
+      "green": "original native WAV/receipt/request/voice/frame identities retained; global narration offsets null"
+    },
+    {
+      "test": "transcription_plans_use_actual_native_frames_without_expected_prose_hints",
+      "red": "no private/speech-transcription-plan.json",
+      "green": "actual frame/rate/channel copy plan with no expected prose/model hints or measured timestamps"
+    },
+    {
+      "test": "transcription_fanout_limits_keep_remaining_native_ranges_explicitly_unplanned",
+      "red": "transcription_max_batches unsupported",
+      "green": "explicit fanout guard retains remaining original sample ranges without pretending full transcription coverage"
+    },
+    {
+      "test": "source_scoped_acting_splits_units_and_stays_outside_verbatim_payload_text",
+      "red": "revised Pilot acting initially retained a stale recorded Pilot request in the test fixture",
+      "green": "test fixture freezes exact revised request identities; source-scoped acting boundaries split requests and text remains verbatim"
+    }
+  ],
+  "predecessor_freeze": {
+    "path": "docs/implementation/generation/pilot-g23-freeze.json",
+    "sha256": "3f93ad1aa07651b7b878f4d5a64fafc5da58633181b1a689d5f0e47c4e63ee0a",
+    "bytes": 20082,
+    "media_type": "application/json"
+  },
+  "runtime_request": {
+    "path": "docs/implementation/generation/speech-runtime-request.json",
+    "sha256": "0b8227541595f3ab9b68ec0d17fed3068ba5989b0df0330df87262e20eb98595",
+    "bytes": 8382,
+    "media_type": "application/json"
+  },
+  "schemas_and_examples": {
+    "definitions": "docs/implementation/generation/speech.md#private-schema-1",
+    "context": {
+      "path": "fixtures/generation/speech-v1/saved-takes/inputs/private/speech-context.json",
+      "sha256": "fdb17cd1bd1173e836937c596bb8147d55e0426b813c61c2117cb73203c25c40",
+      "bytes": 2253,
+      "media_type": "application/json"
+    },
+    "bindings": {
+      "path": "fixtures/generation/speech-v1/saved-takes/inputs/private/speech-bindings.json",
+      "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+      "bytes": 762,
+      "media_type": "application/json"
+    },
+    "source_plan": {
+      "path": "fixtures/generation/speech-v1/dialogue/candidates/private/speech-plan.json",
+      "sha256": "3ddb249fb26fb40217f6cc636a1c5aeb94464652f1f077c502ebfc20a49017cc",
+      "bytes": 9996,
+      "media_type": "application/json"
+    },
+    "request": {
+      "path": "fixtures/generation/speech-v1/saved-takes/candidates/private/speech/requests/u0000.json",
+      "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+      "bytes": 1815,
+      "media_type": "application/json"
+    },
+    "proposal": {
+      "path": "fixtures/generation/speech-v1/saved-takes/candidates/private/speech/proposals/u0000.json",
+      "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+      "bytes": 2933,
+      "media_type": "application/json"
+    },
+    "observation": {
+      "path": "fixtures/generation/speech-v1/recorded-v2/inputs/private/speech-observations/u0000.json",
+      "sha256": "e501ffaf3608c969d558a892d3449941c6860fa481f15827f7829d41182a4330",
+      "bytes": 8041,
+      "media_type": "application/json"
+    },
+    "raw_take": {
+      "path": "fixtures/generation/speech-v1/saved-takes/inputs/private/speech-raw/u0000.json",
+      "sha256": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c",
+      "bytes": 1072,
+      "media_type": "application/json"
+    },
+    "native_manifest": {
+      "path": "fixtures/generation/speech-v1/mixed-native/candidates/private/speech-takes.json",
+      "sha256": "e544691e27328a2550b18b9f5de1a3b5f2a158adcb0a45bfc77eb7ce859b93e1",
+      "bytes": 8664,
+      "media_type": "application/json"
+    },
+    "transcription_plan": {
+      "path": "fixtures/generation/speech-v1/bounded-transcription/candidates/private/speech-transcription-plan.json",
+      "sha256": "f60ee75ed0b70e8f717485d15ad279043688391020e57cc85c5ab1b8827eb1ab",
+      "bytes": 14267,
+      "media_type": "application/json"
+    },
+    "unplanned_ranges": {
+      "path": "fixtures/generation/speech-v1/unplanned/candidates/private/speech-transcription-plan.json",
+      "sha256": "60ffac17e9532734c3a3d4d12081a69385f00c6f02733b7c840b35673c7ac3e3",
+      "bytes": 2871,
+      "media_type": "application/json"
+    }
+  },
+  "source_requirement": {
+    "component": "speech-timing-workflow",
+    "relative_document": "docs/architecture/generation/02-speech-and-timing.md",
+    "sha256": "ae2342c80a5504dfe8b0209fbc84032561b3b12183d28467bf7dca75cedd2fbc",
+    "access": "transient read-only; no external source path serialized"
+  },
+  "reuse": "Unchanged G23 Pilot/Direction/Source reconstruction and public stateless native PCM16 validation. No new public schema, library binding, decoder/helper recipe or caller authority.",
+  "limits": {
+    "input_refs": 64,
+    "input_aggregate_bytes": 67108864,
+    "raw_clean_source_file_bytes": 16777216,
+    "native_wav_file_bytes": 8388608,
+    "metadata_request_response_candidate_bytes": 1048576,
+    "registered_payloads": 32,
+    "observations": 32,
+    "unit_count_max": 1024,
+    "primary_planned_wav_bytes_max": 16777216,
+    "primary_seconds_max": 90,
+    "segments_per_batch_max": 64,
+    "batch_count_max": 256,
+    "default_batch_count": 128
+  },
+  "sample_domains": {
+    "source": "half-open Unicode scalar spans with exact reconstruction",
+    "native_take": "original zero-based [0,frames] at actual original rate/channels",
+    "primary_batch": "proposed PCM-copy-local integer offsets, not yet materialized",
+    "global_narration": null,
+    "delivered_master": null,
+    "measured_word_intervals": null,
+    "fact_bounds": null
+  },
+  "proofs": {
+    "verbatim": "Every case reconstructs source; dialogue retains Narrator/Mira/Narrator order and quotation/attribution. Unsupported byte/count limits retain complete unresolved prose.",
+    "voice": "Exact Pilot/canonical/catalog/model/voice/language/accent/baseline/reference/established identities or unresolved; no silent recast/upgrade.",
+    "saved_results": "Shared issued/result/proposal/observer/raw/native-output identities checked; wrong epoch/model/request/source/turn/recipe/audio rejected. Uncertain/obsolete original usage retained.",
+    "transcription": "Physical decoded frames/rate/channels determine native-to-proposed-batch offsets, byte/duration/segment/fanout limits. Incompatible formats stay separate, cut uncertainty and unplanned ranges remain explicit. Model payload contains only VERBATIM/word_timestamps/audio:null.",
+    "replay": "All request/proposal/plan/take/transcription/handoff bytes/cache keys identical with exact recorded registration phase; original receipts/audio untouched; no service dispatch in Fixture/Replay/Live, including available methods that panic if called.",
+    "privacy": "Actual private context/bindings/catalog/raw/observation/candidates and a public image alias supplied to Package; protected hashes remain outside audience payload inventory."
+  },
+  "preserved": {
+    "g16_words": 176,
+    "g16_highlight_groups": 170,
+    "g16_points": 6,
+    "g16_matched_facts": 4,
+    "g16_unresolved_facts": [
+      {
+        "id": "strange-event",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "balloon-ascent",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "unprovided-fact",
+        "outcome": "missing"
+      }
+    ],
+    "g17_temporary_master_seconds": 180,
+    "g18_frozen_report_sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+    "g19_temporary_chapter_seconds": 600,
+    "g21_temporary_chapter_seconds": 1200,
+    "g19_recipe_sha256": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+    "g21_recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "g20_scopes_adverse_and_private_exports": "All 16 acceptance regression tests retained; frozen v1/v2/v3 fixtures unchanged",
+    "g22_direction_tests": 14,
+    "g22_direction_fixture_files": 119,
+    "g23_pilot_tests": 19,
+    "g24_new_speech_tests": 21
+  },
+  "cases": [
+    {
+      "case": "acting",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/acting/stage-input.json",
+        "sha256": "d671c5c31dfc6c214fa57a3b9f4719f200fe5a497af19c600a86a664c7773939",
+        "bytes": 9936,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/acting/input-index.json",
+        "sha256": "daa7304c35a744e0fefb1ed106646b2c8d855cc013eef22bfcd9c2707f923468",
+        "bytes": 12702,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/acting/stage-output.json",
+        "sha256": "0d34b8d90a58d58b92d073127b2d553528159590ba517395e3e4670e7f11ca20",
+        "bytes": 9881,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "a8458e4ca48a65606daf650451586fd60da742be4a340d9b6a05c4eef26377e6",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "707bc43cadf7bfd031ca13e32a0f1086de07ba32ceb91099e5b8f853514dcd19",
+            "bytes": 1814,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "cc1e4374702651d4e0ba81d7f2116bf222601650fc80939ba2e99966eb85ae30",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "03b9e2005ea14861377dea94f24de3fcfd805cbbc3022047b9843aa53cb7571f",
+            "bytes": 2077,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "27d6e0169c30f8ebb79965eb2704518a92574b12f093ab0bcdd0899604004ba6",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a",
+            "bytes": 816,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "45ee1536ddd629ed63cb57b0a68fa68345fa52498cdaee4fcaa3a50efb772998",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "3093f4ac59cac15d38c2e8e338fe33db6b8eec6c2d84a6bf9607405a75d0daea",
+            "bytes": 862,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "1321ebbf504a01166ae19b8a21cb60e885ed981a52a133f60083727549ab994f",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "4698c4bfcb9dccdca9f7637725572797b0116de73b39ff1395c09ec8642680ad",
+            "bytes": 6634,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b92bc3e1742d68375fbb7adc3d9909b2e56476be3e6c9cc79fffd21d59c26e1b",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "78cc7c1739e95165813546774ed79e926a5b3227fedbc36f31c860dd06507377",
+            "bytes": 9049,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "bounded-transcription",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/bounded-transcription/stage-input.json",
+        "sha256": "2d79a8b8af6dae04b1409023a71617d15ee40e1c3839b40b8ca564c311413844",
+        "bytes": 12625,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/bounded-transcription/input-index.json",
+        "sha256": "1a182812d64469a10de592bde15d7d64a2bbeed4b29279c569380ff2d28aaa28",
+        "bytes": 16448,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/bounded-transcription/stage-output.json",
+        "sha256": "0e137030d75a4fd4b178efcb6b08c1ffcd6636dcd24929edf077840c6f9acebc",
+        "bytes": 10387,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "8ea2b29e425559b083b0698da0647f4fbe6685f78411a8d59836abdd38c85fa3",
+          "file": {
+            "path": "private/speech/proposals/u0000.json",
+            "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+            "bytes": 1815,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b1e7a1d5d49f45cc51abb10f967449f6958437c94e4f24ccccbb5c4f94fc2dac",
+          "file": {
+            "path": "private/speech/proposals/u0001.json",
+            "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+            "bytes": 1806,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "ed7faf1d6b0155181453dac5497ca684c8fd1a249aa5d4d0cfb58400aa8fb95c",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "f60ee75ed0b70e8f717485d15ad279043688391020e57cc85c5ab1b8827eb1ab",
+            "bytes": 14267,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "57ea599c26cad915f2e508fa2ac57a5d283a472dd8760edd171194464df69b64",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "97efd43dd8ca0e37cc04f2cf88aed4c96a21aa0df4fc648c0c30b13235e0b9f8",
+            "bytes": 8664,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+            "bytes": 6636,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "9c653fde7d9d5a4fb6db5f091118f4783969c5fd82700f64c5ebe9d3a3fcca42",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "4b7f64ff3fcfe885c071f69972d8b396a56f3ead769a024552e45ba8fdf46fed",
+            "bytes": 9241,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "dialogue",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/dialogue/stage-input.json",
+        "sha256": "0b5c00d69bb7b7c361592c39967ddc0a1c385e36953ca36e5553c9dec05121ed",
+        "bytes": 7318,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/dialogue/input-index.json",
+        "sha256": "9aafb74114a80f6bc92cf2c84fb60b0ca189ffaf4a18af2092dc21c171017569",
+        "bytes": 9105,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/dialogue/stage-output.json",
+        "sha256": "b491947c43c5b449d359da9740f1347d2222104a97e868c7edabb1bea1b37881",
+        "bytes": 10974,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "0428a3cd2e99b52037fadd8a1e50c9e9f1943d7d582c021f78faed9f66e51f41",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "d3536f9a6f5d3ae1850c5e1d6669ea58dbd640816b7a00805af36ba84be495a1",
+            "bytes": 1786,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "846a274bc3d4a9567c52584aa05aad55fc6d92f665a71dadfbfec69e172b67ee",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "86584c60ec55e80fd7c10375be093c67ca710f61c919805c27431f9c47bec8f0",
+            "bytes": 1792,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "54aa8da5057ac333a89d045e88e09498b3e766f22d6ff8ca939fdfd6f6cf005a",
+          "file": {
+            "path": "private/speech/requests/u0002.json",
+            "sha256": "a9e55a9d48d2aab8e5b5bfed64e7ae20e9ea174b630a2c57bab8dc02722a64fa",
+            "bytes": 1813,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "27d6e0169c30f8ebb79965eb2704518a92574b12f093ab0bcdd0899604004ba6",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a",
+            "bytes": 816,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "fd2f60b2a499f7f883e602990b9f69344472bfcd12cde31451b89bf93dd5ac83",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "22f567a941dc113aaec361411e40eefc54db6ad6fb1ef7aded7406ded03c9c15",
+            "bytes": 863,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "c700dbe5c49a2316145b57579f9ec614288de6af5fab75de304f293144baab84",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "3a6d4a51e7d08fa658d0106ecddb43f03130638804f5ef1f63a5cbb968048a8b",
+            "bytes": 9881,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "8b3b13e7e65600240a68432dfa6f52d69f68a38122e3ec71f34db943132be80b",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "3ddb249fb26fb40217f6cc636a1c5aeb94464652f1f077c502ebfc20a49017cc",
+            "bytes": 9996,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "mixed-native",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/mixed-native/stage-input.json",
+        "sha256": "e00d227dea7a3e83ec9a1dc772b313acf6a8cf93c5f05773aee74505c8d992a0",
+        "bytes": 12625,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/mixed-native/input-index.json",
+        "sha256": "b78a6986046329e22289fff4c7b2034f466386626d69e3b9612b731e7d2a3016",
+        "bytes": 16373,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/mixed-native/stage-output.json",
+        "sha256": "b8400a6005508f856f259434ae042e13f9cac5ffa97a13f038a30ea1c3efd806",
+        "bytes": 10109,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "8ea2b29e425559b083b0698da0647f4fbe6685f78411a8d59836abdd38c85fa3",
+          "file": {
+            "path": "private/speech/proposals/u0000.json",
+            "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+            "bytes": 1815,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b1e7a1d5d49f45cc51abb10f967449f6958437c94e4f24ccccbb5c4f94fc2dac",
+          "file": {
+            "path": "private/speech/proposals/u0001.json",
+            "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+            "bytes": 1806,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "181483b16f3a4c5058803669fb10e90df366604b0b3f23619c906347fa2ca2dc",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "59cbeafa398f225127f996d9685bc7532fde1c6493790626274eb028e6c2fd17",
+            "bytes": 3154,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "d1ff1a5657bc5a95bbf0b7eff25d9b9c168166a1a106f64c1a6d87a24b34a823",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "e544691e27328a2550b18b9f5de1a3b5f2a158adcb0a45bfc77eb7ce859b93e1",
+            "bytes": 8664,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+            "bytes": 6636,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "43d12a58593c8170989d550e37fe7a0dd5c6ed77599e0d88626cfbdfc98124c9",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+            "bytes": 8964,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "plan",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/plan/stage-input.json",
+        "sha256": "2ac0862655b02f7aee4c9e1f9bf5364eb485b8bf6018dd95d8dc5f13663b3a56",
+        "bytes": 9933,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/plan/input-index.json",
+        "sha256": "7cea4a25aa8ec613290632ef0771b3e3246102b26670856ce9e3fcffd16d7070",
+        "bytes": 12697,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/plan/stage-output.json",
+        "sha256": "cc072cf616d8651ff550d020943620791b34e22c27c06e9276cb56753b0cda89",
+        "bytes": 10003,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+            "bytes": 1815,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+            "bytes": 1806,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "27d6e0169c30f8ebb79965eb2704518a92574b12f093ab0bcdd0899604004ba6",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a",
+            "bytes": 816,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "19764a084cde8aa1a3c15356660b1978dd63ca57a80eac522f72eec68d24360a",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "c3775a871e311220d409135b5f459f872c06b0d94a1013d6546460c6454a9cae",
+            "bytes": 863,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+            "bytes": 6636,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "3411250a19bd65c65a185cc7aa7622177dd765bc7f0905e34b14476f9cdf2b05",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "5c71ed12b05b955c1324df7e7c03a5084beaa4697bada06959329050e04b6cc0",
+            "bytes": 9172,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "recorded-v2",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/recorded-v2/stage-input.json",
+        "sha256": "1a776026883c188ec36817a22546d182afd4d7d8fae379ee9643030e6762d743",
+        "bytes": 12626,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/recorded-v2/input-index.json",
+        "sha256": "bd41058d7e55808ccdfc3597de4f1115edbf11626e157e3c3b2373a6280abbd4",
+        "bytes": 16359,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/recorded-v2/stage-output.json",
+        "sha256": "cd17a331b90c2f5dd2906be244c8fd05554d0bb690fd9daa4f2d02b210f9f3d0",
+        "bytes": 10110,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "8ea2b29e425559b083b0698da0647f4fbe6685f78411a8d59836abdd38c85fa3",
+          "file": {
+            "path": "private/speech/proposals/u0000.json",
+            "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+            "bytes": 1815,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b1e7a1d5d49f45cc51abb10f967449f6958437c94e4f24ccccbb5c4f94fc2dac",
+          "file": {
+            "path": "private/speech/proposals/u0001.json",
+            "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+            "bytes": 1806,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "5843cfe629a9cac536ed651bf787c7a643ddcc42a2d33ec6ba12516d469710da",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0",
+            "bytes": 2619,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "2f64abe93fd9516c4a6cb202a6f3ec5963cc16e02242664a101248883dd552ee",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5",
+            "bytes": 17136,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+            "bytes": 6636,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "43d12a58593c8170989d550e37fe7a0dd5c6ed77599e0d88626cfbdfc98124c9",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+            "bytes": 8964,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "saved-takes",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/saved-takes/stage-input.json",
+        "sha256": "815af46f7a1ce94c9c873aa665414e16664c0a35144c5868a51312a8f4e431b4",
+        "bytes": 12625,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/saved-takes/input-index.json",
+        "sha256": "3914faeb421c751f99c6a951767340a144589a1f8937e0bc934491fc9b59993c",
+        "bytes": 16358,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/saved-takes/stage-output.json",
+        "sha256": "20887976266e67f2a90b20dda04b4048316036e5ee5eec08cac2e59b91cd710d",
+        "bytes": 10109,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "8ea2b29e425559b083b0698da0647f4fbe6685f78411a8d59836abdd38c85fa3",
+          "file": {
+            "path": "private/speech/proposals/u0000.json",
+            "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+            "bytes": 1815,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b1e7a1d5d49f45cc51abb10f967449f6958437c94e4f24ccccbb5c4f94fc2dac",
+          "file": {
+            "path": "private/speech/proposals/u0001.json",
+            "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+            "bytes": 1806,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "5843cfe629a9cac536ed651bf787c7a643ddcc42a2d33ec6ba12516d469710da",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0",
+            "bytes": 2619,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "57ea599c26cad915f2e508fa2ac57a5d283a472dd8760edd171194464df69b64",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "97efd43dd8ca0e37cc04f2cf88aed4c96a21aa0df4fc648c0c30b13235e0b9f8",
+            "bytes": 8664,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+            "bytes": 6636,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "43d12a58593c8170989d550e37fe7a0dd5c6ed77599e0d88626cfbdfc98124c9",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+            "bytes": 8964,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "unplanned",
+      "stage_input": {
+        "path": "fixtures/generation/speech-v1/unplanned/stage-input.json",
+        "sha256": "cb2977ca7fb128fec026d30c5c262f5cb092a870f183793a3c371c1267581958",
+        "bytes": 12625,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/speech-v1/unplanned/input-index.json",
+        "sha256": "593ce3daa04d9141f4e9a5f3aebf504d49d2bcc0bc160f5e1a037f4cc3bc105e",
+        "bytes": 16340,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/speech-v1/unplanned/stage-output.json",
+        "sha256": "bec66f5eb7459c38ed81e45c8d72f9c9efb9035e04e5bef381d4de1794ce1e49",
+        "bytes": 10904,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "8ea2b29e425559b083b0698da0647f4fbe6685f78411a8d59836abdd38c85fa3",
+          "file": {
+            "path": "private/speech/proposals/u0000.json",
+            "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+          "file": {
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+            "bytes": 1815,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "b1e7a1d5d49f45cc51abb10f967449f6958437c94e4f24ccccbb5c4f94fc2dac",
+          "file": {
+            "path": "private/speech/proposals/u0001.json",
+            "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+            "bytes": 2933,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+          "file": {
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+            "bytes": 1806,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "715c00795a71d740f5bb253ccde018bbe50b71d60994bf9d7f7a1a9d94344a52",
+          "file": {
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "60ffac17e9532734c3a3d4d12081a69385f00c6f02733b7c840b35673c7ac3e3",
+            "bytes": 2871,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "57ea599c26cad915f2e508fa2ac57a5d283a472dd8760edd171194464df69b64",
+          "file": {
+            "path": "private/speech-takes.json",
+            "sha256": "97efd43dd8ca0e37cc04f2cf88aed4c96a21aa0df4fc648c0c30b13235e0b9f8",
+            "bytes": 8664,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+          "file": {
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+            "bytes": 6636,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "9dd2270b0eb0d51dacbe161df1ade6f904c10d9cdb3a55e0d56434b8581c3d19",
+          "file": {
+            "path": "private/speech-plan.json",
+            "sha256": "56d16b80f1fe0950f2452ba1fb8d8a85b95e68520eec174ee241e2a9d743dbdb",
+            "bytes": 9759,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    }
+  ],
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "c403a6259a099a0b4323f72d35f8c3a200a3baa09e23ffb901842d955124aa2a",
+    "crates/pt-production/src/generation/tests.rs": "538cf120a8ff106c0007feb375cd04021382d649e70cb616a5dad485013f8ea0",
+    "crates/pt-production/src/generation/speech.rs": "f872ae48521b69c723c05a77bfba538564ede1e1f27d296bed856c6315f6ec83",
+    "crates/pt-production/src/generation/speech_verify.rs": "7af935a317f50525ee6d99bdebb504b7b3ea360fe319254ba79232023801e83a",
+    "crates/pt-production/src/generation/speech_units.rs": "b36129163e21d00e615005eb508fdda06ed05396f298dda962d483c345745eff",
+    "crates/pt-production/src/generation/speech_takes.rs": "ca04078960dc9bbe0de2c9f0161cabdf7a038f39eeefb4235b83e150f35e9a0c",
+    "crates/pt-production/src/generation/speech_transcription.rs": "37539c09fec08d2b84c25d3f01c1e3c2ae70c9ca37d86d13dd245737191995c5",
+    "crates/pt-production/src/generation/tests/speech.rs": "117a97a39c65ab755b32ef59baf85aa95392a86984e56e3a7adc37c362a3fdcd",
+    "tools/generation/run_speech_tests.py": "e4f5b2f8b346693e466b1763d7cb5c91276a63090732e555ca70216bd91664b1"
+  },
+  "fixture_sha256": {
+    "README.md": "fa1a3aab251ea1b4d0aafa367cbd253e0c7d1c3ad5406636b168424a19f977e2",
+    "acting/candidates/private/speech/requests/u0000.json": "707bc43cadf7bfd031ca13e32a0f1086de07ba32ceb91099e5b8f853514dcd19",
+    "acting/candidates/private/speech/requests/u0001.json": "03b9e2005ea14861377dea94f24de3fcfd805cbbc3022047b9843aa53cb7571f",
+    "acting/candidates/private/speech-handoff.json": "4698c4bfcb9dccdca9f7637725572797b0116de73b39ff1395c09ec8642680ad",
+    "acting/candidates/private/speech-plan.json": "78cc7c1739e95165813546774ed79e926a5b3227fedbc36f31c860dd06507377",
+    "acting/candidates/private/speech-takes.json": "3093f4ac59cac15d38c2e8e338fe33db6b8eec6c2d84a6bf9607405a75d0daea",
+    "acting/candidates/private/speech-transcription-plan.json": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a",
+    "acting/input-index.json": "daa7304c35a744e0fefb1ed106646b2c8d855cc013eef22bfcd9c2707f923468",
+    "acting/inputs/private/pilot/requests/p000-t01.json": "a4dd2d7410f4c877102184eb47b0b250485dc36c543edb65efa2bfc0a2066e0b",
+    "acting/inputs/private/pilot-context.json": "27614ce71a4436721b639eeb71dd1ec14e5de678b1c4c556680bb49ce3defc08",
+    "acting/inputs/private/pilot-plan.json": "32784a7d0fe580988b130a5fe46d5218f9585c2e7f2943c0db0476a15c91099a",
+    "acting/inputs/private/pilot-selection.json": "e006de3f314b66e5f030eced3af22ea78e8149930b83821d924d96add4f50f8d",
+    "acting/inputs/private/speech-bindings.json": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+    "acting/inputs/private/speech-context.json": "9339a5008d139e982ef0c1725dacd3d6cf463cafd61e48d37910ef12ba1500e9",
+    "acting/inputs/private/speech-pilot-input.json": "05f225a307737130c71b72ee25188551e417e94517b9dfeed37e4978c3008724",
+    "acting/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "acting/stage-input.json": "d671c5c31dfc6c214fa57a3b9f4719f200fe5a497af19c600a86a664c7773939",
+    "acting/stage-output.json": "0d34b8d90a58d58b92d073127b2d553528159590ba517395e3e4670e7f11ca20",
+    "bounded-transcription/candidates/private/speech/proposals/u0000.json": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+    "bounded-transcription/candidates/private/speech/proposals/u0001.json": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+    "bounded-transcription/candidates/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "bounded-transcription/candidates/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "bounded-transcription/candidates/private/speech-handoff.json": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+    "bounded-transcription/candidates/private/speech-plan.json": "4b7f64ff3fcfe885c071f69972d8b396a56f3ead769a024552e45ba8fdf46fed",
+    "bounded-transcription/candidates/private/speech-takes.json": "97efd43dd8ca0e37cc04f2cf88aed4c96a21aa0df4fc648c0c30b13235e0b9f8",
+    "bounded-transcription/candidates/private/speech-transcription-plan.json": "f60ee75ed0b70e8f717485d15ad279043688391020e57cc85c5ab1b8827eb1ab",
+    "bounded-transcription/input-index.json": "1a182812d64469a10de592bde15d7d64a2bbeed4b29279c569380ff2d28aaa28",
+    "bounded-transcription/inputs/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "bounded-transcription/inputs/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "bounded-transcription/inputs/private/speech-bindings.json": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+    "bounded-transcription/inputs/private/speech-context.json": "1d9d52e1d1ca49872d87647cd32a2fe2dfb9f58340f1791ccbb621765c1a91a8",
+    "bounded-transcription/inputs/private/speech-observations/u0000.json": "4bcfe6878d7fd6e67bfd10a7ef4e3bf8fb91add6ae9bc2da3b698511457bc39a",
+    "bounded-transcription/inputs/private/speech-observations/u0001.json": "50fb401df39ca7cf9088ef7eabc10a2d3550783ad2b65e5ea0e66179e480173f",
+    "bounded-transcription/inputs/private/speech-raw/u0000.json": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c",
+    "bounded-transcription/inputs/private/speech-raw/u0001.json": "323c429e2477a8d2fba9c05160a375b73e5c413865622b93886c43ce738c4411",
+    "bounded-transcription/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "bounded-transcription/stage-input.json": "2d79a8b8af6dae04b1409023a71617d15ee40e1c3839b40b8ca564c311413844",
+    "bounded-transcription/stage-output.json": "0e137030d75a4fd4b178efcb6b08c1ffcd6636dcd24929edf077840c6f9acebc",
+    "dialogue/candidates/private/speech/requests/u0000.json": "d3536f9a6f5d3ae1850c5e1d6669ea58dbd640816b7a00805af36ba84be495a1",
+    "dialogue/candidates/private/speech/requests/u0001.json": "86584c60ec55e80fd7c10375be093c67ca710f61c919805c27431f9c47bec8f0",
+    "dialogue/candidates/private/speech/requests/u0002.json": "a9e55a9d48d2aab8e5b5bfed64e7ae20e9ea174b630a2c57bab8dc02722a64fa",
+    "dialogue/candidates/private/speech-handoff.json": "3a6d4a51e7d08fa658d0106ecddb43f03130638804f5ef1f63a5cbb968048a8b",
+    "dialogue/candidates/private/speech-plan.json": "3ddb249fb26fb40217f6cc636a1c5aeb94464652f1f077c502ebfc20a49017cc",
+    "dialogue/candidates/private/speech-takes.json": "22f567a941dc113aaec361411e40eefc54db6ad6fb1ef7aded7406ded03c9c15",
+    "dialogue/candidates/private/speech-transcription-plan.json": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a",
+    "dialogue/input-index.json": "9aafb74114a80f6bc92cf2c84fb60b0ca189ffaf4a18af2092dc21c171017569",
+    "dialogue/inputs/private/speech-bindings.json": "75e57f9c9c25640995efd900c451bd9379befae0c5dc089749635de555a7d2e0",
+    "dialogue/inputs/private/speech-context.json": "4b92c2c84b81328521bb32895f16deeb576710ce29f97e6f30a6f77b03b95ada",
+    "dialogue/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "dialogue/stage-input.json": "0b5c00d69bb7b7c361592c39967ddc0a1c385e36953ca36e5553c9dec05121ed",
+    "dialogue/stage-output.json": "b491947c43c5b449d359da9740f1347d2222104a97e868c7edabb1bea1b37881",
+    "mixed-native/candidates/private/speech/proposals/u0000.json": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+    "mixed-native/candidates/private/speech/proposals/u0001.json": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+    "mixed-native/candidates/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "mixed-native/candidates/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "mixed-native/candidates/private/speech-handoff.json": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+    "mixed-native/candidates/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "mixed-native/candidates/private/speech-takes.json": "e544691e27328a2550b18b9f5de1a3b5f2a158adcb0a45bfc77eb7ce859b93e1",
+    "mixed-native/candidates/private/speech-transcription-plan.json": "59cbeafa398f225127f996d9685bc7532fde1c6493790626274eb028e6c2fd17",
+    "mixed-native/input-index.json": "b78a6986046329e22289fff4c7b2034f466386626d69e3b9612b731e7d2a3016",
+    "mixed-native/inputs/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "mixed-native/inputs/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "mixed-native/inputs/private/speech-audio/u0001.wav": "ca0e8b45841894e8fd7eced1307834f27f0e1737274e717dd050ca83bc89587a",
+    "mixed-native/inputs/private/speech-bindings.json": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+    "mixed-native/inputs/private/speech-context.json": "bc70fbec692a8e9ddb20b560718b22a24e769c749165b7831982556bdfc1bb1d",
+    "mixed-native/inputs/private/speech-observations/u0000.json": "4bcfe6878d7fd6e67bfd10a7ef4e3bf8fb91add6ae9bc2da3b698511457bc39a",
+    "mixed-native/inputs/private/speech-observations/u0001.json": "47010c6c45a4b22b67415135645aa5381267c543b567dbe7f4d636632886d5a4",
+    "mixed-native/inputs/private/speech-raw/u0000.json": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c",
+    "mixed-native/inputs/private/speech-raw/u0001.json": "949f29f870d338ecec11388017b67798bbb60d336d14b46c003861de744a3ce4",
+    "mixed-native/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "mixed-native/stage-input.json": "e00d227dea7a3e83ec9a1dc772b313acf6a8cf93c5f05773aee74505c8d992a0",
+    "mixed-native/stage-output.json": "b8400a6005508f856f259434ae042e13f9cac5ffa97a13f038a30ea1c3efd806",
+    "plan/candidates/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "plan/candidates/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "plan/candidates/private/speech-handoff.json": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+    "plan/candidates/private/speech-plan.json": "5c71ed12b05b955c1324df7e7c03a5084beaa4697bada06959329050e04b6cc0",
+    "plan/candidates/private/speech-takes.json": "c3775a871e311220d409135b5f459f872c06b0d94a1013d6546460c6454a9cae",
+    "plan/candidates/private/speech-transcription-plan.json": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a",
+    "plan/input-index.json": "7cea4a25aa8ec613290632ef0771b3e3246102b26670856ce9e3fcffd16d7070",
+    "plan/inputs/private/speech-bindings.json": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+    "plan/inputs/private/speech-context.json": "6a10a0cd2edb37e233f967a8d90a16697bb0a2ac8371a3cd42feb0f7ff4ba417",
+    "plan/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "plan/stage-input.json": "2ac0862655b02f7aee4c9e1f9bf5364eb485b8bf6018dd95d8dc5f13663b3a56",
+    "plan/stage-output.json": "cc072cf616d8651ff550d020943620791b34e22c27c06e9276cb56753b0cda89",
+    "recorded-v2/candidates/private/speech/proposals/u0000.json": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+    "recorded-v2/candidates/private/speech/proposals/u0001.json": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+    "recorded-v2/candidates/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "recorded-v2/candidates/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "recorded-v2/candidates/private/speech-handoff.json": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+    "recorded-v2/candidates/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "recorded-v2/candidates/private/speech-takes.json": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5",
+    "recorded-v2/candidates/private/speech-transcription-plan.json": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0",
+    "recorded-v2/input-index.json": "bd41058d7e55808ccdfc3597de4f1115edbf11626e157e3c3b2373a6280abbd4",
+    "recorded-v2/inputs/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "recorded-v2/inputs/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "recorded-v2/inputs/private/speech-bindings.json": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+    "recorded-v2/inputs/private/speech-context.json": "eddf0bc8697c8e24ee993c7fa5a735fd71a834049ca2d9b8d649e7c1775d4357",
+    "recorded-v2/inputs/private/speech-observations/u0000.json": "e501ffaf3608c969d558a892d3449941c6860fa481f15827f7829d41182a4330",
+    "recorded-v2/inputs/private/speech-observations/u0001.json": "50fb401df39ca7cf9088ef7eabc10a2d3550783ad2b65e5ea0e66179e480173f",
+    "recorded-v2/inputs/private/speech-raw/u0000.json": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c",
+    "recorded-v2/inputs/private/speech-raw/u0001.json": "323c429e2477a8d2fba9c05160a375b73e5c413865622b93886c43ce738c4411",
+    "recorded-v2/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "recorded-v2/stage-input.json": "1a776026883c188ec36817a22546d182afd4d7d8fae379ee9643030e6762d743",
+    "recorded-v2/stage-output.json": "cd17a331b90c2f5dd2906be244c8fd05554d0bb690fd9daa4f2d02b210f9f3d0",
+    "saved-takes/candidates/private/speech/proposals/u0000.json": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+    "saved-takes/candidates/private/speech/proposals/u0001.json": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+    "saved-takes/candidates/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "saved-takes/candidates/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "saved-takes/candidates/private/speech-handoff.json": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+    "saved-takes/candidates/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "saved-takes/candidates/private/speech-takes.json": "97efd43dd8ca0e37cc04f2cf88aed4c96a21aa0df4fc648c0c30b13235e0b9f8",
+    "saved-takes/candidates/private/speech-transcription-plan.json": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0",
+    "saved-takes/input-index.json": "3914faeb421c751f99c6a951767340a144589a1f8937e0bc934491fc9b59993c",
+    "saved-takes/inputs/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "saved-takes/inputs/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "saved-takes/inputs/private/speech-bindings.json": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+    "saved-takes/inputs/private/speech-context.json": "fdb17cd1bd1173e836937c596bb8147d55e0426b813c61c2117cb73203c25c40",
+    "saved-takes/inputs/private/speech-observations/u0000.json": "4bcfe6878d7fd6e67bfd10a7ef4e3bf8fb91add6ae9bc2da3b698511457bc39a",
+    "saved-takes/inputs/private/speech-observations/u0001.json": "50fb401df39ca7cf9088ef7eabc10a2d3550783ad2b65e5ea0e66179e480173f",
+    "saved-takes/inputs/private/speech-raw/u0000.json": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c",
+    "saved-takes/inputs/private/speech-raw/u0001.json": "323c429e2477a8d2fba9c05160a375b73e5c413865622b93886c43ce738c4411",
+    "saved-takes/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "saved-takes/stage-input.json": "815af46f7a1ce94c9c873aa665414e16664c0a35144c5868a51312a8f4e431b4",
+    "saved-takes/stage-output.json": "20887976266e67f2a90b20dda04b4048316036e5ee5eec08cac2e59b91cd710d",
+    "unplanned/candidates/private/speech/proposals/u0000.json": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+    "unplanned/candidates/private/speech/proposals/u0001.json": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55",
+    "unplanned/candidates/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "unplanned/candidates/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "unplanned/candidates/private/speech-handoff.json": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53",
+    "unplanned/candidates/private/speech-plan.json": "56d16b80f1fe0950f2452ba1fb8d8a85b95e68520eec174ee241e2a9d743dbdb",
+    "unplanned/candidates/private/speech-takes.json": "97efd43dd8ca0e37cc04f2cf88aed4c96a21aa0df4fc648c0c30b13235e0b9f8",
+    "unplanned/candidates/private/speech-transcription-plan.json": "60ffac17e9532734c3a3d4d12081a69385f00c6f02733b7c840b35673c7ac3e3",
+    "unplanned/input-index.json": "593ce3daa04d9141f4e9a5f3aebf504d49d2bcc0bc160f5e1a037f4cc3bc105e",
+    "unplanned/inputs/private/speech/requests/u0000.json": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+    "unplanned/inputs/private/speech/requests/u0001.json": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+    "unplanned/inputs/private/speech-bindings.json": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+    "unplanned/inputs/private/speech-context.json": "83d22894807c9c6dd4d8c9658ac27693d6bcd877277285e2fd5c03513c121c91",
+    "unplanned/inputs/private/speech-observations/u0000.json": "4bcfe6878d7fd6e67bfd10a7ef4e3bf8fb91add6ae9bc2da3b698511457bc39a",
+    "unplanned/inputs/private/speech-observations/u0001.json": "50fb401df39ca7cf9088ef7eabc10a2d3550783ad2b65e5ea0e66179e480173f",
+    "unplanned/inputs/private/speech-raw/u0000.json": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c",
+    "unplanned/inputs/private/speech-raw/u0001.json": "323c429e2477a8d2fba9c05160a375b73e5c413865622b93886c43ce738c4411",
+    "unplanned/inputs/private/speech-recipe.json": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+    "unplanned/stage-input.json": "cb2977ca7fb128fec026d30c5c262f5cb092a870f183793a3c371c1267581958",
+    "unplanned/stage-output.json": "bec66f5eb7459c38ed81e45c8d72f9c9efb9035e04e5bef381d4de1794ce1e49"
+  },
+  "owned_paths": [
+    "crates/pt-production/src/generation/mod.rs",
+    "crates/pt-production/src/generation/tests.rs",
+    "crates/pt-production/src/generation/speech.rs",
+    "crates/pt-production/src/generation/speech_verify.rs",
+    "crates/pt-production/src/generation/speech_units.rs",
+    "crates/pt-production/src/generation/speech_takes.rs",
+    "crates/pt-production/src/generation/speech_transcription.rs",
+    "crates/pt-production/src/generation/tests/speech.rs",
+    "tools/generation/run_speech_tests.py",
+    "fixtures/generation/speech-v1/**",
+    "fixtures/generation/g23-completed-source-v1/**",
+    "docs/implementation/generation/pilot-g23-freeze.json",
+    "docs/implementation/generation/speech.md",
+    "docs/implementation/generation/speech-ready.json",
+    "docs/implementation/generation/speech-runtime-request.json",
+    "docs/implementation/generation/README.md",
+    "docs/implementation/generation/integration-requests.md"
+  ],
+  "parallel_build_note": "Unrelated runtime cfg(test) methods and a production type reference were temporarily incomplete. Owned source tests used the current real compiled library/runtime without product-source replacement. After the runtime owner completed that boundary, the native generation suite passed all 124 tests.",
+  "remaining": [
+    "Authoritative provenance and independent Pilot/catalog/listening/continuity approval; bulk grants remain closed",
+    "Actual synthesis/adapters and production spending authorization; no dispatch is implemented here",
+    "Separately pinned/registered native PCM-copy and unhinted transcription recipes, actual audio inputs and measured responses",
+    "Local source matching and complete independent acoustic/fact intervals; 0.75-second rule unchanged",
+    "Safe measured edits/resampling/joins/common narration/presentation/master domains and full independent acceptance/publication"
+  ],
+  "git_operations": 0,
+  "ui_edits": 0,
+  "shared_contract_edits": 0,
+  "helper_recipe_changes": 0,
+  "commit_owner": "integration"
+}

@@ -10,4 +10,5 @@ PT_SPEECH_EXPORT=fixtures/generation/speech-v1 cargo test -p pt-production gener
 
 The optional [owned test runner](../../../tools/generation/run_speech_tests.py) links the real compiled library during unrelated native cfg(test) edits. It substitutes no product/shared module or runtime implementation. See [schemas and handoff](../../../docs/implementation/generation/speech.md) and [readiness](../../../docs/implementation/generation/speech-ready.json). All older evidence and helper recipes remain unchanged.
 
-If unrelated runtime production code cannot compile, explicit `--cached-runtime` compiles current generation source into a temporary library against the last real compiled runtime API and prints that binary's SHA-256. This checks current source behavior; it does not certify the unfinished native runtime build. The normal runner never silently selects that mode.
+`python3 -B tools/generation/run_speech_tests.py --all-generation` compiles the exact current generation module/tests with the current real compiled runtime API re-exported in a temporary harness. It checks generation regressions without compiling unrelated runtime unit modules; native runtime-unit verification remains separate.
+

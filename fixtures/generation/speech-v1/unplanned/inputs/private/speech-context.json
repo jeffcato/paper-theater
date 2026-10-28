@@ -1,0 +1,75 @@
+{
+  "bindings": {
+    "bytes": 762,
+    "media_type": "application/json",
+    "path": "private/speech-bindings.json",
+    "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+  },
+  "book_id": "test-book",
+  "chapter_id": "chapter-1",
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "limits": {
+    "max_unit_text_bytes": 32,
+    "max_units": 256,
+    "transcription_max_batches": 1,
+    "transcription_max_seconds": 60,
+    "transcription_max_segments": 16,
+    "transcription_max_wav_bytes": 46
+  },
+  "observations": [
+    {
+      "bytes": 963,
+      "media_type": "application/json",
+      "path": "private/speech-observations/u0000.json",
+      "sha256": "4bcfe6878d7fd6e67bfd10a7ef4e3bf8fb91add6ae9bc2da3b698511457bc39a"
+    },
+    {
+      "bytes": 963,
+      "media_type": "application/json",
+      "path": "private/speech-observations/u0001.json",
+      "sha256": "50fb401df39ca7cf9088ef7eabc10a2d3550783ad2b65e5ea0e66179e480173f"
+    }
+  ],
+  "pilot": {
+    "bytes": 14340,
+    "media_type": "application/json",
+    "path": "private/pilot-plan.json",
+    "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2"
+  },
+  "pilot_input": {
+    "bytes": 8299,
+    "media_type": "application/json",
+    "path": "private/speech-pilot-input.json",
+    "sha256": "50d4c049b00e4d842620e8ac5c186c8dd0f9a075e3013a3b1ffe46109aa05a0c"
+  },
+  "recipe": {
+    "bytes": 49,
+    "media_type": "application/json",
+    "path": "private/speech-recipe.json",
+    "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+  },
+  "request_payloads": [
+    {
+      "bytes": 1815,
+      "media_type": "application/json",
+      "path": "private/speech/requests/u0000.json",
+      "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+    },
+    {
+      "bytes": 1806,
+      "media_type": "application/json",
+      "path": "private/speech/requests/u0001.json",
+      "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+    }
+  ],
+  "schema_version": 1,
+  "speech_provider": "speech-double",
+  "timeout_ms": 30000,
+  "transcription_model": "primary-transcription-double",
+  "transcription_provider": "transcription-double"
+}

@@ -1,0 +1,51 @@
+{
+  "book_id": "test-book",
+  "entries": [
+    {
+      "accent": "catalog-default",
+      "baseline": "",
+      "canonical_id": "test-book:mira",
+      "catalog": {
+        "file": {
+          "bytes": 320,
+          "media_type": "application/json",
+          "path": "private/voice-catalog.json",
+          "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+        },
+        "id": "committed:pilot:private:voice-catalog.json",
+        "provenance": "synthetic"
+      },
+      "established": null,
+      "language": "en",
+      "model": "gemini-3.8-flash-tts",
+      "provider": "speech-double",
+      "reference": null,
+      "speaker": "mira",
+      "voice_id": "voice-n"
+    },
+    {
+      "accent": "catalog-default",
+      "baseline": "",
+      "canonical_id": "test-book:narrator",
+      "catalog": {
+        "file": {
+          "bytes": 320,
+          "media_type": "application/json",
+          "path": "private/voice-catalog.json",
+          "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+        },
+        "id": "committed:pilot:private:voice-catalog.json",
+        "provenance": "synthetic"
+      },
+      "established": null,
+      "language": "en",
+      "model": "gemini-3.8-flash-tts",
+      "provider": "speech-double",
+      "reference": null,
+      "speaker": "narrator",
+      "voice_id": "voice-n"
+    }
+  ],
+  "revision": 1,
+  "schema_version": 1
+}

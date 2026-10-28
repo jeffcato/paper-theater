@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "task": "G24",
+  "entrypoint": "pt_production::generation::GenerationExecutor / Stage::Speech",
+  "status": "offline-compiler-and-saved-ingestion-implemented",
+  "service_revision": "pt-services-v1.8.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "provider_envelope_version": 2,
+  "shared_changes_required": false,
+  "helper_recipe_changes": false,
+  "g23_freeze": {
+    "path": "docs/implementation/generation/pilot-g23-freeze.json",
+    "sha256": "3f93ad1aa07651b7b878f4d5a64fafc5da58633181b1a689d5f0e47c4e63ee0a",
+    "bytes": 20082,
+    "media_type": "application/json"
+  },
+  "protocol": "docs/implementation/generation/speech.md",
+  "examples": {
+    "context": {
+      "path": "fixtures/generation/speech-v1/saved-takes/inputs/private/speech-context.json",
+      "sha256": "fdb17cd1bd1173e836937c596bb8147d55e0426b813c61c2117cb73203c25c40",
+      "bytes": 2253,
+      "media_type": "application/json"
+    },
+    "bindings": {
+      "path": "fixtures/generation/speech-v1/saved-takes/inputs/private/speech-bindings.json",
+      "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+      "bytes": 762,
+      "media_type": "application/json"
+    },
+    "request": {
+      "path": "fixtures/generation/speech-v1/saved-takes/candidates/private/speech/requests/u0000.json",
+      "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+      "bytes": 1815,
+      "media_type": "application/json"
+    },
+    "proposal": {
+      "path": "fixtures/generation/speech-v1/saved-takes/candidates/private/speech/proposals/u0000.json",
+      "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211",
+      "bytes": 2933,
+      "media_type": "application/json"
+    },
+    "saved_response": {
+      "path": "fixtures/generation/speech-v1/saved-takes/inputs/private/speech-raw/u0000.json",
+      "sha256": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c",
+      "bytes": 1072,
+      "media_type": "application/json"
+    },
+    "observation": {
+      "path": "fixtures/generation/speech-v1/recorded-v2/inputs/private/speech-observations/u0000.json",
+      "sha256": "e501ffaf3608c969d558a892d3449941c6860fa481f15827f7829d41182a4330",
+      "bytes": 8041,
+      "media_type": "application/json"
+    },
+    "manifest": {
+      "path": "fixtures/generation/speech-v1/mixed-native/candidates/private/speech-takes.json",
+      "sha256": "e544691e27328a2550b18b9f5de1a3b5f2a158adcb0a45bfc77eb7ce859b93e1",
+      "bytes": 8664,
+      "media_type": "application/json"
+    },
+    "transcription": {
+      "path": "fixtures/generation/speech-v1/bounded-transcription/candidates/private/speech-transcription-plan.json",
+      "sha256": "f60ee75ed0b70e8f717485d15ad279043688391020e57cc85c5ab1b8827eb1ab",
+      "bytes": 14267,
+      "media_type": "application/json"
+    },
+    "unplanned": {
+      "path": "fixtures/generation/speech-v1/unplanned/candidates/private/speech-transcription-plan.json",
+      "sha256": "60ffac17e9532734c3a3d4d12081a69385f00c6f02733b7c840b35673c7ac3e3",
+      "bytes": 2871,
+      "media_type": "application/json"
+    }
+  },
+  "phases": [
+    {
+      "owner": "runtime",
+      "phase": "freeze-inputs",
+      "work": "Supply original Pilot StageInput/plan and complete original Source/Direction/Pilot identities, authoritative canonical voice/catalog/binding snapshot and versioned Speech recipe. Preserve accepted Lite/native recording identities."
+    },
+    {
+      "owner": "generation",
+      "phase": "compile-source-and-requests",
+      "work": "Return ordered complete scalar/source units, exact one-speaker request CandidateFiles, scoped acting outside text and content-only handoff; retain all original uncertainty and missing Pilot/bulk approval."
+    },
+    {
+      "owner": "runtime",
+      "phase": "commit-register",
+      "work": "Verify/commit intended request bytes, supply genuine ArtifactRefs and register exact FileRefs in request_payloads. Recording candidate bytes alone cannot advance replay. Generation never fabricates committed IDs."
+    },
+    {
+      "owner": "runtime",
+      "phase": "execution-remains-blocked",
+      "work": "Speech does not issue/execute/recover in any mode. No real synthesis/transcription/bulk work is authorized. Actual approval/authorization/adapter paths require later independently verified support and a separately reviewed increment."
+    },
+    {
+      "owner": "runtime",
+      "phase": "import-original-saved-takes",
+      "work": "Supply original request/issued/result/raw/native-WAV/usage artifacts. Generation checks exact identities and physical native domains. Keep incomplete/ambiguous/obsolete attempts and charges without repurchase."
+    },
+    {
+      "owner": "runtime",
+      "phase": "materialize-bounded-primary-input",
+      "work": "Implement and separately pin/register a bounded native PCM16 frame-copy recipe for proposed compatible batches; do not concatenate WAV containers. Preserve original recording hashes and every native-to-batch sample interval and cut uncertainty. Independently verify actual output WAV/rate/channels/frame/byte bounds and commit the real artifact."
+    },
+    {
+      "owner": "runtime",
+      "phase": "unhinted-transcription",
+      "work": "After actual materialization and separately authorized transcription pilot, commit a real request with only verified audio, VERBATIM and word timestamps. Never attach expected prose, lexicon, speaker/source/catalog/turn text as model inputs. Keep source matching/local mapping separate; no measured intervals or fact bounds are supplied by G24."
+    },
+    {
+      "owner": "runtime",
+      "phase": "later-assembly-and-acceptance",
+      "work": "Different native formats need explicit resampling/edit/assembly recipes and actual listening/continuity/join/fidelity evidence before a common narration domain. Revalidate downstream acoustic/presentation mappings; independent per-fact tolerance and production gates remain unchanged."
+    },
+    {
+      "owner": "runtime",
+      "phase": "replay",
+      "work": "Retain original issued observer scope, receipts/audio and exact request registration phase. Reconstruct byte-identical outputs/cache without dispatch, new accounting/catalog/library/journal effects or rewritten evidence; cross-epoch mappings require independent audit."
+    }
+  ],
+  "copy_plan_recipe": {
+    "id": "native-pcm16-concatenation-plan-v1",
+    "planning_code": {
+      "path": "crates/pt-production/src/generation/speech_transcription.rs",
+      "sha256": "37539c09fec08d2b84c25d3f01c1e3c2ae70c9ca37d86d13dd245737191995c5",
+      "bytes": 4426,
+      "media_type": "text/plain"
+    },
+    "execution_helper_registered": false,
+    "materialized_audio": null,
+    "existing_g19_recipe_changed": false,
+    "existing_g21_recipe_changed": false
+  },
+  "sample_domains": {
+    "source": "half-open Unicode scalar spans",
+    "recording": "native [0,frames] per original WAV",
+    "proposed_primary_input": "batch-local integer PCM offsets, not yet materialized",
+    "global_narration": null,
+    "delivery": null,
+    "timestamps": null,
+    "fact_bounds": null
+  },
+  "limits": {
+    "input_refs": 64,
+    "input_aggregate_bytes": 67108864,
+    "raw_clean_file_bytes": 16777216,
+    "native_wav_file_bytes": 8388608,
+    "metadata_request_response_candidate_bytes": 1048576,
+    "registered_payloads": 32,
+    "observations": 32,
+    "unit_count_max": 1024,
+    "primary_planned_wav_bytes_max": 16777216,
+    "primary_seconds_max": 90,
+    "segments_per_batch_max": 64,
+    "batch_count_max": 256,
+    "default_batch_count": 128
+  },
+  "pending": [
+    "Authoritative provenance, real Pilot listening/continuity and bulk grants",
+    "Actual synthesis and model adapters; none authorized or dispatched here",
+    "Actual copy/assembly/transcription recipes, helper registrations and measured responses",
+    "Local alignment/independent full-interval fact evidence with unchanged 0.75-second rule",
+    "Common narration/presentation/master domains, actual listening/join/review acceptance and publication"
+  ],
+  "dispatch_permitted": false,
+  "bulk_speech_approved": false,
+  "production_approved": false,
+  "runtime_policy_authority": false,
+  "reveal_permissions": [],
+  "real_provider_transport_calls": 0,
+  "speech_helper_dispatch": 0,
+  "ui_edits": 0,
+  "git_operations": 0
+}

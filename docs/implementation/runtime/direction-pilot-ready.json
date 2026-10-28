@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "task": "R18",
+  "status": "offline-saved-direction-pilot-ready",
+  "verified_at_utc": "2026-10-28T02:51:09.098375+00:00",
+  "brief": "docs/implementation/integration/server-direction-pilot-task.md",
+  "report": "docs/implementation/runtime/direction-pilot.md",
+  "examples": "docs/implementation/runtime/direction-pilot-examples.json",
+  "r17_immutable_handoff": "docs/implementation/runtime/checkpoints/r17/handoff.json",
+  "r17_archive_sha256": "ce25b9a72c4dedf0eaec3797270b26d3d2198e07a7200bd6efb38bcaa3c7c3f4",
+  "r17_archive_unchanged": true,
+  "contract_revision": "pt-contracts-v1.0.0",
+  "service_revision": "pt-services-v1.8.0",
+  "checker": {
+    "version": "pt-acceptance-bindings-v4",
+    "sha256": "ba96222b73e795a5e5dd5cfc80e3a4e653c2ec692d9c1a72ea1f39c4fb842ba5",
+    "report_version": 4,
+    "matrix_version": "pt-acceptance-required-v3"
+  },
+  "recipe_sha256": "b1def6b774001f5c5a991c7b4a4afefc628d9aa37d746239f14d7e567fcaf209",
+  "registration_sha256": "692c418c8b06eeb49172ba804d241ac0f3c36caf0aa8e4b9d05c30c443a712ac",
+  "input_originals": 27,
+  "phases": [
+    {
+      "phase": "source",
+      "stage": "source",
+      "inputs": 3,
+      "outputs": 1,
+      "frozen_epoch": 0,
+      "committed_epoch": 0,
+      "outcome": "complete"
+    },
+    {
+      "phase": "direction-request",
+      "stage": "direction",
+      "inputs": 7,
+      "outputs": 3,
+      "frozen_epoch": 0,
+      "committed_epoch": 0,
+      "outcome": "needs_repair"
+    },
+    {
+      "phase": "direction-result",
+      "stage": "direction",
+      "inputs": 10,
+      "outputs": 5,
+      "frozen_epoch": 0,
+      "committed_epoch": 0,
+      "outcome": "needs_repair"
+    },
+    {
+      "phase": "pilot-request",
+      "stage": "pilot",
+      "inputs": 16,
+      "outputs": 4,
+      "frozen_epoch": 0,
+      "committed_epoch": 0,
+      "outcome": "needs_repair"
+    },
+    {
+      "phase": "pilot-takes",
+      "stage": "pilot",
+      "inputs": 24,
+      "outputs": 7,
+      "frozen_epoch": 0,
+      "committed_epoch": 0,
+      "outcome": "needs_repair"
+    },
+    {
+      "phase": "pilot-review",
+      "stage": "pilot",
+      "inputs": 27,
+      "outputs": 8,
+      "frozen_epoch": 0,
+      "committed_epoch": 0,
+      "outcome": "needs_repair"
+    }
+  ],
+  "stage_recipes": {
+    "source": "8b626e55693d774361f507bc2c45f40054e6855d71fbec78ad9072d8812f14b4",
+    "direction": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+    "pilot": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+  },
+  "namespaces": {
+    "originals": "saved_flow_artifacts(run,id)",
+    "phases": "saved_flow_phases(run,phase)",
+    "provider_authority": "separate R17 runtime unit grants; ordinary constructor absent"
+  },
+  "source_pins": {
+    "owned": {
+      "crates/pt-production/src/runtime/mod.rs": "f19e36aed9b6448b11498dd6ef35ab8af1dc1b8cde53f0dcfe42067051995ca3",
+      "crates/pt-production/src/runtime/runner.rs": "4c325caf572a4412c5fe4ead026cf2b7f07e3d7987f61e72af4c16aad0cd2ab0",
+      "crates/pt-production/src/runtime/store.rs": "d17138504114b3565493cb7d561818b233e09c6e61e7df8b49f141e36566eb03",
+      "crates/pt-production/src/runtime/schema.sql": "8f155819c4082ae6bab4341796cf3fd07128416c8e1354c2a4954f392b3ed037",
+      "crates/pt-production/src/runtime/media.rs": "4023bcac739595e7f060b3559a755888a9a734f7e04e3d650b37e5f5e436cd76",
+      "crates/pt-production/src/runtime/provider_v2.rs": "e7a63bb376151c16df7d38a0e57a4d97905780c34ec145e32eaba4de9fac1985",
+      "crates/pt-production/src/runtime/direction_pilot/mod.rs": "7b2fdd1cb74a2fafcba0583054f92181f5b948d8f767b6d4522d7b5a47801747",
+      "crates/pt-production/src/runtime/direction_pilot/inputs.rs": "4fa3a354fd1175a1b2d4f7c6d11fd668fbe406c7dbd1b78b88068bca39da07ac",
+      "crates/pt-production/src/runtime/direction_pilot/services.rs": "da0671eef4318846e84f3733a4c551997f8a2d28285f349a80d344521c7f7ab1",
+      "crates/pt-production/src/runtime/direction_pilot_tests.rs": "2b0709f3d4aab42eea577e8bc9cfa7e64a89c8db3b160a59efcffdfb02b1e103",
+      "crates/pt-server/src/main.rs": "a1fabf8f5e48d450c123a9fd39c0e5a7450414041c35fb658bd3fddbf209ad17",
+      "crates/pt-server/tests/direction_pilot_process.py": "ddfa79f098275de55562ec1c353868dcd1563685c0bc56b0963e9e172f5eb1cb",
+      "fixtures/runtime/direction-pilot-v1/registration.json": "692c418c8b06eeb49172ba804d241ac0f3c36caf0aa8e4b9d05c30c443a712ac"
+    },
+    "generation": {
+      "crates/pt-production/src/generation/mod.rs": "c403a6259a099a0b4323f72d35f8c3a200a3baa09e23ffb901842d955124aa2a",
+      "crates/pt-production/src/generation/inputs.rs": "7026acf90cc7779adc09755f79581d8bf1f19c1f1336adbfe2446571c02973f3",
+      "crates/pt-production/src/generation/source.rs": "291f63044de741a4c9e4afb1bf7539ea7a60675b7072599770f08411c9303100",
+      "crates/pt-production/src/generation/direction.rs": "0d3b1d2d78939563bca1c4d926d30ef91f7601fbde270289b008e20cd7d7e9b7",
+      "crates/pt-production/src/generation/pilot.rs": "905f1cc3accb77449a0885879fdd7740909b2742dab02312abff3c74349060fb",
+      "crates/pt-production/src/generation/pilot_direction.rs": "91cc144f68dba5a2479bdb8e5ec43a3c48d342d9e5e82be6b21c232fcfd689a8",
+      "crates/pt-production/src/generation/pilot_provider.rs": "f12f42ac1a88d7ca4bdd6cfee5c53f1e84be4548eee3089c4b9d7b0422953148",
+      "crates/pt-production/src/generation/pilot_evidence.rs": "2d9f48db1c279396ae9c2026e0cb48e9c5ae926e292e9b645cacd28a3342b2b7"
+    },
+    "contracts": {
+      "crates/pt-contracts/src/lib.rs": "49866b9a2dc6acece0520813204f071e563f6f2d17e4b68ecf27bf70183d98c6",
+      "crates/pt-contracts/src/services.rs": "84ad6bb37163173d92019535a2446805e0529adad39c2007f1f7e6a6b30e9b12",
+      "crates/pt-contracts/src/provider_metadata.rs": "a97cbe85b1df16825bdfbb0f0d1d50d0cecd804355f24a5f93d4ffafa4a772f5",
+      "crates/pt-contracts/src/provider_service.rs": "2bc67cea6fc35eaf9e94720273d84b9cb95d97a0bf2c48a5766954370cfae868",
+      "crates/pt-contracts/src/source_slice.rs": "e8c1610df2ce44dc2fd4864fee5772e68d29581d4eed0b266fb8405751597193",
+      "crates/pt-contracts/src/wav.rs": "e4af78a097ca2e49736e6b3cb4ae1a7e0a997a3867b4156108b837aefbd5219e",
+      "crates/pt-contracts/src/acceptance.rs": "4a531d52bb667f66525c55d4bb76b5eb64d2d5ec7b686c6b2cff438f3d6bf0ad",
+      "crates/pt-contracts/src/acceptance_source.rs": "d29a2cb41bbf5132b1d8ccc4bd061a7ee1416a1d874d83ecd039efa318c47475"
+    },
+    "suppliers": {
+      "docs/implementation/integration/server-direction-pilot-task.md": "02892a0c5cadb6f95222a113bb2f57d96f5f5a52172f093d200d0752d91f66b0",
+      "docs/implementation/generation/direction-runtime-request.json": "c5c32a24a99bf21001e66899fb5c54195c609ec09ca5233201e28488499c7494",
+      "docs/implementation/generation/pilot-runtime-request.json": "08a4bfd944b53be01014fd8788964af430a62e435d06bd3f437b89023d1abcf8",
+      "fixtures/generation/direction-v1/response-schema.json": "d9e78068ba7717691307250707c50855a59b1ea8f4f58b58b2258f099bb4da8a",
+      "Cargo.toml": "434226931691a10c30b1f50142b6fcd08f2aa3a35b90d5e7eb238d807b764c77",
+      "Cargo.lock": "4cce5ea2066b544b50ef1df2be2ec173f0558eb60207a698a33c8d0a31d93c06",
+      "crates/pt-production/Cargo.toml": "838d993b9756f7b032d2b640d8cff10f09949d9d4b90b179d81998d881245338",
+      "crates/pt-server/Cargo.toml": "420c29a0ee9fd2efda9a51b2cd7a811fc92144c6e0ec2d2e0404c504d7383afe"
+    },
+    "checker_and_matrix": {
+      "crates/pt-contracts/src/common.rs": "30bb0e158c0f8b962b00cdaf4da93d92a0434549888d677a513a8f71ba61063c",
+      "crates/pt-contracts/src/validate.rs": "791d4230755434e97c4ce47c52ee913f68317f7308a9fbe45e669323c3dcad3f",
+      "crates/pt-contracts/src/playback.rs": "784d51b9d53e2ccea3e5675c7753828ed36f4b7e37c7a8a01698dc39490f89d0",
+      "packages/contracts/src/acceptance-required-v1.json": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083",
+      "packages/contracts/src/acceptance-required-v2.json": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820",
+      "packages/contracts/src/acceptance-required-v3.json": "c2d0680ff121cdc419bf733e5a2628709d3b2a4c3684fdef7c86c246d994c9a0"
+    }
+  },
+  "binary": {
+    "path": "target/debug/pt-server",
+    "sha256": "229c43907a27150b7a227164de172bcd4f0077d522b01e846536c99f5d8916c2",
+    "bytes": 43407816
+  },
+  "ordinary_saved_flow": {
+    "provider_requests": 0,
+    "helper_calls": 0,
+    "distinct_committed_request_payloads": 4,
+    "saved_take_observations": 2,
+    "saved_review_observations": 1,
+    "budget_catalog_library_mutations": 0,
+    "bulk_speech_approved": false,
+    "production_approved": false,
+    "outcome": "needs_repair",
+    "run_state": "failed",
+    "mandatory_blocker": "production-verifier-pending"
+  },
+  "injected_r17_test": {
+    "fake_submissions": 2,
+    "fake_status_queries": 0,
+    "branches": [
+      "current",
+      "cancelled_obsolete"
+    ],
+    "sends_per_branch": 1,
+    "repeated_exact_execution_adds_requests": 0,
+    "requests_charged_per_branch": 1,
+    "unknown_tokens_remain_conservatively_charged": true,
+    "private_raw_bytes_preserved": true,
+    "pilot_grant_authorizes_bulk": false
+  },
+  "external_provider_calls": 0,
+  "live_dispatch_enabled": false,
+  "production_construction_enabled": false,
+  "credentials_loaded": false,
+  "legacy_or_helper_provider_fallback": false,
+  "publication_enabled": false,
+  "ui_changes": false,
+  "browser_checks_run": false,
+  "git_operations": 0,
+  "limits": {
+    "metadata_bytes": 1048576,
+    "raw_clean_text_bytes_each": 16777216,
+    "pilot_wav_bytes_each": 8388608,
+    "input_refs": 64,
+    "input_bytes": 67108864,
+    "candidate_count": 64,
+    "candidate_bytes_each": 1048576,
+    "candidate_bytes_total": 8388608,
+    "phase_timeout_ms": "min(authorized wall_time_ms,30000)",
+    "delivery_master_bytes": 268435456,
+    "other_runtime_json_helper_envelopes": "unchanged"
+  },
+  "wav_adoption": {
+    "inspector": "inspect_pcm16_wav",
+    "mechanical_parity": true,
+    "before_after_conformance_passes_each": 1,
+    "before_after_inspector_passes_each": 2,
+    "native_audio_not_delivery_only": true
+  },
+  "rust_total": 177,
+  "r18_tests": 12,
+  "commands": [
+    {
+      "command": "cargo test --locked --offline -p pt-production --lib runtime:: -- --test-threads=2",
+      "status": "passed",
+      "tests": 116
+    },
+    {
+      "command": "cargo test --locked --offline -p pt-contracts -p pt-server",
+      "status": "passed",
+      "tests": 56
+    },
+    {
+      "command": "cargo test --locked --offline -p pt-production --test candidate_read_contract --test wav_conformance",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "command": "cargo build --locked --offline -p pt-server",
+      "status": "passed"
+    },
+    {
+      "command": "python3 -B crates/pt-server/tests/direction_pilot_process.py",
+      "status": "passed",
+      "loopback_sandbox_escalation": "approved"
+    },
+    {
+      "command": "python3 -B crates/pt-server/tests/chapter_runtime_process.py --receipt /tmp/pt-r18-chapter-process.json",
+      "status": "passed",
+      "loopback_sandbox_escalation": "approved"
+    },
+    {
+      "command": "rustfmt --check --edition 2024 --config skip_children=true <owned changed Rust files>",
+      "status": "passed"
+    },
+    {
+      "command": "python3 tools/check_product_identity.py . target/debug/pt-server",
+      "status": "passed",
+      "result": "Identity check passed: 1832 file(s) scanned."
+    }
+  ],
+  "process": {
+    "schema_version": 1,
+    "test": "direction_pilot_process",
+    "real_server_processes": 2,
+    "forced_process_terminations": 1,
+    "original_inputs_removed": true,
+    "committed_phases_before_restart": 6,
+    "committed_phases_after_restart": 6,
+    "checkpoint_bytes_unchanged": true,
+    "checkpoint_events": 6,
+    "external_provider_calls": 0,
+    "helper_calls": 0,
+    "private_artifact_http_status": 404,
+    "bulk_speech_approved": false,
+    "production_approved": false,
+    "server_binary_sha256": "229c43907a27150b7a227164de172bcd4f0077d522b01e846536c99f5d8916c2"
+  },
+  "retained_chapter_process": {
+    "schema_version": 1,
+    "test": "chapter_runtime_process",
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "real_server_processes": 2,
+    "forced_process_terminations": 1,
+    "original_inputs_removed": true,
+    "helper_attempts_before_restart": 4,
+    "helper_attempts_after_restart": 4,
+    "resumed_units": 4,
+    "unit_outputs_unchanged": true,
+    "checkpoint_events": 4,
+    "private_artifact_http_status": 404,
+    "external_provider_calls": 0,
+    "outcome": "needs_repair",
+    "run_state": "failed",
+    "production_approved": false,
+    "publication_enabled": false
+  },
+  "verification_history": {
+    "earlier_runtime_passes": 113,
+    "default_thread_final": {
+      "passed": 115,
+      "failed": 1,
+      "failure": "existing acoustic cancellation readiness deadline (40 seconds); unchanged assertion",
+      "evidence": "docs/implementation/runtime/checkpoints/r18/runtime-default-threads.log"
+    },
+    "focused_under_aggregate_load": "same readiness timeout",
+    "focused_after_load": "passed",
+    "final_two_thread_runtime": "116 passed; 0 failed",
+    "production_deadlines_relaxed": false,
+    "full_workspace_aggregate_claim": false,
+    "r17_generation_failure_history": "retained unchanged in immutable checkpoint"
+  },
+  "evidence": {
+    "docs/implementation/runtime/checkpoints/r18/acoustic-cancel-isolated.log": {
+      "sha256": "c8ed63b79cc8555e0cfe8538732aa2a33466edae1199c1d6645a7d774325773f",
+      "bytes": 392
+    },
+    "docs/implementation/runtime/checkpoints/r18/acoustic-cancel-under-load.log": {
+      "sha256": "d79e413c3c7219606a5e00593df6f5a955c486e6528a807fb86e1b2da5c29b58",
+      "bytes": 935
+    },
+    "docs/implementation/runtime/checkpoints/r18/build.log": {
+      "sha256": "bcfe5f9ad99979857a0cea9576bb565396c3b0620ba21399a28f2cf789aec2f1",
+      "bytes": 309
+    },
+    "docs/implementation/runtime/checkpoints/r18/chapter-process.json": {
+      "sha256": "e26363bb7567605cf1d602962ae48eb5a6d7b93ab14747009fe9866602d33c96",
+      "bytes": 599
+    },
+    "docs/implementation/runtime/checkpoints/r18/concurrent-commit-green.log": {
+      "sha256": "b95eb8d6998d659802f9a22cb66eeb3ab4a99cd151deb0064f31489a07c3d14b",
+      "bytes": 951
+    },
+    "docs/implementation/runtime/checkpoints/r18/concurrent-commit-red.log": {
+      "sha256": "1e177c7d512eacf65e672983ed38b890c0cdad27fe51aea06b9f8cdbf1dbc575",
+      "bytes": 1035
+    },
+    "docs/implementation/runtime/checkpoints/r18/contract-bridge.log": {
+      "sha256": "94a6f23e32376bb7a9c44dd4e06a1bfe54eadc1c6295ad0ff70c56139e21960f",
+      "bytes": 983
+    },
+    "docs/implementation/runtime/checkpoints/r18/contracts-server.log": {
+      "sha256": "3f1c1cd8157045130c40f8de145150b512c86fa7800b00977b713f37ffe9c51e",
+      "bytes": 7755
+    },
+    "docs/implementation/runtime/checkpoints/r18/direction-pilot-process.json": {
+      "sha256": "397a68034e4f481b52336e32d871bbd1c10ca8937d818bfc5caa8c79ec43c703",
+      "bytes": 558
+    },
+    "docs/implementation/runtime/checkpoints/r18/direction-pilot-process.log": {
+      "sha256": "4621e8d596985337ba69a127f7fd3fb4853b1a6867718e7a8538892674bfd789",
+      "bytes": 526
+    },
+    "docs/implementation/runtime/checkpoints/r18/durable-flow-red.log": {
+      "sha256": "2cae27aa975f7cefcb1cce2ea46d70ede52e2bea8a2dd5666c200fa604a6d5bb",
+      "bytes": 2985
+    },
+    "docs/implementation/runtime/checkpoints/r18/epoch-commit-green.log": {
+      "sha256": "7856ce8e077747546f1a9733af5d61be878d210f87d2310e1f866a5ffab696e5",
+      "bytes": 1315
+    },
+    "docs/implementation/runtime/checkpoints/r18/epoch-commit-red.log": {
+      "sha256": "139f9d03e221df209c6e7af3fd46ff968f43bf1717de22fd01db8b27ac43da8c",
+      "bytes": 996
+    },
+    "docs/implementation/runtime/checkpoints/r18/format.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "docs/implementation/runtime/checkpoints/r18/inspector-after.log": {
+      "sha256": "bc1cf440a160cfaf39402e33a1819f01a65c24a65b5e187c416a29ba5d6e8afe",
+      "bytes": 477
+    },
+    "docs/implementation/runtime/checkpoints/r18/inspector-before.log": {
+      "sha256": "b6c9fee5d593aaaab01e394bcc12bc0919241c23f52030faa3011a721bf3c1fb",
+      "bytes": 423
+    },
+    "docs/implementation/runtime/checkpoints/r18/private-provider-green.log": {
+      "sha256": "e9cc4b37a5e08aa95a17f8637b8611bee40832a262b0014804f2ac1cdfdd0d77",
+      "bytes": 957
+    },
+    "docs/implementation/runtime/checkpoints/r18/private-provider-red.log": {
+      "sha256": "399c6cf09576af745751607ea74aa92263eba47c586ef4cd7e31a9f0c9ee8e9c",
+      "bytes": 1081
+    },
+    "docs/implementation/runtime/checkpoints/r18/route-green.log": {
+      "sha256": "0969bdf99db232c5a6c1aca5c0403940328bf6fa03b36b0b649786a8430899fe",
+      "bytes": 1697
+    },
+    "docs/implementation/runtime/checkpoints/r18/route-red.log": {
+      "sha256": "2f591920217b0fb62e4ae19ed11e366bf641a714c1e22c1bf7537edaa0752691",
+      "bytes": 1382
+    },
+    "docs/implementation/runtime/checkpoints/r18/runtime-bounded.log": {
+      "sha256": "36be59a0f4e83b74de2e6da6bb973261e61599f117e61abed6e910ca68855353",
+      "bytes": 13811
+    },
+    "docs/implementation/runtime/checkpoints/r18/runtime-default-threads.log": {
+      "sha256": "9df1f066d69d75c686018e9649f41ec3000a0afa7e50e55ace1f41b1e736abfd",
+      "bytes": 18013
+    },
+    "docs/implementation/runtime/checkpoints/r18/source-pins.json": {
+      "sha256": "731f1fb78a521151ed04e962fa6b0284775be81399263901cffd1b24299acd14",
+      "bytes": 5245
+    },
+    "docs/implementation/runtime/checkpoints/r18/wav-after.log": {
+      "sha256": "9e5b6a1a0d1a402b0cb0ef87d641ad448d113cff3b5e9dadc4ed8950910c9556",
+      "bytes": 475
+    },
+    "docs/implementation/runtime/checkpoints/r18/wav-before.log": {
+      "sha256": "41a2cca0d8e36b43d371261527bd0858e186174dcffcfa6974a56bf66324d876",
+      "bytes": 380
+    },
+    "docs/implementation/runtime/checkpoints/r18/identity.log": {
+      "sha256": "945ec002558727b1ed7dcb107780c0a26263f18784fd1c52aa94db128c2e2ef2",
+      "bytes": 45
+    }
+  },
+  "pending": [
+    "R12 Nonpositive viewport remains separate",
+    "real provider construction/credentials/dispatch",
+    "real auditions, semantic/listening/device acceptance",
+    "bulk Speech authorization and runtime composition",
+    "production verification and publication",
+    "integration reviews/stages/commits/pushes only"
+  ],
+  "report_sha256": "25fc735b8ea089a78ea5882eab468b9c9914fedc78bddae6b4007137478cbf53",
+  "examples_sha256": "ed7fa27577cba1bc0973d72571f6374ce31f9996a5424f321822fee36dd82cf8"
+}

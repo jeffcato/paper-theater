@@ -1,0 +1,35 @@
+{
+  "findings": [
+    {
+      "evidence": [],
+      "field": "speech",
+      "id": "retained-speech-adverse",
+      "message": "Synthetic silence does not prove speech fidelity.",
+      "outcome": "uncertain"
+    }
+  ],
+  "issued": null,
+  "provenance": "synthetic",
+  "request": {
+    "file": {
+      "bytes": 1815,
+      "media_type": "application/json",
+      "path": "private/speech/requests/u0000.json",
+      "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+    },
+    "id": "committed:speech:private:speech:requests:u0000.json",
+    "provenance": "synthetic"
+  },
+  "response": {
+    "file": {
+      "bytes": 1072,
+      "media_type": "application/json",
+      "path": "private/speech-raw/u0000.json",
+      "sha256": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c"
+    },
+    "id": "committed:speech:private:speech-raw:u0000.json",
+    "provenance": "synthetic"
+  },
+  "result": null,
+  "schema_version": 1
+}

@@ -1,0 +1,62 @@
+{
+  "accent": "catalog-default",
+  "baseline": "",
+  "canonical_id": "test-book:narrator",
+  "catalog": {
+    "bytes": 320,
+    "media_type": "application/json",
+    "path": "private/voice-catalog.json",
+    "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+  },
+  "direction": {
+    "bytes": 9391,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+  },
+  "established_binding": null,
+  "language": "en",
+  "model": "gemini-3.8-flash-tts",
+  "passage": {
+    "acting": "still and measured",
+    "acting_support": {
+      "quote": " The water was still.",
+      "span": [
+        25,
+        46
+      ]
+    },
+    "span": [
+      25,
+      46
+    ],
+    "text": " The water was still.",
+    "turn_id": "t0"
+  },
+  "production_approved": false,
+  "recipe": {
+    "bytes": 48,
+    "media_type": "application/json",
+    "path": "private/pilot-recipe.json",
+    "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+  },
+  "registry": {
+    "bytes": 400,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+  },
+  "schema_version": 1,
+  "source": {
+    "bytes": 3725,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+  },
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "speaker": "narrator",
+  "style": "still and measured",
+  "task": "voice-pilot-take-v1",
+  "text": " The water was still.",
+  "voice_id": "voice-n"
+}

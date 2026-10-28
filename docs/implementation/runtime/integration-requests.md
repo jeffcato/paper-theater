@@ -1,6 +1,8 @@
 # Runtime integration status
 
-I20 handoff before R18: [immutable R17 checkpoint](checkpoints/r17/handoff.json), archive SHA-256 `ce25b9a72c4dedf0eaec3797270b26d3d2198e07a7200bd6efb38bcaa3c7c3f4`. It contains exact matching R17 source/dependency pins, handoff/examples and raw scoped/aggregate evidence; 165 scoped passes do not become aggregate green. The later changed integration task document is excluded with both hashes recorded. R17's built binary still matches its recorded digest. R18 now proceeds against separate current files; no shared Git operations.
+I20 handoff before R18: [immutable R17 checkpoint](checkpoints/r17/handoff.json), archive SHA-256 `ce25b9a72c4dedf0eaec3797270b26d3d2198e07a7200bd6efb38bcaa3c7c3f4`. It contains exact matching R17 source/dependency pins, handoff/examples and raw scoped/aggregate evidence; 165 scoped passes do not become aggregate green. The later changed integration task document is excluded with both hashes recorded. At the pre-R18 handoff, R17's built binary matched its recorded digest. R18 now proceeds against separate current files; no shared Git operations.
+
+R18 offline saved Source/Direction/Pilot is implemented: [report](direction-pilot.md), [exact phase mappings](direction-pilot-examples.json), [readiness/source/binary pins](direction-pilot-ready.json). Twelve new checks; 116 runtime, 56 contract/server and five bridge checks pass. Real R18 restart preserves six checkpoints; retained G21 restart reuses four units. Default-thread acoustic readiness timeout history is retained; no deadlines changed. All originals/private evidence remain private; provider dispatch, bulk Speech and publication remain disabled. R12 remains separate. No shared Git operations.
 
 Consumed `pt-contracts-v1.0.0` / `pt-services-v1.2.0` (candidate-read/candidate-write addenda), frozen fixture inventory `5a662fb9d1687fd61a692acdd4265bc12aac9d5bfacb8e5f75e58b472dbf776c`.
 

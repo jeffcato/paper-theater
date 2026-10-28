@@ -1,0 +1,212 @@
+{
+  "bulk_speech_approved": false,
+  "catalog": {
+    "bytes": 320,
+    "media_type": "application/json",
+    "path": "private/voice-catalog.json",
+    "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+  },
+  "compiler_sha256": "9ac38a4781bae487bcf446730a5e2ff7e2104bdf98a8bdde0cc7e68cc0405a4d",
+  "direction": {
+    "bytes": 9391,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+  },
+  "findings": [
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "initial-reference-research",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "canonical-reference-applicability",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "direction-semantic-review",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "rendered-stage-clarity",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-request-commit-pending",
+      "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-request-commit-pending",
+      "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-listening",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-continuity",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-joins",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-intelligibility",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-speech-fidelity",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "pilot-music-context",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "voice-pilot",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    },
+    {
+      "evidence": [],
+      "field": "acceptance",
+      "id": "production-verifier-pending",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "outcome": "missing"
+    }
+  ],
+  "observations": [],
+  "performers": [
+    {
+      "accent": "catalog-default",
+      "approved": false,
+      "baseline": "",
+      "catalog": {
+        "bytes": 320,
+        "media_type": "application/json",
+        "path": "private/voice-catalog.json",
+        "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+      },
+      "decision": "propose-first-audition",
+      "language": "en",
+      "model": "gemini-3.8-flash-tts",
+      "passages": [
+        {
+          "acting": "",
+          "acting_support": null,
+          "span": [
+            0,
+            25
+          ],
+          "text": "Mira watched the rivière.",
+          "turn_id": "t0"
+        },
+        {
+          "acting": "still and measured",
+          "acting_support": {
+            "quote": " The water was still.",
+            "span": [
+              25,
+              46
+            ]
+          },
+          "span": [
+            25,
+            46
+          ],
+          "text": " The water was still.",
+          "turn_id": "t0"
+        }
+      ],
+      "reference_audio": null,
+      "retained_binding": null,
+      "speaker": "narrator",
+      "voice_id": "voice-n"
+    }
+  ],
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "recipe": {
+    "bytes": 48,
+    "media_type": "application/json",
+    "path": "private/pilot-recipe.json",
+    "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+  },
+  "registry": {
+    "bytes": 400,
+    "media_type": "application/json",
+    "path": "private/book-registry.json",
+    "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+  },
+  "request_payloads": [],
+  "reveal_permissions": [],
+  "reviews": [],
+  "runtime_policy_authority": false,
+  "schema_version": 1,
+  "selection": {
+    "bytes": 1220,
+    "media_type": "application/json",
+    "path": "private/pilot-selection.json",
+    "sha256": "e006de3f314b66e5f030eced3af22ea78e8149930b83821d924d96add4f50f8d"
+  },
+  "source": {
+    "bytes": 3725,
+    "media_type": "application/json",
+    "path": "source.json",
+    "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+  },
+  "source_text": "Mira watched the rivière. The water was still.",
+  "takes": []
+}

@@ -1,0 +1,194 @@
+{
+  "caller_authority": false,
+  "dispatch_permitted": false,
+  "requests": [
+    {
+      "dispatch_permitted": false,
+      "estimate": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      },
+      "inputs": [
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "source.json",
+            "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+          },
+          "id": "committed:test:source.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 9391,
+            "media_type": "application/json",
+            "path": "private/direction-plan.json",
+            "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+          },
+          "id": "committed:pilot:private:direction-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 7210,
+            "media_type": "application/json",
+            "path": "private/pilot-plan.json",
+            "sha256": "32784a7d0fe580988b130a5fe46d5218f9585c2e7f2943c0db0476a15c91099a"
+          },
+          "id": "committed:speech:private:pilot-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 8303,
+            "media_type": "application/json",
+            "path": "private/speech-pilot-input.json",
+            "sha256": "05f225a307737130c71b72ee25188551e417e94517b9dfeed37e4978c3008724"
+          },
+          "id": "committed:speech:private:speech-pilot-input.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 762,
+            "media_type": "application/json",
+            "path": "private/speech-bindings.json",
+            "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+          },
+          "id": "committed:speech:private:speech-bindings.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 49,
+            "media_type": "application/json",
+            "path": "private/speech-recipe.json",
+            "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+          },
+          "id": "committed:speech:private:speech-recipe.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 320,
+            "media_type": "application/json",
+            "path": "private/voice-catalog.json",
+            "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+          },
+          "id": "committed:pilot:private:voice-catalog.json",
+          "provenance": "synthetic"
+        }
+      ],
+      "kind": "speech",
+      "model": "gemini-3.8-flash-tts",
+      "provider": "speech-double",
+      "recipe_sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+      "request_file": {
+        "bytes": 1814,
+        "media_type": "application/json",
+        "path": "private/speech/requests/u0000.json",
+        "sha256": "707bc43cadf7bfd031ca13e32a0f1086de07ba32ceb91099e5b8f853514dcd19"
+      },
+      "runtime_committed_payload_required": true,
+      "timeout_ms": 30000
+    },
+    {
+      "dispatch_permitted": false,
+      "estimate": {
+        "input_tokens": 100,
+        "money_microusd": 0,
+        "output_tokens": 20,
+        "requests": 1
+      },
+      "inputs": [
+        {
+          "file": {
+            "bytes": 3725,
+            "media_type": "application/json",
+            "path": "source.json",
+            "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+          },
+          "id": "committed:test:source.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 9391,
+            "media_type": "application/json",
+            "path": "private/direction-plan.json",
+            "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+          },
+          "id": "committed:pilot:private:direction-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 7210,
+            "media_type": "application/json",
+            "path": "private/pilot-plan.json",
+            "sha256": "32784a7d0fe580988b130a5fe46d5218f9585c2e7f2943c0db0476a15c91099a"
+          },
+          "id": "committed:speech:private:pilot-plan.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 8303,
+            "media_type": "application/json",
+            "path": "private/speech-pilot-input.json",
+            "sha256": "05f225a307737130c71b72ee25188551e417e94517b9dfeed37e4978c3008724"
+          },
+          "id": "committed:speech:private:speech-pilot-input.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 762,
+            "media_type": "application/json",
+            "path": "private/speech-bindings.json",
+            "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+          },
+          "id": "committed:speech:private:speech-bindings.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 49,
+            "media_type": "application/json",
+            "path": "private/speech-recipe.json",
+            "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+          },
+          "id": "committed:speech:private:speech-recipe.json",
+          "provenance": "synthetic"
+        },
+        {
+          "file": {
+            "bytes": 320,
+            "media_type": "application/json",
+            "path": "private/voice-catalog.json",
+            "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+          },
+          "id": "committed:pilot:private:voice-catalog.json",
+          "provenance": "synthetic"
+        }
+      ],
+      "kind": "speech",
+      "model": "gemini-3.8-flash-tts",
+      "provider": "speech-double",
+      "recipe_sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+      "request_file": {
+        "bytes": 2077,
+        "media_type": "application/json",
+        "path": "private/speech/requests/u0001.json",
+        "sha256": "03b9e2005ea14861377dea94f24de3fcfd805cbbc3022047b9843aa53cb7571f"
+      },
+      "runtime_committed_payload_required": true,
+      "timeout_ms": 30000
+    }
+  ],
+  "runtime_bulk_authorization_required": true,
+  "schema_version": 1
+}

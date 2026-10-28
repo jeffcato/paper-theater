@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "test": "chapter_runtime_process",
+  "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+  "real_server_processes": 2,
+  "forced_process_terminations": 1,
+  "original_inputs_removed": true,
+  "helper_attempts_before_restart": 4,
+  "helper_attempts_after_restart": 4,
+  "resumed_units": 4,
+  "unit_outputs_unchanged": true,
+  "checkpoint_events": 4,
+  "private_artifact_http_status": 404,
+  "external_provider_calls": 0,
+  "outcome": "needs_repair",
+  "run_state": "failed",
+  "production_approved": false,
+  "publication_enabled": false
+}

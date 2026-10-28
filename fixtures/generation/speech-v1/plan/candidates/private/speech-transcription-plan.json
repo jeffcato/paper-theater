@@ -1,0 +1,24 @@
+{
+  "batch_materialization_required": true,
+  "batches": [],
+  "copy_recipe": "native-pcm16-concatenation-plan-v1",
+  "copy_recipe_code_sha256": "37539c09fec08d2b84c25d3f01c1e3c2ae70c9ca37d86d13dd245737191995c5",
+  "dispatch_permitted": false,
+  "expected_prose_supplied": false,
+  "fact_bounds": null,
+  "measured_word_intervals": null,
+  "model": "primary-transcription-double",
+  "narration_assembly": null,
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "provider": "transcription-double",
+  "recipe": {
+    "bytes": 49,
+    "media_type": "application/json",
+    "path": "private/speech-recipe.json",
+    "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+  },
+  "schema_version": 1,
+  "source_matching": "local-only-after-measured-responses",
+  "unplanned_audio": []
+}

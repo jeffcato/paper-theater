@@ -1,0 +1,48 @@
+{
+  "bindings": {
+    "bytes": 1429,
+    "media_type": "application/json",
+    "path": "private/speech-bindings.json",
+    "sha256": "75e57f9c9c25640995efd900c451bd9379befae0c5dc089749635de555a7d2e0"
+  },
+  "book_id": "test-book",
+  "chapter_id": "chapter-1",
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "limits": {
+    "max_unit_text_bytes": 32,
+    "max_units": 256,
+    "transcription_max_seconds": 60,
+    "transcription_max_segments": 16,
+    "transcription_max_wav_bytes": 16777216
+  },
+  "observations": [],
+  "pilot": {
+    "bytes": 7637,
+    "media_type": "application/json",
+    "path": "private/pilot-plan.json",
+    "sha256": "b20d3bb85d300e26864b3e0ff05c1a0df496f693746dad3f72d3dcce173f1ad1"
+  },
+  "pilot_input": {
+    "bytes": 5684,
+    "media_type": "application/json",
+    "path": "private/speech-pilot-input.json",
+    "sha256": "6808dba64e346c1042bb4377e35896a10020b24275183fb463a1a5ddbc721a5a"
+  },
+  "recipe": {
+    "bytes": 49,
+    "media_type": "application/json",
+    "path": "private/speech-recipe.json",
+    "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+  },
+  "request_payloads": [],
+  "schema_version": 1,
+  "speech_provider": "speech-double",
+  "timeout_ms": 30000,
+  "transcription_model": "primary-transcription-double",
+  "transcription_provider": "transcription-double"
+}

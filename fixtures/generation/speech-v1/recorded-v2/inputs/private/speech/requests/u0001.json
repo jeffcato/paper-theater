@@ -1,0 +1,63 @@
+{
+  "accent": "catalog-default",
+  "acting": "",
+  "acting_intents": [],
+  "baseline": "",
+  "bindings": {
+    "bytes": 762,
+    "media_type": "application/json",
+    "path": "private/speech-bindings.json",
+    "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+  },
+  "bulk_speech_approved": false,
+  "canonical_id": "test-book:narrator",
+  "catalog": {
+    "file": {
+      "bytes": 320,
+      "media_type": "application/json",
+      "path": "private/voice-catalog.json",
+      "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+    },
+    "id": "committed:pilot:private:voice-catalog.json",
+    "provenance": "synthetic"
+  },
+  "direction": {
+    "bytes": 9391,
+    "media_type": "application/json",
+    "path": "private/direction-plan.json",
+    "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+  },
+  "language": "en",
+  "model": "gemini-3.8-flash-tts",
+  "pilot": {
+    "bytes": 14340,
+    "media_type": "application/json",
+    "path": "private/pilot-plan.json",
+    "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2"
+  },
+  "provider": "speech-double",
+  "recipe": {
+    "bytes": 49,
+    "media_type": "application/json",
+    "path": "private/speech-recipe.json",
+    "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+  },
+  "schema_version": 1,
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "speaker": "narrator",
+  "task": "verbatim-speech-unit-v1",
+  "text": " The water was still.",
+  "unit": {
+    "id": "u0001",
+    "kind": "narration",
+    "request_ready": true,
+    "span": [
+      25,
+      46
+    ],
+    "speaker": "narrator",
+    "text": " The water was still.",
+    "turn_id": "t0"
+  },
+  "voice_id": "voice-n"
+}

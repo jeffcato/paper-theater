@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "test": "direction_pilot_process",
+  "real_server_processes": 2,
+  "forced_process_terminations": 1,
+  "original_inputs_removed": true,
+  "committed_phases_before_restart": 6,
+  "committed_phases_after_restart": 6,
+  "checkpoint_bytes_unchanged": true,
+  "checkpoint_events": 6,
+  "external_provider_calls": 0,
+  "helper_calls": 0,
+  "private_artifact_http_status": 404,
+  "bulk_speech_approved": false,
+  "production_approved": false,
+  "server_binary_sha256": "229c43907a27150b7a227164de172bcd4f0077d522b01e846536c99f5d8916c2"
+}

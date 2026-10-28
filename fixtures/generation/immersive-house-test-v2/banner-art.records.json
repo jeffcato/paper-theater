@@ -1,0 +1,162 @@
+[
+  {
+    "asset": "banner.play",
+    "file": "banner-play.png",
+    "raw_file": "banner-play.raw.jpg",
+    "raw_sha256": "40a7a3bf75983b65fa5a23431d88d86da1f8bc74f235889c08b3121da086e7cd",
+    "raw_px": [
+      1024,
+      1024
+    ],
+    "ground_sampled_rgb": [
+      127,
+      127,
+      126
+    ],
+    "painted_box_px": {
+      "x0": 34,
+      "y0": 19,
+      "x1": 986,
+      "y1": 1004
+    },
+    "crop_px": {
+      "x": 0,
+      "y": 0,
+      "w": 1025,
+      "h": 1025
+    },
+    "deliver_px": [
+      512,
+      512
+    ],
+    "file_sha256": "555a580f81ee3e1a5e02f2908331559d2dad2239ad1bf97df21de25da36ca5ce"
+  },
+  {
+    "asset": "banner.restart",
+    "file": "banner-restart.png",
+    "raw_file": "banner-restart.raw.jpg",
+    "raw_sha256": "6d7f388d65111fb8b4d464f431b1d876010d7ddaf8d6e6d63b99007b20d14aa4",
+    "raw_px": [
+      1024,
+      1024
+    ],
+    "ground_sampled_rgb": [
+      126,
+      126,
+      126
+    ],
+    "painted_box_px": {
+      "x0": 34,
+      "y0": 18,
+      "x1": 985,
+      "y1": 1004
+    },
+    "crop_px": {
+      "x": 0,
+      "y": 0,
+      "w": 1026,
+      "h": 1026
+    },
+    "deliver_px": [
+      512,
+      512
+    ],
+    "file_sha256": "e56575e14e915fefc43f7f8282880d980279b4bc38eae31a26902550a4d1090b"
+  },
+  {
+    "asset": "banner.readalong",
+    "file": "banner-readalong.png",
+    "raw_file": "banner-readalong.raw.jpg",
+    "raw_sha256": "e9171eb8f90968cc6e7b5c1b6760175143c53a26a48fea64f574a78dbf7194ad",
+    "raw_px": [
+      1024,
+      1024
+    ],
+    "ground_sampled_rgb": [
+      126,
+      126,
+      126
+    ],
+    "painted_box_px": {
+      "x0": 34,
+      "y0": 18,
+      "x1": 986,
+      "y1": 1006
+    },
+    "crop_px": {
+      "x": 0,
+      "y": 0,
+      "w": 1029,
+      "h": 1029
+    },
+    "deliver_px": [
+      512,
+      512
+    ],
+    "file_sha256": "1d8e184ae2612d1b82698f44237d0aeb72516fdc63b37452669392cc23b67b9e"
+  },
+  {
+    "asset": "banner.return",
+    "file": "banner-return.png",
+    "raw_file": "banner-return.raw.jpg",
+    "raw_sha256": "a0a7a7f2c086140ccf202209039d6aad4855013d497212986b15bfbdd1f98391",
+    "raw_px": [
+      1024,
+      1024
+    ],
+    "ground_sampled_rgb": [
+      126,
+      126,
+      126
+    ],
+    "painted_box_px": {
+      "x0": 34,
+      "y0": 19,
+      "x1": 986,
+      "y1": 1003
+    },
+    "crop_px": {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1024
+    },
+    "deliver_px": [
+      512,
+      512
+    ],
+    "file_sha256": "434f5726b8dc1ade2c83e526da73f86a5534d38d1f0c786d07c64f01af544f0c"
+  },
+  {
+    "asset": "banner.seek",
+    "file": "banner-seek.png",
+    "raw_file": "banner-seek.raw.jpg",
+    "raw_sha256": "725fb8a4105a8581e7e1abcf73baf21bed08a2dd78edd1083df3de0d19cf65e1",
+    "raw_px": [
+      1280,
+      720
+    ],
+    "ground_sampled_rgb": [
+      127,
+      127,
+      127
+    ],
+    "painted_box_px": {
+      "x0": 24,
+      "y0": 166,
+      "x1": 1254,
+      "y1": 522
+    },
+    "crop_px": {
+      "x": 6,
+      "y": 156,
+      "w": 1268,
+      "h": 378
+    },
+    "deliver_px": [
+      1280,
+      240
+    ],
+    "file_sha256": "246e713612c29c7683f61230c6094cfeaee05d8bbd9d5634fb3a36eab8865136"
+  }
+]
