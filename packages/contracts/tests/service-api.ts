@@ -67,3 +67,9 @@ export function mappedSourceSummary(report:AcceptanceVerificationReport):SourceS
 import type {DeliveryAudioObservationV1,Pcm16WavInfo} from '@paper-theater/contracts';
 import {validateDeliveryAudioObservationV1} from '@paper-theater/contracts';
 export function deliveryObservation(raw:unknown):Pcm16WavInfo{validateDeliveryAudioObservationV1(raw);const audio:DeliveryAudioObservationV1=raw;return audio.format;}
+
+import {type PilotReviewPolicyV1,type PilotReviewObservationV1,type PilotPlanStructureV1,validatePilotReviewPolicyV1,validatePilotReviewObservationV1,validatePilotPlanStructureV1} from '@paper-theater/contracts';
+declare const pilotPolicy:PilotReviewPolicyV1;
+declare const pilotObservation:PilotReviewObservationV1;
+declare const pilotStructure:PilotPlanStructureV1;
+validatePilotReviewPolicyV1(pilotPolicy);validatePilotReviewObservationV1(pilotObservation);validatePilotPlanStructureV1(pilotStructure);
