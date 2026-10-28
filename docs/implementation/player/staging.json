@@ -9,7 +9,7 @@
       "curtain": 0,
       "title": true,
       "gain": 1,
-      "pixels_sha256": "0eac63ebfff5cfe6946f42edc7e76782c7fd9c77ec9466de4a1d27b706a05269",
+      "pixels_sha256": "1d7dfb4ea7d76bd650254cd9fd4340444998ba70ea36ec4d65ad3aece80c6d56",
       "openingMax": 0.16862745098039217,
       "houseMax": 0.01568627450980392,
       "audio": {
@@ -123,12 +123,12 @@
       }
     },
     "signMid": {
-      "sample": 603759,
+      "sample": 603767,
       "phase": "scene",
       "curtain": 1,
       "title": false,
       "gain": 1,
-      "pixels_sha256": "205012d0653d788555ec412ad4aa566cecbe5228ec16d76c83cc034e9861eda4",
+      "pixels_sha256": "45923051cda92d8c845ad8f13539abeef331df18c3c389f1908986e8db517aa6",
       "openingMax": 0.8823529411764706,
       "houseMax": 0.16862745098039217,
       "audio": {
@@ -140,12 +140,12 @@
       }
     },
     "signSettled": {
-      "sample": 603758,
+      "sample": 603766,
       "phase": "scene",
       "curtain": 1,
       "title": false,
       "gain": 1,
-      "pixels_sha256": "1c15bcfee66ea19c017fdbf2fc2ab1cd8234dd2e3c96665dcc39a694b5cf52ac",
+      "pixels_sha256": "956ca1ee8e1a3917f37e0d9945eaf1e467327c2d5175f86723b34a9961be4696",
       "openingMax": 0.8823529411764706,
       "houseMax": 0.16862745098039217,
       "audio": {
@@ -179,7 +179,7 @@
       "curtain": 0,
       "title": true,
       "gain": 1,
-      "pixels_sha256": "0eac63ebfff5cfe6946f42edc7e76782c7fd9c77ec9466de4a1d27b706a05269",
+      "pixels_sha256": "1d7dfb4ea7d76bd650254cd9fd4340444998ba70ea36ec4d65ad3aece80c6d56",
       "openingMax": 0.16862745098039217,
       "houseMax": 0.01568627450980392,
       "audio": {
@@ -192,20 +192,20 @@
     }
   },
   "shotSha256": {
-    "opening-title": "e362d90e052190879dff6f2401d007658909490032f14f2fa547238a21e26021",
+    "opening-title": "ab373dd3505fe31bcb6b70bcc7465e4bb47e47838fbd773482e83b9d234cb887",
     "curtain-mid": "aeffb9e57c9d12456cfd4241582a8eb487316036d9a9f7f66263b498cee8a285",
     "scene": "8b2ceb1c85bebec7e49b279ea10a5ab0e375854f960651375afc9f1047912d40",
     "blackout": "5e53088323f74061b7ab9135e015feb938c3de76307417d8ec4ea419a553afaf",
     "closing-mid": "ec8f194d35a85d33557d38baa7ac3f6f4beac728437b9b72fa5a9d9074e8d111",
     "end": "e362d90e052190879dff6f2401d007658909490032f14f2fa547238a21e26021",
     "playing": "8b2ceb1c85bebec7e49b279ea10a5ab0e375854f960651375afc9f1047912d40",
-    "sign-mid": "85fd7720782b490ec2a9af2a96d893f8fcb72ee5304c03a0c0aa33aa4ae11f81",
-    "sign-settled": "7280c68c6ac3b4a962a613ab454f9f98c97b7db896ae620b07a51ce6479c5fc9",
-    "sign-settled2": "7280c68c6ac3b4a962a613ab454f9f98c97b7db896ae620b07a51ce6479c5fc9",
+    "sign-mid": "f74cc6ef2f868209973f13ee48ebb30c03e663510217722179fe621ed5a8e189",
+    "sign-settled": "c01779ab67842fe7bab087c228445ee5db910a80390dc5a5ee2ec026ecd2694b",
+    "sign-settled2": "c01779ab67842fe7bab087c228445ee5db910a80390dc5a5ee2ec026ecd2694b",
     "resumed": "8b2ceb1c85bebec7e49b279ea10a5ab0e375854f960651375afc9f1047912d40",
     "resumed2": "8b2ceb1c85bebec7e49b279ea10a5ab0e375854f960651375afc9f1047912d40",
-    "restarted": "e362d90e052190879dff6f2401d007658909490032f14f2fa547238a21e26021",
-    "restarted2": "e362d90e052190879dff6f2401d007658909490032f14f2fa547238a21e26021"
+    "restarted": "ab373dd3505fe31bcb6b70bcc7465e4bb47e47838fbd773482e83b9d234cb887",
+    "restarted2": "ab373dd3505fe31bcb6b70bcc7465e4bb47e47838fbd773482e83b9d234cb887"
   },
   "failures": []
 }

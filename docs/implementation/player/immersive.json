@@ -1,0 +1,180 @@
+{
+  "harness": "chrome-immersive",
+  "viewports": [
+    {
+      "width": 960,
+      "height": 540,
+      "canvas": [
+        960,
+        540
+      ],
+      "seat": {
+        "fontReady": true,
+        "growth": 13,
+        "rail": {
+          "play": [
+            199.495523104675,
+            60.78757853102299
+          ],
+          "restart": [
+            270.18925012751413,
+            64.71074810940055
+          ],
+          "seek": [
+            348.9774855856458,
+            69.18895207334349
+          ],
+          "readalong": [
+            630.2994857531246,
+            84.6924225028612
+          ],
+          "return": [
+            685.9977685627935,
+            87.78257917646607
+          ]
+        },
+        "diagnostic": true,
+        "accepted": false
+      },
+      "playing": {
+        "picks": [
+          "ticket:b",
+          "inspect:seat",
+          "rail:play"
+        ],
+        "hovers": [
+          "ticket:b",
+          "inspect:seat",
+          "rail:play"
+        ],
+        "journey": 1,
+        "sample": 1522080,
+        "curtain": 1,
+        "phase": "scene",
+        "paused": false,
+        "time": 31.972952,
+        "errors": []
+      },
+      "plaque": {
+        "box": {
+          "left": 313.046875,
+          "top": 396.65625,
+          "right": 636.0625,
+          "bottom": 496.6875
+        },
+        "lines": 3,
+        "rowsInside": true,
+        "floorGap": 48.077666971630606,
+        "bannerGap": 1.2031657630448223,
+        "bannerInView": true,
+        "text": "Em, badly frightened, threw open the trap door in the floor and climbed ",
+        "fontSize": "22px"
+      },
+      "seek": {
+        "u": 0.4697418937173587,
+        "sample": 1532561,
+        "count": 3262560
+      },
+      "parallax": {
+        "prosceniumShift": 0.42376669870475325,
+        "layerShifts": [
+          [
+            "house-foreground",
+            -2.859
+          ],
+          [
+            "orchestra-pit",
+            -1.027
+          ],
+          [
+            "proscenium",
+            0.424
+          ],
+          [
+            "stage-front",
+            0.756
+          ],
+          [
+            "groove-1",
+            1.286
+          ],
+          [
+            "groove-2",
+            1.98
+          ],
+          [
+            "scenic-flats",
+            2.889
+          ],
+          [
+            "backcloth",
+            4.094
+          ]
+        ],
+        "extremePicks": [
+          [
+            "play",
+            "rail:play"
+          ],
+          [
+            "restart",
+            "rail:restart"
+          ],
+          [
+            "seek",
+            "rail:seek"
+          ],
+          [
+            "readalong",
+            "rail:readalong"
+          ],
+          [
+            "return",
+            "rail:return"
+          ]
+        ],
+        "reducedShift": [
+          0,
+          0
+        ],
+        "reducedPosition": [
+          -2.08244755007083,
+          2.9124999999999996,
+          19.460174265863806
+        ],
+        "basePosition": [
+          -2.08244755007083,
+          2.9124999999999996,
+          19.460174265863806
+        ]
+      },
+      "paused": {
+        "picks": [
+          "ticket:b",
+          "inspect:seat",
+          "rail:play",
+          "rail:seek",
+          "rail:play"
+        ],
+        "hovers": [
+          "ticket:b",
+          "inspect:seat",
+          "rail:play",
+          "rail:seek",
+          "rail:play"
+        ],
+        "journey": 1,
+        "sample": 1610056,
+        "curtain": 1,
+        "phase": "scene",
+        "paused": true,
+        "time": 33.542836,
+        "errors": []
+      }
+    }
+  ],
+  "browser": "Chrome/156.0.8078.48",
+  "failures": [
+    "harness: Error: timeout: aisle\n    at until (file:///Users/heycato/Projects/paper-theater/packages/player/scripts/chrome-immersive.mjs:351:13)\n    at async file:///Users/heycato/Projects/paper-theater/packages/player/scripts/chrome-immersive.mjs:370:5"
+  ]
+}

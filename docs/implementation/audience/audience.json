@@ -1,0 +1,20 @@
+{
+  "harness": "chrome-audience",
+  "catalog": {
+    "packages": []
+  },
+  "viewports": [],
+  "browser": "Chrome/156.0.8078.48",
+  "requests": [
+    "/",
+    "/assets/index-BEgbXsjW.js",
+    "/assets/index-C0JcmL65.css",
+    "/assets/noto-serif-latin-400-normal-BV_iYGc9.woff2",
+    "/assets/three.module-CDJkRhUe.js",
+    "/favicon.ico",
+    "/tickets/catalog.json"
+  ],
+  "failures": [
+    "harness: Error: timeout: aisle (960x540) active=BODY:The Wonderful Wizard of Oz. Under rehearsal — not yet published. Play opens the \n    at until (file:///Users/heycato/Projects/paper-theater/apps/audience/scripts/chrome-audience.mjs:116:13)\n    at async file:///Users/heycato/Projects/paper-theater/apps/audience/scripts/chrome-audience.mjs:175:5"
+  ]
+}

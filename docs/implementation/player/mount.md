@@ -85,6 +85,18 @@ usage typechecks against the pinned 0.186.0 declarations.
   composite through the stage target, so the blackout gain covers them;
   the profile shell/curtain alphas stay reserved for the future
   independently-lit house pass.
+- Target house-art direction (not yet implemented in the renderer):
+  the immersive house surfaces are specified as 35 blank, story-neutral
+  bitmaps in [`immersive-art-brief.md`](immersive-art-brief.md), with all
+  lettering typeset by the player in bundled Noto Serif, glow/shadows/
+  punch/gather kept procedural, and the rail decomposed into plate,
+  shared brass plates, a player-rotated lever, a gauge face and a
+  sliding needle (seek track u 0.06–0.94). The code-painted boards and
+  controls described below — including their baked lettering in a
+  provisional serif and the lever drawn inside each control plate —
+  are the interim diagnostic rendering and explicit fallback until a
+  house-art manifest loader lands; that loader is follow-up work owned
+  as described in the brief, and no registered art is consumed yet.
 - The pause-driven INTERMISSION sign is the first house element: mount
   forwards the transport UI clock (`onSign`) to `sink.setSign`, and the
   rope-hung board renders in a separate house scene after the composite

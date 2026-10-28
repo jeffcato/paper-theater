@@ -5,8 +5,8 @@
     {
       "viewport": "960x540",
       "fontReady": true,
-      "playSeconds": 1.46,
-      "playFrames": 81,
+      "playSeconds": 1.48,
+      "playFrames": 67,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
@@ -100,14 +100,14 @@
             ],
             [
               32,
-              60
+              62
             ]
           ]
         },
         "lines": 3,
         "clearance": 23,
         "overlayBottom": 521.8,
-        "pixels_sha256": "c19e9961ba7a4d91e3a7bd57b9b41a608b8e00ded6bc7051abbd931920a551f7"
+        "pixels_sha256": "ce517f9a6c2e9db8eb7f24514afd5ffcc04b830a06296c4ff69212f7b4b17e95"
       },
       "roLoopNotices": 5,
       "captureSha": "3e93807f49d7a88731799a0256d0c01ea2c55010926f11a008ea68a30ab0ce92",
@@ -122,8 +122,8 @@
     {
       "viewport": "1280x720",
       "fontReady": true,
-      "playSeconds": 1.48,
-      "playFrames": 52,
+      "playSeconds": 1.47,
+      "playFrames": 46,
       "mismatchCount": 0,
       "lines1": 3,
       "lines2": 3,
@@ -224,7 +224,7 @@
         "lines": 3,
         "clearance": 30.7,
         "overlayBottom": 669.3,
-        "pixels_sha256": "ad77d5359da03b6010dc648819e400b448b636bdb1e88bf3e10fe056d45ce18f"
+        "pixels_sha256": "19abc49477e47bf094c42e3f4f0556143af0a8a6fb6f0e80a8c45573a143d29d"
       },
       "roLoopNotices": 2,
       "captureSha": "25e2c8edde1ec3eb6e3a3a9624ddcfd83aaf2e251dd46bb1f9bc753e9d7e0a8e",
@@ -239,7 +239,7 @@
     {
       "viewport": "1920x1080",
       "fontReady": true,
-      "playSeconds": 1.49,
+      "playSeconds": 1.52,
       "playFrames": 24,
       "mismatchCount": 0,
       "lines1": 3,
@@ -330,18 +330,18 @@
           "buffered": [
             [
               0,
-              27
+              28
             ],
             [
               32,
-              60
+              61
             ]
           ]
         },
         "lines": 3,
         "clearance": 46.7,
         "overlayBottom": 974.8,
-        "pixels_sha256": "7304e2ff58636b5463d05c41949b6f1c8710782752f67af71ed9ac8413c31a9c"
+        "pixels_sha256": "fe4f386b79eafd8cd7b361890a5a0e32ae272df8243f07d383d1c7eeded2d4e9"
       },
       "roLoopNotices": 6,
       "captureSha": "73e482a1328e7344609273c0dcc78bf362860ab5c25f696893aaee5b8961db77",

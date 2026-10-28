@@ -356,3 +356,202 @@ microtask-only race window need one UI-clock settle wait or they read the
 pre-window emission. Retained: P15 lifecycle, chapter, staging, theater,
 plaque, audience 5/5 and inventory v2 144/144 (executed digest refreshed).
 Zero provider calls; headless evidence only, not demo-device p95/memory.
+
+## 2026-10-26 — authored title in front of closed curtains (R12 player fix)
+
+The sink drew the title card in the narrative scene while closed curtains
+composite over it in the later house pass, so the card was covered even
+with `title_visible` true (staging only ever asserted the flag, never the
+pixels — the studio strict check caught it). The card now lives in the
+house pass at its authored depth (in front of the 2.2 curtains), and the
+render loop tints its material by the same blackout gain the composite
+quad uses, so dark holds stay dark; house lighting, sign and calibration
+are untouched. No public API shape changed.
+
+`npm run check:title` (new) proves it in headless Chrome with the real
+build at 960x540, 1280x720 and 1920x1080: sample 0 shows title_visible
+with closed curtains and thousands of bright title-text pixels inside the
+projected card rect on both the canvas readback and the capture pixels
+(1207/1208, 2249/2251, 5201/5204 — identical bar to the studio check:
+R,G,B > 150, more than 20), plus a blackout guard (aperture 0, house lit)
+per viewport. Evidence: `title.json` plus three posed title frames (118
+local requests, 0 remote, 0 provider calls). Red first: the proof harness
+reported zero title pixels on both paths at all viewports pre-fix.
+
+Two harness-side findings, not player defects: the card-rect Y range must
+run top-to-bottom in CSS coords (an inverted range counts nothing), and
+capture targets hold linear light — the capture side sRGB-decodes before
+applying the identical presented-image bar (text reads 234,223,194 on
+screen vs 210,188,138 linear in the target). Inventory v2 still passes
+144/144: exactly the 8 title-window samples x 3 viewports changed hashes,
+all other 120 captures byte-identical. Retained: player 115/115,
+lifecycle, recovery, chapter, staging, theater, plaque, audience 5/5.
+Server strict assertion and studio files untouched; no commit — staging
+and commits stay with integration.
+
+## 2026-10-26 — full-viewport 2.5D multiplane world (immersive audience)
+
+Opt-in immersion on the one shared player. With `immersive` unset the sink
+behaves as before, and the studio still uses that bounded path.
+
+- **`src/multiplane.ts`** (pure)
+  - Depth tables. Stage side, relative to the facade at z = 2.5: +2.5
+    patrons, +1.8 rail, +0.8 lectern, 0 facade, −0.3 frozen curtains (2.2),
+    −0.8 … −4 stage. Lobby, around z = 60: +1.5 grille, +0.8 counter, −1
+    doors, −3 backdrop.
+  - Contain-fit 16:9 frames. Seat frame on the facade plane, y −5.65…12.3.
+    Lobby frame on the counter plane, y 0.3…7.7.
+  - Side viewpoint (`SIDE_VIEW_DEGREES`, 7° house-left). At rest the
+    camera stands off the centre line facing the frame centre, so cards are
+    seen at a slight angle. The fit keeps the nearer, larger half inside the
+    viewport. The plaque uses the inner rect of the angled lectern, and the
+    rail uses its outer bounds.
+  - Smoothstep aisle dolly. From the ticket window to the front row (z 30)
+    the camera stays within ±1.4 of the aisle centre. It steps aside only
+    after that.
+  - Off-axis pointer parallax. The camera moves along its own axes, up to
+    ±0.6/±0.3 in the lobby and inside the frozen ±0.8/±0.4 envelope at the
+    seat. The window shift holds the frame centre, and the angled
+    proscenium stays within 1 px (was exact before the side view).
+    Parallax is zero under reduced motion.
+  - Lectern and rail rects use the 0.25 growth step. Also: door swing and
+    the DPR cap of 1.5.
+- **`src/house.ts`**
+  - Code-painted toy-theatre cards, house pass only: grille, counter, ticket
+    stubs with paper shadows, UNDER REHEARSAL plates, inspection card, foyer
+    doors, drapes, credit playbills, damask, sconces, aisle rows with paper
+    patrons, carpet, facade with cartouche and side boxes, footlights, pit
+    railing, lectern, foreground patrons, and the brass rail (levers plus
+    seek gauge).
+  - A velvet map for the frozen curtain panels. Its folds gather as the
+    curtains open; the slide geometry and coverage are unchanged.
+- **`src/shell.ts`**
+  - `createImmersiveSink`. It hides the bounded columns, header, apron and
+    plaque backing, and adds `setView` (world camera plus `setViewOffset`),
+    `resize`, `pick` (raycast, with u along the gauge track), `renderIdle`,
+    `lecternRect`/`railRect` and `memory()`.
+  - Shared fix: title-card and INTERMISSION lettering now shrink to fit.
+    Long titles were clipped before.
+- **`src/immersive.ts`**: `createTheaterWorld`.
+  - One `requestAnimationFrame` scheduler. Each frame ticks the attached
+    mount, or renders the idle house when no mount is attached.
+  - Journey on UI time, pointer hover/click picking, and a ResizeObserver
+    refit.
+  - Each frame the PlaqueView container is placed on the projected lectern
+    inset (reflow on size change). `fitPlaque()` applies the growth and
+    refit rule.
+  - Teardown of listeners, the frame loop, the observer, GPU resources and
+    the WebGL context.
+
+Commands and results, on this shared machine (load average about 24 during
+the later runs):
+
+- `npm run check:player`: 163/163 pass. The new `multiplane` cases run in
+  the shell group (layers, framing at 5 aspects, lectern/rail clearance
+  under pointer extremes and growth 0/4/12, parallax ordering, journey,
+  doors).
+- `node scripts/chrome-immersive.mjs` passes at 960×540, 1280×720 and
+  1920×1080 in headless Chrome/156 with SwiftShader. Evidence:
+  `immersive.json` and `immersive-{lobby,hover,inspect,aisle,stage,intermission}-{W}x{H}.png`,
+  plus `immersive-stage-resized-1600x1200.png`.
+  - Real mouse input: hover lifts ticket B, clicking it opens the card, and
+    Take Your Seat starts the dolly. The picks recorded are exactly ticket
+    and seat.
+  - At the seat, the readiness-v2 diagnostic performance is mounted
+    through `loadDiagnostic` and is reported as diagnostic, not accepted.
+    Noto Serif is certified.
+  - The rail Play lever starts audio.
+  - The plaque shows 3 lines, all inside the lectern inset.
+
+    | Viewport | Floor clearance | Rail clearance | Plaque growth |
+    | --- | --- | --- | --- |
+    | 960×540 | 23 px | 28 px | 4 steps |
+    | 1280×720 | 30 px | 36 px | 0 |
+    | 1920×1080 | 45 px | 54 px | 0 |
+
+  - A gauge click at the track centre gives u = 0.494–0.497, and the
+    playhead lands at 0.495–0.498 of the master.
+  - With the pointer at (1, 1), the facade plane moves 0 px. Layer shifts
+    run in order from −3.6 px (patrons) to +4.5 px (backcloth) at 1280×720.
+    Raycast picks at the pure projections of all 6 rail controls hit the
+    right control.
+  - Reduced motion gives zero shift.
+  - The Pause lever lowers INTERMISSION.
+  - A live resize to 1600×1200 refits: the drawing buffer is 1600×1200 and
+    all 6 rail picks still hit.
+  - Ten create/dispose cycles each end with 0 listener delta, 0 frames
+    after dispose, 0 geometries and textures (`renderer.info`), and 0
+    canvases.
+- Frame intervals at 1280×720 over 10 s while playing (software GL only;
+  not the target device):
+
+  | Run | Machine load | p50 | p95 | Frames in 10 s |
+  | --- | --- | --- | --- | --- |
+  | First | lighter | 33.4 ms | 50.0 ms | 263 |
+  | Later | load average about 24 | 116.6 ms | 149.9 ms | 88 |
+
+  Neither run meets or disproves the 33.3 ms p95 target.
+- Accounted graphics memory at 1280×720, DPR 1: 97.1 MB, under the 256 MiB
+  budget. This is an allocation account from `sink.memory()`, not a driver
+  readout.
+  - Textures (all canvas textures and figures, RGBA8): 45.5 MB.
+  - Two render targets (RGBA8 plus 32-bit depth): 14.7 MB.
+  - Drawing buffer, assuming front/back plus 4× MSAA color and depth: 36.9 MB.
+  - Live `renderer.info`: 72 geometries and 40 textures.
+- Regression runs on the bounded sink after these changes: check:theater,
+  staging, title, geometry, lifecycle, recovery, inventory, plaque and
+  chapter pass. Their evidence files were refreshed by these runs.
+  - `check:chrome` (`chrome-capture.mjs`) fails, and the failure predates
+    this change. It builds `createThreeSink(320, 180)` without figures,
+    then mounts a timeline whose actors use `card-set-a`. The sink's
+    fail-closed unknown-asset check rejects that, and the check is
+    unchanged here.
+- Audience:
+  - `npm test`: 8/8 pass. New cases: verbatim opening lines from the frozen
+    source, spoiler-free synopses, honest readiness wording.
+  - `npm run typecheck`: passes.
+  - `node scripts/chrome-audience.mjs`: passes at all 3 viewports. Details
+    are in [`../audience/README.md`](../audience/README.md).
+- `npm run build` at the root (contracts, player, audience, studio) and
+  `python3 tools/check_product_identity.py .` (884 files): both pass.
+
+Pending, not claimed here:
+
+- The immersive seat framing is a new view of the frozen stage. The camera
+  is farther back, framed on the facade plane. It needs an Agent 1 profile
+  revision and Agent 3 review captures in this framing before production
+  acceptance.
+- Graphics recovery is not wired for the immersive world (no `recreateSink`),
+  so the mount reports its reload path.
+- The audience mounts nothing until a catalog-entry → release-reference
+  contract exists.
+- Still owed: target-device 60 s p95 and memory, real assistive-technology
+  testing, and DPR above 1 in the immersive harness.
+
+## 2026-10-26 — immersive house art direction (documentation alignment)
+
+Documentation-only alignment to [`immersive-art-brief.md`](immersive-art-brief.md);
+no renderer behavior changed and no new browser result is claimed here.
+
+- The code-painted house in `src/house.ts` above is the interim diagnostic
+  rendering and the explicit fallback. The target direction is the
+  brief's 35 registered blank, story-neutral bitmaps: lettering typeset
+  by the player in bundled Noto Serif (never baked, OCR-rejected at
+  registration), flat cards at the brief's layers, and paper shadows,
+  glow halos, ticket punch, curtain gather, lever/needle motion and all
+  lettering kept procedural. Story titles and credits currently painted
+  into tickets/playbills in code are interim; in the target they are
+  typeset over blank `lobby.ticket` / `lobby.playbill-*` fields.
+- The rail target is decomposed as in the brief (`rail.plate`,
+  `shared.brass-plate` control plates, a player-rotated `rail.lever`,
+  `rail.gauge` with track u 0.06–0.94, sliding `rail.needle`). The
+  lever drawn inside each code-painted control plate and the canvas
+  seek inset are interim equivalents, not the registered-art geometry.
+- Consuming registered art still needs the house-art manifest loader
+  described in the brief's follow-up; it is not implemented, so the
+  pending item above stands: the brief's geometry and deliver sizes
+  join the requested Agent 1 profile revision (see
+  [`integration-request.md`](integration-request.md) §7), and art
+  registered against the brief stays diagnostic until that revision is
+  frozen and the art is accepted. The brief authorizes no provider
+  calls.

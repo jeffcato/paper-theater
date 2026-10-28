@@ -40,7 +40,7 @@
   "seek": {
     "mediaDuration": 180,
     "seek90": 90,
-    "playheadAfter1s": 90.957893,
+    "playheadAfter1s": 90.953787,
     "seek179": 179
   },
   "rejection": {
@@ -65,7 +65,7 @@
     "contextState": "closed"
   },
   "requests": {
-    "count": 31,
+    "count": 34,
     "remote": 0
   },
   "provider_calls": 0,

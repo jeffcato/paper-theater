@@ -1,0 +1,128 @@
+{
+  "tool": "check:title",
+  "fixture": "fixtures/generation/two-scene-readiness-v2",
+  "opening": {
+    "title": "Paper Theater diagnostic",
+    "sample": 0,
+    "curtains": "closed"
+  },
+  "viewports": [
+    {
+      "viewport": "960x540",
+      "sample": 0,
+      "titleVisible": true,
+      "curtain": 0,
+      "gain": 1,
+      "captureTitlePixels": 1207,
+      "captureRect": [
+        313,
+        202,
+        647,
+        304
+      ],
+      "captureMax": [
+        234,
+        223,
+        194
+      ],
+      "screenTitlePixels": 1208,
+      "screenRect": [
+        313,
+        202,
+        647,
+        304
+      ],
+      "screenMax": [
+        234,
+        223,
+        194
+      ],
+      "captureSha": "794ed28e0d4fc3922ec0c4ae61296c55c5d9e7f62ba598c1e8df8e9de2d4f77b",
+      "blackout": {
+        "sample": 1752000,
+        "openingMax": 0,
+        "houseMax": 0.16862745098039217
+      }
+    },
+    {
+      "viewport": "1280x720",
+      "sample": 0,
+      "titleVisible": true,
+      "curtain": 0,
+      "gain": 1,
+      "captureTitlePixels": 2249,
+      "captureRect": [
+        418,
+        269,
+        862,
+        406
+      ],
+      "captureMax": [
+        234,
+        223,
+        194
+      ],
+      "screenTitlePixels": 2251,
+      "screenRect": [
+        418,
+        269,
+        862,
+        406
+      ],
+      "screenMax": [
+        234,
+        223,
+        194
+      ],
+      "captureSha": "d1eda3ff21f1b7757143a3bcfd8f8583fd891edd7769dfedf69fbaaa78802421",
+      "blackout": {
+        "sample": 1752000,
+        "openingMax": 0,
+        "houseMax": 0.16862745098039217
+      }
+    },
+    {
+      "viewport": "1920x1080",
+      "sample": 0,
+      "titleVisible": true,
+      "curtain": 0,
+      "gain": 1,
+      "captureTitlePixels": 5201,
+      "captureRect": [
+        627,
+        404,
+        1293,
+        608
+      ],
+      "captureMax": [
+        234,
+        223,
+        194
+      ],
+      "screenTitlePixels": 5204,
+      "screenRect": [
+        627,
+        404,
+        1293,
+        608
+      ],
+      "screenMax": [
+        234,
+        223,
+        194
+      ],
+      "captureSha": "ebd565a030bfbc4c1ea2c102b5f8a1794cff91bc3512f8eb348d814fb348c21a",
+      "blackout": {
+        "sample": 1752000,
+        "openingMax": 0,
+        "houseMax": 0.16862745098039217
+      }
+    }
+  ],
+  "requests": {
+    "count": 127,
+    "remote": 0
+  },
+  "provider_calls": 0,
+  "failures": []
+}
