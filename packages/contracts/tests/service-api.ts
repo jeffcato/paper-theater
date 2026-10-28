@@ -1,5 +1,12 @@
 import type {CandidateFile, CandidateWrite, RunServices,ProviderOperationV2,ProviderResultV2,ProviderContext,ProviderQuotaScope,ProviderAttemptIdentity,ProviderArtifactRefWire} from '@paper-theater/contracts';
 import {validateProviderOperationV2,validateProviderResultV2,providerQuotaScopeKey} from '@paper-theater/contracts';
+import {validateProductionDerivationV1,validateProductionParentPolicyV1} from '@paper-theater/contracts';
+import type {ProductionParentPolicyV1,ProductionDerivationV1} from '@paper-theater/contracts';
+export async function validateCompilerParent(parent:unknown,derived:unknown,policyBytes:Uint8Array,requestBytes:Uint8Array):Promise<ProductionDerivationV1> {
+ validateProductionParentPolicyV1(parent);
+ const policy:ProductionParentPolicyV1=parent;
+ return validateProductionDerivationV1(policy,derived,policyBytes,requestBytes);
+}
 // Compile through the package's exported declarations, as downstream workers do.
 export async function parseCandidate(services: RunServices, candidate: CandidateFile): Promise<unknown> {
   const bytes: Uint8Array = await services.read_candidate(candidate);

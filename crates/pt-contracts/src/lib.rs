@@ -7,7 +7,7 @@ pub mod provider_metadata;
 pub use provider_metadata::*;
 
 pub const CONTRACT_REVISION: &str = "pt-contracts-v1.0.0";
-pub const SERVICE_REVISION: &str = "pt-services-v1.11.0";
+pub const SERVICE_REVISION: &str = "pt-services-v1.12.0";
 pub const CAPABILITY: &str = "paper-player-v1";
 
 pub mod playback;
@@ -42,3 +42,6 @@ pub use provider_native_exchange::*;
 
 pub mod registered_source_scope;
 pub use registered_source_scope::*;
+
+pub mod production_parent_policy;
+pub use production_parent_policy::*;

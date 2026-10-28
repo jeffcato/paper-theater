@@ -4,7 +4,7 @@ use crate::*;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-fn bounded_limits(limits: &Limits) -> ContractResult<()> {
+pub(crate) fn bounded_limits(limits: &Limits) -> ContractResult<()> {
     for n in [
         limits.money_microusd,
         limits.requests,
@@ -25,7 +25,7 @@ fn bounded_limits(limits: &Limits) -> ContractResult<()> {
         "expected 1..300000 milliseconds",
     )
 }
-fn within(a: &Limits, b: &Limits) -> bool {
+pub(crate) fn within(a: &Limits, b: &Limits) -> bool {
     a.money_microusd <= b.money_microusd
         && a.requests <= b.requests
         && a.tokens <= b.tokens
