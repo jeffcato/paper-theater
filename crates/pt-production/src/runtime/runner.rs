@@ -32,6 +32,28 @@ fn service(e: Error) -> c::ServiceError {
     }
 }
 impl Services {
+    #[cfg(test)]
+    pub(super) fn injected_saved_provider(
+        store: Store,
+        run: String,
+        epoch: i64,
+        unit: String,
+        inputs: Vec<c::ArtifactRef>,
+        adapter: super::provider_service::Adapter,
+    ) -> Self {
+        Self {
+            store,
+            run,
+            epoch,
+            unit,
+            mode: c::ExecutionMode::Live,
+            inputs: Arc::new(inputs),
+            provider_v2: Some(adapter),
+            candidates: Arc::new(Mutex::new(HashMap::new())),
+            proposals: Arc::new(Mutex::new(Vec::new())),
+            offline_acoustic: None,
+        }
+    }
     async fn await_provider<T>(
         &self,
         future: impl std::future::Future<Output = std::result::Result<T, c::ServiceError>>,
@@ -335,6 +357,7 @@ pub struct Runtime {
     acceptance_player: Option<(std::path::PathBuf, c::FileRef, String)>,
     chapter_helper: Option<super::chapter::ChapterHelper>,
     chapter_inputs: Option<std::path::PathBuf>,
+    direction_pilot_inputs: Option<std::path::PathBuf>,
     offline_acoustic: Option<super::helper::OfflineAcoustic>,
 }
 impl Runtime {
@@ -349,6 +372,7 @@ impl Runtime {
             acceptance_player: None,
             chapter_helper: None,
             chapter_inputs: None,
+            direction_pilot_inputs: None,
             offline_acoustic: None,
         }
     }
@@ -455,11 +479,68 @@ impl Runtime {
         self.saved_inputs = Some((fixture, sources));
         self
     }
+    pub fn with_saved_direction_pilot(mut self, root: std::path::PathBuf) -> Self {
+        self.direction_pilot_inputs = Some(root);
+        self
+    }
+    pub fn import_saved_direction_pilot(
+        &self,
+        run: &str,
+        epoch: i64,
+        root: &std::path::Path,
+    ) -> Result<()> {
+        super::direction_pilot::freeze(&self.store, run, epoch, root)
+    }
+    pub async fn run_saved_direction_pilot_until(
+        &self,
+        run: &str,
+        epoch: i64,
+        phases: usize,
+    ) -> Result<()> {
+        super::direction_pilot::run(&self.store, self.executor.as_ref(), run, epoch, phases).await
+    }
+    pub async fn replay_saved_direction_pilot(
+        &self,
+        run: &str,
+    ) -> Result<Vec<(String, Vec<(c::FileRef, Vec<u8>)>)>> {
+        super::direction_pilot::replay(&self.store, self.executor.as_ref(), run).await
+    }
     pub async fn work_once(&self) -> Result<bool> {
         self.store.wake_due()?;
         let Some((run, epoch)) = self.store.claim()? else {
             return Ok(false);
         };
+        if self.store.snapshot(&run)?["request"]["pins"]["recipe_sha256"]
+            == super::direction_pilot::RECIPE
+        {
+            let result = async {
+                let exists: bool = self.store.db()?.query_row(
+                    "SELECT EXISTS(SELECT 1 FROM saved_flow_plans WHERE run=?1)",
+                    [&run],
+                    |r| r.get(0),
+                )?;
+                if !exists {
+                    let root = self.direction_pilot_inputs.as_ref().ok_or_else(|| {
+                        Error::new(
+                            "saved_flow_unavailable",
+                            "trusted saved Direction/Pilot inputs are not configured",
+                        )
+                    })?;
+                    self.import_saved_direction_pilot(&run, epoch, root)?;
+                }
+                self.run_saved_direction_pilot_until(&run, epoch, 6).await?;
+                fail(
+                    "stage_needs_repair",
+                    "saved Direction/Pilot evidence cannot approve bulk Speech or publication",
+                )
+            }
+            .await;
+            if self.store.is_active(&run, epoch)? {
+                self.store
+                    .finish(&run, epoch, "failed", result.as_ref().err().map(|e| e.code))?;
+            }
+            return result;
+        }
         if self.store.snapshot(&run)?["request"]["pins"]["recipe_sha256"] == super::chapter::RECIPE
         {
             let exists: bool = self.store.db()?.query_row(
@@ -605,6 +686,12 @@ impl Runtime {
         Store::active(&self.store.db()?, run, epoch)?;
         let snapshot = self.store.snapshot(run)?;
         let request: c::RunRequest = serde_json::from_value(snapshot["request"].clone())?;
+        if request.pins.recipe_sha256 == super::direction_pilot::RECIPE {
+            return fail(
+                "saved_flow_scope",
+                "saved phases require their private checkpoint path; bulk stages have no grant",
+            );
+        }
         if stage == c::Stage::Acoustic && request.pins.recipe_sha256 == super::chapter::RECIPE {
             let units = self.store.chapter_units(run)?;
             for unit in units {
@@ -916,7 +1003,9 @@ impl c::StageExecutor for FixturePipeline {
         input: c::StageInput,
         services: &dyn c::RunServices,
     ) -> std::result::Result<c::StageOutput, c::StageError> {
-        if (input.stage == c::Stage::Acoustic && input.pins.recipe_sha256 == super::chapter::RECIPE)
+        if super::direction_pilot::registered(input.stage, &input.pins.recipe_sha256)
+            || (input.stage == c::Stage::Acoustic
+                && input.pins.recipe_sha256 == super::chapter::RECIPE)
             || input.pins.recipe_sha256 == digest(b"saved-diagnostic-v1")
                 && matches!(
                     input.stage,

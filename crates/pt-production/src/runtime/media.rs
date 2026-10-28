@@ -29,85 +29,10 @@ fn invalid() -> Error {
         "expected a complete PCM16 WAV with consistent RIFF/chunk/frame sizes",
     )
 }
-fn read<const N: usize>(reader: &mut impl Read) -> Result<[u8; N]> {
-    let mut b = [0; N];
-    reader.read_exact(&mut b).map_err(|_| invalid())?;
-    Ok(b)
-}
 pub(crate) fn validate_wav(reader: &mut (impl Read + Seek), size: u64) -> Result<()> {
-    if size < 44 || size > MAX_MASTER_BYTES as u64 {
-        return Err(invalid());
-    }
-    reader.seek(SeekFrom::Start(0))?;
-    let header = read::<12>(reader)?;
-    if &header[..4] != b"RIFF"
-        || &header[8..] != b"WAVE"
-        || u32::from_le_bytes(header[4..8].try_into().unwrap()) as u64 + 8 != size
-    {
-        return Err(invalid());
-    }
-    let mut pos = 12;
-    let mut format = None;
-    let mut data = false;
-    let mut chunks = 0;
-    while pos < size {
-        chunks += 1;
-        if chunks > 1024 || size - pos < 8 {
-            return Err(invalid());
-        }
-        reader.seek(SeekFrom::Start(pos))?;
-        let h = read::<8>(reader)?;
-        let length = u32::from_le_bytes(h[4..].try_into().unwrap()) as u64;
-        let start = pos + 8;
-        let end = start.checked_add(length).ok_or_else(invalid)?;
-        let next = end.checked_add(length % 2).ok_or_else(invalid)?;
-        if next > size {
-            return Err(invalid());
-        }
-        match &h[..4] {
-            b"fmt " => {
-                if format.is_some() || data || !(length == 16 || length == 18) {
-                    return Err(invalid());
-                }
-                let f = read::<16>(reader)?;
-                let word = |i| u16::from_le_bytes([f[i], f[i + 1]]);
-                let rate = u32::from_le_bytes(f[4..8].try_into().unwrap());
-                let byte_rate = u32::from_le_bytes(f[8..12].try_into().unwrap());
-                let channels = word(2);
-                let block = word(12);
-                if word(0) != 1
-                    || !matches!(channels, 1 | 2)
-                    || !(8000..=192000).contains(&rate)
-                    || word(14) != 16
-                    || block != channels * 2
-                    || byte_rate != rate * block as u32
-                {
-                    return Err(invalid());
-                }
-                if length == 18 && read::<2>(reader)? != [0, 0] {
-                    return Err(invalid());
-                }
-                if size > MAX_ARTIFACT_BYTES as u64 && (channels != 2 || rate != 48000) {
-                    return fail("invalid_wav", "chapter masters must be 48 kHz stereo PCM16");
-                }
-                format = Some(block as u64);
-            }
-            b"data" => {
-                let block = format.ok_or_else(invalid)?;
-                if data || length == 0 || length % block != 0 {
-                    return Err(invalid());
-                }
-                data = true;
-            }
-            _ => {}
-        }
-        pos = next;
-    }
-    if !data || format.is_none() {
-        return Err(invalid());
-    }
-    reader.seek(SeekFrom::Start(0))?;
-    Ok(())
+    pt_contracts::inspect_pcm16_wav(reader, size)
+        .map(|_| ())
+        .map_err(|_| invalid())
 }
 
 /// Verified open handle; HTTP reads this same immutable object after validation.

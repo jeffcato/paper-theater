@@ -18,6 +18,7 @@ mod pilot_provider;
 mod presentation;
 mod presentation_pcm;
 mod source;
+mod speech;
 
 pub struct GenerationExecutor;
 const MAX_ARTIFACT_BYTES: u64 = 32 * 1024 * 1024;
@@ -91,6 +92,9 @@ impl StageExecutor for GenerationExecutor {
         }
         if input.stage == Stage::Pilot {
             return pilot::execute(&input, services).await;
+        }
+        if input.stage == Stage::Speech {
+            return speech::execute(&input, services).await;
         }
         if input.stage == Stage::Acoustic
             && input

@@ -1,6 +1,7 @@
 use super::*;
 mod direction;
 mod pilot;
+mod speech;
 use async_trait::async_trait;
 use std::{
     collections::BTreeMap,

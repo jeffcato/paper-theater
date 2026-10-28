@@ -149,7 +149,11 @@ impl Store {
             (request["book_id"].as_str(), request["source_id"].as_str()),
             (Some("pg-55"), Some("pg-55-chapter-1"))
                 | (Some("pg-36"), Some("pg-36-book-1-chapter-1"))
-        ) {
+        ) && !(request["mode"] == "fixture"
+            && request["pins"]["recipe_sha256"] == super::direction_pilot::RECIPE
+            && request["book_id"] == "test-book"
+            && request["source_id"] == "chapter-1")
+        {
             return fail("invalid_source", "select a configured first chapter");
         }
         if request["mode"] == "live" {

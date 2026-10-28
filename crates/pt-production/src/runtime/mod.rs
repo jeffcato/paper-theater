@@ -3,6 +3,9 @@ mod acceptance;
 #[allow(dead_code)] // Paid adapters await the shared quota/recovery boundary.
 mod broker;
 mod chapter;
+mod direction_pilot;
+#[cfg(test)]
+mod direction_pilot_tests;
 mod fixture;
 mod helper;
 mod media;
@@ -16,6 +19,7 @@ mod store;
 #[cfg(test)]
 use broker::{AccountingImport, Dispatch, Limits, Operation, Receipt, Transport};
 pub use chapter::{ChapterHelper, ChapterUnitState};
+pub use direction_pilot::SavedPhase;
 pub use media::{
     MAX_ARTIFACT_BYTES, MAX_MASTER_BYTES, VerifiedArtifact, artifact_limit,
     validate_artifact_bytes, validate_artifact_size,

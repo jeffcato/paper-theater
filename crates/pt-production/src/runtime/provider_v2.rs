@@ -414,6 +414,22 @@ impl Broker {
                 |r| r.get(0),
             )
             .optional()?;
+        if encoded.is_none() {
+            let private: Option<String> = tx
+                .query_row(
+                    "SELECT reference FROM saved_flow_artifacts WHERE run=?1 AND id=?2",
+                    params![run, a.id],
+                    |r| r.get(0),
+                )
+                .optional()?;
+            if private.as_deref() != Some(serde_json::to_string(a)?.as_str()) {
+                return Err(invalid(
+                    "private artifact outside the issued run or substituted metadata",
+                ));
+            }
+            super::direction_pilot::verify_private_bytes(&self.store, a)?;
+            return Ok(());
+        }
         if encoded
             .map(|s| serde_json::from_str::<serde_json::Value>(&s))
             .transpose()?
@@ -945,7 +961,7 @@ impl Broker {
         op: &c::ProviderOperationV2,
         transport: &dyn OfflineTransport,
     ) -> Result<c::ProviderResultV2> {
-        let(existing,bytes)=self.store.transaction(|tx|{let request=self.gate(tx,&op.identity.run_id,op.identity.epoch as i64)?;legacy::sync(tx)?;self.check_budgets(tx,&request,&op.identity.run_id,&zero())?;let(state,result)=Self::original(tx,op)?;Self::verify_issued_binding(tx,op)?;if matches!(state.as_str(),"completed"|"rejected"){return Ok((result,None));}if state!="reserved"{return fail("attempt_unresolved","original submission cannot be repeated");}let t=self.clock.now_ms();for w in &op.quota_windows{if t<w.start_at_ms||t>=w.reset_at_ms{return fail("limits_expired","issued quota interval expired; reservation remains held");}let current=self.quota_for_id(tx,&w.window_id)?;if current.retry_at_ms.is_some_and(|n|t<n){return fail("provider_wait",&format!("retry_at={}",current.retry_at_ms.unwrap()));}fits(&current.accounted,&current.capacity,current.reset_at_ms)?;}let(_,binding)=Self::binding(tx,&op.identity.run_id,op.identity.epoch as i64,&op.operation.unit_id)?;let applicable=self.windows(tx,&binding)?;if applicable.len()!=op.quota_windows.len()||applicable.iter().any(|w|!op.quota_windows.iter().any(|old|old.window_id==w.window_id)){return fail("limits_changed","applicable quota set changed after issuance");}tx.execute("UPDATE runs SET state='running',retry_at=NULL WHERE id=?1 AND epoch=?2 AND state='waiting_provider' AND retry_at<=?3",params![op.identity.run_id,op.identity.epoch,t])?;self.verify_artifact(tx,&op.identity.run_id,&op.operation.payload)?;for a in &op.operation.inputs{self.verify_artifact(tx,&op.identity.run_id,a)?;}let bytes=self.store.artifact_bounded(&op.operation.payload.id,1024*1024)?.0;op.operation.payload.file.verify(&bytes).map_err(contract)?;let t=self.clock.now_ms();if op.quota_windows.iter().any(|w|t<w.start_at_ms||t>=w.reset_at_ms){return fail("limits_expired","quota interval expired during preparation");}tx.execute("UPDATE provider_v2_attempts SET state='dispatched',started=?2 WHERE id=?1 AND state='reserved'",params![op.operation.attempt_id,t])?;Store::emit(tx,&op.identity.run_id,"provider_dispatched",&json!({"attempt_id":op.operation.attempt_id,"started_at_ms":t,"synthetic":true}))?;Ok((None,Some(bytes)))})?;
+        let(existing,bytes)=self.store.transaction(|tx|{let request=self.gate(tx,&op.identity.run_id,op.identity.epoch as i64)?;legacy::sync(tx)?;self.check_budgets(tx,&request,&op.identity.run_id,&zero())?;let(state,result)=Self::original(tx,op)?;Self::verify_issued_binding(tx,op)?;if matches!(state.as_str(),"completed"|"rejected"){return Ok((result,None));}if state!="reserved"{return fail("attempt_unresolved","original submission cannot be repeated");}let t=self.clock.now_ms();for w in &op.quota_windows{if t<w.start_at_ms||t>=w.reset_at_ms{return fail("limits_expired","issued quota interval expired; reservation remains held");}let current=self.quota_for_id(tx,&w.window_id)?;if current.retry_at_ms.is_some_and(|n|t<n){return fail("provider_wait",&format!("retry_at={}",current.retry_at_ms.unwrap()));}fits(&current.accounted,&current.capacity,current.reset_at_ms)?;}let(_,binding)=Self::binding(tx,&op.identity.run_id,op.identity.epoch as i64,&op.operation.unit_id)?;let applicable=self.windows(tx,&binding)?;if applicable.len()!=op.quota_windows.len()||applicable.iter().any(|w|!op.quota_windows.iter().any(|old|old.window_id==w.window_id)){return fail("limits_changed","applicable quota set changed after issuance");}tx.execute("UPDATE runs SET state='running',retry_at=NULL WHERE id=?1 AND epoch=?2 AND state='waiting_provider' AND retry_at<=?3",params![op.identity.run_id,op.identity.epoch,t])?;self.verify_artifact(tx,&op.identity.run_id,&op.operation.payload)?;for a in &op.operation.inputs{self.verify_artifact(tx,&op.identity.run_id,a)?;}let bytes=self.store.read_object(&op.operation.payload.file.sha256,op.operation.payload.file.bytes as usize)?;op.operation.payload.file.verify(&bytes).map_err(contract)?;let t=self.clock.now_ms();if op.quota_windows.iter().any(|w|t<w.start_at_ms||t>=w.reset_at_ms){return fail("limits_expired","quota interval expired during preparation");}tx.execute("UPDATE provider_v2_attempts SET state='dispatched',started=?2 WHERE id=?1 AND state='reserved'",params![op.operation.attempt_id,t])?;Store::emit(tx,&op.identity.run_id,"provider_dispatched",&json!({"attempt_id":op.operation.attempt_id,"started_at_ms":t,"synthetic":true}))?;Ok((None,Some(bytes)))})?;
         if let Some(result) = existing {
             return Ok(serde_json::from_str(&result)?);
         }
