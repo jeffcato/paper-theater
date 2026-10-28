@@ -1,56 +1,22 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { PlaqueView } from "@paper-theater/player";
-import type { ReadAlongGroup, ReadAlongWord } from "@paper-theater/player";
-import { TICKETS, ticketState } from "./tickets.js";
-import type { Catalog } from "./tickets.js";
+import { createTheaterWorld } from "@paper-theater/player";
+import type { TheaterWorld } from "@paper-theater/player";
+import "@paper-theater/player/fonts/noto-serif.css";
+import { readiness, TICKETS, ticketState } from "./tickets.js";
+import type { Catalog, TicketStatus } from "./tickets.js";
 import "./styles.css";
 
-export interface PlaqueTrack {
-  words: ReadAlongWord[];
-  groups: ReadAlongGroup[];
-}
-
-/** Bind the shared player plaque to a container. The view is created only
- * once a loaded performance supplies a track; until then the toggle and
- * sample updates are safe no-ops. Loaded performances prefer the
- * mount-owned plaque instead (MountOptions.readAlong, fed by the sampled
- * clock and controlled by setReadAlong); this hook covers standalone
- * plaque containers. Host pages must include
- * `@paper-theater/player/fonts/noto-serif.css` before mounting, or the
- * view reports fallback metrics via fontReady instead of certifying them. */
-export function usePlaque(
-  track: PlaqueTrack | null,
-  sample: number,
-  enabled: boolean,
-  scale: number,
-): React.RefObject<HTMLDivElement | null> {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const view = useRef<PlaqueView | null>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !track) return;
-    const plaque = new PlaqueView(el, track.words, track.groups, { scale });
-    view.current = plaque;
-    void plaque.ready.then(() => plaque.setSample(sample));
-    return () => {
-      plaque.dispose();
-      view.current = null;
-    };
-  }, [track]);
-  useEffect(() => {
-    view.current?.setEnabled(enabled);
-  }, [enabled]);
-  useEffect(() => {
-    view.current?.setScale(scale);
-  }, [scale]);
-  useEffect(() => {
-    if (enabled) view.current?.setSample(sample);
-  }, [sample, enabled]);
-  return ref;
-}
+// One full-viewport multiplane world (shared player) is the whole visible
+// interface: box office, aisle and house are 2D planes in Z-space, and the
+// playback controls are signs fixed to the viewport. The DOM below it is a
+// visually hidden, focusable mirror of the same controls for keyboard and
+// screen-reader users; focusing a proxy lights its counterpart in the world.
+// No accepted package exists yet, so every seat shows an honest closed
+// curtain and no diagnostic fixture is ever loaded on this path.
 
 type CatalogStatus = "loading" | "ready" | "error";
+type Route = { view: "booth" } | { view: "seat"; id: string };
 
 async function fetchCatalog(): Promise<Catalog> {
   const res = await fetch("tickets/catalog.json", { cache: "no-store" });
@@ -60,182 +26,73 @@ async function fetchCatalog(): Promise<Catalog> {
   return data;
 }
 
-function useHashRoute(): string {
-  const [hash, setHash] = useState(() => window.location.hash || "#/");
+function parseRoute(hash: string): Route {
+  const match = hash.match(/^#\/theater\/([A-Za-z0-9-]+)\/?$/);
+  return match && TICKETS.some((t) => t.id === match[1]) ? { view: "seat", id: match[1]! } : { view: "booth" };
+}
+
+function useHashRoute(): Route {
+  const [route, setRoute] = useState(() => parseRoute(window.location.hash));
   useEffect(() => {
-    const onChange = () => setHash(window.location.hash || "#/");
+    const onChange = () => setRoute(parseRoute(window.location.hash));
     window.addEventListener("hashchange", onChange);
     return () => window.removeEventListener("hashchange", onChange);
   }, []);
-  return hash;
+  return route;
 }
 
-function Booth(props: {
-  status: CatalogStatus;
-  catalog: Catalog;
-  onRetry: () => void;
-}): React.JSX.Element {
-  const state = ticketState(props.catalog);
-  return (
-    <main className="booth">
-      <header className="booth-sign">
-        <h1>Paper Theater</h1>
-        <p className="tagline">An illustrated miniature stage for classic books</p>
-      </header>
-      {props.status === "loading" && (
-        <p role="status" className="notice">Checking today&rsquo;s program&hellip;</p>
-      )}
-      {props.status === "error" && (
-        <div className="notice" role="alert">
-          <p>The program board is unreachable right now.</p>
-          <button type="button" onClick={props.onRetry}>Retry</button>
-        </div>
-      )}
-      <nav aria-label="Performances" className="tickets">
-        {TICKETS.map((ticket) => {
-          const open = props.status === "ready" && state[ticket.id] === "ready";
-          return (
-            <div key={ticket.id} className="ticket">
-              <h2>{ticket.title}</h2>
-              <p>{ticket.subtitle}</p>
-              {open ? (
-                <a className="ticket-link" href={ticket.href}>Take me to the theater</a>
-              ) : (
-                <p className="unavailable">
-                  {props.status === "loading"
-                    ? "Checking availability…"
-                    : "Unavailable — this performance is still in preparation."}
-                </p>
-              )}
-            </div>
-          );
-        })}
-      </nav>
-      <footer className="credits">
-        <h2>Sources &amp; credits</h2>
-        <ul>
-          <li><cite>The Wonderful Wizard of Oz</cite>, L. Frank Baum (Gutenberg #55)</li>
-          <li><cite>The War of the Worlds</cite>, Book One Chapter I, H. G. Wells (Gutenberg #36)</li>
-        </ul>
-        <p>Playback uses the shared Paper Theater player. No account needed.</p>
-      </footer>
-    </main>
-  );
-}
-
-function Theater(props: { performanceId: string; onBack: () => void }): React.JSX.Element {
-  const ticket = TICKETS.find((t) => t.id === props.performanceId);
-  const [status, setStatus] = useState<CatalogStatus>("loading");
-  const [readAlong, setReadAlong] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [textScale, setTextScale] = useState(1);
-  // No accepted package exists yet, so no track or samples flow; the hook
-  // stays dormant until a loaded performance supplies them.
-  const [track] = useState<PlaqueTrack | null>(null);
-  const [sample] = useState(0);
-  const plaqueRef = usePlaque(track, sample, readAlong, textScale);
-
+function useReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(query.matches);
-    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
     query.addEventListener("change", onChange);
     return () => query.removeEventListener("change", onChange);
   }, []);
+  return reduced;
+}
 
-  const check = useCallback(() => {
-    setStatus("loading");
-    fetchCatalog().then(
-      (catalog) => {
-        setStatus(ticketState(catalog)[props.performanceId] === "ready" ? "ready" : "error");
-      },
-      () => setStatus("error"),
-    );
-  }, [props.performanceId]);
-  useEffect(check, [check]);
-
-  const toggleFullscreen = useCallback(() => {
-    if (document.fullscreenElement) {
-      void document.exitFullscreen().catch(() => {});
-    } else {
-      void document.documentElement.requestFullscreen().catch(() => {});
-    }
-  }, []);
-
-  if (!ticket) {
-    return (
-      <main className="theater">
-        <p role="alert">Unknown performance.</p>
-        <button type="button" onClick={props.onBack}>Back to the booth</button>
-      </main>
-    );
-  }
-
+/** Visually hidden button that lights its world counterpart on focus. */
+function Proxy(props: {
+  id: string;
+  world: TheaterWorld | null;
+  onActivate: (id: string) => void;
+  disabled?: boolean;
+  pressed?: boolean;
+  children: React.ReactNode;
+}): React.JSX.Element {
+  const { id, world } = props;
   return (
-    <main className="theater">
-      <div className="slate" aria-label={`${ticket.title}, ${ticket.subtitle}`}>
-        <h1>{ticket.title}</h1>
-        <p>{ticket.subtitle}</p>
-      </div>
-      <div className="stage" role="region" aria-label="Stage">
-        {status === "loading" && <p role="status">Loading the performance…</p>}
-        {status !== "loading" && (
-          <div className="unavailable-stage" role="alert">
-            <p>This performance is not yet published. The audience shows an honest
-              unavailable state until an accepted package exists — diagnostic
-              demonstrations never appear here.</p>
-            <button type="button" onClick={check}>Retry</button>
-          </div>
-        )}
-      </div>
-      <div
-        ref={plaqueRef}
-        className="plaque"
-        hidden={!readAlong || track === null}
-      />
-      <div className="controls" role="toolbar" aria-label="Playback controls">
-        <button type="button" disabled title="Available once the performance loads">Play</button>
-        <button type="button" disabled title="Available once the performance loads">Restart</button>
-        <label className="seek">
-          Seek
-          <input type="range" min={0} max={100} defaultValue={0} disabled aria-label="Seek" />
-        </label>
-        <button
-          type="button"
-          aria-pressed={readAlong}
-          onClick={() => setReadAlong((v) => !v)}
-        >
-          Read along
-        </button>
-        <label className="text-size">
-          Text size
-          <select
-            aria-label="Read-along text size"
-            value={textScale}
-            disabled={track === null}
-            onChange={(e) => setTextScale(Number(e.target.value))}
-          >
-            <option value={1}>100%</option>
-            <option value={1.5}>150%</option>
-            <option value={2}>200%</option>
-          </select>
-        </label>
-        <button type="button" onClick={toggleFullscreen}>Fullscreen</button>
-        <span className="motion" aria-live="polite">
-          {reducedMotion ? "Reduced motion on" : ""}
-        </span>
-      </div>
-      <nav className="return">
-        <button type="button" onClick={props.onBack}>Back to the booth</button>
-      </nav>
-    </main>
+    <button
+      type="button"
+      data-pick={id}
+      aria-disabled={props.disabled || undefined}
+      aria-pressed={props.pressed}
+      onFocus={() => world?.sink.setHighlight(id)}
+      onBlur={() => world?.sink.setHighlight(null)}
+      onClick={() => props.onActivate(id)}
+    >
+      {props.children}
+    </button>
   );
 }
 
 function App(): React.JSX.Element {
-  const hash = useHashRoute();
+  const route = useHashRoute();
+  const reducedMotion = useReducedMotion();
   const [catalog, setCatalog] = useState<Catalog>({ packages: [] });
   const [status, setStatus] = useState<CatalogStatus>("loading");
+  const [inspecting, setInspecting] = useState<string | null>(null);
+  const [punched, setPunched] = useState<string | null>(null);
+  const [readAlong, setReadAlong] = useState(false);
+  const [curtainOpen, setCurtainOpen] = useState(false);
+  const [announce, setAnnounce] = useState("");
+  const [world, setWorld] = useState<TheaterWorld | null>(null);
+  const [graphics, setGraphics] = useState<"pending" | "ready" | "failed">("pending");
+  const hostRef = useRef<HTMLDivElement | null>(null);
+  const plaqueRef = useRef<HTMLDivElement | null>(null);
+  const initialRoute = useRef(route);
+  const activate = useRef<(id: string) => void>(() => {});
 
   const load = useCallback(() => {
     setStatus("loading");
@@ -252,15 +109,223 @@ function App(): React.JSX.Element {
   }, []);
   useEffect(load, [load]);
 
-  const goBooth = useCallback(() => {
-    window.location.hash = "#/";
+  // The world: created once, disposed on unmount (StrictMode-safe).
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!host) return;
+    let cancelled = false;
+    let created: TheaterWorld | null = null;
+
+    async function mountWorld() {
+      let houseArt = null;
+      if (import.meta.env.DEV) {
+        try {
+          const { loadDevHouseArt } = await import("./dev-art.js");
+          houseArt = await loadDevHouseArt();
+        } catch {
+          // Dev house art is optional; fall back to procedural cards.
+        }
+      }
+      if (cancelled) return;
+
+      const w = await createTheaterWorld({
+        container: host!,
+        plaque: plaqueRef.current,
+        journey: initialRoute.current.view === "seat" ? 1 : 0,
+        reducedMotion,
+        houseArt,
+        onPick: (pick) => activate.current(pick.id),
+        onJourney: (t) => (document.documentElement.dataset.journey = t.toFixed(3)),
+        onArrive: (t) => (document.documentElement.dataset.journey = String(t)),
+      });
+
+      if (cancelled) {
+        w.dispose();
+        return;
+      }
+      created = w;
+      document.documentElement.dataset.journey = String(w.journey());
+      setWorld(w);
+      setGraphics("ready");
+    }
+
+    mountWorld().catch(() => !cancelled && setGraphics("failed"));
+
+    return () => {
+      cancelled = true;
+      created?.dispose();
+      setWorld(null);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const match = hash.match(/^#\/theater\/([A-Za-z0-9-]+)\/?$/);
-  if (match) {
-    return <Theater performanceId={match[1]!} onBack={goBooth} />;
+  const states = ticketState(catalog);
+  const stateOf = (id: string): TicketStatus => (status === "ready" ? states[id] ?? "unavailable" : "unavailable");
+  const seatTicket = route.view === "seat" ? TICKETS.find((t) => t.id === route.id) ?? null : null;
+  const inspected = TICKETS.find((t) => t.id === inspecting) ?? null;
+
+  useEffect(() => world?.setReducedMotion(reducedMotion), [world, reducedMotion]);
+  useEffect(() => {
+    if (!world) return;
+    const notice = status === "error" ? "Program board unreachable — tap to retry" : status === "loading" ? "Checking today’s program…" : null;
+    world.sink.setTickets(
+      TICKETS.map((t) => ({ id: t.id, title: t.title, subtitle: t.subtitle, ready: stateOf(t.id) === "ready", punched: punched === t.id })),
+      notice,
+    );
+  }, [world, status, catalog, punched]);
+  useEffect(() => {
+    if (!world) return;
+    world.sink.setInspect(inspected ? {
+      id: inspected.id,
+      title: inspected.title,
+      subtitle: inspected.subtitle,
+      synopsis: inspected.synopsis,
+      excerpt: inspected.excerpt,
+      readiness: readiness(stateOf(inspected.id)).label,
+      seatLabel: readiness(stateOf(inspected.id)).playable ? "Take Your Seat" : "",
+    } : null);
+  }, [world, inspected, status, catalog]);
+  useEffect(() => {
+    if (!world) return;
+    const seated = route.view === "seat";
+    world.sink.setControls({
+      enabled: false,
+      playing: seated && curtainOpen,
+      readAlong,
+      progress: 0,
+      fullscreen: false,
+      rehearsal: seated,
+    });
+    world.setRehearsalCurtain(seated && curtainOpen);
+  }, [world, readAlong, route.view, curtainOpen]);
+  useEffect(() => {
+    if (route.view !== "seat") setCurtainOpen(false);
+  }, [route.view]);
+  useEffect(() => {
+    if (!world) return;
+    if (seatTicket) {
+      const ready = stateOf(seatTicket.id) === "ready";
+      world.sink.setTitle({ heading: seatTicket.title, sub: ready ? seatTicket.subtitle : "Under rehearsal — not yet published" });
+      world.setIdleTitle(true);
+      setInspecting(null);
+      void world.travel(1);
+    } else {
+      world.setIdleTitle(false);
+      void world.travel(0);
+    }
+  }, [world, route.view, seatTicket?.id, status, catalog]);
+
+  // Keep keyboard focus inside the current view when proxies unmount.
+  const lastInspected = useRef<string | null>(null);
+  useEffect(() => {
+    const focus = (id: string) =>
+      document.querySelector<HTMLElement>(`[data-pick="${id}"]`)?.focus({ preventScroll: true });
+    if (route.view === "seat") focus("rail:play");
+    else if (inspecting) focus("inspect:seat");
+    else if (lastInspected.current && document.activeElement === document.body) focus(`ticket:${lastInspected.current}`);
+    lastInspected.current = inspecting;
+  }, [route.view, inspecting]);
+
+  activate.current = (id: string) => {
+    if (id.startsWith("ticket:")) {
+      const ticket = TICKETS.find((t) => `ticket:${t.id}` === id);
+      if (!ticket) return;
+      setInspecting(ticket.id);
+      setAnnounce(`${ticket.title}. ${readiness(stateOf(ticket.id)).label}.`);
+    } else if (id === "inspect:back") {
+      setInspecting(null);
+    } else if (id === "inspect:seat" && inspected) {
+      setPunched(inspected.id);
+      setAnnounce("Ticket punched. Walking down the aisle to your seat.");
+      window.location.hash = inspected.href;
+    } else if (id === "notice") {
+      load();
+    } else if (id === "rail:return") {
+      setAnnounce("Returning to the box office.");
+      window.location.hash = "#/";
+    } else if (id === "rail:readalong") {
+      setReadAlong((v) => !v);
+    } else if (id === "rail:play") {
+      setCurtainOpen((open) => {
+        const next = !open;
+        setAnnounce(next
+          ? "Curtain opening on the empty stage. This performance is not yet published."
+          : "Curtain closing. This performance is not yet published.");
+        return next;
+      });
+    } else if (id.startsWith("rail:")) {
+      setAnnounce("This performance is not yet published.");
+    }
+  };
+  const act = (id: string) => activate.current(id);
+
+  if (graphics === "failed") {
+    return (
+      <main className="fallback">
+        <h1>Paper Theater</h1>
+        <p role="alert">This browser cannot draw the theater (WebGL is unavailable). The program is listed below.</p>
+        <ul>
+          {TICKETS.map((t) => (
+            <li key={t.id}><cite>{t.title}</cite> — {t.subtitle}: {readiness(stateOf(t.id)).label}.</li>
+          ))}
+        </ul>
+      </main>
+    );
   }
-  return <Booth status={status} catalog={catalog} onRetry={load} />;
+
+  return (
+    <>
+      <div ref={hostRef} className="world" aria-hidden="true">
+        <div ref={plaqueRef} className="plaque" hidden />
+      </div>
+      <main className="a11y">
+        <p role="status" aria-live="polite">{announce}</p>
+        {route.view === "booth" ? (
+          <section aria-label="Box office">
+            <h1>Paper Theater box office</h1>
+            {status === "loading" && <p>Checking today’s program…</p>}
+            {status === "error" && <Proxy id="notice" world={world} onActivate={act}>Retry the program board</Proxy>}
+            {!inspected && TICKETS.map((t) => (
+              <Proxy key={t.id} id={`ticket:${t.id}`} world={world} onActivate={act}>
+                Inspect ticket: {t.title}, {t.subtitle}. {readiness(stateOf(t.id)).label}
+              </Proxy>
+            ))}
+            {inspected && (
+              <section aria-label={`Ticket: ${inspected.title}`}>
+                <h2>{inspected.title}</h2>
+                <p>{inspected.subtitle}</p>
+                <p>{inspected.synopsis}</p>
+                <blockquote>{inspected.excerpt}</blockquote>
+                <p>{readiness(stateOf(inspected.id)).label}</p>
+                <Proxy id="inspect:seat" world={world} onActivate={act}>Take your seat</Proxy>
+                <Proxy id="inspect:back" world={world} onActivate={act}>Return ticket</Proxy>
+              </section>
+            )}
+          </section>
+        ) : (
+          <section aria-label="Your seat">
+            <h1>{seatTicket?.title ?? "Paper Theater"} — stalls</h1>
+            <p>{seatTicket ? readiness(stateOf(seatTicket.id)).label : ""}</p>
+            <div role="toolbar" aria-label="Playback controls">
+              <Proxy id="rail:play" world={world} onActivate={act} pressed={curtainOpen}>{curtainOpen ? "Pause" : "Play"}</Proxy>
+              <Proxy id="rail:restart" world={world} onActivate={act} disabled>Restart</Proxy>
+              <Proxy id="rail:seek" world={world} onActivate={act} disabled>Seek</Proxy>
+              <Proxy id="rail:readalong" world={world} onActivate={act} pressed={readAlong}>Read along</Proxy>
+              <Proxy id="rail:return" world={world} onActivate={act}>Back to the box office</Proxy>
+            </div>
+          </section>
+        )}
+        <footer>
+          <h2>Sources &amp; credits</h2>
+          <ul>
+            <li><cite>The Wonderful Wizard of Oz</cite>, L. Frank Baum (Project Gutenberg #55)</li>
+            <li><cite>The War of the Worlds</cite>, Book One Chapter I, H. G. Wells (Project Gutenberg #36)</li>
+          </ul>
+          <p>Playback uses the shared Paper Theater player. No account needed.</p>
+        </footer>
+      </main>
+    </>
+  );
 }
 
 createRoot(document.getElementById("root")!).render(

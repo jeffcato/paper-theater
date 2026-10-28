@@ -3,7 +3,8 @@
 // packages never produce a working ticket.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { ticketState, TICKETS } from "../src/tickets.js";
+import { readFileSync } from "node:fs";
+import { readiness, ticketState, TICKETS } from "../src/tickets.js";
 
 describe("audience: two-ticket booth", () => {
   it("offers exactly two tickets with story-neutral labels", () => {
@@ -49,5 +50,32 @@ describe("audience: two-ticket booth", () => {
     });
     assert.equal(state["oz-chapter-1"], "unavailable");
     assert.equal(state["wells-book-one-chapter-1"], "unavailable");
+  });
+});
+
+describe("audience: ticket inspection card", () => {
+  const source = (name: string) =>
+    readFileSync(new URL(`../../../../fixtures/generation/source/${name}`, import.meta.url), "utf8").replace(/\s+/g, " ");
+
+  it("quotes each chapter's opening words verbatim from the frozen source", () => {
+    const [oz, wells] = [TICKETS[0]!, TICKETS[1]!];
+    assert.ok(oz.excerpt.startsWith("Dorothy lived in the midst"));
+    assert.ok(source("pg55-clean.txt").includes(oz.excerpt));
+    assert.ok(wells.excerpt.startsWith("No one would have believed"));
+    assert.ok(source("pg36-clean.txt").includes(wells.excerpt));
+  });
+
+  it("keeps synopses free of later story facts", () => {
+    for (const t of TICKETS) {
+      assert.ok(t.synopsis.length > 20);
+      assert.ok(!/cyclone|thunder|martian|pirate|witch|munchkin|scarecrow|cylinder|heat-ray|tripod|invad/i.test(t.synopsis), t.synopsis);
+    }
+  });
+
+  it("states readiness honestly without implying a published release", () => {
+    assert.match(readiness("unavailable").label, /under rehearsal/i);
+    assert.match(readiness("unavailable").label, /not yet published/i);
+    assert.equal(readiness("unavailable").playable, false);
+    assert.equal(readiness("ready").playable, true);
   });
 });
