@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "exact-report-coverage-implemented-objective-verifier-families-pending",
+  "matrix_version": "pt-acceptance-required-v3",
+  "implemented_checks": 5,
+  "pending_verifiers": 32,
+  "tests": {
+    "rust_public": 4,
+    "cross_language": 15,
+    "strict_packed": "pass"
+  },
+  "evidence": {
+    "pt-int05-ledger-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-red.log.gz",
+      "raw_sha256": "5b1e5911ede6ae37831d5b79c6b49eed1ce7b68b1e6d6434c511a5501b51ce1a"
+    },
+    "pt-int05-ledger-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-green.log.gz",
+      "raw_sha256": "f63ad506de7c0b60709b06af1be94c354117966aa15ede9265a6900a612b145b"
+    },
+    "pt-int05-ledger-binding-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-binding-red.log.gz",
+      "raw_sha256": "ed2bdb58e726c8a8c379a1a541e09f4a6680f4eeaf4a829fe6a310ef8aeab8df"
+    },
+    "pt-int05-ledger-binding-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-binding-green.log.gz",
+      "raw_sha256": "afa910d0014d6d9ccccab1e071f0634725b4182b14f9cd0e0ff62cac5c1de9ce"
+    },
+    "pt-int05-ledger-ts-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-ts-red.log.gz",
+      "raw_sha256": "47ec4d3ba4189ce22752703915c8568f43d6552af94a565e047f3ba13a93630f"
+    },
+    "pt-int05-ledger-ts-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-ts-green.log.gz",
+      "raw_sha256": "0482b38ec36cdd386f10f89c038bdbe2f1478a8e322cd7f235dc5ad8ad144ed6"
+    },
+    "pt-int05-duplicate-report-ts-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-duplicate-report-ts-red.log.gz",
+      "raw_sha256": "b9647b2e4aa6a4447117e200d4c9e6f5f9bfabd7905322dc9b330b59e6dcf228"
+    },
+    "pt-int05-duplicate-report-ts-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-duplicate-report-ts-green.log.gz",
+      "raw_sha256": "4d6f6ff7b8480b8c3e56e3218a23bc8dd8aac302eec71a35a69653e1c3ffd8ec"
+    },
+    "pt-int05-ledger-final": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-final.log.gz",
+      "raw_sha256": "34c05fdae0fb20163fbb55c8308fcb9c47913bafda1fedd9723c3a87f93e39fe"
+    },
+    "pt-int05-ledger-ts-final": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-ledger-ts-final.log.gz",
+      "raw_sha256": "4d6f6ff7b8480b8c3e56e3218a23bc8dd8aac302eec71a35a69653e1c3ffd8ec"
+    },
+    "pt-int05-packed": {
+      "path": "docs/implementation/integration/goal-checks/pt-int05-packed.log.gz",
+      "raw_sha256": "c62b2c6db162562665ed0ca14cde7b31d88bd137f30db845f6d3f18368bb04cb"
+    }
+  },
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "production_approved": false,
+  "publication_enabled": false,
+  "handoff": "acceptance-coverage-ledger.md"
+}

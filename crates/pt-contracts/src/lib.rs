@@ -33,3 +33,6 @@ pub use pilot_review::*;
 
 pub mod production_configuration;
 pub use production_configuration::*;
+
+pub mod acceptance_coverage;
+pub use acceptance_coverage::*;

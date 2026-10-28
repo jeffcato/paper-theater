@@ -78,5 +78,6 @@
   "credentials_loaded": false,
   "production_approved": false,
   "publication_enabled": false,
-  "handoff": "production-seams.md"
+  "handoff": "production-seams.md",
+  "source_commit": "ff6de1c"
 }

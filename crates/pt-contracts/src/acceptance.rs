@@ -216,6 +216,8 @@ pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
                 include_bytes!("source_slice.rs").as_slice(),
                 include_bytes!("wav.rs").as_slice(),
                 include_bytes!("pilot_review.rs").as_slice(),
+                include_bytes!("acceptance_coverage.rs").as_slice(),
+                include_bytes!("production_configuration.rs").as_slice(),
                 include_bytes!("validate.rs").as_slice(),
                 include_bytes!("common.rs").as_slice(),
                 include_bytes!("playback.rs").as_slice(),

@@ -81,3 +81,8 @@ export function configuredRequest(raw:unknown,scope:string,input:StageInput,prop
  validateConfiguredProviderProposalV1(config,scope,input,proposal);
  return config.operations.find(o=>o.id===scope)!;
 }
+
+import {type AcceptanceCoverageLedgerV1,validateAcceptanceCoverageLedgerV1} from '@paper-theater/contracts';
+export async function readCoverage(raw:unknown,report:Uint8Array,expected:AcceptanceCheckerIdentity):Promise<AcceptanceCoverageLedgerV1> {
+ return validateAcceptanceCoverageLedgerV1(raw,report,expected);
+}

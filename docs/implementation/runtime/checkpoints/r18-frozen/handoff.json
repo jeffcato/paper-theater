@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "archive": "docs/implementation/runtime/checkpoints/r18-frozen/645d65cbfa2d9611b2b4aa9dfddf18563d116d16852e18f1b8f3940d0f807051.tar",
+  "sha256": "645d65cbfa2d9611b2b4aa9dfddf18563d116d16852e18f1b8f3940d0f807051",
+  "bytes": 798720,
+  "source_files": 73,
+  "historical_dependency_recovered_from_r17": [
+    "crates/pt-contracts/src/acceptance.rs"
+  ],
+  "aggregate_failure_history_preserved": true
+}
