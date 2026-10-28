@@ -23,7 +23,7 @@ verify_acceptance_v2_with_pilot(doc, package_root, source_slice_policy,
     -> ContractResult<PrivateAcceptanceVerification>
 ```
 
-The existing v1/v2 APIs remain available. A legacy proposal may be structurally checked, but without independently selected recorded inputs its Pilot review stays Missing. `validate_pilot_plan_structure` returns only a digest, take/review counts and preserved false approval flags. Zero reviews are valid unfinished plan structure. This result is not a recording or listening receipt.
+The existing v1/v2 APIs remain available. An independently supplied Pilot policy always requires its own report row; a candidate that omits the declaration retains an explicit MissingDeclaration blocker. A legacy proposal may be structurally checked, but without independently selected recorded inputs its Pilot review stays Missing. `validate_pilot_plan_structure` returns only a digest, take/review counts and preserved false approval flags. Zero reviews are valid unfinished plan structure. This result is not a recording or listening receipt.
 
 `PilotReviewPolicyV1` is private runtime-owned expected input, not a candidate proposal. It pins the plan, plaintext Source role, original Source-stage receipt (`source_record`), Direction, canonical registry, voice catalog and recipe. Each expected performer specifies speaker/canonical/model/voice identity and two to four ordered take records. Every take has exact committed request, raw response, observation, native audio ArtifactRefs/FileRefs and a Unicode scalar source span. The plaintext source hash must match the independent acceptance binding; the original Source record stays separately pinned.
 

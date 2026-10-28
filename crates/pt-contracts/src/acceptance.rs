@@ -1210,6 +1210,13 @@ fn verify_acceptance_internal(
     {
         effective_extra.push("complete-source-coverage".into());
     }
+    if pilot_policy.is_some()
+        && !effective_extra
+            .iter()
+            .any(|id| id == "pilot-recording-review")
+    {
+        effective_extra.push("pilot-recording-review".into());
+    }
     let matrix = acceptance_check_matrix();
     let required = requirements(
         &matrix,

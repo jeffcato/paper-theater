@@ -61,7 +61,7 @@
     "services": "pt-services-v1.9.0",
     "report": 5,
     "checker": "pt-acceptance-bindings-v5",
-    "checker_sha256": "5e779a0566a1081722887a9b83fdae599de36a332c6c7466b3d599790af43d1a",
+    "checker_sha256": "cc95bd5ab60acd3e6f7633be43173fbeb029cea1c47b8f62719b2c6f567a5e62",
     "matrix": "pt-acceptance-required-v3",
     "implemented_checks": 5,
     "pending_production_verifiers": 32
@@ -69,7 +69,7 @@
   "checker_source_closure": [
     {
       "path": "crates/pt-contracts/src/acceptance.rs",
-      "sha256": "4c466e5c785eba2b85a490f7dc78cef397dce3a078442b4a78cad8274fb92b5a"
+      "sha256": "d83ec11da412c109ddae8bfb3164f8566440fa3af8bbad4fce52dccda183d37c"
     },
     {
       "path": "crates/pt-contracts/src/acceptance_source.rs",
@@ -139,7 +139,7 @@
   "changed_contract_files": [
     {
       "path": "crates/pt-contracts/src/acceptance.rs",
-      "sha256": "4c466e5c785eba2b85a490f7dc78cef397dce3a078442b4a78cad8274fb92b5a"
+      "sha256": "d83ec11da412c109ddae8bfb3164f8566440fa3af8bbad4fce52dccda183d37c"
     },
     {
       "path": "crates/pt-contracts/src/lib.rs",
@@ -179,7 +179,7 @@
     },
     {
       "path": "crates/pt-contracts/tests/pilot_review.rs",
-      "sha256": "097a6f02edd554a99c8c4844211ba7c27739ae0e5cee36e07373d6e2340a9b77"
+      "sha256": "b0591c2db0e14fe31aa2c95da5d19921d2a3bae0265588261cd153af126d35dc"
     },
     {
       "path": "fixtures/contracts/acceptance-report-v4.json",
@@ -298,6 +298,22 @@
       "sha256": "7016d11bf599deec6bb8d1f310598c25100d1588591c21c12c11e9ff613c98d9",
       "bytes": 2639,
       "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "missing-declaration-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/missing-declaration-red.txt.gz",
+      "sha256": "c0798b77ff316d452c93aa31eec85a998a29caafa10f749f8b8426e6ed32236a",
+      "bytes": 1951,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "final-pilot-green",
+      "kind": "focused-green",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/final-pilot-green.txt.gz",
+      "sha256": "d34b60c6d778984d0946b135a9cf96d849152f4432a1d04c0c2dfce11e94e171",
+      "bytes": 2734,
+      "hash_scope": "uncompressed original stdout/stderr"
     }
   ],
   "baseline_v4_archive": {
@@ -325,5 +341,13 @@
     ],
     "workspace_tests": 396,
     "scope": "Earlier candidate passed CI; superseded after the missing-dependency adverse-evidence regression. These results do not certify the follow-up."
+  },
+  "intermediate_dependency_candidate": {
+    "commit": "0679c396232015b8f4108c79bc5bb9573f7d3aa8",
+    "run_ids": [
+      40734814810,
+      40734827626
+    ],
+    "scope": "Superseded by explicit trusted-policy coverage guard; no CI result is transferred to final source."
   }
 }

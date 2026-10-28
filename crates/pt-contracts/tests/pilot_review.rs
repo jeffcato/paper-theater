@@ -741,3 +741,21 @@ fn missing_recordings_or_context_cannot_hide_a_bound_recorded_review_failure() {
         );
     }
 }
+#[test]
+fn pilot_policy_requires_an_explicit_report_row_even_if_the_candidate_omits_the_check() {
+    let (mut f, p) = evidence();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .retain(|id| id != "pilot-recording-review");
+    f.save();
+    let r = report(&f, &p);
+    assert!(r.validate(&acceptance_binding_checker()).is_ok());
+    let row = r
+        .checks
+        .iter()
+        .find(|c| c.check_id == "pilot-recording-review")
+        .unwrap();
+    assert_ne!(row.outcome, ReviewOutcome::Pass);
+    assert!(row.reasons.contains(&AcceptanceReason::MissingDeclaration));
+}
