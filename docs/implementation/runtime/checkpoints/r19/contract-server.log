@@ -1,0 +1,156 @@
+    Blocking waiting for file lock on build directory
+   Compiling pt-contracts v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-contracts)
+   Compiling pt-server v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-server)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.73s
+     Running unittests src/lib.rs (target/debug/deps/pt_contracts-2cb41fd8957e3a4e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/acceptance_source_coverage.rs (target/debug/deps/acceptance_source_coverage-761285e2443cf5c5)
+
+running 9 tests
+test legacy_matrix_and_receipt_identities_are_preserved ... ok
+test a_scene_gap_is_independently_diagnosed ... ok
+test runtime_source_scope_identity_must_match_the_pinned_inventory ... ok
+test successful_source_proof_does_not_erase_adverse_observations ... ok
+test unicode_scalar_content_and_punctuation_are_exact ... ok
+test excerpt_cannot_substitute_for_trusted_chapter_source_or_complete_chapter_review ... ok
+test complete_scoped_source_passes_but_other_verifiers_and_production_stay_blocked ... ok
+test omitted_duplicate_overlapping_reordered_and_outside_coverage_is_rejected ... ok
+test source_bytes_hashes_spans_and_actual_files_are_bound ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 18.63s
+
+     Running tests/acceptance_verification.rs (target/debug/deps/acceptance_verification-9a439487ab0590f1)
+
+running 16 tests
+test generation_scoped_behavior_preserves_shared_custom_inherited_and_adverse_requirements ... ok
+test duplicate_declarations_and_missing_report_rows_are_rejected ... ok
+test delivery_fact_mapping_executes_and_reports_missing_without_mapping_evidence ... ok
+test pilot_recording_review_executes_and_reports_missing_without_pilot_evidence ... ok
+test removing_required_checks_is_an_explicit_blocker_even_with_forged_labels ... ok
+test caller_cannot_omit_a_runtime_pinned_adverse_receipt ... ok
+test the_authoritative_matrix_retains_all_legacy_production_requirements ... ok
+test passing_receipt_with_exact_bytes_is_still_unimplemented_not_execution ... ok
+test independent_checks_execute_but_candidate_passes_do_not_become_verifier_receipts ... ok
+test delivery_fact_mapping_fails_on_mismatched_source_span ... ok
+test pilot_recording_review_passes_on_bound_plan_without_grants ... ok
+test delivery_fact_mapping_passes_on_complete_bound_mapping ... ok
+test pilot_recording_review_fails_when_plan_grants_bulk_speech ... ok
+test missing_checks_adverse_observations_and_post_receipt_mutation_remain_visible ... ok
+test diagnostic_imported_synthetic_and_forged_autonomous_labels_never_approve ... ok
+test stale_identities_targets_versions_and_conflicting_receipts_fail_closed ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 37.09s
+
+     Running tests/candidate_write.rs (target/debug/deps/candidate_write-198a0b937f37edaa)
+
+running 1 test
+test candidate_write_preserves_optional_png_dimensions_and_legacy_json ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/delivery_audio.rs (target/debug/deps/delivery_audio-ba46177a40c236d7)
+
+running 7 tests
+test unsupported_playback_schema_cannot_supply_a_delivery_count_domain ... ok
+test valid_format_never_erases_adverse_findings_or_executes_quality_reviews ... ok
+test saved_hash_verified_delivery_audio_is_independently_checked ... ok
+test physical_frames_must_match_both_manifest_and_timeline ... ok
+test diagnostic_imported_synthetic_and_forged_autonomous_labels_never_approve_audio ... ok
+test missing_unsafe_mislabeled_swapped_and_mutated_master_are_not_accepted ... ok
+test malformed_and_wrong_domain_media_fail_even_when_hash_and_mime_match ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 17.09s
+
+     Running tests/events.rs (target/debug/deps/events-ca24be70c2282cf6)
+
+running 1 test
+test committed_events_roundtrip_with_causal_fields_and_reject_unknown_kinds ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/playback_contract.rs (target/debug/deps/playback_contract-bbab8c0b31abc567)
+
+running 5 tests
+test dark_hold_is_exactly_96000_samples ... ok
+test readalong_preserves_scalar_spans_points_and_complete_word_coverage ... ok
+test reveal_evidence_is_hash_bound_unique_and_conservative ... ok
+test registration_and_authored_cues_are_validated_before_playback ... ok
+test imported_fixture_is_structurally_valid_but_not_production_accepted ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.66s
+
+     Running tests/provider_metadata.rs (target/debug/deps/provider_metadata-2f3ba7275252c1d9)
+
+running 2 tests
+test provider_metadata_wire_cases ... ok
+test quota_keys_keep_tuple_boundaries_and_share_credential_capacity ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/provider_service.rs (target/debug/deps/provider_service-7fbe37ab80e2fa44)
+
+running 3 tests
+test old_implementors_explicitly_refuse_v2_without_legacy_fallback ... ok
+test provider_service_wire_cases ... ok
+test staged_service_double_preserves_issuance_and_original_recovery_identity ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+     Running tests/source_slice.rs (target/debug/deps/source_slice-947355021ffc0700)
+
+running 8 tests
+test byte_or_utf16_offsets_and_false_full_counts_cannot_replace_scalar_equality ... ok
+test duplicate_relationships_global_facts_and_repeated_text_do_not_create_authority ... ok
+test exact_endpoints_and_punctuation_are_not_normalized ... ok
+test absent_or_unsupported_mappings_never_fall_back_to_file_local_success ... ok
+test independently_pinned_zero_and_nonzero_unicode_slices_pass_without_retiming ... ok
+test bounded_reads_and_private_relationship_export_remain_fail_closed ... ok
+test changed_full_slice_mapping_bytes_and_post_receipt_mutation_are_rejected ... ok
+test origins_hashes_counts_partial_overlap_and_scope_conflicts_fail ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 32.56s
+
+     Running tests/wav_inspector.rs (target/debug/deps/wav_inspector-825c553930d42ebe)
+
+running 2 tests
+test native_and_delivery_admission_preserves_known_formats ... ok
+test exact_and_over_limit_admission_is_bounded_without_a_master_sized_buffer ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running unittests src/lib.rs (target/debug/deps/pt_server-4cb787597d3903e8)
+
+running 8 tests
+test master_wav_tests::chapter_http_keeps_json_and_request_limits_tight ... ok
+test tests::provider_v2_metadata_does_not_enable_http_live_dispatch ... ok
+test tests::loopback_origin_and_artifact_allowlist_are_enforced ... ok
+test tests::diagnostic_endpoint_distinguishes_missing_candidate_from_unknown_run ... ok
+test tests::start_is_idempotent_conflicts_fail_and_cancel_is_durable ... ok
+test tests::snapshot_stream_race_and_last_event_id_deliver_committed_events ... ok
+test master_wav_tests::diagnostic_master_streams_only_exact_inventoried_wav_bytes ... ok
+test master_wav_tests::chapter_master_http_is_hash_bound_and_supports_bounded_ranges ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 14.22s
+
+     Running unittests src/main.rs (target/debug/deps/pt_server-120bd37479900f44)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests pt_contracts
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests pt_server
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

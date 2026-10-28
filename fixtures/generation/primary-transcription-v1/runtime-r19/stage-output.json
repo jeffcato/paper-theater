@@ -1,0 +1,281 @@
+{
+  "outcome": "needs_repair",
+  "artifacts": [
+    {
+      "candidate_id": "d5797219da6b602a5fe98603e1a57406c15f7787eb81531f5d9b4932417c508f",
+      "file": {
+        "path": "private/primary/request.json",
+        "sha256": "339ac3b51cd26a8083922829c3437564636a73ae6c78212fe6be23baff26092f",
+        "bytes": 409,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "60af48522ea799b0696d43285dcd4d5f33b823a4287037bf88258ba7f105007c",
+      "file": {
+        "path": "private/primary/handoff.json",
+        "sha256": "e96463d2e0ae5c9763b9a2c42bcd9ca936f60e02e6bdab8844ab1f12c0d48460",
+        "bytes": 1033,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    },
+    {
+      "candidate_id": "51d6ccc0dd059bff5a74d1cf0611fc01c82f3809324b7ca8e929b540e6a9e360",
+      "file": {
+        "path": "private/primary/normalized.json",
+        "sha256": "5c24460f933a526dbfeb4869aab1680dbf1489cceef3af0ff6d371172b0babbf",
+        "bytes": 13940,
+        "media_type": "application/json"
+      },
+      "provenance": "diagnostic"
+    }
+  ],
+  "decisions": [],
+  "findings": [
+    {
+      "id": "initial-reference-research",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "canonical-reference-applicability",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "direction-semantic-review",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "rendered-stage-clarity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+      "evidence": []
+    },
+    {
+      "id": "retained-pilot-adverse",
+      "field": "pilot",
+      "outcome": "uncertain",
+      "message": "Synthetic takes are not listening evidence.",
+      "evidence": []
+    },
+    {
+      "id": "retained-pilot-adverse",
+      "field": "pilot",
+      "outcome": "uncertain",
+      "message": "Synthetic takes are not listening evidence.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-request-commit-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-listening",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-continuity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-joins",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-intelligibility",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-speech-fidelity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "pilot-music-context",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+      "evidence": []
+    },
+    {
+      "id": "retained-speech-adverse",
+      "field": "speech",
+      "outcome": "uncertain",
+      "message": "Synthetic silence does not prove speech fidelity.",
+      "evidence": []
+    },
+    {
+      "id": "retained-speech-adverse",
+      "field": "speech",
+      "outcome": "uncertain",
+      "message": "Synthetic silence does not prove speech fidelity.",
+      "evidence": []
+    },
+    {
+      "id": "speech-bulk-authorization",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "evidence": []
+    },
+    {
+      "id": "speech-runtime-execution-unavailable",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "evidence": []
+    },
+    {
+      "id": "speech-listening-continuity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "evidence": []
+    },
+    {
+      "id": "speech-joins-assembly",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "evidence": []
+    },
+    {
+      "id": "speech-measured-acoustic-evidence",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "evidence": []
+    },
+    {
+      "id": "speech-primary-transcription-sizing-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+      "evidence": []
+    },
+    {
+      "id": "primary-request-commit-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Runtime must commit/register exact unhinted request bytes before any content-only v2 proposal can name its ArtifactRef.",
+      "evidence": []
+    },
+    {
+      "id": "primary-response-unresolved",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Original measured response remains unresolved: observation-missing",
+      "evidence": []
+    },
+    {
+      "id": "primary-source-coverage",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Complete global source coverage is not established by these measured observations.",
+      "evidence": []
+    },
+    {
+      "id": "primary-execution-unavailable",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "evidence": []
+    },
+    {
+      "id": "primary-independent-acoustic-evidence",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "evidence": []
+    },
+    {
+      "id": "speech-fidelity",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "evidence": []
+    },
+    {
+      "id": "voice-pilot",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "evidence": []
+    },
+    {
+      "id": "production-verifier-pending",
+      "field": "acceptance",
+      "outcome": "missing",
+      "message": "Private primary mechanics grant no execution, independent verification, listening, fidelity, reveal or publication authority.",
+      "evidence": []
+    }
+  ],
+  "cache_keys": [
+    "d0d9905c095a88e293a9e24344abe4c877af91617976fa60a4eab62b4e114d5d"
+  ],
+  "library_updates": [],
+  "package_candidate": null
+}

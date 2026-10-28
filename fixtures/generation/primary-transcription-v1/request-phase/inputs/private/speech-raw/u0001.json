@@ -1,0 +1,34 @@
+{
+  "audio": {
+    "file": {
+      "bytes": 4846,
+      "media_type": "audio/wav",
+      "path": "private/speech-audio/u0001.wav",
+      "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e"
+    },
+    "id": "committed:primary:private:speech-audio:u0001.wav",
+    "provenance": "synthetic"
+  },
+  "bindings_sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+  "format": {
+    "bits_per_sample": 16,
+    "channels": 1,
+    "frames": 2401,
+    "sample_rate": 24000
+  },
+  "model": "gemini-3.8-flash-tts",
+  "provenance": "synthetic",
+  "recipe_sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+  "request_sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+  "schema_version": 1,
+  "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+  "span": [
+    25,
+    46
+  ],
+  "speaker": "narrator",
+  "text_sha256": "e12fe3d524b98c6cf2cb2b9eb1350c2b0c5244514775c3dc428940e9b2ddd1bf",
+  "turn_id": "t0",
+  "unit_id": "u0001",
+  "voice_id": "voice-n"
+}

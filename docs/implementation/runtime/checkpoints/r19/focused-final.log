@@ -1,0 +1,24 @@
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.06s
+     Running unittests src/lib.rs (target/debug/deps/pt_production-b33c80a359461c86)
+
+running 16 tests
+test runtime::speech::pcm::tests::distinct_native_subranges_use_actual_data_chunks_and_preserve_frame_mapping ... ok
+test runtime::speech::pcm::tests::malformed_batch_offsets_fail_without_overflow_or_partial_output ... ok
+test runtime::speech::pcm::tests::cancellation_inside_chunk_copy_returns_no_audio ... ok
+test runtime::speech::pcm::tests::plan_rejects_missing_repeated_swapped_mixed_frames_hints_and_every_configured_cap ... ok
+test runtime::speech_tests::changed_prepared_scope_cannot_be_hidden_by_a_completed_speech_checkpoint ... ok
+test runtime::speech_tests::changed_source_pilot_binding_recipe_raw_audio_and_original_scope_cannot_be_imported ... ok
+test runtime::speech_tests::cancellation_before_and_after_generation_prevents_request_and_take_commit ... ok
+test runtime::speech_tests::concurrent_completions_cannot_duplicate_request_findings_or_pcm_checkpoints ... ok
+test runtime::speech_tests::ordinary_saved_speech_materializes_private_verified_audio_without_enabling_bulk ... ok
+test runtime::speech_tests::every_speech_boundary_restarts_without_generation_redispatch_and_replays_exact_bytes ... ok
+test runtime::speech_tests::r18_stops_before_speech_and_saved_speech_has_no_generic_bulk_or_publication_path ... ok
+test runtime::speech_tests::pcm_checkpoint_restart_reuses_committed_batch_and_preserves_unplanned_and_mixed_domains ... ok
+test runtime::speech_tests::runtime_routes_pinned_saved_speech_to_g24_without_provider_authority ... ok
+test runtime::speech_tests::removed_producer_inputs_reuse_frozen_bytes_but_corrupt_sources_and_pcm_block_replay ... ok
+test runtime::speech_tests::saved_speech_commits_requests_before_registration_then_ingests_original_takes ... ok
+test runtime::speech_tests::stale_commit_and_sql_failure_roll_back_outputs_findings_and_copy_receipts ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 240 filtered out; finished in 78.87s
+

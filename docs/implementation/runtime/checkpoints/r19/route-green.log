@@ -1,0 +1,18 @@
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+warning: unused import: `json`
+ --> crates/pt-production/src/runtime/speech_tests.rs:3:24
+  |
+3 | use serde_json::{Value,json};
+  |                        ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `pt-production` (lib test) generated 1 warning (run `cargo fix --lib -p pt-production --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.43s
+     Running unittests src/lib.rs (target/debug/deps/pt_production-b33c80a359461c86)
+
+running 1 test
+test runtime::speech_tests::runtime_routes_pinned_saved_speech_to_g24_without_provider_authority ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 240 filtered out; finished in 0.08s
+

@@ -1,0 +1,16 @@
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.21s
+     Running unittests src/lib.rs (target/debug/deps/pt_production-b33c80a359461c86)
+
+running 8 tests
+test runtime::speech::pcm::tests::distinct_native_subranges_use_actual_data_chunks_and_preserve_frame_mapping ... ok
+test runtime::speech::pcm::tests::malformed_batch_offsets_fail_without_overflow_or_partial_output ... ok
+test runtime::speech::pcm::tests::cancellation_inside_chunk_copy_returns_no_audio ... ok
+test runtime::speech::pcm::tests::plan_rejects_missing_repeated_swapped_mixed_frames_hints_and_every_configured_cap ... ok
+test runtime::speech_tests::changed_prepared_scope_cannot_be_hidden_by_a_completed_speech_checkpoint ... ok
+test runtime::speech_tests::runtime_routes_pinned_saved_speech_to_g24_without_provider_authority ... ok
+test runtime::speech_tests::ordinary_saved_speech_materializes_private_verified_audio_without_enabling_bulk ... ok
+test runtime::speech_tests::saved_speech_commits_requests_before_registration_then_ingests_original_takes ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 240 filtered out; finished in 7.44s
+

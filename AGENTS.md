@@ -19,9 +19,17 @@ The GitHub repository `jeffcato/paper-theater` must remain public so hackathon j
 
 The complete path table is in `docs/agent-handoffs/README.md`. Only Agent 1 changes shared schemas, fixtures, root lockfiles and the production crate manifest/module root. Send concrete proposals instead of editing another lane's files.
 
+Temporary operator assignment (October 28, 2026): a separate redesign agent owns `apps/studio/**` while that redesign is active, including Studio tests and configuration. Server R19 stays in backend/runtime/server-owned paths and must not edit the Studio tree. Integration I21 and generation G25 also exclude it. Coordinate shared HTTP/SSE/player/contract changes with their owners and dependency/root-lockfile changes with integration. Preserve the separate active player/audience redesign. Run combined UI checks against an explicitly frozen handoff; moving redesign files are not a verified backend checkpoint. This temporary assignment does not transfer shared Git ownership.
+
+Continuous goal queues are in [docs/agent-handoffs/goals/README.md](docs/agent-handoffs/goals/README.md). Each assigned worker may update checkboxes, evidence and dependency requests in only its corresponding `integration.md`, `server.md`, `generation.md`, `player.md` or `studio.md` there; this is a narrow exception to integration's documentation ownership. Integration alone edits the shared goal index/runbook, root TODO and shared interfaces. Do not remove requirements or mark blocked work complete. Assign the player list to the current exclusive player/audience owner, not a second overlapping redesign writer.
+
 In a shared working directory, Agent 1 alone stages/commits, switches branches and pushes. Workers preserve other agents' edits and report their owned changes. In operator-provided isolated worktrees, commit only assigned paths on the assigned branch. Do not reset others' work, force-push, or initialize nested repositories.
 
 ## Execution
+
+Delivery priority (October 28, 2026): follow the [seven-day delivery plan](docs/plans/2026-10-28-hackathon-delivery.md). Finish the smallest useful active I21/R19/G25 handoff, then prioritize ordinary production transports, creative-stage wiring and genuine acceptance/publication over further standalone proof expansion. Two chapters remain the target; the operator approved one complete accepted chapter plus the recorded walkthrough as the Day 3 fallback. This changes backlog order, not ownership, evidence requirements or spending authority. Preserve active UI work through its bounded functional handoff.
+
+When assigned a continuous implementation goal, follow its [runbook](docs/agent-handoffs/goals/RUNBOOK.md): implement/check off the next unblocked required item and continue without another task-selection turn. Record exact blockers and advance independent work. Finish only when the required implementation checklist is evidenced complete; report remaining live/device/chapter gates separately and obey the goal runtime's blocking/completion rules. Do not start additional agents or paid operations merely because a task appears in a goal list.
 
 Implement bounded runnable increments. All implementation requires clean git commits and contract-first TDD (first write a failing test that defines the spec, then write the minimum code required to make that test pass). Start with zero-provider-call fixture/replay work and a small shared-contract handoff. Do not import a generic DAG engine or build a second player.
 

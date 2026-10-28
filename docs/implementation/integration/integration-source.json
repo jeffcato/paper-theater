@@ -1,0 +1,1298 @@
+{
+  "schema_version": 1,
+  "base_commit": "834a4463a45b3a8ee0ea27b2b6129bac93f9a63d",
+  "preserved_main_head": "4dabe3d1a630f36a01f8f8d53eed5fe984c619f7",
+  "selected": {
+    "crates/pt-production/src/runtime/mod.rs": {
+      "sha256": "d225fd0520906c43b9f63ace3f64485ba745c42623f4c4542c71cd080a3d393b",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/runner.rs": {
+      "sha256": "b5a3b1b7d49bb651d7b55fc650d82e3417a6fb0f2c8522358d8d3f7016e96612",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/store.rs": {
+      "sha256": "be3c86e9c9fcf0e70f5eb45e66dcc596253b54a1f4b667140e4a812a710ce99a",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/schema.sql": {
+      "sha256": "05bea1aee2a8fcd62e823cee435dcaee713a6532a0232cfcef9475a0cfc91051",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/speech/mod.rs": {
+      "sha256": "e51d253f813eed4fb3f3ae7097355b34bd43610ce1e8618a8638f5eefd61cb1b",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/speech/storage.rs": {
+      "sha256": "2af0d012936b71b90868f14e8f994bf046ad34f92da883b0140559cf929e7231",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/speech/services.rs": {
+      "sha256": "c33d29ec76ff1a01307ce1412502cc22de7f6afe69e65bcb6f6158d7dae24b43",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/speech/pcm.rs": {
+      "sha256": "0c05cf4756a60322fbd0fdcfb1181b01d698963c7a1d8be41494b3421f4a0cf5",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/speech/batches.rs": {
+      "sha256": "24fb16d8a27092ba76a0a484aaa6c63d480ca4bbbd7a8c79067a1d06c8cb4a52",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/speech/pcm_tests.rs": {
+      "sha256": "fc0021e9c6952fef2ea16c432fba09e07209cc75a65f39c7b514622812644f13",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/runtime/speech_tests.rs": {
+      "sha256": "61b8a6568890a99798c02785dd69cd165a9a76b7c25f21ba7677c8399f513174",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-server/src/main.rs": {
+      "sha256": "e1eed6a99482b16fa7d8c0e43ad399a0d18b4dfc856ffd23d79177b68181da75",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-server/tests/speech_runtime_process.py": {
+      "sha256": "b281f479917076770e441b3de2f8be7f5d848e1bb9494c6fbdb20d819c094f52",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "fixtures/runtime/speech-v1/registration.json": {
+      "sha256": "b1de812250840967c912dc5d4ef47040967d143c3d0d041d81e8fbf21282c0f3",
+      "origin": "R19 tested archive f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114"
+    },
+    "crates/pt-production/src/generation/mod.rs": {
+      "sha256": "1628db099f41d4aecb12e95def9e5ed4744dd451247124b8122a7adfe4992df7",
+      "origin": "G25 implementation pin"
+    },
+    "crates/pt-production/src/generation/tests.rs": {
+      "sha256": "720e9d641a3dabdeaa89ca976c1dc890f9151a77cec8e8b90b51a9abbadab702",
+      "origin": "G25 implementation pin"
+    },
+    "crates/pt-production/src/generation/primary_transcription.rs": {
+      "sha256": "3e82ad42065c391723ae404131ae329c9c25182e49baf9c6407422f9f05c4732",
+      "origin": "G25 implementation pin"
+    },
+    "crates/pt-production/src/generation/primary_verify.rs": {
+      "sha256": "c3439e8bbd8aa42126bb8ae481241f171dfdc4303267c8c233e3bef16924dd20",
+      "origin": "G25 implementation pin"
+    },
+    "crates/pt-production/src/generation/primary_words.rs": {
+      "sha256": "a2fd6bc1bd7286807856625ac1a918518b26314cd58858243c8600e74e0cb10b",
+      "origin": "G25 implementation pin"
+    },
+    "crates/pt-production/src/generation/primary_match.rs": {
+      "sha256": "4cc57cd6c6b12275e89fb537efca3862302d6ca8005a56f0bc43af04f2636903",
+      "origin": "G25 implementation pin"
+    },
+    "crates/pt-production/src/generation/primary_mapping.rs": {
+      "sha256": "79c97796fe39efcf7d0a66ba48c213b825e487164731c17034726be58b93c25e",
+      "origin": "G25 implementation pin"
+    },
+    "crates/pt-production/src/generation/tests/primary_transcription.rs": {
+      "sha256": "05d10242a2da96a5c048c3efcd43d55db45a1736ade9f13c39e9373e1d876a30",
+      "origin": "G25 implementation pin"
+    },
+    "fixtures/generation/primary-transcription-v1/README.md": {
+      "sha256": "cbb4e7259b240bcb894e30e0daa8213f99788c7916fab011f92aa9b72995fd55",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/handoff.json": {
+      "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/normalized.json": {
+      "sha256": "eb22e7c85d814ae9bcc10cf52261bff0981caf16580e3bbb8046e3a0b9463282",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/proposal.json": {
+      "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/input-index.json": {
+      "sha256": "d123ecdea67ec62db3d39a08ddb813bf6ef6f0fd9fe2c92fa99ed960e4266d05",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary/observation.json": {
+      "sha256": "a88f36faf89f5250a403e207472d1f5451f4a1517c1604b4324fd17497f1ab69",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary/raw.json": {
+      "sha256": "2ec35f72e63ae963a741787f98645f2d229009f6094ef3bd1e8e2add7b14f89d",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-batch.wav": {
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-copy-receipt.json": {
+      "sha256": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-recipe.json": {
+      "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-speech-input.json": {
+      "sha256": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-transcription-context.json": {
+      "sha256": "a9ded7c0861d169cc0ba7cb2204f5509d4d4b0f5863767d129730df2c3eaff6d",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-audio/u0000.wav": {
+      "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-audio/u0001.wav": {
+      "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-context.json": {
+      "sha256": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-observations/u0000.json": {
+      "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-observations/u0001.json": {
+      "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-plan.json": {
+      "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-raw/u0000.json": {
+      "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-raw/u0001.json": {
+      "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-takes.json": {
+      "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-transcription-plan.json": {
+      "sha256": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/stage-input.json": {
+      "sha256": "6dae44eb8e3926ded5a25d9eb7e66250cdb797371a0fa8d5e6ca9a3451c4e136",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/ambiguity/stage-output.json": {
+      "sha256": "fa230c2b18a738ad1f5edc79114f2f32011bad53723ecad6b5cee4c2968cbf2a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/handoff.json": {
+      "sha256": "6e2ed9fedcd6dab22c92eb099a8c3c8b8643a0f09bd213268a1e9bc0a6bc917b",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/normalized.json": {
+      "sha256": "d09e2d6bedbde9b37e1a252edaa356d8e4935f1c87054abd752f3543fa247843",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/proposal.json": {
+      "sha256": "bcc7eb1100376b26e0e5529f91de7642fea181fcd368e821aeb895f56113cad3",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/request.json": {
+      "sha256": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/input-index.json": {
+      "sha256": "89d72b175943b64b3c16c0058680212445f72460bda57bc14a31663d8174214c",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary/observation.json": {
+      "sha256": "192ec60dd7a8fb8e2b6d257d9a348bf37a9f8d51a29de99d06c9a532aca4e96c",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary/raw.json": {
+      "sha256": "0d887a11201545722cb2b9c5dd02d72efe851b7fd9f0e7a12a921e1ab73022f6",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary/request.json": {
+      "sha256": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-batch.wav": {
+      "sha256": "8ed242fb064589cf99c9228a5d9bc02f3f17f6d1ad244120339dc9d58f4f9cbc",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-copy-receipt.json": {
+      "sha256": "5d2adf619642383ebc6eddcc85019724367790e7c48eedaec2127b290fe32273",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-recipe.json": {
+      "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-speech-input.json": {
+      "sha256": "922a5e786a8726c7709ab44e7eb78b85e4e1d9fcc4e9eb3ca0863fbdd030cdc5",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-transcription-context.json": {
+      "sha256": "cc875f535d893eeeab6934ca92b485d70a4f66108309cd713105d49b2277fd01",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-audio/u0000.wav": {
+      "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-audio/u0001.wav": {
+      "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-context.json": {
+      "sha256": "80d5425cd74e3957f121cbbb799907960b5411be5417793590728ffa2a08eca7",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-observations/u0000.json": {
+      "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-observations/u0001.json": {
+      "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-plan.json": {
+      "sha256": "4b7f64ff3fcfe885c071f69972d8b396a56f3ead769a024552e45ba8fdf46fed",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-raw/u0000.json": {
+      "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-raw/u0001.json": {
+      "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-takes.json": {
+      "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-transcription-plan.json": {
+      "sha256": "6b35717c3db6d3c88e8fb3e024476e8a493930348fb5cc38c02f9217f6967e2d",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/stage-input.json": {
+      "sha256": "3dad8da57e8968082974e45e193ab02751c14ec057e503cb7f9cd2fef2ae643a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/cut/stage-output.json": {
+      "sha256": "4c7654fc257ef59940c1b57162400ccda67015796d1479bf8cd3f14e657a3e8a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/handoff.json": {
+      "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/normalized.json": {
+      "sha256": "0e78d3f584f2a65de16a44870a425451276a74ae88bb80f1a96d4c7b1dfd897f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/proposal.json": {
+      "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/input-index.json": {
+      "sha256": "26afe60d796702233bcd8f2fa5c8bd7d9a02ffb708a0162fda60c515d5ac8a1a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary/observation.json": {
+      "sha256": "790bc28e8ae2bc7084adaf27497e73de76d75da6c2d8602fc988fc68f6dc5fa9",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary/raw.json": {
+      "sha256": "a8a35eea511acabf88ddc70b1c61f7199a5b925ca1dfef09c06edfcd482f58c4",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-batch.wav": {
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-copy-receipt.json": {
+      "sha256": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-recipe.json": {
+      "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-speech-input.json": {
+      "sha256": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-transcription-context.json": {
+      "sha256": "af31fcd1603ade9377675a30e62bce06c18511cefc7c7f8520c7a95afa20b25e",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-audio/u0000.wav": {
+      "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-audio/u0001.wav": {
+      "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-context.json": {
+      "sha256": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-observations/u0000.json": {
+      "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-observations/u0001.json": {
+      "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-plan.json": {
+      "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-raw/u0000.json": {
+      "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-raw/u0001.json": {
+      "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-takes.json": {
+      "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-transcription-plan.json": {
+      "sha256": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/stage-input.json": {
+      "sha256": "08ecac836587774f4bb13285055f8ee92cd31772674ec47f37e9ca4a285b1f41",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/decimal-points/stage-output.json": {
+      "sha256": "562ce3184048292bc46e69d3239fd6d6c0fe72c2a5b21fa308e7abe624457453",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/handoff.json": {
+      "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/normalized.json": {
+      "sha256": "3f95e2a416bbe9a369123b1314ac6eeae834ee573c51fb0a226a084e712f82de",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/proposal.json": {
+      "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/input-index.json": {
+      "sha256": "9d03f15b87117994a471ab7effa0891231649d408666fc710440fdf8ad1983f3",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary/observation.json": {
+      "sha256": "9d042ba6201ffdc093db76aa8908825facfa30f462a403c583f4f62e1ec39b3d",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary/raw.json": {
+      "sha256": "9e249f63ea21a429dcdaa964f629240197876aa5c591f8f29ad573699d845b8a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-batch.wav": {
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-copy-receipt.json": {
+      "sha256": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-recipe.json": {
+      "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-speech-input.json": {
+      "sha256": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-transcription-context.json": {
+      "sha256": "0e8373aa1928e53831a888a81d3b449cb914215fe9df48786e0bf65a52c78cd9",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-audio/u0000.wav": {
+      "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-audio/u0001.wav": {
+      "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-context.json": {
+      "sha256": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-observations/u0000.json": {
+      "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-observations/u0001.json": {
+      "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-plan.json": {
+      "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-raw/u0000.json": {
+      "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-raw/u0001.json": {
+      "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-takes.json": {
+      "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-transcription-plan.json": {
+      "sha256": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/stage-input.json": {
+      "sha256": "5c8fc5d19e8c3d82fc264e8d60c2254e30573da9107526bc304be454f7effaf8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/join/stage-output.json": {
+      "sha256": "97151229a8e8d131749b8108eafb45b98dac6eb0cf2a93df83c10b49cf4c894a",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/handoff.json": {
+      "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/normalized.json": {
+      "sha256": "70f1991bb8d40fc08bdcd0b25e15bc6468f386202e5d460c4182ae9267ee50a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/proposal.json": {
+      "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/input-index.json": {
+      "sha256": "2ee93919308ac1073cfd9b78add21858caaa3ed736e1a97bb52ea8051aa2c19c",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/observation.json": {
+      "sha256": "8d8aa9359d670a27ea731ef165f599da047e8e02bee24ccad0b896202a12a88c",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/raw.json": {
+      "sha256": "792e63ae7380fc64219a42461074c1f28cfbed6be9cf7424a31499c658e23d3d",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-batch.wav": {
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-copy-receipt.json": {
+      "sha256": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-recipe.json": {
+      "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-speech-input.json": {
+      "sha256": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-transcription-context.json": {
+      "sha256": "52c62fdac29f543901c2d888e1c50b0a1bf4c63aa2399b344ada29a021ca569f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-audio/u0000.wav": {
+      "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-audio/u0001.wav": {
+      "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-context.json": {
+      "sha256": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-observations/u0000.json": {
+      "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-observations/u0001.json": {
+      "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-plan.json": {
+      "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-raw/u0000.json": {
+      "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-raw/u0001.json": {
+      "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-takes.json": {
+      "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-transcription-plan.json": {
+      "sha256": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/stage-input.json": {
+      "sha256": "dd9a13ff27ef057ccd7504d3cddf3b2ba1f78f64bb9b7d115c27e5df20b46a41",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/measured/stage-output.json": {
+      "sha256": "cae48b401f992e15191349a626a545592496b0d23dcae41317d6e71300c23eae",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/candidates/private/primary/handoff.json": {
+      "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/candidates/private/primary/normalized.json": {
+      "sha256": "c6a830088de8fa384cd57941af499405e7e41269c48778758a097493014ea618",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/candidates/private/primary/request.json": {
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/input-index.json": {
+      "sha256": "abd7ddd5b9ebefb384358c40e3fbfedf48469b2bafde82394366b5fef7215b7c",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-batch.wav": {
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-copy-receipt.json": {
+      "sha256": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-recipe.json": {
+      "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-speech-input.json": {
+      "sha256": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-transcription-context.json": {
+      "sha256": "c4f29c2ddaf36513dfd415ad6ecb0712fa519b122e295988a06ceb3e24de4cb4",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-audio/u0000.wav": {
+      "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-audio/u0001.wav": {
+      "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-context.json": {
+      "sha256": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-observations/u0000.json": {
+      "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-observations/u0001.json": {
+      "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-plan.json": {
+      "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-raw/u0000.json": {
+      "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-raw/u0001.json": {
+      "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-takes.json": {
+      "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-transcription-plan.json": {
+      "sha256": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/stage-input.json": {
+      "sha256": "5d5784d6e1da60713f3a88c8f78809d32b5273c54297112f05b199fe1111369d",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/request-phase/stage-output.json": {
+      "sha256": "855bc557a7ff1318c5ac7b8fde10d883a42d66e584f71cb023a3e2c37448f8a6",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/candidates/private/primary/handoff.json": {
+      "sha256": "e96463d2e0ae5c9763b9a2c42bcd9ca936f60e02e6bdab8844ab1f12c0d48460",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/candidates/private/primary/normalized.json": {
+      "sha256": "5c24460f933a526dbfeb4869aab1680dbf1489cceef3af0ff6d371172b0babbf",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/candidates/private/primary/request.json": {
+      "sha256": "339ac3b51cd26a8083922829c3437564636a73ae6c78212fe6be23baff26092f",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/input-index.json": {
+      "sha256": "306e9c935f020a39d77b40fea1485e4c47736e0280000106c7b7fa2b5fec57a8",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/primary-recipe.json": {
+      "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/primary-speech-input.json": {
+      "sha256": "48286f95aee915104d214f8a373bfd2cad5261aa98f19daa32e6925d97e6c523",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/primary-transcription-context.json": {
+      "sha256": "1fd84e086a21d33e6e5dbaa91a5b70eab2e9048266df8e45d372155d57f8a568",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-batches/b0000.json": {
+      "sha256": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-batches/b0000.wav": {
+      "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-plan.json": {
+      "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-takes.json": {
+      "sha256": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-transcription-plan.json": {
+      "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/stage-input.json": {
+      "sha256": "10c29593abd27539fee1e1a97198867492459381f72deab01a23548dffa04ef5",
+      "origin": "G25 fixture pin"
+    },
+    "fixtures/generation/primary-transcription-v1/runtime-r19/stage-output.json": {
+      "sha256": "3486dde0b37e82d5fa4adfe051abbfc2b911c818666d83082f86ceb1a79e4302",
+      "origin": "G25 fixture pin"
+    },
+    "AGENTS.md": {
+      "sha256": "98b259c8ac74d22651994725ba1550dfbc6d1a17f3ebcf1633a133f62712fc4f",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/README.md": {
+      "sha256": "482557548bdd4264bd0492973d63f25e14bf6826843ab2edc4f0404bce0a6504",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/goals/integration.md": {
+      "sha256": "123da2f5711bdc6dd683095b8927be14c263ba0d0d4373ee32993a392e052a44",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/goals/player.md": {
+      "sha256": "1f70dad6059ae3d3868c75c6f8148d969afba9bdf5e2fd57a62c2532105875f0",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/goals/RUNBOOK.md": {
+      "sha256": "49a78b946a92e1eee0f91a7df5e67eef58a84e36b9186dca0d10dca7c4d7e713",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/goals/studio.md": {
+      "sha256": "45cf125551150b3ff7a8f4e3d7e29ee2aea51e6c7657e7354f5eb3fbdb44d0e7",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/goals/README.md": {
+      "sha256": "3f1c02f4b18716ce328177888e09feb04854f9dbacc49098ef8931ddc9501147",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/goals/generation.md": {
+      "sha256": "d6851a5982a7b56b8dc1d1cf630bcca8cdd420a74dfe16ef10fc9856c4061359",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/agent-handoffs/goals/server.md": {
+      "sha256": "041832c92a536d38d58167546eea928510de9d4949f3b7f432b8755eb6dc8dde",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/plans/2026-10-28-hackathon-delivery.md": {
+      "sha256": "6faaed4784a9e346fed60e20c9bfc013bde5cfbc444b5a4ea27fee5b858d861b",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/integration/integration-goal-plan.md": {
+      "sha256": "f6af68d98594b8d12140dcf223271ba7404986607cfe81613588f4b915e1b2f3",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/integration/acceptance-pilot-review-task.md": {
+      "sha256": "42012114768a1818b96b9f58f641dff83cdf9c81a15646c6322cb9affe63ad20",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/integration/generation-primary-transcription-task.md": {
+      "sha256": "fd1252241aa8bd32ea067f0381a191516a20fe0ce2b9231773453e5734ca1065",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/integration/server-speech-runtime-task.md": {
+      "sha256": "00b76dede61eb1450b72567c0c76f7aab400fc098f75365e76c64d16839282b1",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/generation/primary-transcription.md": {
+      "sha256": "89aab5fbc3a1192db55680ef009b21709959cc0abbeb6317b5bf6f2379000932",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/generation/primary-transcription-handoff.json": {
+      "sha256": "8cc83b2dbf20e074d692b410fe400aacbbfe19a11bc6fe0eb7357f669d76e89b",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/generation/primary-transcription-ready.json": {
+      "sha256": "d18be95b718101cd9c645cc907d8d36eff131e813f6f0d1bce32cb758a954f80",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/generation/speech-g24-freeze.json": {
+      "sha256": "f276fa1321bd856df505a3588b51efc7f55b45a899afc4605d136ca8c3562ba5",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_verify.rs": {
+      "sha256": "7af935a317f50525ee6d99bdebb504b7b3ea360fe319254ba79232023801e83a",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_transcription.rs": {
+      "sha256": "37539c09fec08d2b84c25d3f01c1e3c2ae70c9ca37d86d13dd245737191995c5",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_units.rs": {
+      "sha256": "b36129163e21d00e615005eb508fdda06ed05396f298dda962d483c345745eff",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/mod.rs": {
+      "sha256": "c403a6259a099a0b4323f72d35f8c3a200a3baa09e23ffb901842d955124aa2a",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_takes.rs": {
+      "sha256": "ca04078960dc9bbe0de2c9f0161cabdf7a038f39eeefb4235b83e150f35e9a0c",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/tests.rs": {
+      "sha256": "538cf120a8ff106c0007feb375cd04021382d649e70cb616a5dad485013f8ea0",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech.rs": {
+      "sha256": "f872ae48521b69c723c05a77bfba538564ede1e1f27d296bed856c6315f6ec83",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/tests/speech.rs": {
+      "sha256": "117a97a39c65ab755b32ef59baf85aa95392a86984e56e3a7adc37c362a3fdcd",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "fixtures/generation/g24-completed-source-v1/tools/generation/run_speech_tests.py": {
+      "sha256": "e4f5b2f8b346693e466b1763d7cb5c91276a63090732e555ca70216bd91664b1",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/speech-runtime.md": {
+      "sha256": "e035a6b497e10580dd6bd92645b39ecd177edd4721cd2d0fb464220cac568a2a",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/speech-runtime-ready.json": {
+      "sha256": "aaeb6f6ff8f4f1947f9a07827c1e33fa87a7c2ff79387a28aee139dd1f6030b1",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/speech-runtime-examples.json": {
+      "sha256": "43fda1a4085df37d53a85c298b3a466ad9b610de37dea5bd03bf70ce21412265",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/speech-batches/mixed-native.json": {
+      "sha256": "2e54538de5bae74ad5d81c9163a9d294049546bc27362f58a18dfe5bcf9a82a8",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/speech-batches/bounded-transcription.json": {
+      "sha256": "72d3600c3b0441810405439bf8638e61a14050fecec185d2ed92a0a5a1282aab",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/speech-batches/unplanned.json": {
+      "sha256": "2a6bd9459e5231c616f7c4ac6f03821367fa27ff0eff01ce7f2df7b6d178b746",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/production-dependencies.md": {
+      "sha256": "b1389738a72e222efd1cc7a24eec6caa7b8e725f0f88bd1c88d36d155ce31d92",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/current-source-pins.json": {
+      "sha256": "9f5269c1e5256c58a9185d514ffbed5978835701cd35eb0767a3baa8b2e55dd4",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/route-green.log": {
+      "sha256": "f3acd7b0f1235c20467bd3d2b637542a5828653f1b6ed12f3f1b082e9bc18a45",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/flow-green.log": {
+      "sha256": "5bb677b5e6ef890167f6b2bb241e30533114d4606b6f9fc4c67666138fbe253a",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/core-green.log": {
+      "sha256": "213c95842d14c83d5e48d014c6c61da12bccc435400f41acd3ace61e4c24925e",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/current-process.log": {
+      "sha256": "e9f6a6133bc40ba5d7fe2031d0cc2cbb6d9c2c2dfbf8083990981c28d4b6421b",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/tested-source-pins.json": {
+      "sha256": "39ae6d8ca5d0a92996b16d483fe01fa8f2981a676150781f462debcce8d8d94d",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/format.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/r18-process.log": {
+      "sha256": "8856dc7b0d0ec2c7f9d426b38e164614c962e450690ca146d229ca04c4a26ac4",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/r18-process.json": {
+      "sha256": "6900e016c6e8bea9fdc25f7b9bf54e82f9cf22db66d34b498100f226e6935e0c",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/process.log": {
+      "sha256": "12e3665edb6714a9c41e7a835534cf23e42fa8b218a431e8fcb624aba4a3f255",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/contract-bridge.log": {
+      "sha256": "b0e5b78bf4724cbe27189217f02270b5ffa48cb1f27d0699df6ff708aea20a66",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/copy-flow-red.log": {
+      "sha256": "d12cd4480ae1317b10c7618f933b5fc447fa72ff7594ecb75f927b9ad69e6a49",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/g24-regression.log": {
+      "sha256": "cc9e7369808f6f13951310bd29c25784e3dc9b7f9b0e71a3c3b597857c22bbdd",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/focused-final.log": {
+      "sha256": "0402a5125a0f71de6d589437487b255de74a3c05cec0a361d494a7b0f6c8dab7",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/contract-server.log": {
+      "sha256": "68808557f1282b4953de5c94acc88e32c8269927667a75c49f74d5537c277575",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/checkpoint-red.log": {
+      "sha256": "b4a6d00c46a296643ddcef1c5e7b36f35a0ec3cafe904bbffd0868d84267684b",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/current-build.log": {
+      "sha256": "b6673c0ba69d4f5a083896144d8583a2e0ae52fef13ca8d52b7ace86738548d1",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/current-chapter-process.log": {
+      "sha256": "3146764c480111ce327ec9aea9288b941a78652b88a37611644f31996047779f",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/pcm-overflow-red.log": {
+      "sha256": "7ded9bc1f992a8da2c0c5bde627a8634f31455dad2487ac995a8f7be5931255c",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/identity.log": {
+      "sha256": "e67216669658a3d38c519d058450f120bf22a467c30023b5d4f02c09512eacb3",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/route-red.log": {
+      "sha256": "b99d2f868b0f9964a718ad1b4691892d668eab09e42f3cc0276c96ca15387594",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/current-r18-process.log": {
+      "sha256": "c55cbd388e732db27382ad2572af2cde8620a47bab090c902af4f03eb6810029",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/copy-flow-green.log": {
+      "sha256": "0cef943ac23777beb161c1f63db297c9fce43268808c1af249db7d77b86516f6",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/flow-red.log": {
+      "sha256": "1e70746352f3ebb2c44c82d0a52f55c612c8cd4c38ad63b4a6741125113e316d",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/chapter-process.json": {
+      "sha256": "e26363bb7567605cf1d602962ae48eb5a6d7b93ab14747009fe9866602d33c96",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/chapter-process.log": {
+      "sha256": "3146764c480111ce327ec9aea9288b941a78652b88a37611644f31996047779f",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/runtime.log": {
+      "sha256": "0ab0fbd0c3e34bf7eea78925074a97e3d560b4cf027a9bb20192b24e56001968",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/current-focused.log": {
+      "sha256": "e0cd4b532464ec8423bb8d28c05e09af5a7d026e0d663a12594cf5020aed0bca",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/speech-process.json": {
+      "sha256": "b0aae4e9f5339c1ad85f90b43856b707e6aa5d52a822f364811624619f7ad55a",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19/build.log": {
+      "sha256": "8803791aeb13f7f9c9d9fea3c227a5ce9bd939f61ac3670cc4907975f0f1e752",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19-tested/handoff.json": {
+      "sha256": "ac7632ebc333289360dc19f499ae3a4f4ea1f20c67f292b4289f9bf96f4068f2",
+      "origin": "owner handoff/document; no current CI claim"
+    },
+    "docs/implementation/runtime/checkpoints/r19-tested/f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114.tar": {
+      "sha256": "f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114",
+      "origin": "owner handoff/document; no current CI claim"
+    }
+  },
+  "preserved_changes": {
+    "apps/studio/src/Theater.tsx": "c71e262b3dacd819886ffd92c03d76d10b0078d932367c10f01e9310848b2f1d",
+    "apps/studio/src/model.ts": "5b4586ea9aa14108decf307bea82f52916d93cde69b50120a9535ecd8d6fd24e",
+    "apps/studio/src/useRun.ts": "07310f31acdafcc2d3e60057f90d5234d4b3f97549adfd6509c2a3c010429a71",
+    "apps/studio/tests/model.test.mjs": "9f2f789cd8a4408025ea34e546471a61a3849ac234f4769e0cc55f3dfc021cb4",
+    "crates/pt-production/src/generation/primary_mapping.rs": "79c97796fe39efcf7d0a66ba48c213b825e487164731c17034726be58b93c25e",
+    "crates/pt-production/src/generation/primary_match.rs": "4cc57cd6c6b12275e89fb537efca3862302d6ca8005a56f0bc43af04f2636903",
+    "crates/pt-production/src/generation/primary_transcription.rs": "3e82ad42065c391723ae404131ae329c9c25182e49baf9c6407422f9f05c4732",
+    "crates/pt-production/src/generation/primary_verify.rs": "c3439e8bbd8aa42126bb8ae481241f171dfdc4303267c8c233e3bef16924dd20",
+    "crates/pt-production/src/generation/primary_words.rs": "a2fd6bc1bd7286807856625ac1a918518b26314cd58858243c8600e74e0cb10b",
+    "crates/pt-production/src/generation/provider_codecs.rs": "93eaf01bb88353c4f0a38a69af1b39bb67c2dcf35b0558f023417818be75229c",
+    "crates/pt-production/src/generation/tests/primary_transcription.rs": "05d10242a2da96a5c048c3efcd43d55db45a1736ade9f13c39e9373e1d876a30",
+    "crates/pt-production/src/generation/tests/provider_codecs.rs": "434ffa4056be8bbc1dd2702040c54afff83deee94a35aaa45fb8625cf3e46a22",
+    "crates/pt-production/src/runtime/production_config.rs": "ab9880aafcc54c68fcb7cf43dcc5ccfc5525834304516de22941d1609d94da38",
+    "crates/pt-production/src/runtime/production_config_tests.rs": "b726a140079b032f6ec2774d09ad6180d9c92fc9766fe32c7d711ff890c9cf5a",
+    "crates/pt-production/src/runtime/speech/batches.rs": "24fb16d8a27092ba76a0a484aaa6c63d480ca4bbbd7a8c79067a1d06c8cb4a52",
+    "crates/pt-production/src/runtime/speech/mod.rs": "dacb05d8576ac3e5e3308293309ec0aa3a5e5413d674fc692eedcd51cfcb331e",
+    "crates/pt-production/src/runtime/speech/pcm.rs": "0c05cf4756a60322fbd0fdcfb1181b01d698963c7a1d8be41494b3421f4a0cf5",
+    "crates/pt-production/src/runtime/speech/pcm_tests.rs": "fc0021e9c6952fef2ea16c432fba09e07209cc75a65f39c7b514622812644f13",
+    "crates/pt-production/src/runtime/speech/primary.rs": "75e51bc6a6806848dad0b84d3de15ea99b2dd5a406f1c246308135de55248280",
+    "crates/pt-production/src/runtime/speech/services.rs": "a106731a15d5aa7a05f8664790dd6d75c970fdbd3455b3fbe5414d8b8d0697d6",
+    "crates/pt-production/src/runtime/speech/storage.rs": "2af0d012936b71b90868f14e8f994bf046ad34f92da883b0140559cf929e7231",
+    "crates/pt-production/src/runtime/speech_tests.rs": "efe1b03a4a2fd27ca4be0e9cc2f9e0154f6f65feff06f63821293ec3c5a0fd6a",
+    "crates/pt-server/tests/speech_runtime_process.py": "b281f479917076770e441b3de2f8be7f5d848e1bb9494c6fbdb20d819c094f52",
+    "docs/agent-handoffs/goals/README.md": "3f1c02f4b18716ce328177888e09feb04854f9dbacc49098ef8931ddc9501147",
+    "docs/agent-handoffs/goals/RUNBOOK.md": "49a78b946a92e1eee0f91a7df5e67eef58a84e36b9186dca0d10dca7c4d7e713",
+    "docs/agent-handoffs/goals/generation.md": "d6851a5982a7b56b8dc1d1cf630bcca8cdd420a74dfe16ef10fc9856c4061359",
+    "docs/agent-handoffs/goals/integration.md": "123da2f5711bdc6dd683095b8927be14c263ba0d0d4373ee32993a392e052a44",
+    "docs/agent-handoffs/goals/player.md": "1f70dad6059ae3d3868c75c6f8148d969afba9bdf5e2fd57a62c2532105875f0",
+    "docs/agent-handoffs/goals/server.md": "041832c92a536d38d58167546eea928510de9d4949f3b7f432b8755eb6dc8dde",
+    "docs/agent-handoffs/goals/studio.md": "45cf125551150b3ff7a8f4e3d7e29ee2aea51e6c7657e7354f5eb3fbdb44d0e7",
+    "docs/implementation/generation/generation-goal-plan.md": "3dac072d599f484ec11824b4c3d23cecc6c46ea3c042060a317142aa23db4482",
+    "docs/implementation/generation/primary-transcription-handoff.json": "8cc83b2dbf20e074d692b410fe400aacbbfe19a11bc6fe0eb7357f669d76e89b",
+    "docs/implementation/generation/primary-transcription-ready.json": "d18be95b718101cd9c645cc907d8d36eff131e813f6f0d1bce32cb758a954f80",
+    "docs/implementation/generation/primary-transcription.md": "89aab5fbc3a1192db55680ef009b21709959cc0abbeb6317b5bf6f2379000932",
+    "docs/implementation/generation/provider-codecs.md": "34ffddcbdd74039ff4b363436d33903337e8a27ecafa4c0222999e3e96637028",
+    "docs/implementation/generation/speech-g24-freeze.json": "f276fa1321bd856df505a3588b51efc7f55b45a899afc4605d136ca8c3562ba5",
+    "docs/implementation/integration/acceptance-pilot-review-task.md": "42012114768a1818b96b9f58f641dff83cdf9c81a15646c6322cb9affe63ad20",
+    "docs/implementation/integration/generation-primary-transcription-task.md": "fd1252241aa8bd32ea067f0381a191516a20fe0ce2b9231773453e5734ca1065",
+    "docs/implementation/integration/integration-goal-plan.md": "f6af68d98594b8d12140dcf223271ba7404986607cfe81613588f4b915e1b2f3",
+    "docs/implementation/integration/server-speech-runtime-task.md": "00b76dede61eb1450b72567c0c76f7aab400fc098f75365e76c64d16839282b1",
+    "docs/implementation/runtime/checkpoints/r18-frozen/645d65cbfa2d9611b2b4aa9dfddf18563d116d16852e18f1b8f3940d0f807051.tar": "645d65cbfa2d9611b2b4aa9dfddf18563d116d16852e18f1b8f3940d0f807051",
+    "docs/implementation/runtime/checkpoints/r18-frozen/handoff.json": "76c340ec2ac931388ee9b8257989cd4a8d8cb34adaf8c952fd1e1436fb4a35cb",
+    "docs/implementation/runtime/checkpoints/r19-tested/f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114.tar": "f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114",
+    "docs/implementation/runtime/checkpoints/r19-tested/handoff.json": "ac7632ebc333289360dc19f499ae3a4f4ea1f20c67f292b4289f9bf96f4068f2",
+    "docs/implementation/runtime/checkpoints/r19/chapter-process.json": "e26363bb7567605cf1d602962ae48eb5a6d7b93ab14747009fe9866602d33c96",
+    "docs/implementation/runtime/checkpoints/r19/current-source-pins.json": "9f5269c1e5256c58a9185d514ffbed5978835701cd35eb0767a3baa8b2e55dd4",
+    "docs/implementation/runtime/checkpoints/r19/r18-process.json": "6900e016c6e8bea9fdc25f7b9bf54e82f9cf22db66d34b498100f226e6935e0c",
+    "docs/implementation/runtime/checkpoints/r19/speech-process.json": "b0aae4e9f5339c1ad85f90b43856b707e6aa5d52a822f364811624619f7ad55a",
+    "docs/implementation/runtime/checkpoints/r19/tested-source-pins.json": "39ae6d8ca5d0a92996b16d483fe01fa8f2981a676150781f462debcce8d8d94d",
+    "docs/implementation/runtime/production-dependencies.md": "b1389738a72e222efd1cc7a24eec6caa7b8e725f0f88bd1c88d36d155ce31d92",
+    "docs/implementation/runtime/server-goal-checks/source-before.json": "429fdd925c569184a623c058ef7bfaa03a5ee58981508f078914580a9c3bb18c",
+    "docs/implementation/runtime/server-goal-plan.md": "4c12842d82fffb79cfc683cea63a5eb364044bf31c2ec437794cdb0bbe7483d2",
+    "docs/implementation/runtime/speech-batches/bounded-transcription.json": "72d3600c3b0441810405439bf8638e61a14050fecec185d2ed92a0a5a1282aab",
+    "docs/implementation/runtime/speech-batches/mixed-native.json": "2e54538de5bae74ad5d81c9163a9d294049546bc27362f58a18dfe5bcf9a82a8",
+    "docs/implementation/runtime/speech-batches/unplanned.json": "2a6bd9459e5231c616f7c4ac6f03821367fa27ff0eff01ce7f2df7b6d178b746",
+    "docs/implementation/runtime/speech-runtime-examples.json": "43fda1a4085df37d53a85c298b3a466ad9b610de37dea5bd03bf70ce21412265",
+    "docs/implementation/runtime/speech-runtime-ready.json": "aaeb6f6ff8f4f1947f9a07827c1e33fa87a7c2ff79387a28aee139dd1f6030b1",
+    "docs/implementation/runtime/speech-runtime.md": "e035a6b497e10580dd6bd92645b39ecd177edd4721cd2d0fb464220cac568a2a",
+    "docs/plans/2026-10-28-hackathon-delivery.md": "6faaed4784a9e346fed60e20c9bfc013bde5cfbc444b5a4ea27fee5b858d861b",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/mod.rs": "c403a6259a099a0b4323f72d35f8c3a200a3baa09e23ffb901842d955124aa2a",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech.rs": "f872ae48521b69c723c05a77bfba538564ede1e1f27d296bed856c6315f6ec83",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_takes.rs": "ca04078960dc9bbe0de2c9f0161cabdf7a038f39eeefb4235b83e150f35e9a0c",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_transcription.rs": "37539c09fec08d2b84c25d3f01c1e3c2ae70c9ca37d86d13dd245737191995c5",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_units.rs": "b36129163e21d00e615005eb508fdda06ed05396f298dda962d483c345745eff",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/speech_verify.rs": "7af935a317f50525ee6d99bdebb504b7b3ea360fe319254ba79232023801e83a",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/tests.rs": "538cf120a8ff106c0007feb375cd04021382d649e70cb616a5dad485013f8ea0",
+    "fixtures/generation/g24-completed-source-v1/crates/pt-production/src/generation/tests/speech.rs": "117a97a39c65ab755b32ef59baf85aa95392a86984e56e3a7adc37c362a3fdcd",
+    "fixtures/generation/g24-completed-source-v1/tools/generation/run_speech_tests.py": "e4f5b2f8b346693e466b1763d7cb5c91276a63090732e555ca70216bd91664b1",
+    "fixtures/generation/primary-transcription-v1/README.md": "cbb4e7259b240bcb894e30e0daa8213f99788c7916fab011f92aa9b72995fd55",
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/normalized.json": "eb22e7c85d814ae9bcc10cf52261bff0981caf16580e3bbb8046e3a0b9463282",
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/ambiguity/input-index.json": "d123ecdea67ec62db3d39a08ddb813bf6ef6f0fd9fe2c92fa99ed960e4266d05",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary-transcription-context.json": "a9ded7c0861d169cc0ba7cb2204f5509d4d4b0f5863767d129730df2c3eaff6d",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary/observation.json": "a88f36faf89f5250a403e207472d1f5451f4a1517c1604b4324fd17497f1ab69",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary/raw.json": "2ec35f72e63ae963a741787f98645f2d229009f6094ef3bd1e8e2add7b14f89d",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "fixtures/generation/primary-transcription-v1/ambiguity/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "fixtures/generation/primary-transcription-v1/ambiguity/stage-input.json": "6dae44eb8e3926ded5a25d9eb7e66250cdb797371a0fa8d5e6ca9a3451c4e136",
+    "fixtures/generation/primary-transcription-v1/ambiguity/stage-output.json": "fa230c2b18a738ad1f5edc79114f2f32011bad53723ecad6b5cee4c2968cbf2a",
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/handoff.json": "6e2ed9fedcd6dab22c92eb099a8c3c8b8643a0f09bd213268a1e9bc0a6bc917b",
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/normalized.json": "d09e2d6bedbde9b37e1a252edaa356d8e4935f1c87054abd752f3543fa247843",
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/proposal.json": "bcc7eb1100376b26e0e5529f91de7642fea181fcd368e821aeb895f56113cad3",
+    "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/request.json": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a",
+    "fixtures/generation/primary-transcription-v1/cut/input-index.json": "89d72b175943b64b3c16c0058680212445f72460bda57bc14a31663d8174214c",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-batch.wav": "8ed242fb064589cf99c9228a5d9bc02f3f17f6d1ad244120339dc9d58f4f9cbc",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-copy-receipt.json": "5d2adf619642383ebc6eddcc85019724367790e7c48eedaec2127b290fe32273",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-speech-input.json": "922a5e786a8726c7709ab44e7eb78b85e4e1d9fcc4e9eb3ca0863fbdd030cdc5",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary-transcription-context.json": "cc875f535d893eeeab6934ca92b485d70a4f66108309cd713105d49b2277fd01",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary/observation.json": "192ec60dd7a8fb8e2b6d257d9a348bf37a9f8d51a29de99d06c9a532aca4e96c",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary/raw.json": "0d887a11201545722cb2b9c5dd02d72efe851b7fd9f0e7a12a921e1ab73022f6",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/primary/request.json": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-context.json": "80d5425cd74e3957f121cbbb799907960b5411be5417793590728ffa2a08eca7",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-plan.json": "4b7f64ff3fcfe885c071f69972d8b396a56f3ead769a024552e45ba8fdf46fed",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "fixtures/generation/primary-transcription-v1/cut/inputs/private/speech-transcription-plan.json": "6b35717c3db6d3c88e8fb3e024476e8a493930348fb5cc38c02f9217f6967e2d",
+    "fixtures/generation/primary-transcription-v1/cut/stage-input.json": "3dad8da57e8968082974e45e193ab02751c14ec057e503cb7f9cd2fef2ae643a",
+    "fixtures/generation/primary-transcription-v1/cut/stage-output.json": "4c7654fc257ef59940c1b57162400ccda67015796d1479bf8cd3f14e657a3e8a",
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/normalized.json": "0e78d3f584f2a65de16a44870a425451276a74ae88bb80f1a96d4c7b1dfd897f",
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/decimal-points/input-index.json": "26afe60d796702233bcd8f2fa5c8bd7d9a02ffb708a0162fda60c515d5ac8a1a",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary-transcription-context.json": "af31fcd1603ade9377675a30e62bce06c18511cefc7c7f8520c7a95afa20b25e",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary/observation.json": "790bc28e8ae2bc7084adaf27497e73de76d75da6c2d8602fc988fc68f6dc5fa9",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary/raw.json": "a8a35eea511acabf88ddc70b1c61f7199a5b925ca1dfef09c06edfcd482f58c4",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "fixtures/generation/primary-transcription-v1/decimal-points/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "fixtures/generation/primary-transcription-v1/decimal-points/stage-input.json": "08ecac836587774f4bb13285055f8ee92cd31772674ec47f37e9ca4a285b1f41",
+    "fixtures/generation/primary-transcription-v1/decimal-points/stage-output.json": "562ce3184048292bc46e69d3239fd6d6c0fe72c2a5b21fa308e7abe624457453",
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/normalized.json": "3f95e2a416bbe9a369123b1314ac6eeae834ee573c51fb0a226a084e712f82de",
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/join/input-index.json": "9d03f15b87117994a471ab7effa0891231649d408666fc710440fdf8ad1983f3",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary-transcription-context.json": "0e8373aa1928e53831a888a81d3b449cb914215fe9df48786e0bf65a52c78cd9",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary/observation.json": "9d042ba6201ffdc093db76aa8908825facfa30f462a403c583f4f62e1ec39b3d",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary/raw.json": "9e249f63ea21a429dcdaa964f629240197876aa5c591f8f29ad573699d845b8a",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "fixtures/generation/primary-transcription-v1/join/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "fixtures/generation/primary-transcription-v1/join/stage-input.json": "5c8fc5d19e8c3d82fc264e8d60c2254e30573da9107526bc304be454f7effaf8",
+    "fixtures/generation/primary-transcription-v1/join/stage-output.json": "97151229a8e8d131749b8108eafb45b98dac6eb0cf2a93df83c10b49cf4c894a",
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/normalized.json": "70f1991bb8d40fc08bdcd0b25e15bc6468f386202e5d460c4182ae9267ee50a8",
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/measured/input-index.json": "2ee93919308ac1073cfd9b78add21858caaa3ed736e1a97bb52ea8051aa2c19c",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-transcription-context.json": "52c62fdac29f543901c2d888e1c50b0a1bf4c63aa2399b344ada29a021ca569f",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/observation.json": "8d8aa9359d670a27ea731ef165f599da047e8e02bee24ccad0b896202a12a88c",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/raw.json": "792e63ae7380fc64219a42461074c1f28cfbed6be9cf7424a31499c658e23d3d",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "fixtures/generation/primary-transcription-v1/measured/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "fixtures/generation/primary-transcription-v1/measured/stage-input.json": "dd9a13ff27ef057ccd7504d3cddf3b2ba1f78f64bb9b7d115c27e5df20b46a41",
+    "fixtures/generation/primary-transcription-v1/measured/stage-output.json": "cae48b401f992e15191349a626a545592496b0d23dcae41317d6e71300c23eae",
+    "fixtures/generation/primary-transcription-v1/request-phase/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "fixtures/generation/primary-transcription-v1/request-phase/candidates/private/primary/normalized.json": "c6a830088de8fa384cd57941af499405e7e41269c48778758a097493014ea618",
+    "fixtures/generation/primary-transcription-v1/request-phase/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "fixtures/generation/primary-transcription-v1/request-phase/input-index.json": "abd7ddd5b9ebefb384358c40e3fbfedf48469b2bafde82394366b5fef7215b7c",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/primary-transcription-context.json": "c4f29c2ddaf36513dfd415ad6ecb0712fa519b122e295988a06ceb3e24de4cb4",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "fixtures/generation/primary-transcription-v1/request-phase/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "fixtures/generation/primary-transcription-v1/request-phase/stage-input.json": "5d5784d6e1da60713f3a88c8f78809d32b5273c54297112f05b199fe1111369d",
+    "fixtures/generation/primary-transcription-v1/request-phase/stage-output.json": "855bc557a7ff1318c5ac7b8fde10d883a42d66e584f71cb023a3e2c37448f8a6",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/candidates/private/primary/handoff.json": "e96463d2e0ae5c9763b9a2c42bcd9ca936f60e02e6bdab8844ab1f12c0d48460",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/candidates/private/primary/normalized.json": "5c24460f933a526dbfeb4869aab1680dbf1489cceef3af0ff6d371172b0babbf",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/candidates/private/primary/request.json": "339ac3b51cd26a8083922829c3437564636a73ae6c78212fe6be23baff26092f",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/input-index.json": "306e9c935f020a39d77b40fea1485e4c47736e0280000106c7b7fa2b5fec57a8",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/primary-speech-input.json": "48286f95aee915104d214f8a373bfd2cad5261aa98f19daa32e6925d97e6c523",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/primary-transcription-context.json": "1fd84e086a21d33e6e5dbaa91a5b70eab2e9048266df8e45d372155d57f8a568",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-batches/b0000.json": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-batches/b0000.wav": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-takes.json": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-transcription-plan.json": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/stage-input.json": "10c29593abd27539fee1e1a97198867492459381f72deab01a23548dffa04ef5",
+    "fixtures/generation/primary-transcription-v1/runtime-r19/stage-output.json": "3486dde0b37e82d5fa4adfe051abbfc2b911c818666d83082f86ceb1a79e4302",
+    "fixtures/generation/provider-codecs-v1/README.md": "7884ea96afbfb284e61431b4ab650653f619ff527c4bd979cdb71de9ac1eb4c4",
+    "fixtures/generation/provider-codecs-v1/gemini-speech-stop.json": "9d5623d53269aeaf249d26038b3d1480ca962acc50915618d7617aec94d6f702",
+    "fixtures/runtime/speech-v1/registration.json": "b1de812250840967c912dc5d4ef47040967d143c3d0d041d81e8fbf21282c0f3",
+    "AGENTS.md": "98b259c8ac74d22651994725ba1550dfbc6d1a17f3ebcf1633a133f62712fc4f",
+    "README.md": "dd5eb8583999c642566e704e5f38788650895d0094a9a8ad1c57906905d7e522",
+    "TODO.md": "87b406269281e1efe4bf4988a540566ed943b8695210d8220dda1e100c5a5a28",
+    "apps/studio/src/main.tsx": "5bc226d1b7496ffa3c449213d5280e9e5f451b1d79f34c3e981c34ad100a1cc3",
+    "apps/studio/src/style.css": "55d5ef49fa0406ef83d94b4f9a83c2d391001c0f22dc66c1ba0ac160ac5a012f",
+    "crates/pt-production/src/generation/mod.rs": "1864cd0b41519825a9a4a38e563d2cdd6ce60aa9b0211129669a2986f3380b94",
+    "crates/pt-production/src/generation/tests.rs": "1b116a62430d4dbeb7c8d84a908036e8c929c20c0b0a3c67af01bf576b3e6817",
+    "crates/pt-production/src/runtime/mod.rs": "89bfb08159a6f0f5170715e0d23e8297edbc917014631fe501cb616da5a7ecf4",
+    "crates/pt-production/src/runtime/runner.rs": "d16c9469ad57d372b585742d9ba853e52390dc549b5251fdad92ce929cc1f63a",
+    "crates/pt-production/src/runtime/schema.sql": "f5a910d987735cc548f03444c4894082f74dc062cf9b2605a574263e9bfdf18f",
+    "crates/pt-production/src/runtime/store.rs": "be3c86e9c9fcf0e70f5eb45e66dcc596253b54a1f4b667140e4a812a710ce99a",
+    "crates/pt-server/src/main.rs": "e1eed6a99482b16fa7d8c0e43ad399a0d18b4dfc856ffd23d79177b68181da75",
+    "docs/agent-handoffs/README.md": "482557548bdd4264bd0492973d63f25e14bf6826843ab2edc4f0404bce0a6504",
+    "docs/implementation/generation/README.md": "f69b929c2558faecd99f7fc7e5d9b80aea911352a41b536ae3738f66dfc65d6d",
+    "docs/implementation/generation/integration-requests.md": "23ff6de6c535216e998c30b18f6ef6805b328a7f443154db17f65e0d9eba7ef2",
+    "docs/implementation/integration/backend-next-tasks.md": "afab76c77cff295fd37650b2c48cf0eb24986b5953e05c3aec6d12aa5490a775",
+    "docs/implementation/integration/two-agent-next-tasks.md": "1f0d3b4ebdb62ae92d66ed953757375bd55c7d5820186fbc4857fb9ebaca21cb",
+    "docs/implementation/runtime/integration-requests.md": "298a60552668f283be976960e6a2c197fdeaf104fd245aa9d0ef92a151b5c2cb",
+    "docs/implementation/runtime/studio-browser.png": "514b85db1f0306bc7d89be70e14e173c609753f3a8eb09405452df7c6f6e41d6",
+    "docs/implementation/runtime/studio-player/1280x720-blackout-paused.png": "07093b130979c51b1d993a21d49480d28f0fb1257b7f10d06cc479a439cacd21",
+    "docs/implementation/runtime/studio-player/1280x720-nod-0.25.png": "82270b036725217ee7407c009720b97bc4416f0914b157046c88e509bed973ec",
+    "docs/implementation/runtime/studio-player/1280x720-nod-0.5.png": "b6fa1bafb31ba1e423f70943addcb1a082c9c6f6e26cba7e72feae00b6a64fca",
+    "docs/implementation/runtime/studio-player/1280x720-nod-0.75.png": "82270b036725217ee7407c009720b97bc4416f0914b157046c88e509bed973ec",
+    "docs/implementation/runtime/studio-player/1280x720-title.png": "d7cb99c55306fdd271f33a01b31fb370cf3846f61245ceebb4036d364db41571",
+    "docs/implementation/runtime/studio-player/1920x1080-blackout-paused.png": "ae15204402dba0313fdb4c2c1a51f714f3a3cb145c341f3a3f56c77197678401",
+    "docs/implementation/runtime/studio-player/1920x1080-nod-0.25.png": "89ca28bac54fdd7cfaabd11dbf1ae76c56567abefe0ea21ad1df34fbe82d7962",
+    "docs/implementation/runtime/studio-player/1920x1080-nod-0.5.png": "a055c769e4e00435ef55a49bae9301b55a1a0298bb24dd79e1f4b97f8e743ca4",
+    "docs/implementation/runtime/studio-player/1920x1080-nod-0.75.png": "89ca28bac54fdd7cfaabd11dbf1ae76c56567abefe0ea21ad1df34fbe82d7962",
+    "docs/implementation/runtime/studio-player/1920x1080-title.png": "d4dcbc100e03fda369cb01f4fc57df39a95a3632b116586e8a3a6fe75c9a9516",
+    "docs/implementation/runtime/studio-player/960x540-blackout-paused.png": "bd16ad2bd26f725b34a6f628cfcd504fe030ae4d1f27c9e7cf2c4ee1e19ebe63",
+    "docs/implementation/runtime/studio-player/960x540-nod-0.25.png": "73c5272691fb941beac0d70b7e16aff22cf4ab8baae24220750e65f911ba13e1",
+    "docs/implementation/runtime/studio-player/960x540-nod-0.5.png": "6cc6cf536e4e8556496779d12ad2a85b62e7fe7ed5dfa295776d9fec53ad5e99",
+    "docs/implementation/runtime/studio-player/960x540-nod-0.75.png": "73c5272691fb941beac0d70b7e16aff22cf4ab8baae24220750e65f911ba13e1",
+    "docs/implementation/runtime/studio-player/960x540-title.png": "9ed51dd570dec01eb02f2564a1502a6ddd9522056a66b00ee18745afb9405c5f",
+    "docs/implementation/runtime/studio-player/receipt.json": "afb97e6bcff7e8d6eba9688fefcc300945931f0dd229aa292c4806f4fe8e59f4"
+  },
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "ui_adopted": false,
+  "adoption_checks": {
+    "scoped_aggregate_passed": 359,
+    "scope": "Initial base 834a446 plus selected R19/G25 implementation, before the subsequent integration dependency/configuration/coverage changes. Not current implementation-head CI.",
+    "speech_process": "Real built server: two processes; 3 committed phases and 1 batch survive restart, no redispatch, private HTTP 404, zero provider/helper calls. Sandbox first denied loopback; the authorized unsandboxed rerun passed.",
+    "evidence": {
+      "pt-int01-aggregate": {
+        "path": "docs/implementation/integration/goal-checks/pt-int01-aggregate.log.gz",
+        "raw_sha256": "36199e031cc1db5d8c76f6ba009666012d3596e156ccd9f4db9c98c1ff24bece"
+      },
+      "pt-int01-speech-process": {
+        "path": "docs/implementation/integration/goal-checks/pt-int01-speech-process.log.gz",
+        "raw_sha256": "d3853a05b1fe03e06d21a0751d0d39436b8dfe364f9fe77b7bdc52807cab62ce"
+      },
+      "pt-int01-speech-process-unsandboxed": {
+        "path": "docs/implementation/integration/goal-checks/pt-int01-speech-process-unsandboxed.log.gz",
+        "raw_sha256": "117a3dcb2a8ebb4924323c49ad852f8993d7b6a64bccacb5ee61aef3972df61b"
+      },
+      "pt-int01-identity": {
+        "path": "docs/implementation/integration/goal-checks/pt-int01-identity.log.gz",
+        "raw_sha256": "68ea12274573155b3a36ca66652e33f80668d58de82afcdda52c05a97d907fbd"
+      }
+    }
+  }
+}

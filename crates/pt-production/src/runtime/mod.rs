@@ -15,6 +15,7 @@ mod provider_service;
 mod provider_v2;
 mod publication;
 mod runner;
+mod speech;
 mod store;
 #[cfg(test)]
 use broker::{AccountingImport, Dispatch, Limits, Operation, Receipt, Transport};
@@ -25,6 +26,7 @@ pub use media::{
     validate_artifact_bytes, validate_artifact_size,
 };
 pub use runner::{FixtureExecutor, FixturePipeline, Runtime, Services};
+pub use speech::{SpeechBatch, SpeechPhase};
 pub use store::{Error, Result, STAGES, Store, digest, now};
 #[cfg(test)]
 mod acceptance_tests;
@@ -40,3 +42,6 @@ mod presentation_pipeline_tests;
 mod provider_v2_tests;
 #[cfg(test)]
 mod tests;
+
+#[cfg(test)]
+mod speech_tests;
