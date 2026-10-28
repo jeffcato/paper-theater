@@ -91,3 +91,6 @@ import {type ProviderNativeExchangeV1,type ProviderNativeExchangePolicyV1,type P
 export async function nativeExchange(raw:unknown,policy:ProviderNativeExchangePolicyV1,operation:ProviderOperationV2,result:ProviderResultV2,bytes:ProviderNativeExchangeBytesV1):Promise<ProviderNativeExchangeV1> {
  return validateProviderNativeExchangeV1(raw,policy,operation,result,bytes);
 }
+
+import {type RegisteredSourceCatalogV1,registeredSourceCatalogV1} from '@paper-theater/contracts';
+export const knownSourceScopes:RegisteredSourceCatalogV1=registeredSourceCatalogV1();

@@ -2,9 +2,11 @@
 use crate::*;
 use serde::{Deserialize, Serialize};
 
-pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v3";
-pub const ACCEPTANCE_REPORT_VERSION: u32 = 5;
+pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v6";
+pub const ACCEPTANCE_REPORT_VERSION: u32 = 6;
 const MATRIX_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v6.json");
+const MATRIX_V3_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v3.json");
 const MATRIX_V2_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v2.json");
@@ -39,7 +41,8 @@ pub fn acceptance_check_matrix_for_version(version: &str) -> ContractResult<Acce
     let bytes = match version {
         "pt-acceptance-required-v1" => MATRIX_V1_BYTES,
         "pt-acceptance-required-v2" => MATRIX_V2_BYTES,
-        "pt-acceptance-required-v3" => MATRIX_BYTES,
+        "pt-acceptance-required-v6" => MATRIX_BYTES,
+        "pt-acceptance-required-v3" => MATRIX_V3_BYTES,
         _ => {
             return invalid(
                 "acceptance_report",
@@ -208,7 +211,7 @@ pub struct AcceptanceCheckerIdentity {
 }
 pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
     AcceptanceCheckerIdentity {
-        version: "pt-acceptance-bindings-v5".into(),
+        version: "pt-acceptance-bindings-v6".into(),
         sha256: digest(
             &[
                 include_bytes!("acceptance.rs").as_slice(),
@@ -219,6 +222,8 @@ pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
                 include_bytes!("acceptance_coverage.rs").as_slice(),
                 include_bytes!("production_configuration.rs").as_slice(),
                 include_bytes!("provider_native_exchange.rs").as_slice(),
+                include_bytes!("registered_source_scope.rs").as_slice(),
+                crate::registered_source_scope::CATALOG_BYTES,
                 include_bytes!("validate.rs").as_slice(),
                 include_bytes!("common.rs").as_slice(),
                 include_bytes!("playback.rs").as_slice(),
@@ -229,6 +234,7 @@ pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
                 include_bytes!("../../../Cargo.toml").as_slice(),
                 include_bytes!("../../../Cargo.lock").as_slice(),
                 MATRIX_BYTES,
+                MATRIX_V3_BYTES,
                 MATRIX_V1_BYTES,
                 MATRIX_V2_BYTES,
             ]
@@ -264,6 +270,7 @@ pub enum AcceptanceReason {
     InvalidPilotEvidence,
     IncompletePilotEvidence,
     UnverifiedPilotReviewer,
+    UnregisteredSourceScope,
 }
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(deny_unknown_fields)]
@@ -1281,10 +1288,12 @@ fn verify_acceptance_internal(
     if required.iter().any(|r| !declared.contains(&r.check_id)) {
         coverage_reasons.push(AcceptanceReason::MissingDeclaration);
     }
-    let source_result = if required
-        .iter()
-        .any(|r| r.check_id == "complete-source-coverage")
-    {
+    let source_result = if required.iter().any(|r| {
+        matches!(
+            r.check_id.as_str(),
+            "complete-source-coverage" | "complete-chapter" | "complete-excerpt"
+        )
+    }) {
         (|| {
             if policy.checker_sha256 != checker.sha256
                 || manifest_bytes
@@ -1347,6 +1356,23 @@ fn verify_acceptance_internal(
     } else {
         Ok(())
     };
+    let registered_scope = |check_id: &str| -> Result<(), AcceptanceReason> {
+        source_result?;
+        let policy = source_policy.ok_or(AcceptanceReason::MissingSourceMapping)?;
+        crate::registered_source_scope::verify_v1(&policy.summary(), check_id)
+    };
+    let chapter_result = registered_scope("complete-chapter");
+    let excerpt_result = registered_scope("complete-excerpt");
+    if required
+        .iter()
+        .any(|r| matches!(r.check_id.as_str(), "complete-chapter" | "complete-excerpt"))
+    {
+        reads.consumed.push(AcceptanceConsumedHash {
+            role: "registered_source_catalog".into(),
+            sha256: registered_source_catalog_sha256_v1(),
+            bytes: crate::registered_source_scope::CATALOG_BYTES.len() as u64,
+        });
+    }
     let mut delivery_audio = None;
     let audio_result = if required.iter().any(|r| r.check_id == "audio-format-review") {
         (|| {
@@ -1486,6 +1512,8 @@ fn verify_acceptance_internal(
                 "package-byte-integrity" => package_reasons.clone(),
                 "required-check-coverage" => coverage_reasons.clone(),
                 "complete-source-coverage" => source_result.err().into_iter().collect(),
+                "complete-chapter" => chapter_result.err().into_iter().collect(),
+                "complete-excerpt" => excerpt_result.err().into_iter().collect(),
                 "audio-format-review" => audio_result.err().into_iter().collect(),
                 "pilot-recording-review" => pilot_result.err().into_iter().collect(),
                 _ => binding_reasons.clone(),
@@ -1512,6 +1540,21 @@ fn verify_acceptance_internal(
                     ) => ReviewOutcome::Missing,
                     Err(_) => ReviewOutcome::Fail,
                 },
+                "complete-chapter" | "complete-excerpt" => {
+                    match if r.check_id == "complete-chapter" {
+                        chapter_result
+                    } else {
+                        excerpt_result
+                    } {
+                        Ok(()) => ReviewOutcome::Pass,
+                        Err(
+                            AcceptanceReason::MissingBytes
+                            | AcceptanceReason::MissingSourceMapping
+                            | AcceptanceReason::UnregisteredSourceScope,
+                        ) => ReviewOutcome::Missing,
+                        Err(_) => ReviewOutcome::Fail,
+                    }
+                }
                 "audio-format-review" => match audio_result {
                     Ok(()) => ReviewOutcome::Pass,
                     Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
@@ -1654,6 +1697,7 @@ impl AcceptanceVerificationReport {
                     | (3, "pt-acceptance-required-v2")
                     | (4, "pt-acceptance-required-v3")
                     | (5, "pt-acceptance-required-v3")
+                    | (6, "pt-acceptance-required-v6")
             ),
             "acceptance_report",
             "version",
@@ -1684,6 +1728,7 @@ impl AcceptanceVerificationReport {
                     | (3, "pt-acceptance-bindings-v3")
                     | (4, "pt-acceptance-bindings-v4")
                     | (5, "pt-acceptance-bindings-v5")
+                    | (6, "pt-acceptance-bindings-v6")
             ),
             "acceptance_report",
             "checker.version",
@@ -1691,7 +1736,7 @@ impl AcceptanceVerificationReport {
         )?;
         if let Some(slice) = &self.source_slice {
             require(
-                matches!(self.schema_version, 3 | 4 | 5),
+                matches!(self.schema_version, 3 | 4 | 5 | 6),
                 "acceptance_report",
                 "source_slice",
                 "archived reports cannot claim source relationships",
@@ -1717,7 +1762,7 @@ impl AcceptanceVerificationReport {
         }
         if let Some(p) = &self.pilot_review {
             require(
-                self.schema_version == 5,
+                matches!(self.schema_version, 5 | 6),
                 "acceptance_report",
                 "pilot_review",
                 "archived reports cannot acquire Pilot inspection",
@@ -1866,6 +1911,43 @@ impl AcceptanceVerificationReport {
                     "acceptance_report",
                     "package",
                     "missing verified package identity",
+                )?;
+            }
+            if matches!(c.check_id.as_str(), "complete-chapter" | "complete-excerpt")
+                && c.outcome == ReviewOutcome::Pass
+            {
+                let slice = self.source_slice.as_ref().ok_or_else(|| ContractError {
+                    code: "acceptance_report".into(),
+                    field: "registered_source_scope".into(),
+                    message: "registered source Pass requires full-source mapping".into(),
+                })?;
+                require(
+                    self.schema_version == 6
+                        && crate::registered_source_scope::verify_v1(slice, &c.check_id).is_ok(),
+                    "acceptance_report",
+                    "registered_source_scope",
+                    "unregistered, incomplete or stale source extent",
+                )?;
+                let catalog = registered_source_catalog_sha256_v1();
+                require(
+                    self.consumed_hashes.iter().any(|h| {
+                        h.role == "registered_source_catalog"
+                            && h.sha256 == catalog
+                            && h.bytes == crate::registered_source_scope::CATALOG_BYTES.len() as u64
+                    }) && [&catalog, &slice.full_source_sha256, &slice.slice_sha256]
+                        .into_iter()
+                        .chain(slice.relationship_sha256.iter())
+                        .all(|h| c.consumed_sha256s.contains(h))
+                        && ["source_coverage_timeline", "source_coverage_read_along"]
+                            .iter()
+                            .all(|role| {
+                                self.consumed_hashes.iter().any(|h| {
+                                    h.role == *role && c.consumed_sha256s.contains(&h.sha256)
+                                })
+                            }),
+                    "acceptance_report",
+                    "registered_source_scope",
+                    "registered source Pass lacks consumed catalog/source/mapping/coverage bytes",
                 )?;
             }
         }
