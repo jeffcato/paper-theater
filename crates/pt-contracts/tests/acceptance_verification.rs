@@ -585,6 +585,115 @@ fn pilot_recording_review_passes_on_bound_plan_without_grants() {
 }
 
 #[test]
+fn delivery_fact_mapping_executes_and_reports_missing_without_mapping_evidence() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.policy.scope = AcceptanceScope::AutonomousExcerpt;
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[], &f.private).unwrap();
+    let report = verified.report();
+    let rows: Vec<_> = report
+        .checks
+        .iter()
+        .filter(|c| c.check_id == "delivery-fact-mapping")
+        .collect();
+    assert!(!rows.is_empty());
+    assert!(rows.iter().all(|c| c.executed));
+    assert!(rows.iter().all(|c| c.outcome == ReviewOutcome::Missing));
+}
+
+fn mapping_proposal(
+    f: &acceptance_fixture::Fixture,
+    entries: &serde_json::Value,
+) -> AcceptanceEvidenceProposal {
+    let first = verify_acceptance(&f.doc, &f.root, &f.policy, &[], &f.private).unwrap();
+    let report = first.report();
+    let fact = report.fact_targets.first().unwrap().clone();
+    let target = AcceptanceTarget::Fact {
+        fact,
+        domain: AcceptanceSampleDomain::Delivery,
+    };
+    let plan = serde_json::json!({"schema_version": 1, "facts": entries});
+    let raw = acceptance_fixture::put(
+        &f.private,
+        "fact-mapping.json",
+        &serde_json::to_vec(&plan).unwrap(),
+        "application/json",
+    );
+    AcceptanceEvidenceProposal {
+        schema_version: 1,
+        id: "fact-map".into(),
+        check_id: "delivery-fact-mapping".into(),
+        target,
+        binding: report.binding.clone(),
+        outcome: ReviewOutcome::Pass,
+        provenance: Provenance::Diagnostic,
+        raw_evidence: raw,
+    }
+}
+
+fn mapping_entries(f: &acceptance_fixture::Fixture, corrupt: bool) -> serde_json::Value {
+    let first = verify_acceptance(&f.doc, &f.root, &f.policy, &[], &f.private).unwrap();
+    let report = first.report();
+    let count = report.binding.delivery_sample_count;
+    let mut entries = Vec::new();
+    for fact in &report.fact_targets {
+        let span = if corrupt {
+            [fact.source_span[0], fact.source_span[0]]
+        } else {
+            fact.source_span
+        };
+        entries.push(serde_json::json!({
+            "fact_id": fact.id,
+            "source_span": span,
+            "delivery": [0, count],
+        }));
+    }
+    serde_json::Value::Array(entries)
+}
+
+#[test]
+fn delivery_fact_mapping_passes_on_complete_bound_mapping() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("delivery-fact-mapping".into());
+    let entries = mapping_entries(&f, false);
+    assert!(!entries.as_array().unwrap().is_empty());
+    let e = mapping_proposal(&f, &entries);
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[e], &f.private).unwrap();
+    let report = verified.report();
+    let rows: Vec<_> = report
+        .checks
+        .iter()
+        .filter(|c| c.check_id == "delivery-fact-mapping")
+        .collect();
+    assert!(!rows.is_empty());
+    assert!(rows.iter().all(|c| c.executed));
+    assert!(rows.iter().all(|c| c.outcome == ReviewOutcome::Pass));
+}
+
+#[test]
+fn delivery_fact_mapping_fails_on_mismatched_source_span() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("delivery-fact-mapping".into());
+    let e = mapping_proposal(&f, &mapping_entries(&f, true));
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[e], &f.private).unwrap();
+    let report = verified.report();
+    let rows: Vec<_> = report
+        .checks
+        .iter()
+        .filter(|c| c.check_id == "delivery-fact-mapping")
+        .collect();
+    assert!(!rows.is_empty());
+    assert!(rows.iter().all(|c| c.executed));
+    assert!(rows.iter().all(|c| c.outcome == ReviewOutcome::Fail));
+    assert!(rows.iter().all(|c| c.reasons.contains(&AcceptanceReason::InvalidBinding)));
+}
+
+#[test]
 fn pilot_recording_review_fails_when_plan_grants_bulk_speech() {
     let mut f = acceptance_fixture::Fixture::new();
     f.doc

@@ -134,7 +134,7 @@ async fn scoped_behavior_fixture_preserves_inheritance_and_rejects_downgrades() 
     }
     let example = serde_json::json!({"schema_version":1,"matrix_version":ACCEPTANCE_MATRIX_VERSION,"scopes":rows});
     export_example("scopes.json", &json(&example).unwrap());
-    for version in [1, 2, 3] {
+    for version in [1, 2, 3, 4] {
         let archived_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(format!(
             "../../fixtures/generation/acceptance-proposals-v{version}/scopes.json"
         ));
@@ -160,7 +160,7 @@ async fn scoped_behavior_fixture_preserves_inheritance_and_rejects_downgrades() 
         }
     }
     let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../../fixtures/generation/acceptance-proposals-v4/scopes.json");
+        .join("../../fixtures/generation/acceptance-proposals-v5/scopes.json");
     assert_eq!(
         example,
         serde_json::from_slice::<serde_json::Value>(&std::fs::read(path).unwrap()).unwrap()
