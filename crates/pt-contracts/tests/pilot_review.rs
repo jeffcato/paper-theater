@@ -565,6 +565,12 @@ pub fn cross_language_cases() -> Value {
     let mut forged = archive.clone();
     forged["pilot_review"] = rows[1]["value"].clone();
     rows.push(json!({"id":"old-report-cannot-acquire-pilot-evidence","kind":"report","valid":false,"value":forged,"expected_checker":archive["checker"]}));
+    let (f, mut p) = evidence();
+    alter_review(&f, &mut p, |v| v["criteria"][0]["outcome"] = json!("fail"));
+    std::fs::remove_file(f.private.join(&p.performers[0].takes[0].audio.file.path)).unwrap();
+    let adverse = report(&f, &p);
+    rows.push(json!({"id":"retained-review-fail-with-missing-recording","kind":"observation","valid":true,"value":adverse.pilot_review}));
+    rows.push(json!({"id":"retained-review-fail-report","kind":"report","valid":true,"value":adverse,"expected_checker":adverse.checker}));
     json!(rows)
 }
 #[test]
@@ -704,4 +710,34 @@ fn internally_consistent_provider_metadata_still_does_not_authenticate_listening
         r.pilot_review.unwrap().review_outcome,
         ReviewOutcome::Uncertain
     );
+}
+#[test]
+fn missing_recordings_or_context_cannot_hide_a_bound_recorded_review_failure() {
+    for missing in 0..3 {
+        let (f, mut p) = evidence();
+        alter_review(&f, &mut p, |v| v["criteria"][0]["outcome"] = json!("fail"));
+        match missing {
+            0 => {
+                std::fs::remove_file(f.private.join(&p.performers[0].takes[0].audio.file.path))
+                    .unwrap();
+            }
+            1 => p.performers[0].review.as_mut().unwrap().reference_audio = None,
+            _ => {
+                std::fs::remove_file(f.private.join(&p.source.path)).unwrap();
+            }
+        }
+        let r = report(&f, &p);
+        assert_eq!(
+            r.pilot_review.as_ref().unwrap().review_outcome,
+            ReviewOutcome::Fail
+        );
+        assert_eq!(
+            r.checks
+                .iter()
+                .find(|c| c.check_id == "pilot-recording-review")
+                .unwrap()
+                .outcome,
+            ReviewOutcome::Fail
+        );
+    }
 }

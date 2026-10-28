@@ -61,7 +61,7 @@
     "services": "pt-services-v1.9.0",
     "report": 5,
     "checker": "pt-acceptance-bindings-v5",
-    "checker_sha256": "ddf9712b10ef28d2f88e4d90621e9a99d9a997035c101a86e7e58d49713ed9cb",
+    "checker_sha256": "5e779a0566a1081722887a9b83fdae599de36a332c6c7466b3d599790af43d1a",
     "matrix": "pt-acceptance-required-v3",
     "implemented_checks": 5,
     "pending_production_verifiers": 32
@@ -85,7 +85,7 @@
     },
     {
       "path": "crates/pt-contracts/src/pilot_review.rs",
-      "sha256": "e007e6fe5bd1b0a41a7d1467105610c1ffaa2a210f5b27915bccd01064899c06"
+      "sha256": "f8948ff4e0deb187de4a551c0b92fb5dd435fc16db889ef68cbc3410406f853c"
     },
     {
       "path": "crates/pt-contracts/src/validate.rs",
@@ -175,11 +175,11 @@
     },
     {
       "path": "crates/pt-contracts/src/pilot_review.rs",
-      "sha256": "e007e6fe5bd1b0a41a7d1467105610c1ffaa2a210f5b27915bccd01064899c06"
+      "sha256": "f8948ff4e0deb187de4a551c0b92fb5dd435fc16db889ef68cbc3410406f853c"
     },
     {
       "path": "crates/pt-contracts/tests/pilot_review.rs",
-      "sha256": "4b02e58ea6c03cce4866399ffd6adeef777541fdf2c0745e82378455aedd7ad9"
+      "sha256": "097a6f02edd554a99c8c4844211ba7c27739ae0e5cee36e07373d6e2340a9b77"
     },
     {
       "path": "fixtures/contracts/acceptance-report-v4.json",
@@ -187,7 +187,7 @@
     },
     {
       "path": "packages/contracts/src/pilot-review.ts",
-      "sha256": "c104853fd51f0c02d85ebe00e881b6828bc9e675ce39f0448d2ad26d1561c3ab"
+      "sha256": "58d487ab172a16cf855ca89f645054d111cd5e44212f68d94ac7b9d657606e32"
     },
     {
       "path": "packages/contracts/tests/pilot-review.mjs",
@@ -274,6 +274,30 @@
       "sha256": "a2316812692101367bde4fb21e65026ea43fecb54e643e50382fddb03142d5a6",
       "bytes": 2553,
       "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "dependency-loss-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/dependency-loss-red.txt.gz",
+      "sha256": "b8510e5cd46777804b6dfe2cb10073bde4b17b701acc7b3ea76a031b95352bb0",
+      "bytes": 1909,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "adverse-wire-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/adverse-wire-red.txt.gz",
+      "sha256": "7b1e26bc9cef9c6b7f7ffddacd0d7fad8eddfe814e3b302e9442540c2c9fd4e0",
+      "bytes": 1846,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "all-pilot-green",
+      "kind": "focused-green",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/all-pilot-green.txt.gz",
+      "sha256": "7016d11bf599deec6bb8d1f310598c25100d1588591c21c12c11e9ff613c98d9",
+      "bytes": 2639,
+      "hash_scope": "uncompressed original stdout/stderr"
     }
   ],
   "baseline_v4_archive": {
@@ -291,5 +315,15 @@
     "path": ".github/workflows/product-identity.yml",
     "sha256": "a4ff74fd99ad834c40bf06df65e6060a5b7609578695b2b06ab59a9c0572f372",
     "checkout": "pull_request.head.sha or github.sha; do not substitute a merge tree"
+  },
+  "prior_verified_candidate": {
+    "commit": "3644f5595446fc8c3e2e315650717ad6e35d11fa",
+    "checker_sha256": "ddf9712b10ef28d2f88e4d90621e9a99d9a997035c101a86e7e58d49713ed9cb",
+    "ci_run_ids": [
+      40731180261,
+      40731212084
+    ],
+    "workspace_tests": 396,
+    "scope": "Earlier candidate passed CI; superseded after the missing-dependency adverse-evidence regression. These results do not certify the follow-up."
   }
 }

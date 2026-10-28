@@ -3,7 +3,10 @@ use crate::acceptance::Reads;
 use crate::*;
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
-use std::{collections::BTreeSet, path::Path};
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    path::Path,
+};
 pub const PILOT_REVIEW_CRITERIA: [&str; 8] = [
     "listening",
     "identity",
@@ -253,6 +256,7 @@ impl PilotReviewObservationV1 {
                 matches!(
                     r,
                     AcceptanceReason::UnverifiedPilotReviewer
+                        | AcceptanceReason::AdverseEvidence
                         | AcceptanceReason::InvalidPilotEvidence
                         | AcceptanceReason::IncompletePilotEvidence
                         | AcceptanceReason::InvalidBinding
@@ -340,6 +344,7 @@ struct Inspect<'a> {
     reads: &'a mut Reads,
     root: &'a Path,
     hashes: BTreeSet<Digest>,
+    values: BTreeMap<(String, Digest), Result<Value, AcceptanceReason>>,
 }
 impl Inspect<'_> {
     fn read(&mut self, f: &FileRef) -> Result<Vec<u8>, AcceptanceReason> {
@@ -357,8 +362,17 @@ impl Inspect<'_> {
         Ok(b)
     }
     fn value(&mut self, f: &FileRef) -> Result<Value, AcceptanceReason> {
-        need(f.media_type == "application/json")?;
-        serde_json::from_slice(&self.read(f)?).map_err(|_| AcceptanceReason::InvalidPilotEvidence)
+        let key = (f.path.clone(), f.sha256.clone());
+        if let Some(v) = self.values.get(&key) {
+            return v.clone();
+        }
+        let result = (|| {
+            need(f.media_type == "application/json")?;
+            serde_json::from_slice(&self.read(f)?)
+                .map_err(|_| AcceptanceReason::InvalidPilotEvidence)
+        })();
+        self.values.insert(key, result.clone());
+        result
     }
     fn audio(&mut self, a: &ArtifactRef) -> Result<Pcm16WavInfo, AcceptanceReason> {
         need(a.file.media_type == "audio/wav")?;
@@ -453,7 +467,38 @@ pub(crate) fn inspect_pilot(
         reads,
         root,
         hashes: BTreeSet::new(),
+        values: BTreeMap::new(),
     };
+    // Retain adverse claims from independently hash-bound metadata even when a
+    // recording/context dependency is absent. Cached results are reused below;
+    // no missing read is retried and no second metadata read can change its meaning.
+    let mut adverse_files = vec![&p.plan];
+    for performer in &p.performers {
+        adverse_files.extend(performer.takes.iter().map(|t| &t.observation));
+        if let Some(r) = &performer.review {
+            adverse_files.extend([&r.observation, &r.response.file]);
+        }
+    }
+    for f in adverse_files {
+        if let Ok(v) = i.value(f) {
+            for field in ["findings", "criteria"] {
+                if let Some(items) = v[field].as_array() {
+                    for item in items {
+                        if let Ok(outcome) =
+                            serde_json::from_value::<ReviewOutcome>(item["outcome"].clone())
+                        {
+                            if outcome != ReviewOutcome::Pass {
+                                summary.review_outcome = worse(summary.review_outcome, outcome);
+                                if !summary.reasons.contains(&AcceptanceReason::AdverseEvidence) {
+                                    summary.reasons.push(AcceptanceReason::AdverseEvidence);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     let result = (|| {
         need(p.source.sha256 == binding.source_sha256)?;
         let source = i.read(&p.source)?;
