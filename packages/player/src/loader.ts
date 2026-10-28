@@ -6,6 +6,13 @@ import { SAMPLE_RATE } from "./profile.js";
 import type { Digest, FileRef, Manifest, Provenance, RevealGroup } from "./types.js";
 import { isDigest } from "./types.js";
 import { validateTimeline } from "./evaluate.js";
+import type {
+  HouseArtAssetRecord,
+  HouseArtManifest,
+  LoadedHouseArt,
+  LoadedHouseAsset,
+} from "./house-art.js";
+import { HOUSE_ART_BRIEF } from "./house-brief.js";
 
 export const MAX_MANIFEST_BYTES = 1024 * 1024;
 export const MAX_FILE_BYTES = 32 * 1024 * 1024;
@@ -45,6 +52,7 @@ export type FileReader = (path: string, maxBytes: number) => Promise<Uint8Array>
 
 function freezeDeep<T>(value: T): T {
   if (value && typeof value === "object") {
+    if (ArrayBuffer.isView(value)) return value;
     for (const v of Object.values(value)) freezeDeep(v);
     Object.freeze(value);
   }
@@ -323,4 +331,122 @@ export function validateTimelineForRelease(manifest: Manifest, timelineJson: unk
   } catch (err) {
     return [`timeline: ${err instanceof Error ? err.message : "invalid"}`];
   }
+}
+
+/**
+ * Loads and validates a house-art manifest and all its referenced assets.
+ * Fails closed on any unknown asset, missing file, digest mismatch, or geometry mismatch.
+ * Never partially applies a set.
+ */
+export async function loadHouseArtManifest(
+  manifestBytes: Uint8Array,
+  expectedDigestOrRead: string | null | undefined | FileReader,
+  readOrOptions?: FileReader,
+): Promise<LoadedHouseArt> {
+  const expectedDigest =
+    typeof expectedDigestOrRead === "string" ? expectedDigestOrRead : undefined;
+  const read =
+    typeof expectedDigestOrRead === "function" ? expectedDigestOrRead : readOrOptions;
+  if (!read) {
+    throw new Error("Missing file reader for house art manifest");
+  }
+
+  if (manifestBytes.length > MAX_MANIFEST_BYTES) {
+    throw new Error("House art manifest too large");
+  }
+
+  const manifestDigest = await sha256Hex(manifestBytes);
+  if (expectedDigest && manifestDigest !== expectedDigest) {
+    throw new Error(`House art manifest digest mismatch: expected ${expectedDigest}, got ${manifestDigest}`);
+  }
+
+  let json: HouseArtManifest;
+  try {
+    json = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(manifestBytes)) as HouseArtManifest;
+  } catch (err) {
+    throw new Error(`House art manifest invalid JSON: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
+  if (!json || typeof json !== "object" || !json.assets) {
+    throw new Error("Invalid house art manifest: missing assets");
+  }
+
+  const rawEntries = Array.isArray(json.assets)
+    ? json.assets.map((a) => {
+        if (!a.id) throw new Error("Missing id on asset entry");
+        return [a.id, a] as const;
+      })
+    : Object.entries(json.assets);
+
+  const loadedAssets = new Map<string, LoadedHouseAsset>();
+
+  for (const [id, record] of rawEntries) {
+    const brief = HOUSE_ART_BRIEF[id];
+    if (!brief) {
+      throw new Error(`unknown_house_art_asset: ${id}`);
+    }
+
+    if (record.deliver_px) {
+      if (record.deliver_px[0] !== brief.deliver_px[0] || record.deliver_px[1] !== brief.deliver_px[1]) {
+        throw new Error(
+          `house_art_geometry_mismatch: ${id} declared deliver_px ${record.deliver_px.join("x")} != brief ${brief.deliver_px.join("x")}`,
+        );
+      }
+    }
+
+    if (!isDigest(record.sha256)) {
+      throw new Error(`invalid_digest: ${id}`);
+    }
+
+    let bytes: Uint8Array;
+    try {
+      bytes = await read(record.url, MAX_FILE_BYTES);
+    } catch (err) {
+      throw new Error(`house_art_unavailable: ${id} (${err instanceof Error ? err.message : String(err)})`);
+    }
+
+    if (!bytes || bytes.length === 0) {
+      throw new Error(`house_art_unavailable: ${id} (empty file)`);
+    }
+
+    const actualHash = await sha256Hex(bytes);
+    if (actualHash !== record.sha256) {
+      throw new Error(`house_art_digest_mismatch: ${id} expected ${record.sha256}, got ${actualHash}`);
+    }
+
+    if (bytes.length >= 8 && bytes[0] === 137 && bytes[1] === 80 && bytes[2] === 78 && bytes[3] === 71) {
+      try {
+        inspectPng(bytes, {
+          path: record.url,
+          bytes: bytes.length,
+          sha256: record.sha256,
+          dimensions: [brief.deliver_px[0], brief.deliver_px[1]],
+          media_type: "image/png",
+        });
+      } catch (err) {
+        throw new Error(
+          `house_art_geometry_mismatch: ${id} (${err instanceof Error ? err.message : String(err)})`,
+        );
+      }
+    }
+
+    loadedAssets.set(
+      id,
+      freezeDeep({
+        id,
+        url: record.url,
+        sha256: record.sha256,
+        deliver_px: brief.deliver_px,
+        alpha: record.alpha ?? brief.alpha,
+        nine_slice_px: record.nine_slice_px !== undefined ? record.nine_slice_px : brief.nine_slice_px,
+        regions: record.regions !== undefined ? record.regions : (brief.regions as Record<string, unknown> | null),
+        bytes,
+      }),
+    );
+  }
+
+  return freezeDeep({
+    manifest_digest: manifestDigest,
+    assets: loadedAssets,
+  });
 }

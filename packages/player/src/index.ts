@@ -4,9 +4,9 @@
 // diagnostic entry point renders valid fixtures while reporting missing
 // acceptance IDs; it is unavailable from the audience production path.
 //
-// NOTE (contracts pending): wire record types here are Agent 4-local and
-// provisional. They mirror the handoff names so adopting Agent 1's
-// contracts-ready revision is mechanical. Never fork the public schema.
+// Wire record types here are the shared contract types
+// (pt-contracts-v1.0.0) re-exported from ./types.js under stable player
+// names. Never fork the public schema.
 export {
   PROFILE_ID,
   CAPABILITY,
@@ -53,6 +53,7 @@ export type { EvaluatedState, EvaluatedActor, PhaseKind } from "./evaluate.js";
 export {
   loadRelease,
   loadDiagnostic,
+  loadHouseArtManifest,
   inspectRelease,
   inspectWav,
   inspectPng,
@@ -65,6 +66,31 @@ export {
   MAX_TOTAL_BYTES,
 } from "./loader.js";
 export type { LoadPolicy, LoadedRelease, FileReader, Inspection } from "./loader.js";
+export {
+  HOUSE_ART_BRIEF,
+  isMidGrey,
+  keyOutMidGrey,
+  cutAperture,
+  detectFlatAperture,
+  cutConnectedFlat,
+  fillCurtainVelvet,
+  detectInteriorOpening,
+  measureNamePlate,
+  paperEdgeInset,
+  keyOutBorderGround,
+  keyOutBorderGrey,
+  extrudeCutoutColor,
+  containFit,
+} from "./house-art.js";
+export type { ApertureUv, WorldRect } from "./house-art.js";
+export type {
+  HouseArtAlpha,
+  HouseArtBriefAsset,
+  HouseArtAssetRecord,
+  HouseArtManifest,
+  LoadedHouseAsset,
+  LoadedHouseArt,
+} from "./house-art.js";
 export { createTransport, IntermissionSign } from "./transport.js";
 export type {
   MountHandle,
@@ -89,15 +115,29 @@ export {
   blackoutHolds,
   createStageRenderer,
   createThreeSink,
+  createImmersiveSink,
   configureColorTexture,
   configureMaskTexture,
 } from "./shell.js";
-export type { CameraPose, FramedShell, PlaqueScreenRect, ThreeSinkOptions, TitleCard, ViewportCss } from "./shell.js";
+export type {
+  CameraPose,
+  FramedShell,
+  GraphicsMemory,
+  HousePick,
+  ImmersiveSink,
+  PlaqueScreenRect,
+  ThreeSinkOptions,
+  TitleCard,
+  ViewportCss,
+} from "./shell.js";
+export type { ControlsView, InspectView, TicketView } from "./house.js";
+export { createTheaterWorld } from "./immersive.js";
+export type { TheaterWorld, TheaterWorldOptions } from "./immersive.js";
 export { groupWords, layoutChunks, layoutMeasured, ReadAlongModel } from "./readalong.js";
 export type { Chunk, MeasureFn } from "./readalong.js";
 export { describeCapture, boundarySamples } from "./capture.js";
 export type { CaptureRequest, CaptureResult } from "./capture.js";
-export { toCueView, toLightView } from "./shared.js";
+export { normalizeCues, toCueView, toLightView } from "./shared.js";
 export type { SharedCueView, FlatLight } from "./shared.js";
 export { layoutCard, nodAngle, facingAngle, pivotOffset } from "./assets.js";
 export type { CardBinding, CardLayout } from "./assets.js";
@@ -114,4 +154,6 @@ export type {
   MountReadAlong,
   MountSource,
   PlayerMount,
+  SinkGeometry,
 } from "./mount.js";
+export * from "./multiplane.js";

@@ -6,7 +6,8 @@
 // extension is unavailable): loss while playing at blackout, loss while
 // user-paused at opening with a backward rewind mid-rebuild (stale abort +
 // retry at the new sample), loss at a revealed scene with restart during
-// the outage, rejected post-recovery play, disposal before restoration and
+// the outage, rejected post-recovery play, disposal before restoration,
+// unjoined restored events with no factory and a rejecting factory, and
 // a replacement mount — plus two posed screenshots and full teardown
 // accounting. Zero provider calls: every request is same-origin localhost.
 // Evidence: docs/implementation/player/recovery.json + recovery-*.png.
@@ -140,7 +141,7 @@ window.__boot = async () => {
     }
     return m;
   };
-  async function buildMount(tag) {
+  async function buildMount(tag, factoryMode = "ok") {
     const cell = { gate: null };
     const handle = await api.loadDiagnostic(manifestBytes, manifestDigest, read, policy);
     const canvas = document.createElement("canvas");
@@ -161,12 +162,15 @@ window.__boot = async () => {
     const mount = api.mountPlayer(theater, { handle, timeline }, {
       clock: audio, sink, candidate_id: tag,
       readAlong: { words: track.words, groups: track.groups, container: plaqueEl },
-      recreateSink: async () => {
-        if (cell.gate) await cell.gate;
-        const fresh = await api.createThreeSink(${W}, ${H}, { figures, canvas });
-        sinks.push(fresh);
-        return fresh;
-      },
+      ...(factoryMode === "none" ? {} : {
+        recreateSink: async () => {
+          if (factoryMode === "reject") throw new Error("c4 factory boom");
+          if (cell.gate) await cell.gate;
+          const fresh = await api.createThreeSink(${W}, ${H}, { figures, canvas });
+          sinks.push(fresh);
+          return fresh;
+        },
+      }),
       events: {
         onSample: (s) => ev.samples.push(s),
         onReason: (r) => ev.reasons.push(r),
@@ -345,6 +349,37 @@ window.__boot = async () => {
   a.mount.seek(100);
   a.mount.restart();
   out.c3Dispose = { frozen: counts(a) === aBefore, tickNull: a.mount.tick() === null };
+  // ---- C4: restored event with no factory / rejecting factory, never joined.
+  const errBefore = window.__errors.length;
+  const d = await buildMount("recovery-no-factory", "none");
+  const extD = loseExt(d.canvas);
+  extD.loseContext();
+  await waitFor(() => d.mount.graphicsStatus().state === "lost", 3000, "C4 status did not flip");
+  extD.restoreContext();
+  await sleep(500);
+  out.c4NoFactory = {
+    status: d.mount.graphicsStatus(),
+    errorsNew: window.__errors.length - errBefore,
+  };
+  d.mount.dispose();
+  teardownDom(d);
+  const e = await buildMount("recovery-reject-factory", "reject");
+  const extE = loseExt(e.canvas);
+  extE.loseContext();
+  await waitFor(() => e.mount.graphicsStatus().state === "lost", 3000, "C4e status did not flip");
+  extE.restoreContext();
+  await sleep(500);
+  let c4RejectErr = "";
+  try {
+    await e.mount.retryGraphics();
+  } catch (err) { c4RejectErr = String((err && err.message) || err); }
+  out.c4RejectFactory = {
+    status: e.mount.graphicsStatus(),
+    errorsNew: window.__errors.length - errBefore,
+    explicitReject: c4RejectErr,
+  };
+  e.mount.dispose();
+  teardownDom(e);
   const r = await buildMount("recovery-replacement");
   r.mount.seek(SCENE);
   r.mount.tick();
@@ -358,7 +393,7 @@ window.__boot = async () => {
   b.mount.dispose();
   teardownDom(b);
   await sleep(300);
-  const allSinks = [...a.sinks, ...b.sinks, ...r.sinks];
+  const allSinks = [...a.sinks, ...b.sinks, ...d.sinks, ...e.sinks, ...r.sinks];
   out.teardown = {
     raf: rafLive(), listeners: res.listenerNet, ro: res.roLive,
     dom: theater.childElementCount, urls: [res.urlsCreated, res.urlsRevoked],
@@ -601,13 +636,21 @@ try {
   check(out.c3Play.reason === "playing", `C3 retryable play reason ${out.c3Play.reason}`);
   check(out.c3Dispose.frozen === true, "C3 disposed mount emitted");
   check(out.c3Dispose.tickNull === true, "C3 disposed mount ticked");
+  // C4: unjoined event-driven recovery failures stay silent and actionable.
+  check(out.c4NoFactory.status.state === "lost", "C4 status not lost");
+  check(/graphics_recovery_unavailable|reload/.test(out.c4NoFactory.status.error ?? ""), `C4 error not actionable: ${out.c4NoFactory.status.error}`);
+  check(out.c4NoFactory.errorsNew === 0, `C4 console errors: ${out.c4NoFactory.errorsNew}`);
+  check(out.c4RejectFactory.status.state === "lost", "C4e status not lost");
+  check(/c4 factory boom/.test(out.c4RejectFactory.status.error ?? ""), `C4e error not retained: ${out.c4RejectFactory.status.error}`);
+  check(out.c4RejectFactory.errorsNew === 0, `C4e console errors: ${out.c4RejectFactory.errorsNew}`);
+  check(/c4 factory boom/.test(out.c4RejectFactory.explicitReject ?? ""), `C4e explicit retry did not reject: ${out.c4RejectFactory.explicitReject}`);
   check(out.replacement.tick === true, "replacement mount dead");
   check(out.replacement.reason === "playing", `replacement reason ${out.replacement.reason}`);
   check(out.replacement.captureAccepted === false, "replacement granted acceptance");
-  // Final teardown accounting.
-  check(out.teardown.sinks === 7, `sinks created: ${out.teardown.sinks}`);
+  // Final teardown accounting (C4 adds two fully-disposed mounts: +2 sinks, +4 targets).
+  check(out.teardown.sinks === 9, `sinks created: ${out.teardown.sinks}`);
   check((out.teardown.mems ?? []).every((m) => m.geometries === 0 && m.textures === 0), `GL live: ${JSON.stringify(out.teardown.mems)}`);
-  check(out.teardown.targets === 14, `targets disposed: ${out.teardown.targets}`);
+  check(out.teardown.targets === 18, `targets disposed: ${out.teardown.targets}`);
   check(out.teardown.raf === 0, `RAF live ${out.teardown.raf}`);
   check(out.teardown.listeners === 0, `listeners net ${out.teardown.listeners}`);
   check(out.teardown.ro === 0, `observers live ${out.teardown.ro}`);
@@ -632,6 +675,8 @@ try {
     c3Restart: out.c3Restart,
     c3Play: out.c3Play,
     c3Dispose: out.c3Dispose,
+    c4NoFactory: out.c4NoFactory,
+    c4RejectFactory: out.c4RejectFactory,
     replacement: out.replacement,
     teardown: out.teardown,
     shotSha256: shots,

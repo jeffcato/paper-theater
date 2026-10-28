@@ -12,7 +12,7 @@ import { isAcceptedHandle } from "./loader.js";
 import type { LoadedRelease } from "./loader.js";
 import { groupWords } from "./readalong.js";
 import type { MeasureFn } from "./readalong.js";
-import { toCueView } from "./shared.js";
+import { normalizeCues } from "./shared.js";
 import { createTransport } from "./transport.js";
 import type { ReadAlongGroup, ReadAlongWord } from "./types.js";
 import type {
@@ -44,6 +44,28 @@ export interface FrameSink {
   setSign?(pose: SignPose, progress: number): void;
   /** Read-only live GL resource census for teardown proofs. Optional. */
   resourceInfo?(): { geometries: number; textures: number };
+  /**
+   * Diagnostic-only live geometry readout for conformance harnesses
+   * (never part of audience flows): per-instance pivot/bottom-center world
+   * positions in authoring coordinates plus static shell join points, all
+   * read through the real scene-graph matrices.
+   */
+  debugGeometry?(): SinkGeometry;
+}
+
+/** Authoring-frame world points for geometry conformance. */
+export interface SinkGeometry {
+  instances: {
+    instance_id: string;
+    pivotWorld: [number, number, number];
+    bottomWorld: [number, number, number];
+  }[];
+  joints: {
+    deckFrontEdge: [number, number, number];
+    apronTopEdge: [number, number, number];
+    columnBaseL: [number, number, number];
+    columnBaseR: [number, number, number];
+  };
 }
 
 export interface MountSource {
@@ -177,7 +199,7 @@ export function mountPlayer(
   // throw here, at mount time.
   const normalized: CompiledTimeline = {
     ...timeline,
-    cues: timeline.cues.map((cue) => ({ ...cue, ...toCueView(cue) })),
+    cues: normalizeCues(timeline.cues),
   };
   const reveals = source.reveals ?? handle.reveals;
   let sink = options.sink ?? null;
@@ -238,6 +260,13 @@ export function mountPlayer(
   let suspendedWhilePlaying = false;
   let graphicsSeq = 0;
   let recoveryPromise: Promise<void> | null = null;
+  // Playback-intent ownership across graphics suspension: each mount.play()
+  // takes a generation; loss/pause/restart/disposal bump the suspension
+  // generation. A settling intent that is still the latest play but was
+  // overtaken by a suspension must not leave media playing.
+  let playSeq = 0;
+  let playInflight = 0;
+  let suspendSeq = 0;
   let monitored = asMonitoredCanvas(sink);
   const attachMonitor = (): void => {
     monitored?.addEventListener("webglcontextlost", onGraphicsLost);
@@ -258,7 +287,11 @@ export function mountPlayer(
     graphicsSeq++;
     graphics = "lost";
     graphicsError = "graphics context lost; media paused, capture blocked — call retryGraphics() to rebuild";
-    if (clock && !clock.paused) {
+    // Suspend outstanding playback intent even when the clock still reports
+    // paused: a pending Play completion must not resume media into the loss.
+    // A standing user pause with no outstanding intent is left untouched.
+    if (clock && (!clock.paused || playInflight > 0)) {
+      suspendSeq++;
       // Non-user pause: the INTERMISSION sign must not lower merely
       // because graphics failed.
       transport.pause(false);
@@ -308,7 +341,12 @@ export function mountPlayer(
   };
   const onGraphicsRestored = (): void => {
     if (disposed || graphics !== "lost") return;
-    void recoverGraphics();
+    // Event-driven recovery has no caller: retain a rejection as actionable
+    // status instead of an unhandled rejection. Explicit retryGraphics()
+    // callers still receive the original rejection from the shared promise.
+    recoverGraphics().catch((error: unknown) => {
+      graphicsError = error instanceof Error ? error.message : String(error);
+    });
   };
   attachMonitor();
 
@@ -378,14 +416,33 @@ export function mountPlayer(
           new Error("graphics_lost: playback blocked while graphics are suspended (retryGraphics, then Play)"),
         );
       }
-      return transport.play();
+      // A suspend/pause/restart/disposal that overtakes this intent owns the
+      // media state: when it settles, pause instead of leaving media playing.
+      // A newer play owns the state instead, so superseded intents stay silent.
+      const mine = ++playSeq;
+      const mySuspend = suspendSeq;
+      playInflight++;
+      const settle = (): void => {
+        playInflight--;
+        if (mine === playSeq && mySuspend !== suspendSeq && clock && !clock.paused) {
+          clock.pause();
+        }
+      };
+      return transport.play().then(
+        () => { settle(); },
+        (error: unknown) => { settle(); throw error; },
+      );
     },
-    pause: (userInitiated = true) => transport.pause(userInitiated),
+    pause: (userInitiated = true) => {
+      suspendSeq++;
+      transport.pause(userInitiated);
+    },
     seek: (sample: number) => {
       transport.seek(sample);
       graphicsSeq++;
     },
     restart: () => {
+      suspendSeq++;
       transport.restart();
       graphicsSeq++;
     },
@@ -397,6 +454,7 @@ export function mountPlayer(
     dispose: () => {
       if (disposed) return;
       disposed = true;
+      suspendSeq++;
       graphicsSeq++;
       transport.dispose();
       plaque?.dispose();

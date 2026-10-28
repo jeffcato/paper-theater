@@ -33,6 +33,13 @@ GROUP_FILES["integration"].push("dist/tests/mount.test.js");
 GROUP_FILES["integration"].push("dist/tests/assets.test.js");
 GROUP_FILES["integration"].push("dist/tests/plaque.test.js");
 GROUP_FILES["contracts"].push("dist/tests/shared-contracts.test.js");
+GROUP_FILES["contracts"].push("dist/tests/contract-adoption.test.js");
+GROUP_FILES["loader"].push("dist/tests/house-art.test.js");
+GROUP_FILES["shell"].push("dist/tests/geometry.test.js");
+GROUP_FILES["shell"].push("dist/tests/multiplane.test.js");
+GROUP_FILES["shell"].push("dist/tests/banner-controls.test.js");
+GROUP_FILES["shell"].push("dist/tests/lighting.test.js");
+GROUP_FILES["shell"].push("dist/tests/viewport.test.js");
 const targets = (requested ? [requested] : GROUPS).flatMap((g) => GROUP_FILES[g]);
 for (const t of targets) {
   if (!existsSync(join(pkgDir, t))) {

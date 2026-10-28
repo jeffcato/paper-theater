@@ -146,20 +146,22 @@ function applyCueToActor(
   if (sample < cue.start_sample || sample >= cue.end_sample) return;
   const span = Math.max(1, cue.end_sample - cue.start_sample);
   const t = evaluateEasing(cue.easing, (sample - cue.start_sample) / span);
-  const p = cue.params;
   switch (cue.action) {
     case "move": {
-      const target = p["target"];
+      // The shared move params carry only the target; motion always starts
+      // from the actor's current position. (A pre-contract `origin` override
+      // is intentionally not read: no producer emits it. See the wire
+      // mismatch note in docs/implementation/player/shared-types.md.)
+      const target = cue.params.target;
       if (Array.isArray(target) && target.length === 3) {
-        // Deterministic: cues carry from/to via params origin/target.
-        const origin = (Array.isArray(p["origin"]) ? p["origin"] : actor.position) as number[];
+        const origin = actor.position;
         actor.position = [
           lerp(origin[0] ?? 0, Number(target[0]), t),
           lerp(origin[1] ?? 0, Number(target[1]), t),
           lerp(origin[2] ?? 0, Number(target[2]), t),
         ];
       }
-      if (p["facing"] === "left" || p["facing"] === "right") {
+      if (cue.params.facing === "left" || cue.params.facing === "right") {
         void t;
       }
       break;
@@ -175,10 +177,10 @@ function applyCueToActor(
     case "face":
       break;
     case "gesture": {
-      const g = p["gesture"];
+      const g = cue.params.gesture;
       if (typeof g === "string") {
         actor.gesture = g;
-        const intensity = typeof p["intensity"] === "number" ? p["intensity"] : 1;
+        const intensity = typeof cue.params.intensity === "number" ? cue.params.intensity : 1;
         actor.gesture_intensity = Math.max(0, Math.min(1, intensity));
         // Raw cue progress (not eased): the sink renders the gesture as
         // motion over the cue window, returning to rest at the boundary.

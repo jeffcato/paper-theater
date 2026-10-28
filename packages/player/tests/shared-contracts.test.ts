@@ -2,13 +2,11 @@
 // (contracts-ready.json: pt-contracts-v1.0.0 / pt-services-v1.0.0).
 // The frozen canonical fixture travels through the real loader/evaluator.
 //
-// Boundary note: the contracts package exports TS source that plain Node
-// cannot load (`./types.js` has no `./types.ts` remapping) and its
-// `validate.ts` does not compile under consumer `noUncheckedIndexedAccess`
-// flags, so the package interface is not directly importable yet (reproducer
-// in docs/implementation/player/integration-request.md). Until Agent 1
-// repoints exports at the built `dist`, this check reads the frozen JSON
-// records as data and adapts the shared tagged-union shapes structurally.
+// Boundary note: the contracts package now ships built `dist` with a root
+// workspace link, so @paper-theater/contracts is directly importable for
+// types (see tests/contract-adoption.test.ts). This check keeps reading the
+// frozen JSON records as data so the canonical fixture bytes still travel
+// the real loader/evaluator path byte-for-byte.
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -18,6 +16,7 @@ import {
   evaluate,
   loadDiagnostic,
   loadRelease,
+  normalizeCues,
   sha256Hex,
   toCueView,
   toLightView,
@@ -69,7 +68,7 @@ describe("contracts: frozen shared revision", () => {
     const timeline = JSON.parse(readFileSync(join(sharedRoot, "timeline.json"), "utf8")) as CompiledTimeline;
     const normalized: CompiledTimeline = {
       ...timeline,
-      cues: timeline.cues.map((cue) => ({ ...cue, ...toCueView(cue) })),
+      cues: normalizeCues(timeline.cues),
     };
     assert.deepEqual(validateTimeline(normalized), []);
     const tr = timeline.transitions[0]!;
@@ -84,7 +83,7 @@ describe("contracts: frozen shared revision", () => {
     const timeline = JSON.parse(readFileSync(join(sharedRoot, "timeline.json"), "utf8")) as CompiledTimeline;
     const base: CompiledTimeline = {
       ...timeline,
-      cues: timeline.cues.map((cue) => ({ ...cue, ...toCueView(cue) })),
+      cues: normalizeCues(timeline.cues),
     };
     // short-dark-hold: one sample early on fade_in_start.
     const shortHold = {

@@ -7,7 +7,7 @@ import {
   validateTimeline,
   validateTransitionHold,
 } from "../src/index.js";
-import type { CompiledTimeline, StageSnapshot } from "../src/index.js";
+import type { CompiledTimeline, StageSnapshot, StoryCue } from "../src/index.js";
 
 function snapshot(set_id: string): StageSnapshot {
   return {
@@ -167,7 +167,7 @@ describe("timeline: instance-targeted cues (nod-em)", () => {
     ];
     return t;
   }
-  function gestureCue(target_id: string) {
+  function gestureCue(target_id: string): StoryCue {
     return {
       id: `cue-${target_id}`, scene_id: "scene-b", target_id, action: "gesture" as const,
       start_sample: 600000, end_sample: 624000, easing: "linear" as const,
@@ -198,7 +198,7 @@ describe("timeline: instance-targeted cues (nod-em)", () => {
     t.cues = [{
       id: "cue-exit", scene_id: "scene-b", target_id: "em-1", action: "exit" as const,
       start_sample: 600000, end_sample: 624000, easing: "linear" as const,
-      reveal_group_ids: [] as string[], params: {},
+      reveal_group_ids: [] as string[], params: { exit_id: "em-1" },
     }];
     const during = evaluate(t, 610000).actors.map((a) => a.instance_id).sort();
     assert.deepEqual(during, ["em-1", "em-2"]);

@@ -20,6 +20,14 @@ import {
   SIGN_ROPES_X,
 } from "./profile.js";
 import { nodAngle, pivotOffset } from "./assets.js";
+import { buildHouse } from "./house.js";
+import { LAMBERT_COMPENSATION, STAGE_LIGHTING, houseLampIntensity, houseSceneLighting, syncSceneLights } from "./lighting.js";
+import type { ControlsView, InspectView, TicketView } from "./house.js";
+import type { LoadedHouseArt } from "./house-art.js";
+import { prepareHouseArt } from "./house-art.js";
+import { applyTicketZoom, lecternRect, railRect, sceneLayout, ticketPanLock, ticketZoomIntent, worldCamera } from "./multiplane.js";
+import type { CssRect, WorldCamera, WorldView } from "./multiplane.js";
+import type { FrameSink } from "./mount.js";
 
 export interface ShellValidation {
   ok: boolean;
@@ -391,6 +399,47 @@ export interface ThreeSinkOptions {
    * fresh canvas; recovery recreates the surface on the supplied element.
    */
   canvas?: HTMLCanvasElement;
+  /**
+   * Full-viewport multiplane house (audience immersion): box office, aisle,
+   * auditorium facade, lectern and brass rail in the house pass, with the
+   * world camera from setView. Absent keeps the bounded preview framing.
+   */
+  immersive?: boolean;
+  /** Registered-style house art manifest for the multiplane house. */
+  houseArt?: LoadedHouseArt | null;
+}
+
+/** Pick result: house id plus the hit's horizontal texture coordinate. */
+export interface HousePick {
+  id: string;
+  u: number;
+}
+
+/** Accounted GPU allocation (RGBA8 + depth; MSAA x4 drawing buffer). */
+export interface GraphicsMemory {
+  textures: number;
+  targets: number;
+  drawingBuffer: number;
+  total: number;
+}
+
+/** Immersive sink: the shared stage sink plus world-camera/house controls. */
+export interface ImmersiveSink extends FrameSink {
+  canvas: HTMLCanvasElement;
+  resize(width: number, height: number): void;
+  setView(view: WorldView): void;
+  camera(): WorldCamera;
+  pick(cssX: number, cssY: number): HousePick | null;
+  setHighlight(id: string | null): void;
+  setTickets(tickets: TicketView[], notice: string | null): void;
+  setInspect(card: InspectView | null): void;
+  setControls(state: ControlsView): void;
+  setTitle(title: TitleCard): void;
+  /** Render the house with no performers (no mount). Curtain ratio defaults closed. */
+  renderIdle(titleVisible: boolean, curtainRatio?: number): void;
+  lecternRect(): CssRect;
+  railRect(): CssRect;
+  memory(): GraphicsMemory;
 }
 
 /** Native crop aspect for a figure source: stage matches pixels. */
@@ -416,6 +465,7 @@ export async function createThreeSink(
   if (!Number.isSafeInteger(width) || width <= 0 || !Number.isSafeInteger(height) || height <= 0) {
     throw new Error(`capture bounds: ${width}x${height}`);
   }
+  const size = { width, height };
   const THREE = await import("three");
   let renderer: import("three").WebGLRenderer;
   try {
@@ -460,8 +510,12 @@ export async function createThreeSink(
   stageCamera.position.set(base.position[0], base.position[1], base.position[2]);
   stageCamera.lookAt(base.target[0], base.target[1], base.target[2]);
   const owned: { dispose(): void }[] = [];
+  // Diagnostic deck plane (built first) for the deck/apron join proof.
+  let diagDeck: import("three").Mesh | null = null;
   if (options.calibration !== false) {
-    for (const mesh of buildDiagnosticFixture(THREE)) {
+    const diag = buildDiagnosticFixture(THREE);
+    diagDeck = diag[0] ?? null;
+    for (const mesh of diag) {
       stageScene.add(mesh);
       owned.push(mesh.geometry, mesh.material as { dispose(): void });
       // Material disposal never frees its map: the diagnostic quads own
@@ -477,7 +531,14 @@ export async function createThreeSink(
   const figureTemplates = new Map<string, {
     texture: import("three").Texture;
     geometry: import("three").BufferGeometry;
-    layout: { width: number; height: number; offsetX: number; offsetY: number; allow_mirror: boolean };
+    layout: {
+      width: number;
+      height: number;
+      offsetX: number;
+      offsetY: number;
+      bottomY: number;
+      allow_mirror: boolean;
+    };
   }>();
   for (const figure of options.figures ?? []) {
     let texture: import("three").Texture;
@@ -501,11 +562,19 @@ export async function createThreeSink(
     figureTemplates.set(figure.asset_id, {
       texture,
       geometry,
-      layout: { width: sw, height: sh, offsetX, offsetY, allow_mirror: figure.allow_mirror },
+      layout: {
+        width: sw,
+        height: sh,
+        offsetX,
+        offsetY,
+        bottomY: -sh / 2 + offsetY,
+        allow_mirror: figure.allow_mirror,
+      },
     });
     owned.push(texture, geometry);
   }
   const figureMeshes = new Map<string, import("three").Mesh>();
+  const bottomByInstance = new Map<string, number>();
   const flip = new THREE.Matrix4().makeScale(1, 1, -1);
   const scratch = {
     matrix: new THREE.Matrix4(),
@@ -518,13 +587,15 @@ export async function createThreeSink(
 
   // Composite pass: stage color multiplied by the blackout gain.
   // Neutral stage architecture (always built; the calibration flag covers
-  // only the diagnostic fixture): the narrative aperture (inner back wall,
-  // title card) composites through the stage target under the blackout
-  // gain, while permanent house geometry (columns, header, apron facing,
-  // plaque backing, opening curtains) and the pause-driven sign render in
-  // the independent house pass, staying readable through blackouts. All
-  // opaque unlit materials. The profile shell/curtain alphas stay reserved
-  // for future house lighting moods.
+  // only the diagnostic fixture): the narrative aperture (inner back wall)
+  // composites through the stage target under the blackout gain, while
+  // permanent house geometry (columns, header, apron facing, plaque
+  // backing, opening curtains) and the pause-driven sign render in the
+  // independent house pass, staying readable through blackouts. The title
+  // card also lives in the house pass — in front of the closed curtains —
+  // and carries the same gain on its own material so dark holds stay dark.
+  // The house scene carries its own gaslight and ignores the blackout gain.
+  // The profile shell/curtain alphas stay reserved for later house moods.
   const staging = buildStaging(
     THREE,
     options.title ?? { heading: "Paper Theater", sub: "" },
@@ -533,6 +604,84 @@ export async function createThreeSink(
   const houseScene = new THREE.Scene();
   for (const node of staging.house) houseScene.add(node);
   for (const resource of staging.resources) owned.push(resource);
+  // Immersive dressing joins the house pass only; the bounded shell pieces
+  // it replaces are hidden (their geometry still answers debugGeometry).
+  const preparedHouseArt = options.houseArt ? await prepareHouseArt(options.houseArt) : null;
+  const house = options.immersive ? buildHouse(THREE, preparedHouseArt ?? options.houseArt) : null;
+  syncSceneLights(THREE, stageScene, STAGE_LIGHTING);
+  if (options.immersive) {
+    const wall = staging.stage[0];
+    if (wall) wall.visible = false;
+    const paper = (draw: (ctx: CanvasRenderingContext2D, w: number, h: number) => void): import("three").MeshBasicMaterial => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("2d canvas unavailable");
+      draw(ctx, canvas.width, canvas.height);
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.generateMipmaps = false;
+      owned.push(texture);
+      const mat = new THREE.MeshBasicMaterial({ map: texture });
+      owned.push(mat);
+      return mat;
+    };
+    const tone: Record<string, string> = {
+      "groove-1": "#efe2c4",
+      "groove-2": "#e0cba8",
+      "scenic-flats": "#d2b892",
+      backcloth: "#f6edd4",
+      deck: "#c4a574",
+    };
+    for (const piece of sceneLayout()) {
+      const mat = paper((ctx, w, h) => {
+        ctx.fillStyle = tone[piece.id] ?? "#f3e6c8";
+        ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = "rgba(42, 33, 24, 0.55)";
+        ctx.lineWidth = 6;
+        if (piece.kind === "deck") {
+          for (let x = 0; x < w; x += 32) ctx.strokeRect(x, 0, 32, h);
+        } else {
+          ctx.strokeRect(10, 10, w - 20, h - 20);
+          ctx.strokeStyle = "rgba(42, 33, 24, 0.08)";
+          for (let x = 40; x < w; x += 56) {
+            ctx.beginPath();
+            ctx.moveTo(x, 16);
+            ctx.lineTo(x, h - 16);
+            ctx.stroke();
+          }
+        }
+      });
+      if (piece.kind === "deck") {
+        const geo = new THREE.PlaneGeometry(piece.x[1] - piece.x[0], piece.z[1] - piece.z[0]);
+        owned.push(geo);
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.rotation.x = -Math.PI / 2;
+        mesh.position.set((piece.x[0] + piece.x[1]) / 2, piece.y, (piece.z[0] + piece.z[1]) / 2);
+        stageScene.add(mesh);
+        continue;
+      }
+      const geo = new THREE.PlaneGeometry(piece.x[1] - piece.x[0], piece.y[1] - piece.y[0]);
+      owned.push(geo);
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set((piece.x[0] + piece.x[1]) / 2, (piece.y[0] + piece.y[1]) / 2, piece.z);
+      stageScene.add(mesh);
+    }
+  }
+  syncSceneLights(THREE, houseScene, houseSceneLighting());
+  if (house) {
+    for (const node of house.nodes) houseScene.add(node);
+    for (const resource of house.resources) owned.push(resource);
+    for (const node of staging.bounded) node.visible = false;
+    for (const curtain of [staging.curtainL, staging.curtainR]) {
+      const mat = curtain.material as import("three").MeshBasicMaterial;
+      mat.map = house.curtainMap;
+      mat.needsUpdate = true;
+    }
+  }
 
   const compositeScene = new THREE.Scene();
   const compositeCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -551,6 +700,18 @@ export async function createThreeSink(
   const compositeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), compositeMaterial);
   compositeQuad.frustumCulled = false;
   compositeScene.add(compositeQuad);
+  const veilMat = new THREE.MeshBasicMaterial({
+    color: 0x000000,
+    transparent: true,
+    opacity: 0,
+    depthTest: false,
+    depthWrite: false,
+  });
+  const veilQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), veilMat);
+  veilQuad.frustumCulled = false;
+  const veilScene = new THREE.Scene();
+  veilScene.add(veilQuad);
+  owned.push(veilMat, veilQuad.geometry);
   // Explicit clears: the house pass shares each destination with the
   // composite quad, so autoClear cannot own the clear anymore.
   renderer.autoClear = false;
@@ -565,7 +726,140 @@ export async function createThreeSink(
 
   let disposed = false;
   let signProgress = 0;
-  return {
+  let view: WorldView = { journey: 1, pointer: [0, 0], reducedMotion: false, width, height, growthSteps: 0 };
+  let worldCam: WorldCamera = worldCamera(view);
+  let ticketMix = 0;
+  let zoomAt: [number, number, number] | null = null;
+  let panLocked: [number, number, number] | null = null;
+  let offSince: number | null = null;
+  let veil = 0;
+  let zoomClock = performance.now();
+  const applyView = (): void => {
+    const now = performance.now();
+    const dt = Math.max(0, Math.min(50, now - zoomClock));
+    zoomClock = now;
+    house?.syncReadAlong({ now, reduced: view.reducedMotion });
+    const aimed: WorldView = { ...view, readAlong: house?.lecternLift() ?? 0 };
+    worldCam = worldCamera(aimed);
+    veil = Math.max(0, Math.min(1, view.veil ?? 0));
+    const anchor = house?.ticketAnchor() ?? null;
+    if (view.journey >= 0.12) {
+      zoomAt = null;
+      panLocked = null;
+      ticketMix = 0;
+      offSince = null;
+    } else if (!zoomAt || view.reducedMotion) {
+      panLocked = null;
+      if (anchor) zoomAt = [anchor[0], anchor[1], anchor[2]];
+    } else {
+      const pan = ticketPanLock(zoomAt, anchor, panLocked);
+      panLocked = pan.locked;
+      if (pan.locked && pan.at) {
+        const glide = view.reducedMotion ? 1 : 1 - Math.exp(-dt / 180);
+        zoomAt = [
+          zoomAt[0] + (pan.at[0] - zoomAt[0]) * glide,
+          zoomAt[1] + (pan.at[1] - zoomAt[1]) * glide,
+          zoomAt[2] + (pan.at[2] - zoomAt[2]) * glide,
+        ];
+      } else if (anchor) {
+        zoomAt = [anchor[0], anchor[1], anchor[2]];
+      }
+    }
+    // While a ticket holds the camera, pointer parallax would shove the dolly
+    // and can cancel the pan. The pointer only chooses the ticket.
+    if (panLocked || ticketMix > 0.02) worldCam = worldCamera({ ...aimed, pointer: [0, 0] });
+    const intent = ticketZoomIntent({
+      hovering: anchor !== null || panLocked !== null,
+      journey: view.journey,
+      now,
+      offSince,
+      holding: zoomAt !== null,
+    });
+    offSince = intent.offSince;
+    const want = intent.want;
+    const step = view.reducedMotion ? 1 : 1 - Math.exp(-dt / 220);
+    ticketMix += (want - ticketMix) * step;
+    if (ticketMix < 0.001) ticketMix = 0;
+    if (want === 1 && ticketMix > 0.999) ticketMix = 1;
+    worldCam = applyTicketZoom(worldCam, zoomAt && ticketMix > 0 ? { at: zoomAt, amount: ticketMix } : null);
+    if (ticketMix === 0) {
+      zoomAt = null;
+      panLocked = null;
+      offSince = null;
+    }
+    house?.setHoverZoom(ticketMix, zoomAt);
+    const [x, y, z] = worldCam.position;
+    stageCamera.fov = worldCam.fovYDegrees;
+    stageCamera.aspect = worldCam.aspect;
+    stageCamera.position.set(x, y, z);
+    stageCamera.rotation.set(0, worldCam.yaw, 0);
+    // Off-axis window: holds the frame centre while the camera translates.
+    stageCamera.setViewOffset(
+      size.width, size.height,
+      (-worldCam.shift[0] * size.width) / 2, (worldCam.shift[1] * size.height) / 2,
+      size.width, size.height,
+    );
+    stageCamera.updateProjectionMatrix();
+    house?.update(view.journey, size.width, size.height, view.growthSteps, worldCam, { now, reduced: view.reducedMotion });
+    const level = houseLampIntensity(view.journey);
+    let boothLamps = 0;
+    for (const child of houseScene.children) {
+      if (!String(child.userData.lightId ?? "").startsWith("booth-")) continue;
+      const lamp = child as import("three").SpotLight;
+      lamp.intensity = level * LAMBERT_COMPENSATION * (1 - ticketMix * 0.4);
+      lamp.castShadow = level > 0;
+      lamp.visible = level > 0;
+      boothLamps += 1;
+    }
+    if (boothLamps > 0) house?.setGlow(Math.max(level / houseLampIntensity(0), 0.5));
+  };
+  if (house) applyView();
+  const raycaster = new THREE.Raycaster();
+  const ndc = new THREE.Vector2();
+  const shown = (node: import("three").Object3D | null): boolean => {
+    for (let n = node; n; n = n.parent) if (!n.visible) return false;
+    return true;
+  };
+  const requireHouse = (): NonNullable<typeof house> => {
+    if (!house) throw new Error("immersive house unavailable (bounded sink)");
+    if (disposed) throw new Error("house call after dispose");
+    return house;
+  };
+  const draw = (gain: number, ratio: number, titleVisible: boolean): void => {
+    staging.curtainL.position.x = curtainPanelX("left", ratio);
+    staging.curtainR.position.x = curtainPanelX("right", ratio);
+    // Immersive velvet gathers its folds as it opens; the panel geometry
+    // and coverage stay exactly the frozen slide.
+    if (house) house.curtainMap.repeat.x = 1 + ratio * 0.8;
+    staging.title.visible = titleVisible;
+    // The house pass ignores the composite gain, so the title carries
+    // the same blackout factor on its own material.
+    staging.titleMat.color.setScalar(gain);
+    const boardY = signBoardY(signProgress);
+    staging.sign.group.visible = signProgress > 0.001;
+    staging.sign.board.position.set(0, boardY, SIGN_BOUNDS.z);
+    staging.sign.board.rotation.z = Math.sin(signProgress * Math.PI) * (3 * Math.PI / 180);
+    const ropeLen = Math.max(0.01, SIGN_ROPE_TOP_Y - (boardY + 1));
+    staging.sign.ropeL.position.set(SIGN_ROPES_X[0], SIGN_ROPE_TOP_Y, SIGN_BOUNDS.z);
+    staging.sign.ropeR.position.set(SIGN_ROPES_X[1], SIGN_ROPE_TOP_Y, SIGN_BOUNDS.z);
+    staging.sign.ropeL.scale.set(1, ropeLen, 1);
+    staging.sign.ropeR.scale.set(1, ropeLen, 1);
+    renderer.setRenderTarget(stageTarget);
+    renderer.clear();
+    renderer.render(stageScene, stageCamera);
+    renderer.setRenderTarget(compositeTarget);
+    renderer.clear();
+    renderer.render(compositeScene, compositeCamera);
+    renderer.render(houseScene, stageCamera);
+    veilMat.opacity = veil;
+    if (veil > 0.001) renderer.render(veilScene, compositeCamera);
+    renderer.setRenderTarget(null);
+    renderer.clear();
+    renderer.render(compositeScene, compositeCamera);
+    renderer.render(houseScene, stageCamera);
+    if (veil > 0.001) renderer.render(veilScene, compositeCamera);
+  };
+  const sink: ImmersiveSink = {
     canvas: renderer.domElement,
     setCameraPose(pose: CameraPose): void {
       if (disposed) throw new Error("setCameraPose after dispose");
@@ -590,12 +884,14 @@ export async function createThreeSink(
         }
         let mesh = figureMeshes.get(actor.instance_id);
         if (!mesh) {
-          const material = new THREE.MeshBasicMaterial({ map: template.texture });
+          const material = new THREE.MeshLambertMaterial({ map: template.texture });
           mesh = new THREE.Mesh(template.geometry, material);
           mesh.matrixAutoUpdate = false;
           mesh.castShadow = true;
+          mesh.receiveShadow = true;
           stageScene.add(mesh);
           figureMeshes.set(actor.instance_id, mesh);
+          bottomByInstance.set(actor.instance_id, template.layout.bottomY);
           owned.push(material);
         }
         const [rx, ry, rz] = actor.rotation_xyz;
@@ -617,35 +913,96 @@ export async function createThreeSink(
       }
       // Staging follows the evaluated media state; the sign follows the
       // pause-driven UI clock through setSign (ratios clamp, never throw).
-      const ratio = Math.max(0, Math.min(1, state.curtain_open_ratio));
-      staging.curtainL.position.x = curtainPanelX("left", ratio);
-      staging.curtainR.position.x = curtainPanelX("right", ratio);
-      staging.title.visible = state.title_visible;
-      const boardY = signBoardY(signProgress);
-      staging.sign.group.visible = signProgress > 0.001;
-      staging.sign.board.position.set(0, boardY, SIGN_BOUNDS.z);
-      staging.sign.board.rotation.z = Math.sin(signProgress * Math.PI) * (3 * Math.PI / 180);
-      const ropeLen = Math.max(0.01, SIGN_ROPE_TOP_Y - (boardY + 1));
-      staging.sign.ropeL.position.set(SIGN_ROPES_X[0], SIGN_ROPE_TOP_Y, SIGN_BOUNDS.z);
-      staging.sign.ropeR.position.set(SIGN_ROPES_X[1], SIGN_ROPE_TOP_Y, SIGN_BOUNDS.z);
-      staging.sign.ropeL.scale.set(1, ropeLen, 1);
-      staging.sign.ropeR.scale.set(1, ropeLen, 1);
-      renderer.setRenderTarget(stageTarget);
-      renderer.clear();
-      renderer.render(stageScene, stageCamera);
-      renderer.setRenderTarget(compositeTarget);
-      renderer.clear();
-      renderer.render(compositeScene, compositeCamera);
-      renderer.render(houseScene, stageCamera);
-      renderer.setRenderTarget(null);
-      renderer.clear();
-      renderer.render(compositeScene, compositeCamera);
-      renderer.render(houseScene, stageCamera);
+      draw(state.stage_gain, Math.max(0, Math.min(1, state.curtain_open_ratio)), state.title_visible);
+    },
+    renderIdle(titleVisible: boolean, curtainRatio = 0): void {
+      if (disposed) throw new Error("render after dispose");
+      for (const mesh of figureMeshes.values()) mesh.visible = false;
+      const ratio = Math.max(0, Math.min(1, curtainRatio));
+      draw(1, ratio, titleVisible);
+    },
+    resize(nextWidth: number, nextHeight: number): void {
+      if (disposed) throw new Error("resize after dispose");
+      if (!Number.isSafeInteger(nextWidth) || nextWidth <= 0 || !Number.isSafeInteger(nextHeight) || nextHeight <= 0) {
+        throw new Error(`resize bounds: ${nextWidth}x${nextHeight}`);
+      }
+      size.width = nextWidth;
+      size.height = nextHeight;
+      renderer.setSize(nextWidth, nextHeight, false);
+      stageTarget.setSize(nextWidth, nextHeight);
+      compositeTarget.setSize(nextWidth, nextHeight);
+      stageCamera.aspect = nextWidth / nextHeight;
+      if (house) {
+        view = { ...view, width: nextWidth, height: nextHeight };
+        applyView();
+      } else {
+        stageCamera.updateProjectionMatrix();
+      }
+    },
+    setView(next: WorldView): void {
+      requireHouse();
+      view = { ...next, pointer: [next.pointer[0], next.pointer[1]], width: size.width, height: size.height };
+      applyView();
+    },
+    camera(): WorldCamera {
+      requireHouse();
+      return worldCam;
+    },
+    pick(cssX: number, cssY: number): HousePick | null {
+      const rig = requireHouse();
+      ndc.set((cssX / size.width) * 2 - 1, 1 - (cssY / size.height) * 2);
+      raycaster.setFromCamera(ndc, stageCamera);
+      for (const hit of raycaster.intersectObjects(rig.pickables, false)) {
+        const id = hit.object.userData.pick as string | undefined;
+        if (!id || !shown(hit.object)) continue;
+        const u = hit.uv?.x ?? 0.5;
+        // Gauge picks report the fraction along the engraved track.
+        const track = hit.object.userData.track as [number, number] | undefined;
+        return { id, u: track ? Math.max(0, Math.min(1, (u - track[0]) / (track[1] - track[0]))) : u };
+      }
+      return null;
+    },
+    setHighlight(id: string | null): void {
+      requireHouse().setHighlight(id);
+    },
+    setTickets(tickets: TicketView[], notice: string | null): void {
+      requireHouse().setTickets(tickets, notice);
+    },
+    setInspect(card: InspectView | null): void {
+      requireHouse().setInspect(card);
+    },
+    setControls(state: ControlsView): void {
+      requireHouse().setControls(state);
+    },
+    setTitle(title: TitleCard): void {
+      requireHouse();
+      staging.repaintTitle(title);
+    },
+    lecternRect(): CssRect {
+      return lecternRect(worldCam, size, view.growthSteps, requireHouse().lecternLift());
+    },
+    railRect(): CssRect {
+      requireHouse();
+      return railRect(worldCam, size);
+    },
+    memory(): GraphicsMemory {
+      const dprNow = renderer.getPixelRatio();
+      let textures = (house?.textureBytes() ?? 0) + staging.textureBytes;
+      for (const template of figureTemplates.values()) {
+        const image = template.texture.image as { width?: number; height?: number } | null;
+        textures += (image?.width ?? 0) * (image?.height ?? 0) * 4;
+      }
+      // Two linear targets, each RGBA8 color + 32-bit depth.
+      const targets = 2 * size.width * size.height * 8;
+      // Default framebuffer: front/back RGBA8 + depth, 4x MSAA resolve.
+      const px = Math.round(size.width * dprNow) * Math.round(size.height * dprNow);
+      const drawingBuffer = px * (4 * 2 + 4 * 4 + 4 * 4);
+      return { textures, targets, drawingBuffer, total: textures + targets + drawingBuffer };
     },
     capturePixels(captureWidth, captureHeight): Uint8Array {
       if (disposed) throw new Error("capture after dispose");
-      if (captureWidth !== width || captureHeight !== height) {
-        throw new Error(`capture size ${captureWidth}x${captureHeight} differs from sink ${width}x${height}`);
+      if (captureWidth !== size.width || captureHeight !== size.height) {
+        throw new Error(`capture size ${captureWidth}x${captureHeight} differs from sink ${size.width}x${size.height}`);
       }
       const pixels = new Uint8Array(captureWidth * captureHeight * 4);
       renderer.readRenderTargetPixels(compositeTarget, 0, 0, captureWidth, captureHeight, pixels);
@@ -669,7 +1026,53 @@ export async function createThreeSink(
         textures: renderer.info.memory.textures,
       };
     },
+    debugGeometry(): import("./mount.js").SinkGeometry {
+      if (disposed) throw new Error("debugGeometry after dispose");
+      // Instance pivots/bottoms: mesh.matrix maps authoring-local points to
+      // render world (V3 +Z-away negated); negating Z returns authoring frame.
+      const point = new THREE.Vector3();
+      const instances = [...figureMeshes.entries()].map(([instance_id, mesh]) => {
+        const bottomY = bottomByInstance.get(instance_id) ?? 0;
+        point.set(0, 0, 0).applyMatrix4(mesh.matrix);
+        const pivotWorld: [number, number, number] = [point.x, point.y, -point.z];
+        point.set(0, bottomY, 0).applyMatrix4(mesh.matrix);
+        const bottomWorld: [number, number, number] = [point.x, point.y, -point.z];
+        return { instance_id, pivotWorld, bottomWorld };
+      });
+      // Static joins read through the real scene-graph matrices. Deck front
+      // edge: 16x8 plane rotated flat, front-center local (0,-4,0). Apron top
+      // edge: 16x3 facing, top-center local (0,1.5,0). Column bases: 3x14x0.6
+      // boxes, base-center local (0,-7,0).
+      const joint = (
+        mesh: import("three").Object3D | null,
+        local: [number, number, number],
+      ): [number, number, number] => {
+        if (!mesh) throw new Error("debugGeometry unavailable without the calibration fixture");
+        mesh.updateWorldMatrix(true, false);
+        const v = new THREE.Vector3(local[0], local[1], local[2]).applyMatrix4(mesh.matrixWorld);
+        return [v.x, v.y, v.z];
+      };
+      return {
+        instances,
+        joints: {
+          deckFrontEdge: joint(diagDeck, [0, -4, 0]),
+          apronTopEdge: joint(staging.apron, [0, 1.5, 0]),
+          columnBaseL: joint(staging.columnL, [0, -7, 0]),
+          columnBaseR: joint(staging.columnR, [0, -7, 0]),
+        },
+      };
+    },
   };
+  return sink;
+}
+
+/** Full-viewport immersive sink (audience): same stage, multiplane house. */
+export async function createImmersiveSink(
+  width: number,
+  height: number,
+  options: Omit<ThreeSinkOptions, "immersive"> = {},
+): Promise<ImmersiveSink> {
+  return (await createThreeSink(width, height, { ...options, immersive: true })) as ImmersiveSink;
 }
 
 /**
@@ -753,7 +1156,17 @@ interface StagingRig {
   resources: { dispose(): void }[];
   curtainL: import("three").Mesh;
   curtainR: import("three").Mesh;
+  /** Apron facing mesh (top edge meets the deck front at Y=0, Z=2.4). */
+  apron: import("three").Mesh;
+  columnL: import("three").Mesh;
+  columnR: import("three").Mesh;
   title: import("three").Mesh;
+  /** Title card material: tinted by the blackout gain every render. */
+  titleMat: import("three").MeshBasicMaterial;
+  /** Bounded-shell pieces the immersive facade/lectern replace. */
+  bounded: import("three").Object3D[];
+  repaintTitle(title: TitleCard): void;
+  textureBytes: number;
   sign: {
     group: import("three").Group;
     board: import("three").Mesh;
@@ -812,15 +1225,16 @@ function buildStaging(
   ];
   // Permanent house geometry: proscenium, apron facing, plaque backing.
   // Depths keep three.js-near values matching the verified fixture space.
-  const house: import("three").Object3D[] = [
-    flat(16, 3, 0x181818, 0, -1.5, LAYER_Z.apron),
-    flat(PLAQUE.x[1] - PLAQUE.x[0], PLAQUE.y[1] - PLAQUE.y[0], 0x0c0c0c, 0, (PLAQUE.y[0] + PLAQUE.y[1]) / 2, LAYER_Z.plaque),
-  ];
+  const apron = flat(16, 3, 0x181818, 0, -1.5, LAYER_Z.apron);
+  const plaqueBacking = flat(PLAQUE.x[1] - PLAQUE.x[0], PLAQUE.y[1] - PLAQUE.y[0], 0x0c0c0c, 0, (PLAQUE.y[0] + PLAQUE.y[1]) / 2, LAYER_Z.plaque);
+  const house: import("three").Object3D[] = [apron, plaqueBacking];
   const headerGeo = (): import("three").BoxGeometry => track(new THREE.BoxGeometry(3, 14, 0.6));
+  const columns: import("three").Mesh[] = [];
   for (const side of [-1, 1]) {
     const column = new THREE.Mesh(headerGeo(), basic(0x232323));
     column.position.set(side * 9.5, 4, LAYER_Z.columns);
     house.push(column);
+    columns.push(column);
   }
   const header = new THREE.Mesh(track(new THREE.BoxGeometry(22, 2, 0.6)), basic(0x232323));
   header.position.set(0, 10, LAYER_Z.columns);
@@ -842,37 +1256,47 @@ function buildStaging(
   const curtainHeight = OPENING.y[1] - OPENING.y[0];
   const curtainY = (OPENING.y[0] + OPENING.y[1]) / 2;
   const curtainGeo = track(new THREE.PlaneGeometry(8, curtainHeight));
-  const curtainMatL = track(new THREE.MeshBasicMaterial({ map: curtainTexture }));
-  const curtainMatR = track(new THREE.MeshBasicMaterial({ map: curtainTexture }));
+  const curtainMatL = track(new THREE.MeshLambertMaterial({ map: curtainTexture }));
+  const curtainMatR = track(new THREE.MeshLambertMaterial({ map: curtainTexture }));
   const curtainL = new THREE.Mesh(curtainGeo, curtainMatL);
   curtainL.position.set(curtainPanelX("left", 0), curtainY, 2.2);
+  curtainL.castShadow = true;
+  curtainL.receiveShadow = true;
   const curtainR = new THREE.Mesh(curtainGeo, curtainMatR);
   curtainR.position.set(curtainPanelX("right", 0), curtainY, 2.2);
+  curtainR.castShadow = true;
+  curtainR.receiveShadow = true;
   house.push(curtainL, curtainR);
 
-  const titleTexture = codeTexture(512, 160, (ctx) => {
+  const paintTitle = (ctx: CanvasRenderingContext2D, title: TitleCard): void => {
     ctx.fillStyle = "#131009";
     ctx.fillRect(0, 0, 512, 160);
     ctx.fillStyle = "#8a6d2f";
     ctx.fillRect(40, 14, 432, 4);
     ctx.fillRect(40, 142, 432, 4);
-    ctx.fillStyle = "#eadfc2";
-    ctx.font = "46px Georgia, serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(title.heading.slice(0, 40), 256, 66);
-    ctx.fillStyle = "#b9a87e";
-    ctx.font = "26px Georgia, serif";
-    ctx.fillText(title.sub.slice(0, 48), 256, 114);
-  });
+    // Shrink long lettering to the card instead of clipping it.
+    const fitted = (text: string, px: number, y: number, color: string): void => {
+      ctx.fillStyle = color;
+      do ctx.font = `${px}px Georgia, serif`; while (ctx.measureText(text).width > 452 && --px > 12);
+      ctx.fillText(text, 256, y);
+    };
+    fitted(title.heading.slice(0, 40), 46, 66, "#eadfc2");
+    fitted(title.sub.slice(0, 48), 26, 114, "#b9a87e");
+  };
+  const titleTexture = codeTexture(512, 160, (ctx) => paintTitle(ctx, title));
+  const titleMat = track(new THREE.MeshBasicMaterial({ map: titleTexture, transparent: true }));
   const titleCard = new THREE.Mesh(
     track(new THREE.PlaneGeometry(10, 3.125)),
-    track(new THREE.MeshBasicMaterial({ map: titleTexture, transparent: true })),
+    titleMat,
   );
   // In front of the closed curtains (2.2); visible only while they hide
-  // the stage behind it.
+  // the stage behind it. The card lives in the house pass so closed
+  // curtains can never cover it; the render loop tints it by the blackout
+  // gain so dark holds stay dark.
   titleCard.position.set(0, 4.5, 2.5);
-  stage.push(titleCard);
+  house.push(titleCard);
 
   const signTexture = codeTexture(512, 128, (ctx) => {
     ctx.fillStyle = "#1f1a12";
@@ -889,6 +1313,9 @@ function buildStaging(
     } catch {
       // Letterspacing is decorative; the board reads without it.
     }
+    // Fit the lettering inside the frame (letterspacing widens it).
+    let px = 54;
+    while (ctx.measureText("INTERMISSION").width > 440 && px > 24) ctx.font = `bold ${--px}px Georgia, serif`;
     ctx.fillText("INTERMISSION", 256, 68);
   });
   const signGroup = new THREE.Group();
@@ -915,7 +1342,21 @@ function buildStaging(
     curtainL,
     curtainR,
     title: titleCard,
+    titleMat,
+    bounded: [apron, plaqueBacking, ...columns, header],
+    repaintTitle(next: TitleCard): void {
+      const canvas = titleTexture.image as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      paintTitle(ctx, next);
+      titleTexture.needsUpdate = true;
+    },
+    textureBytes: (256 * 288 + 512 * 160 + 512 * 128) * 4,
     sign: { group: signGroup, board, ropeL, ropeR },
+    apron,
+    columnL: columns[0]!,
+    columnR: columns[1]!,
   };
 }
 

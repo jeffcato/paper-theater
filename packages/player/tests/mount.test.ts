@@ -388,13 +388,47 @@ describe("mount: graphics loss and recovery", () => {
     };
   }
 
-  async function graphicsMount(factory?: () => Promise<FrameSink>) {
+  /** Clock whose play() stays pending until released (browser autoplay-policy shape). */
+  function deferredClock() {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    return {
+      currentTime: 0,
+      paused: true,
+      seeking: false,
+      ended: false,
+      async play() {
+        await gate;
+        this.paused = false;
+      },
+      pause() {
+        this.paused = true;
+      },
+      release,
+    };
+  }
+
+  /** Collect unhandled rejections across a bounded flush; the repair must leave none. */
+  async function withoutUnhandled(fn: () => Promise<void> | void): Promise<unknown[]> {
+    const seen: unknown[] = [];
+    const listener = (reason: unknown) => { seen.push(reason); };
+    process.on("unhandledRejection", listener);
+    try {
+      await fn();
+      await new Promise((resolve) => setTimeout(resolve, 25));
+    } finally {
+      process.removeListener("unhandledRejection", listener);
+    }
+    return seen;
+  }
+
+  async function graphicsMount(factory?: () => Promise<FrameSink>, rawOverride?: ReturnType<typeof fakeClock>) {
     const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
     const digest = await sha256Hex(manifestBytes);
     const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
     const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
     const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
-    const raw = fakeClock();
+    const raw = rawOverride ?? fakeClock();
     let plays = 0;
     const clock = {
       get currentTime(): number {
@@ -614,5 +648,110 @@ describe("mount: graphics loss and recovery", () => {
     assert.equal(g.plays(), 0);
     assert.equal(g.clock.paused, true);
     g.mount.dispose();
+  });
+
+  it("loss during pending Play leaves media paused with graphics lost", async () => {
+    const raw = deferredClock();
+    const g = await graphicsMount(undefined, raw);
+    const play = g.mount.play();
+    g.canvas.fire("webglcontextlost");
+    raw.release();
+    await play;
+    // The pre-loss intent completes into a suspension, never into playback.
+    assert.equal(g.clock.paused, true);
+    assert.deepEqual(g.status().state, "lost");
+    assert.equal(g.mount.reason, "readiness");
+    // Graphics failure lowers nothing as a new user pause.
+    assert.deepEqual(g.poses, []);
+    // Recovery still requires an explicit new Play.
+    await assert.rejects(g.mount.play(), /graphics_lost/);
+    g.mount.dispose();
+  });
+
+  it("loss during pending Play after a user pause keeps media paused and the sign", async () => {
+    const raw = deferredClock();
+    const g = await graphicsMount(undefined, raw);
+    g.mount.pause(true);
+    assert.equal(g.poses[g.poses.length - 1], "visible");
+    const play = g.mount.play();
+    g.canvas.fire("webglcontextlost");
+    raw.release();
+    await play;
+    assert.equal(g.clock.paused, true);
+    assert.deepEqual(g.status().state, "lost");
+    assert.equal(g.poses[g.poses.length - 1], "visible");
+    g.mount.dispose();
+  });
+
+  it("pending Play stays suspended until an explicit new Play after recovery", async () => {
+    const raw = deferredClock();
+    const g = await graphicsMount(undefined, raw);
+    const play = g.mount.play();
+    g.canvas.fire("webglcontextlost");
+    raw.release();
+    await play;
+    g.canvas.fire("webglcontextrestored");
+    await g.mount.retryGraphics();
+    assert.deepEqual(g.status().state, "ready");
+    // No autoplay from the pre-loss intent: still paused until Play.
+    assert.equal(g.clock.paused, true);
+    assert.equal(g.mount.reason, "readiness");
+    await g.mount.play();
+    assert.equal(g.mount.reason, "playing");
+    assert.equal(g.clock.paused, false);
+    g.mount.dispose();
+  });
+
+  it("restored event without a factory retains the error with no unhandled rejection", async () => {
+    const manifestBytes = readOwned("two-scene-local/manifest.diagnostic.json");
+    const digest = await sha256Hex(manifestBytes);
+    const acceptanceBytes = readOwned("two-scene-local/acceptance.json");
+    const handle = await loadDiagnostic(manifestBytes, digest, async () => acceptanceBytes, policy);
+    const timeline = JSON.parse(readOwned("two-scene-local/timeline.json").toString("utf8")) as CompiledTimeline;
+    const canvas = fakeCanvas();
+    const mount = mountPlayer({}, { handle, timeline }, { clock: fakeClock(), sink: graphicsSink(canvas) });
+    canvas.fire("webglcontextlost");
+    const unhandled = await withoutUnhandled(() => {
+      canvas.fire("webglcontextrestored");
+    });
+    assert.deepEqual(unhandled, []);
+    assert.deepEqual(mount.graphicsStatus().state, "lost");
+    assert.match(mount.graphicsStatus().error ?? "", /graphics_recovery_unavailable|reload/);
+    mount.dispose();
+  });
+
+  it("restored event with a rejecting factory keeps status silent and explicit retry rejects", async () => {
+    const g = await graphicsMount(async () => {
+      throw new Error("factory boom");
+    });
+    g.canvas.fire("webglcontextlost");
+    const unhandled = await withoutUnhandled(() => {
+      g.canvas.fire("webglcontextrestored");
+    });
+    assert.deepEqual(unhandled, []);
+    assert.deepEqual(g.status().state, "lost");
+    assert.match(g.status().error ?? "", /factory boom/);
+    await assert.rejects(g.mount.retryGraphics(), /factory boom/);
+    g.mount.dispose();
+  });
+
+  it("dispose during unjoined event-driven recovery stays silent", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const g = await graphicsMount(async () => {
+      await gate;
+      const fresh = graphicsSink(g.canvas);
+      g.created.push(fresh);
+      return fresh;
+    });
+    g.mount.tick();
+    g.canvas.fire("webglcontextlost");
+    const unhandled = await withoutUnhandled(() => {
+      g.canvas.fire("webglcontextrestored");
+      g.mount.dispose();
+      release();
+    });
+    assert.deepEqual(unhandled, []);
+    await assert.rejects(g.mount.retryGraphics(), /stale|disposed/);
   });
 });

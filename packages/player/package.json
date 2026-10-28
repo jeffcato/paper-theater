@@ -18,11 +18,15 @@
     "check:theater": "node scripts/chrome-theater.mjs",
     "check:staging": "node scripts/chrome-staging.mjs",
     "check:chapter": "node scripts/chrome-chapter.mjs",
+    "check:geometry": "node scripts/chrome-geometry.mjs",
     "check:lifecycle": "node scripts/chrome-lifecycle.mjs",
     "check:recovery": "node scripts/chrome-recovery.mjs",
+    "check:title": "node scripts/chrome-title.mjs",
+    "check:immersive": "node scripts/chrome-immersive.mjs",
     "test": "node scripts/check-player.mjs"
   },
   "dependencies": {
+    "@paper-theater/contracts": "0.1.0",
     "three": "0.186.0"
   },
   "devDependencies": {
