@@ -30,3 +30,6 @@ pub use wav::*;
 
 pub mod pilot_review;
 pub use pilot_review::*;
+
+pub mod production_configuration;
+pub use production_configuration::*;

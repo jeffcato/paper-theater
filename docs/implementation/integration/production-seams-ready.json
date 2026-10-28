@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "dependency-and-configuration-ready-other-seams-pending",
+  "contract_schema": 1,
+  "source_sha256": {
+    "Cargo.lock": "bbfbc5712be5a918836bebf64925720e89c2d097330644b285d8567f78eeaa35",
+    "crates/pt-production/Cargo.toml": "a3ac2039fb753f3cdcf48a46a86eec22e9f229f289b9c810242fc0253c5598ec",
+    "tools/integration/https_dependency.rs": "add346dfcac2fee8b075833fb26d2631c9991eef6568d07bf0acd963b2f761e5",
+    "crates/pt-contracts/src/production_configuration.rs": "db435d948c47dc475754cd0e446bccbe8c0402546a718f36078aa9e639d17a00",
+    "crates/pt-contracts/src/lib.rs": "11a7fc5df1b20c0204e97f655cf081bd2080c781c12d29ddb5067127d0b8246d",
+    "packages/contracts/src/production-configuration.ts": "736e2cdb106a263fdb18988f50b3c70f0b7e2aa3b45b7014a5f79d8b1d6d610a",
+    "packages/contracts/src/index.ts": "9a9bf815e86cf921e2674c93c14d2cd6d6c9942ee35fc6d0a3b6a6a5f5c0438e"
+  },
+  "tests": {
+    "rust_public_configuration": 4,
+    "rust_produced_typescript_cases": 44,
+    "https_no_dispatch": 1,
+    "full_contracts": "pass",
+    "strict_native_packed": "pass"
+  },
+  "evidence": {
+    "pt-int02-https-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-https-red.log.gz",
+      "raw_sha256": "f9112d6175615883e28bae5f4327c19d6d08e109b09147c47f81cf79fda7127e"
+    },
+    "pt-int02-https-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-https-green.log.gz",
+      "raw_sha256": "37d1081e012608a5789453373836ef0a6361233293b54e0ad08b16ba1f5dde3e"
+    },
+    "pt-int02-config-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-red.log.gz",
+      "raw_sha256": "7d233e8690bca0caf20a8fdd42bbb06e401f1d3d00ddf5d25d74fa7899398610"
+    },
+    "pt-int02-config-shape-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-shape-green.log.gz",
+      "raw_sha256": "6ab2e1264bfa9d3fe486319dadbae624ac483427001dbaece0dde3a768500c02"
+    },
+    "pt-int02-config-scope-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-scope-red.log.gz",
+      "raw_sha256": "c1024b6894715a73e3fbf0c72e38bad39c6c6503a05a570024a05726e4888df6"
+    },
+    "pt-int02-config-scope-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-scope-green.log.gz",
+      "raw_sha256": "3f84bdf4574f08f608c1bcbffd21201140003339b2d6d61ff2c67a4d82bf8c4f"
+    },
+    "pt-int02-config-proposal-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-proposal-red.log.gz",
+      "raw_sha256": "897afcfbccfa6c96b66c6ca2ce8c371ea68ee0dd89451582f418bfc8b831f24c"
+    },
+    "pt-int02-config-proposal-green": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-proposal-green.log.gz",
+      "raw_sha256": "530fa671703f4540efd78bc0f142b1cc8128f215dd66fcd7aa2678f8e747536a"
+    },
+    "pt-int02-config-ts-red": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-ts-red.log.gz",
+      "raw_sha256": "c1e8e91159b314665da2a1c865ac721e54302476962754341931349a25436036"
+    },
+    "pt-int02-config-final": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-final.log.gz",
+      "raw_sha256": "c21bb4ebde7b01e24cbc93bdd76c2d00b20dac63a6158873c7c6b964d739456f"
+    },
+    "pt-int02-config-ts-final": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-config-ts-final.log.gz",
+      "raw_sha256": "df8498580a2fed69e66c7eabfaff6d6e152883ab2b8a6f4bf48067a024ef112d"
+    },
+    "pt-int02-contracts": {
+      "path": "docs/implementation/integration/goal-checks/pt-int02-contracts.log.gz",
+      "raw_sha256": "5ca2e3fd2918aa559c1979acb523c89ccea854be0666b4c3360bf5c839347988"
+    },
+    "pt-int-npm-install": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-npm-install.log.gz",
+      "raw_sha256": "7c05639da89c9eace58254f349b1723307c6039e5c4551aa73f33f2ae15bdd74"
+    }
+  },
+  "setup": "Offline npm cache missed Vite; copied installed dependencies from matching lock into isolated node_modules; workspace links resolve locally. No root install or lock change.",
+  "ci": "pending new implementation head",
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "production_approved": false,
+  "publication_enabled": false,
+  "handoff": "production-seams.md"
+}

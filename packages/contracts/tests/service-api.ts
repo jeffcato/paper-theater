@@ -73,3 +73,11 @@ declare const pilotPolicy:PilotReviewPolicyV1;
 declare const pilotObservation:PilotReviewObservationV1;
 declare const pilotStructure:PilotPlanStructureV1;
 validatePilotReviewPolicyV1(pilotPolicy);validatePilotReviewObservationV1(pilotObservation);validatePilotPlanStructureV1(pilotStructure);
+
+import {type ProductionConfigurationV1,type ProductionOperationScopeV1,type StageInput,validateProductionConfigurationV1,validateConfiguredProviderProposalV1} from '@paper-theater/contracts';
+export function configuredRequest(raw:unknown,scope:string,input:StageInput,proposal:unknown):ProductionOperationScopeV1 {
+ validateProductionConfigurationV1(raw);
+ const config:ProductionConfigurationV1=raw;
+ validateConfiguredProviderProposalV1(config,scope,input,proposal);
+ return config.operations.find(o=>o.id===scope)!;
+}
