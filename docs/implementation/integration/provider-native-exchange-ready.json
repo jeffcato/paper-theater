@@ -84,7 +84,11 @@
       "raw_sha256": "18e003205d799d6ce208018ed9f7504fe4c42bd6bf352bd0c2c12d6479c30212"
     }
   },
-  "combined_workspace_ci": "running; foundation CI at 1a87cdb is historical for these new bytes",
+  "combined_workspace_ci": {
+    "tests": 447,
+    "ci": "both exact-head runs passed",
+    "receipt": "provider-native-checkpoint-ready.json"
+  },
   "matrix_version": "pt-acceptance-required-v3",
   "implemented_verifiers": 5,
   "pending_verifiers": 32,
@@ -92,5 +96,6 @@
   "credentials_loaded": false,
   "production_approved": false,
   "publication_enabled": false,
-  "handoff": "provider-native-exchange.md"
+  "handoff": "provider-native-exchange.md",
+  "implementation_head": "2ec692416638a4ba973355b9ad37ea4959f96db2"
 }
