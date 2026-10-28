@@ -1,0 +1,379 @@
+{
+  "schema_version": 1,
+  "implementation_head": "1a87cdb92ac28f98c0be9a046a137cd3713e9874",
+  "status": "coherent-foundation-verified-required-goal-incomplete",
+  "pr": 3,
+  "pr_url": "https://github.com/jeffcato/paper-theater/pull/3",
+  "recorded_at": "2026-10-28T21:19:57.403249+00:00",
+  "source_inventory": "integration-foundation-source.json",
+  "source_inventory_sha256": "dd3f279194d781e4a7270afd69fb68edac66ae20a2c5fd597f235d3fb52647cc",
+  "tests": {
+    "workspace": 443,
+    "full_contracts": "pass",
+    "configuration_cross_language": 44,
+    "coverage_cross_language": 15,
+    "player_baseline": 255,
+    "studio_baseline": "pass",
+    "web_builds": "pass",
+    "python": 37,
+    "identity": "pass",
+    "real_process_probes": [
+      "chapter_runtime_process",
+      "direction_pilot_process",
+      "speech_runtime_process"
+    ]
+  },
+  "ci": {
+    "exact_checkout_verified": true,
+    "runs": [
+      {
+        "conclusion": "success",
+        "databaseId": 40745925656,
+        "event": "push",
+        "headSha": "1a87cdb92ac28f98c0be9a046a137cd3713e9874",
+        "jobs": [
+          {
+            "completedAt": "2026-10-28T18:43:46Z",
+            "conclusion": "success",
+            "databaseId": 123019565993,
+            "name": "Check product identity",
+            "startedAt": "2026-10-28T18:31:33Z",
+            "status": "completed",
+            "steps": [
+              {
+                "completedAt": "2026-10-28T18:31:34Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "startedAt": "2026-10-28T18:31:34Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:31:42Z",
+                "conclusion": "success",
+                "name": "Check out repository",
+                "number": 2,
+                "startedAt": "2026-10-28T18:31:34Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:31:43Z",
+                "conclusion": "success",
+                "name": "Check product names and content",
+                "number": 3,
+                "startedAt": "2026-10-28T18:31:42Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:31:48Z",
+                "conclusion": "success",
+                "name": "Set up Node",
+                "number": 4,
+                "startedAt": "2026-10-28T18:31:43Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:31:55Z",
+                "conclusion": "success",
+                "name": "Set up tested Rust toolchain",
+                "number": 5,
+                "startedAt": "2026-10-28T18:31:48Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:42:37Z",
+                "conclusion": "success",
+                "name": "Test Rust workspace",
+                "number": 6,
+                "startedAt": "2026-10-28T18:31:55Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:42:39Z",
+                "conclusion": "success",
+                "name": "Install pinned web dependencies",
+                "number": 7,
+                "startedAt": "2026-10-28T18:42:37Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:43:26Z",
+                "conclusion": "success",
+                "name": "Check shared contracts and applications",
+                "number": 8,
+                "startedAt": "2026-10-28T18:42:39Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:43:28Z",
+                "conclusion": "success",
+                "name": "Build and scan delivery outputs",
+                "number": 9,
+                "startedAt": "2026-10-28T18:43:26Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:43:36Z",
+                "conclusion": "success",
+                "name": "Test complete offline generation helpers",
+                "number": 10,
+                "startedAt": "2026-10-28T18:43:28Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:43:43Z",
+                "conclusion": "success",
+                "name": "Verify real backend process restart and private replay",
+                "number": 11,
+                "startedAt": "2026-10-28T18:43:36Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:43:43Z",
+                "conclusion": "success",
+                "name": "Post Set up Node",
+                "number": 21,
+                "startedAt": "2026-10-28T18:43:43Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:43:43Z",
+                "conclusion": "success",
+                "name": "Post Check out repository",
+                "number": 22,
+                "startedAt": "2026-10-28T18:43:43Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:43:43Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 23,
+                "startedAt": "2026-10-28T18:43:43Z",
+                "status": "completed"
+              }
+            ],
+            "url": "https://github.com/jeffcato/paper-theater/actions/runs/40745925656/job/123019565993"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40745925656"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 40746029412,
+        "event": "pull_request",
+        "headSha": "1a87cdb92ac28f98c0be9a046a137cd3713e9874",
+        "jobs": [
+          {
+            "completedAt": "2026-10-28T18:40:31Z",
+            "conclusion": "success",
+            "databaseId": 123019931299,
+            "name": "Check product identity",
+            "startedAt": "2026-10-28T18:32:13Z",
+            "status": "completed",
+            "steps": [
+              {
+                "completedAt": "2026-10-28T18:32:14Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "startedAt": "2026-10-28T18:32:13Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:32:21Z",
+                "conclusion": "success",
+                "name": "Check out repository",
+                "number": 2,
+                "startedAt": "2026-10-28T18:32:14Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:32:21Z",
+                "conclusion": "success",
+                "name": "Check product names and content",
+                "number": 3,
+                "startedAt": "2026-10-28T18:32:21Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:32:27Z",
+                "conclusion": "success",
+                "name": "Set up Node",
+                "number": 4,
+                "startedAt": "2026-10-28T18:32:21Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:32:34Z",
+                "conclusion": "success",
+                "name": "Set up tested Rust toolchain",
+                "number": 5,
+                "startedAt": "2026-10-28T18:32:27Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:39:39Z",
+                "conclusion": "success",
+                "name": "Test Rust workspace",
+                "number": 6,
+                "startedAt": "2026-10-28T18:32:34Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:39:40Z",
+                "conclusion": "success",
+                "name": "Install pinned web dependencies",
+                "number": 7,
+                "startedAt": "2026-10-28T18:39:39Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:40:15Z",
+                "conclusion": "success",
+                "name": "Check shared contracts and applications",
+                "number": 8,
+                "startedAt": "2026-10-28T18:39:40Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:40:17Z",
+                "conclusion": "success",
+                "name": "Build and scan delivery outputs",
+                "number": 9,
+                "startedAt": "2026-10-28T18:40:15Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:40:24Z",
+                "conclusion": "success",
+                "name": "Test complete offline generation helpers",
+                "number": 10,
+                "startedAt": "2026-10-28T18:40:17Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:40:28Z",
+                "conclusion": "success",
+                "name": "Verify real backend process restart and private replay",
+                "number": 11,
+                "startedAt": "2026-10-28T18:40:24Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:40:29Z",
+                "conclusion": "success",
+                "name": "Post Set up Node",
+                "number": 21,
+                "startedAt": "2026-10-28T18:40:28Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:40:29Z",
+                "conclusion": "success",
+                "name": "Post Check out repository",
+                "number": 22,
+                "startedAt": "2026-10-28T18:40:29Z",
+                "status": "completed"
+              },
+              {
+                "completedAt": "2026-10-28T18:40:29Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 23,
+                "startedAt": "2026-10-28T18:40:29Z",
+                "status": "completed"
+              }
+            ],
+            "url": "https://github.com/jeffcato/paper-theater/actions/runs/40746029412/job/123019931299"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/jeffcato/paper-theater/actions/runs/40746029412"
+      }
+    ],
+    "raw_pr_log_sha256": "e6891027ae967161415f929b82cf1d98d6636052d0617ebd36d53edf9946eaba",
+    "server_binary_sha256s": [
+      "3358a13a11d6d72e9c0898eac2cc2a036a54b14eca3f9420a4f506c857efdb04"
+    ]
+  },
+  "evidence": {
+    "pt-int-foundation-workspace": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-workspace.log.gz",
+      "raw_sha256": "3be93f5b9fe7962116455750f78b5506ff2324ef7e8f4eb2e79f97eedd87080f"
+    },
+    "pt-int-foundation-contracts": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-contracts.log.gz",
+      "raw_sha256": "140a2e58c234f4e3f89680bdba3397d5ab8dc1695f31713436ec692be0de52da"
+    },
+    "pt-int-foundation-player": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-player.log.gz",
+      "raw_sha256": "1916a4eda86b51def2e042b27d1ba2e3b0df6d7e9ed49b9ae189cfd5e90c5067"
+    },
+    "pt-int-foundation-player-fixed": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-player-fixed.log.gz",
+      "raw_sha256": "2bf36b461b3e3858c94fc8ff6420196905624c6a566c79b524190629e22d1d91"
+    },
+    "pt-int-foundation-studio": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-studio.log.gz",
+      "raw_sha256": "1f19c1d2ad08a8fd53771aacb94f8c85d5cbff3b040a06c4bf87bdc33ca0efb1"
+    },
+    "pt-int-foundation-web-build": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-web-build.log.gz",
+      "raw_sha256": "16d9b774cbb060e1af3404d3838242ad58cea2f466f9d7201adf1bce82c534d3"
+    },
+    "pt-int-foundation-python": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-python.log.gz",
+      "raw_sha256": "5a41a4b85b59f70053c483b721121659127be69487fdaacb09e312c0d195ce6f"
+    },
+    "pt-int-foundation-identity": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-identity.log.gz",
+      "raw_sha256": "5af6534dfad754a26770c2b76187fe694900620b08fadbe6670a3d08e8d9432f"
+    },
+    "pt-int-foundation-server-build": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-server-build.log.gz",
+      "raw_sha256": "51466630761569f13f8451353e6b8e3ef4987ed961765ec8293c000ebf4bd4f7"
+    },
+    "pt-int-foundation-chapter-process": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-chapter-process.log.gz",
+      "raw_sha256": "3146764c480111ce327ec9aea9288b941a78652b88a37611644f31996047779f"
+    },
+    "pt-int-foundation-direction-process": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-direction-process.log.gz",
+      "raw_sha256": "538aaca92836759af03ad74fc2489f2506d5230d1644eb719026700c783b50b8"
+    },
+    "pt-int-foundation-speech-process": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-speech-process.log.gz",
+      "raw_sha256": "84b7d7f886aefe72a6e5f20dd1c1abd102f8185049a1ab2891075c425f2b95be"
+    },
+    "pt-int-foundation-pr-ci": {
+      "path": "docs/implementation/integration/goal-checks/pt-int-foundation-pr-ci.log.gz",
+      "raw_sha256": "e6891027ae967161415f929b82cf1d98d6636052d0617ebd36d53edf9946eaba"
+    }
+  },
+  "binary_sha256": "5824da8db58a33a445f7a914ad0d6c52074b09bb7c4643ccb9a4e5f3709a9257",
+  "setup_failures_retained": [
+    "Offline npm Vite cache miss; installed dependencies copied under identical package lock, including nested player compiler.",
+    "Initial player check could not spawn its missing local compiler. Full player check passed after restoring locked nested dependencies.",
+    "Sandbox denied loopback; authorized unsandboxed zero-provider process checks passed."
+  ],
+  "matrix_version": "pt-acceptance-required-v3",
+  "implemented_verifiers": 5,
+  "pending_verifiers": 32,
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "production_approved": false,
+  "publication_enabled": false,
+  "ui_scope": "Unmodified committed baseline only; active Studio/player/audience redesign and actual browser/device gates excluded.",
+  "limitations": [
+    "Only INT-01 complete; remaining checklist items retain partial/missing status.",
+    "No authenticated listening/creative review or complete production verification/publication.",
+    "Moving worker Direction/native-codec/configuration changes are outside this source inventory.",
+    "Later receipt-only commits do not inherit implementation-head CI."
+  ],
+  "checker": {
+    "sha256": "8595d2b954b258044dee21b21c7a8b244bf2c1aac81942f0e5ef32196a22deb8",
+    "version": "pt-acceptance-bindings-v5"
+  }
+}
