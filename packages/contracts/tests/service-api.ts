@@ -2,6 +2,11 @@ import type {CandidateFile, CandidateWrite, RunServices,ProviderOperationV2,Prov
 import {validateProviderOperationV2,validateProviderResultV2,providerQuotaScopeKey} from '@paper-theater/contracts';
 import {validateProductionDerivationV1,validateProductionParentPolicyV1} from '@paper-theater/contracts';
 import type {ProductionParentPolicyV1,ProductionDerivationV1} from '@paper-theater/contracts';
+import {validatePrimaryProvenanceV1} from '@paper-theater/contracts';
+import type {PrimaryProvenanceV1} from '@paper-theater/contracts';
+export async function validatePrimaryBinding(provenance:unknown,operation:unknown,result:unknown,primaryText:string):Promise<PrimaryProvenanceV1> {
+ return validatePrimaryProvenanceV1(provenance,operation,result,new TextEncoder().encode(primaryText));
+}
 export async function validateCompilerParent(parent:unknown,derived:unknown,policyBytes:Uint8Array,requestBytes:Uint8Array):Promise<ProductionDerivationV1> {
  validateProductionParentPolicyV1(parent);
  const policy:ProductionParentPolicyV1=parent;
