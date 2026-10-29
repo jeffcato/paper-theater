@@ -2,9 +2,13 @@
 use crate::*;
 use serde::{Deserialize, Serialize};
 
-pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v3";
+pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v5";
 pub const ACCEPTANCE_REPORT_VERSION: u32 = 4;
 const MATRIX_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v5.json");
+const MATRIX_V4_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v4.json");
+const MATRIX_V3_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v3.json");
 const MATRIX_V2_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v2.json");
@@ -39,7 +43,9 @@ pub fn acceptance_check_matrix_for_version(version: &str) -> ContractResult<Acce
     let bytes = match version {
         "pt-acceptance-required-v1" => MATRIX_V1_BYTES,
         "pt-acceptance-required-v2" => MATRIX_V2_BYTES,
-        "pt-acceptance-required-v3" => MATRIX_BYTES,
+        "pt-acceptance-required-v3" => MATRIX_V3_BYTES,
+        "pt-acceptance-required-v4" => MATRIX_V4_BYTES,
+        "pt-acceptance-required-v5" => MATRIX_BYTES,
         _ => {
             return invalid(
                 "acceptance_report",
@@ -225,6 +231,8 @@ pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
                 MATRIX_BYTES,
                 MATRIX_V1_BYTES,
                 MATRIX_V2_BYTES,
+                MATRIX_V3_BYTES,
+                MATRIX_V4_BYTES,
             ]
             .concat(),
         ),
@@ -345,6 +353,107 @@ fn implemented(id: &str, matrix: &AcceptanceCheckMatrix) -> bool {
     matrix.checks.iter().any(|c| c.id == id && c.implemented)
 }
 
+/// Structural binding for a private pilot plan (strict private schema v1):
+/// schema identity, bound take request/audio identities, review structure,
+/// and preserved non-approval. No audibility, fidelity, or creative judgment.
+fn verify_pilot_plan(plan: &serde_json::Value) -> Result<(), AcceptanceReason> {
+    let header = plan.get("schema_version").and_then(|v| v.as_u64()) == Some(1)
+        && plan.get("bulk_speech_approved") == Some(&serde_json::Value::Bool(false))
+        && plan.get("production_approved") == Some(&serde_json::Value::Bool(false));
+    if !header {
+        return Err(AcceptanceReason::InvalidBinding);
+    }
+    let takes = plan
+        .get("takes")
+        .and_then(|v| v.as_array())
+        .ok_or(AcceptanceReason::InvalidBinding)?;
+    if takes.is_empty() {
+        return Err(AcceptanceReason::InvalidBinding);
+    }
+    for take in takes {
+        for role in ["request", "audio"] {
+            let sha = take
+                .get(role)
+                .and_then(|r| r.get("file"))
+                .and_then(|f| f.get("sha256"))
+                .and_then(|s| s.as_str())
+                .unwrap_or("");
+            if sha.is_empty() {
+                return Err(AcceptanceReason::InvalidBinding);
+            }
+        }
+        if take.get("production_approved") != Some(&serde_json::Value::Bool(false)) {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+    }
+    let reviews = plan
+        .get("reviews")
+        .and_then(|v| v.as_array())
+        .ok_or(AcceptanceReason::InvalidBinding)?;
+    for review in reviews {
+        let targets = review
+            .get("targets")
+            .and_then(|v| v.as_array())
+            .ok_or(AcceptanceReason::InvalidBinding)?;
+        if targets.is_empty() {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+        if review.get("production_approved") != Some(&serde_json::Value::Bool(false)) {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+    }
+    Ok(())
+}
+/// Structural binding for per-fact source-to-delivery mapping (schema v1):
+/// every known fact carries at least one entry with its exact source span and
+/// delivery bounds inside the delivery domain. No acoustic or creative judgment.
+fn verify_fact_mapping(
+    plan: &serde_json::Value,
+    facts: &[AcceptanceFact],
+    delivery_count: u64,
+) -> Result<(), AcceptanceReason> {
+    if plan.get("schema_version").and_then(|v| v.as_u64()) != Some(1) {
+        return Err(AcceptanceReason::InvalidBinding);
+    }
+    let entries = plan
+        .get("facts")
+        .and_then(|v| v.as_array())
+        .ok_or(AcceptanceReason::InvalidBinding)?;
+    if entries.is_empty() {
+        return Err(AcceptanceReason::InvalidBinding);
+    }
+    let span = |v: &serde_json::Value| -> Option<[u64; 2]> {
+        let a = v.as_array()?;
+        if a.len() != 2 {
+            return None;
+        }
+        Some([a[0].as_u64()?, a[1].as_u64()?])
+    };
+    for entry in entries {
+        let id = entry
+            .get("fact_id")
+            .and_then(|v| v.as_str())
+            .unwrap_or("");
+        let known = facts.iter().find(|f| f.id == id).ok_or(AcceptanceReason::InvalidBinding)?;
+        if span(entry.get("source_span").unwrap_or(&serde_json::Value::Null))
+            != Some(known.source_span)
+        {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+        match span(entry.get("delivery").unwrap_or(&serde_json::Value::Null)) {
+            Some([s, e]) if s < e && e <= delivery_count => {}
+            _ => return Err(AcceptanceReason::InvalidBinding),
+        }
+    }
+    for fact in facts {
+        if !entries.iter().any(|e| {
+            e.get("fact_id").and_then(|v| v.as_str()).unwrap_or("") == fact.id
+        }) {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+    }
+    Ok(())
+}
 fn worse(a: ReviewOutcome, b: ReviewOutcome) -> ReviewOutcome {
     let rank = |x| match x {
         ReviewOutcome::Pass => 0,
@@ -1065,6 +1174,8 @@ fn verify_acceptance_internal(
         .as_ref()
         .map(|l| l.proposals.as_slice())
         .unwrap_or(&[]);
+    let mut pilot_raw: Vec<FileRef> = Vec::new();
+    let mut mapping_raw: Vec<FileRef> = Vec::new();
     for (e, origin) in ledger_proposals
         .iter()
         .map(|e| (e, "ledger_proposal"))
@@ -1124,6 +1235,12 @@ fn verify_acceptance_internal(
             raw_sha256: Some(e.raw_evidence.sha256.clone()),
             reasons,
         });
+        if e.check_id == "pilot-recording-review" {
+            pilot_raw.push(e.raw_evidence.clone());
+        }
+        if e.check_id == "delivery-fact-mapping" {
+            mapping_raw.push(e.raw_evidence.clone());
+        }
     }
     let render_assets = doc
         .manifest
@@ -1320,6 +1437,44 @@ fn verify_acceptance_internal(
     } else {
         Ok(())
     };
+    let pilot_result = if required
+        .iter()
+        .any(|r| r.check_id == "pilot-recording-review")
+    {
+        (|| {
+            if pilot_raw.is_empty() {
+                return Err(AcceptanceReason::MissingBytes);
+            }
+            for raw in &pilot_raw {
+                let bytes = reads.read(private_root, raw, "pilot_plan", 1024 * 1024)?;
+                let plan: serde_json::Value = serde_json::from_slice(&bytes)
+                    .map_err(|_| AcceptanceReason::InvalidBinding)?;
+                verify_pilot_plan(&plan)?;
+            }
+            Ok(())
+        })()
+    } else {
+        Ok(())
+    };
+    let mapping_result = if required
+        .iter()
+        .any(|r| r.check_id == "delivery-fact-mapping")
+    {
+        (|| {
+            if mapping_raw.is_empty() {
+                return Err(AcceptanceReason::MissingBytes);
+            }
+            for raw in &mapping_raw {
+                let bytes = reads.read(private_root, raw, "fact_mapping", 1024 * 1024)?;
+                let plan: serde_json::Value = serde_json::from_slice(&bytes)
+                    .map_err(|_| AcceptanceReason::InvalidBinding)?;
+                verify_fact_mapping(&plan, &facts, binding.delivery_sample_count)?;
+            }
+            Ok(())
+        })()
+    } else {
+        Ok(())
+    };
     let consumed = reads
         .consumed
         .iter()
@@ -1336,6 +1491,8 @@ fn verify_acceptance_internal(
                 "required-check-coverage" => coverage_reasons.clone(),
                 "complete-source-coverage" => source_result.err().into_iter().collect(),
                 "audio-format-review" => audio_result.err().into_iter().collect(),
+                "pilot-recording-review" => pilot_result.err().into_iter().collect(),
+                "delivery-fact-mapping" => mapping_result.err().into_iter().collect(),
                 _ => binding_reasons.clone(),
             }
         } else {
@@ -1361,6 +1518,16 @@ fn verify_acceptance_internal(
                     Err(_) => ReviewOutcome::Fail,
                 },
                 "audio-format-review" => match audio_result {
+                    Ok(()) => ReviewOutcome::Pass,
+                    Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
+                    Err(_) => ReviewOutcome::Fail,
+                },
+                "pilot-recording-review" => match pilot_result {
+                    Ok(()) => ReviewOutcome::Pass,
+                    Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
+                    Err(_) => ReviewOutcome::Fail,
+                },
+                "delivery-fact-mapping" => match mapping_result {
                     Ok(()) => ReviewOutcome::Pass,
                     Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
                     Err(_) => ReviewOutcome::Fail,
@@ -1486,6 +1653,8 @@ impl AcceptanceVerificationReport {
                     | (2, "pt-acceptance-required-v2")
                     | (3, "pt-acceptance-required-v2")
                     | (4, "pt-acceptance-required-v3")
+                    | (4, "pt-acceptance-required-v4")
+                    | (4, "pt-acceptance-required-v5")
             ),
             "acceptance_report",
             "version",

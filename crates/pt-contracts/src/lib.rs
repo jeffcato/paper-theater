@@ -27,3 +27,5 @@ pub use source_slice::*;
 
 pub mod wav;
 pub use wav::*;
+pub mod trusted_player_consumer;
+pub use trusted_player_consumer::*;

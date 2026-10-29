@@ -11,3 +11,4 @@ export * from './validate.js';
 export * from './source-slice.js';
 
 export * from './wav.js';
+export * from './player-consumer.js';
