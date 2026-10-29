@@ -21,3 +21,4 @@ export * from './production-parent-policy.js';
 export * from './primary-operation-binding.js';
 export type {RegisteredSourceCatalogV1,RegisteredChapterSourceV1,RegisteredSourceFrameV1} from './registered-source-scope.js';
 export * from './player-consumer.js';
+export * from './public-export-boundary.js';
