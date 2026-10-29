@@ -2,7 +2,7 @@
 
 2026-10-26: `pt-services-v1.0.0` callable types are in `crates/pt-contracts/src/services.rs`, re-exported at crate root. `bootstrap-ready.json` transfers lane ownership. Runtime R2-001 dependencies applied; SQLite remains the only metadata authority. R2-002 additional quota/retry fields are being added through tests. Use shared StageExecutor/RunServices with adapters for lane-local records. Public playback records are in `playback.rs`; TS mirror and canonical fixture are in progress. Do not fork these records.
 
-All new implementation follows the updated root instruction: contract-first TDD, then clean explicit-path commits by Agent 1. Workers should report executable red/green evidence and changed paths. Agent 1 will preserve user edits and review each lane before integrating its commit.
+Current operator workflow (October 28): implementation first, focused verification before handoff, then clean explicit-path commits by Agent 1. Workers report actual checks/results and changed paths; test-first ordering and RED/GREEN receipts are not required. Historical verification records below remain unchanged. Agent 1 preserves user edits and reviews each lane before integrating its commit.
 
 Root package pins: Node 24.20+, TypeScript 7.0.2, Vite 8.3.5, React 19.3.1. Registry confirmed availability and Vite's engine compatibility. Agent 4 still owns the exact Three.js/declaration proposal; no substitute version is authorized. Root aliases dispatch package-owned checks.
 

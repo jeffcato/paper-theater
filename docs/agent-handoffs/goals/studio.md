@@ -1,5 +1,7 @@
 # Studio goal
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 **Objective:** complete the Required implementation checklist for a functional redesigned Studio showing actual runs through the shared player. Follow [RUNBOOK](RUNBOOK.md). Owner: the operator-assigned Studio redesign agent. Suggested model: Terra medium or Sol medium.
 
 Own all `apps/studio/**`, including its tests/configuration, and this file. This is the existing temporary ownership override; server and player do not edit your app. Do not edit runtime/player/contracts/root dependencies or other agents' evidence. Freeze the functional design for the delivery plan; no second player, creative-selection editor or model/budget approval UI.

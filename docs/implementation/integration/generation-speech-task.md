@@ -1,5 +1,7 @@
 # G24: bounded Speech compiler and saved-take ingestion
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 27, 2026. Owner: `generation`. G23 Pilot is implemented with 103 generation/19 Pilot tests, but bulk_speech_approved is false and real listening/continuity evidence is missing. Advance the first bounded G3/Stage::Speech planning and saved-data path without authorizing bulk synthesis. No UI/shared schema/Git/lockfile edits or real provider calls.
 
 Before editing overlapping Source/Direction/Pilot modules, provide integration I20 the immutable completed G23 source/patch pins. Preserve all old fixtures, raw observations, red/green history and helper recipes while new G24 files/planning proceed.
@@ -13,8 +15,8 @@ Before editing overlapping Source/Direction/Pilot modules, provide integration I
 5. Compile a bounded **primary transcription request plan** for compatible verified saved takes using actual decoded durations and explicit sample offsets. Keep original recording hashes; no expected-prose hints go to the transcription model. Source matching remains local and measured responses remain required. No transcription calls or word timestamps/fact bounds are invented here.
 6. Make fixture/recorded replay byte-identical without provider/helper redispatch, journal/library/accounting/catalog mutation or repurchasing compatible cached takes. Keep full private speech/context/raw/proposal artifacts outside verified audience exports and retain every original adverse/uncertain finding and NeedsRepair.
 
-## Test-first proof and handoff
+## Verification and handoff
 
 Begin with an ordered verbatim Speech-plan/take case the adapter-pending path cannot produce. Cover narration-only and source-supported dialogue, exact source reconstruction, boundary segmentation, mentioned-only speakers, stale voice/recipe/source, unsupported catalogs, missing/forged pilot approval, oversized requests/results, wrong audio/request/result/epoch identity, incompatible native formats, prohibited prose hints, unavailable services, compatible recording reuse and replay without redispatch. Synthetic observations stay small/labeled/unaccepted.
 
-Return private schemas/examples, source/voice/sample-domain mapping, exact red/green commands/results, bounds, invalidation rules and runtime orchestration/assembly/transcription handoffs. Retain G16–G23 facts/capacity/PCM/matrix/privacy/replay regressions, formatting and identity checks. No real TTS/transcription/review or bulk work is authorized; independent acoustic/listening/continuity/creative acceptance and publication remain pending. Integration alone stages/commits/pushes.
+Return private schemas/examples, source/voice/sample-domain mapping, exact verification commands/results, bounds, invalidation rules and runtime orchestration/assembly/transcription handoffs. Retain G16–G23 facts/capacity/PCM/matrix/privacy/replay regressions, formatting and identity checks. No real TTS/transcription/review or bulk work is authorized; independent acoustic/listening/continuity/creative acceptance and publication remain pending. Integration alone stages/commits/pushes.

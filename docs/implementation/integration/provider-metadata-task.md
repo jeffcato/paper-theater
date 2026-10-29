@@ -1,5 +1,7 @@
 # I2: shared provider quota, retry and recovery metadata
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 26, 2026. Owner: `integration`. The reviewed offline baseline is code `306059f`, with CI recorded in `4884692`. This is the next bounded shared-contract increment for runtime request **R2-002**. Use zero provider calls; do not load credentials or enable live dispatch.
 
 ## Observed boundary
@@ -18,7 +20,7 @@ The private runtime broker already records project scope, operation identity, re
 
 ## Validation and handoff
 
-Use contract-first tests. Rust-produced JSON and the TypeScript consumer must agree on valid/invalid operation/result records. Include distinct transport retries versus creative repairs; overlapping quota windows; exhausted repair/request scope; free-money request accounting; absent/invalid scope; ambiguous result with unknown usage; existing-job recovery; retained retry timestamp; conflicting attempt/request identities; unsafe integers and legacy-record behavior. Contract validation can reject malformed records; quota exhaustion, credential access and redispatch behavior must be tested at an actual implemented boundary or explicitly left as server integration work.
+Use focused behavior tests. Rust-produced JSON and the TypeScript consumer must agree on valid/invalid operation/result records. Include distinct transport retries versus creative repairs; overlapping quota windows; exhausted repair/request scope; free-money request accounting; absent/invalid scope; ambiguous result with unknown usage; existing-job recovery; retained retry timestamp; conflicting attempt/request identities; unsafe integers and legacy-record behavior. Contract validation can reject malformed records; quota exhaustion, credential access and redispatch behavior must be tested at an actual implemented boundary or explicitly left as server integration work.
 
 Run contracts tests, native/packed exports and strict TypeScript consumers, then affected offline workspace/app checks and product identity scans. Preserve both v1/v2 diagnostic readiness outcomes and the exact-head CI evidence for the earlier baseline; new code needs its own commit/CI results.
 

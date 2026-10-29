@@ -1,5 +1,7 @@
 # Generation goal
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 **Objective:** complete the Required implementation checklist for the actual fixed-stage source-to-reviewed-candidate compiler. Follow [RUNBOOK](RUNBOOK.md). Owner: generation. Suggested model: Sol medium; use high for difficult source/timing/evidence decisions.
 
 Own generation Rust modules, `tools/generation/**`, generation fixtures/docs and this file. Runtime owns dispatch/SQLite/commits/publication; integration owns shared schemas/root dependencies; UI is outside this goal. Read [G25](../../implementation/integration/generation-primary-transcription-task.md), [G24 Speech](../../implementation/generation/speech.md), current R19 batch handoff and the selected owning architecture through transient `SOURCE_ROOT` where needed. Reuse selected parsers/media components with neutral truthful provenance.

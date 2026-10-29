@@ -2,11 +2,13 @@
 
 Read root `AGENTS.md`, [COMMON](../COMMON.md), [INTERFACES](../INTERFACES.md), your role prompt and [the delivery plan](../../plans/2026-10-28-hackathon-delivery.md). Then use your assigned goal file as the ordered work queue. Older bootstrap tasks are historical; adopt already implemented behavior instead of redoing it.
 
+Implementation method, operator decision October 28: implementation first, focused verification before handoff. Mandatory TDD/test-first cycles and RED/GREEN proof are retired. This decision overrides older test-order wording in briefs, plans and optional skills. Complete useful vertical slices without stopping for test-order approvals; retain public interface ownership and actual verification/acceptance requirements.
+
 ## Work loop
 
 1. Inspect current owned changes and the relevant handoff. Record any starting edits you must preserve. Find the first unchecked implementation item whose dependencies permit useful work.
 2. If it is already implemented, verify the relevant current behavior and record exact evidence, then check it off. Do not regenerate unchanged media, archives or whole test matrices just to repeat a receipt.
-3. For missing behavior, use contract-first incremental TDD: one failing public-behavior test, the smallest implementation, green, then the next behavior. Keep applicable negative cases; a smaller model does not get weaker checks. Routine choices inside the assigned task need no additional operator turn.
+3. Implement the next complete useful behavior slice, then verify it through its public boundary. Reuse existing coverage and add focused regressions where the changed behavior needs them; test order is flexible and a prior failing run is not required. Retain relevant negative cases for critical behavior. Routine choices inside the assigned task need no additional operator turn; do not manufacture failures or split implementation into separate test-order continuation turns.
 4. Run the affected checks and identity scan; record actual results and remaining limits in your own goal file. A checkbox means code and its required checks are complete, not merely designed, proposed or handed off.
 5. Publish the smallest usable interface/artifact handoff as soon as it exists, before the entire lane finishes. Re-read dependency requests in the other lists at each completed item/integration checkpoint; reply with an owned contract/implementation handoff, not edits to their checklists.
 6. Immediately continue to the next unblocked item. Do not end after one completion report or ask what task comes next. If a dependency blocks one item, record it and advance independent work; use saved/test-double inputs to verify mechanics without claiming genuine production acceptance.

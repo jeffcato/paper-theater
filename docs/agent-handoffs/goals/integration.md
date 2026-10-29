@@ -1,5 +1,7 @@
 # Integration goal
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 **Objective:** complete the Required implementation checklist so real generated evidence can be verified, published and consumed through one coherent shared boundary. Follow [RUNBOOK](RUNBOOK.md). Owner: integration. Suggested model: Sol high; reserve xhigh for a particular difficult acceptance/authority issue.
 
 Own the existing integration paths, root TODO, shared configuration/contracts/fixtures, verification tooling, Git and this file. Read the [I21 brief](../../implementation/integration/acceptance-pilot-review-task.md), [I20 checkpoint](../../implementation/integration/backend-checkpoint.md), current R19/G25 handoffs and active UI-owner lists. Do not take over runtime/generation/player/Studio implementation.

@@ -1,5 +1,7 @@
 # I19: independently execute delivery-audio format verification
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 27, 2026. **I19 complete:** [handoff](acceptance-audio-format.md), services v1.8.0 at 24f74e5, CI receipt 4ffc5c1; five executable/32 missing verifiers. Native runtime wrapper adoption remains server-owned. Next integration task is [I20 checkpoint](backend-checkpoint-task.md). Owner: `integration`. I18/services v1.7.0/source-slice verification is published in `ace1dc9`, CI receipt `c5f7315`. Four independent verifier implementations exist; 33 production verifiers remain unimplemented. Add one genuine executed `audio-format-review` check under I4. No UI, active runtime/generation module edits, provider calls or live activation.
 
 ## Required increment
@@ -11,10 +13,10 @@ Prepared October 27, 2026. **I19 complete:** [handoff](acceptance-audio-format.m
 5. Register real checker execution for the applicable delivery target and emit typed pass/fail/missing findings from that execution. Source/matrix scope, missing media and retained adverse observations must remain conservative. Format success proves only structure/domain/length; it does not execute speech fidelity, listening, continuity, joins, loudness/mix, provenance or other unavailable reviews.
 6. Explicitly version checker/report/matrix changes and matching Rust/TypeScript validators; fingerprint the full executed inspector/checker source closure. Preserve every published policy/report/matrix/checker archive and original receipt; never relabel an older report as audio verification. Give R15/runtime and generation exact adoption examples/limits without changing their active files. Production-verifier-pending remains even for valid audio.
 
-## Test-first proof and delivery
+## Verification and delivery
 
 Begin with a desired actual-audio-format outcome that remains unimplemented before this change; record the failing check and minimal fix. Positive cases should verify real temporary PCM bytes and the selected saved delivery WAV. Negatives include MIME-only garbage, wrong channels/rate/encoding, RIFF/chunk truncation/length mismatch, multiple/misaligned/empty data, declared-versus-physical frame mismatch, wrong master/hash, unsafe/missing inputs and post-verification mutation. Include exact/over-limit admission without unbounded test allocation.
 
 Prove diagnostic/imported/synthetic packages still reject production and forged metadata cannot supply checker execution. Retain source-slice/local-source coverage, scoped/custom/adverse requirements, legacy native WAV behavior, archive validation, strict/native/packed consumers and frozen v1/v2 media identities. Use separate temporary derivatives; no large fixture dumps.
 
-Return shared inspector/verification APIs, format/domain evidence, red/green commands, parity/wrapper handoff, version migration and exact-head CI. Only after real execution is delivered should the production missing-verifier count decrease from 33 to 32. Integration alone stages/commits/pushes reviewed explicit paths; preserve Claude UI work and all worker changes.
+Return shared inspector/verification APIs, format/domain evidence, verification commands, parity/wrapper handoff, version migration and exact-head CI. Only after real execution is delivered should the production missing-verifier count decrease from 33 to 32. Integration alone stages/commits/pushes reviewed explicit paths; preserve Claude UI work and all worker changes.

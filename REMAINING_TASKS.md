@@ -239,7 +239,7 @@ done-criteria (observable tests/evidence).
   public-export-boundary) · owner `player` proposes, `integration` freezes ·
   deliverable: executable checkers + fixtures for the 5 player-owned missing
   verifiers · deps: RT-11 · blockers: none · done: new verifiers execute in
-  `verify_acceptance` with red→green TDD logs.
+  `verify_acceptance` with actual behavior-level verification results; test-first ordering is not required.
 - **RT-13 — P9 production profile freeze** · P9 · owner `player` + `integration` ·
   deliverable: browser-proven geometry/defaults frozen as production profile
   revision replacing `selected_unverified` · deps: RT-11, RT-16 · blockers:

@@ -1,5 +1,7 @@
 # R18: durable saved Source/Direction/Pilot composition
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 27, 2026. Owner: `server`. R17 public provider services are implemented with injected offline proof only; ordinary construction/live credentials/transports remain unavailable. G22 Direction and G23 Pilot are ready for runtime composition. Work in backend runtime/server/tests/fixtures/docs only; no UI, real provider calls or shared Git operations.
 
 Before changing overlapping runtime files, provide integration I20 an immutable snapshot of the completed R17 handoff. Preserve its aggregate-failure history; new R18 work must not erase or be mislabeled as that checkpoint.
@@ -16,6 +18,6 @@ Apply only the stateless `runtime/media.rs::validate_wav` delegation in the [I19
 4. Persist private direction/cast/pilot/request/observation/status artifacts and every unresolved/adverse finding atomically with source/revision/epoch/checkpoint. Diagnostic continuation through NeedsRepair is recipe-specific; never turn saved/synthetic plans or silent test WAVs into completed voice/research/semantic approval. No accepted library voice/image binding or public payload export.
 5. Prove cancel before/during request/result commit, crash/restart reuse, changed source/registry/catalog/recipe/raw/audio rejection, exact two-phase mapping and byte-identical saved replay without redispatch, added accounting/catalog state or duplicate observations. Keep unknown/obsolete results attached to their original work and preserve private/public allowlists.
 
-Test-first for the missing actual Direction/Pilot runtime route and commit seam, then implement minimally. Retain R11–R17 regression requirements, source/checker/matrix identities and fail-closed missing frozen-player registration. Return exact input/phase mappings, source/test/binary pins, request/attempt counters, red/green evidence and owner requests. No browser/UI rerun is required; R12 Nonpositive viewport remains separate.
+Implement the actual Direction/Pilot runtime route and commit seam, then verify the changed behavior. Retain R11–R17 regression requirements, source/checker/matrix identities and fail-closed missing frozen-player registration. Return exact input/phase mappings, source/test/binary pins, request/attempt counters, verification evidence and owner requests. No browser/UI rerun is required; R12 Nonpositive viewport remains separate.
 
 Integration alone reviews/stages/commits/pushes. G24 Speech work remains a later runtime phase, and real auditions, bulk synthesis, semantic/listening/device acceptance and publication stay gated.

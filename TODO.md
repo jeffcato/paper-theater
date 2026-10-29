@@ -1,5 +1,7 @@
 # Paper Theater TODO and work log
 
+**Workflow update (October 28 operator decision):** implementation first, focused verification before handoff; mandatory TDD/test-first sequencing is retired. Existing tests, acceptance, provenance, spending and ownership rules remain in force. Historical work-log receipts retain their original process/results.
+
 Last reviewed: October 27, 2026. I19/services v1.8.0 WAV verification is published (179 Rust/41 report cases, CI 24f74e5), R17 public runtime methods report scoped passes, and G23 offline Pilot reports 103 generation/19 Pilot passes. R17 also records aggregate Pilot failures from concurrent edits: no coherent aggregate green yet. Next **I20** freezes/verifies the backend checkpoint, **R18** composes durable saved Direction/Pilot, **G24** compiles bounded Speech/saved takes. Capture completed source pins before overlapping edits; preserve Claude UI and sole integration Git ownership. Five verifiers execute, 32 remain missing; no real providers/live/publication.
 
 Deliver two complete, accepted first-chapter performances: *The Wonderful Wizard of Oz* (Gutenberg #55, Chapter 1) and *The War of the Worlds* (Gutenberg #36, Book One Chapter I, “The Eve of the War”). Generation runs autonomously through the local Rust server and studio; the static audience app uses the same player.

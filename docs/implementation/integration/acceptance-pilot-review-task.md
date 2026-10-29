@@ -1,5 +1,7 @@
 # I21: independent Pilot review verification
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 28, 2026. Owner: `integration`. I20 is complete at implementation `d56eb71`, receipt `2e22ffd`: 268 scoped backend tests, 37 Python tests, real server restart/replay and exact-head CI with 343 workspace tests pass. Its source excludes later R18/G24 and UI work; it does not certify the current working tree. Preserve that checkpoint and its original failed Pilot logs.
 
 ## Problem and bounded result
@@ -8,7 +10,7 @@ Finish the next independent acceptance verifier, `pilot-recording-review`, witho
 
 Capture and preserve all existing drafts, tests and source pins first. They are not I20 evidence. Select an isolated, explicit-path candidate for this task; leave unfinished delivery-mapping/v5 work and other workers' changes preserved outside it. The published starting point remains services v1.8.0, matrix v3, five executed checks and 32 missing verifiers. A draft matrix count is not a published completion count.
 
-## Contract-first implementation
+## Implementation and compatibility
 
 1. Write a failing public-verifier regression proving that the current empty-review plan cannot pass. Add incremental cases for unresolved or forged audio/request references, an omitted adjacent take, stale source/voice/model/recipe bindings, partial review targets, duplicate or omitted required criteria, adverse review outcomes and replayed evidence for different bytes. Preserve the original misleading-pass case as a rejection regression; record exact red and green commands/results.
 2. Define the smallest typed private evidence contract and trusted policy inputs needed to verify the required Pilot scope independently. Reuse G23's exact source, canonical speaker/voice, request, observation, raw response, native WAV and review identities. Follow actual evidence through verified file reads; digest-shaped strings or a submitted Pass label provide no authority. Keep `pt-contracts` independent of runtime/generation implementation modules.
@@ -18,9 +20,9 @@ Capture and preserve all existing drafts, tests and source pins first. They are 
 
 ## Verification and handoff
 
-- Run focused red/green acceptance regressions, complete contracts/strict/native/packed checks and the full scoped backend aggregate on the same frozen candidate. Review generation proposal and runtime trusted-policy compatibility; return exact owner requests instead of editing their implementations. Existing R18/G24 handoffs may inform the contract, but their later code needs its own explicit source/verification scope before inclusion.
+- Run focused verification acceptance regressions, complete contracts/strict/native/packed checks and the full scoped backend aggregate on the same frozen candidate. Review generation proposal and runtime trusted-policy compatibility; return exact owner requests instead of editing their implementations. Existing R18/G24 handoffs may inform the contract, but their later code needs its own explicit source/verification scope before inclusion.
 - Preserve `NeedsRepair`, `production-verifier-pending`, all adverse evidence and every other unimplemented verifier. No report, proposal or fixture grants catalog activation. This task makes zero provider calls and loads no credentials; recorded operator spending inputs are not expanded by this assignment.
 - Exclude moving player/audience/studio UI and layout, root player dependency integration and unrelated delivery-mapping drafts. Keep all owned worker edits intact. Use explicit-path Git operations, isolated review and exact implementation-head CI; never reuse I20's green result for new bytes.
-- Publish `acceptance-pilot-review.md` and a machine-readable ready receipt recording evidence schema, source/checker/matrix pins, raw red/green evidence, actual verifier counts, tests/CI, exclusions and exact runtime/generation adoption requests. A correctly blocked absent review is a valid verifier outcome; do not claim actual Pilot approval without actual evidence.
+- Publish `acceptance-pilot-review.md` and a machine-readable ready receipt recording evidence schema, source/checker/matrix pins, raw verification evidence, actual verifier counts, tests/CI, exclusions and exact runtime/generation adoption requests. A correctly blocked absent review is a valid verifier outcome; do not claim actual Pilot approval without actual evidence.
 
 Relevant inputs: [I20 checkpoint](backend-checkpoint.md), [existing private acceptance API](acceptance-evidence.md), [G23 Pilot semantics](../generation/pilot.md), [Pilot runtime request](../generation/pilot-runtime-request.json), and [runtime private acceptance](../runtime/private-acceptance.md).

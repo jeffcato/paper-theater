@@ -1,5 +1,7 @@
 # Continuous implementation goals
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 28, 2026. Give each existing agent its own list below and start a goal whose objective is to complete that list's **Required implementation** section. These lists implement the [seven-day delivery plan](../../plans/2026-10-28-hackathon-delivery.md). They do not create spending, bulk-generation, deployment or submission permission.
 
 | Agent | Task list | Suggested starting setting |

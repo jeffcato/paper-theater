@@ -1,5 +1,7 @@
 # Server goal
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 **Objective:** complete the Required implementation checklist for an ordinary, authorized, durable source-to-publication runtime. Follow [RUNBOOK](RUNBOOK.md). Owner: server. Suggested model: Sol high; medium for a fixed bounded adapter.
 
 Own `crates/pt-production/src/runtime/**`, `crates/pt-server/**`, runtime fixtures/docs and this file. **Exclude all `apps/studio/**`**, including its tests/configuration. Review the [R19 brief](../../implementation/integration/server-speech-runtime-task.md) and [current Speech handoff](../../implementation/runtime/speech-runtime.md). R19 already has a scoped saved-flow receipt; adopt it rather than expanding another saved recipe indefinitely.

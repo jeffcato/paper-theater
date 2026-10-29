@@ -1,5 +1,7 @@
 # Integration implementation plan
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared 2026-10-28. Scope: [INT-01–10](../../agent-handoffs/goals/integration.md), following [RUNBOOK](../../agent-handoffs/goals/RUNBOOK.md) and the [delivery plan](../../plans/2026-10-28-hackathon-delivery.md). This document plans implementation; it does not mark checklist items complete or start a continuous goal.
 
 ## Starting evidence

@@ -1,5 +1,7 @@
 # P16: recover safely from WebGL context loss
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 26, 2026. **Reopened after [I13 review](i13-player-recovery-findings.md): pending Play can resume after loss, and automatic restore rejection can be unhandled.** Original matrix at `c62d5d5` passes its covered cases; both edge defects need red-first fixes. I13 reconciliation/CI is complete with those defects open. Owner: `player`. Work in `packages/player/**`, player-owned fixtures/checks/docs and audience code only where a concrete consumer connection is needed. Preserve local P15 commit `fa361fe` and completed media/rendering/read-along behavior. Use zero provider calls and current pinned contracts/profile. No demo-computer dependency for this headless functional increment.
 
 ## Observed gap
@@ -22,6 +24,6 @@ Use the real mounted readiness-v2 package, figure textures, plaque and audio clo
 - Seek backward while recovery is pending, restart, replace the mount and dispose before restoration. Verify latest intent and no late contributors/callbacks or accidental autoplay. Prove rejected post-recovery Play remains retryable.
 - Run at least three loss/recovery cycles plus final teardown with listener/RAF/DOM/URL/GL resource accounting. Preserve normal chapter, staging, theater, plaque, inventory-v2 and P15 lifecycle regressions; rerun affected checks and record exact commands/results.
 
-Save graphics-recovery receipts and representative screenshots with exact fixture/manifest/profile/player/browser identities, expected errors and unsupported branches. Return owned paths, results, consumer API/handoff and remaining limitations. Follow contract-first TDD and standing Git permissions; root/shared changes go to integration as concrete requests.
+Save graphics-recovery receipts and representative screenshots with exact fixture/manifest/profile/player/browser identities, expected errors and unsupported branches. Return owned paths, results, consumer API/handoff and remaining limitations. Use implementation-first delivery with focused verification and standing Git permissions; root/shared changes go to integration as concrete requests.
 
 This completes the stated P6 graphics-recovery increment only. Public-type adoption P1, remaining browser/reduced-motion/fullscreen checks, strict geometry/profile acceptance and actual demo-device p95/memory gates remain separate. Production release loading/publication stays gated.
