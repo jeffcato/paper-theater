@@ -17,6 +17,7 @@ mod pilot_evidence;
 mod pilot_provider;
 mod presentation;
 mod presentation_pcm;
+mod primary_transcription;
 mod source;
 mod speech;
 
@@ -95,6 +96,14 @@ impl StageExecutor for GenerationExecutor {
         }
         if input.stage == Stage::Speech {
             return speech::execute(&input, services).await;
+        }
+        if input.stage == Stage::Acoustic
+            && input
+                .inputs
+                .iter()
+                .any(|a| a.file.path == "private/primary-transcription-context.json")
+        {
+            return primary_transcription::execute(&input, services).await;
         }
         if input.stage == Stage::Acoustic
             && input

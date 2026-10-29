@@ -1,0 +1,59 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "audioTranscription": {
+              "text": "Synthetic recognition fixture, not listening evidence.",
+              "words": [
+                {
+                  "endOffset": "0s",
+                  "startOffset": "0s",
+                  "word": "Mira"
+                },
+                {
+                  "endOffset": "0.020s",
+                  "startOffset": "0s",
+                  "word": "watched"
+                },
+                {
+                  "endOffset": "0.040s",
+                  "startOffset": "0.020s",
+                  "word": "the"
+                },
+                {
+                  "endOffset": "0.080s",
+                  "startOffset": "0.040s",
+                  "word": "rivière."
+                },
+                {
+                  "endOffset": "0.130s",
+                  "startOffset": "0.110s",
+                  "word": "The"
+                },
+                {
+                  "endOffset": "0.150s",
+                  "startOffset": "0.130s",
+                  "word": "water"
+                },
+                {
+                  "endOffset": "0.170s",
+                  "startOffset": "0.150s",
+                  "word": "was"
+                },
+                {
+                  "endOffset": "0.200s",
+                  "startOffset": "0.170s",
+                  "word": "still."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "finishReason": "STOP"
+    }
+  ],
+  "modelVersion": "primary-transcription-double"
+}

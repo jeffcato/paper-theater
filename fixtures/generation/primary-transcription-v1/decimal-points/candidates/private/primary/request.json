@@ -1,0 +1,15 @@
+{
+  "audio": {
+    "file": {
+      "bytes": 9646,
+      "media_type": "audio/wav",
+      "path": "private/primary-batch.wav",
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785"
+    },
+    "id": "committed:primary:private:primary-batch.wav",
+    "provenance": "synthetic"
+  },
+  "mode": "VERBATIM",
+  "schema_version": 1,
+  "word_timestamps": true
+}

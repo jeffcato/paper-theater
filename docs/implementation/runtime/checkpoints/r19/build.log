@@ -1,0 +1,8 @@
+   Compiling monotonic-align v0.1.0 (/Users/heycato/Projects/paper-theater/crates/monotonic-align)
+   Compiling atomic-journal v0.1.0 (/Users/heycato/Projects/paper-theater/crates/atomic-journal)
+   Compiling pt-contracts v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-contracts)
+   Compiling dramatic-script v0.1.0 (/Users/heycato/Projects/paper-theater/crates/dramatic-script)
+   Compiling timed-captions v0.1.0 (/Users/heycato/Projects/paper-theater/crates/timed-captions)
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+   Compiling pt-server v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-server)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 21.19s

@@ -1,0 +1,114 @@
+   Compiling pt-production v0.1.0 (/Users/heycato/Projects/paper-theater/crates/pt-production)
+error[E0599]: no method named `import_saved_speech` found for struct `runner::Runtime` in the current scope
+   --> crates/pt-production/src/runtime/speech_tests.rs:26:285
+    |
+ 26 | ...::new(store.clone(),pipeline());rt.import_saved_speech(&run,epoch,&root()).unwrap();
+    |                                       ^^^^^^^^^^^^^^^^^^^ method not found in `runner::Runtime`
+    |
+   ::: crates/pt-production/src/runtime/runner.rs:350:1
+    |
+350 | pub struct Runtime {
+    | ------------------ method `import_saved_speech` not found for this struct
+
+error[E0599]: no method named `run_saved_speech_until` found for struct `runner::Runtime` in the current scope
+   --> crates/pt-production/src/runtime/speech_tests.rs:27:5
+    |
+ 27 |  rt.run_saved_speech_until(&run,epoch,1).await.unwrap();let p=store.speech_phases(&run).unwrap();assert_eq!(p.len(),1);assert!(!p[0...
+    |     ^^^^^^^^^^^^^^^^^^^^^^ method not found in `runner::Runtime`
+    |
+   ::: crates/pt-production/src/runtime/runner.rs:350:1
+    |
+350 | pub struct Runtime {
+    | ------------------ method `run_saved_speech_until` not found for this struct
+
+error[E0599]: no method named `speech_phases` found for struct `store::Store` in the current scope
+  --> crates/pt-production/src/runtime/speech_tests.rs:27:69
+   |
+27 |  rt.run_saved_speech_until(&run,epoch,1).await.unwrap();let p=store.speech_phases(&run).unwrap();assert_eq!(p.len(),1);assert!(!p[0]...
+   |                                                                     ^^^^^^^^^^^^^ method not found in `store::Store`
+   |
+  ::: crates/pt-production/src/runtime/store.rs:75:1
+   |
+75 | pub struct Store {
+   | ---------------- method `speech_phases` not found for this struct
+
+error[E0599]: no method named `run_saved_speech_until` found for struct `runner::Runtime` in the current scope
+   --> crates/pt-production/src/runtime/speech_tests.rs:28:5
+    |
+ 28 |  rt.run_saved_speech_until(&run,epoch,2).await.unwrap();let p=store.speech_phases(&run).unwrap();assert_eq!(p[1].artifacts.iter().f...
+    |     ^^^^^^^^^^^^^^^^^^^^^^ method not found in `runner::Runtime`
+    |
+   ::: crates/pt-production/src/runtime/runner.rs:350:1
+    |
+350 | pub struct Runtime {
+    | ------------------ method `run_saved_speech_until` not found for this struct
+
+error[E0599]: no method named `speech_phases` found for struct `store::Store` in the current scope
+  --> crates/pt-production/src/runtime/speech_tests.rs:28:69
+   |
+28 |  rt.run_saved_speech_until(&run,epoch,2).await.unwrap();let p=store.speech_phases(&run).unwrap();assert_eq!(p[1].artifacts.iter().fi...
+   |                                                                     ^^^^^^^^^^^^^ method not found in `store::Store`
+   |
+  ::: crates/pt-production/src/runtime/store.rs:75:1
+   |
+75 | pub struct Store {
+   | ---------------- method `speech_phases` not found for this struct
+
+error[E0599]: no method named `speech_artifact` found for struct `store::Store` in the current scope
+   --> crates/pt-production/src/runtime/speech_tests.rs:28:235
+    |
+ 28 | ...ount(),2);let takes:Value=serde_json::from_slice(&store.speech_artifact(&run,"registered","private/speech-takes.json").unwrap())...
+    |                                                            ^^^^^^^^^^^^^^^
+    |
+   ::: crates/pt-production/src/runtime/store.rs:75:1
+    |
+ 75 | pub struct Store {
+    | ---------------- method `speech_artifact` not found for this struct
+    |
+help: there is a method `artifact` with a similar name, but with different arguments
+   --> crates/pt-production/src/runtime/store.rs:474:5
+    |
+474 |     pub fn artifact(&self, id: &str) -> Result<(Vec<u8>, String, String)> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `run_saved_speech_until` found for struct `runner::Runtime` in the current scope
+   --> crates/pt-production/src/runtime/speech_tests.rs:29:5
+    |
+ 29 |  rt.run_saved_speech_until(&run,epoch,3).await.unwrap();let p=store.speech_phases(&run).unwrap();assert_eq!(p.len(),3);assert!(p.it...
+    |     ^^^^^^^^^^^^^^^^^^^^^^ method not found in `runner::Runtime`
+    |
+   ::: crates/pt-production/src/runtime/runner.rs:350:1
+    |
+350 | pub struct Runtime {
+    | ------------------ method `run_saved_speech_until` not found for this struct
+
+error[E0599]: no method named `speech_phases` found for struct `store::Store` in the current scope
+  --> crates/pt-production/src/runtime/speech_tests.rs:29:69
+   |
+29 |  rt.run_saved_speech_until(&run,epoch,3).await.unwrap();let p=store.speech_phases(&run).unwrap();assert_eq!(p.len(),3);assert!(p.ite...
+   |                                                                     ^^^^^^^^^^^^^ method not found in `store::Store`
+   |
+  ::: crates/pt-production/src/runtime/store.rs:75:1
+   |
+75 | pub struct Store {
+   | ---------------- method `speech_phases` not found for this struct
+
+error[E0599]: no method named `speech_artifact` found for struct `store::Store` in the current scope
+   --> crates/pt-production/src/runtime/speech_tests.rs:29:239
+    |
+ 29 | ...sRepair));let takes:Value=serde_json::from_slice(&store.speech_artifact(&run,"takes","private/speech-takes.json").unwrap()).unwr...
+    |                                                            ^^^^^^^^^^^^^^^
+    |
+   ::: crates/pt-production/src/runtime/store.rs:75:1
+    |
+ 75 | pub struct Store {
+    | ---------------- method `speech_artifact` not found for this struct
+    |
+help: there is a method `artifact` with a similar name, but with different arguments
+   --> crates/pt-production/src/runtime/store.rs:474:5
+    |
+474 |     pub fn artifact(&self, id: &str) -> Result<(Vec<u8>, String, String)> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `pt-production` (lib test) due to 9 previous errors

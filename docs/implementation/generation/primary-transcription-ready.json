@@ -1,0 +1,902 @@
+{
+  "schema_version": 1,
+  "task": "G25",
+  "status": "offline-verified-primary-transcription-and-native-source-mapping-complete",
+  "service_revision": "pt-services-v1.8.0",
+  "contract_revision": "pt-contracts-v1.0.0",
+  "matrix_version": "pt-acceptance-required-v5",
+  "checker_version": "pt-acceptance-bindings-v4",
+  "private_schema_version": 1,
+  "provider_envelope_version": 2,
+  "compiler_sha256": "5899f744dad1622dd9448ebf70268a2a83d623f685e902cbaa8aa4c65975d90a",
+  "outcome": "needs_repair",
+  "provenance": "diagnostic",
+  "primary_only": true,
+  "production_approved": false,
+  "bulk_speech_approved": false,
+  "reveal_permissions": [],
+  "fact_bounds": null,
+  "global_narration": null,
+  "delivery": null,
+  "real_provider_transport_calls": 0,
+  "generation_provider_issuance_execution_recovery_calls": 0,
+  "generation_helper_dispatch": 0,
+  "generation_journal_emissions": 0,
+  "generation_library_updates": 0,
+  "generation_accounting_catalog_mutations": 0,
+  "checks": {
+    "generation_suite": "144 passed; 0 failed",
+    "new_primary_tests": "20 passed; 0 failed (included in generation suite)",
+    "python_suite": "37 passed",
+    "provider_metadata": "2 passed",
+    "provider_service": "3 passed",
+    "candidate_read_contract": "4 passed",
+    "wav_conformance": "1 passed",
+    "unique_suite_test_count": 191,
+    "library_check": "pass",
+    "formatting": "pass",
+    "identity": "pass",
+    "owned_whitespace_and_links": "pass",
+    "prior_fixture_hashes_verified": 510,
+    "g24_source_snapshot_files_verified": 9,
+    "primary_input_identities_verified": 330,
+    "primary_private_candidate_identities_verified": 26,
+    "example_file_refs_verified": 44
+  },
+  "commands": [
+    "PT_PRIMARY_EXPORT=fixtures/generation/primary-transcription-v1 cargo test -p pt-production generation::tests::primary_transcription:: --locked --offline",
+    "cargo test -p pt-production generation:: --locked --offline",
+    "python3 -B -m unittest discover -s tools/generation -p 'test_*.py'",
+    "cargo test -p pt-contracts --test provider_metadata --test provider_service --locked --offline",
+    "cargo test -p pt-production --test candidate_read_contract --test wav_conformance --locked --offline",
+    "cargo check -p pt-production --lib --locked --offline",
+    "rustfmt --edition 2024 --config skip_children=true --check crates/pt-production/src/generation/mod.rs crates/pt-production/src/generation/tests.rs crates/pt-production/src/generation/primary_transcription.rs crates/pt-production/src/generation/primary_verify.rs crates/pt-production/src/generation/primary_words.rs crates/pt-production/src/generation/primary_match.rs crates/pt-production/src/generation/primary_mapping.rs crates/pt-production/src/generation/tests/primary_transcription.rs",
+    "python3 tools/check_product_identity.py ."
+  ],
+  "red_green": [
+    {
+      "command": "cargo test -p pt-production generation::tests::primary_transcription::verified_distinguishable --locked --offline",
+      "red": "legacy Acoustic path rejected missing acoustic manifest.json; no private primary request/normalized result",
+      "green": "new bounded context route revalidates G24 and actual distinguishable PCM; emits strict audio-only request with request-commit-pending"
+    },
+    {
+      "command": "cargo test -p pt-production generation::tests::primary_transcription::saved_raw_points --locked --offline",
+      "red": "normalized words were empty (0 rather than 8)",
+      "green": "original decimal/point/positive intervals map through verified batch segments into native frames and globally forced source spans, with explicit uncertainty and NeedsRepair"
+    },
+    {
+      "test": "consumes_actual_r19_committed_batch_and_receipt_through_public_backend_apis",
+      "result": "Real current R19 backend API produced and committed audio/receipt; independent generation PCM check passes; payload equals actual receipt and recipe matches published R19 pin"
+    },
+    {
+      "test": "original_issued_result_scope_and_accounting_are_verified_without_new_dispatch",
+      "result": "Foreign model/epoch/payload/context/request/raw identities reject; ambiguous/obsolete/incomplete records preserve issuance/charges without usable timing or repurchase"
+    },
+    {
+      "test": "recorded_replay_is_byte_identical_and_never_rewrites_raw_or_receipt_inputs",
+      "result": "Exact requests/proposals/handoff/normalized findings/cache and original raw/audio/receipt bytes retained; no redispatch or effects"
+    }
+  ],
+  "predecessor_freeze": {
+    "path": "docs/implementation/generation/speech-g24-freeze.json",
+    "sha256": "f276fa1321bd856df505a3588b51efc7f55b45a899afc4605d136ca8c3562ba5",
+    "bytes": 21599,
+    "media_type": "application/json"
+  },
+  "private_handoff": {
+    "path": "docs/implementation/generation/primary-transcription-handoff.json",
+    "sha256": "8cc83b2dbf20e074d692b410fe400aacbbfe19a11bc6fe0eb7357f669d76e89b",
+    "bytes": 6835,
+    "media_type": "application/json"
+  },
+  "r19_adoption": {
+    "ready": {
+      "path": "docs/implementation/runtime/speech-runtime-ready.json",
+      "sha256": "aaeb6f6ff8f4f1947f9a07827c1e33fa87a7c2ff79387a28aee139dd1f6030b1",
+      "bytes": 103059,
+      "media_type": "application/json"
+    },
+    "published_copy_recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+    "consumed_copy_recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+    "audio": {
+      "file": {
+        "bytes": 9646,
+        "media_type": "audio/wav",
+        "path": "private/speech-batches/b0000.wav",
+        "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+      },
+      "id": "41b0cf314133cbc4d6f060025e6a987158eba775456f05f9bc05fb320da1bc63",
+      "provenance": "diagnostic"
+    },
+    "receipt": {
+      "bytes": 3256,
+      "media_type": "application/json",
+      "path": "private/speech-batches/b0000.json",
+      "sha256": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364"
+    },
+    "private_receipt_example": {
+      "path": "fixtures/generation/primary-transcription-v1/runtime-r19/inputs/private/speech-batches/b0000.json",
+      "sha256": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364",
+      "bytes": 3256,
+      "media_type": "application/json"
+    },
+    "compatibility": "Real R19 public backend API produced/committed this audio and receipt in an isolated test; generation independently compared all PCM. Fixture adapter/request metadata is synthetic and grants no authority. Existing R19/I21 CI claims are not extended."
+  },
+  "schemas_and_examples": {
+    "context": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary-transcription-context.json",
+      "sha256": "52c62fdac29f543901c2d888e1c50b0a1bf4c63aa2399b344ada29a021ca569f",
+      "bytes": 2679,
+      "media_type": "application/json"
+    },
+    "request": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/request.json",
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+      "bytes": 380,
+      "media_type": "application/json"
+    },
+    "proposal": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/proposal.json",
+      "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+      "bytes": 1012,
+      "media_type": "application/json"
+    },
+    "observation": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/observation.json",
+      "sha256": "8d8aa9359d670a27ea731ef165f599da047e8e02bee24ccad0b896202a12a88c",
+      "bytes": 1513,
+      "media_type": "application/json"
+    },
+    "raw": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/inputs/private/primary/raw.json",
+      "sha256": "792e63ae7380fc64219a42461074c1f28cfbed6be9cf7424a31499c658e23d3d",
+      "bytes": 1595,
+      "media_type": "application/json"
+    },
+    "normalized": {
+      "path": "fixtures/generation/primary-transcription-v1/measured/candidates/private/primary/normalized.json",
+      "sha256": "70f1991bb8d40fc08bdcd0b25e15bc6468f386202e5d460c4182ae9267ee50a8",
+      "bytes": 24959,
+      "media_type": "application/json"
+    },
+    "ambiguity": {
+      "path": "fixtures/generation/primary-transcription-v1/ambiguity/candidates/private/primary/normalized.json",
+      "sha256": "eb22e7c85d814ae9bcc10cf52261bff0981caf16580e3bbb8046e3a0b9463282",
+      "bytes": 16635,
+      "media_type": "application/json"
+    },
+    "points": {
+      "path": "fixtures/generation/primary-transcription-v1/decimal-points/candidates/private/primary/normalized.json",
+      "sha256": "0e78d3f584f2a65de16a44870a425451276a74ae88bb80f1a96d4c7b1dfd897f",
+      "bytes": 17736,
+      "media_type": "application/json"
+    },
+    "cut": {
+      "path": "fixtures/generation/primary-transcription-v1/cut/candidates/private/primary/normalized.json",
+      "sha256": "d09e2d6bedbde9b37e1a252edaa356d8e4935f1c87054abd752f3543fa247843",
+      "bytes": 16016,
+      "media_type": "application/json"
+    },
+    "join": {
+      "path": "fixtures/generation/primary-transcription-v1/join/candidates/private/primary/normalized.json",
+      "sha256": "3f95e2a416bbe9a369123b1314ac6eeae834ee573c51fb0a226a084e712f82de",
+      "bytes": 16507,
+      "media_type": "application/json"
+    }
+  },
+  "reuse": {
+    "original_adapter_policy": {
+      "path": "tools/generation/adapters.py",
+      "sha256": "36fa11ec00816718a315d28bdbb187b78e0d209871adbd0a7226ecb10d649996",
+      "semantics": "STOP/word annotations, bounded decimal seconds, ceiling and measured point grouping; old float conversion/turn-local SequenceMatcher not reused"
+    },
+    "tokenizer": {
+      "path": "crates/monotonic-align/src/normalize.rs",
+      "sha256": "4b3c23885139a867fa0414cc3e6c8047ac6ce74cd3f9a58f5d8ab697311b4011",
+      "normalization": "existing Unicode NFKD/alphanumeric normalization; original word text/scalar spans retained"
+    },
+    "wav_inspector": {
+      "path": "crates/pt-contracts/src/wav.rs",
+      "sha256": "e4af78a097ca2e49736e6b3cb4ae1a7e0a997a3867b4156108b837aefbd5219e"
+    },
+    "source_revalidation": "Unchanged G24/G23/G22 compilers forced to Replay through in-memory candidate verification sink. No committed IDs are fabricated."
+  },
+  "limits": {
+    "input_refs": 64,
+    "input_aggregate_bytes": 67108864,
+    "native_wav_bytes": 8388608,
+    "metadata_request_raw_candidate_bytes": 1048576,
+    "selected_materialized_batch_bytes_hard": 16777216,
+    "selected_batch_bytes_effective": "minimum of original configured Speech budget and hard bound; only full exact selected ArtifactRef gets this role",
+    "selected_batch_seconds_hard": 90,
+    "segments": 64,
+    "planned_batches": 256,
+    "measured_words": 2048,
+    "source_tokens": 8192,
+    "matching_matrix_cells": 2000000,
+    "candidate_occurrence_edges": 16384,
+    "decimal_fraction_digits": 9
+  },
+  "proofs": {
+    "audio": "Distinguishable deterministic PCM catches reordered/repeated/skipped frames; actual R19 receipt and selected >8 MiB batch verified; no generation materializer or audio edit",
+    "request": "Exactly schema_version/mode/word_timestamps/audio; actual verified audio is present, and provider inputs contain only that audio. No expected source/lexicon/book/speaker/turn hints",
+    "original_response": "Strict supported STOP/audioTranscription/words shape, exact record bindings and original raw bytes. Refusal/truncation/malformed/empty/unmeasured observations stay unresolved without fallback",
+    "points": "Exact original strings and nanoseconds, integer ceiling, unchanged zero-duration samples; positive sub-sample collapse remains interval uncertainty and groups borrow only following measured positive extent",
+    "matching": "Bounded all-optimal global monotonic occurrence matching over full source; native source scope never prunes ambiguity. Missing/substituted Unicode, repeated and unmatched source/recognition stay explicit",
+    "domains": "Original native audio and samples only; join points/crossing intervals unresolved and never split/duplicated. Cut flags/unplanned/unobserved ranges retained; no common narration/delivery/independent/fact clock",
+    "replay": "Byte-identical candidates/findings/cache with unchanged registration phase and original receipts/audio; NoDispatch services panic if provider/helper/journal/library methods are called in Fixture/Replay/Live",
+    "privacy": "Actual private primary/context/raw/receipt/proposal/normalized records and image alias pass through Package without protected hashes in audience exports"
+  },
+  "preserved": {
+    "g16_words": 176,
+    "g16_highlight_groups": 170,
+    "g16_points": 6,
+    "g16_matched_facts": 4,
+    "g16_unresolved_facts": [
+      {
+        "id": "strange-event",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "balloon-ascent",
+        "outcome": "uncertain"
+      },
+      {
+        "id": "unprovided-fact",
+        "outcome": "missing"
+      }
+    ],
+    "g17_temporary_master_seconds": 180,
+    "g18_frozen_report_sha256": "a53a04f1a589afc30b4f001fea726cc474965a2a2728a204f888c39a8aa747db",
+    "g19_temporary_chapter_seconds": 600,
+    "g21_temporary_chapter_seconds": 1200,
+    "g19_recipe_sha256": "af53771eb6f8d5b807958416503fb525de6d408d605b7c86b705f084866fe647",
+    "g21_recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "g20_scopes_adverse_and_private_exports": "All 16 acceptance regression tests retained; frozen v1/v2/v3 fixtures unchanged",
+    "g22_direction_tests": 14,
+    "g22_direction_fixture_files": 119,
+    "g23_pilot_tests": 19,
+    "g24_new_speech_tests": 21,
+    "g24_speech_tests": 21,
+    "g25_primary_tests": 20
+  },
+  "cases": [
+    {
+      "case": "ambiguity",
+      "stage_input": {
+        "path": "fixtures/generation/primary-transcription-v1/ambiguity/stage-input.json",
+        "sha256": "6dae44eb8e3926ded5a25d9eb7e66250cdb797371a0fa8d5e6ca9a3451c4e136",
+        "bytes": 16300,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/primary-transcription-v1/ambiguity/input-index.json",
+        "sha256": "d123ecdea67ec62db3d39a08ddb813bf6ef6f0fd9fe2c92fa99ed960e4266d05",
+        "bytes": 21563,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/primary-transcription-v1/ambiguity/stage-output.json",
+        "sha256": "fa230c2b18a738ad1f5edc79114f2f32011bad53723ecad6b5cee4c2968cbf2a",
+        "bytes": 10748,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "5ea7db2382c522cc04e5d932076a9bc8d06ebab272a7f1d2dfe87edd1a148594",
+          "file": {
+            "path": "private/primary/request.json",
+            "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+            "bytes": 380,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "89155ae42ddc4e8c8ac3cbc554bafe4262100536dec5e8bb4a183d828a446031",
+          "file": {
+            "path": "private/primary/proposal.json",
+            "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+            "bytes": 1012,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "60138735c059480eef62439cc212adb9247e8becc44364e55d447ad0a4faa351",
+          "file": {
+            "path": "private/primary/handoff.json",
+            "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+            "bytes": 1004,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "298237c514824bbc017d230d3c19324d8e88f7b8757d68327e15b671e1667566",
+          "file": {
+            "path": "private/primary/normalized.json",
+            "sha256": "eb22e7c85d814ae9bcc10cf52261bff0981caf16580e3bbb8046e3a0b9463282",
+            "bytes": 16635,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "cut",
+      "stage_input": {
+        "path": "fixtures/generation/primary-transcription-v1/cut/stage-input.json",
+        "sha256": "3dad8da57e8968082974e45e193ab02751c14ec057e503cb7f9cd2fef2ae643a",
+        "bytes": 16301,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/primary-transcription-v1/cut/input-index.json",
+        "sha256": "89d72b175943b64b3c16c0058680212445f72460bda57bc14a31663d8174214c",
+        "bytes": 21456,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/primary-transcription-v1/cut/stage-output.json",
+        "sha256": "4c7654fc257ef59940c1b57162400ccda67015796d1479bf8cd3f14e657a3e8a",
+        "bytes": 10822,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "d025e0b9409a5e13f6d26e93b6b40f2ee903580001555ae8c604aff582a216db",
+          "file": {
+            "path": "private/primary/request.json",
+            "sha256": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a",
+            "bytes": 380,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "63809bdab3319072d988e9f8be72580c4483a321f9e6a7dac86bc36a90ec37c0",
+          "file": {
+            "path": "private/primary/proposal.json",
+            "sha256": "bcc7eb1100376b26e0e5529f91de7642fea181fcd368e821aeb895f56113cad3",
+            "bytes": 1012,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "ebdf38edb0b674d64f87d0f69c1296c1997419f27c235e5e305b16ba2b798eb3",
+          "file": {
+            "path": "private/primary/handoff.json",
+            "sha256": "6e2ed9fedcd6dab22c92eb099a8c3c8b8643a0f09bd213268a1e9bc0a6bc917b",
+            "bytes": 1004,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "3fb7413444dd91f91d882a6df782dc560755810ffef0e64ad051319a158ad4c6",
+          "file": {
+            "path": "private/primary/normalized.json",
+            "sha256": "d09e2d6bedbde9b37e1a252edaa356d8e4935f1c87054abd752f3543fa247843",
+            "bytes": 16016,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "decimal-points",
+      "stage_input": {
+        "path": "fixtures/generation/primary-transcription-v1/decimal-points/stage-input.json",
+        "sha256": "08ecac836587774f4bb13285055f8ee92cd31772674ec47f37e9ca4a285b1f41",
+        "bytes": 16300,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/primary-transcription-v1/decimal-points/input-index.json",
+        "sha256": "26afe60d796702233bcd8f2fa5c8bd7d9a02ffb708a0162fda60c515d5ac8a1a",
+        "bytes": 21653,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/primary-transcription-v1/decimal-points/stage-output.json",
+        "sha256": "562ce3184048292bc46e69d3239fd6d6c0fe72c2a5b21fa308e7abe624457453",
+        "bytes": 10743,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "5ea7db2382c522cc04e5d932076a9bc8d06ebab272a7f1d2dfe87edd1a148594",
+          "file": {
+            "path": "private/primary/request.json",
+            "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+            "bytes": 380,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "89155ae42ddc4e8c8ac3cbc554bafe4262100536dec5e8bb4a183d828a446031",
+          "file": {
+            "path": "private/primary/proposal.json",
+            "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+            "bytes": 1012,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "60138735c059480eef62439cc212adb9247e8becc44364e55d447ad0a4faa351",
+          "file": {
+            "path": "private/primary/handoff.json",
+            "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+            "bytes": 1004,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "2e49d1a945da7da3fe1d9b7c52058f619cbd1a24ff72aee0285ed91146f35b1b",
+          "file": {
+            "path": "private/primary/normalized.json",
+            "sha256": "0e78d3f584f2a65de16a44870a425451276a74ae88bb80f1a96d4c7b1dfd897f",
+            "bytes": 17736,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "join",
+      "stage_input": {
+        "path": "fixtures/generation/primary-transcription-v1/join/stage-input.json",
+        "sha256": "5c8fc5d19e8c3d82fc264e8d60c2254e30573da9107526bc304be454f7effaf8",
+        "bytes": 16300,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/primary-transcription-v1/join/input-index.json",
+        "sha256": "9d03f15b87117994a471ab7effa0891231649d408666fc710440fdf8ad1983f3",
+        "bytes": 21473,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/primary-transcription-v1/join/stage-output.json",
+        "sha256": "97151229a8e8d131749b8108eafb45b98dac6eb0cf2a93df83c10b49cf4c894a",
+        "bytes": 11022,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "5ea7db2382c522cc04e5d932076a9bc8d06ebab272a7f1d2dfe87edd1a148594",
+          "file": {
+            "path": "private/primary/request.json",
+            "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+            "bytes": 380,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "89155ae42ddc4e8c8ac3cbc554bafe4262100536dec5e8bb4a183d828a446031",
+          "file": {
+            "path": "private/primary/proposal.json",
+            "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+            "bytes": 1012,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "60138735c059480eef62439cc212adb9247e8becc44364e55d447ad0a4faa351",
+          "file": {
+            "path": "private/primary/handoff.json",
+            "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+            "bytes": 1004,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "fa4577597890652eff1d4959d9cd2e47a940f4dfa0370efb1e5d3b0ebde7aef7",
+          "file": {
+            "path": "private/primary/normalized.json",
+            "sha256": "3f95e2a416bbe9a369123b1314ac6eeae834ee573c51fb0a226a084e712f82de",
+            "bytes": 16507,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "measured",
+      "stage_input": {
+        "path": "fixtures/generation/primary-transcription-v1/measured/stage-input.json",
+        "sha256": "dd9a13ff27ef057ccd7504d3cddf3b2ba1f78f64bb9b7d115c27e5df20b46a41",
+        "bytes": 16301,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/primary-transcription-v1/measured/input-index.json",
+        "sha256": "2ee93919308ac1073cfd9b78add21858caaa3ed736e1a97bb52ea8051aa2c19c",
+        "bytes": 21546,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/primary-transcription-v1/measured/stage-output.json",
+        "sha256": "cae48b401f992e15191349a626a545592496b0d23dcae41317d6e71300c23eae",
+        "bytes": 10236,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "5ea7db2382c522cc04e5d932076a9bc8d06ebab272a7f1d2dfe87edd1a148594",
+          "file": {
+            "path": "private/primary/request.json",
+            "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+            "bytes": 380,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "89155ae42ddc4e8c8ac3cbc554bafe4262100536dec5e8bb4a183d828a446031",
+          "file": {
+            "path": "private/primary/proposal.json",
+            "sha256": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+            "bytes": 1012,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "60138735c059480eef62439cc212adb9247e8becc44364e55d447ad0a4faa351",
+          "file": {
+            "path": "private/primary/handoff.json",
+            "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+            "bytes": 1004,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "f120d358ef2a178f50b9fb89e955b13d57b2ca9f2c104da17a6b6b2e4a0e840a",
+          "file": {
+            "path": "private/primary/normalized.json",
+            "sha256": "70f1991bb8d40fc08bdcd0b25e15bc6468f386202e5d460c4182ae9267ee50a8",
+            "bytes": 24959,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "request-phase",
+      "stage_input": {
+        "path": "fixtures/generation/primary-transcription-v1/request-phase/stage-input.json",
+        "sha256": "5d5784d6e1da60713f3a88c8f78809d32b5273c54297112f05b199fe1111369d",
+        "bytes": 15312,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/primary-transcription-v1/request-phase/input-index.json",
+        "sha256": "abd7ddd5b9ebefb384358c40e3fbfedf48469b2bafde82394366b5fef7215b7c",
+        "bytes": 20251,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/primary-transcription-v1/request-phase/stage-output.json",
+        "sha256": "855bc557a7ff1318c5ac7b8fde10d883a42d66e584f71cb023a3e2c37448f8a6",
+        "bytes": 10404,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "5ea7db2382c522cc04e5d932076a9bc8d06ebab272a7f1d2dfe87edd1a148594",
+          "file": {
+            "path": "private/primary/request.json",
+            "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+            "bytes": 380,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "60138735c059480eef62439cc212adb9247e8becc44364e55d447ad0a4faa351",
+          "file": {
+            "path": "private/primary/handoff.json",
+            "sha256": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+            "bytes": 1004,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "1f87968fa1c6236d5cea30553e323232bc15aeb0624cc191b7da21a46432d0d4",
+          "file": {
+            "path": "private/primary/normalized.json",
+            "sha256": "c6a830088de8fa384cd57941af499405e7e41269c48778758a097493014ea618",
+            "bytes": 13912,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    },
+    {
+      "case": "runtime-r19",
+      "stage_input": {
+        "path": "fixtures/generation/primary-transcription-v1/runtime-r19/stage-input.json",
+        "sha256": "10c29593abd27539fee1e1a97198867492459381f72deab01a23548dffa04ef5",
+        "bytes": 15425,
+        "media_type": "application/json"
+      },
+      "input_index": {
+        "path": "fixtures/generation/primary-transcription-v1/runtime-r19/input-index.json",
+        "sha256": "306e9c935f020a39d77b40fea1485e4c47736e0280000106c7b7fa2b5fec57a8",
+        "bytes": 20226,
+        "media_type": "application/json"
+      },
+      "stage_output": {
+        "path": "fixtures/generation/primary-transcription-v1/runtime-r19/stage-output.json",
+        "sha256": "3486dde0b37e82d5fa4adfe051abbfc2b911c818666d83082f86ceb1a79e4302",
+        "bytes": 10404,
+        "media_type": "application/json"
+      },
+      "private_candidates": [
+        {
+          "candidate_id": "d5797219da6b602a5fe98603e1a57406c15f7787eb81531f5d9b4932417c508f",
+          "file": {
+            "path": "private/primary/request.json",
+            "sha256": "339ac3b51cd26a8083922829c3437564636a73ae6c78212fe6be23baff26092f",
+            "bytes": 409,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "60af48522ea799b0696d43285dcd4d5f33b823a4287037bf88258ba7f105007c",
+          "file": {
+            "path": "private/primary/handoff.json",
+            "sha256": "e96463d2e0ae5c9763b9a2c42bcd9ca936f60e02e6bdab8844ab1f12c0d48460",
+            "bytes": 1033,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        },
+        {
+          "candidate_id": "51d6ccc0dd059bff5a74d1cf0611fc01c82f3809324b7ca8e929b540e6a9e360",
+          "file": {
+            "path": "private/primary/normalized.json",
+            "sha256": "5c24460f933a526dbfeb4869aab1680dbf1489cceef3af0ff6d371172b0babbf",
+            "bytes": 13940,
+            "media_type": "application/json"
+          },
+          "provenance": "diagnostic"
+        }
+      ]
+    }
+  ],
+  "implementation_sha256": {
+    "crates/pt-production/src/generation/mod.rs": "1628db099f41d4aecb12e95def9e5ed4744dd451247124b8122a7adfe4992df7",
+    "crates/pt-production/src/generation/tests.rs": "720e9d641a3dabdeaa89ca976c1dc890f9151a77cec8e8b90b51a9abbadab702",
+    "crates/pt-production/src/generation/primary_transcription.rs": "3e82ad42065c391723ae404131ae329c9c25182e49baf9c6407422f9f05c4732",
+    "crates/pt-production/src/generation/primary_verify.rs": "c3439e8bbd8aa42126bb8ae481241f171dfdc4303267c8c233e3bef16924dd20",
+    "crates/pt-production/src/generation/primary_words.rs": "a2fd6bc1bd7286807856625ac1a918518b26314cd58858243c8600e74e0cb10b",
+    "crates/pt-production/src/generation/primary_match.rs": "4cc57cd6c6b12275e89fb537efca3862302d6ca8005a56f0bc43af04f2636903",
+    "crates/pt-production/src/generation/primary_mapping.rs": "79c97796fe39efcf7d0a66ba48c213b825e487164731c17034726be58b93c25e",
+    "crates/pt-production/src/generation/tests/primary_transcription.rs": "05d10242a2da96a5c048c3efcd43d55db45a1736ade9f13c39e9373e1d876a30"
+  },
+  "compiler_source_closure_sha256": {
+    "crates/pt-production/src/generation/primary_transcription.rs": "3e82ad42065c391723ae404131ae329c9c25182e49baf9c6407422f9f05c4732",
+    "crates/pt-production/src/generation/primary_verify.rs": "c3439e8bbd8aa42126bb8ae481241f171dfdc4303267c8c233e3bef16924dd20",
+    "crates/pt-production/src/generation/primary_words.rs": "a2fd6bc1bd7286807856625ac1a918518b26314cd58858243c8600e74e0cb10b",
+    "crates/pt-production/src/generation/primary_match.rs": "4cc57cd6c6b12275e89fb537efca3862302d6ca8005a56f0bc43af04f2636903",
+    "crates/pt-production/src/generation/primary_mapping.rs": "79c97796fe39efcf7d0a66ba48c213b825e487164731c17034726be58b93c25e",
+    "crates/monotonic-align/src/normalize.rs": "4b3c23885139a867fa0414cc3e6c8047ac6ce74cd3f9a58f5d8ab697311b4011",
+    "crates/pt-contracts/src/wav.rs": "e4af78a097ca2e49736e6b3cb4ae1a7e0a997a3867b4156108b837aefbd5219e"
+  },
+  "fixture_sha256": {
+    "README.md": "cbb4e7259b240bcb894e30e0daa8213f99788c7916fab011f92aa9b72995fd55",
+    "ambiguity/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "ambiguity/candidates/private/primary/normalized.json": "eb22e7c85d814ae9bcc10cf52261bff0981caf16580e3bbb8046e3a0b9463282",
+    "ambiguity/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "ambiguity/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "ambiguity/input-index.json": "d123ecdea67ec62db3d39a08ddb813bf6ef6f0fd9fe2c92fa99ed960e4266d05",
+    "ambiguity/inputs/private/primary/observation.json": "a88f36faf89f5250a403e207472d1f5451f4a1517c1604b4324fd17497f1ab69",
+    "ambiguity/inputs/private/primary/raw.json": "2ec35f72e63ae963a741787f98645f2d229009f6094ef3bd1e8e2add7b14f89d",
+    "ambiguity/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "ambiguity/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "ambiguity/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "ambiguity/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "ambiguity/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "ambiguity/inputs/private/primary-transcription-context.json": "a9ded7c0861d169cc0ba7cb2204f5509d4d4b0f5863767d129730df2c3eaff6d",
+    "ambiguity/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "ambiguity/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "ambiguity/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "ambiguity/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "ambiguity/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "ambiguity/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "ambiguity/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "ambiguity/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "ambiguity/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "ambiguity/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "ambiguity/stage-input.json": "6dae44eb8e3926ded5a25d9eb7e66250cdb797371a0fa8d5e6ca9a3451c4e136",
+    "ambiguity/stage-output.json": "fa230c2b18a738ad1f5edc79114f2f32011bad53723ecad6b5cee4c2968cbf2a",
+    "cut/candidates/private/primary/handoff.json": "6e2ed9fedcd6dab22c92eb099a8c3c8b8643a0f09bd213268a1e9bc0a6bc917b",
+    "cut/candidates/private/primary/normalized.json": "d09e2d6bedbde9b37e1a252edaa356d8e4935f1c87054abd752f3543fa247843",
+    "cut/candidates/private/primary/proposal.json": "bcc7eb1100376b26e0e5529f91de7642fea181fcd368e821aeb895f56113cad3",
+    "cut/candidates/private/primary/request.json": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a",
+    "cut/input-index.json": "89d72b175943b64b3c16c0058680212445f72460bda57bc14a31663d8174214c",
+    "cut/inputs/private/primary/observation.json": "192ec60dd7a8fb8e2b6d257d9a348bf37a9f8d51a29de99d06c9a532aca4e96c",
+    "cut/inputs/private/primary/raw.json": "0d887a11201545722cb2b9c5dd02d72efe851b7fd9f0e7a12a921e1ab73022f6",
+    "cut/inputs/private/primary/request.json": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a",
+    "cut/inputs/private/primary-batch.wav": "8ed242fb064589cf99c9228a5d9bc02f3f17f6d1ad244120339dc9d58f4f9cbc",
+    "cut/inputs/private/primary-copy-receipt.json": "5d2adf619642383ebc6eddcc85019724367790e7c48eedaec2127b290fe32273",
+    "cut/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "cut/inputs/private/primary-speech-input.json": "922a5e786a8726c7709ab44e7eb78b85e4e1d9fcc4e9eb3ca0863fbdd030cdc5",
+    "cut/inputs/private/primary-transcription-context.json": "cc875f535d893eeeab6934ca92b485d70a4f66108309cd713105d49b2277fd01",
+    "cut/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "cut/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "cut/inputs/private/speech-context.json": "80d5425cd74e3957f121cbbb799907960b5411be5417793590728ffa2a08eca7",
+    "cut/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "cut/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "cut/inputs/private/speech-plan.json": "4b7f64ff3fcfe885c071f69972d8b396a56f3ead769a024552e45ba8fdf46fed",
+    "cut/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "cut/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "cut/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "cut/inputs/private/speech-transcription-plan.json": "6b35717c3db6d3c88e8fb3e024476e8a493930348fb5cc38c02f9217f6967e2d",
+    "cut/stage-input.json": "3dad8da57e8968082974e45e193ab02751c14ec057e503cb7f9cd2fef2ae643a",
+    "cut/stage-output.json": "4c7654fc257ef59940c1b57162400ccda67015796d1479bf8cd3f14e657a3e8a",
+    "decimal-points/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "decimal-points/candidates/private/primary/normalized.json": "0e78d3f584f2a65de16a44870a425451276a74ae88bb80f1a96d4c7b1dfd897f",
+    "decimal-points/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "decimal-points/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "decimal-points/input-index.json": "26afe60d796702233bcd8f2fa5c8bd7d9a02ffb708a0162fda60c515d5ac8a1a",
+    "decimal-points/inputs/private/primary/observation.json": "790bc28e8ae2bc7084adaf27497e73de76d75da6c2d8602fc988fc68f6dc5fa9",
+    "decimal-points/inputs/private/primary/raw.json": "a8a35eea511acabf88ddc70b1c61f7199a5b925ca1dfef09c06edfcd482f58c4",
+    "decimal-points/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "decimal-points/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "decimal-points/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "decimal-points/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "decimal-points/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "decimal-points/inputs/private/primary-transcription-context.json": "af31fcd1603ade9377675a30e62bce06c18511cefc7c7f8520c7a95afa20b25e",
+    "decimal-points/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "decimal-points/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "decimal-points/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "decimal-points/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "decimal-points/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "decimal-points/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "decimal-points/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "decimal-points/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "decimal-points/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "decimal-points/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "decimal-points/stage-input.json": "08ecac836587774f4bb13285055f8ee92cd31772674ec47f37e9ca4a285b1f41",
+    "decimal-points/stage-output.json": "562ce3184048292bc46e69d3239fd6d6c0fe72c2a5b21fa308e7abe624457453",
+    "join/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "join/candidates/private/primary/normalized.json": "3f95e2a416bbe9a369123b1314ac6eeae834ee573c51fb0a226a084e712f82de",
+    "join/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "join/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "join/input-index.json": "9d03f15b87117994a471ab7effa0891231649d408666fc710440fdf8ad1983f3",
+    "join/inputs/private/primary/observation.json": "9d042ba6201ffdc093db76aa8908825facfa30f462a403c583f4f62e1ec39b3d",
+    "join/inputs/private/primary/raw.json": "9e249f63ea21a429dcdaa964f629240197876aa5c591f8f29ad573699d845b8a",
+    "join/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "join/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "join/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "join/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "join/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "join/inputs/private/primary-transcription-context.json": "0e8373aa1928e53831a888a81d3b449cb914215fe9df48786e0bf65a52c78cd9",
+    "join/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "join/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "join/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "join/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "join/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "join/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "join/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "join/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "join/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "join/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "join/stage-input.json": "5c8fc5d19e8c3d82fc264e8d60c2254e30573da9107526bc304be454f7effaf8",
+    "join/stage-output.json": "97151229a8e8d131749b8108eafb45b98dac6eb0cf2a93df83c10b49cf4c894a",
+    "measured/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "measured/candidates/private/primary/normalized.json": "70f1991bb8d40fc08bdcd0b25e15bc6468f386202e5d460c4182ae9267ee50a8",
+    "measured/candidates/private/primary/proposal.json": "cf1e23847b7348aefa1643744f5d6b8667bd702cffa67107223c90c207310420",
+    "measured/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "measured/input-index.json": "2ee93919308ac1073cfd9b78add21858caaa3ed736e1a97bb52ea8051aa2c19c",
+    "measured/inputs/private/primary/observation.json": "8d8aa9359d670a27ea731ef165f599da047e8e02bee24ccad0b896202a12a88c",
+    "measured/inputs/private/primary/raw.json": "792e63ae7380fc64219a42461074c1f28cfbed6be9cf7424a31499c658e23d3d",
+    "measured/inputs/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "measured/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "measured/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "measured/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "measured/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "measured/inputs/private/primary-transcription-context.json": "52c62fdac29f543901c2d888e1c50b0a1bf4c63aa2399b344ada29a021ca569f",
+    "measured/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "measured/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "measured/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "measured/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "measured/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "measured/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "measured/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "measured/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "measured/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "measured/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "measured/stage-input.json": "dd9a13ff27ef057ccd7504d3cddf3b2ba1f78f64bb9b7d115c27e5df20b46a41",
+    "measured/stage-output.json": "cae48b401f992e15191349a626a545592496b0d23dcae41317d6e71300c23eae",
+    "request-phase/candidates/private/primary/handoff.json": "55f8b1ab55a524eb0b374aaf367fd64d62708790a6483d12d0e019d9960eb1ca",
+    "request-phase/candidates/private/primary/normalized.json": "c6a830088de8fa384cd57941af499405e7e41269c48778758a097493014ea618",
+    "request-phase/candidates/private/primary/request.json": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+    "request-phase/input-index.json": "abd7ddd5b9ebefb384358c40e3fbfedf48469b2bafde82394366b5fef7215b7c",
+    "request-phase/inputs/private/primary-batch.wav": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+    "request-phase/inputs/private/primary-copy-receipt.json": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+    "request-phase/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "request-phase/inputs/private/primary-speech-input.json": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+    "request-phase/inputs/private/primary-transcription-context.json": "c4f29c2ddaf36513dfd415ad6ecb0712fa519b122e295988a06ceb3e24de4cb4",
+    "request-phase/inputs/private/speech-audio/u0000.wav": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+    "request-phase/inputs/private/speech-audio/u0001.wav": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+    "request-phase/inputs/private/speech-context.json": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+    "request-phase/inputs/private/speech-observations/u0000.json": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+    "request-phase/inputs/private/speech-observations/u0001.json": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+    "request-phase/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "request-phase/inputs/private/speech-raw/u0000.json": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+    "request-phase/inputs/private/speech-raw/u0001.json": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+    "request-phase/inputs/private/speech-takes.json": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+    "request-phase/inputs/private/speech-transcription-plan.json": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+    "request-phase/stage-input.json": "5d5784d6e1da60713f3a88c8f78809d32b5273c54297112f05b199fe1111369d",
+    "request-phase/stage-output.json": "855bc557a7ff1318c5ac7b8fde10d883a42d66e584f71cb023a3e2c37448f8a6",
+    "runtime-r19/candidates/private/primary/handoff.json": "e96463d2e0ae5c9763b9a2c42bcd9ca936f60e02e6bdab8844ab1f12c0d48460",
+    "runtime-r19/candidates/private/primary/normalized.json": "5c24460f933a526dbfeb4869aab1680dbf1489cceef3af0ff6d371172b0babbf",
+    "runtime-r19/candidates/private/primary/request.json": "339ac3b51cd26a8083922829c3437564636a73ae6c78212fe6be23baff26092f",
+    "runtime-r19/input-index.json": "306e9c935f020a39d77b40fea1485e4c47736e0280000106c7b7fa2b5fec57a8",
+    "runtime-r19/inputs/private/primary-recipe.json": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "runtime-r19/inputs/private/primary-speech-input.json": "48286f95aee915104d214f8a373bfd2cad5261aa98f19daa32e6925d97e6c523",
+    "runtime-r19/inputs/private/primary-transcription-context.json": "1fd84e086a21d33e6e5dbaa91a5b70eab2e9048266df8e45d372155d57f8a568",
+    "runtime-r19/inputs/private/speech-batches/b0000.json": "9eb36138f5478cabf50d449d114b482fd2f42efe51e9e350a2ccdd6de15ee364",
+    "runtime-r19/inputs/private/speech-batches/b0000.wav": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841",
+    "runtime-r19/inputs/private/speech-plan.json": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+    "runtime-r19/inputs/private/speech-takes.json": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5",
+    "runtime-r19/inputs/private/speech-transcription-plan.json": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0",
+    "runtime-r19/stage-input.json": "10c29593abd27539fee1e1a97198867492459381f72deab01a23548dffa04ef5",
+    "runtime-r19/stage-output.json": "3486dde0b37e82d5fa4adfe051abbfc2b911c818666d83082f86ceb1a79e4302"
+  },
+  "owned_paths": [
+    "crates/pt-production/src/generation/mod.rs",
+    "crates/pt-production/src/generation/tests.rs",
+    "crates/pt-production/src/generation/primary_transcription.rs",
+    "crates/pt-production/src/generation/primary_verify.rs",
+    "crates/pt-production/src/generation/primary_words.rs",
+    "crates/pt-production/src/generation/primary_match.rs",
+    "crates/pt-production/src/generation/primary_mapping.rs",
+    "crates/pt-production/src/generation/tests/primary_transcription.rs",
+    "fixtures/generation/primary-transcription-v1/**",
+    "fixtures/generation/g24-completed-source-v1/**",
+    "docs/implementation/generation/speech-g24-freeze.json",
+    "docs/implementation/generation/primary-transcription.md",
+    "docs/implementation/generation/primary-transcription-handoff.json",
+    "docs/implementation/generation/primary-transcription-ready.json",
+    "docs/implementation/generation/README.md",
+    "docs/implementation/generation/integration-requests.md"
+  ],
+  "next_runtime_work": [
+    "Register bounded private Acoustic context, Source/receipt/code/recipe scope and genuine committed input ArtifactRefs",
+    "Commit/register exact unhinted request bytes; preserve original issued/result/raw/audio/usage independently of parser success",
+    "Adopt durable checkpoints, active-epoch cancellation/atomic commits and audited original-to-current replay mappings; existing Speech recipes still stop at NeedsRepair"
+  ],
+  "remaining": [
+    "Actual provider authorization, metered transcription pilot and transport; zero calls in this increment",
+    "Independent complete fact intervals under the unchanged 0.75-second rule; speech fidelity/listening/continuity and point/cut ambiguity",
+    "Final assembly/resampling/joins/common narration/presentation/master, independent creative/device acceptance and publication"
+  ],
+  "git_operations": 0,
+  "ui_edits": 0,
+  "shared_contract_edits": 0,
+  "helper_recipe_changes": 0,
+  "runtime_materializer_changes": 0,
+  "commit_owner": "integration"
+}
