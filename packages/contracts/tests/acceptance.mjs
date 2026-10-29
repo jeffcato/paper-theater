@@ -7,7 +7,10 @@ for(const c of data.cases){let error;try{validateAcceptanceVerificationReport(c.
 console.log(`acceptance: ${data.cases.length} Rust-produced private reports agree; unimplemented verifiers remain blocked`);
 
 assert.equal(acceptanceCheckMatrix('pt-acceptance-required-v1').checks.filter(c=>c.implemented).length,3);
-assert.equal(acceptanceCheckMatrix().checks.filter(c=>c.implemented).length,7);
+assert.equal(acceptanceCheckMatrix('pt-acceptance-required-v3').checks.filter(c=>c.implemented).length,5);
+assert.equal(acceptanceCheckMatrix('pt-acceptance-required-v5').checks.filter(c=>c.implemented).length,7);
+assert.equal(acceptanceCheckMatrix('pt-acceptance-required-v6').checks.filter(c=>c.implemented).length,7);
+assert.equal(acceptanceCheckMatrix().checks.filter(c=>c.implemented).length,9);
 assert.equal(data.cases[0].report.checks.find(c=>c.check_id==='complete-source-coverage').outcome,'pass');
 assert.equal(data.cases.find(c=>c.id==='independent-scene-gap-retained').report.checks.find(c=>c.check_id==='complete-source-coverage').outcome,'fail');
 

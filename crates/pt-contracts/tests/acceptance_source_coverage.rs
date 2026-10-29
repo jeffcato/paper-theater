@@ -116,11 +116,19 @@ fn complete_scoped_source_passes_but_other_verifiers_and_production_stay_blocked
             r.checks
                 .iter()
                 .filter(
-                    |c| ["complete-chapter", "speech-fidelity", "story-coverage"]
+                    |c| ["speech-fidelity", "story-coverage"]
                         .contains(&c.check_id.as_str())
                 )
                 .all(|c| !c.executed && c.outcome != ReviewOutcome::Pass)
         );
+        for c in r.checks.iter().filter(|c| {
+            ["complete-chapter", "complete-excerpt"].contains(&c.check_id.as_str())
+        }) {
+            assert!(c.executed);
+            // Inherited findings may worsen Missing to Fail; neither is Pass.
+            assert_ne!(c.outcome, ReviewOutcome::Pass);
+            assert!(c.reasons.contains(&AcceptanceReason::MissingSourceMapping));
+        }
         r.validate(&acceptance_binding_checker()).unwrap();
         fn check_private(value: &serde_json::Value, source: &str, path: &str) {
             match value {
@@ -320,8 +328,9 @@ fn excerpt_cannot_substitute_for_trusted_chapter_source_or_complete_chapter_revi
     let r = report(&f);
     assert_eq!(row(&r).outcome, ReviewOutcome::Pass);
     assert!(r.checks.iter().any(|c| c.check_id == "complete-chapter"
-        && !c.executed
-        && c.outcome != ReviewOutcome::Pass));
+        && c.executed
+        && c.outcome == ReviewOutcome::Fail
+        && c.reasons.contains(&AcceptanceReason::MissingSourceMapping)));
     // Runtime pins the larger authoritative source; candidate's excerpt is then incomplete.
     let longer = format!("{} More original chapter prose.", f.doc.source_text);
     let file = fixture::put(&f.private, "source.txt", longer.as_bytes(), "text/plain");
@@ -358,7 +367,16 @@ fn legacy_matrix_and_receipt_identities_are_preserved() {
         4
     );
     assert_eq!(old.checks.iter().filter(|c| c.implemented).count(), 3);
-    assert_eq!(current.checks.iter().filter(|c| c.implemented).count(), 7);
+    assert_eq!(
+        acceptance_check_matrix_for_version("pt-acceptance-required-v3")
+            .unwrap()
+            .checks
+            .iter()
+            .filter(|c| c.implemented)
+            .count(),
+        5
+    );
+    assert_eq!(current.checks.iter().filter(|c| c.implemented).count(), 9);
     for scope in [
         AcceptanceScope::Diagnostic,
         AcceptanceScope::AutonomousExcerpt,

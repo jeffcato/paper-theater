@@ -585,6 +585,56 @@ fn pilot_recording_review_passes_on_bound_plan_without_grants() {
 }
 
 #[test]
+fn pilot_recording_review_rejects_unrecorded_hex_targets_as_incomplete() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("pilot-recording-review".into());
+    let mut plan = pilot_plan_json(false);
+    plan["reviews"] = serde_json::json!([{"targets":["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],"production_approved":false}]);
+    let e = pilot_proposal(&f, &plan);
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[e], &f.private).unwrap();
+    let check = verified
+        .report()
+        .checks
+        .iter()
+        .find(|c| c.check_id == "pilot-recording-review")
+        .unwrap()
+        .clone();
+    assert!(check.executed);
+    assert_eq!(check.outcome, ReviewOutcome::Fail);
+    assert!(
+        check
+            .reasons
+            .contains(&AcceptanceReason::IncompletePilotEvidence)
+    );
+}
+
+#[test]
+fn pilot_recording_review_rejects_plan_with_unresolved_recorded_audio() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("pilot-recording-review".into());
+    let mut plan = pilot_plan_json(false);
+    plan["takes"][0]["audio"]["file"]["sha256"] = serde_json::json!("");
+    let e = pilot_proposal(&f, &plan);
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[e], &f.private).unwrap();
+    let check = verified
+        .report()
+        .checks
+        .iter()
+        .find(|c| c.check_id == "pilot-recording-review")
+        .unwrap()
+        .clone();
+    assert!(check.executed);
+    assert_eq!(check.outcome, ReviewOutcome::Fail);
+    assert!(check.reasons.contains(&AcceptanceReason::InvalidBinding));
+}
+
+#[test]
 fn delivery_fact_mapping_executes_and_reports_missing_without_mapping_evidence() {
     let mut f = acceptance_fixture::Fixture::new();
     f.policy.scope = AcceptanceScope::AutonomousExcerpt;
@@ -690,7 +740,10 @@ fn delivery_fact_mapping_fails_on_mismatched_source_span() {
     assert!(!rows.is_empty());
     assert!(rows.iter().all(|c| c.executed));
     assert!(rows.iter().all(|c| c.outcome == ReviewOutcome::Fail));
-    assert!(rows.iter().all(|c| c.reasons.contains(&AcceptanceReason::InvalidBinding)));
+    assert!(
+        rows.iter()
+            .all(|c| c.reasons.contains(&AcceptanceReason::InvalidBinding))
+    );
 }
 
 #[test]
@@ -708,6 +761,30 @@ fn pilot_recording_review_fails_when_plan_grants_bulk_speech() {
         .iter()
         .find(|c| c.check_id == "pilot-recording-review")
         .unwrap();
+    assert!(check.executed);
+    assert_eq!(check.outcome, ReviewOutcome::Fail);
+    assert!(check.reasons.contains(&AcceptanceReason::InvalidBinding));
+}
+
+#[test]
+fn pilot_recording_review_digest_strings_and_nonempty_targets_are_not_recorded_evidence() {
+    let mut f = acceptance_fixture::Fixture::new();
+    f.doc
+        .acceptance
+        .required_check_ids
+        .push("pilot-recording-review".into());
+    let mut plan = pilot_plan_json(false);
+    plan["reviews"] =
+        serde_json::json!([{"targets":["unresolved-audio"],"production_approved":false}]);
+    let e = pilot_proposal(&f, &plan);
+    let verified = verify_acceptance(&f.doc, &f.root, &f.policy, &[e], &f.private).unwrap();
+    let check = verified
+        .report()
+        .checks
+        .iter()
+        .find(|c| c.check_id == "pilot-recording-review")
+        .unwrap()
+        .clone();
     assert!(check.executed);
     assert_eq!(check.outcome, ReviewOutcome::Fail);
     assert!(check.reasons.contains(&AcceptanceReason::InvalidBinding));

@@ -12,10 +12,14 @@ jobs:
   product-identity:
     name: Check product identity
     runs-on: ubuntu-latest
+    env:
+      CARGO_BUILD_JOBS: 2
+      RUST_TEST_THREADS: 2
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - name: Check product names and content
         run: python3 tools/check_product_identity.py .
@@ -37,4 +41,7 @@ jobs:
       - name: Test complete offline generation helpers
         run: env -u SOURCE_ROOT python3 -B -m unittest discover -s tools/generation -p 'test_*.py'
       - name: Verify real backend process restart and private replay
-        run: env -u SOURCE_ROOT python3 -B crates/pt-server/tests/chapter_runtime_process.py --receipt "$RUNNER_TEMP/pt-backend-restart.json"
+        run: |
+          env -u SOURCE_ROOT python3 -B crates/pt-server/tests/chapter_runtime_process.py --receipt "$RUNNER_TEMP/pt-backend-restart.json"
+          env -u SOURCE_ROOT python3 -B crates/pt-server/tests/direction_pilot_process.py
+          env -u SOURCE_ROOT python3 -B crates/pt-server/tests/speech_runtime_process.py

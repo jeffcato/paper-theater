@@ -1,0 +1,158 @@
+{
+  "batches": [
+    {
+      "audio": {
+        "file": {
+          "bytes": 46,
+          "media_type": "audio/wav",
+          "path": "private/speech-batches/b0000.wav",
+          "sha256": "d8ddcc0cb152ee0adc55b0cf22891fc978781a178cb466cab762ee0129524635"
+        },
+        "id": "1c76d944a5d474b167196941f72c765da6108feb9849b6297d00fbcb23afeee9",
+        "provenance": "diagnostic"
+      },
+      "committed_epoch": 0,
+      "id": "b0000",
+      "receipt": {
+        "audio": {
+          "file": {
+            "bytes": 46,
+            "media_type": "audio/wav",
+            "path": "private/speech-batches/b0000.wav",
+            "sha256": "d8ddcc0cb152ee0adc55b0cf22891fc978781a178cb466cab762ee0129524635"
+          },
+          "id": "1c76d944a5d474b167196941f72c765da6108feb9849b6297d00fbcb23afeee9",
+          "provenance": "diagnostic"
+        },
+        "batch_id": "b0000",
+        "bulk_speech_approved": false,
+        "copy_plan": {
+          "file": {
+            "bytes": 2871,
+            "media_type": "application/json",
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "60ffac17e9532734c3a3d4d12081a69385f00c6f02733b7c840b35673c7ac3e3"
+          },
+          "id": "a2fba0f28d017021e98d2d6e7fd0b892761d5ad3820b46360bddd9a17080191e",
+          "provenance": "diagnostic"
+        },
+        "dispatch_permitted": false,
+        "fact_bounds": null,
+        "format": {
+          "bits_per_sample": 16,
+          "channels": 1,
+          "frames": 1,
+          "sample_rate": 24000
+        },
+        "measured_word_intervals": null,
+        "model_payload": {
+          "audio": {
+            "file": {
+              "bytes": 46,
+              "media_type": "audio/wav",
+              "path": "private/speech-batches/b0000.wav",
+              "sha256": "d8ddcc0cb152ee0adc55b0cf22891fc978781a178cb466cab762ee0129524635"
+            },
+            "id": "1c76d944a5d474b167196941f72c765da6108feb9849b6297d00fbcb23afeee9",
+            "provenance": "diagnostic"
+          },
+          "mode": "VERBATIM",
+          "schema_version": 1,
+          "word_timestamps": true
+        },
+        "narration_assembly": null,
+        "production_approved": false,
+        "provenance": "diagnostic",
+        "recipe": "native-pcm16-frame-copy-v1",
+        "recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+        "sample_origin": "materialized-batch-local",
+        "schema_version": 1,
+        "segments": [
+          {
+            "audio": {
+              "file": {
+                "bytes": 4844,
+                "media_type": "audio/wav",
+                "path": "private/speech-audio/u0000.wav",
+                "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+              },
+              "id": "committed:speech:private:speech-audio:u0000.wav",
+              "provenance": "synthetic"
+            },
+            "batch_span": [
+              0,
+              1
+            ],
+            "cross_cut_uncertainty": true,
+            "native_span": [
+              0,
+              1
+            ],
+            "unit_id": "u0000"
+          }
+        ],
+        "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+        "take_manifest": {
+          "file": {
+            "bytes": 8664,
+            "media_type": "application/json",
+            "path": "private/speech-takes.json",
+            "sha256": "97efd43dd8ca0e37cc04f2cf88aed4c96a21aa0df4fc648c0c30b13235e0b9f8"
+          },
+          "id": "9874a2c1e75e7038d83c8812f8fd5817974d93ff04c7f4733eae1c7c3a89b7a2",
+          "provenance": "diagnostic"
+        },
+        "unplanned_audio": [
+          {
+            "audio": {
+              "file": {
+                "bytes": 4844,
+                "media_type": "audio/wav",
+                "path": "private/speech-audio/u0000.wav",
+                "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+              },
+              "id": "committed:speech:private:speech-audio:u0000.wav",
+              "provenance": "synthetic"
+            },
+            "native_span": [
+              1,
+              2400
+            ],
+            "unit_id": "u0000"
+          },
+          {
+            "audio": {
+              "file": {
+                "bytes": 4846,
+                "media_type": "audio/wav",
+                "path": "private/speech-audio/u0001.wav",
+                "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+              },
+              "id": "committed:speech:private:speech-audio:u0001.wav",
+              "provenance": "synthetic"
+            },
+            "native_span": [
+              0,
+              2401
+            ],
+            "unit_id": "u0001"
+          }
+        ]
+      },
+      "receipt_file": {
+        "file": {
+          "bytes": 3596,
+          "media_type": "application/json",
+          "path": "private/speech-batches/b0000.json",
+          "sha256": "53afbf8ff6d5529212a2453159a24ab908f2a962b48bbdda95a2d13ac4568d44"
+        },
+        "id": "247ef1516f4b177c292d5187b79e7f082db748880bab37a7007960a4339482d4",
+        "provenance": "diagnostic"
+      }
+    }
+  ],
+  "case": "unplanned",
+  "helper_calls": 0,
+  "provider_calls": 0,
+  "schema_version": 1
+}

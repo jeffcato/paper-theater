@@ -1,0 +1,23 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "audioTranscription": {
+              "words": [
+                {
+                  "endOffset": "0.01s",
+                  "startOffset": "0s",
+                  "word": "Mira"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "finishReason": "STOP"
+    }
+  ],
+  "modelVersion": "primary-transcription-double"
+}

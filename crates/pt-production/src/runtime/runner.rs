@@ -358,6 +358,7 @@ pub struct Runtime {
     chapter_helper: Option<super::chapter::ChapterHelper>,
     chapter_inputs: Option<std::path::PathBuf>,
     direction_pilot_inputs: Option<std::path::PathBuf>,
+    speech_inputs: Option<std::path::PathBuf>,
     offline_acoustic: Option<super::helper::OfflineAcoustic>,
 }
 impl Runtime {
@@ -373,6 +374,7 @@ impl Runtime {
             chapter_helper: None,
             chapter_inputs: None,
             direction_pilot_inputs: None,
+            speech_inputs: None,
             offline_acoustic: None,
         }
     }
@@ -479,6 +481,25 @@ impl Runtime {
         self.saved_inputs = Some((fixture, sources));
         self
     }
+    pub fn with_saved_speech_inputs(mut self, root: std::path::PathBuf) -> Self {
+        self.speech_inputs = Some(root);
+        self
+    }
+    pub async fn materialize_speech_batches(&self, run: &str, epoch: i64) -> Result<()> {
+        super::speech::materialize(&self.store, run, epoch).await
+    }
+    pub fn import_saved_speech(&self, run: &str, epoch: i64, root: &std::path::Path) -> Result<()> {
+        super::speech::freeze(&self.store, run, epoch, root)
+    }
+    pub async fn run_saved_speech_until(&self, run: &str, epoch: i64, phases: usize) -> Result<()> {
+        super::speech::run(&self.store, self.executor.as_ref(), run, epoch, phases).await
+    }
+    pub async fn replay_saved_speech(
+        &self,
+        run: &str,
+    ) -> Result<Vec<(String, Vec<(c::FileRef, Vec<u8>)>)>> {
+        super::speech::replay(&self.store, self.executor.as_ref(), run).await
+    }
     pub fn with_saved_direction_pilot(mut self, root: std::path::PathBuf) -> Self {
         self.direction_pilot_inputs = Some(root);
         self
@@ -510,6 +531,21 @@ impl Runtime {
         let Some((run, epoch)) = self.store.claim()? else {
             return Ok(false);
         };
+        if self.store.snapshot(&run)?["request"]["pins"]["recipe_sha256"]
+            .as_str()
+            .is_some_and(super::speech::is_recipe)
+        {
+            let result=async{
+                let exists:bool=self.store.db()?.query_row("SELECT EXISTS(SELECT 1 FROM speech_flows WHERE run=?1)",[&run],|r|r.get(0))?;
+                if !exists{let root=self.speech_inputs.as_ref().ok_or_else(||Error::new("speech_unavailable","trusted Speech inputs are not configured"))?;self.import_saved_speech(&run,epoch,root)?;}
+                self.run_saved_speech_until(&run,epoch,3).await?;self.materialize_speech_batches(&run,epoch).await?;fail("stage_needs_repair","saved Speech/PCM cannot authorize bulk synthesis, transcription or publication")
+            }.await;
+            if self.store.is_active(&run, epoch)? {
+                self.store
+                    .finish(&run, epoch, "failed", result.as_ref().err().map(|e| e.code))?;
+            }
+            return result;
+        }
         if self.store.snapshot(&run)?["request"]["pins"]["recipe_sha256"]
             == super::direction_pilot::RECIPE
         {
@@ -686,7 +722,9 @@ impl Runtime {
         Store::active(&self.store.db()?, run, epoch)?;
         let snapshot = self.store.snapshot(run)?;
         let request: c::RunRequest = serde_json::from_value(snapshot["request"].clone())?;
-        if request.pins.recipe_sha256 == super::direction_pilot::RECIPE {
+        if request.pins.recipe_sha256 == super::direction_pilot::RECIPE
+            || super::speech::is_recipe(&request.pins.recipe_sha256)
+        {
             return fail(
                 "saved_flow_scope",
                 "saved phases require their private checkpoint path; bulk stages have no grant",
@@ -1004,6 +1042,9 @@ impl c::StageExecutor for FixturePipeline {
         services: &dyn c::RunServices,
     ) -> std::result::Result<c::StageOutput, c::StageError> {
         if super::direction_pilot::registered(input.stage, &input.pins.recipe_sha256)
+            || (input.stage == c::Stage::Speech
+                && input.pins.recipe_sha256
+                    == "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956")
             || (input.stage == c::Stage::Acoustic
                 && input.pins.recipe_sha256 == super::chapter::RECIPE)
             || input.pins.recipe_sha256 == digest(b"saved-diagnostic-v1")

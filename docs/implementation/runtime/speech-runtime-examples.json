@@ -1,0 +1,2404 @@
+{
+  "batches": [
+    {
+      "audio": {
+        "file": {
+          "bytes": 9646,
+          "media_type": "audio/wav",
+          "path": "private/speech-batches/b0000.wav",
+          "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+        },
+        "id": "8c010fcaee865b48b5912184049c387ff6569633ff17a4928bd1879c4585f648",
+        "provenance": "diagnostic"
+      },
+      "committed_epoch": 0,
+      "id": "b0000",
+      "receipt": {
+        "audio": {
+          "file": {
+            "bytes": 9646,
+            "media_type": "audio/wav",
+            "path": "private/speech-batches/b0000.wav",
+            "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+          },
+          "id": "8c010fcaee865b48b5912184049c387ff6569633ff17a4928bd1879c4585f648",
+          "provenance": "diagnostic"
+        },
+        "batch_id": "b0000",
+        "bulk_speech_approved": false,
+        "copy_plan": {
+          "file": {
+            "bytes": 2619,
+            "media_type": "application/json",
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0"
+          },
+          "id": "1228f9ec0dda66a77a7a2b4839d1c5f861814b1671f93ce023d497d2c9125bc0",
+          "provenance": "diagnostic"
+        },
+        "dispatch_permitted": false,
+        "fact_bounds": null,
+        "format": {
+          "bits_per_sample": 16,
+          "channels": 1,
+          "frames": 4801,
+          "sample_rate": 24000
+        },
+        "measured_word_intervals": null,
+        "model_payload": {
+          "audio": {
+            "file": {
+              "bytes": 9646,
+              "media_type": "audio/wav",
+              "path": "private/speech-batches/b0000.wav",
+              "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+            },
+            "id": "8c010fcaee865b48b5912184049c387ff6569633ff17a4928bd1879c4585f648",
+            "provenance": "diagnostic"
+          },
+          "mode": "VERBATIM",
+          "schema_version": 1,
+          "word_timestamps": true
+        },
+        "narration_assembly": null,
+        "production_approved": false,
+        "provenance": "diagnostic",
+        "recipe": "native-pcm16-frame-copy-v1",
+        "recipe_sha256": "811849a41adf0c8b41c3b35ed5fa9216d5e836c586038c5af19f6e2e7a3502c2",
+        "sample_origin": "materialized-batch-local",
+        "schema_version": 1,
+        "segments": [
+          {
+            "audio": {
+              "file": {
+                "bytes": 4844,
+                "media_type": "audio/wav",
+                "path": "private/speech-audio/u0000.wav",
+                "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+              },
+              "id": "committed:speech:private:speech-audio:u0000.wav",
+              "provenance": "synthetic"
+            },
+            "batch_span": [
+              0,
+              2400
+            ],
+            "cross_cut_uncertainty": false,
+            "native_span": [
+              0,
+              2400
+            ],
+            "unit_id": "u0000"
+          },
+          {
+            "audio": {
+              "file": {
+                "bytes": 4846,
+                "media_type": "audio/wav",
+                "path": "private/speech-audio/u0001.wav",
+                "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+              },
+              "id": "committed:speech:private:speech-audio:u0001.wav",
+              "provenance": "synthetic"
+            },
+            "batch_span": [
+              2400,
+              4801
+            ],
+            "cross_cut_uncertainty": false,
+            "native_span": [
+              0,
+              2401
+            ],
+            "unit_id": "u0001"
+          }
+        ],
+        "source_sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+        "take_manifest": {
+          "file": {
+            "bytes": 17136,
+            "media_type": "application/json",
+            "path": "private/speech-takes.json",
+            "sha256": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5"
+          },
+          "id": "3a44e180a602e62c28c98b1df3c5604916901cd3a1cd23c5092449c90d2b3dd4",
+          "provenance": "diagnostic"
+        },
+        "unplanned_audio": []
+      },
+      "receipt_file": {
+        "file": {
+          "bytes": 3256,
+          "media_type": "application/json",
+          "path": "private/speech-batches/b0000.json",
+          "sha256": "19e4c72e0dc771ea9ae3a2793572fa31f1d4ad14677efd614efb1626745330e9"
+        },
+        "id": "6e4e37a5a25ed5e5bbd617ac88446f6fe869c8598d2288d4dde0ce5e7b6b486d",
+        "provenance": "diagnostic"
+      }
+    }
+  ],
+  "bulk_speech_approved": false,
+  "case": "recorded-v2",
+  "helper_calls": 0,
+  "phases": [
+    {
+      "artifacts": [
+        {
+          "file": {
+            "bytes": 1815,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+          },
+          "id": "e338a73987e5390f67f96c47db7b562c12ea5551985187225479668ef89ca68a",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 1806,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+          },
+          "id": "51b3b61e1b8ceb039352ea438516147e25f31beab481ca16bae01fe1d3aea9aa",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 816,
+            "media_type": "application/json",
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a"
+          },
+          "id": "fa30b1febeb1d20f3d0da472f2487ce9e8dcbb57640fe4bb99553f7e2f4b1b92",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 863,
+            "media_type": "application/json",
+            "path": "private/speech-takes.json",
+            "sha256": "c3775a871e311220d409135b5f459f872c06b0d94a1013d6546460c6454a9cae"
+          },
+          "id": "48b8072ccc654f03708ceed5e483396178cbb88017de6c6e421a40040319e20c",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 6636,
+            "media_type": "application/json",
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53"
+          },
+          "id": "471667f4a7b7536c5cbecd2a06ca7dd34b00faeddc2c2ff2a39be07285ee3224",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 9172,
+            "media_type": "application/json",
+            "path": "private/speech-plan.json",
+            "sha256": "5c71ed12b05b955c1324df7e7c03a5084beaa4697bada06959329050e04b6cc0"
+          },
+          "id": "7cbf15963c69b3e289ee21a4ddaadd37cde50d0180773b14426ccc7f6db8298f",
+          "provenance": "diagnostic"
+        }
+      ],
+      "committed_epoch": 0,
+      "input": {
+        "epoch": 1,
+        "inputs": [
+          {
+            "file": {
+              "bytes": 47,
+              "media_type": "text/plain",
+              "path": "raw-source.txt",
+              "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+            },
+            "id": "committed:test:raw-source.txt",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 47,
+              "media_type": "text/plain",
+              "path": "clean-source.txt",
+              "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+            },
+            "id": "committed:test:clean-source.txt",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2098,
+              "media_type": "application/json",
+              "path": "frozen-source.json",
+              "sha256": "dc5ee12ebf4a29e7e5516907d6bd1070eb5c0d2a92e0f56886772387b9d889a9"
+            },
+            "id": "committed:test:frozen-source.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 3725,
+              "media_type": "application/json",
+              "path": "source.json",
+              "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+            },
+            "id": "committed:test:source.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 400,
+              "media_type": "application/json",
+              "path": "private/book-registry.json",
+              "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+            },
+            "id": "committed:test:private:book-registry.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 61,
+              "media_type": "application/json",
+              "path": "private/direction-recipe.json",
+              "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4"
+            },
+            "id": "committed:test:private:direction-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 851,
+              "media_type": "application/json",
+              "path": "private/direction-context.json",
+              "sha256": "e755225a78516d516f1e647ac868577760ca9c2cc7c8bf39683e23bc20772988"
+            },
+            "id": "committed:test:private:direction-context.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 14041,
+              "media_type": "application/json",
+              "path": "private/direction-request.json",
+              "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef"
+            },
+            "id": "committed:test:private:direction-request.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2537,
+              "media_type": "application/json",
+              "path": "private/direction-response.json",
+              "sha256": "ffc1e3e8ff25a2d4c98d4a6ded4b72812cdfc66421dd9b061e135b067e6eefe0"
+            },
+            "id": "committed:test:private:direction-response.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 980,
+              "media_type": "application/json",
+              "path": "private/direction-observation.json",
+              "sha256": "72918eb8cacb1308d3f76b33833fe0154c9dbc9d3bd204c0a16bcc3270d5cecd"
+            },
+            "id": "committed:test:private:direction-observation.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 9391,
+              "media_type": "application/json",
+              "path": "private/direction-plan.json",
+              "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+            },
+            "id": "committed:pilot:private:direction-plan.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 3725,
+              "media_type": "application/json",
+              "path": "private/pilot-direction-input.json",
+              "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+            },
+            "id": "committed:pilot:private:pilot-direction-input.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 320,
+              "media_type": "application/json",
+              "path": "private/voice-catalog.json",
+              "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+            },
+            "id": "committed:pilot:private:voice-catalog.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1076,
+              "media_type": "application/json",
+              "path": "private/pilot-selection.json",
+              "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+            },
+            "id": "committed:pilot:private:pilot-selection.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 48,
+              "media_type": "application/json",
+              "path": "private/pilot-recipe.json",
+              "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+            },
+            "id": "committed:pilot:private:pilot-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1606,
+              "media_type": "application/json",
+              "path": "private/pilot/requests/p000-t00.json",
+              "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3"
+            },
+            "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1597,
+              "media_type": "application/json",
+              "path": "private/pilot/requests/p000-t01.json",
+              "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9"
+            },
+            "id": "committed:pilot:private:pilot:requests:p000-t01.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4844,
+              "media_type": "audio/wav",
+              "path": "private/pilot-audio/t0.wav",
+              "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+            },
+            "id": "committed:pilot:private:pilot-audio:t0.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1162,
+              "media_type": "application/json",
+              "path": "private/pilot-raw/t0.json",
+              "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2"
+            },
+            "id": "committed:pilot:private:pilot-raw:t0.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 949,
+              "media_type": "application/json",
+              "path": "private/pilot-saved/t0.json",
+              "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8"
+            },
+            "id": "committed:pilot:private:pilot-saved:t0.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4846,
+              "media_type": "audio/wav",
+              "path": "private/pilot-audio/t1.wav",
+              "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+            },
+            "id": "committed:pilot:private:pilot-audio:t1.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1158,
+              "media_type": "application/json",
+              "path": "private/pilot-raw/t1.json",
+              "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291"
+            },
+            "id": "committed:pilot:private:pilot-raw:t1.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 949,
+              "media_type": "application/json",
+              "path": "private/pilot-saved/t1.json",
+              "sha256": "b6a07d34f25c08b42cf456b6676d7c1ca8c89e06f708c99326a150dfb2ed0280"
+            },
+            "id": "committed:pilot:private:pilot-saved:t1.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2685,
+              "media_type": "application/json",
+              "path": "private/pilot-context.json",
+              "sha256": "948d5939a62729eb0573fb683496a614060de1655909e6659f9ae7561b25466e"
+            },
+            "id": "committed:pilot:private:pilot-context.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 14340,
+              "media_type": "application/json",
+              "path": "private/pilot-plan.json",
+              "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2"
+            },
+            "id": "committed:speech:private:pilot-plan.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 8299,
+              "media_type": "application/json",
+              "path": "private/speech-pilot-input.json",
+              "sha256": "50d4c049b00e4d842620e8ac5c186c8dd0f9a075e3013a3b1ffe46109aa05a0c"
+            },
+            "id": "committed:speech:private:speech-pilot-input.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 762,
+              "media_type": "application/json",
+              "path": "private/speech-bindings.json",
+              "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+            },
+            "id": "committed:speech:private:speech-bindings.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 49,
+              "media_type": "application/json",
+              "path": "private/speech-recipe.json",
+              "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+            },
+            "id": "committed:speech:private:speech-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1407,
+              "media_type": "application/json",
+              "path": "private/speech-context.json",
+              "sha256": "6a10a0cd2edb37e233f967a8d90a16697bb0a2ac8371a3cd42feb0f7ff4ba417"
+            },
+            "id": "3466b94fcea8c9831c8ed6ed0912aad5b550463f6ea2cf20e59d34274a6f81a6",
+            "provenance": "diagnostic"
+          }
+        ],
+        "library_revision": 1,
+        "limits": {
+          "money_microusd": 0,
+          "repairs": 0,
+          "requests": 0,
+          "tokens": 0,
+          "wall_time_ms": 0
+        },
+        "mode": "replay",
+        "pins": {
+          "profile_id": "paper-player-r186-v1",
+          "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+          "recipe_sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+        },
+        "revision": 1,
+        "run_id": "offline-run",
+        "schema_version": 1,
+        "stage": "speech",
+        "unit_id": "saved-excerpt"
+      },
+      "original_mappings": [
+        [
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "committed:speech:private:speech:requests:u0000.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "e338a73987e5390f67f96c47db7b562c12ea5551985187225479668ef89ca68a",
+            "provenance": "diagnostic"
+          }
+        ],
+        [
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "committed:speech:private:speech:requests:u0001.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "51b3b61e1b8ceb039352ea438516147e25f31beab481ca16bae01fe1d3aea9aa",
+            "provenance": "diagnostic"
+          }
+        ]
+      ],
+      "output": {
+        "artifacts": [
+          {
+            "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "27d6e0169c30f8ebb79965eb2704518a92574b12f093ab0bcdd0899604004ba6",
+            "file": {
+              "bytes": 816,
+              "media_type": "application/json",
+              "path": "private/speech-transcription-plan.json",
+              "sha256": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "19764a084cde8aa1a3c15356660b1978dd63ca57a80eac522f72eec68d24360a",
+            "file": {
+              "bytes": 863,
+              "media_type": "application/json",
+              "path": "private/speech-takes.json",
+              "sha256": "c3775a871e311220d409135b5f459f872c06b0d94a1013d6546460c6454a9cae"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+            "file": {
+              "bytes": 6636,
+              "media_type": "application/json",
+              "path": "private/speech-handoff.json",
+              "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "3411250a19bd65c65a185cc7aa7622177dd765bc7f0905e34b14476f9cdf2b05",
+            "file": {
+              "bytes": 9172,
+              "media_type": "application/json",
+              "path": "private/speech-plan.json",
+              "sha256": "5c71ed12b05b955c1324df7e7c03a5084beaa4697bada06959329050e04b6cc0"
+            },
+            "provenance": "diagnostic"
+          }
+        ],
+        "cache_keys": [
+          "77dfeb1edf71a34ea57219d05950df3e035eb130ca0c5bb1a4f04a4b58cde0ca"
+        ],
+        "decisions": [],
+        "findings": [
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "initial-reference-research",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "canonical-reference-applicability",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "voice-pilot",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "direction-semantic-review",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "rendered-stage-clarity",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "pilot",
+            "id": "retained-pilot-adverse",
+            "message": "Synthetic takes are not listening evidence.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "pilot",
+            "id": "retained-pilot-adverse",
+            "message": "Synthetic takes are not listening evidence.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-request-commit-pending",
+            "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-listening",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-continuity",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-joins",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-intelligibility",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-speech-fidelity",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-music-context",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "voice-pilot",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-request-commit-pending",
+            "message": "Runtime must commit/register exact requests before proposals can use genuine ArtifactRefs; no dispatch is permitted.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-request-commit-pending",
+            "message": "Runtime must commit/register exact requests before proposals can use genuine ArtifactRefs; no dispatch is permitted.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-take-missing:u0000",
+            "message": "No compatible verified recording; preserve source and do not synthesize or repurchase.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-take-missing:u0001",
+            "message": "No compatible verified recording; preserve source and do not synthesize or repurchase.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-bulk-authorization",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-runtime-execution-unavailable",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-listening-continuity",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-joins-assembly",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-measured-acoustic-evidence",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-primary-transcription-sizing-pilot",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          }
+        ],
+        "library_updates": [],
+        "outcome": "needs_repair",
+        "package_candidate": null
+      },
+      "phase": "requests"
+    },
+    {
+      "artifacts": [
+        {
+          "file": {
+            "bytes": 2933,
+            "media_type": "application/json",
+            "path": "private/speech/proposals/u0000.json",
+            "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211"
+          },
+          "id": "f26396cb837bf959df02db58dab2a0d0a755127f10fef3eabeb74a243db4d2a8",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 1815,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+          },
+          "id": "3833feeeb643edcc8f94fbedb81fe2ce7eefab297d988e6c50f6ffff01716cac",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 2933,
+            "media_type": "application/json",
+            "path": "private/speech/proposals/u0001.json",
+            "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55"
+          },
+          "id": "9d6cf3b0187bd829bdfefed643e53e71d2b2c50a6e133e1385f10b334925b689",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 1806,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+          },
+          "id": "7c156b5b444df252cfd29cdef1e9e3d036c0c6e7ef34b6ac8224ce686b1c932a",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 816,
+            "media_type": "application/json",
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a"
+          },
+          "id": "9f8eb9dbf01283fa92fc1019e3cf4f0164465c83b4bb8c3ef568117a3c524e8c",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 863,
+            "media_type": "application/json",
+            "path": "private/speech-takes.json",
+            "sha256": "c3775a871e311220d409135b5f459f872c06b0d94a1013d6546460c6454a9cae"
+          },
+          "id": "ad571bbd5b56c56be5c2299d754b087b84d96e7bd96c7fa0d52087ef10efa0e4",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 6636,
+            "media_type": "application/json",
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53"
+          },
+          "id": "1cc5cd9b18d64249e4b71487e94c157955495b35f37fd63d391bd1990a5ddafc",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 9046,
+            "media_type": "application/json",
+            "path": "private/speech-plan.json",
+            "sha256": "c2c9d89e0cee118c6766f636af1287c6d031437385f08d982cb95a50d49afd1c"
+          },
+          "id": "f8ad42af61c225e41cf313d335012a91b12e9da70063f62c6006a791647c93c7",
+          "provenance": "diagnostic"
+        }
+      ],
+      "committed_epoch": 0,
+      "input": {
+        "epoch": 1,
+        "inputs": [
+          {
+            "file": {
+              "bytes": 47,
+              "media_type": "text/plain",
+              "path": "raw-source.txt",
+              "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+            },
+            "id": "committed:test:raw-source.txt",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 47,
+              "media_type": "text/plain",
+              "path": "clean-source.txt",
+              "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+            },
+            "id": "committed:test:clean-source.txt",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2098,
+              "media_type": "application/json",
+              "path": "frozen-source.json",
+              "sha256": "dc5ee12ebf4a29e7e5516907d6bd1070eb5c0d2a92e0f56886772387b9d889a9"
+            },
+            "id": "committed:test:frozen-source.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 3725,
+              "media_type": "application/json",
+              "path": "source.json",
+              "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+            },
+            "id": "committed:test:source.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 400,
+              "media_type": "application/json",
+              "path": "private/book-registry.json",
+              "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+            },
+            "id": "committed:test:private:book-registry.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 61,
+              "media_type": "application/json",
+              "path": "private/direction-recipe.json",
+              "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4"
+            },
+            "id": "committed:test:private:direction-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 851,
+              "media_type": "application/json",
+              "path": "private/direction-context.json",
+              "sha256": "e755225a78516d516f1e647ac868577760ca9c2cc7c8bf39683e23bc20772988"
+            },
+            "id": "committed:test:private:direction-context.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 14041,
+              "media_type": "application/json",
+              "path": "private/direction-request.json",
+              "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef"
+            },
+            "id": "committed:test:private:direction-request.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2537,
+              "media_type": "application/json",
+              "path": "private/direction-response.json",
+              "sha256": "ffc1e3e8ff25a2d4c98d4a6ded4b72812cdfc66421dd9b061e135b067e6eefe0"
+            },
+            "id": "committed:test:private:direction-response.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 980,
+              "media_type": "application/json",
+              "path": "private/direction-observation.json",
+              "sha256": "72918eb8cacb1308d3f76b33833fe0154c9dbc9d3bd204c0a16bcc3270d5cecd"
+            },
+            "id": "committed:test:private:direction-observation.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 9391,
+              "media_type": "application/json",
+              "path": "private/direction-plan.json",
+              "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+            },
+            "id": "committed:pilot:private:direction-plan.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 3725,
+              "media_type": "application/json",
+              "path": "private/pilot-direction-input.json",
+              "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+            },
+            "id": "committed:pilot:private:pilot-direction-input.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 320,
+              "media_type": "application/json",
+              "path": "private/voice-catalog.json",
+              "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+            },
+            "id": "committed:pilot:private:voice-catalog.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1076,
+              "media_type": "application/json",
+              "path": "private/pilot-selection.json",
+              "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+            },
+            "id": "committed:pilot:private:pilot-selection.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 48,
+              "media_type": "application/json",
+              "path": "private/pilot-recipe.json",
+              "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+            },
+            "id": "committed:pilot:private:pilot-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1606,
+              "media_type": "application/json",
+              "path": "private/pilot/requests/p000-t00.json",
+              "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3"
+            },
+            "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1597,
+              "media_type": "application/json",
+              "path": "private/pilot/requests/p000-t01.json",
+              "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9"
+            },
+            "id": "committed:pilot:private:pilot:requests:p000-t01.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4844,
+              "media_type": "audio/wav",
+              "path": "private/pilot-audio/t0.wav",
+              "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+            },
+            "id": "committed:pilot:private:pilot-audio:t0.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1162,
+              "media_type": "application/json",
+              "path": "private/pilot-raw/t0.json",
+              "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2"
+            },
+            "id": "committed:pilot:private:pilot-raw:t0.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 949,
+              "media_type": "application/json",
+              "path": "private/pilot-saved/t0.json",
+              "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8"
+            },
+            "id": "committed:pilot:private:pilot-saved:t0.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4846,
+              "media_type": "audio/wav",
+              "path": "private/pilot-audio/t1.wav",
+              "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+            },
+            "id": "committed:pilot:private:pilot-audio:t1.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1158,
+              "media_type": "application/json",
+              "path": "private/pilot-raw/t1.json",
+              "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291"
+            },
+            "id": "committed:pilot:private:pilot-raw:t1.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 949,
+              "media_type": "application/json",
+              "path": "private/pilot-saved/t1.json",
+              "sha256": "b6a07d34f25c08b42cf456b6676d7c1ca8c89e06f708c99326a150dfb2ed0280"
+            },
+            "id": "committed:pilot:private:pilot-saved:t1.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2685,
+              "media_type": "application/json",
+              "path": "private/pilot-context.json",
+              "sha256": "948d5939a62729eb0573fb683496a614060de1655909e6659f9ae7561b25466e"
+            },
+            "id": "committed:pilot:private:pilot-context.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 14340,
+              "media_type": "application/json",
+              "path": "private/pilot-plan.json",
+              "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2"
+            },
+            "id": "committed:speech:private:pilot-plan.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 8299,
+              "media_type": "application/json",
+              "path": "private/speech-pilot-input.json",
+              "sha256": "50d4c049b00e4d842620e8ac5c186c8dd0f9a075e3013a3b1ffe46109aa05a0c"
+            },
+            "id": "committed:speech:private:speech-pilot-input.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 762,
+              "media_type": "application/json",
+              "path": "private/speech-bindings.json",
+              "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+            },
+            "id": "committed:speech:private:speech-bindings.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 49,
+              "media_type": "application/json",
+              "path": "private/speech-recipe.json",
+              "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+            },
+            "id": "committed:speech:private:speech-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "committed:speech:private:speech:requests:u0000.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "committed:speech:private:speech:requests:u0001.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1827,
+              "media_type": "application/json",
+              "path": "private/speech-context.json",
+              "sha256": "50032c5ccf7e1d8726f7bee76bf3393e722d11140c9df737a78ddf65d7a2805e"
+            },
+            "id": "1fe833122f1a14e8cea07077a7f4730ea89d1a8df1d8e457bc93316146a4e300",
+            "provenance": "diagnostic"
+          }
+        ],
+        "library_revision": 1,
+        "limits": {
+          "money_microusd": 0,
+          "repairs": 0,
+          "requests": 0,
+          "tokens": 0,
+          "wall_time_ms": 0
+        },
+        "mode": "replay",
+        "pins": {
+          "profile_id": "paper-player-r186-v1",
+          "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+          "recipe_sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+        },
+        "revision": 1,
+        "run_id": "offline-run",
+        "schema_version": 1,
+        "stage": "speech",
+        "unit_id": "saved-excerpt"
+      },
+      "original_mappings": [
+        [
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "committed:speech:private:speech:requests:u0000.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "3833feeeb643edcc8f94fbedb81fe2ce7eefab297d988e6c50f6ffff01716cac",
+            "provenance": "diagnostic"
+          }
+        ],
+        [
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "committed:speech:private:speech:requests:u0001.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "7c156b5b444df252cfd29cdef1e9e3d036c0c6e7ef34b6ac8224ce686b1c932a",
+            "provenance": "diagnostic"
+          }
+        ]
+      ],
+      "output": {
+        "artifacts": [
+          {
+            "candidate_id": "8ea2b29e425559b083b0698da0647f4fbe6685f78411a8d59836abdd38c85fa3",
+            "file": {
+              "bytes": 2933,
+              "media_type": "application/json",
+              "path": "private/speech/proposals/u0000.json",
+              "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "b1e7a1d5d49f45cc51abb10f967449f6958437c94e4f24ccccbb5c4f94fc2dac",
+            "file": {
+              "bytes": 2933,
+              "media_type": "application/json",
+              "path": "private/speech/proposals/u0001.json",
+              "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "27d6e0169c30f8ebb79965eb2704518a92574b12f093ab0bcdd0899604004ba6",
+            "file": {
+              "bytes": 816,
+              "media_type": "application/json",
+              "path": "private/speech-transcription-plan.json",
+              "sha256": "7323310d4e964d2646f3532d03dcbcd271ab76c18758502587d76a431570be8a"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "19764a084cde8aa1a3c15356660b1978dd63ca57a80eac522f72eec68d24360a",
+            "file": {
+              "bytes": 863,
+              "media_type": "application/json",
+              "path": "private/speech-takes.json",
+              "sha256": "c3775a871e311220d409135b5f459f872c06b0d94a1013d6546460c6454a9cae"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+            "file": {
+              "bytes": 6636,
+              "media_type": "application/json",
+              "path": "private/speech-handoff.json",
+              "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "788556539ce1e476dfee723aa987cce50e51204e6ae36ff791a5da5cd7dba08e",
+            "file": {
+              "bytes": 9046,
+              "media_type": "application/json",
+              "path": "private/speech-plan.json",
+              "sha256": "c2c9d89e0cee118c6766f636af1287c6d031437385f08d982cb95a50d49afd1c"
+            },
+            "provenance": "diagnostic"
+          }
+        ],
+        "cache_keys": [
+          "400ec1e32b6fd44519101901bd34a4b3e5097b506c83031873731a756af6e562"
+        ],
+        "decisions": [],
+        "findings": [
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "initial-reference-research",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "canonical-reference-applicability",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "voice-pilot",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "direction-semantic-review",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "rendered-stage-clarity",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "pilot",
+            "id": "retained-pilot-adverse",
+            "message": "Synthetic takes are not listening evidence.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "pilot",
+            "id": "retained-pilot-adverse",
+            "message": "Synthetic takes are not listening evidence.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-request-commit-pending",
+            "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-listening",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-continuity",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-joins",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-intelligibility",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-speech-fidelity",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-music-context",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "voice-pilot",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-take-missing:u0000",
+            "message": "No compatible verified recording; preserve source and do not synthesize or repurchase.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-take-missing:u0001",
+            "message": "No compatible verified recording; preserve source and do not synthesize or repurchase.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-bulk-authorization",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-runtime-execution-unavailable",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-listening-continuity",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-joins-assembly",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-measured-acoustic-evidence",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-primary-transcription-sizing-pilot",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          }
+        ],
+        "library_updates": [],
+        "outcome": "needs_repair",
+        "package_candidate": null
+      },
+      "phase": "registered"
+    },
+    {
+      "artifacts": [
+        {
+          "file": {
+            "bytes": 2933,
+            "media_type": "application/json",
+            "path": "private/speech/proposals/u0000.json",
+            "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211"
+          },
+          "id": "4e6e8236c116c1a18f86ca01065ecd197cb58c96ffe266b6454a6372a2d5fe02",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 1815,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0000.json",
+            "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+          },
+          "id": "aca62f49351fe9295a40d2c04129b919a80719d3f75ed8be6a0e826e311dc74c",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 2933,
+            "media_type": "application/json",
+            "path": "private/speech/proposals/u0001.json",
+            "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55"
+          },
+          "id": "0201d0c2e630e6b91ad22bf3140225ccb15331b42fa1e0ed3662e758f7511145",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 1806,
+            "media_type": "application/json",
+            "path": "private/speech/requests/u0001.json",
+            "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+          },
+          "id": "820cb97d148d77680f4fdb523580e7b17cbe5e2697debb32d5f24272e43805fc",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 2619,
+            "media_type": "application/json",
+            "path": "private/speech-transcription-plan.json",
+            "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0"
+          },
+          "id": "1228f9ec0dda66a77a7a2b4839d1c5f861814b1671f93ce023d497d2c9125bc0",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 17136,
+            "media_type": "application/json",
+            "path": "private/speech-takes.json",
+            "sha256": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5"
+          },
+          "id": "3a44e180a602e62c28c98b1df3c5604916901cd3a1cd23c5092449c90d2b3dd4",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 6636,
+            "media_type": "application/json",
+            "path": "private/speech-handoff.json",
+            "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53"
+          },
+          "id": "d58f94899b1688748d57657eb7aeaf2f599ff151a791f0d9cbc805407bda6e47",
+          "provenance": "diagnostic"
+        },
+        {
+          "file": {
+            "bytes": 8964,
+            "media_type": "application/json",
+            "path": "private/speech-plan.json",
+            "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd"
+          },
+          "id": "c155d7561c2984a093d75250797fa85275f8740b0871e550d5a01ff273aed685",
+          "provenance": "diagnostic"
+        }
+      ],
+      "committed_epoch": 0,
+      "input": {
+        "epoch": 1,
+        "inputs": [
+          {
+            "file": {
+              "bytes": 47,
+              "media_type": "text/plain",
+              "path": "raw-source.txt",
+              "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+            },
+            "id": "committed:test:raw-source.txt",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 47,
+              "media_type": "text/plain",
+              "path": "clean-source.txt",
+              "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c"
+            },
+            "id": "committed:test:clean-source.txt",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2098,
+              "media_type": "application/json",
+              "path": "frozen-source.json",
+              "sha256": "dc5ee12ebf4a29e7e5516907d6bd1070eb5c0d2a92e0f56886772387b9d889a9"
+            },
+            "id": "committed:test:frozen-source.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 3725,
+              "media_type": "application/json",
+              "path": "source.json",
+              "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9"
+            },
+            "id": "committed:test:source.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 400,
+              "media_type": "application/json",
+              "path": "private/book-registry.json",
+              "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf"
+            },
+            "id": "committed:test:private:book-registry.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 61,
+              "media_type": "application/json",
+              "path": "private/direction-recipe.json",
+              "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4"
+            },
+            "id": "committed:test:private:direction-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 851,
+              "media_type": "application/json",
+              "path": "private/direction-context.json",
+              "sha256": "e755225a78516d516f1e647ac868577760ca9c2cc7c8bf39683e23bc20772988"
+            },
+            "id": "committed:test:private:direction-context.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 14041,
+              "media_type": "application/json",
+              "path": "private/direction-request.json",
+              "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef"
+            },
+            "id": "committed:test:private:direction-request.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2537,
+              "media_type": "application/json",
+              "path": "private/direction-response.json",
+              "sha256": "ffc1e3e8ff25a2d4c98d4a6ded4b72812cdfc66421dd9b061e135b067e6eefe0"
+            },
+            "id": "committed:test:private:direction-response.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 980,
+              "media_type": "application/json",
+              "path": "private/direction-observation.json",
+              "sha256": "72918eb8cacb1308d3f76b33833fe0154c9dbc9d3bd204c0a16bcc3270d5cecd"
+            },
+            "id": "committed:test:private:direction-observation.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 9391,
+              "media_type": "application/json",
+              "path": "private/direction-plan.json",
+              "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2"
+            },
+            "id": "committed:pilot:private:direction-plan.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 3725,
+              "media_type": "application/json",
+              "path": "private/pilot-direction-input.json",
+              "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82"
+            },
+            "id": "committed:pilot:private:pilot-direction-input.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 320,
+              "media_type": "application/json",
+              "path": "private/voice-catalog.json",
+              "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d"
+            },
+            "id": "committed:pilot:private:voice-catalog.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1076,
+              "media_type": "application/json",
+              "path": "private/pilot-selection.json",
+              "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a"
+            },
+            "id": "committed:pilot:private:pilot-selection.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 48,
+              "media_type": "application/json",
+              "path": "private/pilot-recipe.json",
+              "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6"
+            },
+            "id": "committed:pilot:private:pilot-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1606,
+              "media_type": "application/json",
+              "path": "private/pilot/requests/p000-t00.json",
+              "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3"
+            },
+            "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1597,
+              "media_type": "application/json",
+              "path": "private/pilot/requests/p000-t01.json",
+              "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9"
+            },
+            "id": "committed:pilot:private:pilot:requests:p000-t01.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4844,
+              "media_type": "audio/wav",
+              "path": "private/pilot-audio/t0.wav",
+              "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+            },
+            "id": "committed:pilot:private:pilot-audio:t0.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1162,
+              "media_type": "application/json",
+              "path": "private/pilot-raw/t0.json",
+              "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2"
+            },
+            "id": "committed:pilot:private:pilot-raw:t0.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 949,
+              "media_type": "application/json",
+              "path": "private/pilot-saved/t0.json",
+              "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8"
+            },
+            "id": "committed:pilot:private:pilot-saved:t0.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4846,
+              "media_type": "audio/wav",
+              "path": "private/pilot-audio/t1.wav",
+              "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+            },
+            "id": "committed:pilot:private:pilot-audio:t1.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1158,
+              "media_type": "application/json",
+              "path": "private/pilot-raw/t1.json",
+              "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291"
+            },
+            "id": "committed:pilot:private:pilot-raw:t1.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 949,
+              "media_type": "application/json",
+              "path": "private/pilot-saved/t1.json",
+              "sha256": "b6a07d34f25c08b42cf456b6676d7c1ca8c89e06f708c99326a150dfb2ed0280"
+            },
+            "id": "committed:pilot:private:pilot-saved:t1.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2685,
+              "media_type": "application/json",
+              "path": "private/pilot-context.json",
+              "sha256": "948d5939a62729eb0573fb683496a614060de1655909e6659f9ae7561b25466e"
+            },
+            "id": "committed:pilot:private:pilot-context.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 14340,
+              "media_type": "application/json",
+              "path": "private/pilot-plan.json",
+              "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2"
+            },
+            "id": "committed:speech:private:pilot-plan.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 8299,
+              "media_type": "application/json",
+              "path": "private/speech-pilot-input.json",
+              "sha256": "50d4c049b00e4d842620e8ac5c186c8dd0f9a075e3013a3b1ffe46109aa05a0c"
+            },
+            "id": "committed:speech:private:speech-pilot-input.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 762,
+              "media_type": "application/json",
+              "path": "private/speech-bindings.json",
+              "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7"
+            },
+            "id": "committed:speech:private:speech-bindings.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 49,
+              "media_type": "application/json",
+              "path": "private/speech-recipe.json",
+              "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+            },
+            "id": "committed:speech:private:speech-recipe.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "committed:speech:private:speech:requests:u0000.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "committed:speech:private:speech:requests:u0001.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4844,
+              "media_type": "audio/wav",
+              "path": "private/speech-audio/u0000.wav",
+              "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4"
+            },
+            "id": "committed:speech:private:speech-audio:u0000.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1072,
+              "media_type": "application/json",
+              "path": "private/speech-raw/u0000.json",
+              "sha256": "bb21f0951488d80d0fdbde1b11c90673ed8947902e87b5b9f09e986c3a64056c"
+            },
+            "id": "committed:speech:private:speech-raw:u0000.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 4846,
+              "media_type": "audio/wav",
+              "path": "private/speech-audio/u0001.wav",
+              "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558"
+            },
+            "id": "committed:speech:private:speech-audio:u0001.wav",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1073,
+              "media_type": "application/json",
+              "path": "private/speech-raw/u0001.json",
+              "sha256": "323c429e2477a8d2fba9c05160a375b73e5c413865622b93886c43ce738c4411"
+            },
+            "id": "committed:speech:private:speech-raw:u0001.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 963,
+              "media_type": "application/json",
+              "path": "private/speech-observations/u0001.json",
+              "sha256": "50fb401df39ca7cf9088ef7eabc10a2d3550783ad2b65e5ea0e66179e480173f"
+            },
+            "id": "committed:speech:private:speech-observations:u0001.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 8041,
+              "media_type": "application/json",
+              "path": "private/speech-observations/u0000.json",
+              "sha256": "e501ffaf3608c969d558a892d3449941c6860fa481f15827f7829d41182a4330"
+            },
+            "id": "committed:speech:private:speech-observations:u0000.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 2254,
+              "media_type": "application/json",
+              "path": "private/speech-context.json",
+              "sha256": "eddf0bc8697c8e24ee993c7fa5a735fd71a834049ca2d9b8d649e7c1775d4357"
+            },
+            "id": "22d66e675f07cf5a3bc50f94a00b6b6f36ee0ce97f716b6ac55ea67dfc3e2603",
+            "provenance": "diagnostic"
+          }
+        ],
+        "library_revision": 1,
+        "limits": {
+          "money_microusd": 0,
+          "repairs": 0,
+          "requests": 0,
+          "tokens": 0,
+          "wall_time_ms": 0
+        },
+        "mode": "replay",
+        "pins": {
+          "profile_id": "paper-player-r186-v1",
+          "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+          "recipe_sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+        },
+        "revision": 1,
+        "run_id": "offline-run",
+        "schema_version": 1,
+        "stage": "speech",
+        "unit_id": "saved-excerpt"
+      },
+      "original_mappings": [
+        [
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "committed:speech:private:speech:requests:u0000.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "id": "aca62f49351fe9295a40d2c04129b919a80719d3f75ed8be6a0e826e311dc74c",
+            "provenance": "diagnostic"
+          }
+        ],
+        [
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "committed:speech:private:speech:requests:u0001.json",
+            "provenance": "synthetic"
+          },
+          {
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "id": "820cb97d148d77680f4fdb523580e7b17cbe5e2697debb32d5f24272e43805fc",
+            "provenance": "diagnostic"
+          }
+        ]
+      ],
+      "output": {
+        "artifacts": [
+          {
+            "candidate_id": "8ea2b29e425559b083b0698da0647f4fbe6685f78411a8d59836abdd38c85fa3",
+            "file": {
+              "bytes": 2933,
+              "media_type": "application/json",
+              "path": "private/speech/proposals/u0000.json",
+              "sha256": "3cb31ce385dcda5fcc6dbbea2a7961daab5bde785d77b435d6dd9fecbbede211"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "269780b250e8aeb33585821cd414e2e2470e509aff63cebe03b8204efae1a3ea",
+            "file": {
+              "bytes": 1815,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0000.json",
+              "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "b1e7a1d5d49f45cc51abb10f967449f6958437c94e4f24ccccbb5c4f94fc2dac",
+            "file": {
+              "bytes": 2933,
+              "media_type": "application/json",
+              "path": "private/speech/proposals/u0001.json",
+              "sha256": "39e3a0976624c62f5153782193d9b880427e7c73c72f79642bf668b3dbb71c55"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "42fceb2a76f7eec8ddd1622302308ca779741119a62b774585533f5cef509a1b",
+            "file": {
+              "bytes": 1806,
+              "media_type": "application/json",
+              "path": "private/speech/requests/u0001.json",
+              "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "5843cfe629a9cac536ed651bf787c7a643ddcc42a2d33ec6ba12516d469710da",
+            "file": {
+              "bytes": 2619,
+              "media_type": "application/json",
+              "path": "private/speech-transcription-plan.json",
+              "sha256": "7a6cb086c57f5099c00a0feb5dd74e84bb2cfa600e9b5c380b59b084a99a87d0"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "2f64abe93fd9516c4a6cb202a6f3ec5963cc16e02242664a101248883dd552ee",
+            "file": {
+              "bytes": 17136,
+              "media_type": "application/json",
+              "path": "private/speech-takes.json",
+              "sha256": "cac72bb14953f2dfdd718d69ee32168e3e5950c89800ee7a3333455dc14d3aa5"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "7167db68dda9d40520be94b7425bfde699b2a1b2fde96ad90837777fba330a44",
+            "file": {
+              "bytes": 6636,
+              "media_type": "application/json",
+              "path": "private/speech-handoff.json",
+              "sha256": "a5ae1813799b466c67887e5be074623c297dd4710b052731414840d72568cf53"
+            },
+            "provenance": "diagnostic"
+          },
+          {
+            "candidate_id": "43d12a58593c8170989d550e37fe7a0dd5c6ed77599e0d88626cfbdfc98124c9",
+            "file": {
+              "bytes": 8964,
+              "media_type": "application/json",
+              "path": "private/speech-plan.json",
+              "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd"
+            },
+            "provenance": "diagnostic"
+          }
+        ],
+        "cache_keys": [
+          "4cb0d8cc790ab8d666d46e4635f8babf64d3f08a52777edb1bf152a2b6335a8d"
+        ],
+        "decisions": [],
+        "findings": [
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "initial-reference-research",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "canonical-reference-applicability",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "voice-pilot",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "direction-semantic-review",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "rendered-stage-clarity",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Planning is private diagnostic data; required independent research/pilot/semantic/rendered acceptance remains unresolved.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "pilot",
+            "id": "retained-pilot-adverse",
+            "message": "Synthetic takes are not listening evidence.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "pilot",
+            "id": "retained-pilot-adverse",
+            "message": "Synthetic takes are not listening evidence.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-request-commit-pending",
+            "message": "Runtime must commit exact request bytes before v2 issuance; candidates are not committed ArtifactRefs.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-listening",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-continuity",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-joins",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-intelligibility",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-speech-fidelity",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "pilot-music-context",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "voice-pilot",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Independent listening/neighbor/reference/mix evidence and runtime support remain unresolved; synthetic format checks grant no acceptance.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "speech",
+            "id": "retained-speech-adverse",
+            "message": "Synthetic silence does not prove speech fidelity.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "speech",
+            "id": "retained-speech-adverse",
+            "message": "Synthetic silence does not prove speech fidelity.",
+            "outcome": "uncertain"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-bulk-authorization",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-runtime-execution-unavailable",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-listening-continuity",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-joins-assembly",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-measured-acoustic-evidence",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "speech-primary-transcription-sizing-pilot",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          },
+          {
+            "evidence": [],
+            "field": "acceptance",
+            "id": "production-verifier-pending",
+            "message": "Planning/saved ingestion confers no pilot, bulk-synthesis, listening, join, acoustic or publication authority; no execution fallback.",
+            "outcome": "missing"
+          }
+        ],
+        "library_updates": [],
+        "outcome": "needs_repair",
+        "package_candidate": null
+      },
+      "phase": "takes"
+    }
+  ],
+  "production_approved": false,
+  "provider_calls": 0,
+  "request": {
+    "book_id": "test-book",
+    "limits": {
+      "money_microusd": 0,
+      "repairs": 0,
+      "requests": 0,
+      "tokens": 0,
+      "wall_time_ms": 30000
+    },
+    "mode": "fixture",
+    "pins": {
+      "profile_id": "paper-player-r186-v1",
+      "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+      "recipe_sha256": "28e9e56bd6fbbd22c4cb9e8306e1639f75ad6a4362da2e0160ccbe8b8bfdbbb5"
+    },
+    "schema_version": 1,
+    "source_id": "chapter-1"
+  },
+  "schema_version": 1
+}

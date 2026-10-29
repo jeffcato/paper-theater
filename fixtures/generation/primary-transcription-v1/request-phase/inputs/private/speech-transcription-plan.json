@@ -1,0 +1,92 @@
+{
+  "batch_materialization_required": true,
+  "batches": [
+    {
+      "bits_per_sample": 16,
+      "channels": 1,
+      "duration": {
+        "denominator": 24000,
+        "numerator": 4801
+      },
+      "frames": 4801,
+      "id": "b0000",
+      "materialized_audio": null,
+      "model_payload": {
+        "audio": null,
+        "mode": "VERBATIM",
+        "schema_version": 1,
+        "word_timestamps": true
+      },
+      "proposal": null,
+      "sample_origin": "proposed-batch-local",
+      "sample_rate": 24000,
+      "segments": [
+        {
+          "audio": {
+            "file": {
+              "bytes": 4844,
+              "media_type": "audio/wav",
+              "path": "private/speech-audio/u0000.wav",
+              "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf"
+            },
+            "id": "committed:primary:private:speech-audio:u0000.wav",
+            "provenance": "synthetic"
+          },
+          "batch_span": [
+            0,
+            2400
+          ],
+          "cross_cut_uncertainty": false,
+          "native_span": [
+            0,
+            2400
+          ],
+          "unit_id": "u0000"
+        },
+        {
+          "audio": {
+            "file": {
+              "bytes": 4846,
+              "media_type": "audio/wav",
+              "path": "private/speech-audio/u0001.wav",
+              "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e"
+            },
+            "id": "committed:primary:private:speech-audio:u0001.wav",
+            "provenance": "synthetic"
+          },
+          "batch_span": [
+            2400,
+            4801
+          ],
+          "cross_cut_uncertainty": false,
+          "native_span": [
+            0,
+            2401
+          ],
+          "unit_id": "u0001"
+        }
+      ],
+      "wav_bytes_if_materialized": 9646
+    }
+  ],
+  "copy_recipe": "native-pcm16-concatenation-plan-v1",
+  "copy_recipe_code_sha256": "37539c09fec08d2b84c25d3f01c1e3c2ae70c9ca37d86d13dd245737191995c5",
+  "dispatch_permitted": false,
+  "expected_prose_supplied": false,
+  "fact_bounds": null,
+  "measured_word_intervals": null,
+  "model": "primary-transcription-double",
+  "narration_assembly": null,
+  "production_approved": false,
+  "provenance": "diagnostic",
+  "provider": "transcription-double",
+  "recipe": {
+    "bytes": 49,
+    "media_type": "application/json",
+    "path": "private/speech-recipe.json",
+    "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956"
+  },
+  "schema_version": 1,
+  "source_matching": "local-only-after-measured-responses",
+  "unplanned_audio": []
+}

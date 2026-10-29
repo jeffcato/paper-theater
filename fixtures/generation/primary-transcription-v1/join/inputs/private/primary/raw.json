@@ -1,0 +1,24 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "audioTranscription": {
+              "text": "Synthetic recognition fixture, not listening evidence.",
+              "words": [
+                {
+                  "endOffset": "0.1s",
+                  "startOffset": "0.1s",
+                  "word": "Mira"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "finishReason": "STOP"
+    }
+  ],
+  "modelVersion": "primary-transcription-double"
+}

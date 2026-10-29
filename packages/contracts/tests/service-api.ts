@@ -1,5 +1,20 @@
 import type {CandidateFile, CandidateWrite, RunServices,ProviderOperationV2,ProviderResultV2,ProviderContext,ProviderQuotaScope,ProviderAttemptIdentity,ProviderArtifactRefWire} from '@paper-theater/contracts';
 import {validateProviderOperationV2,validateProviderResultV2,providerQuotaScopeKey} from '@paper-theater/contracts';
+import {validateProductionDerivationV1,validateProductionParentPolicyV1} from '@paper-theater/contracts';
+import type {ProductionParentPolicyV1,ProductionDerivationV1} from '@paper-theater/contracts';
+import {validatePrimaryProvenanceV1,MAX_NATIVE_AUDIO_WIRE_BYTES} from '@paper-theater/contracts';
+export function audioWireCeilingBytes():number {
+ return MAX_NATIVE_AUDIO_WIRE_BYTES;
+}
+import type {PrimaryProvenanceV1} from '@paper-theater/contracts';
+export async function validatePrimaryBinding(provenance:unknown,operation:unknown,result:unknown,primaryText:string):Promise<PrimaryProvenanceV1> {
+ return validatePrimaryProvenanceV1(provenance,operation,result,new TextEncoder().encode(primaryText));
+}
+export async function validateCompilerParent(parent:unknown,derived:unknown,policyBytes:Uint8Array,requestBytes:Uint8Array):Promise<ProductionDerivationV1> {
+ validateProductionParentPolicyV1(parent);
+ const policy:ProductionParentPolicyV1=parent;
+ return validateProductionDerivationV1(policy,derived,policyBytes,requestBytes);
+}
 // Compile through the package's exported declarations, as downstream workers do.
 export async function parseCandidate(services: RunServices, candidate: CandidateFile): Promise<unknown> {
   const bytes: Uint8Array = await services.read_candidate(candidate);
@@ -67,3 +82,30 @@ export function mappedSourceSummary(report:AcceptanceVerificationReport):SourceS
 import type {DeliveryAudioObservationV1,Pcm16WavInfo} from '@paper-theater/contracts';
 import {validateDeliveryAudioObservationV1} from '@paper-theater/contracts';
 export function deliveryObservation(raw:unknown):Pcm16WavInfo{validateDeliveryAudioObservationV1(raw);const audio:DeliveryAudioObservationV1=raw;return audio.format;}
+
+import {type PilotReviewPolicyV1,type PilotReviewObservationV1,type PilotPlanStructureV1,validatePilotReviewPolicyV1,validatePilotReviewObservationV1,validatePilotPlanStructureV1} from '@paper-theater/contracts';
+declare const pilotPolicy:PilotReviewPolicyV1;
+declare const pilotObservation:PilotReviewObservationV1;
+declare const pilotStructure:PilotPlanStructureV1;
+validatePilotReviewPolicyV1(pilotPolicy);validatePilotReviewObservationV1(pilotObservation);validatePilotPlanStructureV1(pilotStructure);
+
+import {type ProductionConfigurationV1,type ProductionOperationScopeV1,type StageInput,validateProductionConfigurationV1,validateConfiguredProviderProposalV1} from '@paper-theater/contracts';
+export function configuredRequest(raw:unknown,scope:string,input:StageInput,proposal:unknown):ProductionOperationScopeV1 {
+ validateProductionConfigurationV1(raw);
+ const config:ProductionConfigurationV1=raw;
+ validateConfiguredProviderProposalV1(config,scope,input,proposal);
+ return config.operations.find(o=>o.id===scope)!;
+}
+
+import {type AcceptanceCoverageLedgerV1,validateAcceptanceCoverageLedgerV1} from '@paper-theater/contracts';
+export async function readCoverage(raw:unknown,report:Uint8Array,expected:AcceptanceCheckerIdentity):Promise<AcceptanceCoverageLedgerV1> {
+ return validateAcceptanceCoverageLedgerV1(raw,report,expected);
+}
+
+import {type ProviderNativeExchangeV1,type ProviderNativeExchangePolicyV1,type ProviderNativeExchangeBytesV1,validateProviderNativeExchangeV1} from '@paper-theater/contracts';
+export async function nativeExchange(raw:unknown,policy:ProviderNativeExchangePolicyV1,operation:ProviderOperationV2,result:ProviderResultV2,bytes:ProviderNativeExchangeBytesV1):Promise<ProviderNativeExchangeV1> {
+ return validateProviderNativeExchangeV1(raw,policy,operation,result,bytes);
+}
+
+import {type RegisteredSourceCatalogV1,registeredSourceCatalogV1} from '@paper-theater/contracts';
+export const knownSourceScopes:RegisteredSourceCatalogV1=registeredSourceCatalogV1();

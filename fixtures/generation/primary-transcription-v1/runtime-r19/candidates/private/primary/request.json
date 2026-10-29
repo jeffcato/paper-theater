@@ -1,0 +1,15 @@
+{
+  "audio": {
+    "file": {
+      "bytes": 9646,
+      "media_type": "audio/wav",
+      "path": "private/speech-batches/b0000.wav",
+      "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+    },
+    "id": "41b0cf314133cbc4d6f060025e6a987158eba775456f05f9bc05fb320da1bc63",
+    "provenance": "diagnostic"
+  },
+  "mode": "VERBATIM",
+  "schema_version": 1,
+  "word_timestamps": true
+}
