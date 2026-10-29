@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "task": "I21",
+  "status": "false-pass-corrected-recorded-evidence-inspected-production-review-pending",
+  "recorded_at": "2026-10-28T17:46:56.375420+00:00",
+  "candidate_commit": "10736ea0c0fddab48a923f803f26bf8d3584de4d",
+  "candidate_tree": "74601954d343458876901c53255660b35e51840c",
+  "published_baseline": "ec9656f9118e2ccef3ca51c4427c1fffa62d08a9",
+  "service_revision": "pt-services-v1.9.0",
+  "report_version": 5,
+  "checker": {
+    "version": "pt-acceptance-bindings-v5",
+    "sha256": "cc95bd5ab60acd3e6f7633be43173fbeb029cea1c47b8f62719b2c6f567a5e62"
+  },
+  "matrix_version": "pt-acceptance-required-v3",
+  "matrix_bytes_changed": false,
+  "implemented_production_checks": 5,
+  "pending_production_verifiers": 32,
+  "pilot_recording_review_implemented": false,
+  "production_review_executed": false,
+  "fixed_false_pass_cases": [
+    "empty review plan",
+    "unresolved digest strings with nonempty target labels"
+  ],
+  "new_evidence_contracts": [
+    "PilotReviewPolicyV1",
+    "PilotTakeEvidenceV1",
+    "PilotRecordedReviewV1",
+    "PilotPerformerPolicyV1",
+    "PilotCriterionObservationV1",
+    "PilotReviewObservationV1",
+    "PilotPlanStructureV1"
+  ],
+  "api": [
+    "validate_pilot_plan_structure",
+    "verify_acceptance_with_pilot",
+    "verify_acceptance_v2_with_pilot",
+    "validatePilotReviewPolicyV1",
+    "validatePilotReviewObservationV1",
+    "validatePilotPlanStructureV1"
+  ],
+  "source_inventory": "acceptance-pilot-review-source.json",
+  "source_inventory_sha256": "7b950d53cc41f874324f99c846ce9111143c5c215f071051ca067fe9ad120cb2",
+  "tests": [
+    {
+      "name": "scoped backend aggregate",
+      "command": "cargo test -p pt-contracts -p pt-production -p pt-server --locked --offline",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": 323,
+      "stdout_stderr_sha256": "982ae92a85d3a8ce12509d0b14bf1fc4693ff4ac25a79b4daa18f2ff80b60157"
+    },
+    {
+      "name": "complete contracts / strict native packed",
+      "command": "npm run check:contracts",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "bec8db68d8a491becd4b99697976f59cea95b1f68938b4e8bfa879a5f6e08a2e"
+    },
+    {
+      "name": "Pilot regressions",
+      "command": "cargo test -p pt-contracts --test pilot_review --locked --offline",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": 18,
+      "stdout_stderr_sha256": "d34b60c6d778984d0946b135a9cf96d849152f4432a1d04c0c2dfce11e94e171"
+    },
+    {
+      "name": "complete Python",
+      "command": "python3 -B -m unittest discover -s tools/generation -p test_*.py",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": 37,
+      "stdout_stderr_sha256": "f5880cfb46b5bf168f19c4c0396c03c7af142c0f7420ef73edb5926f8941e702"
+    },
+    {
+      "name": "baseline player",
+      "command": "npm run check:player",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": 255,
+      "stdout_stderr_sha256": "8236fff4739763d12917cfc2bc2c7fa7d691d0ffbf799e0897147ce4f202a5e8"
+    },
+    {
+      "name": "baseline Studio",
+      "command": "npm run check:studio",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": 1,
+      "stdout_stderr_sha256": "b19f3acc9da2158dd4f9ecf977dae2685c1fa3b9ec4f9101f23d1a5a92df5068"
+    },
+    {
+      "name": "baseline builds",
+      "command": "npm run build",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "5ded12e6adc9784c7b60e3d1487bcd9afa4c0841009488baa81ff8042691ed3f"
+    },
+    {
+      "name": "server build",
+      "command": "cargo build -p pt-server --locked --offline",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "1005eacbf711e782d009ea14c64f6891efcf941800e68a2ef45eb8a201e8dcae"
+    },
+    {
+      "name": "real restart/private replay",
+      "command": "python3 -B crates/pt-server/tests/chapter_runtime_process.py --receipt <temporary receipt>",
+      "source_root": "unset",
+      "status": "passed",
+      "tests": null,
+      "stdout_stderr_sha256": "3146764c480111ce327ec9aea9288b941a78652b88a37611644f31996047779f"
+    },
+    {
+      "name": "source/built server identity",
+      "command": "python3 tools/check_product_identity.py . target/debug/pt-server",
+      "status": "passed",
+      "stdout_stderr_sha256": "5634cc9983dea13154dd1bee5211540da1f478565448b968c1e6974e3937b7a3",
+      "tests": null
+    }
+  ],
+  "aggregate": {
+    "tests": 323,
+    "generation": 124,
+    "runtime": 116,
+    "new_pilot_tests": 18,
+    "acceptance_behavior_tests": 14,
+    "wav_native_shared_conformance": "pass",
+    "prior_intermediate_aggregate_is_final_evidence": false
+  },
+  "cross_language": {
+    "pilot_cases": 29,
+    "playback_records": 14,
+    "provider_records": 80,
+    "provider_service_records": 67,
+    "private_reports": 14,
+    "slice_reports": 8,
+    "policy_relationship_cases": 8,
+    "audio_reports": 41,
+    "native_delivery_variants": 32,
+    "strict_native_packed": "pass",
+    "actual_cases_sha256": "6eb81ca6ae612a0bbe2ab1bb09ff14326dcc09de44e51c2fce87eb6c7c586598"
+  },
+  "real_server_process": {
+    "schema_version": 1,
+    "test": "chapter_runtime_process",
+    "recipe_sha256": "76e5cb432d7e3a1a91b1e59a6e27963e4bdf0c1e531f26d5368dda476132d598",
+    "real_server_processes": 2,
+    "forced_process_terminations": 1,
+    "original_inputs_removed": true,
+    "helper_attempts_before_restart": 4,
+    "helper_attempts_after_restart": 4,
+    "resumed_units": 4,
+    "unit_outputs_unchanged": true,
+    "checkpoint_events": 4,
+    "private_artifact_http_status": 404,
+    "external_provider_calls": 0,
+    "outcome": "needs_repair",
+    "run_state": "failed",
+    "production_approved": false,
+    "publication_enabled": false
+  },
+  "server_binary_sha256": "8c83f474aeaca9d69021f15657aa6f478feb06e1fa1d25ac80bdccab87643ac8",
+  "behavioral_red_green_evidence": [
+    {
+      "phase": "plan-only-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/plan-only-red.txt.gz",
+      "sha256": "09dff6df5682bdf4dd305550511e95069ab3f4fd85ccf2751499dcc98163b36a",
+      "bytes": 1065,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "unresolved-digests-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/unresolved-digests-red.txt.gz",
+      "sha256": "4d37745facc7955cb0591916f2f5ee47129668f66c73eed550ce11942194b8e6",
+      "bytes": 1121,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "recorded-api-red",
+      "kind": "interface-compilation",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/recorded-api-red.txt.gz",
+      "sha256": "884b839d968b04f21dd494d66d8f080d3bfb9619039768a09bfb7c6a33dd56f2",
+      "bytes": 1194,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "original-failure-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/original-failure-red.txt.gz",
+      "sha256": "97a5676aedff56282e0dc0400f6594f5754f3d58f507e1f1dc024a21733c04ac",
+      "bytes": 1038,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "private-alias-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/private-alias-red.txt.gz",
+      "sha256": "6bc29ba25d2078cbcd5d6c5f2a15c88f67b935487206038fd97d88072460ad58",
+      "bytes": 1013,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "missing-targets-failure-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/missing-targets-failure-red.txt.gz",
+      "sha256": "bcdb2c2587470f61d4cfb0deb13ac9e821f329777e172d9fe7d5593cb5ad361b",
+      "bytes": 972,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "report-downgrade-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/report-downgrade-red.txt.gz",
+      "sha256": "b33334021c3a64ac6b285044b7146fb4943bfd6d7a033ab198cbf175754f6079",
+      "bytes": 1042,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "structural-api-red",
+      "kind": "interface-compilation",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/structural-api-red.txt.gz",
+      "sha256": "f363a048d2e1e226f5c815deec5e6c75277d6aa5f26840b6a549ae6f3c8e79c3",
+      "bytes": 593,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "issued-recipe-input-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/issued-recipe-input-red.txt.gz",
+      "sha256": "29bf5b191478427fd596a282d9c3a2d60a21c7d2e4dc4750723fec6b17e984bb",
+      "bytes": 1968,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "recorded-evidence-green",
+      "kind": "focused-green",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/recorded-evidence-green.txt.gz",
+      "sha256": "a2316812692101367bde4fb21e65026ea43fecb54e643e50382fddb03142d5a6",
+      "bytes": 2553,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "dependency-loss-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/dependency-loss-red.txt.gz",
+      "sha256": "b8510e5cd46777804b6dfe2cb10073bde4b17b701acc7b3ea76a031b95352bb0",
+      "bytes": 1909,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "adverse-wire-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/adverse-wire-red.txt.gz",
+      "sha256": "7b1e26bc9cef9c6b7f7ffddacd0d7fad8eddfe814e3b302e9442540c2c9fd4e0",
+      "bytes": 1846,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "all-pilot-green",
+      "kind": "focused-green",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/all-pilot-green.txt.gz",
+      "sha256": "7016d11bf599deec6bb8d1f310598c25100d1588591c21c12c11e9ff613c98d9",
+      "bytes": 2639,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "missing-declaration-red",
+      "kind": "behavioral",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/missing-declaration-red.txt.gz",
+      "sha256": "c0798b77ff316d452c93aa31eec85a998a29caafa10f749f8b8426e6ed32236a",
+      "bytes": 1951,
+      "hash_scope": "uncompressed original stdout/stderr"
+    },
+    {
+      "phase": "final-pilot-green",
+      "kind": "focused-green",
+      "path": "docs/implementation/integration/acceptance-pilot-review-evidence/final-pilot-green.txt.gz",
+      "sha256": "d34b60c6d778984d0946b135a9cf96d849152f4432a1d04c0c2dfce11e94e171",
+      "bytes": 2734,
+      "hash_scope": "uncompressed original stdout/stderr"
+    }
+  ],
+  "preserved_draft_commits": [
+    "a1848f6cf63d4b966c9d271e49d8b4d2c6944b8d",
+    "4dabe3d1a630f36a01f8f8d53eed5fe984c619f7"
+  ],
+  "excluded_working_state": "Shared main remains at its original two local draft commits with its pre-existing PM/TODO changes; the correction branch does not contain those drafts. All UI/player/runtime/generation/dependency files equal published baseline ec9656f.",
+  "remaining_boundary": [
+    "authenticated independent reviewer execution and provenance",
+    "genuinely executed listening/identity/continuity/intelligibility/fidelity/room-tone/join/score-context judgments",
+    "runtime authoritative expected-policy construction and private persistence adoption",
+    "all other production/accounting/live/profile/device/UI/publication gates"
+  ],
+  "scope_note": "Recorded mechanics can bind complete synthetic evidence but cannot grant a Pilot Pass. Claimed Pass criteria become Uncertain; Missing/Uncertain/Fail and immutable read pins persist. Published v1-v4 reports and v1-v3 matrices retain original identities; draft v4/v5 matrices are excluded.",
+  "ci": {
+    "status": "completed_success",
+    "head_sha": "10736ea0c0fddab48a923f803f26bf8d3584de4d",
+    "run_ids": [
+      40736541613,
+      40736550855
+    ],
+    "events": [
+      "push",
+      "pull_request"
+    ],
+    "urls": [
+      "https://github.com/jeffcato/paper-theater/actions/runs/40736541613",
+      "https://github.com/jeffcato/paper-theater/actions/runs/40736550855"
+    ],
+    "workspace_tests": 398,
+    "full_python_tests": 37,
+    "real_restart": "passed",
+    "exact_checkout_verified": true,
+    "raw_pr_log_sha256": "625a118af41b77491b7bc561af5452b1fdc0b1f5f6c4e705c6dbe8c72383ea81",
+    "job_and_step_record": "pr-ci-results.json",
+    "scope": "Exact final implementation head. Earlier green candidates remain historical; later receipt-only commits do not inherit or relabel CI."
+  },
+  "pr_url": "https://github.com/jeffcato/paper-theater/pull/2",
+  "provider_calls": 0,
+  "credentials_loaded": false,
+  "live_dispatch_enabled": false,
+  "production_approved": false,
+  "bulk_speech_approved": false,
+  "publication_enabled": false,
+  "production_verifier_pending_retained": true,
+  "handoff": "acceptance-pilot-review.md",
+  "prior_verified_candidate": {
+    "commit": "3644f5595446fc8c3e2e315650717ad6e35d11fa",
+    "checker_sha256": "ddf9712b10ef28d2f88e4d90621e9a99d9a997035c101a86e7e58d49713ed9cb",
+    "ci_run_ids": [
+      40731180261,
+      40731212084
+    ],
+    "workspace_tests": 396,
+    "scope": "Earlier candidate passed CI; superseded after the missing-dependency adverse-evidence regression. These results do not certify the follow-up."
+  },
+  "intermediate_dependency_candidate": {
+    "commit": "0679c396232015b8f4108c79bc5bb9573f7d3aa8",
+    "run_ids": [
+      40734814810,
+      40734827626
+    ],
+    "scope": "Superseded by explicit trusted-policy coverage guard; no CI result is transferred to final source."
+  },
+  "external_provider_calls": 0,
+  "dependency_loss_retains_bound_adverse_evidence": true,
+  "trusted_pilot_policy_requires_coverage_row": true,
+  "readiness_verdict": "The plan-only false Pass is fixed and all required scoped/CI checks pass. Independently selected recordings, complete target/criterion binding and adverse retention execute as private mechanics. Authenticated independent listening/production Pilot review remains unimplemented; all production and bulk Speech gates stay closed."
+}

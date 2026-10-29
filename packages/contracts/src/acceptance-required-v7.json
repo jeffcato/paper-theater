@@ -1,0 +1,348 @@
+{
+  "version": "pt-acceptance-required-v7",
+  "checks": [
+    {
+      "id": "package-byte-integrity",
+      "scopes": [
+        "diagnostic",
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": true
+    },
+    {
+      "id": "evidence-binding-integrity",
+      "scopes": [
+        "diagnostic",
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": true
+    },
+    {
+      "id": "required-check-coverage",
+      "scopes": [
+        "diagnostic",
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": true
+    },
+    {
+      "id": "autonomous-provenance",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "complete-chapter",
+      "scopes": [
+        "production_chapter"
+      ],
+      "target": "source",
+      "implemented": true
+    },
+    {
+      "id": "initial-reference-research",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "source",
+      "implemented": false
+    },
+    {
+      "id": "image-scope-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "fact_source",
+      "implemented": false
+    },
+    {
+      "id": "image-style-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "asset",
+      "implemented": false
+    },
+    {
+      "id": "image-reference-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "asset",
+      "implemented": false
+    },
+    {
+      "id": "image-extraction-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "asset",
+      "implemented": false
+    },
+    {
+      "id": "image-stage-readability",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "asset",
+      "implemented": false
+    },
+    {
+      "id": "independent-acoustic-evidence",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "fact_narration",
+      "implemented": false
+    },
+    {
+      "id": "narrator-continuity",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "narration",
+      "implemented": false
+    },
+    {
+      "id": "speech-joins",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "narration",
+      "implemented": false
+    },
+    {
+      "id": "music-bible",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "delivery",
+      "implemented": false
+    },
+    {
+      "id": "mix-intelligibility",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "delivery",
+      "implemented": false
+    },
+    {
+      "id": "story-coverage",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "source",
+      "implemented": false
+    },
+    {
+      "id": "incoming-picture-readiness",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "required-action-accounting",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "rendered-creative-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "delivery",
+      "implemented": false
+    },
+    {
+      "id": "opening-action-capture-coverage",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "delivery",
+      "implemented": false
+    },
+    {
+      "id": "full-audio-review-coverage",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "delivery",
+      "implemented": false
+    },
+    {
+      "id": "font-bundle",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "profile-r186-browser",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "target-device-budget",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "publication-recovery",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "product-spend-authorization",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "complete-excerpt",
+      "scopes": [
+        "autonomous_excerpt"
+      ],
+      "target": "source",
+      "implemented": true
+    },
+    {
+      "id": "complete-source-coverage",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "source",
+      "implemented": true
+    },
+    {
+      "id": "speech-fidelity",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "narration",
+      "implemented": false
+    },
+    {
+      "id": "pilot-recording-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "narration",
+      "implemented": true
+    },
+    {
+      "id": "primary-acoustic-evidence",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "fact_narration",
+      "implemented": false
+    },
+    {
+      "id": "delivery-fact-mapping",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "fact_delivery",
+      "implemented": true
+    },
+    {
+      "id": "graphics-recovery-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "control-lifecycle-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "title-visibility-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    },
+    {
+      "id": "audio-format-review",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "delivery",
+      "implemented": true
+    },
+    {
+      "id": "public-export-boundary",
+      "scopes": [
+        "autonomous_excerpt",
+        "production_chapter"
+      ],
+      "target": "candidate",
+      "implemented": false
+    }
+  ]
+}

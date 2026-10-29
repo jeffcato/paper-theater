@@ -1,0 +1,59 @@
+{
+  "owned": {
+    "crates/pt-production/src/runtime/mod.rs": "d225fd0520906c43b9f63ace3f64485ba745c42623f4c4542c71cd080a3d393b",
+    "crates/pt-production/src/runtime/runner.rs": "b5a3b1b7d49bb651d7b55fc650d82e3417a6fb0f2c8522358d8d3f7016e96612",
+    "crates/pt-production/src/runtime/store.rs": "be3c86e9c9fcf0e70f5eb45e66dcc596253b54a1f4b667140e4a812a710ce99a",
+    "crates/pt-production/src/runtime/schema.sql": "05bea1aee2a8fcd62e823cee435dcaee713a6532a0232cfcef9475a0cfc91051",
+    "crates/pt-production/src/runtime/speech/mod.rs": "e51d253f813eed4fb3f3ae7097355b34bd43610ce1e8618a8638f5eefd61cb1b",
+    "crates/pt-production/src/runtime/speech/storage.rs": "2af0d012936b71b90868f14e8f994bf046ad34f92da883b0140559cf929e7231",
+    "crates/pt-production/src/runtime/speech/services.rs": "c33d29ec76ff1a01307ce1412502cc22de7f6afe69e65bcb6f6158d7dae24b43",
+    "crates/pt-production/src/runtime/speech/pcm.rs": "0c05cf4756a60322fbd0fdcfb1181b01d698963c7a1d8be41494b3421f4a0cf5",
+    "crates/pt-production/src/runtime/speech/batches.rs": "24fb16d8a27092ba76a0a484aaa6c63d480ca4bbbd7a8c79067a1d06c8cb4a52",
+    "crates/pt-production/src/runtime/speech/pcm_tests.rs": "fc0021e9c6952fef2ea16c432fba09e07209cc75a65f39c7b514622812644f13",
+    "crates/pt-production/src/runtime/speech_tests.rs": "61b8a6568890a99798c02785dd69cd165a9a76b7c25f21ba7677c8399f513174",
+    "crates/pt-server/src/main.rs": "e1eed6a99482b16fa7d8c0e43ad399a0d18b4dfc856ffd23d79177b68181da75",
+    "crates/pt-server/tests/speech_runtime_process.py": "b281f479917076770e441b3de2f8be7f5d848e1bb9494c6fbdb20d819c094f52",
+    "fixtures/runtime/speech-v1/registration.json": "b1de812250840967c912dc5d4ef47040967d143c3d0d041d81e8fbf21282c0f3"
+  },
+  "generation": {
+    "crates/pt-production/src/generation/mod.rs": "d48cb038f9f1e2304600484c5da1587898b80eea2203e0f2f14f547a5530c1fb",
+    "crates/pt-production/src/generation/inputs.rs": "7026acf90cc7779adc09755f79581d8bf1f19c1f1336adbfe2446571c02973f3",
+    "crates/pt-production/src/generation/source.rs": "291f63044de741a4c9e4afb1bf7539ea7a60675b7072599770f08411c9303100",
+    "crates/pt-production/src/generation/direction.rs": "0d3b1d2d78939563bca1c4d926d30ef91f7601fbde270289b008e20cd7d7e9b7",
+    "crates/pt-production/src/generation/pilot.rs": "905f1cc3accb77449a0885879fdd7740909b2742dab02312abff3c74349060fb",
+    "crates/pt-production/src/generation/pilot_direction.rs": "91cc144f68dba5a2479bdb8e5ec43a3c48d342d9e5e82be6b21c232fcfd689a8",
+    "crates/pt-production/src/generation/pilot_provider.rs": "f12f42ac1a88d7ca4bdd6cfee5c53f1e84be4548eee3089c4b9d7b0422953148",
+    "crates/pt-production/src/generation/pilot_evidence.rs": "2d9f48db1c279396ae9c2026e0cb48e9c5ae926e292e9b645cacd28a3342b2b7",
+    "crates/pt-production/src/generation/speech.rs": "f872ae48521b69c723c05a77bfba538564ede1e1f27d296bed856c6315f6ec83",
+    "crates/pt-production/src/generation/speech_verify.rs": "7af935a317f50525ee6d99bdebb504b7b3ea360fe319254ba79232023801e83a",
+    "crates/pt-production/src/generation/speech_units.rs": "b36129163e21d00e615005eb508fdda06ed05396f298dda962d483c345745eff",
+    "crates/pt-production/src/generation/speech_takes.rs": "ca04078960dc9bbe0de2c9f0161cabdf7a038f39eeefb4235b83e150f35e9a0c",
+    "crates/pt-production/src/generation/speech_transcription.rs": "37539c09fec08d2b84c25d3f01c1e3c2ae70c9ca37d86d13dd245737191995c5",
+    "crates/pt-production/src/generation/primary_transcription.rs": "8112fccf5f283fd813068c934473e3eb8297a289fe8fb1f64e2f06a528f1de18"
+  },
+  "contracts": {
+    "crates/pt-contracts/src/lib.rs": "49866b9a2dc6acece0520813204f071e563f6f2d17e4b68ecf27bf70183d98c6",
+    "crates/pt-contracts/src/common.rs": "30bb0e158c0f8b962b00cdaf4da93d92a0434549888d677a513a8f71ba61063c",
+    "crates/pt-contracts/src/services.rs": "84ad6bb37163173d92019535a2446805e0529adad39c2007f1f7e6a6b30e9b12",
+    "crates/pt-contracts/src/provider_metadata.rs": "a97cbe85b1df16825bdfbb0f0d1d50d0cecd804355f24a5f93d4ffafa4a772f5",
+    "crates/pt-contracts/src/provider_service.rs": "2bc67cea6fc35eaf9e94720273d84b9cb95d97a0bf2c48a5766954370cfae868",
+    "crates/pt-contracts/src/source_slice.rs": "e8c1610df2ce44dc2fd4864fee5772e68d29581d4eed0b266fb8405751597193",
+    "crates/pt-contracts/src/wav.rs": "e4af78a097ca2e49736e6b3cb4ae1a7e0a997a3867b4156108b837aefbd5219e",
+    "crates/pt-contracts/src/acceptance.rs": "dfd9f16cb9f0c3071806df00d728a94f2baa9709ecd88e069f243c23e724b143",
+    "crates/pt-contracts/src/acceptance_source.rs": "d29a2cb41bbf5132b1d8ccc4bd061a7ee1416a1d874d83ecd039efa318c47475",
+    "crates/pt-contracts/src/validate.rs": "791d4230755434e97c4ce47c52ee913f68317f7308a9fbe45e669323c3dcad3f",
+    "crates/pt-contracts/src/playback.rs": "784d51b9d53e2ccea3e5675c7753828ed36f4b7e37c7a8a01698dc39490f89d0",
+    "packages/contracts/src/acceptance-required-v1.json": "fdcf80aad3ce1d89c18e0180484b72d7645bf5f4451bba08f0c737e9bf041083",
+    "packages/contracts/src/acceptance-required-v2.json": "933f549527d446748c7f9d3ce60fed39328b87c887ac49ffe16f7d15ba7a8820",
+    "packages/contracts/src/acceptance-required-v3.json": "c2d0680ff121cdc419bf733e5a2628709d3b2a4c3684fdef7c86c246d994c9a0",
+    "Cargo.toml": "434226931691a10c30b1f50142b6fcd08f2aa3a35b90d5e7eb238d807b764c77",
+    "Cargo.lock": "4cce5ea2066b544b50ef1df2be2ec173f0558eb60207a698a33c8d0a31d93c06"
+  },
+  "suppliers": {
+    "docs/implementation/integration/server-speech-runtime-task.md": "00b76dede61eb1450b72567c0c76f7aab400fc098f75365e76c64d16839282b1",
+    "docs/implementation/generation/speech-runtime-request.json": "0b8227541595f3ab9b68ec0d17fed3068ba5989b0df0330df87262e20eb98595",
+    "docs/implementation/generation/speech.md": "2662259c39423a025360de6e922a4cc9327731a54d399785d83e2d7ee737ce56",
+    "docs/implementation/generation/speech-ready.json": "483ad547c834ce5cebef8b140fe3e66ab79819627cb3a0c2195d055de29e70b7",
+    "fixtures/generation/direction-v1/response-schema.json": "d9e78068ba7717691307250707c50855a59b1ea8f4f58b58b2258f099bb4da8a"
+  }
+}

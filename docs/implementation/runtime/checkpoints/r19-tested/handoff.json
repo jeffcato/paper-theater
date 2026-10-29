@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "archive": "docs/implementation/runtime/checkpoints/r19-tested/f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114.tar",
+  "sha256": "f6ba6041939471e4d8294978b90c9b92b40afad50ddab43327348c851f4e5114",
+  "current_tree_drift": [
+    {
+      "path": "crates/pt-production/src/generation/mod.rs",
+      "tested_sha256": "c403a6259a099a0b4323f72d35f8c3a200a3baa09e23ffb901842d955124aa2a",
+      "current_sha256": "d48cb038f9f1e2304600484c5da1587898b80eea2203e0f2f14f547a5530c1fb"
+    }
+  ],
+  "complete_scoped_tests": 220,
+  "full_workspace_aggregate_claim": false
+}

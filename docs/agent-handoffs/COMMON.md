@@ -18,6 +18,8 @@ Copy selected code and tests, not old repository scaffolding, archives, dependen
 
 ## Authority and current decisions
 
+October 28 workflow update: implement complete useful slices first and run focused verification before handoff. Mandatory TDD/test-first ordering and RED/GREEN receipts are no longer required, including in older briefs or optional skills. Existing tests, shared interface ownership, negative coverage for critical behavior, acceptance, provenance and spending rules remain in force; see root AGENTS.md for the authoritative policy.
+
 The latest user requirements and these ownership instructions supersede stale mechanisms in source documents. Consult only the implementation plan plus the owning specification needed for your task, using `SOURCE_ROOT` transiently. Agent 1 publishes clean product specifications under `docs/spec/` as they are needed.
 
 Resolve known source-document drift as follows:

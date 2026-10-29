@@ -8,6 +8,8 @@ Use the four named agents: `integration` (Agent 1), `server` (Agent 2), `generat
 
 Give each agent [COMMON.md](COMMON.md), [INTERFACES.md](INTERFACES.md), and its role prompt. Keep this whole directory available so relative links resolve.
 
+For continuous execution, use the [goal-ready task lists and launch prompts](goals/README.md) with the [shared runbook](goals/RUNBOOK.md). There are separate lists for integration, server, generation, the current player/audience owner and the Studio redesign agent. They follow the current delivery plan rather than replaying the historical bootstrap sequence below. Workers may update only their own goal file's checkboxes/evidence/dependency table; shared docs/Git remain integration-owned. Goal preparation does not itself start a run or authorize provider spend.
+
 | Agent | Prompt | Exclusive implementation area |
 |---|---|---|
 | `integration` (1) | [Contracts and integration](01-contracts-and-integration.md) | Workspace, shared Rust/TypeScript contracts, reusable core crates, canonical fixtures, integration checks |
@@ -28,6 +30,8 @@ Use the product's own Git repository at `~/Projects/paper-theater`, with GitHub 
 In a shared working directory there is one Git index and branch: only Agent 1 stages, commits, switches branches and pushes. Workers edit their assigned files and report changes; they do not run broad staging/reset commands. Agent 1 stages explicit reviewed paths and uses implementation branches/PRs. In isolated worktrees, workers may commit only their own files on their assigned branch; Agent 1 integrates and publishes the result. Never force-push or reset another worker's work.
 
 ## Exact file ownership
+
+Temporary operator override, October 28, 2026: `apps/studio/**` is reserved to the separate Studio redesign agent while its redesign is active, including tests/configuration. Agent 2's current R19 work remains backend-only; Agents 1 and 3 also exclude the Studio tree from their current implementation tasks. Shared API/player/contracts and root dependencies remain with their existing owners. Integration alone handles shared Git operations. Use a frozen redesign handoff for combined checks, and preserve the separate player/audience redesign. The permanent ownership table below resumes for Studio after the temporary assignment ends.
 
 | Owner | Writable paths |
 |---|---|

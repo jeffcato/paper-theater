@@ -37,9 +37,11 @@ provider calls: durable fixture/replay runs, journal/SSE/cancel/restart, the
 shared-player diagnostic slice (geometry, read-along, staging, lifecycle,
 context-loss recovery, chapter-WAV loading), and 5 of 37 acceptance verifiers
 execute. Required chapter sources are frozen (Oz Ch.1; Wells Bk One Ch.I).
+(Update 2026-10-28: pilot-recording-review and delivery-fact-mapping now
+execute under matrix v5 — 7 of 37, all gates green, uncommitted.)
 **But there is no accepted autonomous release of any kind**: catalog holds zero
 packages, `var/` holds zero runs, both audience tickets read “Under rehearsal”,
-the studio strict check (R12) is red, 32 of 37 acceptance verifiers are
+the studio strict check (R12) is red, 30 of 37 acceptance verifiers are
 explicitly unimplemented (`production-verifier-pending` retained), no live
 authorization/accounting exists, and no demo-device measurement exists. The
 shortest path to release is: I20 coherent backend checkpoint → R18+G24
@@ -52,7 +54,7 @@ and submission prep (M7/D5/D6).
 
 | Scope | Status |
 |---|---|
-| Acceptance verifiers (excerpt/chapter matrix, 37 required) | 5 execute, 32 missing |
+| Acceptance verifiers (excerpt/chapter matrix, 37 required) | 7 execute, 30 missing |
 | Diagnostic matrix checks | 3/3 execute |
 | `pt-contracts` Rust suite | 48 pass, 0 fail (10 suites, offline) |
 | Player unit scope (`check:player`) | 134/134 reported (P18 headless) |
@@ -115,7 +117,7 @@ Legend: C complete · P partial · M missing · B blocked · U unverified (repor
 | Requirement (source ref) | Implementation / evidence | Status |
 |---|---|---|
 | Independent acceptance binds bytes/recipes/profiles/checker versions; diagnostic success never authorizes production (I4; `COMMON.md`) | Services v1.4.0→v1.8.0; 5 verifiers execute; `production-verifier-pending` retained; forged/deserialized passes rejected | P |
-| 32 missing semantic/device/provider verifiers (acceptance-ready `unimplemented_production_checks`) | Explicitly unimplemented, incl. provenance, chapter completeness, image/speech/music/story/action/render reviews, profile/device, publication-recovery, spend authorization, export boundary | M |
+| 30 missing semantic/device/provider verifiers (acceptance-ready `unimplemented_production_checks`) | Explicitly unimplemented, incl. provenance, chapter completeness, image/speech/music/story/action/render reviews, profile/device, publication-recovery, spend authorization, export boundary; pilot + fact-mapping now execute (matrix v4/v5) | M |
 | Evidence freshness; missing/stale/ambiguous/uncertain fails; private/public separation; atomic publication (`COMMON.md`; `INTERFACES.md`) | Private reports outside payloads; NeedsRepair retained; activation missing | P |
 | Production verifiers currently unimplemented (per task brief) | Covered by RT-08/RT-09 below | M |
 
@@ -237,7 +239,7 @@ done-criteria (observable tests/evidence).
   public-export-boundary) · owner `player` proposes, `integration` freezes ·
   deliverable: executable checkers + fixtures for the 5 player-owned missing
   verifiers · deps: RT-11 · blockers: none · done: new verifiers execute in
-  `verify_acceptance` with red→green TDD logs.
+  `verify_acceptance` with actual behavior-level verification results; test-first ordering is not required.
 - **RT-13 — P9 production profile freeze** · P9 · owner `player` + `integration` ·
   deliverable: browser-proven geometry/defaults frozen as production profile
   revision replacing `selected_unverified` · deps: RT-11, RT-16 · blockers:
@@ -251,10 +253,10 @@ done-criteria (observable tests/evidence).
 
 ### E. Acceptance / verification
 
-- **RT-15 — Implement the 32 missing verifiers** · I4 unimplemented list; owner
+- **RT-15 — Implement the 30 missing verifiers** · I4 unimplemented list; owner
   split: `generation` (provenance, chapter, research, image×5, acoustic×2,
   narrator, joins, bible, mix, story, readiness, actions, creative/render,
-  opening/full-audio coverage, speech, pilot, primary, fact-mapping),
+  opening/full-audio coverage, speech, primary),
   `player` (font, profile, device, graphics, lifecycle, title),
   `server` (publication-recovery, spend-authorization), `integration`
   (source-coverage already done; export-boundary, matrix freeze) ·

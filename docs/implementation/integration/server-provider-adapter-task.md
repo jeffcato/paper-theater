@@ -1,5 +1,7 @@
 # R13: offline provider-v2 broker adapter
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 26, 2026. **R13 complete:** [handoff](../runtime/provider-v2-adapter.md), 120 Rust tests including 21 broker cases reported. Next is [R14 Presentation runtime routing](backend-next-tasks.md); public service API is integration I15. Owner: `server`. Runtime/server code, owned tests/fixtures and runtime documentation only. Consume the verified `pt-services-v1.3.0` provider-metadata-v2 records from [readiness](provider-metadata-ready.json) and the exact [server handoff](provider-metadata-server-handoff.md). Code `14821da` has successful push/pull-request CI; the public v2 dispatch method is still unavailable. Keep real dispatch disabled, load no credentials and make zero provider calls.
 
 ## Scope
@@ -14,7 +16,7 @@ Implement the handoff's **private** issuance/execution/recovery boundary with sy
 
 ## Proof and handoff
 
-Follow contract-first TDD. Test real SQLite transactions, parallel attempts and restart against overlapping minute/day windows; exhausted requests/money/tokens/repairs; zero-money requests; repair deduplication; descriptor conflicts; uncertain cross-run work; cancellation/late charges; exact retry waits; and recovery with an original-send counter of zero. Prove fixture/replay reject before credential access and externally reachable live mode remains unavailable without actual accounting/authorization. Synthetic test authorization is not product authorization.
+Use implementation-first delivery with focused verification. Test real SQLite transactions, parallel attempts and restart against overlapping minute/day windows; exhausted requests/money/tokens/repairs; zero-money requests; repair deduplication; descriptor conflicts; uncertain cross-run work; cancellation/late charges; exact retry waits; and recovery with an original-send counter of zero. Prove fixture/replay reject before credential access and externally reachable live mode remains unavailable without actual accounting/authorization. Synthetic test authorization is not product authorization.
 
 Run affected offline runtime/server/contracts checks and identity scans. Preserve R11 WAV bounds/integrity/ranges and existing diagnostic helper/replay behavior. Report exact commands/results, migration behavior, fake send/recovery counters, owned paths and a concrete public-method proposal if needed. Agent 1 retains shared-directory staging/commit/push ownership; preserve concurrent generation/player/studio edits.
 

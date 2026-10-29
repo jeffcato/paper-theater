@@ -262,7 +262,9 @@ pub fn verify_package_files(d: &PlaybackDocument, root: &std::path::Path) -> Con
 /// integrated, even fabricated autonomous/pass fields cannot authorize publication.
 pub fn production_blockers(d: &PlaybackDocument) -> Vec<String> {
     let mut ids = vec!["production-verifier-pending".into()];
-    if !declared_production_coverage_complete(d) { ids.push("required-check-coverage".into()); }
+    if !declared_production_coverage_complete(d) {
+        ids.push("required-check-coverage".into());
+    }
     if d.manifest.provenance != Provenance::Autonomous {
         ids.push("autonomous-provenance".into());
     }

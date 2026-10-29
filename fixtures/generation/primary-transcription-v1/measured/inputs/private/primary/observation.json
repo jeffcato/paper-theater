@@ -1,0 +1,49 @@
+{
+  "audio": {
+    "file": {
+      "bytes": 9646,
+      "media_type": "audio/wav",
+      "path": "private/primary-batch.wav",
+      "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785"
+    },
+    "id": "committed:primary:private:primary-batch.wav",
+    "provenance": "synthetic"
+  },
+  "copy_recipe_sha256": "36f4c2746d3b87bb7c197fdbda8989b89eb5274fc447d845e89f810c43ea3530",
+  "findings": [
+    {
+      "evidence": [],
+      "field": "primary",
+      "id": "retained-primary-adverse",
+      "message": "Synthetic observations do not prove speech fidelity.",
+      "outcome": "uncertain"
+    }
+  ],
+  "issued": null,
+  "model": "primary-transcription-double",
+  "provenance": "synthetic",
+  "provider": "transcription-double",
+  "recipe_sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+  "request": {
+    "file": {
+      "bytes": 380,
+      "media_type": "application/json",
+      "path": "private/primary/request.json",
+      "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038"
+    },
+    "id": "committed:primary:private:primary:request.json",
+    "provenance": "synthetic"
+  },
+  "response": {
+    "file": {
+      "bytes": 1595,
+      "media_type": "application/json",
+      "path": "private/primary/raw.json",
+      "sha256": "792e63ae7380fc64219a42461074c1f28cfbed6be9cf7424a31499c658e23d3d"
+    },
+    "id": "committed:primary:private:primary:raw.json",
+    "provenance": "synthetic"
+  },
+  "result": null,
+  "schema_version": 1
+}

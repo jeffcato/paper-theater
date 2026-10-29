@@ -2,9 +2,17 @@
 use crate::*;
 use serde::{Deserialize, Serialize};
 
-pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v3";
-pub const ACCEPTANCE_REPORT_VERSION: u32 = 4;
+pub const ACCEPTANCE_MATRIX_VERSION: &str = "pt-acceptance-required-v7";
+pub const ACCEPTANCE_REPORT_VERSION: u32 = 6;
 const MATRIX_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v7.json");
+const MATRIX_V6_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v6.json");
+const MATRIX_V4_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v4.json");
+const MATRIX_V5_BYTES: &[u8] =
+    include_bytes!("../../../packages/contracts/src/acceptance-required-v5.json");
+const MATRIX_V3_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v3.json");
 const MATRIX_V2_BYTES: &[u8] =
     include_bytes!("../../../packages/contracts/src/acceptance-required-v2.json");
@@ -39,7 +47,11 @@ pub fn acceptance_check_matrix_for_version(version: &str) -> ContractResult<Acce
     let bytes = match version {
         "pt-acceptance-required-v1" => MATRIX_V1_BYTES,
         "pt-acceptance-required-v2" => MATRIX_V2_BYTES,
-        "pt-acceptance-required-v3" => MATRIX_BYTES,
+        "pt-acceptance-required-v3" => MATRIX_V3_BYTES,
+        "pt-acceptance-required-v4" => MATRIX_V4_BYTES,
+        "pt-acceptance-required-v5" => MATRIX_V5_BYTES,
+        "pt-acceptance-required-v6" => MATRIX_V6_BYTES,
+        "pt-acceptance-required-v7" => MATRIX_BYTES,
         _ => {
             return invalid(
                 "acceptance_report",
@@ -208,23 +220,34 @@ pub struct AcceptanceCheckerIdentity {
 }
 pub fn acceptance_binding_checker() -> AcceptanceCheckerIdentity {
     AcceptanceCheckerIdentity {
-        version: "pt-acceptance-bindings-v4".into(),
+        version: "pt-acceptance-bindings-v6".into(),
         sha256: digest(
             &[
                 include_bytes!("acceptance.rs").as_slice(),
                 include_bytes!("acceptance_source.rs").as_slice(),
                 include_bytes!("source_slice.rs").as_slice(),
                 include_bytes!("wav.rs").as_slice(),
+                include_bytes!("pilot_review.rs").as_slice(),
+                include_bytes!("acceptance_coverage.rs").as_slice(),
+                include_bytes!("production_configuration.rs").as_slice(),
+                include_bytes!("provider_native_exchange.rs").as_slice(),
+                include_bytes!("registered_source_scope.rs").as_slice(),
+                crate::registered_source_scope::CATALOG_BYTES,
                 include_bytes!("validate.rs").as_slice(),
                 include_bytes!("common.rs").as_slice(),
                 include_bytes!("playback.rs").as_slice(),
                 include_bytes!("services.rs").as_slice(),
+                include_bytes!("provider_metadata.rs").as_slice(),
+                include_bytes!("provider_service.rs").as_slice(),
                 include_bytes!("lib.rs").as_slice(),
                 include_bytes!("../../../Cargo.toml").as_slice(),
                 include_bytes!("../../../Cargo.lock").as_slice(),
                 MATRIX_BYTES,
+                MATRIX_V3_BYTES,
                 MATRIX_V1_BYTES,
                 MATRIX_V2_BYTES,
+                MATRIX_V3_BYTES,
+                MATRIX_V4_BYTES,
             ]
             .concat(),
         ),
@@ -255,6 +278,10 @@ pub enum AcceptanceReason {
     InvalidAudioFormat,
     AudioDomainMismatch,
     AudioFrameCountMismatch,
+    InvalidPilotEvidence,
+    IncompletePilotEvidence,
+    UnverifiedPilotReviewer,
+    UnregisteredSourceScope,
 }
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(deny_unknown_fields)]
@@ -308,6 +335,8 @@ pub struct AcceptanceVerificationReport {
     pub source_slice: Option<SourceSliceBindingV1>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub delivery_audio: Option<DeliveryAudioObservationV1>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub pilot_review: Option<PilotReviewObservationV1>,
     pub checker: AcceptanceCheckerIdentity,
     pub declared_check_ids: Vec<Id>,
     pub requirements: Vec<AcceptanceRequirement>,
@@ -345,6 +374,65 @@ fn implemented(id: &str, matrix: &AcceptanceCheckMatrix) -> bool {
     matrix.checks.iter().any(|c| c.id == id && c.implemented)
 }
 
+/// Pilot plan structure delegates to the shared pilot-review validator so the
+/// check and the recorded inspection enforce the same binding. No audibility,
+/// fidelity, or creative judgment.
+fn verify_pilot_plan(plan: &serde_json::Value) -> Result<(), AcceptanceReason> {
+    validate_pilot_plan_structure(plan)
+        .map(|_| ())
+        .map_err(|_| AcceptanceReason::InvalidBinding)
+}
+/// Structural binding for per-fact source-to-delivery mapping (schema v1):
+/// every known fact carries at least one entry with its exact source span and
+/// delivery bounds inside the delivery domain. No acoustic or creative judgment.
+fn verify_fact_mapping(
+    plan: &serde_json::Value,
+    facts: &[AcceptanceFact],
+    delivery_count: u64,
+) -> Result<(), AcceptanceReason> {
+    if plan.get("schema_version").and_then(|v| v.as_u64()) != Some(1) {
+        return Err(AcceptanceReason::InvalidBinding);
+    }
+    let entries = plan
+        .get("facts")
+        .and_then(|v| v.as_array())
+        .ok_or(AcceptanceReason::InvalidBinding)?;
+    if entries.is_empty() {
+        return Err(AcceptanceReason::InvalidBinding);
+    }
+    let span = |v: &serde_json::Value| -> Option<[u64; 2]> {
+        let a = v.as_array()?;
+        if a.len() != 2 {
+            return None;
+        }
+        Some([a[0].as_u64()?, a[1].as_u64()?])
+    };
+    for entry in entries {
+        let id = entry.get("fact_id").and_then(|v| v.as_str()).unwrap_or("");
+        let known = facts
+            .iter()
+            .find(|f| f.id == id)
+            .ok_or(AcceptanceReason::InvalidBinding)?;
+        if span(entry.get("source_span").unwrap_or(&serde_json::Value::Null))
+            != Some(known.source_span)
+        {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+        match span(entry.get("delivery").unwrap_or(&serde_json::Value::Null)) {
+            Some([s, e]) if s < e && e <= delivery_count => {}
+            _ => return Err(AcceptanceReason::InvalidBinding),
+        }
+    }
+    for fact in facts {
+        if !entries
+            .iter()
+            .any(|e| e.get("fact_id").and_then(|v| v.as_str()).unwrap_or("") == fact.id)
+        {
+            return Err(AcceptanceReason::InvalidBinding);
+        }
+    }
+    Ok(())
+}
 fn worse(a: ReviewOutcome, b: ReviewOutcome) -> ReviewOutcome {
     let rank = |x| match x {
         ReviewOutcome::Pass => 0,
@@ -620,7 +708,15 @@ pub fn verify_acceptance(
     evidence: &[AcceptanceEvidenceProposal],
     private_root: &Path,
 ) -> ContractResult<PrivateAcceptanceVerification> {
-    verify_acceptance_internal(doc, package_root, policy, evidence, private_root, None)
+    verify_acceptance_internal(
+        doc,
+        package_root,
+        policy,
+        evidence,
+        private_root,
+        None,
+        None,
+    )
 }
 /// Requires an explicit runtime-pinned relationship; never falls back to file-local success.
 pub fn verify_acceptance_v2(
@@ -638,6 +734,48 @@ pub fn verify_acceptance_v2(
         evidence,
         private_root,
         Some(policy),
+        None,
+    )
+}
+
+/// Inspect independently selected recorded Pilot inputs without granting listening authority.
+pub fn verify_acceptance_with_pilot(
+    doc: &PlaybackDocument,
+    package_root: &Path,
+    policy: &AcceptanceVerificationPolicy,
+    pilot: &PilotReviewPolicyV1,
+    evidence: &[AcceptanceEvidenceProposal],
+    private_root: &Path,
+) -> ContractResult<PrivateAcceptanceVerification> {
+    pilot.validate()?;
+    verify_acceptance_internal(
+        doc,
+        package_root,
+        policy,
+        evidence,
+        private_root,
+        None,
+        Some(pilot),
+    )
+}
+pub fn verify_acceptance_v2_with_pilot(
+    doc: &PlaybackDocument,
+    package_root: &Path,
+    policy: &AcceptanceVerificationPolicyV2,
+    pilot: &PilotReviewPolicyV1,
+    evidence: &[AcceptanceEvidenceProposal],
+    private_root: &Path,
+) -> ContractResult<PrivateAcceptanceVerification> {
+    policy.validate()?;
+    pilot.validate()?;
+    verify_acceptance_internal(
+        doc,
+        package_root,
+        &policy.base,
+        evidence,
+        private_root,
+        Some(policy),
+        Some(pilot),
     )
 }
 
@@ -648,6 +786,7 @@ fn verify_acceptance_internal(
     evidence: &[AcceptanceEvidenceProposal],
     private_root: &Path,
     source_policy: Option<&AcceptanceVerificationPolicyV2>,
+    pilot_policy: Option<&PilotReviewPolicyV1>,
 ) -> ContractResult<PrivateAcceptanceVerification> {
     policy.validate()?;
     require(
@@ -1065,6 +1204,8 @@ fn verify_acceptance_internal(
         .as_ref()
         .map(|l| l.proposals.as_slice())
         .unwrap_or(&[]);
+    let mut pilot_raw: Vec<FileRef> = Vec::new();
+    let mut mapping_raw: Vec<FileRef> = Vec::new();
     for (e, origin) in ledger_proposals
         .iter()
         .map(|e| (e, "ledger_proposal"))
@@ -1124,6 +1265,12 @@ fn verify_acceptance_internal(
             raw_sha256: Some(e.raw_evidence.sha256.clone()),
             reasons,
         });
+        if e.check_id == "pilot-recording-review" {
+            pilot_raw.push(e.raw_evidence.clone());
+        }
+        if e.check_id == "delivery-fact-mapping" {
+            mapping_raw.push(e.raw_evidence.clone());
+        }
     }
     let render_assets = doc
         .manifest
@@ -1141,6 +1288,13 @@ fn verify_acceptance_internal(
             .any(|id| id == "complete-source-coverage")
     {
         effective_extra.push("complete-source-coverage".into());
+    }
+    if pilot_policy.is_some()
+        && !effective_extra
+            .iter()
+            .any(|id| id == "pilot-recording-review")
+    {
+        effective_extra.push("pilot-recording-review".into());
     }
     let matrix = acceptance_check_matrix();
     let required = requirements(
@@ -1203,10 +1357,12 @@ fn verify_acceptance_internal(
     if required.iter().any(|r| !declared.contains(&r.check_id)) {
         coverage_reasons.push(AcceptanceReason::MissingDeclaration);
     }
-    let source_result = if required
-        .iter()
-        .any(|r| r.check_id == "complete-source-coverage")
-    {
+    let source_result = if required.iter().any(|r| {
+        matches!(
+            r.check_id.as_str(),
+            "complete-source-coverage" | "complete-chapter" | "complete-excerpt"
+        )
+    }) {
         (|| {
             if policy.checker_sha256 != checker.sha256
                 || manifest_bytes
@@ -1269,6 +1425,23 @@ fn verify_acceptance_internal(
     } else {
         Ok(())
     };
+    let registered_scope = |check_id: &str| -> Result<(), AcceptanceReason> {
+        source_result?;
+        let policy = source_policy.ok_or(AcceptanceReason::MissingSourceMapping)?;
+        crate::registered_source_scope::verify_v1(&policy.summary(), check_id)
+    };
+    let chapter_result = registered_scope("complete-chapter");
+    let excerpt_result = registered_scope("complete-excerpt");
+    if required
+        .iter()
+        .any(|r| matches!(r.check_id.as_str(), "complete-chapter" | "complete-excerpt"))
+    {
+        reads.consumed.push(AcceptanceConsumedHash {
+            role: "registered_source_catalog".into(),
+            sha256: registered_source_catalog_sha256_v1(),
+            bytes: crate::registered_source_scope::CATALOG_BYTES.len() as u64,
+        });
+    }
     let mut delivery_audio = None;
     let audio_result = if required.iter().any(|r| r.check_id == "audio-format-review") {
         (|| {
@@ -1320,6 +1493,123 @@ fn verify_acceptance_internal(
     } else {
         Ok(())
     };
+    let pilot_result = if required
+        .iter()
+        .any(|r| r.check_id == "pilot-recording-review")
+    {
+        (|| {
+            if pilot_raw.is_empty() {
+                return Err(AcceptanceReason::MissingBytes);
+            }
+            for raw in &pilot_raw {
+                let bytes = reads.read(private_root, raw, "pilot_plan", 1024 * 1024)?;
+                let plan: serde_json::Value =
+                    serde_json::from_slice(&bytes).map_err(|_| AcceptanceReason::InvalidBinding)?;
+                verify_pilot_plan(&plan)?;
+                // Review targets name recorded evidence. Digest strings and
+                // unresolvable names are not recorded evidence: malformed
+                // references fail the binding, well-formed but unrecorded
+                // references fail as incomplete evidence.
+                for review in plan
+                    .get("reviews")
+                    .and_then(|v| v.as_array())
+                    .into_iter()
+                    .flatten()
+                {
+                    for target in review
+                        .get("targets")
+                        .and_then(|v| v.as_array())
+                        .into_iter()
+                        .flatten()
+                    {
+                        let name = target.as_str().unwrap_or("");
+                        if !valid_digest(name) {
+                            return Err(AcceptanceReason::InvalidBinding);
+                        }
+                        if !reads.consumed.iter().any(|c| c.sha256 == name) {
+                            return Err(AcceptanceReason::IncompletePilotEvidence);
+                        }
+                    }
+                }
+            }
+            Ok(())
+        })()
+    } else {
+        Ok(())
+    };
+    let mapping_result = if required
+        .iter()
+        .any(|r| r.check_id == "delivery-fact-mapping")
+    {
+        (|| {
+            if mapping_raw.is_empty() {
+                return Err(AcceptanceReason::MissingBytes);
+            }
+            for raw in &mapping_raw {
+                let bytes = reads.read(private_root, raw, "fact_mapping", 1024 * 1024)?;
+                let plan: serde_json::Value =
+                    serde_json::from_slice(&bytes).map_err(|_| AcceptanceReason::InvalidBinding)?;
+                verify_fact_mapping(&plan, &facts, binding.delivery_sample_count)?;
+            }
+            Ok(())
+        })()
+    } else {
+        Ok(())
+    };
+    let pilot_review = if let Some(p) = pilot_policy {
+        let metadata = serde_json::to_vec(p).unwrap();
+        require(
+            metadata.len() <= 64 * 1024,
+            "pilot_review",
+            "policy",
+            "Pilot policy exceeds 64 KiB",
+        )?;
+        reads.consumed.push(AcceptanceConsumedHash {
+            role: "pilot-policy".into(),
+            sha256: digest(&metadata),
+            bytes: metadata.len() as u64,
+        });
+        let mut result = crate::pilot_review::inspect_pilot(&mut reads, private_root, p, &binding);
+        let mut private_hashes = vec![&p.plan.sha256];
+        for performer in &p.performers {
+            for t in &performer.takes {
+                private_hashes.extend([
+                    &t.request.file.sha256,
+                    &t.response.file.sha256,
+                    &t.observation.sha256,
+                    &t.audio.file.sha256,
+                ]);
+            }
+            if let Some(r) = &performer.review {
+                private_hashes.extend([
+                    &r.request.file.sha256,
+                    &r.response.file.sha256,
+                    &r.observation.sha256,
+                ]);
+                for a in [r.reference_audio.as_ref(), r.assembled_audio.as_ref()]
+                    .into_iter()
+                    .flatten()
+                {
+                    private_hashes.push(&a.file.sha256);
+                }
+                for f in [r.join_recipe.as_ref(), r.music_context.as_ref()]
+                    .into_iter()
+                    .flatten()
+                {
+                    private_hashes.push(&f.sha256);
+                }
+            }
+        }
+        if payload.iter().any(|f| private_hashes.contains(&&f.sha256)) {
+            result.binding_outcome = ReviewOutcome::Fail;
+            result
+                .reasons
+                .push(AcceptanceReason::PrivateEvidenceExported);
+        }
+        Some(result)
+    } else {
+        None
+    };
     let consumed = reads
         .consumed
         .iter()
@@ -1335,7 +1625,11 @@ fn verify_acceptance_internal(
                 "package-byte-integrity" => package_reasons.clone(),
                 "required-check-coverage" => coverage_reasons.clone(),
                 "complete-source-coverage" => source_result.err().into_iter().collect(),
+                "complete-chapter" => chapter_result.err().into_iter().collect(),
+                "complete-excerpt" => excerpt_result.err().into_iter().collect(),
                 "audio-format-review" => audio_result.err().into_iter().collect(),
+                "pilot-recording-review" => pilot_result.err().into_iter().collect(),
+                "delivery-fact-mapping" => mapping_result.err().into_iter().collect(),
                 _ => binding_reasons.clone(),
             }
         } else {
@@ -1360,7 +1654,32 @@ fn verify_acceptance_internal(
                     ) => ReviewOutcome::Missing,
                     Err(_) => ReviewOutcome::Fail,
                 },
+                "complete-chapter" | "complete-excerpt" => {
+                    match if r.check_id == "complete-chapter" {
+                        chapter_result
+                    } else {
+                        excerpt_result
+                    } {
+                        Ok(()) => ReviewOutcome::Pass,
+                        Err(
+                            AcceptanceReason::MissingBytes
+                            | AcceptanceReason::MissingSourceMapping
+                            | AcceptanceReason::UnregisteredSourceScope,
+                        ) => ReviewOutcome::Missing,
+                        Err(_) => ReviewOutcome::Fail,
+                    }
+                }
                 "audio-format-review" => match audio_result {
+                    Ok(()) => ReviewOutcome::Pass,
+                    Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
+                    Err(_) => ReviewOutcome::Fail,
+                },
+                "pilot-recording-review" => match pilot_result {
+                    Ok(()) => ReviewOutcome::Pass,
+                    Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
+                    Err(_) => ReviewOutcome::Fail,
+                },
+                "delivery-fact-mapping" => match mapping_result {
                     Ok(()) => ReviewOutcome::Pass,
                     Err(AcceptanceReason::MissingBytes) => ReviewOutcome::Missing,
                     Err(_) => ReviewOutcome::Fail,
@@ -1370,6 +1689,15 @@ fn verify_acceptance_internal(
         } else {
             ReviewOutcome::Missing
         };
+        if r.check_id == "pilot-recording-review" {
+            if let Some(p) = &pilot_review {
+                outcome = worse(outcome, worse(p.binding_outcome, p.review_outcome));
+                reasons.extend(p.reasons.iter().copied());
+            } else if let Err(e) = pilot_result {
+                outcome = worse(outcome, reason_outcome(e));
+                reasons.push(e);
+            }
+        }
         if !acceptance_check_matrix()
             .checks
             .iter()
@@ -1460,6 +1788,7 @@ fn verify_acceptance_internal(
             binding,
             source_slice: source_policy.map(|p| p.summary()),
             delivery_audio,
+            pilot_review,
             checker,
             declared_check_ids: declared.clone(),
             requirements: required,
@@ -1486,6 +1815,11 @@ impl AcceptanceVerificationReport {
                     | (2, "pt-acceptance-required-v2")
                     | (3, "pt-acceptance-required-v2")
                     | (4, "pt-acceptance-required-v3")
+                    | (4, "pt-acceptance-required-v4")
+                    | (4, "pt-acceptance-required-v5")
+                    | (5, "pt-acceptance-required-v3")
+                    | (6, "pt-acceptance-required-v6")
+                    | (6, "pt-acceptance-required-v7")
             ),
             "acceptance_report",
             "version",
@@ -1515,6 +1849,8 @@ impl AcceptanceVerificationReport {
                     | (2, "pt-acceptance-bindings-v2")
                     | (3, "pt-acceptance-bindings-v3")
                     | (4, "pt-acceptance-bindings-v4")
+                    | (5, "pt-acceptance-bindings-v5")
+                    | (6, "pt-acceptance-bindings-v6")
             ),
             "acceptance_report",
             "checker.version",
@@ -1522,7 +1858,7 @@ impl AcceptanceVerificationReport {
         )?;
         if let Some(slice) = &self.source_slice {
             require(
-                matches!(self.schema_version, 3 | 4),
+                matches!(self.schema_version, 3 | 4 | 5 | 6),
                 "acceptance_report",
                 "source_slice",
                 "archived reports cannot claim source relationships",
@@ -1531,7 +1867,7 @@ impl AcceptanceVerificationReport {
         }
         if let Some(audio) = &self.delivery_audio {
             require(
-                self.schema_version == 4,
+                self.schema_version >= 4,
                 "acceptance_report",
                 "delivery_audio",
                 "archived reports cannot claim audio format execution",
@@ -1544,6 +1880,43 @@ impl AcceptanceVerificationReport {
                 "acceptance_report",
                 "delivery_audio",
                 "audio observation differs from candidate delivery binding",
+            )?;
+        }
+        if let Some(p) = &self.pilot_review {
+            require(
+                matches!(self.schema_version, 5 | 6),
+                "acceptance_report",
+                "pilot_review",
+                "archived reports cannot acquire Pilot inspection",
+            )?;
+            p.validate()?;
+            require(
+                self.consumed_hashes
+                    .iter()
+                    .any(|c| c.role == "pilot-policy" && c.sha256 == p.policy_sha256)
+                    && p.source_sha256 == self.binding.source_sha256
+                    && p.consumed_sha256s
+                        .iter()
+                        .all(|h| self.consumed_hashes.iter().any(|c| &c.sha256 == h)),
+                "acceptance_report",
+                "pilot_review",
+                "unconsumed or stale Pilot source",
+            )?;
+            require(
+                self.checks.iter().any(|c| {
+                    c.check_id == "pilot-recording-review"
+                        && c.executed
+                            == implemented(
+                                "pilot-recording-review",
+                                &acceptance_check_matrix_for_version(&self.matrix_version)
+                                    .expect("supported report matrix"),
+                            )
+                        && c.outcome != ReviewOutcome::Pass
+                        && worse(c.outcome, worse(p.binding_outcome, p.review_outcome)) == c.outcome
+                }),
+                "acceptance_report",
+                "pilot_review",
+                "recorded mechanics cannot execute production review",
             )?;
         }
         let binding = &self.binding;
@@ -1667,6 +2040,43 @@ impl AcceptanceVerificationReport {
                     "missing verified package identity",
                 )?;
             }
+            if matches!(c.check_id.as_str(), "complete-chapter" | "complete-excerpt")
+                && c.outcome == ReviewOutcome::Pass
+            {
+                let slice = self.source_slice.as_ref().ok_or_else(|| ContractError {
+                    code: "acceptance_report".into(),
+                    field: "registered_source_scope".into(),
+                    message: "registered source Pass requires full-source mapping".into(),
+                })?;
+                require(
+                    self.schema_version == 6
+                        && crate::registered_source_scope::verify_v1(slice, &c.check_id).is_ok(),
+                    "acceptance_report",
+                    "registered_source_scope",
+                    "unregistered, incomplete or stale source extent",
+                )?;
+                let catalog = registered_source_catalog_sha256_v1();
+                require(
+                    self.consumed_hashes.iter().any(|h| {
+                        h.role == "registered_source_catalog"
+                            && h.sha256 == catalog
+                            && h.bytes == crate::registered_source_scope::CATALOG_BYTES.len() as u64
+                    }) && [&catalog, &slice.full_source_sha256, &slice.slice_sha256]
+                        .into_iter()
+                        .chain(slice.relationship_sha256.iter())
+                        .all(|h| c.consumed_sha256s.contains(h))
+                        && ["source_coverage_timeline", "source_coverage_read_along"]
+                            .iter()
+                            .all(|role| {
+                                self.consumed_hashes.iter().any(|h| {
+                                    h.role == *role && c.consumed_sha256s.contains(&h.sha256)
+                                })
+                            }),
+                    "acceptance_report",
+                    "registered_source_scope",
+                    "registered source Pass lacks consumed catalog/source/mapping/coverage bytes",
+                )?;
+            }
         }
         if let Some(slice) = &self.source_slice {
             let source = self
@@ -1718,7 +2128,7 @@ impl AcceptanceVerificationReport {
                 )?;
             }
         }
-        if self.schema_version == 4
+        if self.schema_version >= 4
             && self
                 .checks
                 .iter()

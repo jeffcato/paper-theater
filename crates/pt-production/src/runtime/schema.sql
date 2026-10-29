@@ -35,3 +35,7 @@ CREATE TABLE IF NOT EXISTS provider_v2_query_scopes(id TEXT PRIMARY KEY REFERENC
 CREATE TABLE IF NOT EXISTS saved_flow_plans(run TEXT PRIMARY KEY REFERENCES runs(id),reference TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS saved_flow_artifacts(run TEXT NOT NULL,id TEXT NOT NULL,reference TEXT NOT NULL,origin TEXT NOT NULL,PRIMARY KEY(run,id));
 CREATE TABLE IF NOT EXISTS saved_flow_phases(run TEXT NOT NULL,phase TEXT NOT NULL,ordinal INTEGER NOT NULL,prepared_epoch INTEGER NOT NULL,input TEXT NOT NULL,input_sha256 TEXT NOT NULL,committed_epoch INTEGER,result TEXT,result_sha256 TEXT,PRIMARY KEY(run,phase),UNIQUE(run,ordinal));
+CREATE TABLE IF NOT EXISTS speech_flows(run TEXT PRIMARY KEY REFERENCES runs(id),reference TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS speech_refs(run TEXT NOT NULL REFERENCES runs(id),id TEXT NOT NULL,reference TEXT NOT NULL,origin TEXT NOT NULL,PRIMARY KEY(run,id));
+CREATE TABLE IF NOT EXISTS speech_phases(run TEXT NOT NULL REFERENCES runs(id),ordinal INTEGER NOT NULL,input TEXT NOT NULL,input_sha256 TEXT NOT NULL,prepared_epoch INTEGER NOT NULL,result TEXT,result_sha256 TEXT,committed_epoch INTEGER,PRIMARY KEY(run,ordinal));
+CREATE TABLE IF NOT EXISTS speech_batches(run TEXT NOT NULL REFERENCES runs(id),id TEXT NOT NULL,binding TEXT NOT NULL,record TEXT NOT NULL,sha256 TEXT NOT NULL,PRIMARY KEY(run,id));

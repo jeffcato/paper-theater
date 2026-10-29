@@ -1,5 +1,7 @@
 # G23: first offline voice-pilot stage
 
+**Implementation-first policy (October 28 operator decision):** complete useful runnable slices, then perform focused verification before handoff. Test-first ordering and RED/GREEN receipts are not required; preserve existing tests, acceptance gates and ownership.
+
 Prepared October 27, 2026. **G23 implemented:** [ready record](../generation/pilot-ready.json), 103 generation/19 Pilot tests reported, private saved/fake audio/replay and unresolved NeedsRepair. Next generation task is [G24](generation-speech-task.md); first provide I20 immutable completed source pins. Owner: `generation`. G22's private source-backed Direction increment is complete, with 84 generation tests including 14 Direction cases reported; runtime two-phase orchestration/real model transport remains owner work. Advance G2 through a bounded `Stage::Pilot` saved/fake path. Work in generation code/helpers/tests/fixtures/docs only; no UI, Git/lockfile operations, credentials or real provider calls.
 
 ## Required increment
@@ -11,10 +13,10 @@ Prepared October 27, 2026. **G23 implemented:** [ready record](../generation/pil
 5. Keep unknown/listening/continuity/join/music-context review evidence Missing/Uncertain. Reuse compatible established recordings rather than regenerating them; changes to voice/model/take/source/recipe invalidate affected pilot evidence and downstream proposals. Do not approve a voice or bulk chapter synthesis from one clip, invented reference or claimed pass.
 6. Make recorded request/response/observation compilation byte-identical without provider/helper redispatch, journal/library/accounting/catalog effects or original receipt mutation. Keep raw pilot/catalog/context/proposals/audio-review records outside audience payloads. Preserve NeedsRepair and closed reveal/acceptance/publication gates.
 
-## Test-first proof and handoff
+## Verification and handoff
 
 Start with a desired Pilot artifact from a source-backed adjacent narrator passage that the current adapter-pending path cannot produce, then implement the minimum compiler. Add narration-only and genuine dialogue-role cases, canonical reuse, unknown catalog/model/voice, invented speaker/dialogue, wrong source spans/audio/frame/request/recipe identity, missing/one-sided review, oversized/malformed responses, default-unavailable methods and deterministic replay. Any new test audio/observations are explicitly synthetic, small and unaccepted; no actual auditions are purchased.
 
-Return private request/cast/observation schemas/examples, exact red/green commands/results, version/hash invalidation rules and a runtime handoff for two-phase request commits, immutable raw/audio capture, registry ownership and later review. Keep initial reference research, real voice auditions, listening/continuity/score review and full speech production explicitly pending. Proposed library updates have no commit authority; runtime alone decides durable bindings.
+Return private request/cast/observation schemas/examples, exact verification commands/results, version/hash invalidation rules and a runtime handoff for two-phase request commits, immutable raw/audio capture, registry ownership and later review. Keep initial reference research, real voice auditions, listening/continuity/score review and full speech production explicitly pending. Proposed library updates have no commit authority; runtime alone decides durable bindings.
 
 Retain G16–G22 source/fact/PCM/capacity/matrix/export/replay regressions, formatting and identity checks. Use existing shared contracts and typed provider doubles; shared changes go to integration as concrete requests. Integration alone stages/commits/pushes; preserve all worker and Claude UI edits.

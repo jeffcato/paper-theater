@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "run_id": "offline-run",
+  "stage": "acoustic",
+  "unit_id": "saved-excerpt",
+  "epoch": 1,
+  "revision": 1,
+  "inputs": [
+    {
+      "id": "committed:test:raw-source.txt",
+      "file": {
+        "path": "raw-source.txt",
+        "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+        "bytes": 47,
+        "media_type": "text/plain"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:clean-source.txt",
+      "file": {
+        "path": "clean-source.txt",
+        "sha256": "7b4179bba256c4e46981deac14f0f5a6f09f34e87c82f32eb2de8a238436176c",
+        "bytes": 47,
+        "media_type": "text/plain"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:frozen-source.json",
+      "file": {
+        "path": "frozen-source.json",
+        "sha256": "dc5ee12ebf4a29e7e5516907d6bd1070eb5c0d2a92e0f56886772387b9d889a9",
+        "bytes": 2098,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:source.json",
+      "file": {
+        "path": "source.json",
+        "sha256": "885194578aaa77e70ab862ee2fbda364e8daa4d9873728203c7896df23d2dbf9",
+        "bytes": 3725,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:private:book-registry.json",
+      "file": {
+        "path": "private/book-registry.json",
+        "sha256": "feecaa5d93d1692977af74ae3b9135a618662cf004ed0df4fd0f11543dda72cf",
+        "bytes": 400,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:private:direction-recipe.json",
+      "file": {
+        "path": "private/direction-recipe.json",
+        "sha256": "12bb7c33aca1770192584551ab5551f76438db57ea5602d5225b809b32ea80c4",
+        "bytes": 61,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:private:direction-context.json",
+      "file": {
+        "path": "private/direction-context.json",
+        "sha256": "e755225a78516d516f1e647ac868577760ca9c2cc7c8bf39683e23bc20772988",
+        "bytes": 851,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:private:direction-request.json",
+      "file": {
+        "path": "private/direction-request.json",
+        "sha256": "3a45d81766980a450b4c66667972c112f707a6031539a33c1a26cd93764078ef",
+        "bytes": 14041,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:private:direction-response.json",
+      "file": {
+        "path": "private/direction-response.json",
+        "sha256": "ffc1e3e8ff25a2d4c98d4a6ded4b72812cdfc66421dd9b061e135b067e6eefe0",
+        "bytes": 2537,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:test:private:direction-observation.json",
+      "file": {
+        "path": "private/direction-observation.json",
+        "sha256": "72918eb8cacb1308d3f76b33833fe0154c9dbc9d3bd204c0a16bcc3270d5cecd",
+        "bytes": 980,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:direction-plan.json",
+      "file": {
+        "path": "private/direction-plan.json",
+        "sha256": "f4737a99fe171dd17607695b840e694a6483211b26e4689b2d352e131ece97e2",
+        "bytes": 9391,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-direction-input.json",
+      "file": {
+        "path": "private/pilot-direction-input.json",
+        "sha256": "41c6f7cbc305b349b9f9eef6a59e60c0787b69d308cb48b11188d2510b031c82",
+        "bytes": 3725,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:voice-catalog.json",
+      "file": {
+        "path": "private/voice-catalog.json",
+        "sha256": "7e20abd9c0476f96b28fa3ce39b7de44713aec086e3ac7fe299131389a71672d",
+        "bytes": 320,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-selection.json",
+      "file": {
+        "path": "private/pilot-selection.json",
+        "sha256": "237f30ff9bb4a22e6c5c7e82fe34b143bcc5c14bc2a558ed6d49f70047e9724a",
+        "bytes": 1076,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-recipe.json",
+      "file": {
+        "path": "private/pilot-recipe.json",
+        "sha256": "d0fd8d6a584cd79ddc95247a0a240bf984a78ca08302d21abcb61e990efa2ce6",
+        "bytes": 48,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot:requests:p000-t00.json",
+      "file": {
+        "path": "private/pilot/requests/p000-t00.json",
+        "sha256": "2dd6ffb98dc8465ca5852b7c289595b9f83a43b2077358c55e168fb45aa938a3",
+        "bytes": 1606,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot:requests:p000-t01.json",
+      "file": {
+        "path": "private/pilot/requests/p000-t01.json",
+        "sha256": "2da7beb318cb50615e5afb3c9ceb3d5cd42be3a329112e27e542791dd2d97dd9",
+        "bytes": 1597,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-audio:t0.wav",
+      "file": {
+        "path": "private/pilot-audio/t0.wav",
+        "sha256": "58a2f64e4937368f19c47cca70b3f448914fffbb29b10e81ccaf04a99ba7eff4",
+        "bytes": 4844,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-raw:t0.json",
+      "file": {
+        "path": "private/pilot-raw/t0.json",
+        "sha256": "58e6e21ca937ab0dd1ed6c970c1c5171f9e1769b73aa2d3966f5175184c279c2",
+        "bytes": 1162,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-saved:t0.json",
+      "file": {
+        "path": "private/pilot-saved/t0.json",
+        "sha256": "7b42bf20ea70315e8ba2193d21db125b734cde2bcd648235d981d5cf3fbd14c8",
+        "bytes": 949,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-audio:t1.wav",
+      "file": {
+        "path": "private/pilot-audio/t1.wav",
+        "sha256": "b88ddaff6d37d92a652af534c604c018659a39ee6cdb73db68e378a2456c3558",
+        "bytes": 4846,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-raw:t1.json",
+      "file": {
+        "path": "private/pilot-raw/t1.json",
+        "sha256": "10db21a9cca52d2af1d117c921c6309ec25daf0383c6f61416521151d37dc291",
+        "bytes": 1158,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-saved:t1.json",
+      "file": {
+        "path": "private/pilot-saved/t1.json",
+        "sha256": "b6a07d34f25c08b42cf456b6676d7c1ca8c89e06f708c99326a150dfb2ed0280",
+        "bytes": 949,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:pilot:private:pilot-context.json",
+      "file": {
+        "path": "private/pilot-context.json",
+        "sha256": "948d5939a62729eb0573fb683496a614060de1655909e6659f9ae7561b25466e",
+        "bytes": 2685,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:speech:private:pilot-plan.json",
+      "file": {
+        "path": "private/pilot-plan.json",
+        "sha256": "d4e8cd0c9a829212cef973d110082d37ba37b65fcc8578038f3d3cfda2b2a1d2",
+        "bytes": 14340,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:speech:private:speech-pilot-input.json",
+      "file": {
+        "path": "private/speech-pilot-input.json",
+        "sha256": "50d4c049b00e4d842620e8ac5c186c8dd0f9a075e3013a3b1ffe46109aa05a0c",
+        "bytes": 8299,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:speech:private:speech-bindings.json",
+      "file": {
+        "path": "private/speech-bindings.json",
+        "sha256": "3768b6df7f4381963c164cebbffa7f6adbc952f47fbf7ec4103fa76cbe4061d7",
+        "bytes": 762,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:speech:private:speech-recipe.json",
+      "file": {
+        "path": "private/speech-recipe.json",
+        "sha256": "9f36e9d1bf5718c1c0dab46f1d24971b73cc686636d8aee748763a8620f3a956",
+        "bytes": 49,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:speech:private:speech:requests:u0000.json",
+      "file": {
+        "path": "private/speech/requests/u0000.json",
+        "sha256": "e5146b0e17a0eb3d3b99918eccace93acd136dc0e419408438cb13edc055e2f2",
+        "bytes": 1815,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:speech:private:speech:requests:u0001.json",
+      "file": {
+        "path": "private/speech/requests/u0001.json",
+        "sha256": "32537aae86867fd3532f7c98bb40d14c977644a51f924098dcb55affc56dea39",
+        "bytes": 1806,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-audio:u0000.wav",
+      "file": {
+        "path": "private/speech-audio/u0000.wav",
+        "sha256": "08be78d767c0bd2fd90816bb36469684df3dac5b68d23080cb8816a0fb49facf",
+        "bytes": 4844,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-raw:u0000.json",
+      "file": {
+        "path": "private/speech-raw/u0000.json",
+        "sha256": "a3ac571f9a70ccefc929f24a238a80da270db1088dc64ddd3300cd91af3aa8c2",
+        "bytes": 1073,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-observations:u0000.json",
+      "file": {
+        "path": "private/speech-observations/u0000.json",
+        "sha256": "8ab7f1bab6cbef070325f94dd5f8827f7bb8ac921cbc6038088c77dccc83ddbf",
+        "bytes": 964,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-audio:u0001.wav",
+      "file": {
+        "path": "private/speech-audio/u0001.wav",
+        "sha256": "da230f306c4b692daba4817f2b40430716714a25bce85c53212ed5f85ce1612e",
+        "bytes": 4846,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-raw:u0001.json",
+      "file": {
+        "path": "private/speech-raw/u0001.json",
+        "sha256": "bcee803d21f9f63dc7c81dd3298347761b909bf3354840552900fa79b338525f",
+        "bytes": 1074,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-observations:u0001.json",
+      "file": {
+        "path": "private/speech-observations/u0001.json",
+        "sha256": "339928efc5184ff92ce9ef26f7813dc94ec794f0c98a26b51058bce6f1dbd5a8",
+        "bytes": 964,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-context.json",
+      "file": {
+        "path": "private/speech-context.json",
+        "sha256": "67d0c17abcc75de55742c6df9d549db79f9338c28853ce4bf3a4b14ef7da1109",
+        "bytes": 2253,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary-speech-input.json",
+      "file": {
+        "path": "private/primary-speech-input.json",
+        "sha256": "714ddcf9bef37efbc6578c6ccb9e818d4897be8835ec918a52ecb596a3beeb50",
+        "bytes": 12632,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-plan.json",
+      "file": {
+        "path": "private/speech-plan.json",
+        "sha256": "cc1907189879a0015530552701d43c7bd0599bdf0dcae6eabf07b549bcb9d3cd",
+        "bytes": 8964,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-takes.json",
+      "file": {
+        "path": "private/speech-takes.json",
+        "sha256": "e0ca8186f51b304b724d493f7c2ad0b1aeb0ae8bb4234bbafae947b9b8247a9b",
+        "bytes": 8670,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:speech-transcription-plan.json",
+      "file": {
+        "path": "private/speech-transcription-plan.json",
+        "sha256": "1a66a3bc884ce0aff0b5062f751d2f0db6f3b7f6f47d74d23001c9d98b55daf9",
+        "bytes": 2621,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary-batch.wav",
+      "file": {
+        "path": "private/primary-batch.wav",
+        "sha256": "9ceaca580f2f1fcd29265a28e4d13e3f0f1d9f6980bb75409ce45bd002c84785",
+        "bytes": 9646,
+        "media_type": "audio/wav"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary-copy-receipt.json",
+      "file": {
+        "path": "private/primary-copy-receipt.json",
+        "sha256": "fc4204ad9a5d467e65b837cc9a51f3ca9d4e6f4f37a3c96ec542a4770ecee758",
+        "bytes": 3167,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary-recipe.json",
+      "file": {
+        "path": "private/primary-recipe.json",
+        "sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+        "bytes": 59,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary:request.json",
+      "file": {
+        "path": "private/primary/request.json",
+        "sha256": "12a3841f85f9abac0d51434c8c188edd89bbf417b2e05bf30190d8736571f038",
+        "bytes": 380,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary:raw.json",
+      "file": {
+        "path": "private/primary/raw.json",
+        "sha256": "a8a35eea511acabf88ddc70b1c61f7199a5b925ca1dfef09c06edfcd482f58c4",
+        "bytes": 702,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary:observation.json",
+      "file": {
+        "path": "private/primary/observation.json",
+        "sha256": "790bc28e8ae2bc7084adaf27497e73de76d75da6c2d8602fc988fc68f6dc5fa9",
+        "bytes": 1512,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    },
+    {
+      "id": "committed:primary:private:primary-transcription-context.json",
+      "file": {
+        "path": "private/primary-transcription-context.json",
+        "sha256": "af31fcd1603ade9377675a30e62bce06c18511cefc7c7f8520c7a95afa20b25e",
+        "bytes": 2679,
+        "media_type": "application/json"
+      },
+      "provenance": "synthetic"
+    }
+  ],
+  "pins": {
+    "recipe_sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+    "profile_sha256": "164a7280541f54d675d85ee8fdc6febec39b226cb827e4c2aceff9b239d74fec",
+    "profile_id": "paper-player-r186-v1"
+  },
+  "mode": "fixture",
+  "limits": {
+    "money_microusd": 0,
+    "requests": 0,
+    "tokens": 0,
+    "repairs": 0,
+    "wall_time_ms": 0
+  },
+  "library_revision": 1
+}

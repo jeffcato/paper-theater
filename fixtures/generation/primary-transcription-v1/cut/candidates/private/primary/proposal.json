@@ -1,0 +1,36 @@
+{
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "inputs": [
+    {
+      "file": {
+        "bytes": 1000,
+        "media_type": "audio/wav",
+        "path": "private/primary-batch.wav",
+        "sha256": "8ed242fb064589cf99c9228a5d9bc02f3f17f6d1ad244120339dc9d58f4f9cbc"
+      },
+      "id": "committed:primary:private:primary-batch.wav",
+      "provenance": "synthetic"
+    }
+  ],
+  "kind": "transcription",
+  "model": "primary-transcription-double",
+  "payload": {
+    "file": {
+      "bytes": 380,
+      "media_type": "application/json",
+      "path": "private/primary/request.json",
+      "sha256": "0aa254062c721e892a626caa450f8e0174e9628ea56ebf708f555c2a5b633b7a"
+    },
+    "id": "committed:primary:private:primary:request.json",
+    "provenance": "synthetic"
+  },
+  "provider": "transcription-double",
+  "recipe_sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+  "schema_version": 2,
+  "timeout_ms": 30000
+}

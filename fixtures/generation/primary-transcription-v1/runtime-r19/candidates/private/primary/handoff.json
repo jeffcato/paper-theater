@@ -1,0 +1,35 @@
+{
+  "caller_authority": false,
+  "dispatch_permitted": false,
+  "estimate": {
+    "input_tokens": 100,
+    "money_microusd": 0,
+    "output_tokens": 20,
+    "requests": 1
+  },
+  "inputs": [
+    {
+      "file": {
+        "bytes": 9646,
+        "media_type": "audio/wav",
+        "path": "private/speech-batches/b0000.wav",
+        "sha256": "8adc8798c3b46c99570eb0bd644fac9b40e84e0fa221186fe6fe5fc1313b3841"
+      },
+      "id": "41b0cf314133cbc4d6f060025e6a987158eba775456f05f9bc05fb320da1bc63",
+      "provenance": "diagnostic"
+    }
+  ],
+  "kind": "transcription",
+  "model": "primary-transcription-double",
+  "provider": "transcription-double",
+  "recipe_sha256": "61b2b17a1b0fbb8bd6a0587a7c596219903357ac60090f4a134b21b2e7407915",
+  "request_file": {
+    "bytes": 409,
+    "media_type": "application/json",
+    "path": "private/primary/request.json",
+    "sha256": "339ac3b51cd26a8083922829c3437564636a73ae6c78212fe6be23baff26092f"
+  },
+  "runtime_committed_payload_required": true,
+  "schema_version": 1,
+  "timeout_ms": 30000
+}
