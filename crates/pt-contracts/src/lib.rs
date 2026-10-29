@@ -49,3 +49,5 @@ pub mod primary_operation_binding;
 pub use primary_operation_binding::*;
 pub mod trusted_player_consumer;
 pub use trusted_player_consumer::*;
+pub mod public_export_boundary;
+pub use public_export_boundary::*;
