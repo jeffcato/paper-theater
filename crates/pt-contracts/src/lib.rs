@@ -51,3 +51,5 @@ pub mod trusted_player_consumer;
 pub use trusted_player_consumer::*;
 pub mod public_export_boundary;
 pub use public_export_boundary::*;
+pub mod publication_decision;
+pub use publication_decision::*;
