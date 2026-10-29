@@ -57,4 +57,35 @@ impl TrustedPlayerLoadV1 {
         }
         Ok(())
     }
+
+    /// Migration interface: authenticate this load against an accepted
+    /// publication. Binds the load's report, checker and catalog identities
+    /// to the accepted ledger and catalog. Expresses no approval and grants
+    /// no acceptance, dispatch, publication or media authority.
+    pub fn authenticate_acceptance(
+        &self,
+        ledger: &AcceptanceCoverageLedgerV1,
+        catalog_sha256: &Digest,
+    ) -> ContractResult<()> {
+        self.validate()?;
+        require(
+            self.acceptance_report_sha256 == ledger.report_sha256,
+            "publication_decision",
+            "acceptance_report_sha256",
+            "load binds a different acceptance report",
+        )?;
+        require(
+            self.checker_sha256 == ledger.checker.sha256,
+            "publication_decision",
+            "checker_sha256",
+            "load binds a different executed checker",
+        )?;
+        require(
+            self.catalog_entry_sha256 == *catalog_sha256,
+            "publication_decision",
+            "catalog_entry_sha256",
+            "load binds a different published catalog",
+        )?;
+        Ok(())
+    }
 }

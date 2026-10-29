@@ -477,3 +477,31 @@ impl Prepared {
         self._private_root.path()
     }
 }
+
+/// Migration interface: decide an accepted diagnostic publication from live
+/// executed verification. Rechecks inputs through the coverage ledger, binds
+/// the exact report bytes, and returns the persisted decision record.
+/// Callers persist the returned record (replacing `unresolved`); serving
+/// paths adopt it separately. Grants no production approval.
+pub fn decide_accepted_publication(
+    verification: &c::PrivateAcceptanceVerification,
+    allowlist: &c::PublicExportAllowlistV1,
+    catalog_sha256: &c::Digest,
+    files: &[(&str, &[u8])],
+    known_private_digests: &[c::Digest],
+) -> Result<c::AcceptedPublicationV1> {
+    let ledger = verification
+        .coverage_ledger()
+        .map_err(|e| Error::new("publication_inputs_changed", e.to_string()))?;
+    let report_bytes = serde_json::to_vec(verification.report())?;
+    c::verify_accepted_publication(
+        &ledger,
+        &report_bytes,
+        &c::acceptance_binding_checker(),
+        allowlist,
+        catalog_sha256,
+        files,
+        known_private_digests,
+    )
+    .map_err(|e| Error::new("publication_decision", e.to_string()))
+}
