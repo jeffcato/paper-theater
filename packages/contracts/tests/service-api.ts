@@ -1,5 +1,10 @@
 import type {CandidateFile, CandidateWrite, RunServices,ProviderOperationV2,ProviderResultV2,ProviderContext,ProviderQuotaScope,ProviderAttemptIdentity,ProviderArtifactRefWire} from '@paper-theater/contracts';
 import {validateProviderOperationV2,validateProviderResultV2,providerQuotaScopeKey} from '@paper-theater/contracts';
+import {validateTrustedPlayerLoadV1} from '@paper-theater/contracts';
+import type {TrustedPlayerLoadV1} from '@paper-theater/contracts';
+export function pinTrustedPlayerLoad(load:unknown):TrustedPlayerLoadV1 {
+ return validateTrustedPlayerLoadV1(load);
+}
 // Compile through the package's exported declarations, as downstream workers do.
 export async function parseCandidate(services: RunServices, candidate: CandidateFile): Promise<unknown> {
   const bytes: Uint8Array = await services.read_candidate(candidate);
