@@ -47,3 +47,5 @@ pub mod production_parent_policy;
 pub use production_parent_policy::*;
 pub mod primary_operation_binding;
 pub use primary_operation_binding::*;
+pub mod trusted_player_consumer;
+pub use trusted_player_consumer::*;

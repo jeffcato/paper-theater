@@ -8,4 +8,4 @@ const copy=registeredSourceCatalogV1();copy.sources.length=0;assert.equal(regist
 for(const scope of ['autonomous_excerpt','production_chapter']){const checks=requiredAcceptanceChecks(scope);assert.equal(checks.filter(c=>c.implemented).length,8);assert.equal(checks.filter(c=>!c.implemented).length,29);}
 assert.equal(acceptanceCheckMatrix('pt-acceptance-required-v3').checks.filter(c=>c.implemented).length,5);
 assert.equal(data.records.find(r=>r.id==='missing-mapping-remains-blocked').report.checks.find(c=>c.check_id==='complete-chapter').outcome,'missing');
-console.log(`Registered source scopes: ${data.records.length} Rust-produced scope/forgery/archive reports agree; selected scopes retain 31 missing verifiers`);
+console.log(`Registered source scopes: ${data.records.length} Rust-produced scope/forgery/archive reports agree; selected scopes retain 29 missing verifiers`);

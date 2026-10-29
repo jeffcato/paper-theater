@@ -20,3 +20,4 @@ export {registeredSourceCatalogV1,REGISTERED_SOURCE_CATALOG_VERSION,REGISTERED_S
 export * from './production-parent-policy.js';
 export * from './primary-operation-binding.js';
 export type {RegisteredSourceCatalogV1,RegisteredChapterSourceV1,RegisteredSourceFrameV1} from './registered-source-scope.js';
+export * from './player-consumer.js';

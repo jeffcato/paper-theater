@@ -10,10 +10,15 @@ import type {PrimaryProvenanceV1} from '@paper-theater/contracts';
 export async function validatePrimaryBinding(provenance:unknown,operation:unknown,result:unknown,primaryText:string):Promise<PrimaryProvenanceV1> {
  return validatePrimaryProvenanceV1(provenance,operation,result,new TextEncoder().encode(primaryText));
 }
+import {validateTrustedPlayerLoadV1} from '@paper-theater/contracts';
+import type {TrustedPlayerLoadV1} from '@paper-theater/contracts';
 export async function validateCompilerParent(parent:unknown,derived:unknown,policyBytes:Uint8Array,requestBytes:Uint8Array):Promise<ProductionDerivationV1> {
  validateProductionParentPolicyV1(parent);
  const policy:ProductionParentPolicyV1=parent;
  return validateProductionDerivationV1(policy,derived,policyBytes,requestBytes);
+}
+export function pinTrustedPlayerLoad(load:unknown):TrustedPlayerLoadV1 {
+ return validateTrustedPlayerLoadV1(load);
 }
 // Compile through the package's exported declarations, as downstream workers do.
 export async function parseCandidate(services: RunServices, candidate: CandidateFile): Promise<unknown> {
