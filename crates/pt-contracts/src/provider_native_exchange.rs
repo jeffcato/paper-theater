@@ -5,6 +5,9 @@ use serde::{Deserialize, Serialize};
 pub const MAX_NATIVE_PROVIDER_RECORD_BYTES: usize = 64 * 1024;
 pub const MAX_NATIVE_PROVIDER_WIRE_BYTES: u64 = 1024 * 1024;
 pub const MAX_NATIVE_PROVIDER_RAW_BYTES: u64 = 12 * 1024 * 1024;
+/// Audio-only transcription wire ceiling: base64 of the 16 MiB verified PCM
+/// batch plus 4 KiB bounded JSON metadata. Ordinary wire stays 1 MiB.
+pub const MAX_NATIVE_AUDIO_WIRE_BYTES: u64 = 22_373_720;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -90,9 +93,13 @@ impl ProviderNativeExchangeV1 {
             "path",
             "fixed relative provider path required; credentials and redirects are not metadata",
         )?;
+        let audio_wire_role = issued.operation.kind == OperationKind::Transcription
+            && issued.operation.provider == "gemini"
+            && issued.operation.model == "gemini-3.5-transcribe";
         require(
             self.issued_operation.bytes <= 64 * 1024
-                && self.wire_request.bytes <= 1024 * 1024
+                && (self.wire_request.bytes <= 1024 * 1024
+                    || audio_wire_role && self.wire_request.bytes <= MAX_NATIVE_AUDIO_WIRE_BYTES)
                 && self.issued_operation.media_type == "application/json"
                 && self.wire_request.media_type == "application/json"
                 && policy.max_raw_response_bytes > 0
