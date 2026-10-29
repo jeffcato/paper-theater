@@ -6,6 +6,7 @@ import {parseStrictJsonBytes} from './json-bytes.js';
 export const MAX_NATIVE_PROVIDER_RECORD_BYTES=64*1024;
 export const MAX_NATIVE_PROVIDER_WIRE_BYTES=1024*1024;
 export const MAX_NATIVE_PROVIDER_RAW_BYTES=12*1024*1024;
+export const MAX_NATIVE_AUDIO_WIRE_BYTES=22373720;
 
 type NativeFile=ProviderArtifactRefWire['file'];
 /** Runtime-selected pins; JSON validation grants no dispatch/retry authority. */
@@ -52,7 +53,8 @@ export async function validateProviderNativeExchangeV1(value:unknown,expected:un
  if(typeof r.origin_id!=='string'||!/^[A-Za-z0-9_.:-]{1,128}$/.test(r.origin_id))throw new ContractError('id','origin_id','expected bounded origin identifier');
  need(typeof r.path==='string'&&r.path.startsWith('/')&&!r.path.startsWith('//')&&r.path.length<=2048&&/^[\x21-\x7e]+$/.test(r.path)&&!/[?#%\\]/.test(r.path)&&r.path.split('/').every(p=>p!=='.'&&p!=='..'),'path','fixed relative provider path required');
  file(r.issued_operation,'issued_operation');file(r.wire_request,'wire_request');file(p.issued_operation,'policy.issued_operation');file(p.wire_request,'policy.wire_request');
- need(r.issued_operation.bytes<=65536&&r.wire_request.bytes<=1048576&&r.issued_operation.media_type==='application/json'&&r.wire_request.media_type==='application/json'&&isSample(p.max_raw_response_bytes)&&p.max_raw_response_bytes>0&&p.max_raw_response_bytes<=12*1048576&&(p.max_raw_response_bytes<=1048576||issued.operation.kind==='speech'&&issued.operation.provider==='gemini'),'bounds','bounded metadata/request and selected response role required');
+ const audioWireRole=issued.operation.kind==='transcription'&&issued.operation.provider==='gemini'&&issued.operation.model==='gemini-3.5-transcribe';
+ need(r.issued_operation.bytes<=65536&&(r.wire_request.bytes<=1048576||audioWireRole&&r.wire_request.bytes<=22373720)&&r.issued_operation.media_type==='application/json'&&r.wire_request.media_type==='application/json'&&isSample(p.max_raw_response_bytes)&&p.max_raw_response_bytes>0&&p.max_raw_response_bytes<=12*1048576&&(p.max_raw_response_bytes<=1048576||issued.operation.kind==='speech'&&issued.operation.provider==='gemini'),'bounds','bounded metadata/request and selected response role required');
  need(keys.every(k=>semantic(r[k])===semantic(p[k])),'policy','native exchange differs from independently selected pins');
  need(semantic(r.raw_response??null)===semantic(result.result.raw_response??null),'raw_response','original raw response differs');
  const raw=result.result.raw_response;

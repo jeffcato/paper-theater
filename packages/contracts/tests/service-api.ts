@@ -2,7 +2,10 @@ import type {CandidateFile, CandidateWrite, RunServices,ProviderOperationV2,Prov
 import {validateProviderOperationV2,validateProviderResultV2,providerQuotaScopeKey} from '@paper-theater/contracts';
 import {validateProductionDerivationV1,validateProductionParentPolicyV1} from '@paper-theater/contracts';
 import type {ProductionParentPolicyV1,ProductionDerivationV1} from '@paper-theater/contracts';
-import {validatePrimaryProvenanceV1} from '@paper-theater/contracts';
+import {validatePrimaryProvenanceV1,MAX_NATIVE_AUDIO_WIRE_BYTES} from '@paper-theater/contracts';
+export function audioWireCeilingBytes():number {
+ return MAX_NATIVE_AUDIO_WIRE_BYTES;
+}
 import type {PrimaryProvenanceV1} from '@paper-theater/contracts';
 export async function validatePrimaryBinding(provenance:unknown,operation:unknown,result:unknown,primaryText:string):Promise<PrimaryProvenanceV1> {
  return validatePrimaryProvenanceV1(provenance,operation,result,new TextEncoder().encode(primaryText));

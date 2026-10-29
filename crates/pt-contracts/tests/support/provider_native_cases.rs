@@ -101,6 +101,91 @@ pub fn records() -> Vec<Value> {
     );
     native["id"] = json!("large-gemini-speech-raw-role");
     rows.push(native.clone());
+    let mut audio_op = serde_json::to_value(&op).unwrap();
+    let mut audio_result = serde_json::to_value(&result).unwrap();
+    audio_op["operation"]["kind"] = json!("transcription");
+    audio_op["operation"]["provider"] = json!("gemini");
+    audio_op["operation"]["model"] = json!("gemini-3.5-transcribe");
+    for value in [&mut audio_op, &mut audio_result] {
+        value["context"]["provider"] = json!("gemini");
+        for w in value["quota_windows"].as_array_mut().unwrap() {
+            w["scope"]["provider"] = json!("gemini");
+        }
+    }
+    let mut audio = |id: &str, wire_len: usize, valid: bool| {
+        let mut row = scenario(
+            serde_json::from_value(audio_op.clone()).unwrap(),
+            serde_json::from_value(audio_result.clone()).unwrap(),
+            0,
+            1024 * 1024,
+        );
+        let wire = "x".repeat(wire_len);
+        let wire_ref = file("private/wire.json", wire.as_bytes());
+        row["id"] = json!(id);
+        row["valid"] = json!(valid);
+        row["wire_bytes"] = json!(wire);
+        row["record"]["wire_request"] = serde_json::to_value(&wire_ref).unwrap();
+        row["policy"]["wire_request"] = serde_json::to_value(&wire_ref).unwrap();
+        rows.push(row);
+    };
+    audio("audio-30s-transcription-role", 1_920_044, true);
+    audio("audio-90s-transcription-role", 5_760_044, true);
+    audio(
+        "exact-audio-role-bound",
+        MAX_NATIVE_AUDIO_WIRE_BYTES as usize,
+        true,
+    );
+    audio(
+        "audio-role-bound-plus-one",
+        MAX_NATIVE_AUDIO_WIRE_BYTES as usize + 1,
+        false,
+    );
+    let mut role_op = audio_op.clone();
+    role_op["operation"]["kind"] = json!("direction");
+    let mut role_row = scenario(
+        serde_json::from_value(role_op).unwrap(),
+        serde_json::from_value(audio_result.clone()).unwrap(),
+        0,
+        1024 * 1024,
+    );
+    let role_wire = "x".repeat(1_920_044);
+    let role_ref = file("private/wire.json", role_wire.as_bytes());
+    role_row["id"] = json!("wrong-role-large-wire");
+    role_row["valid"] = json!(false);
+    role_row["wire_bytes"] = json!(role_wire);
+    role_row["record"]["wire_request"] = serde_json::to_value(&role_ref).unwrap();
+    role_row["policy"]["wire_request"] = serde_json::to_value(&role_ref).unwrap();
+    rows.push(role_row);
+    let mut model_op = audio_op.clone();
+    model_op["operation"]["model"] = json!("gemini-2.0-flash");
+    let mut model_row = scenario(
+        serde_json::from_value(model_op).unwrap(),
+        serde_json::from_value(audio_result.clone()).unwrap(),
+        0,
+        1024 * 1024,
+    );
+    let model_wire = "x".repeat(1_920_044);
+    let model_ref = file("private/wire.json", model_wire.as_bytes());
+    model_row["id"] = json!("wrong-model-large-wire");
+    model_row["valid"] = json!(false);
+    model_row["wire_bytes"] = json!(model_wire);
+    model_row["record"]["wire_request"] = serde_json::to_value(&model_ref).unwrap();
+    model_row["policy"]["wire_request"] = serde_json::to_value(&model_ref).unwrap();
+    rows.push(model_row);
+    let mut changed = scenario(
+        serde_json::from_value(audio_op.clone()).unwrap(),
+        serde_json::from_value(audio_result.clone()).unwrap(),
+        0,
+        1024 * 1024,
+    );
+    let changed_wire = "x".repeat(1_920_044);
+    let changed_ref = file("private/wire.json", changed_wire.as_bytes());
+    changed["id"] = json!("changed-audio-identity");
+    changed["valid"] = json!(false);
+    changed["wire_bytes"] = json!("y".repeat(1_920_044));
+    changed["record"]["wire_request"] = serde_json::to_value(&changed_ref).unwrap();
+    changed["policy"]["wire_request"] = serde_json::to_value(&changed_ref).unwrap();
+    rows.push(changed);
     let op: ProviderOperationV2 = serde_json::from_value(native["operation"].clone()).unwrap();
     let result: ProviderResultV2 = serde_json::from_value(native["result"].clone()).unwrap();
     let mut exact = scenario(

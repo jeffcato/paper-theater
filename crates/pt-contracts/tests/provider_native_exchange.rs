@@ -203,3 +203,29 @@ fn native_binding_requires_a_selected_codec_and_fixed_relative_route() {
         );
     }
 }
+
+#[test]
+fn audio_wire_replay_is_exact_and_idempotent() {
+    let row = cases::records()
+        .into_iter()
+        .find(|c| c["id"] == "audio-30s-transcription-role")
+        .unwrap();
+    let record: ProviderNativeExchangeV1 = serde_json::from_value(row["record"].clone()).unwrap();
+    let policy: ProviderNativeExchangePolicyV1 =
+        serde_json::from_value(row["policy"].clone()).unwrap();
+    let op: ProviderOperationV2 = serde_json::from_value(row["operation"].clone()).unwrap();
+    let result: ProviderResultV2 = serde_json::from_value(row["result"].clone()).unwrap();
+    let wire = row["wire_bytes"].as_str().unwrap().as_bytes();
+    let bytes = || ProviderNativeExchangeBytesV1 {
+        issued_operation: row["issued_bytes"].as_str().unwrap().as_bytes(),
+        logical_request: row["logical_bytes"].as_str().unwrap().as_bytes(),
+        wire_request: wire,
+        raw_response: None,
+    };
+    record
+        .validate_bytes(&policy, &op, &result, bytes())
+        .unwrap();
+    record
+        .validate_bytes(&policy, &op, &result, bytes())
+        .unwrap();
+}
