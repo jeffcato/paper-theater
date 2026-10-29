@@ -45,3 +45,5 @@ pub use registered_source_scope::*;
 
 pub mod production_parent_policy;
 pub use production_parent_policy::*;
+pub mod primary_operation_binding;
+pub use primary_operation_binding::*;

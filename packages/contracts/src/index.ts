@@ -18,4 +18,5 @@ export * from './acceptance-coverage.js';
 export * from './provider-native-exchange.js';
 export {registeredSourceCatalogV1,REGISTERED_SOURCE_CATALOG_VERSION,REGISTERED_SOURCE_CATALOG_SHA256,REGISTERED_SOURCE_CATALOG_BYTES} from './registered-source-scope.js';
 export * from './production-parent-policy.js';
+export * from './primary-operation-binding.js';
 export type {RegisteredSourceCatalogV1,RegisteredChapterSourceV1,RegisteredSourceFrameV1} from './registered-source-scope.js';
